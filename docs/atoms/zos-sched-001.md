@@ -1,10 +1,12 @@
 ---
-title: ZOS-SCHED-001
-description: JES2/3 spool + scheduler、依存制御、carry-forward、TWS Application / Operation
-tags:
-  - Workload
-  - Recovery-Workload
+id: ZOS-SCHED-001
+title: Batch scheduler (TWS / Control-M / OPC)
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-SCHED-001: Batch scheduler (TWS / Control-M / OPC)
 
 ## 1. purpose（なぜ存在するか）
@@ -137,3 +139,7 @@ D RES,NAME=DB2_UTIL
 - **失敗時の自動 RERUN policy**: 全 job auto-retry vs 特定 job のみ auto-retry vs 全部手動。**冪等 job（idempotent）のみ auto-retry、副作用ある job は手動**、retry 3 回まで等の policy 化。
 - **scheduler controller HA**: 単一 controller（運用簡素 + 障害時手動切替）vs HA + ARM cross-system restart（複雑 + 自動切替）。**業務 SLA 99.9% 以上 = HA 必須、24 時間 OLTP は controller 障害が全業務影響なので HA 一択**。
 - **cross-platform 統合**: z/OS scheduler が Linux / Windows job も併せて管理する vs platform 毎 scheduler 分離。**業務フローが platform 跨ぐ場合 (z/OS 集計 → Linux ML → Windows 報告) は統合、独立業務は分離**、Control-M の優位領域。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) からジョブスケジューラ設計の運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。

@@ -1,10 +1,12 @@
 ---
-title: ZOS-ACEE-001
-description: ACEE 構造、SAF 認可検査経路、Surrogate / SUBMIT BY、TSO submit と batch ID 違い
-tags:
-  - Security
-  - Security-Network
+id: ZOS-ACEE-001
+title: ACEE / Address Space Identity
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-ACEE-001: ACEE / Address Space Identity
 
 ## 1. purpose（なぜ存在するか）
@@ -73,3 +75,10 @@ Linux / Windows との対比:
 ## 7. decision_axes
 
 詳細は `decision-axes/` 配下。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

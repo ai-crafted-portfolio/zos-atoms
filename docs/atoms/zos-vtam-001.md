@@ -1,10 +1,12 @@
 ---
-title: ZOS-VTAM-001
-description: APPL / LU / Mode table、SNA セッション、cross-domain、APPN/HPR
-tags:
-  - Network
-  - Security-Network
+id: ZOS-VTAM-001
+title: VTAM (SNA Network Communication)
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-VTAM-001: VTAM (SNA Network Communication)
 
 ## 1. purpose（なぜ存在するか）
@@ -19,6 +21,8 @@ Linux / クラウドとの対比:
 - Cloud: 完全に SNA は存在しない、レガシー連携は AT-TLS + IBM HTTP Server / MQ bridge / EE で IP 化が前提
 
 CICS が「**APPLID で identify される VTAM application**」として VTAMLST に登録され、SNA session を張る相手 (3270 端末 / 他 CICS region / IMS) と LU-LU session を交わす。**「CICS が動かない」障害の半分は VTAM 側 (APPL inactive / MODETAB 不整合 / 通信 path 切断)** という現場感覚は今でも有効。
+
+書籍 (BK_MF_001 / BK_ZOS_TECH_001) 蒸留の補強観点として、VTAM は「**OS が通信セッションを資産として持つ**」設計の代表例として理解しておくと本質が分かる。TCP/IP では各アプリが socket を保持して通信を完結させるが、VTAM では VTAM アドレス空間が LU 状態 / session 状態 / route 状態を集中管理する。これにより、アプリが落ちても VTAM レイヤでは session が生き残れる、複数アプリ間で session を委譲できる、などの可用性メリットがあるが、**「アプリ起動 = VTAM ACT」「アプリ停止 = VTAM INACT」が独立コマンド** という独特の運用文化を生んでいる。Linux 系の「アプリと socket は一体」の感覚で運用しようとすると、INACT 漏れで session が残置されたまま再ACT で衝突する事故が起こる。
 
 ## 2. mechanism（どう動くか）
 
@@ -59,6 +63,8 @@ CICS が「**APPLID で identify される VTAM application**」として VTAMLS
 - `D NET,SESSIONS,LU1=CICSP01` (session 一覧)
 - `D NET,MAJNODES` (active MAJNODE 一覧)
 
+書籍 (BK_ZOS_TECH_001 / BK_ZOS_TECH_002) 蒸留の mechanism 補強: MODETAB は session 特性 (RU sizes / pacing / class of service) を定義するアセンブラテーブルで、**SE で送信側と受信側で完全一致しないと BIND がリジェクトされる**。新規 APPL を構築する時、MODETAB の DEF を忘れて default の `ISTNORM` を使うと、性能が出ない / 大量データで segment 化が頻発する事象が起きる。**業務特性 (3270 対話か、大容量バルクか、CPI-C か) に応じた MODETAB を選定** し、両側で一致確認をするのが構築 SOP。APPC では VTAM の MODENAME と CICS/IMS の MODE 定義がリンクするため、3 層で名前と特性を揃える必要がある。
+
 ## 3. prerequisites
 
 - ZOS-CICS-001 / ZOS-IMS-001 (VTAM の主要顧客)
@@ -76,10 +82,50 @@ CICS が「**APPLID で identify される VTAM application**」として VTAMLS
 
 詳細は `pitfalls/` 配下。
 
+書籍 (BK_MF_001 / BK_ZOS_TECH_001) 蒸留の代表的な落とし穴 (概要):
+- **APPLID 重複**: 同一 Sysplex 内で APPLID が衝突すると後勝ち / session 衝突。`APPLID` の命名規約 (`SYSnnnAPP` 等) をサイト全体で固定する。
+- **MODETAB / LOGMODE 不一致**: 送受信側 LOGMODE 不一致で BIND リジェクト、`IST663I BIND FAILED` が出る。両側の LOGMODE entry を `D NET,ID=mode,TYPE=LOGON` で確認。
+- **CDRSC キャッシュ古い**: cross-domain で接続先 APPL の状態キャッシュが古いまま、相手 LPAR の再起動を VTAM が認識せず `IST663I SENSE=08570003`。`V NET,INACT,ID=cdrsc` → `V NET,ACT,ID=cdrsc` で強制リフレッシュ。
+- **EE トンネル MTU 過大**: Enterprise Extender (EE = SNA over IP) のトンネル MTU が物理 MTU を超えると断片化、`IST1856I` で性能劣化。EE の `IPMSGSIZ` を物理 MTU - 28 程度に絞る。
+- **VTAM trace のディスク食い潰し**: `F NET,TRACE,TYPE=BUF,...` で trace を仕掛けたまま忘れると、SYS1.TRACE 系のデータセットを食い潰して OS まで落ちる。trace は時間制限 + 自動停止コマンドとセットで運用。
+
 ## 6. examples
 
 詳細は `examples.md`。
 
+書籍 (BK_ZOS_TECH_001) 蒸留の代表的な VTAMLST 設計パターン:
+
+```
+* APPL major node 例 (CICS application)
+CICSP01  VBUILD TYPE=APPL
+CICSP01  APPL  ACBNAME=CICSP01,                                        X
+               AUTH=(ACQ,PASS,VPACE),                                  X
+               EAS=200,                                                X
+               PARSESS=YES,                                            X
+               MODETAB=ISTINCLM,                                       X
+               DLOGMOD=SCS,                                            X
+               SONSCIP=NO,                                             X
+               VPACING=2
+
+* Switched major node 例 (3270 端末)
+SW3270   VBUILD TYPE=SWNET,MAXGRP=10,MAXNO=10
+PU3270   PU    ADDR=01,IDBLK=017,IDNUM=12345,                          X
+               PUTYPE=2,USSTAB=USSTBL,LOGAPPL=CICSP01
+LU3270A  LU    LOCADDR=02
+LU3270B  LU    LOCADDR=03
+
+* MODETAB 抜粋 (Assembler macro)
+SCS      MODEENT LOGMODE=SCS,                                          X
+               FMPROF=X'03',TSPROF=X'03',                              X
+               PRIPROT=X'B1',SECPROT=X'90',COMPROT=X'3080',            X
+               RUSIZES=X'8585',                                        X
+               PSERVIC=X'01000000E100000000000000'
+```
+
 ## 7. decision_axes
 
 詳細は `decision-axes/` 配下。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から VTAM major node 設計の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

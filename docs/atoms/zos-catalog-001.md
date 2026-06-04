@@ -3,8 +3,9 @@ id: ZOS-CATALOG-001
 title: カタログ（ICF, マスター + ユーザ）
 status: stable
 last_reviewed: 2026-05-09
+authors: [agent]
+rag_verified: partially
 ---
-
 
 # ZOS-CATALOG-001: カタログ
 
@@ -18,7 +19,7 @@ DSN は flat な 44 文字（ドット階層は規約で、OS にとっては単
 
 ## 2. mechanism（どう動くか）
 
-- カタログの実体は **VSAM KSDS**（→ [ZOS-VSAM-001](zos-vsam-001.md)）。「カタログ自体が VSAM」という再帰
+- カタログの実体は **VSAM KSDS**（→ ZOS-VSAM-001）。「カタログ自体が VSAM」という再帰
 - 種別:
   - **マスターカタログ**: システムに 1 つ。`SYS1.MCAT.xxx` 等。z/OS IPL 時に LOADxx で指定
   - **ユーザカタログ**: 複数 OK
@@ -30,16 +31,16 @@ DSN は flat な 44 文字（ドット階層は規約で、OS にとっては単
 
 ## 3. prerequisites（理解の前提）
 
-- DASD の VTOC（→ [ZOS-DASD-001](zos-dasd-001.md)）
-- VSAM KSDS（→ [ZOS-VSAM-001](zos-vsam-001.md)）
+- DASD の VTOC（→ ZOS-DASD-001）
+- VSAM KSDS（→ ZOS-VSAM-001）
 - 一般 IT 知識: 階層 DNS のような「ルートからユーザ領域への委譲」モデル
 
 ## 4. relations（他アトムとの繋がり）
 
-- `depends_on`: [ZOS-DASD-001](zos-dasd-001.md)
+- `depends_on`: ZOS-DASD-001
 - `specialized_by`: なし
 - `contrasts_with`: なし（メインフレーム独自）
-- `used_by`: [ZOS-DATASET-001](zos-dataset-001.md), [ZOS-VSAM-001](zos-vsam-001.md), [ZOS-JCL-001](zos-jcl-001.md), [ZOS-SMS-001](zos-sms-001.md) (SMS-managed はカタログ必須), [ZOS-GDG-001](zos-gdg-001.md) (GDG base + GDS は catalog 管理)
+- `used_by`: ZOS-DATASET-001, ZOS-VSAM-001, ZOS-JCL-001, ZOS-SMS-001 (SMS-managed はカタログ必須), ZOS-GDG-001 (GDG base + GDS は catalog 管理)
 
 ## 5. pitfalls（実装・運用での落とし穴）
 
@@ -78,3 +79,7 @@ DEFINE USERCATALOG (
 - **ICF 標準 vs ベンダー製カタログ管理**: CA-1, BMC Catalog Manager 等。標準 IDCAMS で頑張れる規模なら不要、データセット数が 10 万超えるなら導入検討。**判断軸は「人間が手で IDCAMS 叩けるか」**。
 - **alias の階層深さ**: HLQ レベル alias（1 階層）が標準。深い alias は検索コスト増 + 移行困難、推奨しない。
 - **EXPORT 頻度**: 日次 EXPORT が標準。CICS/Db2 系の頻繁に DEFINE/DELETE が走るカタログは数時間に 1 回。**頻度は「リカバリ時間目標 RTO」と「EXPORT 自体のコスト」のトレードオフ**。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) からカタログ周りの実運用知見を概念蒸留した上で本アトムへ反映している。逐語引用は禁止 (ADR-0109)。書籍は概念補助、決定的引用は IBM 公式 manual を優先。

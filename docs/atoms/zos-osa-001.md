@@ -1,10 +1,12 @@
 ---
-title: ZOS-OSA-001
-description: OSA Express、OSM (z/OSMF interface)、Hipersockets、IQDIO
-tags:
-  - Network
-  - Security-Network
+id: ZOS-OSA-001
+title: OSA-Express + FICON / OSM / Hipersockets
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-OSA-001: OSA-Express + FICON / OSM / Hipersockets
 
 ## 1. purpose（なぜ存在するか）
@@ -82,3 +84,7 @@ OSA 関連障害の特徴: **「physical card 故障は稀、設定不整合と 
 ## 7. decision_axes
 
 詳細は `decision-axes/` 配下。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から OSA / CHPID 共有設計の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

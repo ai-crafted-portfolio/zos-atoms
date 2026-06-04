@@ -3,8 +3,9 @@ id: ZOS-RACF-001
 title: RACF（セキュリティ / SAF）
 status: stable
 last_reviewed: 2026-05-09
+authors: [agent]
+rag_verified: partially
 ---
-
 
 # ZOS-RACF-001: RACF
 
@@ -19,6 +20,8 @@ Linux/Windows と何が違うか:
 - z/OS + RACF: **単一データベース** に「誰が何にアクセスできるか」を集約。データセット名は文字列パターンで保護（`USER.PROD.**` のような generic profile）
 
 **監査要件（PCI-DSS, SOX 等）が厳しい業界（金融・公共）でメインフレームが選ばれる主因の 1 つ**。RACF ログ（SMF type 80）は、誰がいつ何をしたかを残す必須インフラ。
+
+書籍 (BK_MF_001 / BK_ZOS_TECH_002) 蒸留の視点では、RACF は「OS と認証認可を分離する設計」の代表例として理解しておくと体系的に把握できる。OS 内部から見れば RACF は単なる SAF プラグインの一つで、SAF call が「許可 / 拒否 / 知らない」の 3 値を返すだけ。**OS は判定理由を知らない**ので、運用側で SMF type 80 をログ収集→集中分析しないと監査説明ができない。「とりあえず権限を絞る」だけでは内部統制要件を満たさず、「誰が・いつ・何に・どう判定されたか」を後から再現できる体制を初期構築フェーズで決めておくのが鉄則。
 
 ## 2. mechanism（どう動くか）
 
@@ -36,18 +39,20 @@ Linux/Windows と何が違うか:
 - SMF type 80 レコードに全アクセス記録
 - AUDIT 設定で「成功も記録 / 失敗だけ」を選べる
 
+書籍 (BK_ZOS_TECH_001) 蒸留での追加 mechanism: RACF の権限判定は **「ユーザ → グループ → ACL → UACC → 警告」** という決定木を内部で辿る。`PERMIT` で個別許可を与えた場合と、グループ経由で許可を与えた場合では、SMF type 80 のログに残る経路が違う。**LISTDSD の AUTHUSER 出力で「誰が・どの経路で・何の権限を持っているか」を可視化できる**が、これを定期実行して棚卸ししないと、退職者の権限残置・グループ統廃合での権限肥大などが進行する。RACF データベース (RACFDB) は in-memory cache されるため、変更後 `SETROPTS REFRESH` を打たないと反映されない点も運用上の盲点。
+
 ## 3. prerequisites（理解の前提）
 
-- データセット概念（→ [ZOS-DATASET-001](zos-dataset-001.md)）
-- SMF（→ [ZOS-SMF-001](zos-smf-001.md)）
+- データセット概念（→ ZOS-DATASET-001）
+- SMF（→ ZOS-SMF-001）
 - 一般 IT 知識: ACL モデル、認証 vs 認可の区別、監査要件
 
 ## 4. relations（他アトムとの繋がり）
 
-- `depends_on`: [ZOS-DATASET-001](zos-dataset-001.md)
+- `depends_on`: ZOS-DATASET-001
 - `specialized_by`: なし
 - `contrasts_with`: （未作成）UNIX-PERMISSION-001, （未作成）AD-DOMAIN-001
-- `used_by`: [ZOS-CICS-001](zos-cics-001.md), [ZOS-IMS-001](zos-ims-001.md), [ZOS-DB2-001](zos-db2-001.md), [ZOS-SMF-001](zos-smf-001.md) (type 80 出力)
+- `used_by`: ZOS-CICS-001, ZOS-IMS-001, ZOS-DB2-001, ZOS-SMF-001 (type 80 出力)
 
 ## 5. pitfalls（実装・運用での落とし穴）
 
@@ -58,6 +63,10 @@ Linux/Windows と何が違うか:
 - **SPECIAL ID 多発**: SPECIAL を運用都合で複数人に付けると、操作が証跡で追えない。**SPECIAL は 2〜3 名に限定 + 個別 audit 必須**、サービスデスクが「権限ください」と言ってきても安易に与えないルールが必要。
 - **データセットプロファイル の generic / discrete 混在**: `USER.PROD.SALES`（discrete）と `USER.PROD.**`（generic）両方ある時、より specific な discrete が優先。これを忘れると generic で許可したつもりが discrete で拒否されてる、または逆。**LISTDSD で実効プロファイルを毎回確認**。
 - **DB2 SECDATA の二重管理**: Db2 は内部 GRANT と RACF の両方で認可可能。SECDATA クラスを使うと RACF に統一できるが、初期から GRANT で運用してるシステムは混在してる事多し。**どちらが効いてるか分からない権限が積み上がる事故あり**、定期棚卸しで一致確認。
+- **PROFILE 名の generic 拡張で意図せぬ範囲拡大 (BK_ZOS_TECH_002 蒸留)**: `USER.PROD.*` を作って後で `USER.PROD.SECRET` を作った時、generic profile が暗黙に SECRET も覆ってしまい、想定外のユーザに READ 権が暗黙付与される。**新規 HLQ 拡張時は必ず LISTDSD で実効プロファイル確認**、その上で discrete profile で上書きするか generic を細分化する。
+- **RACROUTE 互換 API での監査漏れ**: アプリ独自の SAF 呼出ロジックを実装する時、AUTHCHECK を呼ばずに自前でテーブル参照すると SMF type 80 が出ない。「動くからいい」で済ますとセキュリティ監査時にログ無しで説明不能。**自前認可は SAF 経由で書く SOP** が長寿システムでは厳格化される。
+- **PROTECTED 属性の運用浸透不足**: STC 用技術 ID を `PROTECTED` 化する原則を知らずに、人間用パスワードを設定したまま運用しているサイトがある。**全 STC ID を年次棚卸しで PROTECTED 化**するチェック項目を入れないと、退職者ローテーションで穴が開く。
+- **Multi-Factor Authentication (MFA) 連携の例外**: Z/OS MFA (RSA SecurID / TOTP) 導入後、特定の STC / 自動ジョブで MFA 不要 ID を例外化する設定 (`MFA(NOPWFALLBACK)` 等) を入れる場面が出てくる。**例外 ID 一覧が暗黙化してドキュメント化されないと、監査人指摘事項になる**。明示的に「MFA 例外台帳」を運用文書として残すのが現代的な内部統制の前提。
 
 ## 6. examples（具体例）
 
@@ -83,6 +92,16 @@ SETROPTS RACLIST(TCICSTRN) REFRESH
 SEARCH CLASS(USER) FILTER(*) SPECIAL
 ```
 
+書籍 (BK_MF_001) 蒸留の運用パターン: 大企業の RACF 運用では「役割テンプレート」(`TEMPLATE_DEV` / `TEMPLATE_OPS` / `TEMPLATE_AUDIT` 等) を擬似的にグループ階層で表現し、新入社員/異動でグループ付け替えだけで権限を回す体制が定着している。**個別 PERMIT で権限を積み増す運用は数年で破綻**するので、初期からテンプレートグループ + 業務リソースグループの 2 軸設計を強く推奨する。
+
+```racf
+* テンプレートグループ階層の例
+ADDGROUP G_DEV_TEMPL OWNER(SECADM)
+ADDGROUP G_DEV_ACCT  OWNER(SECADM) SUPGROUP(G_DEV_TEMPL)
+ADDGROUP G_DEV_SALES OWNER(SECADM) SUPGROUP(G_DEV_TEMPL)
+* G_DEV_TEMPL に共通権限、G_DEV_ACCT / G_DEV_SALES に業務固有を付ける
+```
+
 ## 7. decision_axes（採否を分ける判断軸）
 
 - **RACF vs ACF2 vs Top Secret**: SAF 互換の 3 製品で機能はほぼ同等。**サイトの長年の選択 + ベンダーサポートで決まる**、新規構築は RACF が IBM 公式 + 普及度高で無難。
@@ -91,3 +110,10 @@ SEARCH CLASS(USER) FILTER(*) SPECIAL
 - **SPECIAL/AUDITOR/OPERATIONS の役割分離**: 1 ID に全部付けるのは内部統制違反（SOX 等で監査人が指摘）。**3 役分離が原則**、役割兼務は監査説明が困難。
 - **パスワード vs パスフレーズ vs 証明書**: 8 文字以下が CICS/IMS の伝統だが現代基準で弱い。**Web 経由は PassTicket（短期トークン）化、内部対話は MFA 連携** が現代的。
 - **監査ログの保持期間**: SMF type 80 を 90 日 / 1 年 / 7 年（金融）で。**長期保持は VTS / クラウド アーカイブ化** + 検索可能性確保（Splunk/QRadar に常時転送する事例多し）。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

@@ -1,10 +1,12 @@
 ---
-title: ZOS-ZOSMF-001
-description: z/OSMF REST API、workflow、cloud provisioning、Software Management
-tags:
-  - Modernization
-  - Sysplex-Modernization
+id: ZOS-ZOSMF-001
+title: z/OSMF (REST + workflow)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-ZOSMF-001: z/OSMF (REST + workflow)
 
 ## 1. purpose
@@ -52,3 +54,7 @@ zowe files list ds "USR001.**" --zosmf-profile prod
 - **単一 vs HA**: 業務クリティカル自動化なら HA
 - **Basic Auth vs JWT vs API key**: CI/CD は API key
 - **Zowe CLI vs 直接 REST**: 標準は Zowe、特殊は direct
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001/002) から z/OSMF 運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。

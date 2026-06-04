@@ -1,15 +1,17 @@
 ---
-title: ZOS-RRS-001
-description: two-phase commit coordinator、URID、RRS log group、ATR タイプ msg
-tags:
-  - Recovery
-  - Recovery-Workload
+id: ZOS-RRS-001
+title: RRS (Resource Recovery Services)
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-RRS-001: RRS (Resource Recovery Services)
 
 ## 1. purpose（なぜ存在するか）
 
-RRS（Resource Recovery Services）は z/OS の **OS レベル two- coordinator**。Db2 / IMS / MQ / CICS / WebSphere 等の複数 Resource Manager（RM）にまたがる **分散トランザクション** を、OS が単一の URID（Unit of Recovery ID）で束ねて prepare / commit / backout する。subsystem 個別の TX coordinator では足りない領域を埋める。
+RRS（Resource Recovery Services）は z/OS の **OS レベル two-phase commit coordinator**。Db2 / IMS / MQ / CICS / WebSphere 等の複数 Resource Manager（RM）にまたがる **分散トランザクション** を、OS が単一の URID（Unit of Recovery ID）で束ねて prepare / commit / backout する。subsystem 個別の TX coordinator では足りない領域を埋める。
 
 Linux + XA でいう **TPM（Transaction Processing Monitor）** や **Tuxedo** に近いが、RRS は OS 組込みかつ **Sysplex 全体に伝播**（CF log stream 経由）し、kernel コンポーネントとして動作するので追加 middleware ライセンス不要。WebSphere on Linux で XA tx を回す場合、tx log を 各 EJB container が管理する分散モデルに対し、RRS は z/OS のあらゆる RM（Db2, IMS DBCTL, MQ, IBM File Manager, ICSF 等）が **同じ URID** で commit/backout を同期させる中央集権モデル。
 
@@ -35,8 +37,8 @@ Linux + XA でいう **TPM（Transaction Processing Monitor）** や **Tuxedo** 
 ### 二相 commit 流れ
 - アプリ ATRBEG → context 作成 → URID 発行
 - アプリが Db2 + MQ を update（各 RM が RRS に「私はこの URID に参加してる」と申告）
-- アプリ ATREND COMMIT → RRS が （prepare）を全 RM に送信
-- 全 RM から OK 応答 → RRS が （commit）送信 → log stream に commit record
+- アプリ ATREND COMMIT → RRS が phase 1（prepare）を全 RM に送信
+- 全 RM から OK 応答 → RRS が phase 2（commit）送信 → log stream に commit record
 - どれか 1 つでも NG → RRS が backout 送信
 
 ### ATR メッセージ
@@ -54,7 +56,7 @@ Linux + XA でいう **TPM（Transaction Processing Monitor）** や **Tuxedo** 
 - Coupling Facility / Parallel Sysplex — `ZOS-PARALLELSYSPLEX-001`
 - Db2 trans / commit 概念 — `ZOS-DB2-001`
 - log stream の概念（IXG / system logger）
-- 一般 IT 知識: 2PC（two-）、heuristic damage、XA Transaction Manager
+- 一般 IT 知識: 2PC（two-phase commit）、heuristic damage、XA Transaction Manager
 
 ## 4. relations（他アトムとの繋がり）
 
@@ -81,7 +83,7 @@ DEFINE LOGSTREAM NAME(ATR.PLEX1.MAIN.UR)
   STRUCTNAME(LOG_RRS_MAIN_1)
   LS_DATACLAS(SHARED)
   STG_DATACLAS(SHARED)
-  HLQ(IXGLOGR)
+  HLQ(IXGLOGR) 
   LS_SIZE(2000)
   STG_SIZE(2000)
   HIGHOFFLOAD(80)
@@ -123,3 +125,7 @@ SETRRS RESOLVE,URID=001B0000...,ACTION=BACKOUT
 - **archive log stream 採否**: ARCHIVE log stream を取ると過去 URID の audit が可能、取らないと容量節約。**金融 / 公共では archive 取得 + IXGRPT1 で日次レポート、開発系は archive 無し** が住み分け。
 - **subsystem 起動順 SOP**: RRS → Db2 → CICS → MQ の順が標準。**起動順設計を IEACMD00 / COMMNDxx に明示記載 + IPL 後の D RRS チェックを check list 化**、これがないと「Db2 が RRS なしで起動」事故が無症状で続く。
 - **indoubt monitor 頻度**: 大規模 OLTP は **5 分間隔自動 monitor**（NetView automation で `D RRS,UREXP` 取得）、小規模は日次手動。**「indoubt があるのに気付かない」運用は heuristic damage を放置するのと等価**。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から RRS 2 phase commit 設計の運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。

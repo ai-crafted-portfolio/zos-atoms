@@ -1,10 +1,12 @@
 ---
-title: ZOS-GRS-001
-description: ENQ/DEQ、RNL (Resource Name List)、GRS star vs ring、SYSTEMS/SYSTEM/STEP scope
-tags:
-  - Sysplex
-  - Sysplex-Modernization
+id: ZOS-GRS-001
+title: GRS (Global Resource Serialization)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-GRS-001: GRS (Global Resource Serialization)
 
 ## 1. purpose
@@ -57,3 +59,7 @@ GRSCNF=00
 - **Star vs Ring**: 新規構築は Star 一択
 - **RNL 戦略**: 既定 + 自社 QNAME prefix ハイブリッド
 - **RESERVE 残存 vs 変換**: 現代標準は全変換
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から GRS リソース排他制御の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

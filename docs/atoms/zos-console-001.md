@@ -1,10 +1,12 @@
 ---
-title: ZOS-CONSOLE-001
-description: MCS console、SMCS、Extended Console、WTO/WTOR、HMC interaction、CONSOLxx parm
-tags:
-  - OS
-  - OS-Subsystem
+id: ZOS-CONSOLE-001
+title: MVS コンソール + WTO/WTOR
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-CONSOLE-001: MVS コンソール + WTO/WTOR
 
 ## 1. purpose（なぜ存在するか）
@@ -134,3 +136,10 @@ IF MSGID = 'IEA404A' THEN
 - **ROUTCDE 全部受け vs target 絞り**: Master / backup console は `ROUTCDE=(ALL)` で全受け推奨、ただし大量 msg で見づらい。専用 console (network operator、storage operator) は `ROUTCDE=` で絞ると効率良いが routing 漏れリスク。**選定基準**: console 役割分担、operator 人数、automation 介在度。
 - **WTOR の使用方針**: WTOR は operator 応答待ちで hang を内包するため、**極力 WTO + automation 応答** または **timeout 付き設計** が現代的。**選定基準**: 真の human decision 必要 (例: DR 切替確認)、業務時間帯、automation 整備度。
 - **Console 認可: AUTH=MASTER 配布範囲**: MASTER 認可は全コマンド可能で危険、限定的に配布。AUTH=INFO は表示のみ、operator 教育 / dev team 用に広く配布可。**選定基準**: 業務影響、誤操作リスク、人員配置。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

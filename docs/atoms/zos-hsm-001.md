@@ -1,10 +1,12 @@
 ---
-title: ZOS-HSM-001
-description: ML0/1/2、Recall、CDS (BCDS/MCDS/OCDS)、ARCCMD parm、ABARS
-tags:
-  - Storage
-  - Storage-Monitor
+id: ZOS-HSM-001
+title: DFSMShsm + tape hierarchy
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z4]
+rag_verified: false
 ---
+
 # ZOS-HSM-001: DFSMShsm + tape hierarchy
 
 ## 1. purpose（なぜ存在するか）
@@ -61,3 +63,7 @@ Linux / クラウド対比: AWS S3 の **lifecycle policy + Glacier transition**
 - ABARS aggregate vs DFSMSdss DUMP for DR
 - Recall on OPEN vs プレ recall（バッチ事前準備）
 - HSM 単一インスタンス vs HSMplex
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001/002) から DFSMShsm 階層管理の実運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

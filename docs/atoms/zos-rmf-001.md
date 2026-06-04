@@ -1,10 +1,12 @@
 ---
-title: ZOS-RMF-001
-description: Mon I / II / III、`ERBRMFPP`、PR/SM partition data、Spreadsheet Reporter
-tags:
-  - Monitor
-  - Storage-Monitor
+id: ZOS-RMF-001
+title: RMF (Resource Measurement Facility)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z4]
+rag_verified: false
 ---
+
 # ZOS-RMF-001: RMF (Resource Measurement Facility)
 
 ## 1. purpose（なぜ存在するか）
@@ -53,3 +55,10 @@ Linux 対比: `sar` / `dstat` / `iostat` / Performance Monitor を Sysplex + PR/
 - Mon III interval (1 秒 vs 10 秒 vs 100 秒)
 - Sysplex Data Server で集約 vs LPAR ごと独立
 - Mon III data の SMF 永続化 ON/OFF
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

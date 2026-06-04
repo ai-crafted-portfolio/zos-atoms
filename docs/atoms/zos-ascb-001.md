@@ -1,10 +1,12 @@
 ---
-title: ZOS-ASCB-001
-description: OS kernel が address space を管理する control block 階層、ASCB / ASXB / TCB / SRB の関係、メモリ map との関連
-tags:
-  - OS
-  - OS-Subsystem
+id: ZOS-ASCB-001
+title: アドレス空間制御ブロック (ASCB / ASSB)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-ASCB-001: アドレス空間制御ブロック (ASCB / ASSB)
 
 ## 1. purpose（なぜ存在するか）
@@ -103,3 +105,10 @@ D ASM,ASID=001A
 - **ASCB 直接参照 vs SDSF/RMF API**: **ASCB 直接 read** は authorized state 必須 + reentrancy 自分で確保 + 内部構造の z/OS リリース差吸収必要。**SDSF REXX API** / **RMF Mon III DDS** はサポートされた interface で安定だが latency と粒度の制約あり。**選定基準**: 単発ツールなら API、常駐 system monitor なら ASCB 直接 + LOCAL lock + リリース別 macro 化。
 - **ASID 単位 vs Job name 単位の identify**: ASCB ベースの分析は **ASID** が key、SMF 集計は **Job name + start time** が key。同 job が再 submit で別 ASID になり、ASID 単位だと「同 job の 2 run」が別物に見える。**選定基準**: real-time 監視は ASID (即値性)、capacity / billing は Job name + time。
 - **Authorized program (APF) vs Unauthorized**: ASCB の private 領域以外を read するには Key 0 / Supervisor state / APF authorized のいずれか必要。**APF authorized** にすると全 address space を覗けるが、悪用で system integrity 破壊リスク。**選定基準**: 業務アプリは絶対 unauthorized、運用 utility のみ APF (RACF FACILITY class で限定)。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

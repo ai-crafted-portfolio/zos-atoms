@@ -1,10 +1,12 @@
 ---
-title: ZOS-IPCS-001
-description: dump 解析セッション、CBFORMAT、SUMMARY FORMAT、TCBPRT、SUMMARY KEYFIELD
-tags:
-  - Recovery
-  - Recovery-Workload
+id: ZOS-IPCS-001
+title: IPCS (Interactive Problem Control System)
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-IPCS-001: IPCS (Interactive Problem Control System)
 
 ## 1. purpose（なぜ存在するか）
@@ -115,3 +117,10 @@ IPCS
 - **CBFORMAT 多用 vs LIST hex 直読**: `CBFORMAT STRUCTURE(...)` は構造化されて読みやすいが、release mismatch で誤読リスク。`LIST addr LENGTH(n)` は生 hex で確実だが mapping macro 知識が必要。**経験浅い解析者は CBFORMAT、ベテランは LIST + 自前 IHAMacro 参照** の住み分け。
 - **IPCS dump directory 共有 vs 個人別**: チーム共有 directory なら過去事案再現がしやすいが、ファイル競合（add/delete 衝突）リスク。個人別なら独立だが過去事案にアクセス不可。**現代の標準: 個人 directory で解析、確定 dump は共有 archive directory に登録**。
 - **mapping macro 自前管理 vs IBM 提供**: 古い z/OS release の dump 解析用に **当時の mapping macro library を保管** するか、最新だけ持つか。**長期保管要件（監査 / レビュー）がある組織は mapping macro library を release 毎に archive 必須**、これを怠ると 3 年前 dump が「読めるが意味が分からない」状態になる。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

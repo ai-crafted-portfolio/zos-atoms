@@ -1,10 +1,12 @@
 ---
-title: ZOS-TCPIP-001
-description: PROFILE.TCPIP、HOME / GATEWAY / PORT、Stack 内 TN3270/FTP/Telnet、`netstat`
-tags:
-  - Network
-  - Security-Network
+id: ZOS-TCPIP-001
+title: TCP/IP for z/OS
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-TCPIP-001: TCP/IP for z/OS
 
 ## 1. purpose（なぜ存在するか）
@@ -87,3 +89,7 @@ Linux / クラウドとの対比:
 ## 7. decision_axes
 
 詳細は `decision-axes/` 配下。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001/002) から z/OS Communications Server 運用設計の知識を概念蒸留 (ADR-0109)。逐語引用禁止。

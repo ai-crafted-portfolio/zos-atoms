@@ -1,10 +1,12 @@
 ---
-title: ZOS-OPERLOG-001
-description: SYSLOG dataset、OPERLOG (Coupling Facility logstream)、検索方法 (SDSF LOG)、IXGCNF
-tags:
-  - Monitor
-  - Storage-Monitor
+id: ZOS-OPERLOG-001
+title: OPERLOG + SYSLOG + log stream
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z4]
+rag_verified: false
 ---
+
 # ZOS-OPERLOG-001: OPERLOG + SYSLOG + log stream
 
 ## 1. purpose（なぜ存在するか）
@@ -51,3 +53,10 @@ Linux 対比: journald + rsyslog + CloudWatch Logs に相当、ただし CF logs
 - CF logstream vs DASD-only logstream
 - SDSF LOG vs IPCS MERGE vs Splunk forwarder for cross-LPAR 検索
 - Retention 設計 = OPERLOG logstream 単体 vs SMF Type 88 永続化 vs 外部 long-term
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

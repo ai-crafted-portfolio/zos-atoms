@@ -1,10 +1,12 @@
 ---
-title: ZOS-ANSIBLE-001
-description: Ansible playbook、`zos_*` モジュール、DevOps for mainframe、Galaxy collection
-tags:
-  - Modernization
-  - Sysplex-Modernization
+id: ZOS-ANSIBLE-001
+title: Ansible for z/OS (Red Hat / IBM collection)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-ANSIBLE-001: Ansible for z/OS (Red Hat / IBM collection)
 
 ## 1. purpose
@@ -68,3 +70,7 @@ Ansible for z/OS は Red Hat (IBM) collections (`ibm.ibm_zos_core`, `ibm.ibm_zos
 - **SSH vs z/OSMF REST**: deep automation は SSH
 - **ansible-playbook vs AAP**: PoC は CLI、production は AAP
 - **Ansible vs Chef/Puppet/Terraform**: z/OS は Ansible 一択、multi-cloud は Terraform + Ansible hybrid
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) から Ansible for z/OS 自動化の運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。

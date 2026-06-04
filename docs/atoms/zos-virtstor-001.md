@@ -1,10 +1,12 @@
 ---
-title: ZOS-VIRTSTOR-001
-description: 64-bit 仮想記憶、Common (CSA/SQA/LPA) / Private、Page set / Aux storage、PAV と HiperDispatch
-tags:
-  - OS
-  - OS-Subsystem
+id: ZOS-VIRTSTOR-001
+title: 仮想記憶 + ストレージ階層
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-VIRTSTOR-001: 仮想記憶 + ストレージ階層
 
 ## 1. purpose（なぜ存在するか）
@@ -117,3 +119,7 @@ RMFMON III
 - **Below-the-bar vs Above-the-bar**: **Below** (2 GB 以下) は 31-bit AMODE、legacy COBOL/Assembler 互換だが容量制限。**Above** (2 GB 超) は 64-bit AMODE、Java / 新規 C/C++ / 大型データ。**選定基準**: 既存資産との連携 (COMMAREA 等)、データ size、開発言語。
 - **Static PAV vs HyperPAV**: **Static** は volume に固定 alias UCB、低オーバーヘッド・予測性高だが alias 数固定。**HyperPAV** は WLM 制御で動的に alias 借用、効率良いが latency 微増。**選定基準**: I/O profile が安定なら Static、burst 型なら HyperPAV、z14 以降は HyperPAV 推奨。
 - **Page set 構成: Common と Local の分離**: 全部同じ page set に置くと Common page-out で Local が押される。**Common 専用 + Local 専用** に分けると独立性向上、ただし DASD volume が増える。**選定基準**: Common 領域使用量 (CSA leak 体質なら必須分離)、DASD 余裕。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から仮想記憶設計の実運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。

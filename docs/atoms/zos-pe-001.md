@@ -1,9 +1,10 @@
 ---
-title: ZOS-PE-001
-description: dataset encryption / DFSMS encryption / Coupling Facility encryption、key label 管理、DFP encryption
-tags:
-  - Middleware
-  - Middleware-Utility
+id: ZOS-PE-001
+title: Pervasive Encryption (PE)
+status: stable
+last_reviewed: 2026-06-02
+authors: [Z2]
+rag_verified: true
 ---
 # ZOS-PE-001: Pervasive Encryption (PE)
 
@@ -84,3 +85,10 @@ Linux の LUKS が block device 単位で暗号化するのに対し、PE は **
 - **dataset 単位 PE vs Db2 TDE**: Db2 user data の暗号化は (a) PE で table space dataset を DATACLAS 経由暗号化 (b) Db2 TDE で page 単位暗号化、の 2 経路。(a) は Db2 から透過、運用変更ゼロ。(b) は Db2 が page 暗号化のためbuffer pool 効率が下がるが、Db2 単独で鍵管理可。両方かけると二重暗号で CPU 損失。**通常は PE 一択**、Db2 TDE は audit要件で明示的に「Db2 側で暗号化」と書かれている時のみ。
 - **全 dataset 暗号化 vs 機密分類ベースの選択暗号化**: 「Pervasive」の名前通り全部かけるのが思想。だが CPU 増分 + 鍵管理工数 + 監査範囲 (鍵管理に関わる ID 全部が PCI scope に入る) を考えると、**機密分類 high のみ** という site 戦略が現実的。全部派は「漏れ穴を作らない」、選択派は「コストと範囲限定」。regulator (金融庁 / FFIEC 等) の要求文面で判断。
 - **CF 構造の encryption: 全部 vs cache のみ**: CF cache 構造には Db2 buffer 共有 / VSAM RLS shared buffer が乗り、機密データが入る。lock 構造は通常 metadata のみで暗号化不要。list 構造は logger / SMF 等で機密性高 (audit log) が多い。性能影響が大きいのは cache の暗号化なので、site 規模で「cache + 一部 listのみ暗号化」が現実解。lock 暗号化はそもそも不可。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

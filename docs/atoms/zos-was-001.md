@@ -1,10 +1,12 @@
 ---
-title: ZOS-WAS-001
-description: servant region / control region / daemon、Java EE on z/OS、WLM 連携、WAS Liberty for z/OS
-tags:
-  - Subsystem
-  - OS-Subsystem
+id: ZOS-WAS-001
+title: WebSphere Application Server for z/OS
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-WAS-001: WebSphere Application Server for z/OS
 
 ## 1. purpose（なぜ存在するか）
@@ -166,3 +168,7 @@ S BBGZSRV                        <- Liberty start
 - **Connector: type 2 vs type 4**: **type 2** (in-LPAR、RRS 2 PC) は最高速 + atomic transaction、LPAR 内限定。**type 4** (DRDA over TCP/IP) は network 越え可能 + ops 統一、性能落ちる + 2 PC は XA。**選定基準**: 配置 (同 LPAR か別か)、transaction 要件、network レイテンシ許容。
 - **Auth: SAF integration vs JEE standard**: **SAF integration** は RACF EJBROLE で z/OS と統一管理、CRACK proof 強だが Linux 移行で work しない。**JEE standard** (LDAP / file registry) は portable だが z/OS 独自機能未活用。**選定基準**: アプリ portability、運用統一性、auth 複雑度。
 - **Logs: SystemOut.log vs SMF / SYSLOG**: **SystemOut.log** (USS file) は dev 慣れた形式、grep 可能だが分散。**SMF type 120** (WAS audit) は z/OS 統一監査、運用親和性高だが解析 tooling 必要。**選定基準**: 監査要件、log 集約 (Splunk 等) 統合方針。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) から WAS for z/OS servant region 設計の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

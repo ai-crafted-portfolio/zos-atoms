@@ -1,9 +1,10 @@
 ---
-title: ZOS-AT-TLS-001
-description: TLS over TCP/IP transparently、Policy Agent、TTLSRule / TTLSGroup、認証局連携
-tags:
-  - Middleware
-  - Middleware-Utility
+id: ZOS-AT-TLS-001
+title: AT-TLS (Application Transparent TLS)
+status: stable
+last_reviewed: 2026-06-02
+authors: [Z2]
+rag_verified: true
 ---
 # ZOS-AT-TLS-001: AT-TLS (Application Transparent TLS)
 
@@ -95,3 +96,7 @@ TTLSEnvironmentAction          eAct1
 - **AT-TLS vs application 側 SSL ライブラリ**: AT-TLS は application 透過で運用一元化できるが、application がTLS session 詳細 (peer cert subject 等) を欲しがる場合は IOCTL で取りに行く改修が必要 (透過じゃなくなる)。application 側 SSL (System SSL / GSKit) を直接使うと cert 渡しが楽だが、cipher / version / keyring 管理がapplication ごとに分散して監査が難しい。**新規は AT-TLS 一択**、既存で GSKit 直接使ってる application は段階移行。
 - **Inbound のみ TLS vs Inbound/Outbound 両方**: Inbound (mainframe が server) は明らかに必須。Outbound (mainframe がclient) は内部閉域網の場合迷うが、ゼロトラスト原則で両方 TLS 化が現代の正解。Outbound 設定漏れで internal API 呼出が cleartext のまま PCI auditで NG という site が増えている。Outbound 化は cipher suite 互換と Trust(root CA 配布) の運用が増えるコスト。
 - **client cert 検証 (mTLS) vs server-only TLS**: TTLSGroupAction `HandshakeRole ServerWithClientAuth` で mTLS 化できる。金融系 / 高セキュリティでは事実上必須。但し client cert 失効管理が CA 側(CRL / OCSP) と AT-TLS 側で sync 必要、運用工数が server-only の 3 倍。client cert validation の RACF mapping (`HostIdMappings` 等) は SAF ACEEへ変換する追加設定で躓きやすい。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から AT-TLS 設定パターンを概念蒸留 (ADR-0109)。逐語引用禁止。

@@ -1,9 +1,10 @@
 ---
-title: ZOS-CERTMGMT-001
-description: CA / signer / personal / site certificate、CSR 発行、有効期限管理、key ring
-tags:
-  - Middleware
-  - Middleware-Utility
+id: ZOS-CERTMGMT-001
+title: RACDCERT + 証明書管理
+status: stable
+last_reviewed: 2026-06-02
+authors: [Z2]
+rag_verified: true
 ---
 # ZOS-CERTMGMT-001: RACDCERT + 証明書管理
 
@@ -94,3 +95,7 @@ tags:
 - **内部 CA 自営 vs 外部 public CA**: 内部 mainframe 間通信なら自己署名 root + RACDCERT GENCERT で完結しコスト低 + 期限自由。外部 client (web ブラウザ等) が見るなら public CAが必須だが、年契約 + DNS-01 / HTTP-01 validation の運用工数。中規模の現実解: 内部 mainframe 間は自己 CA、border facing は public CA、の二段構成。1 つの key ring に両方乗せる。
 - **renewal 自動化 vs 手動オペレータ運用**: RACDCERT は CLI で全部できるので Ansible (`zos_*` collection) で自動化可。だが renewal は cert chain trust 変動を含むため、自動化失敗時のロールバックが難しい。**1 年 cert は自動化、5 年 root は手動 + 立会**、という頻度別運用が site 規約として現実的。
 - **key ring per application vs site 共通 ring**: application ごとに key ring を分けると認可が綺麗だが、cert renewal で全 ring を巡回更新する工数が増える。site 共通 ring に集約すると工数低いが application 間 cert 漏れ (用途違いの cert が見える) のリスク。規模 100 application 以上なら絶対 per-app、それ未満なら共通 ring + certlabel による論理分離が現実的。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から証明書管理 (RACDCERT) 運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

@@ -3,8 +3,9 @@ id: ZOS-VSAM-001
 title: VSAM（KSDS / RRDS / ESDS / LDS）
 status: stable
 last_reviewed: 2026-05-09
+authors: [agent]
+rag_verified: partially
 ---
-
 
 # ZOS-VSAM-001: VSAM
 
@@ -12,7 +13,7 @@ last_reviewed: 2026-05-09
 
 VSAM（Virtual Storage Access Method）は z/OS の高機能アクセス方式。順次データセット（PS）と違い、**キー検索 / 直接アクセス / 索引 / 物理レイアウト最適化** を OS レベルで提供する。
 
-なぜ存在するか: メインフレームの「データを RDB 入れずに、ファイル単体で検索したい」要件への解。1980〜2000 年代の COBOL アプリは、Db2 が無かった時代に VSAM KSDS で「商品マスター = キー：商品 ID」を持っていた。今でも CICS のリソース DB（→ [ZOS-CICS-001](zos-cics-001.md)）、Db2 の内部ストレージ（→ [ZOS-DB2-001](zos-db2-001.md)）、カタログ自身（→ [ZOS-CATALOG-001](zos-catalog-001.md)）等、**z/OS の根幹インフラで使われ続けている**。
+なぜ存在するか: メインフレームの「データを RDB 入れずに、ファイル単体で検索したい」要件への解。1980〜2000 年代の COBOL アプリは、Db2 が無かった時代に VSAM KSDS で「商品マスター = キー：商品 ID」を持っていた。今でも CICS のリソース DB（→ ZOS-CICS-001）、Db2 の内部ストレージ（→ ZOS-DB2-001）、カタログ自身（→ ZOS-CATALOG-001）等、**z/OS の根幹インフラで使われ続けている**。
 
 Linux で例えるなら「sqlite + Berkeley DB を OS が直接サポート」みたいなもの。アプリは独自の B-Tree 実装を持たなくて良い、OS が提供する。
 
@@ -35,16 +36,16 @@ ALTERNATE INDEX (AIX): KSDS の **副キー** を別索引で。MySQL の second
 
 ## 3. prerequisites（理解の前提）
 
-- データセット概念（→ [ZOS-DATASET-001](zos-dataset-001.md)）
-- カタログ（→ [ZOS-CATALOG-001](zos-catalog-001.md)）— カタログ自体が VSAM、再帰理解
+- データセット概念（→ ZOS-DATASET-001）
+- カタログ（→ ZOS-CATALOG-001）— カタログ自体が VSAM、再帰理解
 - 一般 IT 知識: B-Tree 索引、レコード ID
 
 ## 4. relations（他アトムとの繋がり）
 
-- `depends_on`: [ZOS-DATASET-001](zos-dataset-001.md), [ZOS-CATALOG-001](zos-catalog-001.md), [ZOS-DASD-001](zos-dasd-001.md), [ZOS-SMS-001](zos-sms-001.md) (DataClass 集中設定)
+- `depends_on`: ZOS-DATASET-001, ZOS-CATALOG-001, ZOS-DASD-001, ZOS-SMS-001 (DataClass 集中設定)
 - `specialized_by`: KSDS / RRDS / ESDS / LDS（同一アトム内）
-- `contrasts_with`: [ZOS-DB2-001](zos-db2-001.md)（フル RDB）, [ZOS-PDS-001](zos-pds-001.md)（メンバベース）
-- `used_by`: [ZOS-CICS-001](zos-cics-001.md), [ZOS-DB2-001](zos-db2-001.md), [ZOS-CATALOG-001](zos-catalog-001.md)
+- `contrasts_with`: ZOS-DB2-001（フル RDB）, ZOS-PDS-001（メンバベース）
+- `used_by`: ZOS-CICS-001, ZOS-DB2-001, ZOS-CATALOG-001
 
 ## 5. pitfalls（実装・運用での落とし穴）
 
@@ -101,3 +102,7 @@ BLDINDEX INDATASET(USER.PROD.CUSTOMER) -
 - **CISIZE 設計**: LRECL × 2 + α が出発点、ピーク時挿入率を考慮して FREESPACE 10〜30%。**CISIZE 4096 を疑問なく使うのは初心者**、レコード設計毎に計算する。**「VSAM は遅い」と言われる現場の 9 割は CISIZE 不適**。
 - **SHAREOPTIONS の選定**: `(2,3)` (シングルライタ + マルチリーダ) が最も無難。`(3,3)` は整合性をアプリ側が見る前提、本番で安易に使うべきでない。**プロダクションでは原則 (2,3)、RLS 環境のみ (4,3)** が定石。
 - **AIX 採用 vs 別 KSDS**: 副キー検索を AIX で持つか、別 KSDS を作って双方更新するか。**両方の DSN 数を見て判断**: 1 副キーなら AIX、3 副キー以上なら別 KSDS の方が運用管理楽。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_BASIC_001, BK_ZOS_TECH_002) から VSAM クラスター設計の実運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

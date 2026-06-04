@@ -1,10 +1,12 @@
 ---
-title: ZOS-MQ-001
-description: MQM (queue manager) / MQI / channel / queue 概念、CSQYINIT / CSQZPARM、CSQ メッセージ ID
-tags:
-  - Subsystem
-  - OS-Subsystem
+id: ZOS-MQ-001
+title: IBM MQ for z/OS
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-MQ-001: IBM MQ for z/OS
 
 ## 1. purpose（なぜ存在するか）
@@ -14,6 +16,8 @@ tags:
 z/OS 版の特徴: **logger** (Log Manager) + **CF list 構造** で共有 queue を実装、Parallel Sysplex 内で **真の active-active** 構成が可能。これは Kafka / RabbitMQ にはない強み。一方で Linux MQ broker、Kafka より初期構築コスト・運用 know-how 要求が高い。
 
 なぜ z/OS 上に MQ か: legacy CICS/IMS から非同期化したい、Parallel Sysplex の高可用性を活用したい、SAF (RACF) 統合認証が欲しい、Pervasive Encryption で transport 自動暗号化したい等のニーズで採用される。Kafka が distributed log で台頭してきたが、MQ は **message-level transaction (RRS 経由 2 PC)** が組めるという独自価値継続。
+
+書籍 (BK_MF_001 / BK_ZOS_TECH_002) 蒸留の補強観点として、MQ の本質は「**配信保証付きの永続キュー**」と「**ピア間の疎結合**」の組み合わせと理解しておく。Kafka は順序性のあるログを broker に保持して consumer が pull で読む設計、MQ は「相手 QM に確実に届け、相手プログラムが get するまで保持する」push 的設計。**MQ では「メッセージは消費されたら消える」**のが基本で、Kafka のような replay は別途設定が必要。この差を理解しないと、Kafka 文化のチームが MQ に来て「ログ的に使えない」と混乱する。逆に MQ 文化のチームが Kafka に行って「メッセージが消えない」と困惑する。
 
 ## 2. mechanism（どう動くか）
 
@@ -46,13 +50,15 @@ z/OS 版の特徴: **logger** (Log Manager) + **CF list 構造** で共有 queue
 - `CSQ9013E`: 認証失敗
 
 **RRS 連携**:
-- 2- を RRS coordinator 経由 (→ ZOS-RRS-001)
+- 2-phase commit を RRS coordinator 経由 (→ ZOS-RRS-001)
 - DB2 update + MQ put を atomic に
 - indoubt 状態は RRS の URID で resolve
 
 **CSQZPARM** / **CSQ6SYSP**:
 - system parameter module (load module)、`OPMODE=`, `EXITLIM=` 等
 - Assembler macro でビルドして `CSQYINIT` から load
+
+書籍 (BK_ZOS_TECH_001 / BK_ZOS_TECH_002) 蒸留の mechanism 補強: MQ for z/OS の **buffer pool と page set の関係** は Db2 の Buffer Pool に類似した 2 層キャッシュ構造を持つ。アプリが put したメッセージは一旦 buffer pool に乗り、persistent message は同期的に log dataset へ書き、その後 page set に flush される。**buffer pool ヒット率が低いと get/put のレイテンシが page set I/O 待ちになる**ため、メッセージ流量に応じた buffer pool サイジングが性能設計の中核。`DIS USAGE PSID(*)` で page set 使用率、`DIS USAGE BUFFPOOL(*)` で buffer pool 状況を定期計測するのが運用 SOP。
 
 ## 3. prerequisites（理解の前提）
 
@@ -77,6 +83,10 @@ z/OS 版の特徴: **logger** (Log Manager) + **CF list 構造** で共有 queue
 - **Page set フル (CSQI045E) で put reject**: Page set 使用率 100% で `MQRC_Q_SPACE_NOT_AVAILABLE` (`2192`) reject、業務 OLTP put 失敗。**対処**: page set 動的拡張 `ALTER QMGR ALTER PSID(...)` または `EXPAND` で容量増、buffer pool / log dataset の連動状況も確認。設計時 page set 数 6 以上推奨 (1 業務 = 1 page set で分離)。
 - **BSDS (Bootstrap Data Set) 破損で QM 起動不能**: BSDS dual copy のどちらか破損で `CSQJ001E` で QM 起動失敗。**書き手経験**: BSDS 1 つだけの構成で BSDS 破損、log 再生不能で半日業務停止。**対処**: BSDS は必ず dual、自動切替設定、定期的 BSDS image copy。
 - **Shared queue (CF list) で CF link 障害時の rebuild 遅延**: CF link 障害で list 構造 rebuild、その間 shared queue 不能。**書き手経験**: CF maintenance 中の rebuild に 5 分かかり、その間 cross-LPAR 業務停止。**対処**: rebuild policy で auto rebuild 設定、CF link 二重化、平時 maint は片寄せ運用。
+- **Persistent vs Non-persistent の混在による信頼性誤認 (BK_MF_001 蒸留)**: 設計者が persistent (`DEFPSIST(YES)`) のつもりで作ったが、アプリ側 PUT で MQMD の Persistence を `MQPER_NOT_PERSISTENT` に上書きしていて、実は QM 再起動で消えていた、という事例。**queue defaults とアプリ側 MQMD は両方一致確認**、persistent 必須業務は queue 側で `DEFPSIST(YES)` + アプリ側 `MQPER_PERSISTENCE_AS_Q_DEF` の組合せ。
+- **Cluster channel の repository QM 偏り**: cluster の full repository QM が 2 台しかない時、その 2 台に負荷集中して残り QM の cluster info が古いまま。**full repository は 2 台が原則、3 台以上にしない、片寄せ運用しない、定期的に repository データ整合性チェック**。
+- **Trigger monitor (CKTI) hang で MQ → CICS 連携停止**: CICS 側で動く CKTI が hang すると、MQ の trigger queue にメッセージが溜まり続けるが CICS トランザクション起動が一切走らない。**CKTI の生存監視 (`CEMT INQ TRAN(CKTI)`)** を 1 次対応ランブックに入れる、再起動コマンドを SOP 化。
+- **MQSC コマンドの権限分離不足**: MQ コマンド (`+CSQ1 DEF QL(...)`) は console operator なら誰でも打てる構成にしてしまうと、意図しない queue 定義変更が監査ログ無しで通る。**コマンドセキュリティ (`SETSYS CMDUSER`) で操作者の RACF userid を強制記録**、SMF type 80 + MQ Event queue で操作監査。
 
 ## 6. examples（具体例）
 
@@ -132,6 +142,20 @@ SET CHLAUTH('SYSA.TO.SYSB') TYPE(SSLPEERMAP) +
 +CSQ1 ALTER PSID(03) EXPAND(SYSTEM)
 ```
 
+書籍 (BK_ZOS_TECH_002) 蒸留の運用例: MQ 障害時 1 次対応コマンドセット。MQ は CICS や Db2 と並んで「z/OS の 5 大ミドル」の 1 つで、障害時に切り分けるべき軸が多いため、これも運用ランブック化が必須。
+
+```
+* MQ 障害時 1 次対応コマンドセット
++CSQ1 DIS QMGR ALL                  * QM 全体状況
++CSQ1 DIS USAGE PSID(*)             * Page Set 使用率
++CSQ1 DIS USAGE BUFFPOOL(*)         * Buffer Pool 状況
++CSQ1 DIS LOG                       * Active Log 状況
++CSQ1 DIS CHS(*) STATUS(*)          * Channel 状況
++CSQ1 DIS Q(*) WHERE(CURDEPTH GT 1000) * 深いキュー検出
++CSQ1 DIS THREAD(*) TYPE(INDOUBT)   * Indoubt UoW
++CSQ1 DIS CONN(*) ALL               * 接続中アプリ
+```
+
 ## 7. decision_axes（採否を分ける判断軸）
 
 - **Local queue vs Shared queue (CF)**: **Local** は単 QM 内、低 overhead、HA は QM 再起動依存。**Shared** (CF list) は Parallel Sysplex 内で active-active、HA 強だが CF 帯域消費 + CFLEVEL 制約。**選定基準**: HA 要件 (RTO 秒単位なら Shared)、message size (CF list は size 制限)、CF 容量。
@@ -139,3 +163,10 @@ SET CHLAUTH('SYSA.TO.SYSB') TYPE(SSLPEERMAP) +
 - **DLQ handler の auto-retry 戦略**: **全 retry** は queue depth 増加と loop リスク、**limit 付き retry** は data loss リスク。**選定基準**: message 特性 (再送可 / 不可)、業務影響、retry 回数上限 (典型 3 回)。
 - **Transaction: 1 PC vs 2 PC (RRS)**: **1 PC** (MQ 単独 commit) は速いが MQ と DB の atomic 性なし。**2 PC** (RRS 経由) は完全 atomic だが overhead + indoubt 処理必要。**選定基準**: data 整合性 SLA、indoubt 運用負荷許容度、性能要件。
 - **CSQZPARM Static vs Dynamic alter**: **Static** (load module rebuild + QM restart) は変更に IPL/restart 必要。**Dynamic** (`SET SYSTEM`, `SET QMGR`) は run-time 反映、ただし全 parameter 対応してない。**選定基準**: 変更頻度、システム停止許容度。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

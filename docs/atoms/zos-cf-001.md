@@ -1,10 +1,12 @@
 ---
-title: ZOS-CF-001
-description: cache / list / lock 構造、CFLEVEL、CF link、CFRM ポリシー、SCM-augmented
-tags:
-  - Sysplex
-  - Sysplex-Modernization
+id: ZOS-CF-001
+title: Coupling Facility (CF) 構造詳細
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-CF-001: Coupling Facility (CF) 構造詳細
 
 ## 1. purpose（なぜ存在するか）
@@ -70,3 +72,7 @@ tags:
 - **Stand-Alone CF vs ICF**: 性能 vs コスト、本番 OLTP は Stand-Alone 2 台 + DR ICF
 - **Duplex vs Simplex**: 5-10% overhead vs 100ms failover、Lock は Duplex / Db2 GBP は SCM + Simplex モダン
 - **SCM-augmented vs in-memory**: warm/cold data の hit ratio 向上 vs DRAM の 10-100x latency、hot lock は in-memory
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001/002) から Coupling Facility 構造設計知識を概念蒸留 (ADR-0109)。書籍は概念補助。

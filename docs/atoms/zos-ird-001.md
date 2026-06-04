@@ -1,10 +1,12 @@
 ---
-title: ZOS-IRD-001
-description: LPAR weight 自動調整、CPU management、I/O priority queueing、Channel subsystem priority queuing
-tags:
-  - Workload
-  - Recovery-Workload
+id: ZOS-IRD-001
+title: IRD (Intelligent Resource Director)
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-IRD-001: IRD (Intelligent Resource Director)
 
 ## 1. purpose（なぜ存在するか）
@@ -116,3 +118,10 @@ F RMF,STOP III
 - **CSS Priority Queueing 採否**: I/O 競合多い OLTP 環境では有効、I/O 軽い処理だけなら overhead 増のみ。**OLTP + batch 混在 → 有効、OLTP only / batch only → 無効でも可**。
 - **minimum weight 床の設計**: 開発 / テスト LPAR の minimum を **どこまで下げてよいか**。0 にすると IRD が完全制御できるが処理時間予測不能、20〜30 程度にすると床保証あり。**監査要件 / SLA から逆算**。
 - **HMC operator 教育**: ACTIVATION profile を operator が手動操作する vs IRD に任せる。**operator manual override 禁止 + audit log 監視** が SOP、operator が IRD を「邪魔」と感じて無効化する事案あり。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

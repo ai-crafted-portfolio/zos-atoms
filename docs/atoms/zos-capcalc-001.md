@@ -1,10 +1,12 @@
 ---
-title: ZOS-CAPCALC-001
-description: sub-capacity reporting、MSU peak、4HRA、SCRT 提出、Tailored Fit Pricing
-tags:
-  - Workload
-  - Recovery-Workload
+id: ZOS-CAPCALC-001
+title: Capacity planning (MSU / 4HRA / SCRT)
+status: stable
+last_reviewed: 2026-06-02
+authors: [agent]
+rag_verified: partially
 ---
+
 # ZOS-CAPCALC-001: Capacity planning (MSU / 4HRA / SCRT)
 
 ## 1. purpose（なぜ存在するか）
@@ -139,3 +141,7 @@ D WLM,RESOURCES
 - **soft cap の積極利用 vs 自然 peak 監視**: WLM 抑制を積極使用してライセンス削減 vs SLA 優先で抑制せず自然 peak。**業務 SLA に響かない範囲で soft cap で月次課金平準化**、SLA が厳しい OLTP は soft cap 緩めにして batch 側を厳しく。
 - **Tailored Fit Pricing vs 従来 sub-capacity**: 年間 baseline + 差分の TFP は予算予測しやすい、従来 sub-cap は使った分のみ。**業務量が読める安定 workload = TFP、業務変動が大きい = 従来 sub-cap** の住み分け、新規契約は IBM が TFP 推奨。
 - **SMF archive 保管期間**: 12 ヶ月 / 13 ヶ月 / 24 ヶ月 / 永年。**ライセンス監査要件 = 13 ヶ月以上、金融 audit = 24 ヶ月、性能 trend 分析 = 36 ヶ月** が典型。**短期保管は IBM SCRT 再算出依頼に応えられない**。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) からキャパシティ計算の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

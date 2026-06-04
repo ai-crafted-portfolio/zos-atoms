@@ -1,9 +1,10 @@
 ---
-title: ZOS-IDCAMS-001
-description: DEFINE / REPRO / PRINT / ALTER / DELETE、`IDC3009I`、VSAM 操作中核
-tags:
-  - Utility
-  - Middleware-Utility
+id: ZOS-IDCAMS-001
+title: IDCAMS (Access Method Services)
+status: stable
+last_reviewed: 2026-06-02
+authors: [Z2]
+rag_verified: true
 ---
 # ZOS-IDCAMS-001: IDCAMS (Access Method Services)
 
@@ -90,3 +91,7 @@ Linux の `dd` + `mkfs` + ファイルシステム utility 群 + `lvm` 系コマ
 - **DEFINE で属性明示 vs MODEL 継承**: `DEFINE CLUSTER ... MODEL('xxx.MODEL')` で既存 cluster の属性を継承コピーできる。テンプレ化で運用工数低いが、MODEL 側の属性変更が新規 clusterに伝播するため、本番 dataset の属性が黙って変わる事故。属性明示は冗長だが意図が JCL に残る。site 規約で MODEL 使用は標準 datasetに限定、ad-hoc 案件は属性明示、と分けるのが安全。
 - **AIX (代替インデックス) を作る vs application 側でキー変換**: AIX を作ると主キー以外でも VSAM の高速 lookup が使えるが、(a) BLDINDEX 維持コスト (b) 主 cluster 更新時 AIX 同期 (UPGRADE オプション)(c) 障害時 AIX 単独損傷で application 全面停止リスク、がある。application 側で別 dataset (cross-reference) を持ち、batch 同期する方が障害局所化しやすい site もある。lookup 頻度と一貫性要件で判断。
 - **LISTCAT 全件 ALL vs NAMES のみ**: `LISTCAT ALL` は dataset 単位で全属性を出すため大規模 catalog で出力 GB 級になる。`LISTCAT NAMES` は entry 名と type のみで軽い。棚卸し用は NAMES、詳細調査は ALL を target 限定で実行、の使い分け。ALL を月次で全 catalog にかける運用は SMF 大量出力で監視に悪影響。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) から IDCAMS 運用パターンを概念蒸留 (ADR-0109)。書籍は概念補助。

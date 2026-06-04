@@ -3,8 +3,9 @@ id: ZOS-WLM-001
 title: Workload Manager（WLM）
 status: stable
 last_reviewed: 2026-05-09
+authors: [agent]
+rag_verified: partially
 ---
-
 
 # ZOS-WLM-001: Workload Manager
 
@@ -12,7 +13,7 @@ last_reviewed: 2026-05-09
 
 WLM（Workload Manager）は z/OS の **CPU・メモリ・I/O 配分の自動制御エンジン**。「優先度」ではなく「**ゴール (目標)**」ベース: 「このトランザクションは応答時間 95% を 0.5 秒以内に」「このバッチは X 時までに完了させたい」と宣言すると、WLM が **動的に CPU/メモリ/I/O を配り直して** ゴールを達成しようとする。
 
-なぜ「優先度」でなく「ゴール」か: 1980 年代以前の MVS は静的優先度制御で、業務ピーク時に「優先度高ジョブが資源を食い尽くし、優先度低が永遠に動かない」事故が頻発した。WLM は **「宣言された目標値と実測値の差」を SMF（→ [ZOS-SMF-001](zos-smf-001.md)）から定期取得して、PI (Performance Index) = 実測 / 目標 を計算 → 1 を超えてる workload に資源を回す** 方式。
+なぜ「優先度」でなく「ゴール」か: 1980 年代以前の MVS は静的優先度制御で、業務ピーク時に「優先度高ジョブが資源を食い尽くし、優先度低が永遠に動かない」事故が頻発した。WLM は **「宣言された目標値と実測値の差」を SMF（→ ZOS-SMF-001）から定期取得して、PI (Performance Index) = 実測 / 目標 を計算 → 1 を超えてる workload に資源を回す** 方式。
 
 Linux で例えれば: cgroup + tc + ulimit + nice を全部統合して、kernel が SLA に基づき **動的に再配分する** ような仕組み。Linux にはまだこのレベルの統合 SLA エンジンは存在しない（k8s の HPA/VPA は方向性近いが OS レベルではない）。
 
@@ -31,16 +32,16 @@ Linux で例えれば: cgroup + tc + ulimit + nice を全部統合して、kerne
 
 ## 3. prerequisites（理解の前提）
 
-- SMF（→ [ZOS-SMF-001](zos-smf-001.md)）— WLM が読む計測データ
+- SMF（→ ZOS-SMF-001）— WLM が読む計測データ
 - 一般 IT 知識: SLA、優先度、リソース制御
-- Sysplex（→ [ZOS-PARALLELSYSPLEX-001](zos-parallelsysplex-001.md)）
+- Sysplex（→ ZOS-PARALLELSYSPLEX-001）
 
 ## 4. relations（他アトムとの繋がり）
 
-- `depends_on`: [ZOS-SMF-001](zos-smf-001.md)
+- `depends_on`: ZOS-SMF-001
 - `specialized_by`: なし
 - `contrasts_with`: （未作成）LINUX-CGROUP-001
-- `used_by`: [ZOS-PARALLELSYSPLEX-001](zos-parallelsysplex-001.md), [ZOS-CICS-001](zos-cics-001.md) (enclave 申告), [ZOS-DB2-001](zos-db2-001.md) (stored proc)
+- `used_by`: ZOS-PARALLELSYSPLEX-001, ZOS-CICS-001 (enclave 申告), ZOS-DB2-001 (stored proc)
 
 ## 5. pitfalls（実装・運用での落とし穴）
 
@@ -88,3 +89,7 @@ F WLM,ACTIVATE=NEWPOLICY
 - **Discretionary の活用**: WLM 上手なサイトは Discretionary を計測ツール / 補助バッチに割り当て、本番に影響無く回す。**Discretionary 全否定（禁止）の運用は柔軟性損失**。
 - **CICSplex Workload Manager との連携**: CICS 単体は WLM enclave 申告するが、CICSplex SM 経由で動的振り分けする時に **どの region に飛ぶか** は CICSplex 側の Workload Routing 設定。**WLM Service Class と CICS region 配置を整合**。
 - **WLM 監視ツール**: RMF (`ERBRMFPP`) が標準、IBM Tivoli OMEGAMON、BMC MAINVIEW、CA SYSVIEW 等。**「ポリシー設計したが実測してない」は WLM の意味を失う**、最低 RMF 月次レビュー必須。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001/002) から WLM ポリシー設計の運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。

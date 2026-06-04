@@ -3,8 +3,9 @@ id: ZOS-DUMP-001
 title: SVC ダンプ / SYSMDUMP / SYSUDUMP / SYSABEND
 status: stable
 last_reviewed: 2026-06-01
+authors: [agent]
+rag_verified: partially
 ---
-
 
 # ZOS-DUMP-001: SVC ダンプ系
 
@@ -43,16 +44,16 @@ Linux なら `core dump` ファイルを gdb で開くが、z/OS のダンプは
 
 - アドレス空間と private/common 領域の分離（CSA/SQA/LPA/Private）
 - TCB / RB / SVRB の概念（タスク制御ブロック / Request Block）
-- JCL の DD 文 — [ZOS-JCL-001](zos-jcl-001.md)
-- SMF（ロジレックレコード type 99 等） — [ZOS-SMF-001](zos-smf-001.md)
-- データセット — [ZOS-DATASET-001](zos-dataset-001.md)
+- JCL の DD 文 — `ZOS-JCL-001`
+- SMF（ロジレックレコード type 99 等） — `ZOS-SMF-001`
+- データセット — `ZOS-DATASET-001`
 
 ## 4. relations（他アトムとの繋がり）
 
-- `depends_on`: [ZOS-JCL-001](zos-jcl-001.md), [ZOS-SMF-001](zos-smf-001.md), [ZOS-DATASET-001](zos-dataset-001.md)
+- `depends_on`: ZOS-JCL-001, ZOS-SMF-001, ZOS-DATASET-001
 - `specialized_by`: なし（SVC/SYSM/SYSU/SYSABEND は axis 内別種）
 - `contrasts_with`: Linux core dump（gdb 解析）, Windows minidump（WinDbg 解析）
-- `used_by`: [ZOS-CICS-001](zos-cics-001.md)（CICS transaction dump = SVC dump 派生）, [ZOS-IMS-001](zos-ims-001.md)（IMS region dump）, [ZOS-DB2-001](zos-db2-001.md)（DSNWDMP）
+- `used_by`: ZOS-CICS-001（CICS transaction dump = SVC dump 派生）, ZOS-IMS-001（IMS region dump）, ZOS-DB2-001（DSNWDMP）
 
 ## 5. pitfalls（実装・運用での落とし穴）
 
@@ -107,3 +108,10 @@ IPCS
 - **dump 保存期間 + 自動退避**: 即時解析は 24h、保存は 30〜90 日が典型。AUTO COPY + HSM migrate で長期保存。**短期保存サイトは「過去事案の再現解析」が不可能** になる弱点。
 - **SLIP trap 設計**: 「捕まえる条件」「自動解除条件」「対象アドレス空間絞り込み」の 3 軸。**MATCHLIM 無しの SLIP は本番禁止**。
 - **dump 取らずに live debug**: 状態保存より MIPS 節約を優先するときは `DISPLAY GRS,...`, `DISPLAY ASM,...` 等のコンソール照会で済ますが、事後解析の証拠が残らないので **重大障害は必ず SVC dump 1 本以上**。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

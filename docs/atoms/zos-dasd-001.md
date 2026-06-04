@@ -3,14 +3,15 @@ id: ZOS-DASD-001
 title: DASD（直接アクセス記憶装置）
 status: stable
 last_reviewed: 2026-05-09
+authors: [agent]
+rag_verified: partially
 ---
-
 
 # ZOS-DASD-001: DASD
 
 ## 1. purpose（なぜ存在するか）
 
-DASD（Direct Access Storage Device）は、メインフレームのストレージ概念。「ハードディスク」と訳されがちだが厳密には違う。z/OS が「ファイル」ではなく「データセット」を扱う哲学（→ [ZOS-DATASET-001](zos-dataset-001.md)）の **物理基盤**。
+DASD（Direct Access Storage Device）は、メインフレームのストレージ概念。「ハードディスク」と訳されがちだが厳密には違う。z/OS が「ファイル」ではなく「データセット」を扱う哲学（→ ZOS-DATASET-001）の **物理基盤**。
 
 Linux/Windows なら「ストレージ = バイトアドレス可能なブロックデバイス（FBA: Fixed Block Architecture, 512 or 4096 バイト固定）」だが、メインフレームは歴史的に **CKD（Count-Key-Data）** という可変長レコードを物理層で扱う方式を採用した。現代の物理 HDD/SSD は内部的には FBA だが、ストレージコントローラ（DS8000 等）が CKD をエミュレーションして z/OS に見せる。**この「物理の上に論理 CKD 層」が CKD/FBA 対立軸の正体**。
 
@@ -39,7 +40,7 @@ Linux/Windows なら「ストレージ = バイトアドレス可能なブロッ
 - `depends_on`: なし（基盤アトム）
 - `specialized_by`: なし
 - `contrasts_with`: （未作成）LINUX-FBA-DEVICE-001
-- `used_by`: [ZOS-DATASET-001](zos-dataset-001.md), [ZOS-CATALOG-001](zos-catalog-001.md), [ZOS-VSAM-001](zos-vsam-001.md), [ZOS-SMS-001](zos-sms-001.md) (StorageGroup), [ZOS-RECOVERY-001](zos-recovery-001.md) (DSS DUMP 対象)
+- `used_by`: ZOS-DATASET-001, ZOS-CATALOG-001, ZOS-VSAM-001, ZOS-SMS-001 (StorageGroup), ZOS-RECOVERY-001 (DSS DUMP 対象)
 
 ## 5. pitfalls（実装・運用での落とし穴）
 
@@ -72,3 +73,7 @@ LISTVTOC VOL=3390=DASD01
 - **3390-3 vs 3390-9 vs EAV**: 3390-3 (3GB) は小規模、3390-9 (10GB) が標準、EAV (54GB〜) は大量データ用。EAV は「全プログラムが EAS-eligible」確認が前提、後付け移行は古いロードモジュールの再 BIND が地獄。
 - **SPACE=TRK vs CYL vs RECORDS**: 数千レコードまでなら TRK、数万〜数百万なら CYL、見積もり困難なら RECORDS。**プロダクション JCL で TRK を 1〜2 にしてる JCL は大体トラブる**。
 - **SMS 配下 vs 非 SMS**: SMS 必須、非 SMS は新規不可 が現代の判断。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001/002) から DASD ボリューム管理の実運用知識を概念蒸留し本アトムへ反映 (ADR-0109)。逐語引用禁止、書籍は補助参考。

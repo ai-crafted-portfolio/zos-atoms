@@ -1,10 +1,12 @@
 ---
-title: ZOS-GDPS-001
-description: DR topology、Metro Mirror / Global Mirror、HyperSwap、GDPS scripts
-tags:
-  - Sysplex
-  - Sysplex-Modernization
+id: ZOS-GDPS-001
+title: GDPS / PPRC / XRC / HyperSwap
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-GDPS-001: GDPS / PPRC / XRC / HyperSwap
 
 ## 1. purpose
@@ -54,3 +56,7 @@ F GDPSPROC,DISPLAY,HS
 - **variant 選定**: 業務 RPO/RTO + 距離 + コストの 3 軸
 - **HyperSwap 自動 vs 手動**: PPRC 自動 / XRC,GM 手動
 - **CRIT=YES vs NO**: 決済 YES / 参照 NO、CGROUP で局所最適化
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) から GDPS 災害対策設計の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

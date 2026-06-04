@@ -1,10 +1,12 @@
 ---
-title: ZOS-WAITSTATE-001
-description: disabled wait code (064 / 0A1 / 0A3 等)、enabled loop、PSW + reason code の読み方、HMC stand-alone dump
-tags:
-  - OS
-  - OS-Subsystem
+id: ZOS-WAITSTATE-001
+title: Wait state / loop / disabled wait
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-WAITSTATE-001: Wait state / loop / disabled wait
 
 ## 1. purpose（なぜ存在するか）
@@ -130,3 +132,7 @@ IF MSGID = 'IEE331A' THEN  <- disabled wait pre-message
 - **Disabled wait 時の IPL 優先 vs SADMP 優先**: 業務影響最小化なら IPL 即実施、根本原因究明なら SADMP 採取後 IPL。**選定基準**: 障害頻度 (初回 / 再発)、業務 SLA、解析チーム capability。**ルール**: 初回 disabled wait は SADMP 必須、再発 IPL も SADMP 推奨。
 - **Enabled loop の介入: TERM vs CANCEL vs DUMP**: **TERM** は最強の強制終了、巻添えリスク。**CANCEL** は穏便な終了要求、loop 中だと効かないこと多い。**DUMP COMM=,jobname=** は dump 採取して継続、解析優先。**選定基準**: 影響範囲、原因究明 priority、運用時間帯。
 - **Wait state code lookup の SOP**: code 表を operator 手元に常時、または NetView で `IEE801D` を trap して自動解説出力。**選定基準**: operator 経験度、運用時間 (深夜帯は SOP 必須)、automation 整備状況。
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から disabled wait 解析の運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

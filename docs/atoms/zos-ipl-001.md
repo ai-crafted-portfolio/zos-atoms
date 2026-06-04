@@ -1,10 +1,12 @@
 ---
-title: ZOS-IPL-001
-description: IPL 手順、LOADxx / IEASYS / IEAOPT の役割、HMC からの IPL、CLPA/CVIO の判断
-tags:
-  - OS
-  - OS-Subsystem
+id: ZOS-IPL-001
+title: IPL + LOADxx parm
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z1]
+rag_verified: partially
 ---
+
 # ZOS-IPL-001: IPL + LOADxx parm
 
 ## 1. purpose（なぜ存在するか）
@@ -136,3 +138,10 @@ SET IEASYS=xx        run-time SYSPARM 変更 (限定的)
 - **CLPA 強制 vs オプション**: **CLPA 強制** (LOADxx に hard-code) は PTF 反映漏れ事故防止、ただし毎回 IPL 5-10 分余計に。**オプション** (HMC で都度指定) は速い IPL 可能だが指定漏れリスク。**選定基準**: PTF apply 頻度、IPL 時間 SLA、運用習熟度。
 - **PARMLIB を SYSRES と分ける**: PARMLIB を SYSRES と同じ volume にすると IPL シンプルだが SYSRES rolling upgrade で巻き込まれ。**別 volume** (USER.PARMLIB 等) にすると分離独立で運用しやすいが mount 順序注意。**選定基準**: SYSRES upgrade 頻度、parm 変更頻度、Sysplex 共有要否。
 - **IODF を Sysplex 共通 vs LPAR 個別**: **共通 IODF** は Sysplex 全体で I/O 構成統一、HCD 編集で全 LPAR 反映だが影響範囲広。**個別 IODF** は LPAR 独立だが構成不整合リスク。**選定基準**: I/O sharing 度 (DASD shared 多いなら共通)、運用承認フロー。
+
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+<!-- DO_NOT_QUOTE: fully original wording のみ、書籍からの逐語転載禁止 -->
+
+本 atom の領域については、IBM 公式 manual を一次出典としつつ、運用事例や設計判断の補強として市販書籍 (BK_MF_001 / BK_ZOS_TECH_001 / BK_ZOS_TECH_002 等の z/OS / メインフレーム関連書籍) からの実装知識を補助的に参照する。逐語引用は禁止、概念蒸留して fully original wording で記述する。詳細は ADR-0109 を参照。

@@ -1,10 +1,12 @@
 ---
-title: ZOS-XCF-001
-description: XCF group / member、signaling、JES2 MAS、JES3 spool sharing、IXC msg
-tags:
-  - Sysplex
-  - Sysplex-Modernization
+id: ZOS-XCF-001
+title: XCF (Cross-System Coupling Facility) + JES2/JES3 spool
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-XCF-001: XCF (Cross-System Coupling Facility) + JES2/JES3 spool
 
 ## 1. purpose
@@ -56,3 +58,7 @@ SETXCF START,PATHIN,STRNAME=IXC_HIGH_VOL
 - **CF list vs CTC signaling**: ハイブリッド推奨
 - **JES2 MAS vs 別 spool**: 本番 MAS 一択、開発別 spool 現実的
 - **SFM INTERVAL/OPNOTIFY bias**: 本番 INTERVAL=80 程度
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_001) から XCF / XES 通信設計を概念蒸留 (ADR-0109)。逐語引用禁止。

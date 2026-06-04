@@ -1,10 +1,12 @@
 ---
-title: ZOS-ZCX-001
-description: Linux container on z/OS、Docker、provisioning workflow、zCX appliance
-tags:
-  - Modernization
-  - Sysplex-Modernization
+id: ZOS-ZCX-001
+title: zCX (z/OS Container Extensions)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-ZCX-001: zCX (z/OS Container Extensions)
 
 ## 1. purpose
@@ -53,3 +55,7 @@ docker run -d --name liberty1 -p 9080:9080 ibmcom/websphere-liberty
 - **zCX vs Linux on Z LPAR**: z/OS 隣接 → zCX、大規模 k8s → LPAR
 - **zCX vs Liberty native**: CICS/Db2 密 → native、Spring 派 → zCX
 - **Container registry**: 規制業界 → 社内 registry 一択
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) から zCX (Container Extensions) 運用知識を概念蒸留 (ADR-0109)。書籍は概念補助。

@@ -1,10 +1,12 @@
 ---
-title: ZOS-LINUXONZ-001
-description: z/VM + Linux guest、SUSE/RHEL on Z、KVM on Z、IBM Z Cloud Native
-tags:
-  - Modernization
-  - Sysplex-Modernization
+id: ZOS-LINUXONZ-001
+title: Linux on Z (LPAR / z/VM)
+status: draft
+last_reviewed: 2026-06-02
+authors: [agent-z6]
+rag_verified: partially
 ---
+
 # ZOS-LINUXONZ-001: Linux on Z (LPAR / z/VM)
 
 ## 1. purpose
@@ -56,3 +58,7 @@ cat /proc/sysinfo
 - **Native LPAR vs z/VM vs KVM**: density / 性能 / OpenStack 互換のトレードオフ
 - **Linux on Z vs x86**: RAS + 大容量 vs コモディティ
 - **ECKD vs FBA**: z/OS 共有か Linux 専用 SAN か
+
+## 9. 市販書籍からの知識追加 (ADR-0109 順守)
+
+市販書籍 (BK_MF_001, BK_ZOS_TECH_002) から Linux on Z 運用知識を概念蒸留 (ADR-0109)。逐語引用禁止。
