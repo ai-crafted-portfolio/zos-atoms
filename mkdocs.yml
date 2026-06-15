@@ -1,5 +1,5 @@
-site_name: "z/OS アトムガイド"
-site_description: "z/OS / メインフレームの 62 個の知識アトム"
+site_name: "z/OS 技術項目細分化ガイド"
+site_description: "z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス"
 site_url: https://ai-crafted-portfolio.github.io/zos-atoms/
 site_author: ai-crafted-portfolio
 
@@ -13,7 +13,6 @@ theme:
     - navigation.sections
     - navigation.top
     - navigation.indexes
-    - toc.integrate
     - search.highlight
     - search.suggest
     - content.code.copy
@@ -54,83 +53,109 @@ extra:
   generator: false
 
 nav:
-  - 表紙: index.md
-  - 凡例: legend.md
-  - 既存アトム (20):
-      - "基礎: データ管理":
-          - "ZOS-DATASET-001: データセット": atoms/zos-dataset-001.md
-          - "ZOS-DASD-001: DASD（直接アクセス記憶装置）": atoms/zos-dasd-001.md
-          - "ZOS-CATALOG-001: カタログ（ICF, マスター + ユーザ）": atoms/zos-catalog-001.md
-          - "ZOS-SMS-001: SMS（System Managed Storage）": atoms/zos-sms-001.md
-      - "データセット種別":
-          - "ZOS-PDS-001: 区分データセット（PDS / PDSE）": atoms/zos-pds-001.md
-          - "ZOS-VSAM-001: VSAM（KSDS / RRDS / ESDS / LDS）": atoms/zos-vsam-001.md
-          - "ZOS-GDG-001: GDG（Generation Data Group）": atoms/zos-gdg-001.md
-      - "ジョブと実行":
-          - "ZOS-JCL-001: JCL 基礎（JOB / EXEC / DD）": atoms/zos-jcl-001.md
-          - "ZOS-TSO-001: TSO（対話シェル + ISPF）": atoms/zos-tso-001.md
-          - "ZOS-SORT-001: DFSORT / Syncsort（メインフレーム sort/merge/copy utility）": atoms/zos-sort-001.md
-      - "サブシステム":
-          - "ZOS-CICS-001: CICS（オンライン トランザクション）": atoms/zos-cics-001.md
-          - "ZOS-DB2-001: Db2 for z/OS": atoms/zos-db2-001.md
-          - "ZOS-IMS-001: IMS（階層 DB + トランザクション）": atoms/zos-ims-001.md
-      - "ワークロード管理":
-          - "ZOS-WLM-001: Workload Manager（WLM）": atoms/zos-wlm-001.md
-          - "ZOS-PARALLELSYSPLEX-001: Parallel Sysplex（クラスタリング）": atoms/zos-parallelsysplex-001.md
-      - "セキュリティと監査":
-          - "ZOS-RACF-001: RACF（セキュリティ / SAF）": atoms/zos-racf-001.md
-          - "ZOS-SMF-001: SMF（システム計測ログ）": atoms/zos-smf-001.md
-      - "UNIX 環境":
-          - "ZOS-USS-001: UNIX System Services（HFS / zFS）": atoms/zos-uss-001.md
-      - "障害復旧と診断":
-          - "ZOS-RECOVERY-001: バックアップ + DR（DFSMShsm / DFSMSdss / DRP）": atoms/zos-recovery-001.md
-          - "ZOS-DUMP-001: SVC ダンプ / SYSMDUMP / SYSUDUMP / SYSABEND": atoms/zos-dump-001.md
-  - 新規アトム (42):
-      - "α OS + サブシステム":
-          - "ZOS-ASCB-001: アドレス空間制御ブロック (ASCB / ASSB)": atoms/zos-ascb-001.md
-          - "ZOS-VIRTSTOR-001: 仮想記憶 + ストレージ階層": atoms/zos-virtstor-001.md
-          - "ZOS-IPL-001: IPL + LOADxx parm": atoms/zos-ipl-001.md
-          - "ZOS-CONSOLE-001: MVS コンソール + WTO/WTOR": atoms/zos-console-001.md
-          - "ZOS-WAITSTATE-001: Wait state / loop / disabled wait": atoms/zos-waitstate-001.md
-          - "ZOS-MQ-001: IBM MQ for z/OS": atoms/zos-mq-001.md
-          - "ZOS-WAS-001: WebSphere Application Server for z/OS": atoms/zos-was-001.md
-      - "β ミドルウェア + ユーティリティ":
-          - "ZOS-SAF-001: System Authorization Facility (SAF) callable services": atoms/zos-saf-001.md
-          - "ZOS-ICSF-001: ICSF (Integrated Cryptographic Service Facility) + CKDS/PKDS": atoms/zos-icsf-001.md
-          - "ZOS-PE-001: Pervasive Encryption (PE)": atoms/zos-pe-001.md
-          - "ZOS-AT-TLS-001: AT-TLS (Application Transparent TLS)": atoms/zos-at-tls-001.md
-          - "ZOS-CERTMGMT-001: RACDCERT + 証明書管理": atoms/zos-certmgmt-001.md
-          - "ZOS-IDCAMS-001: IDCAMS (Access Method Services)": atoms/zos-idcams-001.md
-          - "ZOS-IEBCOPY-001: IEBCOPY + PDS/PDSE 操作 utility": atoms/zos-iebcopy-001.md
-          - "ZOS-IEFBR14-001: IEFBR14 + dummy step utility": atoms/zos-iefbr14-001.md
-      - "γ セキュリティ + ネットワーク":
-          - "ZOS-RACF-ADV-001: RACF Advanced (Mixed-case password / MFA / Health Check)": atoms/zos-racf-adv-001.md
-          - "ZOS-ACEE-001: ACEE / Address Space Identity": atoms/zos-acee-001.md
-          - "ZOS-VTAM-001: VTAM (SNA Network Communication)": atoms/zos-vtam-001.md
-          - "ZOS-TCPIP-001: TCP/IP for z/OS": atoms/zos-tcpip-001.md
-          - "ZOS-OSA-001: OSA-Express + FICON / OSM": atoms/zos-osa-001.md
-          - "ZOS-EE-001: Enterprise Extender (SNA over IP)": atoms/zos-ee-001.md
-          - "ZOS-FTP-001: z/OS FTP / Connect:Direct": atoms/zos-ftp-001.md
-      - "δ ストレージ + 監視":
-          - "ZOS-HSM-001: DFSMShsm + tape hierarchy": atoms/zos-hsm-001.md
-          - "ZOS-TAPE-001: Tape / VTL (TS7700, Cloud Tape)": atoms/zos-tape-001.md
-          - "ZOS-RMF-001: RMF (Resource Measurement Facility)": atoms/zos-rmf-001.md
-          - "ZOS-OPERLOG-001: OPERLOG + SYSLOG + log stream": atoms/zos-operlog-001.md
-          - "ZOS-NETVIEW-001: NetView + automation": atoms/zos-netview-001.md
-      - "ε 復旧 + ワークロード":
-          - "ZOS-IPCS-001: IPCS (Interactive Problem Control System)": atoms/zos-ipcs-001.md
-          - "ZOS-RRS-001: RRS (Resource Recovery Services)": atoms/zos-rrs-001.md
-          - "ZOS-ARM-001: ARM (Automatic Restart Manager)": atoms/zos-arm-001.md
-          - "ZOS-IRD-001: IRD (Intelligent Resource Director)": atoms/zos-ird-001.md
-          - "ZOS-CAPCALC-001: Capacity planning (MSU / 4HRA / SCRT)": atoms/zos-capcalc-001.md
-          - "ZOS-SCHED-001: Batch scheduler (TWS / Control-M / OPC)": atoms/zos-sched-001.md
-      - "ζ Sysplex + モダナイゼーション":
-          - "ZOS-CF-001: Coupling Facility (CF) 構造詳細": atoms/zos-cf-001.md
-          - "ZOS-GRS-001: GRS (Global Resource Serialization)": atoms/zos-grs-001.md
-          - "ZOS-XCF-001: XCF (Cross-System Coupling Facility) + JES2/JES3 spool": atoms/zos-xcf-001.md
-          - "ZOS-GDPS-001: GDPS / PPRC / XRC / HyperSwap": atoms/zos-gdps-001.md
-          - "ZOS-ZCX-001: zCX (z/OS Container Extensions)": atoms/zos-zcx-001.md
-          - "ZOS-LINUXONZ-001: Linux on Z (LPAR / z/VM)": atoms/zos-linuxonz-001.md
-          - "ZOS-ZOSMF-001: z/OSMF (REST + workflow)": atoms/zos-zosmf-001.md
-          - "ZOS-JAVA-001: Java for z/OS + JZOS": atoms/zos-java-001.md
-          - "ZOS-ANSIBLE-001: Ansible for z/OS (Red Hat / IBM collection)": atoms/zos-ansible-001.md
+  - ホーム: index.md
+  - "z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)":
+      - 概要: breakdown/zos-v3/index.md
+      - "JCL JOB 文 （162 件）": breakdown/zos-v3/lv01.md
+      - "JCL EXEC 文 （142 件）": breakdown/zos-v3/lv02.md
+      - "JCL DD 文 （262 件）": breakdown/zos-v3/lv03.md
+      - "JCL PROC / 制御 （181 件）": breakdown/zos-v3/lv04.md
+      - "JES2 （268 件）": breakdown/zos-v3/lv05.md
+      - "RACF USER/GROUP/DATASET （365 件）": breakdown/zos-v3/lv06.md
+      - "RACF SETROPTS/RDEFINE/RACDCERT （390 件）": breakdown/zos-v3/lv07.md
+      - "DFSMS / IDCAMS / VSAM （250 件）": breakdown/zos-v3/lv08.md
+      - "TSO / ISPF / SDSF （355 件）": breakdown/zos-v3/lv09.md
+      - "MVS オペレータコマンド （310 件）": breakdown/zos-v3/lv10.md
+      - "ユーティリティ （258 件）": breakdown/zos-v3/lv11.md
+      - "Assembler / システム・プログラミング （572 件）": breakdown/zos-v3/lv12.md
+      - "UNIX System Services (USS) （235 件）": breakdown/zos-v3/lv13.md
+      - "SMP/E / SMF / WLM （398 件）": breakdown/zos-v3/lv14.md
+      - "Comm Server / VTAM / TCP/IP （322 件）": breakdown/zos-v3/lv15.md
+      - "診断 (IPCS / Trace / ABEND) （220 件）": breakdown/zos-v3/lv16.md
+      - "プログラミング言語 (COBOL / PL/I / LE) （220 件）": breakdown/zos-v3/lv17.md
+      - "Sysplex / XCF / GRS / CF （171 件）": breakdown/zos-v3/lv18.md
+      - "Tivoli NetView z/OS 自動化 （4963 件）": breakdown/zos-v3/lv19.md
+      - "Z System Automation (TSA) （1644 件）": breakdown/zos-v3/lv20.md
+      - "GDPS 災害対策・サイトスイッチ （1073 件）": breakdown/zos-v3/lv21.md
+      - "IBM MQ メッセージング （1001 件）": breakdown/zos-v3/lv22.md
+  - "z/OS System Programming (1,804 項目, 初版)":
+      - 概要: breakdown/zos-sysprog/index.md
+      - "IPL とロード （139 件）": breakdown/zos-sysprog/lv01.md
+      - "PARMLIB メンバー （177 件）": breakdown/zos-sysprog/lv02.md
+      - "PROCLIB (Master JCL / STC) （116 件）": breakdown/zos-sysprog/lv03.md
+      - "SYS1.* データセット （103 件）": breakdown/zos-sysprog/lv04.md
+      - "コンソール管理 + MPF / Console Switch （107 件）": breakdown/zos-sysprog/lv05.md
+      - "SLIP (Serviceability Level Indicator Processing) （114 件）": breakdown/zos-sysprog/lv06.md
+      - "Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）": breakdown/zos-sysprog/lv07.md
+      - "ABEND/PSW 解析 （109 件）": breakdown/zos-sysprog/lv08.md
+      - "SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）": breakdown/zos-sysprog/lv09.md
+      - "Workload Manager (Service Class/Goal/RG) （120 件）": breakdown/zos-sysprog/lv10.md
+      - "SMF レコード詳細 （151 件）": breakdown/zos-sysprog/lv11.md
+      - "RMF (Resource Measurement Facility) （95 件）": breakdown/zos-sysprog/lv12.md
+      - "IPCS (Interactive Problem Control System) （121 件）": breakdown/zos-sysprog/lv13.md
+      - "DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）": breakdown/zos-sysprog/lv14.md
+  - "IBM z16 ハードウェア (1,249 項目, 初版)":
+      - 概要: breakdown/z16/index.md
+      - "モデル構成 (A01 / Max39 / Max168) （126 件）": breakdown/z16/lv01.md
+      - "CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）": breakdown/z16/lv02.md
+      - "プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）": breakdown/z16/lv03.md
+      - "メモリ (DIMM, RAIM) （83 件）": breakdown/z16/lv04.md
+      - "I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）": breakdown/z16/lv05.md
+      - "チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）": breakdown/z16/lv06.md
+      - "FICON Express32S （89 件）": breakdown/z16/lv07.md
+      - "OSA Express7S （103 件）": breakdown/z16/lv08.md
+      - "Coupling Express LR / ICA SR / CFCC （104 件）": breakdown/z16/lv09.md
+      - "Crypto Express8S + CPACF （97 件）": breakdown/z16/lv10.md
+      - "PR/SM・LPAR （118 件）": breakdown/z16/lv11.md
+      - "HMC + SE (Hardware Management Console / Support Element) （135 件）": breakdown/z16/lv12.md
+  - "テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)":
+      - 概要: breakdown/tape/index.md
+      - "TS2280 Tape Drive （311 件）": breakdown/tape/lv01.md
+      - "TS4300 Tape Library （306 件）": breakdown/tape/lv02.md
+      - "TS7770 VTL （428 件）": breakdown/tape/lv03.md
+  - "AIX + ksh (2,681 項目)":
+      - 概要: breakdown/aix-ksh/index.md
+      - "LVM (Volume Group / Logical Volume) （232 件）": breakdown/aix-ksh/lv01.md
+      - "JFS / JFS2 ファイルシステム （180 件）": breakdown/aix-ksh/lv02.md
+      - "ODM (Object Data Manager) （133 件）": breakdown/aix-ksh/lv03.md
+      - "ユーザ管理 / RBAC / セキュリティ （215 件）": breakdown/aix-ksh/lv04.md
+      - "ネットワーク TCP/IP （220 件）": breakdown/aix-ksh/lv05.md
+      - "プロセス管理・パフォーマンス （220 件）": breakdown/aix-ksh/lv06.md
+      - "デバイス管理 + installp / SUMA （236 件）": breakdown/aix-ksh/lv07.md
+      - "ブート / NIM / mksysb （148 件）": breakdown/aix-ksh/lv08.md
+      - "仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）": breakdown/aix-ksh/lv09.md
+      - "診断 (errpt/snap) + PowerHA （216 件）": breakdown/aix-ksh/lv10.md
+      - "Korn Shell (ksh / ksh93) （573 件）": breakdown/aix-ksh/lv11.md
+  - "Python (1,774 項目, 公式 docs 出典)":
+      - 概要: breakdown/python/index.md
+      - "基本構文・データ型 （164 件）": breakdown/python/lv01.md
+      - "制御構造 （102 件）": breakdown/python/lv02.md
+      - "関数・スコープ （119 件）": breakdown/python/lv03.md
+      - "クラス・オブジェクト指向 （140 件）": breakdown/python/lv04.md
+      - "例外処理 （112 件）": breakdown/python/lv05.md
+      - "モジュール・パッケージ （110 件）": breakdown/python/lv06.md
+      - "標準ライブラリ I/O (os/sys/io/pathlib) （166 件）": breakdown/python/lv07.md
+      - "標準ライブラリ コレクション (collections/itertools/functools) （116 件）": breakdown/python/lv08.md
+      - "標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）": breakdown/python/lv09.md
+      - "並行・並列 (threading/multiprocessing/asyncio) （124 件）": breakdown/python/lv10.md
+      - "ネットワーク・Web (socket/urllib/http/json/xml) （109 件）": breakdown/python/lv11.md
+      - "テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）": breakdown/python/lv12.md
+      - "型ヒント・dataclass （118 件）": breakdown/python/lv13.md
+      - "venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）": breakdown/python/lv14.md
+  - "VS Code (2,042 項目, 公式 docs 出典)":
+      - 概要: breakdown/vscode/index.md
+      - "UI・基本操作 （83 件）": breakdown/vscode/lv01.md
+      - "コマンドパレット （276 件）": breakdown/vscode/lv02.md
+      - "キーボードショートカット （133 件）": breakdown/vscode/lv03.md
+      - "設定 (settings.json/keybindings.json) （182 件）": breakdown/vscode/lv04.md
+      - "Workspace と マルチルート （100 件）": breakdown/vscode/lv05.md
+      - "エディタ機能 （156 件）": breakdown/vscode/lv06.md
+      - "デバッグ (DAP) （130 件）": breakdown/vscode/lv07.md
+      - "タスク (tasks.json) （103 件）": breakdown/vscode/lv08.md
+      - "Git / Source Control （130 件）": breakdown/vscode/lv09.md
+      - "ターミナル統合 （97 件）": breakdown/vscode/lv10.md
+      - "拡張機能 API （294 件）": breakdown/vscode/lv11.md
+      - "拡張機能配布 (vsce/Marketplace) （101 件）": breakdown/vscode/lv12.md
+      - "Remote Development （133 件）": breakdown/vscode/lv13.md
+      - "GitHub Copilot / 言語サーバ統合 （124 件）": breakdown/vscode/lv14.md
+  - "検証手順サンプル 50 件": breakdown/verification-sample/index.md
