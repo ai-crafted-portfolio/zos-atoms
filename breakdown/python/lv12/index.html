@@ -12,29 +12,31 @@
         <meta name="author" content="ai-crafted-portfolio">
       
       
-        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/">
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv12/">
       
       
+        <link rel="prev" href="../lv11/">
       
-        <link rel="next" href="breakdown/zos-v3/">
+      
+        <link rel="next" href="../lv13/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>z/OS 技術項目細分化ガイド</title>
+        <title>テスト・デバッグ (unittest/pytest/pdb/logging) （143 件） - z/OS 技術項目細分化ガイド</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#zos" class="md-skip">
+        <a href="#unittestpytestpdblogging" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ホーム
+              テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
             
           </span>
         </div>
@@ -211,11 +213,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -236,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-v3/" class="md-tabs__link">
+        <a href="../../zos-v3/" class="md-tabs__link">
           
   
   
@@ -258,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-sysprog/" class="md-tabs__link">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
           
   
   
@@ -280,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/z16/" class="md-tabs__link">
+        <a href="../../z16/" class="md-tabs__link">
           
   
   
@@ -302,7 +302,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/tape/" class="md-tabs__link">
+        <a href="../../tape/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/aix-ksh/" class="md-tabs__link">
+        <a href="../../aix-ksh/" class="md-tabs__link">
           
   
   
@@ -342,11 +342,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="breakdown/python/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -368,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/vscode/" class="md-tabs__link">
+        <a href="../../vscode/" class="md-tabs__link">
           
   
   
@@ -388,7 +390,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="breakdown/verification-sample/" class="md-tabs__link">
+      <a href="../../verification-sample/" class="md-tabs__link">
         
   
   
@@ -423,7 +425,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -438,37 +440,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ホーム
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -484,59 +459,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -615,7 +537,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-v3/" class="md-nav__link ">
+            <a href="../../zos-v3/" class="md-nav__link ">
               
   
   
@@ -659,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv01/" class="md-nav__link">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
         
   
   
@@ -687,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv02/" class="md-nav__link">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
         
   
   
@@ -715,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv03/" class="md-nav__link">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
         
   
   
@@ -743,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv04/" class="md-nav__link">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
         
   
   
@@ -771,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv05/" class="md-nav__link">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
         
   
   
@@ -799,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv06/" class="md-nav__link">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
         
   
   
@@ -827,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv07/" class="md-nav__link">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
         
   
   
@@ -855,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv08/" class="md-nav__link">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
         
   
   
@@ -883,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv09/" class="md-nav__link">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
         
   
   
@@ -911,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv10/" class="md-nav__link">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
         
   
   
@@ -939,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv11/" class="md-nav__link">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
         
   
   
@@ -967,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv12/" class="md-nav__link">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
         
   
   
@@ -995,7 +917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv13/" class="md-nav__link">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
         
   
   
@@ -1023,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv14/" class="md-nav__link">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
         
   
   
@@ -1051,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv15/" class="md-nav__link">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
         
   
   
@@ -1079,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv16/" class="md-nav__link">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
         
   
   
@@ -1107,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv17/" class="md-nav__link">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
         
   
   
@@ -1135,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv18/" class="md-nav__link">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
         
   
   
@@ -1163,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv19/" class="md-nav__link">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
         
   
   
@@ -1191,7 +1113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv20/" class="md-nav__link">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
         
   
   
@@ -1219,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv21/" class="md-nav__link">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
         
   
   
@@ -1247,7 +1169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv22/" class="md-nav__link">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
         
   
   
@@ -1333,7 +1255,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-sysprog/" class="md-nav__link ">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
               
   
   
@@ -1377,7 +1299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv01/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
         
   
   
@@ -1405,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv02/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
         
   
   
@@ -1433,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv03/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
         
   
   
@@ -1461,7 +1383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv04/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
         
   
   
@@ -1489,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv05/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
         
   
   
@@ -1517,7 +1439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv06/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
         
   
   
@@ -1545,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv07/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
         
   
   
@@ -1573,7 +1495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv08/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
         
   
   
@@ -1601,7 +1523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv09/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
         
   
   
@@ -1629,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv10/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
         
   
   
@@ -1657,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv11/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
         
   
   
@@ -1685,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv12/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
         
   
   
@@ -1713,7 +1635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv13/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
         
   
   
@@ -1741,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv14/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
         
   
   
@@ -1823,7 +1745,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/z16/" class="md-nav__link ">
+            <a href="../../z16/" class="md-nav__link ">
               
   
   
@@ -1867,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv01/" class="md-nav__link">
+      <a href="../../z16/lv01/" class="md-nav__link">
         
   
   
@@ -1895,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv02/" class="md-nav__link">
+      <a href="../../z16/lv02/" class="md-nav__link">
         
   
   
@@ -1923,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv03/" class="md-nav__link">
+      <a href="../../z16/lv03/" class="md-nav__link">
         
   
   
@@ -1951,7 +1873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv04/" class="md-nav__link">
+      <a href="../../z16/lv04/" class="md-nav__link">
         
   
   
@@ -1979,7 +1901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv05/" class="md-nav__link">
+      <a href="../../z16/lv05/" class="md-nav__link">
         
   
   
@@ -2007,7 +1929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv06/" class="md-nav__link">
+      <a href="../../z16/lv06/" class="md-nav__link">
         
   
   
@@ -2035,7 +1957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv07/" class="md-nav__link">
+      <a href="../../z16/lv07/" class="md-nav__link">
         
   
   
@@ -2063,7 +1985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv08/" class="md-nav__link">
+      <a href="../../z16/lv08/" class="md-nav__link">
         
   
   
@@ -2091,7 +2013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv09/" class="md-nav__link">
+      <a href="../../z16/lv09/" class="md-nav__link">
         
   
   
@@ -2119,7 +2041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv10/" class="md-nav__link">
+      <a href="../../z16/lv10/" class="md-nav__link">
         
   
   
@@ -2147,7 +2069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv11/" class="md-nav__link">
+      <a href="../../z16/lv11/" class="md-nav__link">
         
   
   
@@ -2175,7 +2097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv12/" class="md-nav__link">
+      <a href="../../z16/lv12/" class="md-nav__link">
         
   
   
@@ -2239,7 +2161,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/tape/" class="md-nav__link ">
+            <a href="../../tape/" class="md-nav__link ">
               
   
   
@@ -2283,7 +2205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv01/" class="md-nav__link">
+      <a href="../../tape/lv01/" class="md-nav__link">
         
   
   
@@ -2311,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv02/" class="md-nav__link">
+      <a href="../../tape/lv02/" class="md-nav__link">
         
   
   
@@ -2339,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv03/" class="md-nav__link">
+      <a href="../../tape/lv03/" class="md-nav__link">
         
   
   
@@ -2419,7 +2341,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/aix-ksh/" class="md-nav__link ">
+            <a href="../../aix-ksh/" class="md-nav__link ">
               
   
   
@@ -2463,7 +2385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv01/" class="md-nav__link">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
         
   
   
@@ -2491,7 +2413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv02/" class="md-nav__link">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
         
   
   
@@ -2519,7 +2441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv03/" class="md-nav__link">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
         
   
   
@@ -2547,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv04/" class="md-nav__link">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
         
   
   
@@ -2575,7 +2497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv05/" class="md-nav__link">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
         
   
   
@@ -2603,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv06/" class="md-nav__link">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
         
   
   
@@ -2631,7 +2553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv07/" class="md-nav__link">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
         
   
   
@@ -2659,7 +2581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv08/" class="md-nav__link">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
         
   
   
@@ -2687,7 +2609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv09/" class="md-nav__link">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
         
   
   
@@ -2715,7 +2637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv10/" class="md-nav__link">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
         
   
   
@@ -2743,7 +2665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv11/" class="md-nav__link">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
         
   
   
@@ -2775,6 +2697,8 @@
       
   
   
+    
+  
   
   
     
@@ -2816,20 +2740,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/python/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -2847,13 +2774,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2873,7 +2800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv01/" class="md-nav__link">
+      <a href="../lv01/" class="md-nav__link">
         
   
   
@@ -2901,7 +2828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv02/" class="md-nav__link">
+      <a href="../lv02/" class="md-nav__link">
         
   
   
@@ -2929,7 +2856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv03/" class="md-nav__link">
+      <a href="../lv03/" class="md-nav__link">
         
   
   
@@ -2957,7 +2884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv04/" class="md-nav__link">
+      <a href="../lv04/" class="md-nav__link">
         
   
   
@@ -2985,7 +2912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv05/" class="md-nav__link">
+      <a href="../lv05/" class="md-nav__link">
         
   
   
@@ -3013,7 +2940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv06/" class="md-nav__link">
+      <a href="../lv06/" class="md-nav__link">
         
   
   
@@ -3041,7 +2968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv07/" class="md-nav__link">
+      <a href="../lv07/" class="md-nav__link">
         
   
   
@@ -3069,7 +2996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv08/" class="md-nav__link">
+      <a href="../lv08/" class="md-nav__link">
         
   
   
@@ -3097,7 +3024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv09/" class="md-nav__link">
+      <a href="../lv09/" class="md-nav__link">
         
   
   
@@ -3125,7 +3052,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv10/" class="md-nav__link">
+      <a href="../lv10/" class="md-nav__link">
         
   
   
@@ -3153,7 +3080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv11/" class="md-nav__link">
+      <a href="../lv11/" class="md-nav__link">
         
   
   
@@ -3178,10 +3105,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="breakdown/python/lv12/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3197,6 +3133,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3209,7 +3146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv13/" class="md-nav__link">
+      <a href="../lv13/" class="md-nav__link">
         
   
   
@@ -3237,7 +3174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv14/" class="md-nav__link">
+      <a href="../lv14/" class="md-nav__link">
         
   
   
@@ -3323,7 +3260,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/vscode/" class="md-nav__link ">
+            <a href="../../vscode/" class="md-nav__link ">
               
   
   
@@ -3367,7 +3304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv01/" class="md-nav__link">
+      <a href="../../vscode/lv01/" class="md-nav__link">
         
   
   
@@ -3395,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv02/" class="md-nav__link">
+      <a href="../../vscode/lv02/" class="md-nav__link">
         
   
   
@@ -3423,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv03/" class="md-nav__link">
+      <a href="../../vscode/lv03/" class="md-nav__link">
         
   
   
@@ -3451,7 +3388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv04/" class="md-nav__link">
+      <a href="../../vscode/lv04/" class="md-nav__link">
         
   
   
@@ -3479,7 +3416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv05/" class="md-nav__link">
+      <a href="../../vscode/lv05/" class="md-nav__link">
         
   
   
@@ -3507,7 +3444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv06/" class="md-nav__link">
+      <a href="../../vscode/lv06/" class="md-nav__link">
         
   
   
@@ -3535,7 +3472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv07/" class="md-nav__link">
+      <a href="../../vscode/lv07/" class="md-nav__link">
         
   
   
@@ -3563,7 +3500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv08/" class="md-nav__link">
+      <a href="../../vscode/lv08/" class="md-nav__link">
         
   
   
@@ -3591,7 +3528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv09/" class="md-nav__link">
+      <a href="../../vscode/lv09/" class="md-nav__link">
         
   
   
@@ -3619,7 +3556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv10/" class="md-nav__link">
+      <a href="../../vscode/lv10/" class="md-nav__link">
         
   
   
@@ -3647,7 +3584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv11/" class="md-nav__link">
+      <a href="../../vscode/lv11/" class="md-nav__link">
         
   
   
@@ -3675,7 +3612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv12/" class="md-nav__link">
+      <a href="../../vscode/lv12/" class="md-nav__link">
         
   
   
@@ -3703,7 +3640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv13/" class="md-nav__link">
+      <a href="../../vscode/lv13/" class="md-nav__link">
         
   
   
@@ -3731,7 +3668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv14/" class="md-nav__link">
+      <a href="../../vscode/lv14/" class="md-nav__link">
         
   
   
@@ -3766,7 +3703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/verification-sample/" class="md-nav__link">
+      <a href="../../verification-sample/" class="md-nav__link">
         
   
   
@@ -3806,47 +3743,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3862,212 +3758,1301 @@
 
 
 
-<h1 id="zos">z/OS 技術項目細分化ガイド<a class="headerlink" href="#zos" title="Permanent link">&para;</a></h1>
-<p>z/OS を中心に、AIX・Python・VS Code・テープ系ハードウェア等の技術項目を細分化した技術リファレンスです。各製品を大分類 (Lv1) ごとのページにまとめ、中分類 (Lv2) 単位の折り畳みテーブルで技術項目・単一焦点要約・出典を一覧できます。</p>
-<p>画面右上の検索から全ページを横断的に全文検索できます。</p>
-<h2 id="_1">コンテンツ一覧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="unittestpytestpdblogging">テスト・デバッグ (unittest/pytest/pdb/logging)<a class="headerlink" href="#unittestpytestpdblogging" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: Python ／ <strong>本ページ件数</strong>: 143 件 ／ <strong>出典区分</strong>: Python 公式ドキュメント出典</p>
+<details class="note" open="open">
+<summary>unittest 基本 （8 件）</summary>
 <table>
 <thead>
 <tr>
-<th>製品</th>
-<th style="text-align: right;">件数</th>
-<th>出典区分</th>
-<th>入口</th>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>z/OS 全体 (v3)</td>
-<td style="text-align: right;">13,762</td>
-<td>Redbook ingest 反映済 v3</td>
-<td><a href="breakdown/zos-v3/">概要</a></td>
+<td style="text-align: right;">1390</td>
+<td>unittest.TestCase</td>
+<td>テストケースの基底クラス。test_ で始まるメソッドが自動収集される。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>z/OS System Programming</td>
-<td style="text-align: right;">1,804</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/zos-sysprog/">概要</a></td>
+<td style="text-align: right;">1391</td>
+<td>setUp / tearDown</td>
+<td>各テストの前後で呼ばれる。フィクスチャ準備と片付けに。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>IBM z16 ハードウェア</td>
-<td style="text-align: right;">1,249</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/z16/">概要</a></td>
+<td style="text-align: right;">1392</td>
+<td>setUpClass / tearDownClass</td>
+<td>クラス単位の 1 回フィクスチャ。@classmethod として宣言。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>テープ系 (TS2280 / TS4300 / TS7770)</td>
-<td style="text-align: right;">1,045</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/tape/">概要</a></td>
+<td style="text-align: right;">1393</td>
+<td>setUpModule / tearDownModule</td>
+<td>モジュール単位のフィクスチャ。グローバル接続などに。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>AIX + ksh</td>
-<td style="text-align: right;">2,681</td>
-<td>書籍出典</td>
-<td><a href="breakdown/aix-ksh/">概要</a></td>
+<td style="text-align: right;">1394</td>
+<td>TestSuite / TestLoader</td>
+<td>複数 TestCase を集約。loader.loadTestsFromModule などで自動収集。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>Python</td>
-<td style="text-align: right;">1,774</td>
-<td>Python 公式ドキュメント出典</td>
-<td><a href="breakdown/python/">概要</a></td>
+<td style="text-align: right;">1395</td>
+<td>TextTestRunner</td>
+<td>コンソール実行。verbosity を 2 にすると詳細表示。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>VS Code</td>
-<td style="text-align: right;">2,042</td>
-<td>VS Code 公式ドキュメント出典</td>
-<td><a href="breakdown/vscode/">概要</a></td>
+<td style="text-align: right;">1396</td>
+<td>unittest.main()</td>
+<td>if <strong>name</strong> == '<strong>main</strong>': で呼び出すと CLI 実行。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>検証手順サンプル</td>
-<td style="text-align: right;">50</td>
-<td>実コンソールセッション再現</td>
-<td><a href="breakdown/verification-sample/">概要</a></td>
+<td style="text-align: right;">1397</td>
+<td>python -m unittest discover</td>
+<td>test_*.py を自動検出して実行。</td>
+<td>PYDOC</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">信頼性区分の凡例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Redbook ingest 反映済 / 公式 docs 出典 / 書籍出典</strong>: 一次資料に基づく内容。</li>
-<li><strong>初版</strong>: 事前知識による補完を含み、一次資料との突合（再生成）を予定。出典欄に「一次資料 突合予定」と表示される項目が該当します。</li>
-</ul>
-<h2 id="_3">出典コード凡例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+</details>
+<details class="note">
+<summary>unittest assertion （15 件）</summary>
 <table>
 <thead>
 <tr>
-<th>出典コード</th>
-<th>意味</th>
-<th>主な製品</th>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>(一次資料 突合予定)</code></td>
-<td>初版項目（一次資料との突合を予定）</td>
-<td>IBM z16、z/OS System Programming</td>
+<td style="text-align: right;">1398</td>
+<td>assertEqual / assertNotEqual</td>
+<td>値の等価性。<strong>eq</strong> に依存。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AIX1</code></td>
-<td>AIX システム管理 1（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1399</td>
+<td>assertTrue / assertFalse</td>
+<td>bool 判定。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AIX2</code></td>
-<td>AIX システム管理 2（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1400</td>
+<td>assertIs / assertIsNot</td>
+<td>同一性 (id) の判定。None チェックは assertIsNone を推奨。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AIX73</code></td>
-<td>IBM AIX 7.3 公式マニュアル</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1401</td>
+<td>assertIsNone / assertIsNotNone</td>
+<td>None 判定の専用。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AS1</code></td>
-<td>アドバンスドスキル Vol.1（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1402</td>
+<td>assertIn / assertNotIn</td>
+<td>コンテナの所属判定。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AS2</code></td>
-<td>アドバンスドスキル Vol.2（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1403</td>
+<td>assertIsInstance / assertNotIsInstance</td>
+<td>型判定。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>BAS</code></td>
-<td>MFOS入門（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1404</td>
+<td>assertAlmostEqual / assertNotAlmostEqual</td>
+<td>浮動小数の近似比較。places か delta を指定。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>GDPS</code></td>
-<td>IBM GDPS Redbooks 一式</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1405</td>
+<td>assertGreater / assertLess / assertGreaterEqual / assertLessEqual</td>
+<td>順序比較。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>KORN</code></td>
-<td>入門 Korn シェル（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1406</td>
+<td>assertRaises(Exc)</td>
+<td>例外発生をアサート。with assertRaises(...) as cm: でも使える。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>MF</code></td>
-<td>メインフレーム実践（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1407</td>
+<td>assertRaisesRegex</td>
+<td>メッセージの正規表現一致まで検証。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>MQ</code></td>
-<td>IBM MQ 9.3 マニュアル一式</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1408</td>
+<td>assertWarns / assertWarnsRegex</td>
+<td>warning 発行を検証。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>NV</code></td>
-<td>IBM NetView 6.4 マニュアル一式</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1409</td>
+<td>assertLogs</td>
+<td>logging の出力を検証。with self.assertLogs(level='ERROR'):。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>PHA7</code></td>
-<td>PowerHA SystemMirror 7.x マニュアル</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1410</td>
+<td>assertCountEqual</td>
+<td>並び順を問わずに要素数とメンバーシップを比較。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>PYDOC</code></td>
-<td>Python 公式ドキュメント (docs.python.org/3)</td>
-<td>Python</td>
+<td style="text-align: right;">1411</td>
+<td>assertRegex / assertNotRegex</td>
+<td>文字列が正規表現にマッチするか。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>TS2280DOC</code></td>
-<td>IBM TS2280 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS4300DOC</code></td>
-<td>IBM TS4300 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS7770DOC</code></td>
-<td>IBM TS7770 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TSA</code></td>
-<td>IBM Z System Automation for z/OS 4.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>VSCAPI</code></td>
-<td>Visual Studio Code 拡張 API リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCCOP</code></td>
-<td>GitHub Copilot in VS Code ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCDOCS</code></td>
-<td>Visual Studio Code 公式ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCKB</code></td>
-<td>Visual Studio Code キーボードショートカット リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCREM</code></td>
-<td>Visual Studio Code リモート開発ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCSET</code></td>
-<td>Visual Studio Code 設定リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>ZOS31</code></td>
-<td>IBM z/OS 3.1 公式マニュアル</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1412</td>
+<td>assertDictEqual / assertListEqual / assertSetEqual</td>
+<td>型固有比較。差分出力が見やすい。</td>
+<td>PYDOC</td>
 </tr>
 </tbody>
 </table>
+</details>
+<details class="note">
+<summary>unittest skip （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1413</td>
+<td>@unittest.skip / skipIf / skipUnless</td>
+<td>条件付きスキップ。理由を引数に。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1414</td>
+<td>@unittest.expectedFailure</td>
+<td>失敗が予期されるテスト。成功した場合に逆に失敗となる。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>unittest subtest （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1415</td>
+<td>with self.subTest(value=x):</td>
+<td>テーブル駆動テスト。失敗時に value 情報が出力される。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>unittest mock （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1416</td>
+<td>unittest.mock.Mock / MagicMock</td>
+<td>属性を on-the-fly に作る汎用モック。MagicMock は magic method もサポート。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1417</td>
+<td>patch('module.attr')</td>
+<td>コンテキストマネージャ / デコレータで一時的にパッチ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1418</td>
+<td>patch.object(obj, 'attr')</td>
+<td>オブジェクト属性のパッチ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1419</td>
+<td>Mock.return_value / side_effect</td>
+<td>戻り値や副作用を定義。side_effect に例外を与えると raise される。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1420</td>
+<td>Mock.call_count / call_args / call_args_list</td>
+<td>呼び出し履歴を検証。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1421</td>
+<td>Mock.assert_called_with / assert_called_once_with</td>
+<td>呼び出し検証メソッド。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1422</td>
+<td>patch.dict(d, values, clear)</td>
+<td>辞書の一時上書き。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1423</td>
+<td>AsyncMock</td>
+<td>コルーチンを返すモック。async コード用。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1424</td>
+<td>autospec=True</td>
+<td>実物のシグネチャに合致した Mock を生成。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1425</td>
+<td>spec / spec_set</td>
+<td>属性を実物に制限。spec_set はさらに新属性追加を禁止。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pytest 基本 （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1426</td>
+<td>test_ で始まる関数を自動収集</td>
+<td>クラスは Test で始まる必要あり。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1427</td>
+<td>assert 文をそのまま使う</td>
+<td>pytest が assert を書き換えて詳細な失敗表示を行う。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1428</td>
+<td>pytest コマンド</td>
+<td>pytest [path] -k 'pattern' -m mark -x --maxfail=n。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1429</td>
+<td>conftest.py</td>
+<td>ディレクトリ単位の fixture / hook 定義ファイル。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pytest fixture （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1430</td>
+<td>@pytest.fixture</td>
+<td>テスト関数の引数として受け取る共有資源を定義。yield で teardown 可能。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1431</td>
+<td>scope='function'|'class'|'module'|'session'</td>
+<td>fixture の寿命範囲。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1432</td>
+<td>autouse=True</td>
+<td>明示的に引数指定せずに全テストに適用。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1433</td>
+<td>params=</td>
+<td>パラメータ化 fixture。テストごとに値を切り替えて実行。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1434</td>
+<td>tmp_path / tmp_path_factory</td>
+<td>テスト用の一時ディレクトリ Path を提供。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1435</td>
+<td>monkeypatch</td>
+<td>環境変数 / 属性 / アイテムを一時的に書き換える組み込み fixture。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1436</td>
+<td>capsys / capfd / caplog</td>
+<td>stdout/stderr/logging をキャプチャ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1437</td>
+<td>request fixture</td>
+<td>現在のテスト情報や fixture finalizer を扱う。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pytest parametrize （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1438</td>
+<td>@pytest.mark.parametrize</td>
+<td>テストにパラメータを与える。複数組合せはタプルのリスト + 名前文字列。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1439</td>
+<td>ids 引数</td>
+<td>テスト ID を読みやすくする。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1440</td>
+<td>indirect=True</td>
+<td>fixture 経由でパラメータを供給。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pytest marker （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1441</td>
+<td>@pytest.mark.skip / skipif</td>
+<td>条件付きスキップ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1442</td>
+<td>@pytest.mark.xfail</td>
+<td>予期される失敗。strict=True で「予期せず通った」も失敗扱い。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1443</td>
+<td>@pytest.mark.usefixtures</td>
+<td>引数なしで fixture を適用。autouse の代替。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1444</td>
+<td>カスタム marker と markers の登録</td>
+<td>pyproject.toml の [tool.pytest.ini_options] markers で宣言。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pytest 例外 （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1445</td>
+<td>pytest.raises(Exc)</td>
+<td>例外を検証する CM。.value で例外オブジェクト取得。match で正規表現比較。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1446</td>
+<td>pytest.warns(Warning)</td>
+<td>warning を検証。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1447</td>
+<td>pytest.deprecated_call</td>
+<td>DeprecationWarning を検証。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pytest plugin （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1448</td>
+<td>pytest-asyncio</td>
+<td>async def テストを実行。@pytest.mark.asyncio または asyncio_mode 設定。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1449</td>
+<td>pytest-mock</td>
+<td>mocker fixture で unittest.mock 連携。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1450</td>
+<td>pytest-cov</td>
+<td>カバレッジ計測。pytest --cov=src で実行。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1451</td>
+<td>pytest-xdist</td>
+<td>並列実行。-n auto で論理 CPU 数だけ並行。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1452</td>
+<td>pytest-benchmark</td>
+<td>ベンチマーク。fixture benchmark を使う。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1453</td>
+<td>pytest-randomly</td>
+<td>テスト順をランダム化し依存検出。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>doctest （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1454</td>
+<td>doctest.testmod()</td>
+<td>モジュール内 docstring の対話例を実行・検証。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1455</td>
+<td>doctest.testfile(filename)</td>
+<td>外部 .txt 内の例を実行。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1456</td>
+<td>ELLIPSIS / IGNORE_EXCEPTION_DETAIL</td>
+<td>テスト時に許容する差分を指定。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1457</td>
+<td>pytest --doctest-modules</td>
+<td>pytest と統合実行。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pdb 基本 （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1458</td>
+<td>breakpoint() (3.7+)</td>
+<td>実行を停止して pdb に入る。PYTHONBREAKPOINT 環境変数で代替デバッガを指定可能。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1459</td>
+<td>import pdb; pdb.set_trace()</td>
+<td>従来のブレークポイント。breakpoint() への置き換えが推奨。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1460</td>
+<td>pdb.run / pdb.runcall</td>
+<td>コード/関数を pdb 制御下で実行。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1461</td>
+<td>pdb.post_mortem(tb)</td>
+<td>例外後にデバッガに入る。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>pdb コマンド （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1462</td>
+<td>n (next) / s (step) / r (return)</td>
+<td>次行 / 関数内へ / 関数を抜けるまで。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1463</td>
+<td>c (continue) / unt (until)</td>
+<td>次のブレークポイントまで / 指定行まで実行。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1464</td>
+<td>b (break) / cl (clear) / disable / enable</td>
+<td>ブレークポイント管理。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1465</td>
+<td>l (list) / ll (longlist)</td>
+<td>ソース表示。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1466</td>
+<td>p / pp / print</td>
+<td>変数評価表示。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1467</td>
+<td>w (where) / u / d</td>
+<td>スタック表示 / 上下フレーム移動。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1468</td>
+<td>args / retval</td>
+<td>現フレームの引数 / 戻り値。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1469</td>
+<td>interact</td>
+<td>現フレームのコンテキストで対話 Python に入る。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1470</td>
+<td>alias / unalias</td>
+<td>ショートコマンド定義。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging 基本 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1471</td>
+<td>logging.getLogger(name)</td>
+<td>logger 取得。<strong>name</strong> を渡すのが慣習。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1472</td>
+<td>logger.debug / info / warning / error / critical</td>
+<td>レベル別ログ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1473</td>
+<td>logger.exception(msg)</td>
+<td>except 内で traceback 付き ERROR ログ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1474</td>
+<td>logger.log(level, msg)</td>
+<td>数値レベルで出力。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1475</td>
+<td>logging.basicConfig(level, format, handlers)</td>
+<td>簡易設定。CLI スクリプトに最適。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging Handler （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1476</td>
+<td>StreamHandler</td>
+<td>stderr / stdout に出力。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1477</td>
+<td>FileHandler</td>
+<td>ファイルに追記。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1478</td>
+<td>RotatingFileHandler</td>
+<td>サイズで rotate。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1479</td>
+<td>TimedRotatingFileHandler</td>
+<td>時間で rotate (日次など)。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1480</td>
+<td>SysLogHandler / SMTPHandler / HTTPHandler</td>
+<td>syslog / メール / HTTP POST。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1481</td>
+<td>QueueHandler / QueueListener</td>
+<td>別スレッドでハンドラを実行しレイテンシ削減。マルチプロセスでも便利。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1482</td>
+<td>NullHandler</td>
+<td>ライブラリ側で「設定されていないと警告される」を防ぐ。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging Formatter （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1483</td>
+<td>Formatter(fmt, datefmt)</td>
+<td>出力フォーマット定義。%(asctime)s %(levelname)s 等。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1484</td>
+<td>json 形式</td>
+<td>extra= に dict を渡し独自フォーマッタで JSON シリアライズ。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging Filter （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1485</td>
+<td>Filter(name)</td>
+<td>logger / handler に追加してレコードを取捨選択。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1486</td>
+<td>logging.LoggerAdapter</td>
+<td>extra をログレコードに自動付与する wrapper。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging config （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1487</td>
+<td>dictConfig(d)</td>
+<td>辞書での設定。YAML から読み込むのが定石。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1488</td>
+<td>fileConfig</td>
+<td>ini 形式での設定。古い。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging level （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1489</td>
+<td>DEBUG/INFO/WARNING/ERROR/CRITICAL</td>
+<td>数値 10/20/30/40/50。setLevel に整数も渡せる。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>logging 注意 （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1490</td>
+<td>root logger の利用</td>
+<td>logging.info(...) は root logger を使う。アプリでは getLogger を推奨。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1491</td>
+<td>logger 階層</td>
+<td>'a.b' は 'a' を親に持つ。レベルとハンドラを継承。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1492</td>
+<td>propagate=False</td>
+<td>ログを親に伝播させない。重複出力回避に。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1493</td>
+<td>thread safety</td>
+<td>logging はスレッドセーフ。プロセスセーフは QueueHandler 推奨。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>traceback （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1494</td>
+<td>traceback.print_exc / format_exc</td>
+<td>現在の例外を出力 / 文字列化。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1495</td>
+<td>traceback.print_exception(exc)</td>
+<td>例外オブジェクトを渡す API (3.10+)。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1496</td>
+<td>TracebackException</td>
+<td>pickle 可能な例外スナップショット。プロセス間転送に。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1497</td>
+<td>PEP 657 詳細位置情報 (3.11+)</td>
+<td>失敗位置を ^^^^ で示す。3.12 で更に改善。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>inspect モジュール （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1498</td>
+<td>inspect.signature</td>
+<td>関数シグネチャを取得。bind で呼び出し前検証。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1499</td>
+<td>inspect.getsourcefile / getsourcelines</td>
+<td>ソース位置を取得。デバッグ用。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1500</td>
+<td>inspect.stack() / currentframe()</td>
+<td>呼び出し履歴。冗長な呼び出しはコスト大。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1501</td>
+<td>inspect.getmembers(obj, predicate)</td>
+<td>属性とその種類を一括取得。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1502</td>
+<td>inspect.isclass / iscoroutine / isfunction</td>
+<td>判別ユーティリティ。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>プロファイラ （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1503</td>
+<td>cProfile.run('main()')</td>
+<td>決定論的プロファイラ。関数単位の累積時間 / 呼出回数。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1504</td>
+<td>cProfile.Profile() の利用</td>
+<td>コンテキストマネージャで部分プロファイル。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1505</td>
+<td>pstats.Stats</td>
+<td>結果を sort / strip_dirs / print_stats。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1506</td>
+<td>py-spy / scalene (外部)</td>
+<td>サンプリング型。本番運用でも使える。標準ではない。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1507</td>
+<td>timeit モジュール</td>
+<td>短いコードの実測。timeit.timeit(stmt, number=)。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1508</td>
+<td>perf_counter による手動計測</td>
+<td>ホットパスを限定して精密計測。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>tracemalloc （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1509</td>
+<td>tracemalloc.start()</td>
+<td>メモリ使用追跡を開始。take_snapshot で差分比較。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1510</td>
+<td>Snapshot.compare_to</td>
+<td>前後スナップショットの差分でリーク源を特定。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1511</td>
+<td>filter_traces</td>
+<td>対象ファイルを限定してノイズ削減。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>coverage （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1512</td>
+<td>coverage run + report</td>
+<td>行カバレッジ計測。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1513</td>
+<td>branch coverage</td>
+<td>分岐カバレッジ。--branch オプション。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1514</td>
+<td>pytest --cov</td>
+<td>pytest-cov 経由で実行。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>テスト × 型 （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1515</td>
+<td>mypy / pyright</td>
+<td>静的型解析。CI で型エラーを早期検出。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1516</td>
+<td>typing.assert_type / assert_never</td>
+<td>型チェッカ向けランタイムアサート。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ベストプラクティス （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1517</td>
+<td>テスト名は意図を表す</td>
+<td>test_addition_returns_sum_of_two_ints のように。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1518</td>
+<td>Arrange-Act-Assert</td>
+<td>セットアップ / 実行 / 検証の 3 段を分離する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1519</td>
+<td>1 テスト 1 主張</td>
+<td>失敗箇所が特定しやすくなる。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1520</td>
+<td>決定論的にする</td>
+<td>時刻 / 乱数 / 順序を固定。freeze_time や seed 設定で。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1521</td>
+<td>並列テスト想定の fixture 設計</td>
+<td>ファイル名/ DB 名を tmp_path / uuid で衝突回避。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1522</td>
+<td>外部 I/O はモック</td>
+<td>ネットワーク / DB をモック化。実行速度と再現性を確保。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1523</td>
+<td>logger の活用</td>
+<td>print より logger.debug。pytest の caplog で検証可能。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1524</td>
+<td>テストデータは fixtures に</td>
+<td>巨大データはファイル化し fixture 経由で読む。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1525</td>
+<td>snapshot テスト</td>
+<td>syrupy 等で出力スナップショットを比較。差分が出たら見直す。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1526</td>
+<td>property-based testing</td>
+<td>hypothesis でランダム入力に対する性質を検証。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1527</td>
+<td>linter と format</td>
+<td>ruff / black を pre-commit で。テストとセットで CI に組み込む。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1528</td>
+<td>デバッグログの抑制</td>
+<td>本番では INFO 以上。テストで詳細ログを出すフラグを用意。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>3.12 関連 （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1529</td>
+<td>PEP 657 詳細トレースバック</td>
+<td>失敗箇所の列番号 / 式単位の位置を強調表示。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1530</td>
+<td>PEP 678 add_note</td>
+<td>例外に補足情報を添付できる。テスト失敗時のメッセージを充実化。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1531</td>
+<td>PEP 695 で型ヒントを活用したテスト</td>
+<td>Generic 型を簡潔に書けるためテストヘルパが綺麗になる。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1532</td>
+<td>pytest 8 系の改善</td>
+<td>詳細 traceback と互換性のあるレポート。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
 
 
 
@@ -4122,10 +5107,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

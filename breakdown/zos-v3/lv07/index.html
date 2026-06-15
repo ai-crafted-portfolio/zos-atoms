@@ -1,0 +1,7289 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv07/">
+      
+      
+        <link rel="prev" href="../lv06/">
+      
+      
+        <link rel="next" href="../lv08/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>RACF SETROPTS/RDEFINE/RACDCERT （390 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#racf-setroptsrdefineracdcert" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aix-ksh/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../aix-ksh/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="racf-setroptsrdefineracdcert">RACF SETROPTS/RDEFINE/RACDCERT<a class="headerlink" href="#racf-setroptsrdefineracdcert" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: z/OS v3 ／ <strong>本ページ件数</strong>: 390 件 ／ <strong>出典区分</strong>: Redbook ingest 反映済 v3</p>
+<details class="note" open="open">
+<summary>SETROPTS 基本 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1381</td>
+<td>SETROPTS の目的</td>
+<td>RACF システム全体のオプションを動的に変更するコマンド</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1382</td>
+<td>SETROPTS 実行権限</td>
+<td>SPECIAL 属性または AUDITOR 属性 (一部 LIST 系のみ) が必要</td>
+<td>MF, AS1, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1383</td>
+<td>SETROPTS 短縮形 SETR</td>
+<td>SETROPTS は SETR と省略可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1384</td>
+<td>SETROPTS LIST</td>
+<td>現行 RACF オプション設定を全件表示。AUDITOR でも可</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1385</td>
+<td>SETROPTS の永続性</td>
+<td>ICHRDSNT/ICHRRNG プロファイルに保存され IPL 後も継承</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1386</td>
+<td>SETROPTS の伝播</td>
+<td>RRSF 接続環境では他ノードへ自動伝播 (AT/ONLYAT 制御)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1387</td>
+<td>SETROPTS と RACF データベース</td>
+<td>DB が読み専用の場合 SETROPTS の更新系は失敗</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>CLASSACT （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1388</td>
+<td>CLASSACT(クラス名)</td>
+<td>指定一般リソース クラスをアクティブ化し RACF 検査対象に加える</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1389</td>
+<td>NOCLASSACT(クラス名)</td>
+<td>指定クラスを非アクティブ化し RACF 検査をスキップ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1390</td>
+<td>CLASSACT(*)</td>
+<td>CDT 全クラスを一括アクティブ化</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1391</td>
+<td>CLASSACT 前提クラス</td>
+<td>POSIT 値が同じクラスは一括で有効化される</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1392</td>
+<td>CLASSACT と RACLIST 連動</td>
+<td>RACLIST 対象クラスは CLASSACT 後 RACLIST 必要</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1393</td>
+<td>CLASSACT 状態確認</td>
+<td>SETROPTS LIST の ACTIVE CLASSES に表示</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>GENERIC （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1394</td>
+<td>GENERIC(クラス名)</td>
+<td>汎用プロファイル処理を有効化。* / ** /% のマッチを許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1395</td>
+<td>NOGENERIC(クラス名)</td>
+<td>汎用プロファイル処理を無効化。完全一致のみで検査</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1396</td>
+<td>GENERIC(*)</td>
+<td>全クラスで汎用処理を有効化</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1397</td>
+<td>GENERIC と DATASET</td>
+<td>DATASET クラスでも GENERIC を有効化可能</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>GENCMD （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1398</td>
+<td>GENCMD(クラス名)</td>
+<td>RDEFINE/RALTER 等のコマンドで汎用プロファイル指定を許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1399</td>
+<td>NOGENCMD(クラス名)</td>
+<td>コマンド側の汎用プロファイル指定を禁止</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1400</td>
+<td>GENCMD と GENERIC の差</td>
+<td>GENCMD はコマンド入力時、GENERIC は実行時検査の汎用処理を制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACLIST （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1401</td>
+<td>RACLIST(クラス名)</td>
+<td>プロファイルを共通記憶 (CSA/ECSA) に読込みアクセス高速化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1402</td>
+<td>NORACLIST(クラス名)</td>
+<td>RACLIST テーブルを解放し DB 直接検査に戻す</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1403</td>
+<td>RACLIST(クラス名) REFRESH</td>
+<td>プロファイル変更後の再ロード。常にこのペアで使う</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1404</td>
+<td>RACLIST 必須クラス</td>
+<td>FACILITY/STARTED/UNIXPRIV/SURROGAT 等は RACLIST が前提</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1405</td>
+<td>RACLIST の影響範囲</td>
+<td>RACLIST 後の RDEFINE/RALTER は REFRESH するまで反映されない</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1406</td>
+<td>GLOBAL=YES クラスの RACLIST</td>
+<td>Sysplex 全 LPAR で RACLIST 共有</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>REFRESH （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1407</td>
+<td>GENERIC(クラス名) REFRESH</td>
+<td>汎用プロファイル変更後のメモリ常駐コピーを更新</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1408</td>
+<td>RACLIST(クラス名) REFRESH</td>
+<td>RACLIST 済プロファイル変更後の再ロード</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1409</td>
+<td>WHEN(PROGRAM) REFRESH</td>
+<td>プログラム制御 (PADS) のテーブル更新</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1410</td>
+<td>GLOBAL(クラス名) REFRESH</td>
+<td>GLOBAL アクセスチェック テーブルの更新</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1411</td>
+<td>REFRESH の RRSF 伝播</td>
+<td>RRSF 接続先ノードに自動伝播される</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>AUDIT （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1412</td>
+<td>AUDIT(クラス名)</td>
+<td>指定クラスの RDEFINE/RALTER/RDELETE 等管理コマンドを SMF 記録</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1413</td>
+<td>NOAUDIT(クラス名)</td>
+<td>管理コマンド監査を停止</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1414</td>
+<td>AUDIT(DATASET)</td>
+<td>RACF データセット プロファイル変更を全件監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1415</td>
+<td>AUDIT(USER)</td>
+<td>ユーザ プロファイル変更 (ADDUSER/ALTUSER 等) を監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1416</td>
+<td>AUDIT(GROUP)</td>
+<td>グループ プロファイル変更を監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1417</td>
+<td>AUDIT(*)</td>
+<td>全クラスの管理コマンドを監査対象に</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ADSP （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1418</td>
+<td>ADSP</td>
+<td>ADSP 属性ユーザが新規データセット作成時自動的に DISCRETE 保護</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1419</td>
+<td>NOADSP</td>
+<td>ADSP 属性を無効化。SETROPTS PROTECTALL の方が推奨</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1420</td>
+<td>ADSP の運用</td>
+<td>新規 DS が自動保護されるが管理コスト大。GENERIC 推奨</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>GRPLIST （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1421</td>
+<td>GRPLIST</td>
+<td>List-of-groups 検査を有効化。全接続グループの権限が累積</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1422</td>
+<td>NOGRPLIST</td>
+<td>現行接続グループのみで権限決定 (デフォルト)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1423</td>
+<td>GRPLIST と CONNECT</td>
+<td>CONNECT グループの権限のみ参照される</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>INITSTATS （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1424</td>
+<td>INITSTATS</td>
+<td>ユーザ ログイン統計 (LAST-ACCESS/RESUME) を記録</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1425</td>
+<td>NOINITSTATS</td>
+<td>ログイン統計記録を停止 (パフォーマンス改善)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1426</td>
+<td>INITSTATS と INACTIVE</td>
+<td>INACTIVE 自動 REVOKE には INITSTATS が必要</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>INACTIVE （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1427</td>
+<td>INACTIVE(日数)</td>
+<td>指定日数ログインなしのユーザを自動 REVOKE</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1428</td>
+<td>NOINACTIVE</td>
+<td>自動 REVOKE を無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1429</td>
+<td>INACTIVE と PROTECTED 属性</td>
+<td>PROTECTED ユーザは INACTIVE の対象外</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1430</td>
+<td>INACTIVE 最大値</td>
+<td>1～255 日の範囲で指定</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>PASSWORD （18 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1431</td>
+<td>PASSWORD(HISTORY(n))</td>
+<td>過去 n 個 (最大 32) のパスワードを再利用禁止</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1432</td>
+<td>PASSWORD(NOHISTORY)</td>
+<td>履歴チェックを無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1433</td>
+<td>PASSWORD(INTERVAL(n))</td>
+<td>パスワード変更間隔 1～254 日</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1434</td>
+<td>PASSWORD(NOINTERVAL)</td>
+<td>パスワード期限切れチェックを無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1435</td>
+<td>PASSWORD(MINCHANGE(n))</td>
+<td>次の変更まで n 日必要 (連続変更で履歴を回避不可に)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1436</td>
+<td>PASSWORD(REVOKE(n))</td>
+<td>連続 n 回失敗で REVOKE。1～255 回</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1437</td>
+<td>PASSWORD(NOREVOKE)</td>
+<td>失敗回数による REVOKE を無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1438</td>
+<td>PASSWORD(WARNING(n))</td>
+<td>失効 n 日前から警告メッセージ表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1439</td>
+<td>PASSWORD(NOWARNING)</td>
+<td>失効前警告を停止</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1440</td>
+<td>PASSWORD(RULE1(LENGTH(m:n)…))</td>
+<td>ルール 1 のパスワード書式 (長さ・各位置の文字種)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1441</td>
+<td>PASSWORD(RULE2)…RULE8</td>
+<td>最大 8 種類のパスワード書式ルールを定義可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1442</td>
+<td>RULE 文字種コード一覧</td>
+<td>A=ALPHA, C=CONSONANT, L=ALPHANUM, N=NUMERIC, V=VOWEL, W=NOVOWEL, M=MIXED, X=SPECIAL, $/#/@=NATIONAL</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1443</td>
+<td>RULE 大小文字混在指定</td>
+<td>MIXEDCONSONANT/MIXEDVOWEL/MIXEDALL 等で大小区別ルール設定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1444</td>
+<td>PASSWORD(MIXEDCASE)</td>
+<td>大小文字区別を有効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1445</td>
+<td>PASSWORD(NOMIXEDCASE)</td>
+<td>大文字のみ (旧仕様)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1446</td>
+<td>PASSWORD(ALGORITHM(KDFAES))</td>
+<td>KDFAES でパスワード ハッシュ。z/OS 2.1+</td>
+<td>MF, AS1, ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1447</td>
+<td>PASSWORD(ALGORITHM(LEGACY))</td>
+<td>従来 DES ベース</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1448</td>
+<td>PASSWORD(SPECIALCHARS)</td>
+<td>特殊文字を含むパスワードを許可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>PASSPHRASE （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1449</td>
+<td>PASSPHRASE(HISTORY(n))</td>
+<td>パスフレーズ履歴 n 件まで</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1450</td>
+<td>PASSPHRASE(INTERVAL(n))</td>
+<td>パスフレーズ変更間隔</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1451</td>
+<td>PASSPHRASE(MINCHANGE(n))</td>
+<td>次の変更まで n 日</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1452</td>
+<td>PASSPHRASE(WARNING(n))</td>
+<td>失効 n 日前警告</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1453</td>
+<td>パスフレーズ長</td>
+<td>9～100 文字。空白・特殊文字可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1454</td>
+<td>パスフレーズ ICHPWX11</td>
+<td>サンプル EXIT で 14 文字未満を拒否可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>MLS （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1455</td>
+<td>MLACTIVE</td>
+<td>Multilevel Security を有効化 (SECLABEL 強制)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1456</td>
+<td>NOMLACTIVE</td>
+<td>MLS を無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1457</td>
+<td>MLACTIVE(FAILURES)</td>
+<td>SECLABEL なしのアクセスを失敗扱い</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1458</td>
+<td>MLACTIVE(WARNINGS)</td>
+<td>SECLABEL なしを警告のみで許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1459</td>
+<td>MLSTABLE</td>
+<td>SECLABEL 変更を一時的に禁止 (整合性保持)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1460</td>
+<td>NOMLSTABLE</td>
+<td>SECLABEL 変更を許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1461</td>
+<td>MLQUIET</td>
+<td>新規ログオン/ジョブを禁止し SETROPTS 変更中に静止状態に</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1462</td>
+<td>NOMLQUIET</td>
+<td>通常運用に戻す</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1463</td>
+<td>MLS</td>
+<td>Mandatory access control を強制</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1464</td>
+<td>MLFSOBJ</td>
+<td>ファイルシステム オブジェクトの MLS 強制</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1465</td>
+<td>MLIPCOBJ</td>
+<td>IPC オブジェクトの MLS 強制</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>SECLABEL （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1466</td>
+<td>SECLABELCONTROL</td>
+<td>SPECIAL のみ SECLABEL を変更可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1467</td>
+<td>NOSECLABELCONTROL</td>
+<td>SECLABEL 変更権限を緩和</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1468</td>
+<td>COMPATMODE</td>
+<td>古い MLS 互換モード (CC EAL 評価用)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1469</td>
+<td>NOCOMPATMODE</td>
+<td>標準 MLS モード</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1470</td>
+<td>SECLABELAUDIT</td>
+<td>SECLABEL プロファイルの AUDIT 設定で監査</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>AUDIT 拡張 （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1471</td>
+<td>SAUDIT/NOSAUDIT</td>
+<td>SPECIAL 属性ユーザのコマンドを全件監査の有効/無効</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1472</td>
+<td>OPERAUDIT/NOOPERAUDIT</td>
+<td>OPERATIONS 属性ユーザのアクセスを全件監査の有効/無効</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1473</td>
+<td>CMDVIOL/NOCMDVIOL</td>
+<td>RACF コマンド違反 (権限不足) の SMF 記録</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1474</td>
+<td>LOGOPTIONS の用途</td>
+<td>クラス単位で監査オプションを変更 (5 種類のキーワード)</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1475</td>
+<td>LOGOPTIONS(ALWAYS(class))</td>
+<td>成否問わず全アクセスを SMF 記録</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1476</td>
+<td>LOGOPTIONS(NEVER(class))</td>
+<td>監査を完全に停止 (プロファイル設定無視)</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1477</td>
+<td>LOGOPTIONS(SUCCESSES|FAILURES(class))</td>
+<td>成功のみ/失敗のみを記録</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1478</td>
+<td>LOGOPTIONS(DEFAULT(class))</td>
+<td>プロファイル AUDIT 設定に従う</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1479</td>
+<td>APPLAUDIT/NOAPPLAUDIT</td>
+<td>APPC トランザクション プログラム アクセス監査の有効/無効</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>JES （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1480</td>
+<td>JES(BATCHALLRACF)</td>
+<td>バッチジョブにユーザ ID 指定を必須化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1481</td>
+<td>JES(NOBATCHALLRACF)</td>
+<td>USER= なしのジョブも許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1482</td>
+<td>JES(XBMALLRACF)</td>
+<td>実行バッチ モニタ (XBM) ジョブのユーザ ID を必須化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1483</td>
+<td>JES(NJEUSERID(name))</td>
+<td>デフォルト NJE 受信ユーザ ID。未定義時 ++++++++ で reject</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1484</td>
+<td>JES(UNDEFINEDUSER(name))</td>
+<td>未定義 ID のジョブに割当てる代替 ID</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1485</td>
+<td>JES(EARLYVERIFY)</td>
+<td>ジョブ サブミット時に即時 RACF 検査</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1486</td>
+<td>JES(NOEARLYVERIFY)</td>
+<td>実行時まで検査延期</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>EGN （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1487</td>
+<td>EGN (Enhanced Generic Naming)</td>
+<td>DS プロファイルの ** マッチを許可。一度有効化すると無効化不可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1488</td>
+<td>NOEGN</td>
+<td>EGN 無効 (旧仕様)。一度 EGN にすると戻せない</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>GLOBAL （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1489</td>
+<td>GLOBAL(クラス名)</td>
+<td>GLOBAL アクセス チェック テーブルを有効化 (高速一括許可)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1490</td>
+<td>NOGLOBAL(クラス名)</td>
+<td>GLOBAL チェック無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1491</td>
+<td>GLOBAL の用途</td>
+<td>頻繁アクセスされる公開リソースを RACF 検査スキップ</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>MISC （17 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1492</td>
+<td>KERBLVL(0|1)</td>
+<td>Kerberos プロファイル レベル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1493</td>
+<td>MLNAMES/NOMLNAMES</td>
+<td>SECLABEL 命名規則の強制 有効/無効</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1494</td>
+<td>PROTECTALL(FAIL|WARN)</td>
+<td>全 DS にプロファイル必須化 (FAIL=拒否, WARN=警告のみ)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1495</td>
+<td>NOPROTECTALL</td>
+<td>プロファイル不要 (デフォルト)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1496</td>
+<td>PRIMARYLANG/SECONDARYLANG</td>
+<td>RACF メッセージの一次/二次言語コード</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1497</td>
+<td>RVARYPW(SWITCH(pw),STATUS(pw))</td>
+<td>RVARY コマンド (DB 切替/状態変更) のパスワード</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1498</td>
+<td>SECLEVELAUDIT/NOSECLEVELAUDIT</td>
+<td>指定 SECLEVEL 以上の全アクセスを監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1499</td>
+<td>SESSIONINTERVAL/NOSESSIONINTERVAL</td>
+<td>APPC セッション キー有効期限</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1500</td>
+<td>STORAGE</td>
+<td>RACLIST 用 CSA/ECSA 上限を表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1501</td>
+<td>TAPEDSN/NOTAPEDSN</td>
+<td>テープ DS 名検査の有効/無効 (NO 側は TAPEVOL のみ)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1502</td>
+<td>TERMINAL(READ|NONE)</td>
+<td>未定義端末からのアクセス UACC</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1503</td>
+<td>WHEN(PROGRAM)/NOWHEN(PROGRAM)</td>
+<td>プログラム制御 (PADS) の有効/無効</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1504</td>
+<td>MODEL(USER|GROUP|GDG)/NOMODEL</td>
+<td>モデル プロファイル機能の対象指定 / 無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1505</td>
+<td>ERASE(ALL|SECLEVEL(n))/NOERASE</td>
+<td>DS 削除時のデータ消去 (DoD 準拠) の制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1506</td>
+<td>RETPD(日数)</td>
+<td>新規 DS プロファイルのデフォルト保存日数</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1507</td>
+<td>PREFIX(qualifier)</td>
+<td>シングルレベル DS 名に付加する HLQ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1508</td>
+<td>REALDSN/NOREALDSN</td>
+<td>SMF 記録時に実 DS 名 / 汎用プロファイル名のどちらを使うか</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE 基本 （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1509</td>
+<td>RDEFINE の目的</td>
+<td>一般リソース プロファイルを新規作成</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1510</td>
+<td>RDEFINE 短縮形 RDEF</td>
+<td>RDEFINE は RDEF と省略可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1511</td>
+<td>RDEFINE 構文</td>
+<td>RDEFINE class-name profile-name [operands…]</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1512</td>
+<td>クラス名指定</td>
+<td>FACILITY/STARTED 等の CDT 登録クラスを必須</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1513</td>
+<td>プロファイル名長</td>
+<td>クラスごとに最大長が CDT で定義 (通常 246 文字)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1514</td>
+<td>汎用プロファイル指定</td>
+<td>GENERIC 有効時 * / ** / % をプロファイル名に使用可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1515</td>
+<td>GENERIC キーワード</td>
+<td>汎用と明示する場合 GENERIC オペランドを付ける</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1516</td>
+<td>メンバ クラス vs グルーピング クラス</td>
+<td>メンバ クラス (FACILITY 等) と GROUP クラス (GFACILIT 等) の対</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE オペランド （25 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1517</td>
+<td>UACC(READ|UPDATE|CONTROL|ALTER|NONE)</td>
+<td>汎用アクセス権限 (定義されていないユーザの権限)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1518</td>
+<td>OWNER(userid|group)</td>
+<td>プロファイル所有者 (省略時はコマンド発行者)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1519</td>
+<td>AUDIT(ALL|SUCCESS|FAILURES|NONE)</td>
+<td>アクセス監査レベル指定</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1520</td>
+<td>AUDIT(ALL(READ))</td>
+<td>READ 以上の成否を監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1521</td>
+<td>AUDIT(FAILURES(UPDATE))</td>
+<td>UPDATE 以上の失敗のみ監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1522</td>
+<td>NOTIFY(userid)</td>
+<td>アクセス違反時に通知するユーザ ID</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1523</td>
+<td>NONOTIFY</td>
+<td>通知を無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1524</td>
+<td>WARNING</td>
+<td>ACCESS LIST に登録なくても許可+SMF 記録 (移行期間用)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1525</td>
+<td>NOWARNING</td>
+<td>WARNING モード解除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1526</td>
+<td>LEVEL(n)</td>
+<td>0～99 のレベル属性 (インストール独自運用)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1527</td>
+<td>DATA('text')</td>
+<td>任意の説明テキスト 255 文字</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1528</td>
+<td>APPLDATA('text')</td>
+<td>アプリケーション用データ 255 文字</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1529</td>
+<td>SECLEVEL(name)</td>
+<td>セキュリティ レベル名 (SECDATA クラスで定義)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1530</td>
+<td>CATEGORY(name1,name2,…)</td>
+<td>セキュリティ カテゴリ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1531</td>
+<td>SECLABEL(label)</td>
+<td>セキュリティ ラベル (MLS 環境用)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1532</td>
+<td>FCLASS(クラス名)</td>
+<td>FROM のソース クラス指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1533</td>
+<td>FROM(プロファイル名)</td>
+<td>既存プロファイルから属性をコピーして作成</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1534</td>
+<td>FGENERIC</td>
+<td>FROM の汎用プロファイル指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1535</td>
+<td>MODEL(profile)</td>
+<td>モデル プロファイルを参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1536</td>
+<td>TIMEZONE(±hh:mm)</td>
+<td>WHEN(TIME) 用タイムゾーン</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1537</td>
+<td>WHEN(DAYS(…)|TIME(…))</td>
+<td>アクセス可能な曜日/時間帯</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1538</td>
+<td>ADDMEM(member1,member2,…)</td>
+<td>GROUP クラスのメンバを追加</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1539</td>
+<td>ADDCATEGORY(category)</td>
+<td>カテゴリ追加</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1540</td>
+<td>VOLUME(volser)</td>
+<td>TAPEVOL/DASDVOL のボリューム名</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1541</td>
+<td>SINGLEDSN</td>
+<td>TAPEVOL に DS 1 個のみ許可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE FACILITY （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1542</td>
+<td>FACILITY クラスの用途</td>
+<td>システム機能やアプリ機能の権限制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1543</td>
+<td>BPX.* プロファイル</td>
+<td>z/OS UNIX 関連権限 (BPX.SUPERUSER 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1544</td>
+<td>IRR.* プロファイル</td>
+<td>RACF 内部機能 (IRR.LISTUSER 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1545</td>
+<td>STGADMIN.* プロファイル</td>
+<td>DFSMS 関連権限</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE STARTED （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1546</td>
+<td>STARTED クラスの用途</td>
+<td>STC (Started Task) にユーザ/グループ ID を割当</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1547</td>
+<td>STDATA セグメント</td>
+<td>USER/GROUP/TRUSTED/PRIVILEGED 等を保持</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1548</td>
+<td>STDATA(USER(id))</td>
+<td>STC 実行ユーザ ID</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1549</td>
+<td>STDATA(GROUP(id))</td>
+<td>STC グループ ID</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1550</td>
+<td>STDATA(TRUSTED(YES))</td>
+<td>TRUSTED 属性。RACF 検査をバイパス</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1551</td>
+<td>STDATA(PRIVILEGED(YES))</td>
+<td>PRIVILEGED 属性。多くのチェックをバイパス + 監査も簡略</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1552</td>
+<td>STARTED と ICHRIN03 の関係</td>
+<td>STARTED クラスは ICHRIN03 テーブルの動的版</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE SURROGAT （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1553</td>
+<td>SURROGAT クラスの用途</td>
+<td>あるユーザが別ユーザになりすましてジョブ サブミット許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1554</td>
+<td>userid.SUBMIT プロファイル</td>
+<td>userid になりすましてジョブを投入可能なユーザを定義</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1555</td>
+<td>BPX.SRV.userid プロファイル</td>
+<td>z/OS UNIX サーバが userid に代行 (pthread_security_np)</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE JES （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1556</td>
+<td>JESINPUT クラス</td>
+<td>ジョブ入力装置 (RDR/INTRDR/NJE 等) のアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1557</td>
+<td>JESJOBS クラス</td>
+<td>SUBMIT/CANCEL/DISPLAY 権限制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1558</td>
+<td>JESJOBS SUBMIT.nodeid.jobname.owner</td>
+<td>ジョブ サブミット権限プロファイル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1559</td>
+<td>JESJOBS CANCEL.nodeid.userid.jobname</td>
+<td>ジョブ キャンセル権限プロファイル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1560</td>
+<td>JESSPOOL クラス</td>
+<td>SPOOL データセット (SYSOUT) のアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1561</td>
+<td>JESSPOOL プロファイル形式</td>
+<td>nodeid.userid.jobname.jobid.dsid.dsname</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1562</td>
+<td>WRITER クラス</td>
+<td>外部ライタ アクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1563</td>
+<td>NODES クラス</td>
+<td>NJE ノード間のジョブ/SYSOUT 転送制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE OPERCMDS （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1564</td>
+<td>OPERCMDS クラス</td>
+<td>コンソール オペレータ コマンドのアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1565</td>
+<td>プロファイル形式</td>
+<td>subsys.command.qualifier (例: MVS.START.STC.STCNAME)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1566</td>
+<td>MVS.* プロファイル</td>
+<td>MVS コマンド (DISPLAY, START 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1567</td>
+<td>JES2.* プロファイル</td>
+<td>JES2 コマンド</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1568</td>
+<td>JES3.* プロファイル</td>
+<td>JES3 コマンド</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE PROGRAM （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1569</td>
+<td>PROGRAM クラス</td>
+<td>ロード モジュールのアクセス制御 (PADS)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1570</td>
+<td>ADDMEM(library/volser/PADCHK)</td>
+<td>対象ライブラリ・ボリューム・PADS チェック有無</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1571</td>
+<td>PADCHK/NOPADCHK</td>
+<td>PADS 必須 / 任意</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1572</td>
+<td>WHEN(PROGRAM) 連携</td>
+<td>SETROPTS WHEN(PROGRAM) が前提</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE SDSF （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1573</td>
+<td>SDSF クラス</td>
+<td>SDSF パネル/コマンド/カラムのアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1574</td>
+<td>ISFCMD プロファイル</td>
+<td>コマンド権限 (DA/SR/I/O 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1575</td>
+<td>ISFAUTH プロファイル</td>
+<td>個別 SYSOUT/JOB アクション権限</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1576</td>
+<td>ISFOPER プロファイル</td>
+<td>オペレータ コマンド権限</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE TSO （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1577</td>
+<td>TSOPROC クラス</td>
+<td>TSO ログオン プロシジャ アクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1578</td>
+<td>TSOAUTH クラス</td>
+<td>TSO 認可 (ACCT/OPER/JCL/MOUNT 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1579</td>
+<td>ACCTNUM クラス</td>
+<td>TSO アカウント番号制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1580</td>
+<td>PERFGRP クラス</td>
+<td>TSO パフォーマンス グループ制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE UNIXPRIV （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1581</td>
+<td>UNIXPRIV クラス</td>
+<td>z/OS UNIX 特権の細分化 (SUPERUSER 不要化)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1582</td>
+<td>SUPERUSER.FILESYS</td>
+<td>ファイルシステム特権アクセス</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1583</td>
+<td>SUPERUSER.FILESYS.MOUNT</td>
+<td>MOUNT 実行権限</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1584</td>
+<td>SUPERUSER.FILESYS.CHOWN</td>
+<td>ファイル所有者変更権限</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1585</td>
+<td>SUPERUSER.PROCESS.KILL</td>
+<td>他ユーザ プロセス KILL</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1586</td>
+<td>CHOWN.UNRESTRICTED</td>
+<td>自ファイルの所有者変更を許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1587</td>
+<td>RESTRICTED.FILESYS.ACCESS</td>
+<td>RESTRICTED 属性ユーザのファイルアクセス</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE SECDATA （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1588</td>
+<td>SECDATA クラス</td>
+<td>SECLEVEL/CATEGORY 定義用</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1589</td>
+<td>SECLEVEL プロファイル</td>
+<td>SECLEVEL 名と数値 (1～254) を ADDMEM で対応付け</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1590</td>
+<td>CATEGORY プロファイル</td>
+<td>CATEGORY 名一覧</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE SECLABEL （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1591</td>
+<td>SECLABEL クラス</td>
+<td>MLS 環境のセキュリティ ラベル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1592</td>
+<td>SECLABEL システムラベル</td>
+<td>SYSHIGH/SYSLOW/SYSNONE/SYSMULTI が事前定義</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE APPL （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1593</td>
+<td>APPL クラス</td>
+<td>VTAM アプリケーション (CICS/IMS/TSO) ログオン制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE CONSOLE （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1594</td>
+<td>CONSOLE クラス</td>
+<td>コンソール デバイスのアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE SERVAUTH （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1595</td>
+<td>SERVAUTH クラス</td>
+<td>TCP/IP スタック・ポート・ネットワーク権限</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1596</td>
+<td>EZB.STACKACCESS</td>
+<td>TCP/IP スタック使用権</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1597</td>
+<td>EZB.PORTACCESS</td>
+<td>予約ポート使用権</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE CSFKEYS （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1598</td>
+<td>CSFKEYS クラス</td>
+<td>ICSF 暗号鍵ラベルのアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE CSFSERV （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1599</td>
+<td>CSFSERV クラス</td>
+<td>ICSF サービスのアクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE DIGTCERT （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1600</td>
+<td>DIGTCERT クラス</td>
+<td>デジタル証明書プロファイル (RACDCERT 管理)</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE DIGTRING （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1601</td>
+<td>DIGTRING クラス</td>
+<td>Key Ring プロファイル</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE DIGTNMAP （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1602</td>
+<td>DIGTNMAP クラス</td>
+<td>証明書 DN マッピング</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDEFINE その他 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1603</td>
+<td>DSNR クラス</td>
+<td>Db2 サブシステム アクセス制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1604</td>
+<td>DLFCLASS クラス</td>
+<td>Data Lookaside Facility 制御</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1605</td>
+<td>GLOBAL クラス</td>
+<td>GLOBAL アクセス チェック テーブル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1606</td>
+<td>IDIDMAP クラス</td>
+<td>分散 ID マッピング</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1607</td>
+<td>SOMDOBJS クラス</td>
+<td>SOM オブジェクト アクセス</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RALTER 基本 （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1608</td>
+<td>RALTER の目的</td>
+<td>既存一般リソース プロファイルの属性変更</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1609</td>
+<td>RALTER 短縮形</td>
+<td>RALT と省略可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1610</td>
+<td>RALTER 構文</td>
+<td>RALTER class-name profile-name [operands…]</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RALTER オペランド （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1611</td>
+<td>RALTER 共通属性変更</td>
+<td>UACC/OWNER/AUDIT/NOTIFY/WARNING/LEVEL/DATA/APPLDATA を RDEFINE と同じ構文で変更可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1612</td>
+<td>ADDMEM/DELMEM</td>
+<td>GROUP クラスのメンバを追加/削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1613</td>
+<td>ADDCATEGORY/DELCATEGORY</td>
+<td>カテゴリ追加/削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1614</td>
+<td>SECLEVEL(name)/NOSECLEVEL</td>
+<td>SECLEVEL 変更/削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1615</td>
+<td>SECLABEL(label)/NOSECLABEL</td>
+<td>SECLABEL 変更/削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1616</td>
+<td>TIMEZONE/WHEN</td>
+<td>アクセス時間帯の変更</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1617</td>
+<td>GLOBALAUDIT(level)</td>
+<td>AUDITOR 専用の追加監査指定</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RDELETE （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1618</td>
+<td>RDELETE の目的</td>
+<td>一般リソース プロファイルを削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1619</td>
+<td>RDELETE 短縮形 RDEL</td>
+<td>RDELETE は RDEL と省略可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">1620</td>
+<td>RDELETE 構文</td>
+<td>RDELETE class-name profile-name [GENERIC]</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1621</td>
+<td>RDELETE GENERIC</td>
+<td>汎用プロファイルを明示削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1622</td>
+<td>RDELETE の権限</td>
+<td>プロファイル OWNER または class authority/SPECIAL</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1623</td>
+<td>RDELETE 後の REFRESH</td>
+<td>RACLIST/GENERIC 対象クラスは SETROPTS REFRESH 必要</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RLIST （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1624</td>
+<td>RLIST の目的</td>
+<td>一般リソース プロファイルの属性表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1625</td>
+<td>RLIST 構文</td>
+<td>RLIST class-name profile-name [options]</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1626</td>
+<td>RLIST NORACF</td>
+<td>RACF 属性は省略、セグメント情報のみ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1627</td>
+<td>RLIST ALL</td>
+<td>全属性・全セグメント・統計を出力</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1628</td>
+<td>RLIST HISTORY</td>
+<td>プロファイル作成・最終変更日時等の履歴情報</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1629</td>
+<td>RLIST STATISTICS</td>
+<td>アクセス カウント等の統計情報</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1630</td>
+<td>RLIST RESGROUP</td>
+<td>メンバが属する GROUP プロファイルを表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1631</td>
+<td>RLIST AUTHUSER</td>
+<td>ACCESS LIST のユーザを表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1632</td>
+<td>RLIST GENERIC</td>
+<td>汎用プロファイルを対象</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1633</td>
+<td>RLIST STDATA/TME/SSIGNON 等セグメント</td>
+<td>クラス特有のセグメントを表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1634</td>
+<td>RLIST * (ワイルドカード)</td>
+<td>クラス内全プロファイルを列挙</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1635</td>
+<td>RLIST と AUDITOR</td>
+<td>AUDITOR は全プロファイル LIST 可</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT 基本 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1636</td>
+<td>RACDCERT の目的</td>
+<td>デジタル証明書と Key Ring を RACF DB で管理</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1637</td>
+<td>RACDCERT 必要権限</td>
+<td>IRR.DIGTCERT.function プロファイルへの READ/UPDATE/CONTROL</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1638</td>
+<td>ID(userid)</td>
+<td>対象ユーザの証明書</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1639</td>
+<td>CERTAUTH</td>
+<td>認証局 (CA) 証明書</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1640</td>
+<td>SITE</td>
+<td>サイト証明書 (CA でない信頼証明書)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1641</td>
+<td>MULTIID</td>
+<td>複数ユーザに同じ証明書を関連付け</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT GENCERT （17 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1642</td>
+<td>RACDCERT GENCERT</td>
+<td>新規証明書を生成 (自己署名または CA 署名)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1643</td>
+<td>SUBJECTSDN</td>
+<td>発行先 DN (CN/OU/O/L/SP/C 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1644</td>
+<td>CN('text')</td>
+<td>Common Name</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1645</td>
+<td>OU('text1','text2')</td>
+<td>Organizational Unit (複数可)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1646</td>
+<td>O('text')</td>
+<td>Organization</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1647</td>
+<td>L('text')</td>
+<td>Locality</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1648</td>
+<td>SP('text')</td>
+<td>State/Province</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1649</td>
+<td>C('text')</td>
+<td>Country (2 文字)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1650</td>
+<td>SIZE(bits)</td>
+<td>鍵長 (512/1024/2048/4096 bit)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1651</td>
+<td>NOTBEFORE(DATE(yyyy-mm-dd))</td>
+<td>有効開始日</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1652</td>
+<td>NOTAFTER(DATE(yyyy-mm-dd))</td>
+<td>有効終了日</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1653</td>
+<td>WITHLABEL('label')</td>
+<td>RACF 内ラベル名 (最大 32 文字)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1654</td>
+<td>SIGNWITH(CERTAUTH LABEL('CA'))</td>
+<td>CA 証明書で署名</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1655</td>
+<td>SIGNWITH(SITE LABEL(…))</td>
+<td>サイト証明書で署名</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1656</td>
+<td>KEYUSAGE(HANDSHAKE|DATAENCRYPT|CERTSIGN…)</td>
+<td>鍵用途指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1657</td>
+<td>ALTNAME(IP(…)|DOMAIN(…)|EMAIL(…)|URI(…))</td>
+<td>サブジェクト代替名 (SAN)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1658</td>
+<td>ICSF/PCICC/TKDS</td>
+<td>秘密鍵保管先指定 (ICSF キー格納)</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT ADD （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1659</td>
+<td>RACDCERT ADD</td>
+<td>外部生成証明書を RACF に取り込み</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1660</td>
+<td>ADD('dataset')</td>
+<td>証明書を含む DS を指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1661</td>
+<td>TRUST/NOTRUST/HIGHTRUST</td>
+<td>信頼ステータスを指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1662</td>
+<td>PASSWORD('pw')</td>
+<td>PKCS#12 ファイルのパスワード</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT DELETE （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1663</td>
+<td>RACDCERT DELETE</td>
+<td>証明書を削除</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1664</td>
+<td>LABEL('label')</td>
+<td>削除対象のラベル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1665</td>
+<td>DELETE と Key Ring</td>
+<td>Key Ring から先に DISCONNECT 必要</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT ALTER （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1666</td>
+<td>RACDCERT ALTER</td>
+<td>TRUST/NOTRUST/HIGHTRUST やラベル変更</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1667</td>
+<td>NEWLABEL('label')</td>
+<td>ラベルをリネーム</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT EXPORT （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1668</td>
+<td>RACDCERT EXPORT</td>
+<td>証明書を DS にエクスポート</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1669</td>
+<td>FORMAT(CERTDER)</td>
+<td>DER 形式バイナリ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1670</td>
+<td>FORMAT(CERTB64)</td>
+<td>Base64 PEM 形式</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1671</td>
+<td>FORMAT(PKCS12DER)</td>
+<td>秘密鍵込み PKCS#12 バイナリ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1672</td>
+<td>FORMAT(PKCS12B64)</td>
+<td>秘密鍵込み PKCS#12 Base64</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1673</td>
+<td>FORMAT(PKCS7DER|PKCS7B64)</td>
+<td>証明書チェーン PKCS#7</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1674</td>
+<td>PASSWORD('pw')</td>
+<td>エクスポート PKCS#12 のパスワード</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT GENREQ （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1675</td>
+<td>RACDCERT GENREQ</td>
+<td>PKCS#10 証明書要求 (CSR) を生成</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1676</td>
+<td>GENREQ DSN</td>
+<td>CSR を出力する DS</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT IMPORT （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1677</td>
+<td>RACDCERT IMPORT</td>
+<td>CA 署名済証明書を取り込んで CSR に紐付け</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT LIST （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1678</td>
+<td>RACDCERT LIST</td>
+<td>証明書属性を表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1679</td>
+<td>LIST(LABEL('…'))</td>
+<td>ラベルで指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1680</td>
+<td>LIST(SERIALNUMBER(…) ISSUERSDN(…))</td>
+<td>シリアル+発行者 DN で指定</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT LISTCHAIN （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1681</td>
+<td>RACDCERT LISTCHAIN</td>
+<td>証明書チェーン (発行階層) を表示</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT LISTMAP （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1682</td>
+<td>RACDCERT LISTMAP</td>
+<td>証明書フィルタ マッピングを表示</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT LISTRING （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1683</td>
+<td>RACDCERT LISTRING</td>
+<td>Key Ring の内容を表示</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1684</td>
+<td>LISTRING(ring-name)</td>
+<td>対象 Key Ring 名</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1685</td>
+<td>LISTRING(*)</td>
+<td>全 Key Ring</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT MAP （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1686</td>
+<td>RACDCERT MAP</td>
+<td>証明書 DN フィルタを定義し userid にマッピング</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1687</td>
+<td>SDNFILTER('…')</td>
+<td>Subject DN フィルタ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1688</td>
+<td>IDNFILTER('…')</td>
+<td>Issuer DN フィルタ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1689</td>
+<td>CRITERIA('name=value')</td>
+<td>アプリケーション条件</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT REKEY （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1690</td>
+<td>RACDCERT REKEY</td>
+<td>鍵ローテーション用に新鍵で複製証明書を作成</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT REMOVE （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1691</td>
+<td>RACDCERT REMOVE</td>
+<td>MULTIID 証明書から特定ユーザ関連を解除</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT ROLLOVER （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1692</td>
+<td>RACDCERT ROLLOVER</td>
+<td>REKEY で作った新証明書に切替 (鍵置換)</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT CHECKCERT （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1693</td>
+<td>RACDCERT CHECKCERT</td>
+<td>外部証明書 DS を取り込まずに内容確認</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT CONNECT （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1694</td>
+<td>RACDCERT CONNECT</td>
+<td>証明書を Key Ring に追加</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1695</td>
+<td>RING(name)</td>
+<td>対象 Key Ring</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1696</td>
+<td>DEFAULT/PERSONAL/CERTAUTH/SITE USAGE</td>
+<td>Key Ring 内の用途指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1697</td>
+<td>DEFAULT</td>
+<td>アプリの デフォルト個人証明書として CONNECT</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT DISCONNECT （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1698</td>
+<td>RACDCERT DISCONNECT</td>
+<td>証明書を Key Ring から除外</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT ADDRING （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1699</td>
+<td>RACDCERT ADDRING</td>
+<td>新規 Key Ring を作成</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>RACDCERT DELRING （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1700</td>
+<td>RACDCERT DELRING</td>
+<td>Key Ring を削除</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>AUDITOR コマンド （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1701</td>
+<td>AUDITOR 属性付与</td>
+<td>ALTUSER userid AUDITOR で付与</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1702</td>
+<td>AUDITOR の権限</td>
+<td>SETROPTS LIST/SAUDIT/OPERAUDIT/LOGOPTIONS/SECLEVELAUDIT 等</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1703</td>
+<td>LISTUSER … AUDITOR 専用</td>
+<td>GLOBALAUDIT/UAUDIT フィールド参照</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1704</td>
+<td>UAUDIT/NOUAUDIT</td>
+<td>ALTUSER で個別ユーザのアクション全件監査</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1705</td>
+<td>GLOBALAUDIT</td>
+<td>RALTER 等で AUDITOR が追加監査を指定</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1706</td>
+<td>AUDITOR 取得情報</td>
+<td>SETROPTS LIST で監査オプションを参照可能</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>BLKUPD （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1707</td>
+<td>BLKUPD の用途</td>
+<td>RACF DB ブロックを直接編集する低レベル ユーティリティ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1708</td>
+<td>BLKUPD と SYS1.UADS</td>
+<td>通常使用は推奨されず緊急回復用</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1709</td>
+<td>BLKUPD 必要権限</td>
+<td>SPECIAL かつ DB バックアップ済が前提</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1710</td>
+<td>BLKUPD コマンド</td>
+<td>FIND/UPDATE/PRINT/END サブコマンド</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ユーティリティ （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1711</td>
+<td>IRRUT200</td>
+<td>RACF DB のステータス・統計・索引整合性チェック</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1712</td>
+<td>IRRUT200 PARM=INDEX/MAP</td>
+<td>PARM で動作モード指定 (INDEX 検査/領域マップ)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1713</td>
+<td>IRRUT400</td>
+<td>RACF DB の再編成・コピー・サイズ変更</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1714</td>
+<td>IRRUT400 PARM=ALLOCATE/NOLOCKINPUT</td>
+<td>出力 DB 割振/排他制御指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1715</td>
+<td>IRRDBU00</td>
+<td>RACF DB アンロード (フラット ファイル出力)</td>
+<td>MF, AS1, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1716</td>
+<td>IRRDBU00 出力レコード タイプ</td>
+<td>0100=USER, 0200=DATASET, 0500=GENERAL 等 100 種</td>
+<td>MF, AS1, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1717</td>
+<td>IRRDBU00 と DB2 LOAD</td>
+<td>アンロード結果を Db2 にロードして分析</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1718</td>
+<td>IRRRID00</td>
+<td>ID/プロファイル/接続の参照整合性検査</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1719</td>
+<td>IRRRID00 と remove ID</td>
+<td>削除予定 ID の参照箇所を IRRDBU00 出力から抽出</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1720</td>
+<td>IRRRID00 出力 CLIST</td>
+<td>残存参照を削除する RACF コマンド CLIST を生成</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1721</td>
+<td>IRRUT100</td>
+<td>ID から関連プロファイル一覧を生成 (ICHUT100 後継)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1722</td>
+<td>RACUT200/RACUT400 JCL</td>
+<td>標準 JCL サンプルが SYS1.SAMPLIB に存在</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>DSMON （13 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1723</td>
+<td>DSMON の用途</td>
+<td>RACF 設定とシステム保護状態を監査レポート出力</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1724</td>
+<td>DSMON 実行権限</td>
+<td>AUDITOR 属性が必要 (IRRDSC00 プログラム)</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1725</td>
+<td>DSMON SYSTEM レポート</td>
+<td>システム情報・CPU・RACF 状態</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1726</td>
+<td>DSMON RACGRP レポート</td>
+<td>グループ ツリー</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1727</td>
+<td>DSMON RACDST レポート</td>
+<td>RACF DB 統計</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1728</td>
+<td>DSMON RACSPT レポート</td>
+<td>SETROPTS 全オプション</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1729</td>
+<td>DSMON RACCDT レポート</td>
+<td>クラスデスクリプタテーブル内容</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1730</td>
+<td>DSMON RACEXT レポート</td>
+<td>RACF 終了出口一覧</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1731</td>
+<td>DSMON RACGAC レポート</td>
+<td>GLOBAL アクセス チェック テーブル</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1732</td>
+<td>DSMON RACUSR レポート</td>
+<td>SPECIAL/OPERATIONS/AUDITOR ユーザ一覧</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1733</td>
+<td>DSMON SYSDSN レポート</td>
+<td>選択システム DS の保護状態</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1734</td>
+<td>DSMON APPC レポート</td>
+<td>APPC 関連プロファイル</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1735</td>
+<td>DSMON PROGRAM/LINKLIST/APF レポート</td>
+<td>APF/LNKLST/LPA 上モジュールの保護状態</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>SMF 80 （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1736</td>
+<td>SMF Type 80 とは</td>
+<td>RACF が生成する監査レコード (全アクセス・コマンド)</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1737</td>
+<td>SMF 80 イベント コード</td>
+<td>1=JOB START, 2=RESOURCE ACCESS, 6=ALTUSER 等 80 種以上</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1738</td>
+<td>SMF 80 サブタイプ</td>
+<td>イベントの詳細分類</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1739</td>
+<td>SMF 80 と IRRADU00</td>
+<td>標準アンロード ユーティリティでフラット化</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1740</td>
+<td>IRRADU00 と DB2 LOAD</td>
+<td>アンロード結果を Db2 にロードして SQL 分析</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1741</td>
+<td>RACFRW (RACF Report Writer)</td>
+<td>古い SMF 80 レポート ツール (非推奨)</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1742</td>
+<td>SMF 80 フィールド</td>
+<td>ユーザ ID/リソース名/アクセス種別/結果コード/SECLABEL 等</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1743</td>
+<td>SMF 80 と OMEGAMON/zSecure</td>
+<td>外部ツールでの分析が一般的</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1744</td>
+<td>SMF 80 生成制御</td>
+<td>SETROPTS AUDIT/SAUDIT/OPERAUDIT/LOGOPTIONS 等で制御</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1745</td>
+<td>SMF 81 レコード</td>
+<td>RACF 初期化情報 (IPL 時)</td>
+<td>MF, AS2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1746</td>
+<td>SMF 83 レコード</td>
+<td>z/OS UNIX セキュリティ イベント</td>
+<td>MF, AS2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>MFA （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1747</td>
+<td>RACF MFA の概要</td>
+<td>IBM MFA for z/OS と連携した多要素認証</td>
+<td>MF, AS1, ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1748</td>
+<td>MFA セグメント</td>
+<td>ALTUSER … MFA(FACTOR(…) ACTIVE TAGS(…))</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1749</td>
+<td>FACTOR(name)</td>
+<td>AZFTOTP1/AZFRADP1/AZFSIDP1 等の認証要素名</td>
+<td>MF, AS1, ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1750</td>
+<td>ACTIVE/NOACTIVE</td>
+<td>ファクタを有効化/無効化</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1751</td>
+<td>PWFALLBACK/NOPWFALLBACK</td>
+<td>MFA 失敗時にパスワード フォールバック許可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1752</td>
+<td>MFA POLICY</td>
+<td>MFADEF クラスで多要素ポリシー定義</td>
+<td>MF, AS1, ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1753</td>
+<td>TAGS(name:value)</td>
+<td>ファクタ固有設定 (TOTP の SHARED.SECRET 等)</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>CDT （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1754</td>
+<td>CDT の概要</td>
+<td>RACF 一般リソース クラスの属性定義テーブル</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1755</td>
+<td>静的 CDT (ICHRRCDX)</td>
+<td>IBM 提供の固定エントリ。修正非推奨</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1756</td>
+<td>動的 CDT (CDT クラス)</td>
+<td>RDEFINE CDT クラス名 + CDTINFO セグメントで動的追加</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1757</td>
+<td>CDTINFO POSIT(n)</td>
+<td>クラスをグループ化する POSIT 番号 (SETROPTS の一括制御単位)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1758</td>
+<td>CDTINFO MAXLENGTH/MAXLENX</td>
+<td>プロファイル名 (拡張) 最大長</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1759</td>
+<td>CDTINFO DEFAULTUACC</td>
+<td>クラス既定 UACC (NONE/READ/UPDATE 等)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1760</td>
+<td>CDTINFO OPERATIONS</td>
+<td>OPERATIONS 属性のアクセス対象とするか</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1761</td>
+<td>CDTINFO RACLIST/GENLIST</td>
+<td>RACLIST/GENLIST の許可・拒否・必須</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1762</td>
+<td>CDTINFO MEMBER/GROUP</td>
+<td>GROUP-MEMBER クラスの相互リンク</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1763</td>
+<td>CDTINFO CASE/FIRST/OTHER</td>
+<td>大小区別、プロファイル名の先頭/後続文字種制限</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1764</td>
+<td>CDTINFO SIGNAL/PROFILESALLOWED</td>
+<td>ENF42 通知、プロファイル定義可否</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1765</td>
+<td>CDT 変更後の再活性化</td>
+<td>SETROPTS RACLIST(CDT) REFRESH 必須</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>z/OS 3.1 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1766</td>
+<td>PASSWORD ALGORITHM デフォルト KDFAES</td>
+<td>z/OS 3.1 で新規導入時の推奨</td>
+<td>ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1767</td>
+<td>TLS 1.3 用 RACDCERT サポート</td>
+<td>EdDSA / ECDSA 鍵生成サポート強化</td>
+<td>ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1768</td>
+<td>MFA ポリシー拡張</td>
+<td>MFADEF クラスでの細粒度ポリシー</td>
+<td>ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1769</td>
+<td>RACF 健全性チェック</td>
+<td>Health Checker と連携した SETROPTS 検査</td>
+<td>ZOS31</td>
+</tr>
+<tr>
+<td style="text-align: right;">1770</td>
+<td>RRSF 拡張</td>
+<td>Sysplex 全体への SETROPTS 伝播強化</td>
+<td>ZOS31</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

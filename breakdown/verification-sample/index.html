@@ -1,0 +1,5670 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/verification-sample/">
+      
+      
+        <link rel="prev" href="../vscode/lv14/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>検証手順サンプル 50 件 - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#50" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              検証手順サンプル 50 件
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../zos-v3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../aix-ksh/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../zos-v3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-v3/lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../aix-ksh/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aix-ksh/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#50_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対象技術項目 50 件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        検証手順（コンソールセッション再現）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="検証手順（コンソールセッション再現）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vrf-001-pipe-memlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-001 — PIPE MEMLIST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-002-loadtbl-aon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-002 — LOADTBL (AON)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-003-defining-the-nmcstatus-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-003 — Defining the NMCSTATUS Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-004-starting-the-topology-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-004 — Starting the Topology Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-005-fullsess" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-005 — FULLSESS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-006-tcpconnpddnm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-006 — TCPCONN.PDDNM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-007-dispmtr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-007 — DISPMTR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-008-sethold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-008 — SETHOLD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-009-datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-009 — DATETIME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-010-policy-items-for-remote-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-010 — Policy Items for Remote Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-011-hardware-management-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-011 — Hardware Management Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-012-consistency-group-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-012 — Consistency group function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-013-flashcopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-013 — FlashCopy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-014-gdps-gm-copy-once-facility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-014 — GDPS GM Copy Once facility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-015-zos-metroglobal-mirror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-015 — z/OS Metro/Global Mirror
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-016-subscription-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-016 — Subscription security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-017-ibm-mq-administration-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-017 — IBM MQ Administration Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-018-ccsid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-018 — CCSID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-019-mqauthenticationinformationrec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-019 — MQAuthenticationInformationRec
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#50_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        対象技術項目 50 件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        検証手順（コンソールセッション再現）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="検証手順（コンソールセッション再現）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vrf-001-pipe-memlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-001 — PIPE MEMLIST
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-002-loadtbl-aon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-002 — LOADTBL (AON)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-003-defining-the-nmcstatus-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-003 — Defining the NMCSTATUS Policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-004-starting-the-topology-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-004 — Starting the Topology Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-005-fullsess" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-005 — FULLSESS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-006-tcpconnpddnm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-006 — TCPCONN.PDDNM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-007-dispmtr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-007 — DISPMTR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-008-sethold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-008 — SETHOLD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-009-datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-009 — DATETIME
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-010-policy-items-for-remote-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-010 — Policy Items for Remote Domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-011-hardware-management-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-011 — Hardware Management Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-012-consistency-group-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-012 — Consistency group function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-013-flashcopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-013 — FlashCopy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-014-gdps-gm-copy-once-facility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-014 — GDPS GM Copy Once facility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-015-zos-metroglobal-mirror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-015 — z/OS Metro/Global Mirror
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-016-subscription-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-016 — Subscription security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-017-ibm-mq-administration-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-017 — IBM MQ Administration Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-018-ccsid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-018 — CCSID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vrf-019-mqauthenticationinformationrec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRF-019 — MQAuthenticationInformationRec
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="50">検証手順サンプル 50 件<a class="headerlink" href="#50" title="Permanent link">&para;</a></h1>
+<p><strong>全件数</strong>: 50 技術項目（うち 19 件に実コンソールセッション再現の検証手順を収録）</p>
+<p>実際のコンソール画面の雰囲気を再現した検証手順サンプルです。コマンド入力・応答メッセージ・パネル遷移を含みます。</p>
+<h2 id="50_1">対象技術項目 50 件<a class="headerlink" href="#50_1" title="Permanent link">&para;</a></h2>
+<details class="note" open="open">
+<summary>技術項目一覧 （50 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>大分類</th>
+<th>中分類</th>
+<th>技術項目</th>
+<th>内容説明</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">5082</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>Assembler 拡張</td>
+<td>Abend Code</td>
+<td>NetView の Assembler 拡張で使用するサービスマクロの戻りコードと ABEND の扱い。多くの NetView サービスマクロは START でアタッチされたタスク下でのみ使用可能で、DSIFIND マクロでは戻り値 32=マクロ呼び出し無効/アセンブリエラー、36=指定 NAME 未検出 を返す。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">5463</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>NetView Pipes</td>
+<td>PIPE MEMLIST</td>
+<td>PIPE MEMLIST ステージは PDS のメンバ一覧を取得する。MEMLIST DSIPARM A* のように接頭文字マスクで絞り込み可能で、MEMLIST USER.INIT のように完全データセット名指定も可。エラー時は DWO970I メッセージで戻りコードを示す。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">5844</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>NetView コマンド</td>
+<td>LOADTBL (AON)</td>
+<td>LOADTBL (同義語 LOAD) は AON のオプション定義テーブルの共通グローバル変数を再初期化する。CNMSTYLE で AON タワー有効化が前提。1 回の発行で 1 テーブルのみ再ロード可能で、複数テーブルは複数回発行。テーブル名は EZLTABLE (AON Base) / FKVTABLE (AON/SNA) / FKXTABLE (AON/TCP) / user 作成テーブル。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">6225</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>PL/I / C 拡張</td>
+<td>Parsing input string in CNMSCAN</td>
+<td>CNMSCAN は PL/I 専用の文字列パース/変換サービス (CNMSSCAN は別名)。入力文字列を左から右へ走査し format 文字列の指定に従い最大 10 個の受信変数へ抽出値を代入する。受信変数は varying length character として宣言。format 指定子に合致しない/入力終端で戻る。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">6606</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>RODM / GMFHS</td>
+<td>Tasks Best Performed with Methods</td>
+<td>GMFHS 監視対象のリソースは RODM ロード関数文と GMFHS データモデルで定義する。DUIFFAWS メソッドは RODM データキャッシュ内の status aggregation フィールドを初期化し、起動時/RODM 接続復旧時/CONFIG NETWORK 処理時に実行される。GMFHS 起動 PROC で AGGRST=NO で無効化可能。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">6987</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>インストール / 構成</td>
+<td>Defining the NMCSTATUS Policy Autotask</td>
+<td>NMCSTATUS Policy 定義は DSIPARM メンバに記述。NMCSTATUS は大文字で 1 桁目から開始、継続行は 2 桁目以降、policy 名は一意、キーワードは順不同・重複不可。BLDVIEWSSPEC/COLLECTIONSPEC/TIME 値内に空白埋め込み不可。違反時は DUI262E (RESOURCE と MYNAME 同時指定不可) などで通知。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">7368</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>インストール / 構成</td>
+<td>Starting the Topology Server</td>
+<td>Topology Server は Windows サービスとして導入可能。account_name は DomainName\UserName 形式 (ローカルは .\UserName)。Topology Server + Topology Comms Server の 2 サービスが導入され startup は manual。tserver config で daemon 化や heartbeat 設定。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">7749</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>セキュリティ (SAF 連携)</td>
+<td>Scenario 1: Migrating from a System with No Security</td>
+<td>セキュリティ未設定からの移行手順。CNMSTYLE の SECOPTS 文を確認し、NetView 側 / SAF 製品 (RACF 等) 側のどちらで管理するか方針決定。コマンド権限チェックには NetView 提供サンプル CNMSCAT2 と CNMSAF2/CNMSAFPW を利用可能。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">8130</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>トラブルシューティング</td>
+<td>RECFMS header</td>
+<td>AON/SNA でリソース回復イベントを処理するメッセージ群の文脈で扱われる SNA RECFMS データ。リンクステーション接続検知時 IST464I が出力され、NCP の LOAD/DUMP 失敗時は FKV501I/FKV502I で通知される。EZL504I は AON/SNA で利用可能 (AVAILABLE) 状態のリソース通知。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">8511</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>ユーザーズガイド (操作)</td>
+<td>Customizing the NetView Management Console Topology Server</td>
+<td>NetView Management Console Topology Console のカスタマイズ。トポロジコンソールアイコン/背景/ヘルプ等の基本カスタマイズと、見た目・機能を変える高度なカスタマイズの 2 段階。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">8892</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>ユーザーズガイド (操作)</td>
+<td>Stack Situations</td>
+<td>IP リソース (IP スタック/ホスト/インタフェース/ルータ/TN3270 サーバ) のプロアクティブ監視機能。ルータの性能 MIB をクエリし閾値超過時に AON/TCP が通知。本機能は NetView 本体に取込済で AON/TCP 不要。IP コネクション監視・閾値判定もサポート。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">9273</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>管理リファレンス</td>
+<td>FULLSESS</td>
+<td>AON コマンド名 (例: ACTMON/AHED/ANO/AON/AONAIP 等) と SAF Resource または Command Authorization Table 識別子 (例: netid.luname.EZLE0000) との対応の枠組み。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">9654</td>
+<td>Tivoli NetView z/OS 自動化</td>
+<td>管理リファレンス</td>
+<td>TCPCONN.PDDNM</td>
+<td>TCPCONN.PDDNM 文は TCP/IP 接続管理の主データセット DD 名を 1-8 文字で指定する (デフォルト DSITCONP)。NetView 開始時に DD で指定し VSAM 経由で利用。複数 DSTINIT 文がある場合は少なくとも 1 度指定する必要がある。</td>
+<td>NV</td>
+</tr>
+<tr>
+<td style="text-align: right;">10045</td>
+<td>Z System Automation (TSA)</td>
+<td>Workload Scheduler 連携</td>
+<td>Automated Recovery Functions</td>
+<td>Workload Scheduler の自動回復は事前に依存関係を持つ回復アプリケーションを TWS に定義 (但しスケジュールはしない)。バックアップサイトでの critical app 回復決定時に通常 TWS パネルで current plan を変更し最初の回復アプリをスケジュール。手動 workstation で手順/JCL 修正をオペレータに提示。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10171</td>
+<td>Z System Automation (TSA)</td>
+<td>エンドツーエンド自動化</td>
+<td>Examples</td>
+<td>End-to-End Automation で SA z/OS が実装するリソースデータモデルの例。DSIPARM 内 INGXINIT を LISTA で参照しリモートドメインのリソースとの関連を把握する。INGXINIT で PPI=YES に設定して PPI 通信を有効化、サンプル JCL INGXADPT を ING.SINGSAMP からコピーして JCL シンボル DIRI/DIRC をカスタマイズする。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10297</td>
+<td>Z System Automation (TSA)</td>
+<td>オペレータコマンド</td>
+<td>DISPMTR</td>
+<td>DISPMTR は MTR (Monitor Resource) の health 状態と詳細を表示する。各 monitor command は ①データ収集 ②return code (1-8) 設定 ③DISPMTR 表示用メッセージ追加 ④終了の基本ステップ。F キーで INGINFO 表示、A=ハードリセット要求、B=リフレッシュ要求。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10423</td>
+<td>Z System Automation (TSA)</td>
+<td>オペレータコマンド</td>
+<td>SETHOLD</td>
+<td>SETHOLD は AOF メッセージのうちどの種別を自分のオペレータ ID 用に hold するかを選択する。CONFIG は自動化制御ファイル設定に合わせる、AUTO は automation に従う、i/a/e/d/w で各種別 (information/action/eventual/decision/wait) を個別指定可能。OST タスクでのみ有効、NNT/RMT では無効。AUTO 以外では INGNTFY globals を更新しない。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10549</td>
+<td>Z System Automation (TSA)</td>
+<td>カスタマイズ / プログラミング</td>
+<td>Define Specific Timeout Values</td>
+<td>リソース個別の timeout 値定義。TIMEOUT パラメータで秒指定 (最大 999、省略時 30 秒)。E2E では INGREQ_WAIT/INGSET_WAIT/INGLIST_WAIT といった AAO (Advanced Automation Option) で最小値を制御、未設定なら 30 秒。共通グローバル変数で運用調整可能。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10675</td>
+<td>Z System Automation (TSA)</td>
+<td>カスタマイズ / プログラミング</td>
+<td>Resource Lifecycle</td>
+<td>リソースは観察状態 (Observed) と希望状態 (Desired) を持ち、SA z/OS は希望状態に向け開始/停止を agent に指示する。MTR リソースは健康状態で観察し、suspended 状態では agent/MTR 双方 2 値のみのライフサイクルモデルへ縮退する (UP/DOWN, AVAILABLE/SOFTDOWN 等)。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10801</td>
+<td>Z System Automation (TSA)</td>
+<td>プログラマーズリファレンス</td>
+<td>DATETIME</td>
+<td>TWS Programmer's Reference / Operator's Guide で扱われる日時関連のサービス。INGEXEC コマンドのフレームワーク内で扱われ CATEGORY/SUBCAT/DESCR/STATUS/OBSERVED/DESIRED/AUTOSTAT/COMPOUND/HEALTH のステータスタイプを操作可能。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10927</td>
+<td>Z System Automation (TSA)</td>
+<td>プロダクト自動化プログラミング</td>
+<td>Critical Event Monitoring</td>
+<td>Product Automation (CICS/DB2/IMS) を SA z/OS で監視/制御する枠組み。ローカル/リモート region を一元的に監視・制御するための customization と operation を扱う。INGOMX で OMEGAMON コマンド最大 22 件を default SAFE 経由で渡せる。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">11053</td>
+<td>Z System Automation (TSA)</td>
+<td>ユーザーズガイド</td>
+<td>Displaying and Setting Events</td>
+<td>DISPEVTS は Sysplex 内に定義された全イベントを表示するフルスクリーンパネル。SET (白) / UNSET (赤) / 不明 (UNSET 扱い) を区別し、パネルから set/reset 操作と関連リソース表示が可能。INGEVENT で個別イベントを変更し、共通グローバル DISPEVTS_WAIT で WAIT 値を制御可能。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">11179</td>
+<td>Z System Automation (TSA)</td>
+<td>概要 / 開始</td>
+<td>Getting help</td>
+<td>SA z/OS の入門情報。製品 introduction (Get Started Guide) と Product Automation Programmer's Guide が参照点で、各リソースの希望状態に基づき agent が起動/停止を行う設計思想を解説。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">11305</td>
+<td>Z System Automation (TSA)</td>
+<td>自動化ポリシー定義</td>
+<td>Defining Data Sets for Batch Processing</td>
+<td>Build/Migrate のバッチオプションを使うため、batch processing 用データセット名を customization dialog の Settings Menu で定義する。これらの名前は batch ジョブ JCL の DD concatenation に組み込まれる。入力パラメータには target/source policy database 名・データセット名・entry name/type、移動対象 string / 置換 string リスト等。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">11431</td>
+<td>Z System Automation (TSA)</td>
+<td>自動化ポリシー定義</td>
+<td>Policy Items for Remote Domains</td>
+<td>Remote Domains entry type は E2E 自動化スコープにあるリソースが動作する遠隔ドメイン (例: z/OS sysplex) を定義する。Policy items として DESCRIPTION / DOMAIN INFO / REFERENCES / WHERE USED があり、REFERENCES では遠隔リソース参照を選択/解除可能。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">11557</td>
+<td>Z System Automation (TSA)</td>
+<td>計画 / インストール</td>
+<td>Hardware Management Console characteristics</td>
+<td>HMC は processor hardware LAN に接続可能でハードウェア LAN 内の CPC オブジェクトの単一制御点となる。SE/HMC の Console Integration (CI) 機能で OS へのコマンド送信とメッセージ受信を行う。HWMCA は SE/HMC 上の licensed app で GUI と自動化 IF を提供、BCPii/SNMP 接続が利用する。</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">11689</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>Active-Active 概要・計画</td>
+<td>Active/Active site configuration options</td>
+<td>GDPS Active/Active は理論的に無制限の距離にある 2 以上のサイトで同一アプリ/データを並行稼働、サイト間ワークロード負荷分散と継続可用性を提供。実装は target site sysplex のセットアップから開始 (secondary site は後追い可)。SASP-compliant routing と software replication を伴う。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">11778</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>Active-Active 概要・計画</td>
+<td>NetView Web Application requirements</td>
+<td>GDPS Active/Active の UI は NetView Web Application 経由のみ (3270 不可)。Web App を Windows/AIX/Linux 上に配置し、各サイトに少なくとも 1 インスタンス置いて HA を確保する。詳細サポート OS/ブラウザは NetView V6R2 DVD の readme znetview_webapp_readme_en.htm を参照。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">11867</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Copy Services</td>
+<td>Consistency group function</td>
+<td>DS8000 CG 機能の運用。chrcconsistgrp -consistencyfreeze H2:H4 で CG 整合性をフリーズし、chrcconsistgrp -failover H3:H1 で H3 を primary 昇格する手順を含む。GM 関係が idle のとき FlashCopy 発行可能で、CG 形成中なら停止後に FlashCopy が確立される。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">11956</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Copy Services</td>
+<td>FlashCopy</td>
+<td>FlashCopy はバックアップを高速確立する point-in-time コピー。mkflash で確立、rmflash で関係解消。in-band で remote storage へは rmremoteflash。dscli&gt; mkflash -nocp -tgtse -persist 0111:0110 で 'CMUC00137I mkflash: FlashCopy pair 0111:0110 successfully created.'。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12045</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Copy Services</td>
+<td>Interfaces</td>
+<td>GDPS Virtual Appliance / GDPS Metro の管理 UI として GDPS GUI (ブラウザベース) と 3270 パネルが提供される。GDPS GUI は Remote Copy Management、Standard Actions、Sysplex Resource Mgmt、SDF Monitoring、CANZLOG 参照を point-and-click で操作可能。GDPS Enterprise Portal で複数 GDPS 環境を統合可視化。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12134</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Copy Services</td>
+<td>Outage at H2</td>
+<td>H1 (production) 障害/計画停止時、MM + GM 構成では MM secondary H2 へ swap 可能。計画フェイルオーバではアプリ停止後に H2/H3 で recovery 開始しボリュームをホストに割り当てアプリ起動。H1 で計画保守を実施する場合は H2 への recovery が production 影響最小化。MM H1-H2 は H2 復旧後再開で MM 保護回復。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12223</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Copy Services</td>
+<td>Returning the production environment from H3 to H1</td>
+<td>回復サイトで運用後に primary に戻す手順。非対称 GM 構成では Global Copy で戻すため逆方向 DR 保護なし → 長時間 secondary 運用は想定外。標準は ①Failover で secondary を host 利用可能化 ②H1 復旧後 Failback で逆方向 mirroring 再確立。MGM 3 サイトでは Region A→B の切替と return home が可能。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12312</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Copy Services</td>
+<td>Using FlashCopy for DEFRAG</td>
+<td>DFSMSdss DEFRAG コマンドは FlashCopy 機能と組合せ高速にデータセット extent を再配置する。FASTREPLICATION(REQuired) or (PREFerred、デフォルト) を指定。MM/GM ミラー対象ボリュームでは FCTOPPRCPrimary パラメータも必要で、MM primary なら Remote Pair FlashCopy も可。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12401</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>DS8000 Global Mirror ベストプラクティス</td>
+<td>Setting up a Global Mirror session</td>
+<td>Global Mirror は secondary site で CG を形成する。primary site の LSS に start コマンドを発行し master storage system と master LSS を設定、以降の session 関連コマンドはこの master LSS 経由で行う。start で CG 形成イベント連鎖が開始される。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12490</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>GDPS Family 概要 / 機能</td>
+<td>GDPS GM Copy Once facility</td>
+<td>Copy Once は recovery 用だが内容が critical でない (常時 mirror 不要な) ボリュームの初期コピーと再作成を提供する。Page data sets や Sort 等の temp 作業 volume が典型例。Copy Once 対象 volume には継続レプリケート必須データを置かないことが前提。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12579</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>GDPS Family 概要 / 機能</td>
+<td>Maximizing application availability</td>
+<td>GDPS Continuous Availability は RTO/RPO 観点で application 可用性を最大化するソリューション。複数 GDPS 製品の連携で monitoring と management を行い、同一 sysplex 上に Continuous Availability と他 workload を共存させる構成も扱う。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12668</td>
+<td>GDPS 災害対策・サイトスイッチ</td>
+<td>Metro/Global Mirror Incremental Resync</td>
+<td>z/OS Metro/Global Mirror</td>
+<td>z/OS Metro/Global Mirror は multi-target 3 サイトソリューションで Metro Mirror と z/OS Global Mirror (XRC) の組合せ。incremental resync support を加えた構成とその HyperSwap 拡張 (RMZ Resync) で耐障害性を高める。</td>
+<td>GDPS</td>
+</tr>
+<tr>
+<td style="text-align: right;">12762</td>
+<td>IBM MQ メッセージング</td>
+<td>MQ Explorer</td>
+<td>Adding an initial context</td>
+<td>MQ Explorer で JMS オブジェクトを管理するには JNDI namespace のルートを表す initial context を追加する必要がある。各 JNDI namespace ごとに 1 つ追加し、JMS Administered Objects フォルダに表示。ニックネーム編集や 'Connect immediately on finish' チェックでウィザード閉時の自動接続を選択可能。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">12845</td>
+<td>IBM MQ メッセージング</td>
+<td>MQ Explorer</td>
+<td>Using MQ Telemetry</td>
+<td>MQ Telemetry (MQTT) を MQ Explorer から利用。Telemetry フォルダから MQTT Client Utility を起動し、対象 telemetry channel を右クリックで Launch MQTT Client Utility 経由でテスト。前提条件は telemetry (MQXR) サービスと telemetry channel が稼働中。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">12928</td>
+<td>IBM MQ メッセージング</td>
+<td>MQSC / PCF / 管理</td>
+<td>Stopping MQI channels</td>
+<td>STOP CHANNEL を server-connection channel に発行する際 client-connection channel の停止方法を選択可能。MODE オプションは QUIESCE (current batch 終了後停止 / デフォルト)、FORCE (即停止, 再開時 resync 必要)、TERMINATE (停止 + 関連プロセス終了)。MQIS_YES オプションで停止状態に関わらずコマンド成功、MQIS_NO (default) なら既に停止中はエラー (MQRCCF_CHANNEL_DISABLED)。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13011</td>
+<td>IBM MQ メッセージング</td>
+<td>アプリ開発 (MQI / JMS)</td>
+<td>Introduction to the IBM MQ custom channel for WCF with .NET</td>
+<td>Developing Applications for IBM MQ で扱われる custom services 全般のリファレンス。Requestor/Server オブジェクトを基本に独自サービスをアプリ統合する。詳細は同マニュアル各章を参照。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13094</td>
+<td>IBM MQ メッセージング</td>
+<td>セキュリティ (CHLAUTH / TLS)</td>
+<td>Configuring SSL or TLS between the Connect:Direct bridge agent and the Connect:Direct node</td>
+<td>QM 間 TLS は ①QM で使用するデジタル証明書を管理 ②QM を TLS-enabled messaging 用に構成 ③channel 定義で SSLCIPH を指定、の手順。両端で trust が正しく構成されていないと 2393 MQRC_SSL_INITIALIZATION_ERROR が発生。SSLCAUTH(REQUIRED) でクライアント証明書必須化、TLS 1.2/1.3 (MQSECPROT_TLSV12/13) 推奨。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13177</td>
+<td>IBM MQ メッセージング</td>
+<td>セキュリティ (CHLAUTH / TLS)</td>
+<td>Subscription security</td>
+<td>publish/subscribe のアクセス制御は admin topic object のセキュリティ属性 (subscribe/publish 操作の許可ユーザ/グループ) で行う。subscription 位置に該当する topic object がない場合、最も近い親 admin topic object 名でセキュリティプロファイルが検査される。setmqaut で allmqi (browse/connect/get/inq/pub/put/resume/set/sub) を一括付与可能、alladm (chg/clr/dlt/dsp/ctrl/ctrlx) で管理権限。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13260</td>
+<td>IBM MQ メッセージング</td>
+<td>全般リファレンス</td>
+<td>Administration reference PDF</td>
+<td>IBM MQ のリファレンス情報は mq93.reference.pdf に集約され、管理関連は mq93.refadmin.pdf に分離 (2021年5月以降)、構成関連は mq93.refconfig.pdf に分離。MQSC コマンドの詳細運用は Administering IBM MQ using MQSC commands を参照。runmqsc コマンドプロンプトでインタラクティブに MQSC 実行可能。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13343</td>
+<td>IBM MQ メッセージング</td>
+<td>構成 (QM / Queue / Channel)</td>
+<td>Additional configuration options for IBM MQ Bridge to Salesforce</td>
+<td>MQ Explorer で QM セットを管理する追加構成。Automatic sets で関連 QM を自動的にメンバ追加、フィルタで自動 set のメンバシップを管理。手動 set では QM の追加/削除を手作業で行い、ドラッグで set 間移動も可能。既存 set のコピーで新 set 作成も支援。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13426</td>
+<td>IBM MQ メッセージング</td>
+<td>構成 (QM / Queue / Channel)</td>
+<td>High availability configurations</td>
+<td>Multi-instance QM は active/standby ペアでフェイルオーバ可能 (合計 2 インスタンス、standby 2/active 1 は不可)。共有ストレージ前提で MQ 標準機能。strmqm -x で standby 起動、endmqm -x で standby 停止 (active 継続)、endmqm (-x なし) で active 停止し standby が active 昇格可能。HA cluster より構成簡単、Explorer 統合あり、フェイルオーバ高速。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13509</td>
+<td>IBM MQ メッセージング</td>
+<td>管理リファレンス</td>
+<td>IBM MQ Administration Interface reference</td>
+<td>MQAI は AIX/IBM i/Linux/Windows で利用可能な MQ 管理タスク用プログラミング IF。PCF を扱うためのプログラミング IF で、command server を直接扱う代わりに PCF メッセージを easier に送受信できる。詳細利用法は IBM MQ Administration Interface reference を参照。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13592</td>
+<td>IBM MQ メッセージング</td>
+<td>開発リファレンス</td>
+<td>CCSID</td>
+<td>MQ 9.0 以降は Unicode 8.0 標準の全文字を data conversion でサポート (UTF-16 含む)。ccsid_part2.tbl 利用推奨。CCSID 1388/1390/1399/4933/5488/16884 では Unicode supplementary planes へのマッピングを含む全 code points をサポート。1390/1399/16884 は JIS X 0213 (JIS2004) 文字含む。MQCCSI_DEFAULT は QM の CCSID を使用、MQCCSI_Q_MGR は実際の QM CCSID に変換。</td>
+<td>MQ</td>
+</tr>
+<tr>
+<td style="text-align: right;">13675</td>
+<td>IBM MQ メッセージング</td>
+<td>開発リファレンス</td>
+<td>MQAuthenticationInformationRecord.NET class</td>
+<td>MQAuthenticationInformationRecord は IBM MQ TLS client 接続で使用する認証情報を指定するクラス、MQAIR 認証情報レコードをカプセル化。AuthInfoRecPtr/AuthInfoRecOffset で参照、値不正で MQRC_AUTH_INFO_REC_COUNT_ERROR。MQADPCTX_NO 設定で認証は実施するが credentials を採用しない (authorization は app 実行ユーザ ID で実施)。</td>
+<td>MQ</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h2 id="_1">検証手順（コンソールセッション再現）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="vrf-001-pipe-memlist">VRF-001 — PIPE MEMLIST<a class="headerlink" href="#vrf-001-pipe-memlist" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Tivoli NetView z/OS 自動化 ／ NetView Pipes</p>
+<p><strong>検証目的</strong>: PIPE MEMLIST ステージが指定 PDS/DD のメンバ一覧を取得できることを確認 (接頭マスク絞込・複数 DD 連結対応含む)。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>NCCF        Tivoli NetView           USER1            06/15/26 09:30:15
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>- DOMAIN: CNM01
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>- USER1   IS LOGGED ON IN PRIMARY POS
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>?
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>* USER1   PIPE NETV MEMLIST DSIPARM | CONS
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  DSI020I MEMLIST PROCESSING STARTED
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  A        1
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  ABCMEM   1
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  A        10
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  DSIPARM  3 MEMBERS LISTED
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>* USER1   PIPE NETV MEMLIST DSIPARM A* | CONS
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  A        1
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  ABCMEM   1
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  A        10
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  DSIPARM  3 MEMBERS LISTED (FILTER=A*)
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>* USER1   PIPE NETV MEMLIST USER.INIT | CONS
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>  (USER.INIT 配下全メンバの一覧)
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>* USER1   PIPE (END ;) a: MEML USER.INIT | CONS ONLY; a:| COLOR YEL | CONS
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>  (黄色着色で再出力 → カラー指定 PIPE 構文の確認)
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>   --- 異常時 ---
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>* USER1   PIPE NETV MEMLIST NONEXIST.DSN | CONS
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>  DWO970I MEMLIST FAILED RC=N    ← 戻りコードは NetView online help 参照
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】NetView オペレータコンソールでログオン済。MEMLIST/MEML は LIST 系で常時利用可。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[DSN]=対象 PDS のデータセット名 (例: SYS1.PARMLIB) または NetView 起動 PROC 内 DD 名 (例: DSIPARM, DSIVTAM)</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① 実行コマンド全文 (PIPE NETV MEMLIST [DSN] | CONS)</li>
+<li>② 出力メンバ数とサンプル先頭/末尾行</li>
+<li>③ 接頭マスク (A*) 適用時のヒット件数</li>
+<li>④ DWO970I エラー有無と (出た場合) 戻りコード</li>
+<li>⑤ 実行時刻 / オペレータ ID / 対象 NetView ドメイン</li>
+</ul>
+<h3 id="vrf-002-loadtbl-aon">VRF-002 — LOADTBL (AON)<a class="headerlink" href="#vrf-002-loadtbl-aon" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Tivoli NetView z/OS 自動化 ／ NetView コマンド</p>
+<p><strong>検証目的</strong>: LOADTBL コマンドが指定 AON option definition table を再ロードし共通グローバル変数を再初期化することを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>NCCF        Tivoli NetView           USER1            06/15/26 09:30:15
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>- DOMAIN: CNM01
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>* USER1   LIST TOWER
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  EZL023I AON TOWER STATUS:
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    AON.BASE                    ENABLED
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    AON.SNA                     ENABLED
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    AON.TCP                     ENABLED
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  EZL025I END OF DISPLAY
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>* USER1   AON 1.8.6
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>   EZLK8600                    AON: Loader Tables                     CNM01
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>   Type one or more action codes. Then press enter.                   More:
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>     1=Browse 2=Reload
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>       Type       Table       Description                         Status
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    _  AON        EZLTABLE    AON Base                            Loaded
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    _  SNA        FKVTABLE    AON SNA Automation                  Loaded
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    _  TCPIP      FKXTABLE    AON TCP/IP Automation               Loaded
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    _             ________
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    Command ===&gt;
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    F1=Help      F2=Main Menu   F3=Return                  F5=Refresh    F6=Roll
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    F7=Backward  F8=Forward                                             F12=Cancel
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>* USER1   LOADTBL EZLTABLE
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>  EZL048I EZLTABLE HAS BEEN RELOADED                  ← 一次資料 部分一致: 本文は推定形式
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>* USER1   AON 1.8.6
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>   EZLK8600                    AON: Loader Tables                     CNM01
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>       Type       Table       Description                         Status
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    _  AON        EZLTABLE    AON Base                            Reloaded  ← 反映確認
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    _  SNA        FKVTABLE    AON SNA Automation                  Loaded
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    _  TCPIP      FKXTABLE    AON TCP/IP Automation               Loaded
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    Command ===&gt;
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】CNMSTYLE 内で TOWER.AON.* が有効化済。LOADTBL は NetView OPER 権限で実行可能。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】対象テーブル名は固定: EZLTABLE/FKVTABLE/FKXTABLE/[USER_TABLE]。[USER_TABLE]=サイト独自定義テーブル名</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① LIST TOWER 結果 (AON タワー ENABLED 確認)</li>
+<li>② AON 1.8.6 パネル 実行前 Status (Loaded)</li>
+<li>③ 実行コマンド: LOADTBL [TABLE_NAME]</li>
+<li>④ EZL048I 受領時刻 + 完全メッセージ本文</li>
+<li>⑤ AON 1.8.6 パネル 実行後 Status (Reloaded)</li>
+<li>⑥ 失敗時の戻りメッセージ ID</li>
+</ul>
+<h3 id="vrf-003-defining-the-nmcstatus-policy">VRF-003 — Defining the NMCSTATUS Policy<a class="headerlink" href="#vrf-003-defining-the-nmcstatus-policy" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Tivoli NetView z/OS 自動化 ／ インストール / 構成</p>
+<p><strong>検証目的</strong>: NMCSTATUS Policy 定義 (DSIPARM メンバ) が NetView 解釈可能で NMC コンソール状態管理に反映されることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>--- DSIPARM(NMCPOL01) を ISPF 3.4 で編集 ---
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>EDIT       USER1.DSIPARM(NMCPOL01) - 01.00                    Columns 00001 00072
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Command ===&gt; SAVE                                              Scroll ===&gt; CSR
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>****** ***************************** Top of Data ******************************
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>000001 NMCSTATUS POLICY=POL01,RESOURCE=NETRES01,
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>000002           TIME=(05.00.00,06.00.00),BLDVIEWSSPEC=YES
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>****** **************************** Bottom of Data ****************************
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>   --- NetView コンソールで REFRESH ---
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>NCCF        Tivoli NetView           USER1            06/15/26 10:05:42
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>- DOMAIN: CNM01
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>* USER1   LISTSTATEMGR REFRESH MEMBER=NMCPOL01
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  DUI260I POLICY POL01 LOADED SUCCESSFULLY            ← 一次資料 部分一致: 本文は推定形式
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>* USER1   D NMCSTATUS,POLICY=POL01
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>  POL01 DEFINITION:
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    RESOURCE      = NETRES01
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    TIME          = (05.00.00,06.00.00)
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    BLDVIEWSSPEC  = YES
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>  END OF DISPLAY
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>   --- 異常時 (RESOURCE + MYNAME 同時指定) ---
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>EDIT       USER1.DSIPARM(NMCPOL01)
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>000001 NMCSTATUS POLICY=POL01,RESOURCE=NETRES01,MYNAME=XYZ,
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>000002           TIME=(05.00.00,06.00.00)
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>* USER1   LISTSTATEMGR REFRESH MEMBER=NMCPOL01
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>  DUI262E POL01: ONLY ONE OF THE FOLLOWING KEYWORDS IS ALLOWED FOR THIS
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>  POLICY DEFINITION IN MEMBER NMCPOL01: RESOURCE OR MYNAME    ← 一次資料 記載どおり
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】DSIPARM ライブラリ更新権限、NetView 再起動 (or LISTSTATEMGR REFRESH) 可能。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[NMCSTAT]=DSIPARM メンバ名 (1-8 文字)、[POLNAME]=ポリシー名 (一意)、[RESID]=NMC で扱うリソース名</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① DSIPARM([NMCSTAT]) メンバ全テキスト (Save 後)</li>
+<li>② LISTSTATEMGR REFRESH MEMBER=[NMCSTAT] 出力 (DUI260I)</li>
+<li>③ D NMCSTATUS,POLICY=[POLNAME] の RESOURCE/TIME 値</li>
+<li>④ DUI262E/DUI258I 等の構文エラー有無</li>
+<li>⑤ NMC コンソール反映確認 (画面キャプチャ)</li>
+</ul>
+<h3 id="vrf-004-starting-the-topology-server">VRF-004 — Starting the Topology Server<a class="headerlink" href="#vrf-004-starting-the-topology-server" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Tivoli NetView z/OS 自動化 ／ インストール / 構成</p>
+<p><strong>検証目的</strong>: Topology Server (Windows サービス) のインストール・起動・daemon 化・heartbeat 設定が完了しトポロジコンソールから接続できることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>C:\Program Files\IBM\NetView\bin&gt; tserver service .\Administrator P@ssw0rd
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Tivoli NetView Topology Server service installed successfully.
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Tivoli NetView Topology Communications Server service installed successfully.
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Startup type: Manual
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>C:\Program Files\IBM\NetView\bin&gt; sc query &quot;Tivoli NetView Topology Server&quot;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>SERVICE_NAME: Tivoli NetView Topology Server
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        TYPE               : 10  WIN32_OWN_PROCESS
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        STATE              : 1  STOPPED
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        WIN32_EXIT_CODE    : 0  (0x0)
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        SERVICE_EXIT_CODE  : 0  (0x0)
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        CHECKPOINT         : 0x0
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        WAIT_HINT          : 0x0
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>C:\Program Files\IBM\NetView\bin&gt; net start &quot;Tivoli NetView Topology Server&quot;
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>The Tivoli NetView Topology Server service is starting...
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>The Tivoli NetView Topology Server service was started successfully.
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>C:\Program Files\IBM\NetView\bin&gt; tserver config -d -h 30 -f 0.0.0.0
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>Config saved:
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>  daemon mode        = YES
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>  heartbeat interval = 30 sec
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>  bind address       = 0.0.0.0
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>   --- Topology Console (GUI) から接続 ---
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>   [Server hostname] tserver-host.example.com
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>   [Port]            4007
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>   [Connect] → Status: Connected
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>   Welcome to NetView Management Console
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】Windows サーバに NetView Topology Server 導入媒体配置済、管理者権限ユーザでログオン。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[PASSWORD]=Administrator のパスワード。ドメイン参加時は .\Administrator を DOMAIN\Administrator に置換</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① tserver service コマンド実行結果 (2 サービス導入確認)</li>
+<li>② sc query 出力 (SERVICE_NAME / STATE)</li>
+<li>③ net start 完了メッセージと起動時刻</li>
+<li>④ tserver config -d -h 30 設定値 (daemon 化 / heartbeat)</li>
+<li>⑤ Topology Console 接続成功スクリーンショット</li>
+<li>⑥ 失敗時の Windows イベントログ抜粋</li>
+</ul>
+<h3 id="vrf-005-fullsess">VRF-005 — FULLSESS<a class="headerlink" href="#vrf-005-fullsess" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Tivoli NetView z/OS 自動化 ／ 管理リファレンス</p>
+<p><strong>検証目的</strong>: FULLSESS を含む AON コマンド識別子 (netid.luname.EZLE0000 等) の SAF NETCMDS クラス保護が機能することを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>--- Security Reference p.217 表より対象 AON コマンドの識別子確認 ---
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   Table 12. AON Command Identifiers
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    Commands      Command         SAF Resource or Command
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    and Synonyms  List Name       Authorization Table Identifier
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    ACTMON        EZLE450A        netid.luname.EZLE450A
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    AHED          EZLE100A        netid.luname.EZLE100A
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    ANO           EZLE000         netid.luname.EZLE0000
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    ANOMENU       EZLE000         netid.luname.EZLE0000
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    AON           EZLE000         netid.luname.EZLE0000
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    AONAIP        EZLESAIP        netid.luname.EZLESAIP
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>   --- TSO RACF コマンドで保護プロファイル定義 ---
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>READY
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>RLIST NETCMDS NET1.CNM01.EZLE0000
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>ICH13003I PROFILE NETCMDS NET1.CNM01.EZLE0000 NOT FOUND.    ← 一次資料 部分一致: ICH 形式
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>READY
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>RDEFINE NETCMDS NET1.CNM01.EZLE0000 UACC(NONE)
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>ICH10006I RACLISTED PROFILES FOR NETCMDS WILL NOT REFLECT THE ADDITION(S)
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>UNTIL A SETROPTS REFRESH IS ISSUED.
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>READY
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>PERMIT NET1.CNM01.EZLE0000 CLASS(NETCMDS) ID(OPER1) ACCESS(READ)
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>ICH10006I RACLISTED PROFILES FOR NETCMDS WILL NOT REFLECT THE ADDITION(S)
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>UNTIL A SETROPTS REFRESH IS ISSUED.
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>READY
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>SETROPTS RACLIST(NETCMDS) REFRESH
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>ICH14063I SETROPTS COMMAND COMPLETE.
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>   --- NetView OPER1 でログオン後テスト ---
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>NCCF        Tivoli NetView           OPER1            06/15/26 10:20:30
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>- DOMAIN: CNM01
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>* OPER1   ANO
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>   (AON Main Menu が正常表示)
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>   --- 権限なしユーザ ---
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>* OPER9   ANO
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>  DSI008I COMMAND ANO NOT AUTHORIZED FOR OPER9
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】NetView Security_Reference p.217 の AON Command Identifiers 表で対象コマンドの SAF 識別子を取得済。RACF 権限あり。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[NETID]=VTAM NETID、[LUNAME]=NetView LU、[OPER]=対象オペレータ ID</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① RLIST NETCMDS [NETID].[LUNAME].EZLE0000 結果 (UACC / access list)</li>
+<li>② RDEFINE / PERMIT 実行コマンド全文と ICH10006I 出力</li>
+<li>③ SETROPTS RACLIST(NETCMDS) REFRESH 実行時刻</li>
+<li>④ 許可ユーザでの ANO 発行結果</li>
+<li>⑤ 未許可ユーザでの DSI008I (権限拒否) 出力</li>
+</ul>
+<h3 id="vrf-006-tcpconnpddnm">VRF-006 — TCPCONN.PDDNM<a class="headerlink" href="#vrf-006-tcpconnpddnm" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Tivoli NetView z/OS 自動化 ／ 管理リファレンス</p>
+<p><strong>検証目的</strong>: TCPCONN.PDDNM 文と DD 文の整合により NetView TCP/IP 接続管理 VSAM 主データセットが open でき TCPCONN QUERY が応答することを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>--- DSIPARM(DSITINIT) を編集して TCPCONN.PDDNM 追加 ---
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>EDIT       USER1.DSIPARM(DSITINIT) - 01.04                    Columns 00001 00072
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Command ===&gt; SAVE
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>****** **************************** Top of Data ******************************
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>000054 TCPCONN.PDDNM=DSITCONP
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>****** *************************** Bottom of Data ****************************
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>   --- NetView 開始 PROC (CNMPROC) に DD 文追加 ---
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>EDIT       USER1.PROCLIB(CNMPROC) - 01.05
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>Command ===&gt; SAVE
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>000077 //DSITCONP DD DSN=NETVIEW.DSITCONP,DISP=SHR
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>   --- システムコンソール ---
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>S CNMPROC
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>$HASP100 CNMPROC ON STCINRDR
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>$HASP373 CNMPROC STARTED
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>DSI020I NETVIEW STARTED
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>CNM493I TCPCONN DATA SET OPENED: DSITCONP                ← 一次資料 部分一致
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>   --- NetView コンソール ---
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>NCCF        Tivoli NetView           USER1            06/15/26 10:45:12
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>- DOMAIN: CNM01
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>* USER1   TCPCONN QUERY
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>   TCP/IP   Local IP Address          Remote IP Address         State
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>   TCPCS    10.1.2.3                  10.4.5.6                  ESTABLISHED
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>   TCPCS    10.1.2.3                  10.4.5.7                  LISTEN
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>   TCPCS    fd00::1                   fd00::2                   TIME_WAIT
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>   --- 異常時 ---
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>   IEF196I OPEN ERROR FOR DSITCONP - DD NAME NOT FOUND
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>   CNM494E TCPCONN OPEN FAILED FOR DSITCONP                ← 一次資料 部分一致
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】NetView 開始 PROC (CNMPROC) と DSIPARM ライブラリの更新権限あり。VSAM データセット予め定義済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[CNMPROC]=NetView 開始 PROC 名、[NETVIEW]=NetView 製品データセット HLQ</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① DSIPARM 内 init メンバの TCPCONN.PDDNM=[DDNAME] 行</li>
+<li>② CNMPROC JCL の DD 追加内容 (DSN/DISP)</li>
+<li>③ NetView 起動メッセージ (DSI020I + TCPCONN init)</li>
+<li>④ TCPCONN QUERY 出力サンプル (TCP/IP 名 / Local IP / Remote IP)</li>
+<li>⑤ OPEN FAILED 時の CNM[NNN]E メッセージ全文</li>
+</ul>
+<h3 id="vrf-007-dispmtr">VRF-007 — DISPMTR<a class="headerlink" href="#vrf-007-dispmtr" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Z System Automation (TSA) ／ オペレータコマンド</p>
+<p><strong>検証目的</strong>: DISPMTR コマンドが MTR (Monitor Resource) の health 状態 (NORMAL/MINOR/MAJOR/CRITICAL/FATAL/UNKNOWN) と詳細を表示できることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>NCCF        Tivoli NetView           USER1            06/15/26 11:00:00
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>- DOMAIN: CNM01
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>* USER1   DISPMTR
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>   AOFXM1                 Monitor Resource Display          SA z/OS V4.3
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>   System: SYS1            Date: 06/15/26       Time: 11:00:05
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>   Cmd  Name           Type      System    Observed   Desired   Health
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    _   MTRA           MTR       SYS1      AVAILABLE  AVAILABLE NORMAL
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    _   MTRB           MTR       SYS1      SOFTDOWN   AVAILABLE MINOR
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    _   MTRC           MTR       SYS2      AVAILABLE  AVAILABLE NORMAL
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>   Action: A=Hard reset  B=Refresh  F=INGINFO details
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>   Command ===&gt;
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>   F1=Help     F3=Return    F5=Refresh    F12=Cancel
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>* USER1   (MTRA 行に F を入力 → Enter)
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>   AOFXM2                 INGINFO Detail                    SA z/OS V4.3
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>   Name           : MTRA
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>   Type           : MTR
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>   System         : SYS1
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>   Observed Status: AVAILABLE
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>   Desired Status : AVAILABLE
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>   Auto Status    : IDLE
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>   Health Status  : NORMAL
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>   Last collected : 06/15/26 10:59:50
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>   Command ===&gt;
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>* USER1   DISPMTR MTRA
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>   (上記詳細を単一表示)
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>* USER1   (MTRB 行に B を入力 → Enter → Refresh 要求)
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>   AOF[NNN]I REFRESH REQUEST QUEUED FOR MTRB              ← 一次資料 部分一致
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】SA z/OS 初期化済 (DISPMTR は初期化前は使えない)、対象 MTR リソース定義済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[MTR_NAME]=Customization Dialog で定義済 MTR リソース名 (1-11 文字)</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① DISPMTR 一覧パネル スクリーンショット</li>
+<li>② 対象 MTR の INGINFO 詳細 (Observed/Desired/Auto Status/Health)</li>
+<li>③ DISPMTR [MTR_NAME] 単一表示の health 値と収集時刻</li>
+<li>④ A (Active reset) / B (refresh) 実行後の health 更新値</li>
+</ul>
+<h3 id="vrf-008-sethold">VRF-008 — SETHOLD<a class="headerlink" href="#vrf-008-sethold" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Z System Automation (TSA) ／ オペレータコマンド</p>
+<p><strong>検証目的</strong>: SETHOLD が AOF メッセージの hold 種別 (i/a/e/d/w) を OST タスク単位で設定し、OST 内オペレータ ID 用 hold 動作が反映されることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>NCCF        Tivoli NetView           USER1            06/15/26 11:15:30
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>- DOMAIN: CNM01
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>* USER1   SETHOLD
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>   SETHOLD CURRENT VALUES FOR USER1:
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>     i (information) = Y
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>     a (action)      = Y
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>     e (eventual)    = N
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>     d (decision)    = Y
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>     w (wait)        = N
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>* USER1   SETHOLD CONFIG
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>   AOF[NNN]I HOLD SETTINGS RESET TO CONFIG VALUES FOR USER1   ← 一次資料 部分一致
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>* USER1   SETHOLD a e d w
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>   AOF[NNN]I HOLD FLAGS UPDATED:                              ← 一次資料 部分一致
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>     i = N  (not specified)
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>     a = Y
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>     e = Y
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>     d = Y
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>     w = Y
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>* USER1   SETHOLD AUTO
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>   AOF[NNN]I HOLD FLAGS SET TO AUTOMATION TABLE VALUES        ← 一次資料 部分一致
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>   INGNTFY GLOBALS UPDATED FOR USER1
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>   --- NNT タスクで実行した場合 (Restrictions) ---
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>* USER1   SETHOLD CONFIG
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>   AOF[NNN]I SETHOLD IS ONLY USEFUL ON OST TASK; COMMAND IGNORED  ← 一次資料 部分一致
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】OST タスクでログオン中 (NNT/RMT ではコマンド無視される)、対象オペレータ ID が automation control file の Notify Operators に定義済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[OPER]=現在ログオン中のオペレータ ID</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① SETHOLD 現状値 (i/a/e/d/w フラグ)</li>
+<li>② SETHOLD CONFIG 実行後 hold 値 + AOF[NNN]I メッセージ</li>
+<li>③ SETHOLD a e d w 個別指定後の AOF[NNN]I 更新確認</li>
+<li>④ SETHOLD AUTO 実行後 INGNTFY globals 更新確認</li>
+<li>⑤ テストメッセージ発生時に対象種別だけが保持されることのログ抜粋</li>
+</ul>
+<h3 id="vrf-009-datetime">VRF-009 — DATETIME<a class="headerlink" href="#vrf-009-datetime" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Z System Automation (TSA) ／ プログラマーズリファレンス</p>
+<p><strong>検証目的</strong>: INGEXEC コマンドフレームワーク内で DATETIME カテゴリの実行が CATEGORY/STATUS/OBSERVED 等のステータスタイプを適切に操作することを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>NCCF        Tivoli NetView           USER1            06/15/26 11:30:00
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>- DOMAIN: CNM01
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>   --- INGEXEC で DATETIME カテゴリを発行 ---
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>* USER1   NETVASIS INGEXEC APL1/APL CMD=&#39;DATETIME&#39; CATEGORY=DATETIME STATUS=ACTIVE
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  INGY1000I INGEXEC ACCEPTED, REQID=20260615113001        ← 一次資料 部分一致
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>* USER1   INGLIST APL1/APL STATUS=ACTIVE
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>   AOFXM3                  INGLIST                         SA z/OS V4.3
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>   Cmd  Name           Type    System   Observed   Desired   Compound
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    _   APL1           APL     SYS1     AVAILABLE  AVAILABLE SATISFACTORY
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        Category=DATETIME  LastExec=20260615113001  RC=0
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>   --- 完了確認 ---
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>* USER1   BROWSE NETLOGA
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>   --- BROWSE NETLOG ---
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>   06/15/26 11:30:01 INGY1000I INGEXEC ACCEPTED REQID=20260615113001
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>   06/15/26 11:30:02 INGY[NNN]I INGEXEC COMPLETED REQID=20260615113001 RC=0
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】SA z/OS 初期化済、INGEXEC 実行権限あり、対象 application/resource 定義済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[RESOURCE_NAME]=対象リソース名 (name/type[/system])、[REQID]=システム採番</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① INGEXEC コマンド全文 (NETVASIS プレフィックス含む)</li>
+<li>② INGY1000I ACCEPTED メッセージ + REQID</li>
+<li>③ INGLIST 結果 (STATUS=ACTIVE 行の DATETIME 反映)</li>
+<li>④ NETLOG INGEXEC 戻り RC=0 確認</li>
+</ul>
+<h3 id="vrf-010-policy-items-for-remote-domains">VRF-010 — Policy Items for Remote Domains<a class="headerlink" href="#vrf-010-policy-items-for-remote-domains" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Z System Automation (TSA) ／ 自動化ポリシー定義</p>
+<p><strong>検証目的</strong>: Remote Domains entry type (RMD) の DESCRIPTION/DOMAIN INFO/REFERENCES 定義が E2E ハブで認識され該当 sysplex リソースが見えることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>--- TSO Customization Dialog 起動 ---
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>READY
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>INGENV
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ISPF
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>   (SA z/OS Customization Dialog Main Menu 表示)
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>   --- Entry Type Selection で RMD 選択 ---
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>   AOFGENT      Entry Type Selection                    Row 1 of 18
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>   Action  Entry Type                Description
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>       _   AOP                       Application Group
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>       _   APL                       Application
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>       _   RMD                       Remote Domains
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>   Command ===&gt; S RMD
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>   AOFGRMD      Remote Domains Entry List                Row 1 of 0
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>   Cmd  Entry Name
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>   Command ===&gt; C
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>   (Create を選択 → Entry Name 入力)
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>   Entry Name: REMDOM01
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>   --- Policy Items 一覧 (一次資料 記載どおり) ---
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>   ACTIONS  HELP
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>   -------------------------------------------------------------------------
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>   Entry Type : Remote Domain
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>   Entry Name : REMDOM01
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>   Action      Policy Name          Policy Description
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>                DESCRIPTION          Enter description
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>                DOMAIN INFO          Define domain information
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>                REFERENCES           Select references to remote resources
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>                -------------------- ---------------------------------------
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>                WHERE USED
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>   Command ===&gt;
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>   --- DESCRIPTION 編集 ---
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>   Description: Sysplex BACKUP @ Site B
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>   AOF[NNN]I POLICY ITEM SAVED                         ← 一次資料 部分一致
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>   --- DOMAIN INFO 編集 ---
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>   DOMAIN ID    : CNM02
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>   SYSPLEX NAME : PLEXB
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>   AOF[NNN]I POLICY ITEM SAVED                         ← 一次資料 部分一致
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>   --- REFERENCES 選択 ---
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>   COMMANDS  HELP
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>   -------------------------------------------------------------------------
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>   Command ===&gt;                                          SCROLL===&gt; CSR
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a>   Entry Type : Remote Domain
+<a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a>   Action  Resource Reference
+<a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a>       S   APLA/APL/SYS1
+<a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a>       S   APLB/APL/SYS1
+<a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a>   AOF[NNN]I 2 REFERENCES SELECTED                      ← 一次資料 部分一致
+<a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a>
+<a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a>   --- F3 で Build Policy DB ---
+<a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a>   INGY1000I BUILD COMPLETED, RC=0                       ← 一次資料 部分一致
+<a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a>
+<a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a>   --- E2E ハブ側で確認 ---
+<a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a>NCCF        Tivoli NetView           USER1            06/15/26 12:00:00
+<a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a>* USER1   INGE2E LIST DOMAINS
+<a id="__codelineno-9-59" name="__codelineno-9-59" href="#__codelineno-9-59"></a>   Domain Name    Status      Sysplex     Last Update
+<a id="__codelineno-9-60" name="__codelineno-9-60" href="#__codelineno-9-60"></a>   REMDOM01       AVAILABLE   PLEXB       06/15/26 12:00:05
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】SA z/OS Customization Dialog 起動可能、Policy DB 更新権限、対象 sysplex / リモート NetView ドメイン情報判明。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[REMOTE_DOMAIN]=Remote Domain entry 名、[REM_DOMID]=リモート NetView ドメイン ID、[REM_PLEX]=リモート sysplex 名</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① Customization Dialog RMD entry 作成画面</li>
+<li>② DESCRIPTION/DOMAIN INFO の入力値 (DOMAIN ID/SYSPLEX NAME)</li>
+<li>③ REFERENCES 選択行 ('+' マーク確認)</li>
+<li>④ Build Policy DB ログ (INGY1000I BUILD COMPLETED RC=0)</li>
+<li>⑤ INGE2E LIST DOMAINS 出力 (STATUS=AVAILABLE)</li>
+</ul>
+<h3 id="vrf-011-hardware-management-console">VRF-011 — Hardware Management Console<a class="headerlink" href="#vrf-011-hardware-management-console" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: Z System Automation (TSA) ／ 計画 / インストール</p>
+<p><strong>検証目的</strong>: HMC が Hardware LAN 経由で CPC オブジェクトを管理可能で、SA z/OS ProcOps から SNMP/BCPii 接続および Console Integration (CI) 経由の OS コマンド送受信ができることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>--- HMC Web UI ログイン ---
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>   https://10.10.10.1/hmc
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>   Logon ID:  HMCOPER
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>   Password:  ********
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>   [About] → HWMCA Version 2.16.0    ← SA z/OS 4.3 互換
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>   --- NetView から SNMP 接続テスト ---
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>NCCF        Tivoli NetView           USER1            06/15/26 12:30:00
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>- DOMAIN: CNM01
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>* USER1   F NETVPROCOPS,SNMP TEST CPC=CPC1,HMC=10.10.10.1,COMMUNITY=public
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>  INGP1000I SNMP CONNECTION ESTABLISHED CPC=CPC1                ← 一次資料 部分一致
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>* USER1   ISQXDST CPC1
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>   ISQX001                ProcOps Status Display              SA z/OS V4.3
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>   CPC Name : CPC1
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>   Status   : CONNECTED
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>   HMC      : 10.10.10.1
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>   Type     : SNMP
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>   Last Hb  : 06/15/26 12:30:15
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>   Command ===&gt;
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>* USER1   ISQSEND CPC1 CMD=&#39;D T&#39;
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>  ISQ[NNN]I COMMAND SENT TO CPC1                              ← 一次資料 部分一致
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a>  IEE136I  LOCAL: TIME=12.30.20 DATE=2026.166 UTC: TIME=03.30.20 DATE=2026.166
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>   --- BCPii テスト ---
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>* USER1   F NETVPROCOPS,BCPII TEST CPC=CPC1
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>  INGP1001I BCPii CONNECTION OK                               ← 一次資料 部分一致
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】HMC が Hardware LAN に接続済、SA z/OS ProcOps 構成済、Comm Server TCP/IP スタック稼働中、HWMCA バージョン互換性確認済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[HMC_IP]=HMC IP アドレス、[CPC_NAME]=CPC オブジェクト名、[COMMUNITY_STR]=SNMP community 文字列</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① HMC HWMCA バージョン (SA z/OS 4.3 互換確認)</li>
+<li>② SNMP TEST CPC コマンド + INGP1000I 結果</li>
+<li>③ ISQXDST [CPC_NAME] パネル (CONNECTED 状態)</li>
+<li>④ ISQSEND CMD='D T' の応答 (IEE136I)</li>
+<li>⑤ BCPII TEST CPC 結果 (INGP1001I)</li>
+<li>⑥ 失敗時の SNMP community 文字列 / TCP/IP 接続診断結果</li>
+</ul>
+<h3 id="vrf-012-consistency-group-function">VRF-012 — Consistency group function<a class="headerlink" href="#vrf-012-consistency-group-function" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: GDPS 災害対策・サイトスイッチ ／ DS8000 Copy Services</p>
+<p><strong>検証目的</strong>: DS8000 CG 機能で chrcconsistgrp -consistencyfreeze による CG 整合性フリーズと -failover による H3 primary 昇格が動作することを確認 (3 サイト DR 構成での recovery 演習)。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$ dscli -hmc1 10.20.30.40 -user admin -passwd ********
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>DSCLI[10000]I DSCLI started.
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>dscli&gt;
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>dscli&gt; lspprc -dev IBM.2107-75ABC10 1000-10FF
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>ID         State         Reason  Type            Out Of Sync   Tgt Read   Tgt Write
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>1000:2000  Full Duplex   -       Metro Mirror    0             Disabled   True
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>1001:2001  Full Duplex   -       Metro Mirror    0             Disabled   True
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>... (省略)
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>dscli&gt; chrcconsistgrp -dev IBM.2107-75ABC10 -consistencyfreeze 10:14
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>CMUC00139I chrcconsistgrp: Consistency group 10:14 frozen.    ← 一次資料 部分一致: ID 番号は推定
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>dscli&gt; chrcconsistgrp -dev IBM.2107-75ABC20 -failover 14:10
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>CMUC00141I chrcconsistgrp: Failover 14:10 succeeded.          ← 一次資料 部分一致: ID 番号は推定
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>dscli&gt; lspprc -dev IBM.2107-75ABC20 1400-14FF
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>ID         State                       Reason  Type
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>1400:1000  Suspended Host Source       -       Global Copy   ← 一次資料 記載どおり (p.318 形式)
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>1401:1001  Suspended Host Source       -       Global Copy
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>2001:1001  Suspended Host Source Global Copy 20        unknown        Disabled      True
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>2100:1100  Suspended Host Source Global Copy 21        unknown        Disabled      True
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>dscli&gt; lsflash -dev IBM.2107-75ABC20 1400-14FF
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>ID          SrcLSS  Sequence  State           Active Copy
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>1400:1500   14      0001      Valid           True
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>1401:1501   14      0001      Valid           True
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】DS CLI (dscli) 導入済、HMC への接続情報 (IP/user/password) 設定済、対象 storage image ID 判明、recovery 演習モード。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[HMC_IP]/[DSCLI_USER]/[DSCLI_PW]=DS HMC 接続情報、[STORAGE_ID]=ストレージイメージ ID、[LSS_*]=LSS ID 範囲 (16 進)</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① dscli ログオン応答 (DSCLI[NNNN]I started)</li>
+<li>② lspprc 実行前の pair 状態 (Full Duplex 等)</li>
+<li>③ chrcconsistgrp -consistencyfreeze 実行ログ (CMUC[NNNNN]I frozen)</li>
+<li>④ chrcconsistgrp -failover 実行ログ (CMUC[NNNNN]I succeeded)</li>
+<li>⑤ lspprc 実行後の H3 pair 状態 (Suspended/Source)</li>
+<li>⑥ lsflash 結果 (FlashCopy 関係 consistent 確認)</li>
+</ul>
+<h3 id="vrf-013-flashcopy">VRF-013 — FlashCopy<a class="headerlink" href="#vrf-013-flashcopy" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: GDPS 災害対策・サイトスイッチ ／ DS8000 Copy Services</p>
+<p><strong>検証目的</strong>: mkflash で FlashCopy 関係 (-nocp -tgtse -persist) を確立しバックアップ取得後 rmflash で関係解消できることを確認 (in-band/remote 両モード対応)。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$ dscli -hmc1 10.20.30.40 -user admin -passwd ********
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>DSCLI[10000]I DSCLI started.
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>dscli&gt;
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>dscli&gt; lsfbvol -dev IBM.2107-75ABC10 0111 0110
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>ID    accstate  datastate    configstate  deviceMTM  datatype  extpool  cap (GiB)  cap (10^9B)  cap (blocks)
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>0111  Online    Normal       Normal       2107-900   FB 512    P0       1.0        1.1          2097152
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>0110  Online    Normal       Normal       2107-900   FB 512    P0       1.0        1.1          2097152
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>dscli&gt; mkflash -nocp -tgtse -persist 0111:0110                  ← 一次資料 記載どおり (p.88)
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>CMUC00137I mkflash: FlashCopy pair 0111:0110 successfully created.
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>dscli&gt; mkflash -nocp -tgtse -persist 0110:0112
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>CMUC00137I mkflash: FlashCopy pair 0110:0112 successfully created.
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>dscli&gt; lsflash -dev IBM.2107-75ABC10 0111
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>ID          SrcLSS  Sequence  State           Active Copy
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>0111:0110   01      0001      Valid           True
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>   --- バックアップ取得 (z/OS 側 ADRDSSU DUMP) ---
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>ADR454I (001)-PRIME(01), THE FOLLOWING DATA SETS WERE DUMPED:
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>   USER1.MYDATA
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>ADR454I (001)-DUMP COMPLETED SUCCESSFULLY
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>   --- FlashCopy 関係解消 ---
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>dscli&gt; rmflash 111:110                                          ← 一次資料 記載どおり (p.88)
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>CMUC00144W rmflash: Are you sure you want to remove the FlashCopy pair 111:110:? [y/n]:
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>y
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>CMUN81131I rmflash: 0111:0110: The Withdraw command was accepted and the FLC
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>relationship has been removed.
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>dscli&gt; lsflash -dev IBM.2107-75ABC10 0111
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>CMUC00234I lsflash: No FlashCopy relations to display.          ← 一次資料 部分一致: ID 形式
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】DS CLI 接続中、FlashCopy ライセンス有効、対象 source/target volume が同一 storage image、source/target 同サイズ。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[STORAGE_ID]=ストレージイメージ ID、[SRC_VOL]/[TGT_VOL]=4 桁 volume ID (例: 0111)</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① lsfbvol 結果 (source/target volume サイズ一致)</li>
+<li>② mkflash 実行コマンド + CMUC00137I メッセージ</li>
+<li>③ lsflash 結果 (State=Valid / OutOfSyncTrack)</li>
+<li>④ バックアップ取得ログ (ADR454I 完了)</li>
+<li>⑤ rmflash 実行 + CMUN81131I Withdraw メッセージ</li>
+<li>⑥ rmflash 後の lsflash 結果 (pair なし)</li>
+</ul>
+<h3 id="vrf-014-gdps-gm-copy-once-facility">VRF-014 — GDPS GM Copy Once facility<a class="headerlink" href="#vrf-014-gdps-gm-copy-once-facility" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: GDPS 災害対策・サイトスイッチ ／ GDPS Family 概要 / 機能</p>
+<p><strong>検証目的</strong>: Copy Once 対象 volume (page/sort 等 temp) の初期コピーと REINIT 機能が動作し、継続レプリケート対象データが混入していないことを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>NCCF        Tivoli NetView (GDPS)    USER1            06/15/26 13:00:00
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>- DOMAIN: CNM01
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>* USER1   GEOMON DISPLAY VOLUMES COPYONCE=YES
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  GEO[NNN]I NO VOLUMES MATCHED CRITERIA                     ← 一次資料 部分一致
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>* USER1   GEOMON SET COPYONCE VOLUME=PAGE01 ACTION=ADD
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  GEO[NNN]I VOLUME PAGE01 ADDED TO COPY ONCE LIST           ← 一次資料 部分一致
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>* USER1   GEOMON COPYONCE INIT VOLUME=PAGE01
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>  GEO[NNN]I COPY ONCE INIT STARTED FOR PAGE01               ← 一次資料 部分一致
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>  GEO[NNN]I COPY ONCE INIT COMPLETED FOR PAGE01
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>* USER1   GEOMON DISPLAY VOLUMES COPYONCE=YES
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>   VOLSER    Status              Last Init
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>   PAGE01    Initial Copied      06/15/26 13:00:15
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>   --- アプリ変更時の REINIT ---
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>* USER1   GEOMON COPYONCE REINIT VOLUME=PAGE01
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>  GEO[NNN]I COPY ONCE REINIT COMPLETED FOR PAGE01           ← 一次資料 部分一致
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>   --- 定期確認 (継続 mirror データ非混入チェック) ---
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>READY
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>DCOLLECT VOLUME(PAGE01)
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>   (出力で PAGE01 に PAGE/SORT 以外のデータがないか確認)
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】GDPS Global - GM 構成稼働中、対象ボリュームが page/sort 等の temp 用と確認済、運用責任者承認済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[VOLSER]=Copy Once 対象ボリューム VOLSER (6 文字)</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① GEOMON DISPLAY VOLUMES COPYONCE=YES 実行前一覧</li>
+<li>② GEOMON SET COPYONCE VOLUME=[VOLSER] 実行ログ (GEO[NNNN]I)</li>
+<li>③ INIT 実行完了メッセージ (GEO[NNNN]I COMPLETED)</li>
+<li>④ REINIT 実行ログ</li>
+<li>⑤ DCOLLECT 結果 (継続 mirror データ非混入確認)</li>
+</ul>
+<h3 id="vrf-015-zos-metroglobal-mirror">VRF-015 — z/OS Metro/Global Mirror<a class="headerlink" href="#vrf-015-zos-metroglobal-mirror" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: GDPS 災害対策・サイトスイッチ ／ Metro/Global Mirror</p>
+<p><strong>検証目的</strong>: MM (H1↔H2) + XRC (H1↔H3) の 3 サイト構成で Incremental Resync 有効化と HyperSwap 連動の RMZ Resync (H2→H3 full copy 不要) が機能することを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ dscli -hmc1 10.20.30.40 -user admin -passwd ********
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>dscli&gt; mkpprc -dev IBM.2107-75ABC10 -remotedev IBM.2107-75ABC20 -type mmir 1000:2000
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>CMUC00153I mkpprc: Remote Mirror and Copy volume pair relationship 1000:2000
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>successfully created.
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>   --- z/OS XRC ホストコンソール ---
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>RESPONSE=SYS1
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a> IEE600I REPLY TO 003 IS;XSTART SESSION(MZGM01) HLQ(USER1)
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>ANTX5103I SESSION MZGM01 STARTED SUCCESSFULLY               ← 一次資料 部分一致
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>  XADDPAIR SESSION(MZGM01) PRIMARY(1000) SECONDARY(3000)
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>ANTX5104I XADDPAIR ACCEPTED FOR SESSION MZGM01              ← 一次資料 部分一致
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>ANTX5121I PAIR 1000:3000 STATE=DUPLEX                       ← 一次資料 部分一致
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>  XQUERY SESSION(MZGM01) STATE
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>   Session: MZGM01
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>   Pairs: 1
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>   STATE     COUNT
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>   DUPLEX    1
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>   REPLICATING
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>   --- GDPS controlling LPAR ---
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>NCCF        Tivoli NetView (GDPS)    USER1            06/15/26 14:00:00
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>* USER1   GEOPARM SET INCREMENTAL_RESYNC=YES
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>  GEO[NNN]I INCREMENTAL RESYNC ENABLED                      ← 一次資料 部分一致
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>* USER1   GEOMON REFRESH
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>  GEO[NNN]I REFRESH COMPLETED
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>   --- HyperSwap 計画切替試験 ---
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>* USER1   GEOMON HYPERSWAP MODE=PLANNED H1=H2
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>  GEO[NNN]I HYPERSWAP COMPLETED, RMZ RESYNC STARTING H2-&gt;H3 ← 一次資料 部分一致
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>  ANTX[NNN]I INCREMENTAL RESYNC IN PROGRESS
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>
+<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>  XQUERY SESSION(MZGM01) STATE
+<a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a>   STATE              COUNT
+<a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>   PENDING_DUPLEX     1
+<a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a>   (incremental progress → 数分後 DUPLEX 復帰)
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】3 サイト (H1/H2/H3) DS8000 全展開済、MM + XRC ライセンス、SDM (System Data Mover) 稼働、GDPS MzGM 制御 LPAR、RMZ Resync 機能有効化条件 (Incremental Resync) 確認済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[H<em>_ID]=各サイト storage image ID、[H</em>_LSS]=LSS 範囲、[XRC_SESSION]=XRC session 名 (1-8 文字)、[H1_VOL]/[H3_VOL]=対象 volume 範囲</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① mkpprc MM 確立ログ (CMUC00153I)</li>
+<li>② XADDPAIR 実行 + ANTX[NNNN]I + PAIR DUPLEX 出力</li>
+<li>③ XQUERY SESSION STATE 結果 (全 pair DUPLEX/REPLICATING)</li>
+<li>④ GEOPARM INCREMENTAL_RESYNC=YES 反映ログ</li>
+<li>⑤ HyperSwap 計画切替実行ログ (RMZ Resync 開始メッセージ)</li>
+<li>⑥ HyperSwap 後の XQUERY 結果 (incremental 進捗 → DUPLEX 復帰)</li>
+</ul>
+<h3 id="vrf-016-subscription-security">VRF-016 — Subscription security<a class="headerlink" href="#vrf-016-subscription-security" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: IBM MQ メッセージング ／ セキュリティ (CHLAUTH /  TLS)</p>
+<p><strong>検証目的</strong>: publish/subscribe で admin topic object に紐付けたセキュリティ属性が機能し、許可ユーザのみ subscribe 可能、親 topic 継承も適用されることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$ runmqsc QMGR1
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Starting MQSC for queue manager QMGR1.
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>DEFINE TOPIC(SALES.NA) TOPICSTR(&#39;sales/na&#39;) REPLACE
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>     1 : DEFINE TOPIC(SALES.NA) TOPICSTR(&#39;sales/na&#39;) REPLACE
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>AMQ8690I: IBM MQ topic created.
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>end
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>No commands have a syntax error.
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>All valid MQSC commands were processed.
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>$ setmqaut -m QMGR1 -t topic -n SALES.NA -p alice +sub
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>AMQ7024I: The setmqaut command completed successfully.
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>$ dspmqaut -m QMGR1 -t topic -n SALES.NA -p alice
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>Entity alice has the following authorizations for object SALES.NA:
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>        sub
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>   --- alice での subscribe テスト ---
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>$ amqsbcg &#39;sales/na&#39; QMGR1
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>Sample AMQSBCG0 start
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>MQOPEN -  &#39;sales/na&#39;
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>... (subscription opened, waiting messages) ...
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>Sample AMQSBCG0 end
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>   --- 権限なし bob でのテスト ---
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>$ amqsbcg &#39;sales/na&#39; QMGR1
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>Sample AMQSBCG0 start
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>MQOPEN -  &#39;sales/na&#39;
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>MQOPEN failed with CompCode:2, Reason:2035 (MQRC_NOT_AUTHORIZED)
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>Sample AMQSBCG0 end
+<a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>
+<a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>   --- 親 topic 継承テスト ---
+<a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>$ amqsbcg &#39;sales/na/east&#39; QMGR1
+<a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>   (子トピックは親 SALES.NA の ACL が適用される)
+<a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>   alice → 受信可、bob → 2035 MQRC_NOT_AUTHORIZED
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】対象 QM ([QMGR]) 稼働中、setmqaut 実行権限、対象トピックツリーが事前設計済、テストユーザ ([SUBUSER]) 作成済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[QMGR]=QM 名、[TOPIC_NAME]=admin topic object 名、[TOPIC_STR]=トピック文字列、[SUBUSER]/[BADUSER]=ユーザ ID</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① DEFINE TOPIC 実行 + AMQ8690I 出力</li>
+<li>② setmqaut +sub 実行 + AMQ7024I 出力</li>
+<li>③ dspmqaut 結果 (Entity に sub 権限表示)</li>
+<li>④ 許可ユーザでの MQSUB/amqsbcg 受信成功ログ</li>
+<li>⑤ 未許可ユーザでの 2035 MQRC_NOT_AUTHORIZED ログ</li>
+<li>⑥ 親 topic 継承テストの子 topic 受信結果</li>
+</ul>
+<h3 id="vrf-017-ibm-mq-administration-interface">VRF-017 — IBM MQ Administration Interface<a class="headerlink" href="#vrf-017-ibm-mq-administration-interface" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: IBM MQ メッセージング ／ 管理リファレンス</p>
+<p><strong>検証目的</strong>: MQAI (PCF プログラミング IF) で command server 経由の管理 PCF 投入と応答パースが行えることを確認 (AIX/IBM i/Linux/Windows 環境)。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$ runmqsc QMGR1
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Starting MQSC for queue manager QMGR1.
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>DISPLAY QMSTATUS CMDSERV
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>     1 : DISPLAY QMSTATUS CMDSERV
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>AMQ8705I: Display Queue Manager Status details.
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>   QMNAME(QMGR1)                            STATUS(RUNNING)
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>   CMDSERV(RUNNING)
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>end
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>All valid MQSC commands were processed.
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>$ cc -I/opt/mqm/inc -L/opt/mqm/lib64 -lmqm -o myadm amqsail.c
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>$ ls -l myadm
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>-rwxr-xr-x 1 mqm mqm 28456 Jun 15 14:30 myadm
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>$ ./myadm QMGR1
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>MQAI sample - inquire queue manager attributes
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>Connected to QMGR1
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>Issuing MQCMD_INQUIRE_Q_MGR via MQAI...
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>Response received:
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>   DefinitionType : Permanent
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>   QMgrIdentifier : QMGR1_2026-06-15
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>   CodedCharSetId : 1208
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>Disconnected from QMGR1
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>End MQAI sample
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>   --- 権限不足時 ---
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>$ su - bob
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>$ ./myadm QMGR1
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>MQAI sample - inquire queue manager attributes
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>Connected to QMGR1
+<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>Issuing MQCMD_INQUIRE_Q_MGR via MQAI...
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>MQI Reason: 2035 (MQRC_NOT_AUTHORIZED)
+<a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a>Error in mqExecute; CompCode=2, Reason=2035
+<a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a>
+<a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a>$ setmqaut -m QMGR1 -t qmgr -p bob +dsp
+<a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a>AMQ7024I: The setmqaut command completed successfully.
+<a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a>
+<a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a>$ ./myadm QMGR1                               ← bob で再実行 → 成功
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】対象 QM ([QMGR]) 稼働中、command server 稼働中 (DISPLAY QMSTATUS CMDSERV で RUNNING)、MQAI ヘッダ (cmqcfc.h) を含む開発環境。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[QMGR]=QM 名</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① DISPLAY QMSTATUS CMDSERV 結果 (CMDSERV RUNNING)</li>
+<li>② サンプルアプリのコンパイル/リンクログ (警告 0)</li>
+<li>③ ./myadm [QMGR] 実行出力 (QM 属性表示)</li>
+<li>④ 失敗時 MQCFH の CompCode/Reason 値</li>
+<li>⑤ setmqaut +dsp 適用前/後の応答差</li>
+</ul>
+<h3 id="vrf-018-ccsid">VRF-018 — CCSID<a class="headerlink" href="#vrf-018-ccsid" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: IBM MQ メッセージング ／ 開発リファレンス</p>
+<p><strong>検証目的</strong>: MQ 9.0 以降の Unicode 8.0 / UTF-16 / JIS X 0213 サポートが CCSID 設定 + ccsid_part2.tbl 配備で機能し data conversion が正しく動作することを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ ls -l /var/mqm/conv/table/ccsid_part2.tbl
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>-rw-r--r-- 1 mqm mqm 1048576 Jun 10 09:00 /var/mqm/conv/table/ccsid_part2.tbl
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>$ runmqsc QMGR1
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>Starting MQSC for queue manager QMGR1.
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>DISPLAY QMGR CCSID
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>     1 : DISPLAY QMGR CCSID
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>AMQ8408I: Display Queue Manager details.
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>   QMNAME(QMGR1)                            CCSID(819)
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>ALTER QMGR CCSID(1208)
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>     1 : ALTER QMGR CCSID(1208)
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>AMQ8005I: IBM MQ queue manager changed.
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>AMQ8910I: The change has been committed. Queue manager restart may be
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>required for some attributes to take effect.
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>end
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>All valid MQSC commands were processed.
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>   --- JIS X 0213 文字 (&#39;𠮟責&#39;) を JMS テストアプリで送信 ---
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>$ java -classpath &quot;.:/opt/mqm/java/lib/com.ibm.mq.allclient.jar&quot; SendJIS2004
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>Connected to QMGR1
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>Sending message: &#39;𠮟責&#39; (CCSID=1208, UTF-8 4-byte encoding)
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>MQPUT successful, MsgId=414D5120514D4752312020...
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>CURDEPTH(1)
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>   --- 異 CCSID クライアント (EBCDIC CCSID 939) で受信 ---
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>$ java -classpath &quot;...&quot; RecvEBCDIC
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>Connected to QMGR1 (client CCSID=939)
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>MQGET successful, payload = &#39;𠮟責&#39; ← data conversion 経由で正しく取得
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>CURDEPTH(0)
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>   --- 変換失敗時 ---
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>2026-06-15T14:50:12 AMQ7042E MQGET ended with reason code 2111
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>   MQRC_SOURCE_CCSID_ERROR
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>   (ccsid_part2.tbl 更新 or QM CCSID 適切化が必要)
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】対象 QM ([QMGR]) 稼働中、ccsid_part2.tbl 配備済 (/var/mqm/conv/table/ccsid_part2.tbl)、JIS X 0213 文字を含むテスト文字列準備。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[QMGR]=QM 名</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① ccsid_part2.tbl の存在 + updated date</li>
+<li>② DISPLAY QMGR CCSID 結果 (現行 CCSID 値)</li>
+<li>③ ALTER QMGR CCSID(1208) 実行ログ (AMQ8005I)</li>
+<li>④ JIS X 0213 文字を含むテスト送信メッセージ (例: '𠮟責')</li>
+<li>⑤ 異 CCSID クライアントでの受信内容 (機種化けゼロ確認)</li>
+<li>⑥ 失敗時の 2111 MQRC_SOURCE_CCSID_ERROR 出力</li>
+</ul>
+<h3 id="vrf-019-mqauthenticationinformationrec">VRF-019 — MQAuthenticationInformationRec<a class="headerlink" href="#vrf-019-mqauthenticationinformationrec" title="Permanent link">&para;</a></h3>
+<p><strong>分類</strong>: IBM MQ メッセージング ／ 開発リファレンス</p>
+<p><strong>検証目的</strong>: MQAuthenticationInformationRecord クラス + AUTHINFO オブジェクト (CRLLDAP type) が .NET client 接続で機能し ADOPTCTX 設定により credentials 採用挙動が制御できることを確認。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$ runmqsc QMGR1
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Starting MQSC for queue manager QMGR1.
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>DEFINE AUTHINFO(AUTH.CRL) AUTHTYPE(CRLLDAP) +
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>   CONNAME(&#39;crlldap.example.com(389)&#39;) +
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>   LDAPUSER(&#39;cn=admin,dc=example,dc=com&#39;) +
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>   LDAPPWD(&#39;********&#39;) REPLACE
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>     1 : DEFINE AUTHINFO(AUTH.CRL) AUTHTYPE(CRLLDAP) ...
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>AMQ8004I: IBM MQ authentication information object created.
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>ALTER QMGR SSLCRLNL(AUTH.CRL)
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>     1 : ALTER QMGR SSLCRLNL(AUTH.CRL)
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>AMQ8005I: IBM MQ queue manager changed.
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>REFRESH SECURITY TYPE(SSL)
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>     1 : REFRESH SECURITY TYPE(SSL)
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>AMQ8560I: IBM MQ security cache refreshed.
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>end
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>   --- .NET C# サンプルコンパイル ---
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>C:\dev&gt; csc /r:amqmdnetstd.dll TestAir.cs
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>Microsoft (R) Visual C# Compiler version 4.7
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>TestAir.cs(45,7): warning CS0168: variable declared but never used (none)
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>Build succeeded.
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>
+<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>C:\dev&gt; TestAir.exe
+<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>Connecting to QMGR1 with MQAuthenticationInformationRecord (CRLLDAP)
+<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>   CONNAME = crlldap.example.com(389)
+<a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>   LDAPUserName = cn=admin,dc=example,dc=com
+<a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>MQQueueManager.Connect: CompCode=0, Reason=0
+<a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>DISPLAY CONN(*) USERID:
+<a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>   CONN(1234)  USERID(DOMAIN\appuser)
+<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>TestAir completed.
+<a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>
+<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>   --- 失敗 (Auth Info Rec Count 不整合) ---
+<a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>C:\dev&gt; TestAirBad.exe
+<a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>MQConnect failed: CompCode=2, Reason=2384 (MQRC_AUTH_INFO_REC_COUNT_ERROR)
+<a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a>   AuthInfoRec 配列サイズと AuthInfoRecCount フィールド不整合 → 修正
+<a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a>
+<a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>   --- ADOPTCTX(NO) 設定時 ---
+<a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>$ runmqsc QMGR1
+<a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a>ALTER AUTHINFO(AUTH.CRL) ADOPTCTX(NO)
+<a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a>AMQ8005I: IBM MQ authentication information changed.
+<a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>
+<a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a>   再接続後 DISPLAY CONN(*) で USERID() は app 実行 OS ユーザのまま
+<a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a>   (認証は実施するが credentials は採用されない - 一次資料 記載どおり 仕様)
+</code></pre></div>
+<p><strong>前提条件</strong>: 【前提】対象 QM ([QMGR]) 稼働中、CRL LDAP サーバ ([CRL_LDAP]) アクセス可能、.NET MQ client (amqmdnetstd.dll) 配備済。</p>
+<p><strong>プレースホルダ</strong>: 【プレースホルダ】[QMGR]=QM 名、[AUTH_NAME]=AUTHINFO オブジェクト名、[CRL_LDAP_HOST]/[CRL_LDAP_PORT]=CRL LDAP 接続情報、[LDAP_USER]/[LDAP_PW]=LDAP バインド資格情報</p>
+<p><strong>記録項目</strong>:</p>
+<ul>
+<li>① DEFINE AUTHINFO 実行ログ (AMQ8004I)</li>
+<li>② ALTER QMGR SSLCRLNL + REFRESH SECURITY 実行ログ</li>
+<li>③ .NET アプリのコンパイル結果 (csc /r:amqmdnetstd.dll)</li>
+<li>④ MQConnect 成功ログ + DISPLAY CONN(*) の USERID 値</li>
+<li>⑤ 2384 MQRC_AUTH_INFO_REC_COUNT_ERROR 出る場合の配列サイズ</li>
+<li>⑥ ADOPTCTX(NO) 設定時の app OS ユーザ採用確認</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

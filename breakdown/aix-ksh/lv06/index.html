@@ -1,0 +1,5444 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv06/">
+      
+      
+        <link rel="prev" href="../lv05/">
+      
+      
+        <link rel="next" href="../lv07/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>プロセス管理・パフォーマンス （220 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              プロセス管理・パフォーマンス （220 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-v3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-v3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">プロセス管理・パフォーマンス<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: AIX + ksh ／ <strong>本ページ件数</strong>: 220 件 ／ <strong>出典区分</strong>: 書籍出典</p>
+<details class="note" open="open">
+<summary>ps コマンド （15 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">981</td>
+<td>ps</td>
+<td>実行中プロセスの一覧を表示する基本コマンド。引数なしでは自端末のプロセスのみ表示。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">982</td>
+<td>ps -e</td>
+<td>システム全体のプロセスを表示。自分以外のユーザのプロセスも含む。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">983</td>
+<td>ps -f</td>
+<td>フル形式で表示。UID/PID/PPID/C/STIME/TTY/TIME/CMD を表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">984</td>
+<td>ps -ef</td>
+<td>全プロセスをフル形式で表示。最も一般的な使用方法。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">985</td>
+<td>ps -eo</td>
+<td>出力カラムをユーザ指定する形式。-o の後にカラム名をカンマ区切りで列挙。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">986</td>
+<td>ps -auxw</td>
+<td>BSD 形式で全プロセスを CPU/MEM 使用率付きで広い幅で表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">987</td>
+<td>ps -l</td>
+<td>ロング形式表示。F/S/UID/PID/PPID/C/PRI/NI/ADDR/SZ/WCHAN/TTY/TIME/CMD。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">988</td>
+<td>ps -k</td>
+<td>カーネルプロセス (wait, swapper, kproc 等) を含めて表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">989</td>
+<td>ps -m</td>
+<td>マルチスレッドプロセスをスレッド単位で表示する。-o THREAD と併用が定番。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">990</td>
+<td>ps -T</td>
+<td>指定プロセスとその子プロセスをツリー状に表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">991</td>
+<td>ps -L</td>
+<td>LWP (軽量プロセス、スレッド) を表示する。-m と組み合わせる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">992</td>
+<td>ps -p <pid></td>
+<td>指定 PID のプロセスのみ表示。複数指定はカンマ区切り。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">993</td>
+<td>ps -t <tty></td>
+<td>指定 TTY に紐付くプロセスのみ表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">994</td>
+<td>ps -u <user></td>
+<td>指定ユーザのプロセスのみ表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">995</td>
+<td>ps -H</td>
+<td>プロセス階層を字下げ表示する。親子関係が一目で分かる。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ps カラム指定 （19 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">996</td>
+<td>ps -eo pid</td>
+<td>プロセス ID のみ出力する。スクリプトでの取り出しに使う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">997</td>
+<td>ps -eo ppid</td>
+<td>親プロセス ID を出力する。プロセスツリー解析の起点。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">998</td>
+<td>ps -eo uid</td>
+<td>実 UID を数値で出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">999</td>
+<td>ps -eo user</td>
+<td>実 UID をユーザ名で出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1000</td>
+<td>ps -eo comm</td>
+<td>実行ファイル名のみを出力する。引数は含まない。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1001</td>
+<td>ps -eo args</td>
+<td>実行ファイル名と起動時引数を含めて出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1002</td>
+<td>ps -eo pcpu</td>
+<td>プロセスごとの CPU 使用率 (%) を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1003</td>
+<td>ps -eo pmem</td>
+<td>プロセスごとの物理メモリ使用率 (%) を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1004</td>
+<td>ps -eo tty</td>
+<td>制御端末名を出力する。デーモンは ?。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1005</td>
+<td>ps -eo state</td>
+<td>プロセス状態 (R/S/T/Z/I/W 等) を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1006</td>
+<td>ps -eo time</td>
+<td>累積 CPU 時間 (起動からの合計) を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1007</td>
+<td>ps -eo etime</td>
+<td>プロセスの経過時間 (起動からの実時間) を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1008</td>
+<td>ps -eo rss</td>
+<td>常駐セットサイズ (KB) を出力。実メモリ消費量の目安。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1009</td>
+<td>ps -eo vsz</td>
+<td>仮想メモリサイズ (KB) を出力する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1010</td>
+<td>ps -eo pri</td>
+<td>スケジューリング優先度を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1011</td>
+<td>ps -eo ni</td>
+<td>nice 値を出力する。負ほど優先度が高い。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1012</td>
+<td>ps -eo ucpu</td>
+<td>ユーザモードの CPU 使用率を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1013</td>
+<td>ps -eo scpu</td>
+<td>システム (カーネル) モードの CPU 使用率を出力する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1014</td>
+<td>ps -eo class</td>
+<td>WLM クラス名を出力する。WLM 運用時の確認用。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>topas 画面 （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1015</td>
+<td>topas</td>
+<td>AIX 標準のリアルタイム性能監視ツール。CPU/メモリ/ディスク/NW/プロセスを一画面で表示。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1016</td>
+<td>topas (c キー)</td>
+<td>c キー押下で CPU 利用率の集計表示モードに切り替える。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1017</td>
+<td>topas (m キー)</td>
+<td>m キーで物理プロセッサ/SMT 単位のメモリ使用状況に切替。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1018</td>
+<td>topas (DISK 表示)</td>
+<td>デフォルト画面右上のディスクパネル。ビジー率と I/O kbps を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1019</td>
+<td>topas (WLM 表示)</td>
+<td>W キーで WLM クラス別の CPU/メモリ消費を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1020</td>
+<td>topas (Network 表示)</td>
+<td>n キーでネットワークインタフェース別のスループット表示に切替。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1021</td>
+<td>topas -nb</td>
+<td>起動時にネットワーク/プロセスを抑制し、CPU と DISK だけを軽量に監視する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1022</td>
+<td>topas -L logfile</td>
+<td>監視結果をログファイルに記録する (連続採取の基本)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1023</td>
+<td>topas -d <delay></td>
+<td>リフレッシュ間隔 (秒) を指定する。デフォルトは 2 秒。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1024</td>
+<td>topas -E</td>
+<td>ネットワーク仮想 I/O アダプタ統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1025</td>
+<td>topas -O</td>
+<td>ファイルシステム単位の使用率を表示するモード。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1026</td>
+<td>topas -P</td>
+<td>プロセスフルスクリーン表示。プロセス CPU/メモリ消費の上位を専有表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1027</td>
+<td>topas -C</td>
+<td>クロスパーティション (LPAR 一覧) ビュー。共用プール内の他 LPAR を俯瞰する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1028</td>
+<td>topas -D</td>
+<td>ディスク I/O フルスクリーン表示。hdisk 毎の詳細を見たい時に使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1029</td>
+<td>topas -F</td>
+<td>ファイルシステム/NFS のフルスクリーン表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1030</td>
+<td>topas -i <interval></td>
+<td>サンプリング間隔 (分) を指定する。長期傾向観測向け。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>topas_nmon （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1031</td>
+<td>topas_nmon</td>
+<td>nmon ベースの拡張インタラクティブモニタ。AIX 6.1 以降に標準同梱。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1032</td>
+<td>topas_nmon (c キー)</td>
+<td>c キーで CPU 使用率の物理/論理 CPU 別表示をトグルする。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1033</td>
+<td>topas_nmon (m キー)</td>
+<td>m キーでメモリ統計 (使用/空き/コンピューテーショナル) を表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1034</td>
+<td>topas_nmon (d キー)</td>
+<td>d キーでディスクごとの I/O ビジー率を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1035</td>
+<td>topas_nmon (n キー)</td>
+<td>n キーでネットワークインタフェース別の RX/TX を表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1036</td>
+<td>topas_nmon (k キー)</td>
+<td>k キーでカーネル統計 (RunQ/Swap/コンテキストスイッチ) を表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1037</td>
+<td>topas_nmon (v キー)</td>
+<td>v キーで仮想メモリ統計 (Paging Space) を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1038</td>
+<td>topas_nmon (r キー)</td>
+<td>r キーでリソース (アダプタ/装置) 情報を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1039</td>
+<td>topas_nmon (L キー)</td>
+<td>L キーで論理 CPU の使用率を SMT スレッド単位で表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1040</td>
+<td>topas_nmon (W キー)</td>
+<td>W キーで WLM クラスの統計を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1041</td>
+<td>topas_nmon (V キー)</td>
+<td>V キーでボリュームグループ統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1042</td>
+<td>topas_nmon (+ キー)</td>
+<td>+ キー押下で表示カラムを拡張する (上位プロセス数増)。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>nmon オプション （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1043</td>
+<td>nmon -f</td>
+<td>バックグラウンドで CSV 形式 (.nmon) のスナップショットを採取するモード。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1044</td>
+<td>nmon -F <file></td>
+<td>出力ファイル名を明示的に指定する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1045</td>
+<td>nmon -s <sec></td>
+<td>サンプリング間隔 (秒) を指定する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1046</td>
+<td>nmon -c <count></td>
+<td>採取する回数を指定する。-s と組み合わせて総時間を決める。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1047</td>
+<td>nmon -T</td>
+<td>上位プロセスの累積 CPU 時間も併せて記録する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1048</td>
+<td>nmon -m <dir></td>
+<td>出力先ディレクトリを指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1049</td>
+<td>nmon -A</td>
+<td>非同期 I/O の統計も記録対象に含める。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1050</td>
+<td>nmon -d</td>
+<td>ディスク統計の収集を有効化する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1051</td>
+<td>nmon -t</td>
+<td>Top プロセスを収集する (-T より概略版)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1052</td>
+<td>nmon -V</td>
+<td>nmon のバージョン情報を表示して終了する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vmstat （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1053</td>
+<td>vmstat</td>
+<td>プロセス/メモリ/ページング/CPU の概要を表示する古典的ツール。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1054</td>
+<td>vmstat <delay> <count></td>
+<td>delay 秒間隔で count 回サンプリングして表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1055</td>
+<td>vmstat -w</td>
+<td>ワイド出力モード。カラムが詰まらず読みやすい。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1056</td>
+<td>vmstat -t</td>
+<td>各行にタイムスタンプを付加する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1057</td>
+<td>vmstat -s</td>
+<td>起動以降の各種カウンタ累積値を一覧表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1058</td>
+<td>vmstat -I</td>
+<td>I/O 関連列 (p/in/sy) を拡張表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1059</td>
+<td>vmstat -v</td>
+<td>仮想メモリ全体の統計 (numperm, minperm%, maxperm%) を表示。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1060</td>
+<td>vmstat -d</td>
+<td>ディスク毎の I/O 統計を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1061</td>
+<td>vmstat -P ALL</td>
+<td>全ページサイズ別 (4K/64K/16M 等) のメモリ統計を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>iostat （13 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1062</td>
+<td>iostat</td>
+<td>CPU と物理ディスク I/O 統計をリアルタイム表示する。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1063</td>
+<td>iostat -l</td>
+<td>出力を長い形式で表示し、列の途中で折り返さない。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1064</td>
+<td>iostat -d</td>
+<td>ディスク統計のみを表示し、CPU 統計を抑制する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1065</td>
+<td>iostat -D</td>
+<td>詳細ディスク I/O 統計 (read/write 別の平均サービス時間) を表示。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1066</td>
+<td>iostat -m</td>
+<td>MPIO パスごとの I/O 統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1067</td>
+<td>iostat -s</td>
+<td>システム全体のサマリ統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1068</td>
+<td>iostat -t</td>
+<td>TTY と CPU 統計のみを表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1069</td>
+<td>iostat -T</td>
+<td>各行にタイムスタンプを付加する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1070</td>
+<td>iostat -V</td>
+<td>ボリュームグループ/物理ボリューム別の統計を表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1071</td>
+<td>iostat -X</td>
+<td>拡張 (extended) 統計表示モード。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1072</td>
+<td>iostat -f</td>
+<td>ファイルシステム I/O 統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1073</td>
+<td>iostat -a</td>
+<td>アダプタ単位の I/O 統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1074</td>
+<td>iostat -A</td>
+<td>非同期 I/O サーバの統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>sar （14 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1075</td>
+<td>sar</td>
+<td>システムアクティビティレポータ。各種サブシステムの履歴/リアルタイム統計を採取。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1076</td>
+<td>sar -A</td>
+<td>全レポート (全サブシステム) をまとめて出力する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1077</td>
+<td>sar -a</td>
+<td>ファイルアクセスシステムコール (iget/namei 等) の統計を表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1078</td>
+<td>sar -b</td>
+<td>バッファキャッシュのヒット率を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1079</td>
+<td>sar -c</td>
+<td>システムコール発行頻度 (read/write/fork/exec) を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1080</td>
+<td>sar -d</td>
+<td>ブロックデバイス (ディスク) のビジー率/転送量を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1081</td>
+<td>sar -k</td>
+<td>カーネルプロセスのスレッド数/使用状況を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1082</td>
+<td>sar -P ALL</td>
+<td>全論理 CPU 別の使用率を個別に表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1083</td>
+<td>sar -q</td>
+<td>ランキューと swap キューの平均長を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1084</td>
+<td>sar -r</td>
+<td>ページング/スワップ統計を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1085</td>
+<td>sar -u</td>
+<td>CPU 使用率 (%user/%sys/%wio/%idle) を表示する。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1086</td>
+<td>sar -w</td>
+<td>コンテキストスイッチ回数を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1087</td>
+<td>sar -o <file></td>
+<td>採取結果をバイナリファイルに記録する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1088</td>
+<td>sar -f <file></td>
+<td>-o で出力したバイナリファイルを読み込んで再表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>svmon （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1089</td>
+<td>svmon</td>
+<td>AIX の VMM 使用量を詳細に表示するパフォーマンスツール。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1090</td>
+<td>svmon -G</td>
+<td>システム全体のメモリ使用サマリ。size/inuse/free/pin/virtual を表示。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1091</td>
+<td>svmon -P <pid></td>
+<td>指定プロセスのメモリ使用量を詳細表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1092</td>
+<td>svmon -U <user></td>
+<td>指定ユーザのプロセス群のメモリ使用量を集計表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1093</td>
+<td>svmon -W <wlmclass></td>
+<td>指定 WLM クラスのメモリ使用量を集計表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1094</td>
+<td>svmon -C <cmd></td>
+<td>指定コマンド名に一致するプロセスのメモリ使用量を集計する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1095</td>
+<td>svmon -O</td>
+<td>オブジェクト (セグメント) 単位のオプション付き出力フォーマット指定。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1096</td>
+<td>svmon -i <interval></td>
+<td>指定間隔で繰り返し採取するモード。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ipcs/ipcrm （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1097</td>
+<td>ipcs</td>
+<td>システム V IPC リソース (メッセージキュー/共有メモリ/セマフォ) を一覧表示。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1098</td>
+<td>ipcs -q</td>
+<td>メッセージキューのみ一覧表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1099</td>
+<td>ipcs -m</td>
+<td>共有メモリセグメントのみ一覧表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1100</td>
+<td>ipcs -s</td>
+<td>セマフォセットのみ一覧表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1101</td>
+<td>ipcs -a</td>
+<td>全 IPC リソースを詳細表示する (q/m/s すべて)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1102</td>
+<td>ipcrm</td>
+<td>ipcs で表示された IPC リソースを削除する。残骸クリーンアップに使う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1103</td>
+<td>ipcrm -q <id></td>
+<td>指定メッセージキューを削除する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1104</td>
+<td>ipcrm -m <id></td>
+<td>指定共有メモリセグメントを削除する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1105</td>
+<td>ipcrm -s <id></td>
+<td>指定セマフォセットを削除する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>proc系 （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1106</td>
+<td>pstack <pid></td>
+<td>指定プロセスのスタックトレースを表示する。デッドロック解析に有用。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1107</td>
+<td>procstack <pid></td>
+<td>AIX 標準のスタックトレース取得コマンド。スレッド単位で出力。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1108</td>
+<td>procstatus <pid></td>
+<td>プロセスの状態 (実行中/停止/スリープ等) と LWP 詳細を表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1109</td>
+<td>proctree <pid></td>
+<td>指定プロセスを起点とした親子ツリーを表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1110</td>
+<td>procfiles <pid></td>
+<td>プロセスがオープン中のファイル一覧 (FD ごと) を表示。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1111</td>
+<td>procldd <pid></td>
+<td>プロセスがロード中の共有ライブラリ一覧を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1112</td>
+<td>procmap <pid></td>
+<td>プロセスの仮想アドレス空間マップを表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1113</td>
+<td>procrun <pid></td>
+<td>procstop で停止したプロセスを再開する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1114</td>
+<td>procsig <pid></td>
+<td>プロセスのシグナルディスポジション一覧を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1115</td>
+<td>procstop <pid></td>
+<td>プロセスを SIGSTOP で停止状態にする。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1116</td>
+<td>procwait <pid></td>
+<td>プロセスの終了を待ち、終了ステータスを表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1117</td>
+<td>proccred <pid></td>
+<td>プロセスの認証情報 (UID/GID/EUID/EGID) を表示する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>truss （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1118</td>
+<td>truss <cmd></td>
+<td>コマンドのシステムコール呼び出しを実行とともにトレース表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1119</td>
+<td>truss -p <pid></td>
+<td>稼働中プロセスにアタッチしてシステムコールトレースを取る。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1120</td>
+<td>truss -t <syscall></td>
+<td>指定システムコールのみトレース対象にする (フィルタ)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1121</td>
+<td>truss -d</td>
+<td>各行に相対時刻 (秒.マイクロ秒) を付加する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1122</td>
+<td>truss -e</td>
+<td>システムコール時の環境変数も表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1123</td>
+<td>truss -f</td>
+<td>fork した子プロセスも追跡対象に含める。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1124</td>
+<td>truss -o <file></td>
+<td>トレース結果を指定ファイルに出力する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>プロファイラ （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1125</td>
+<td>tprof</td>
+<td>AIX のシステムワイドプロファイラ。CPU 時間消費のサブルーチン別内訳を採取。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1126</td>
+<td>tprof -x <cmd></td>
+<td>指定コマンド実行中の CPU プロファイルを採取する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1127</td>
+<td>tprof -E</td>
+<td>イベントベースサンプリングを有効にする。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1128</td>
+<td>gprof</td>
+<td>GNU プロファイラ。-pg 付きコンパイル済みバイナリの関数呼び出し統計を解析。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1129</td>
+<td>gprof -b</td>
+<td>短い (brief) 出力モード。説明行を省略する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1130</td>
+<td>gprof -p</td>
+<td>フラットプロファイル (関数別 CPU 時間) のみ表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1131</td>
+<td>filemon</td>
+<td>ファイル/論理ボリューム/物理ボリューム/仮想メモリの I/O トレース。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1132</td>
+<td>filemon -i <file></td>
+<td>-O で出力したトレースを後から解析するモード。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1133</td>
+<td>filemon -o <file></td>
+<td>解析結果を指定ファイルに出力する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1134</td>
+<td>filemon -O <levels></td>
+<td>監視レベル (vm/lv/pv/lf/all) をカンマ区切りで指定する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1135</td>
+<td>filemon -P</td>
+<td>トレースを fully-pinned メモリで取り、計測オーバーヘッドを抑える。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1136</td>
+<td>fileplace</td>
+<td>ファイルが物理ディスク上でどの LBA に配置されているかを表示。断片化解析。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ページ/sys0 （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1137</td>
+<td>pagesize</td>
+<td>現在のページサイズ (バイト) を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1138</td>
+<td>pagesize -a</td>
+<td>AIX が利用可能な全ページサイズ (4K/64K/16M/16G) を一覧表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1139</td>
+<td>lsattr -El sys0</td>
+<td>システムオブジェクト sys0 の全属性 (maxuproc, ncargs 等) を表示。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1140</td>
+<td>lsattr -El sys0 -a maxuproc</td>
+<td>1 ユーザあたりの最大プロセス数を表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1141</td>
+<td>chdev -l sys0 -a maxbuf=</td>
+<td>sys0 の maxbuf 属性 (raw 入力バッファ数) を変更する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1142</td>
+<td>chdev -l sys0 -a maxbroadcast=</td>
+<td>ブロードキャストメッセージの上限を変更する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1143</td>
+<td>chdev -l sys0 -a minpout=</td>
+<td>順次入出力での pageout 開始閾値 (低) を変更する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1144</td>
+<td>chdev -l sys0 -a maxpout=</td>
+<td>順次入出力での pageout 上限閾値 (高) を変更する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>kill/シグナル （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1145</td>
+<td>kill <pid></td>
+<td>デフォルト (SIGTERM) でプロセスに終了要求を送る。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1146</td>
+<td>kill -9 <pid></td>
+<td>SIGKILL を送り強制終了する。トラップ不可能。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1147</td>
+<td>kill -15 <pid></td>
+<td>SIGTERM を送る (デフォルトと等価)。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1148</td>
+<td>kill -HUP <pid></td>
+<td>SIGHUP を送る。デーモンへの設定再読込指示として慣用される。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1149</td>
+<td>kill -USR1 <pid></td>
+<td>SIGUSR1 を送る。アプリ独自の動作 (ローテーション等) を発火。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1150</td>
+<td>kill -INT <pid></td>
+<td>SIGINT (Ctrl-C 相当) を送る。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1151</td>
+<td>kill -TERM <pid></td>
+<td>SIGTERM を名前指定で送る。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1152</td>
+<td>kill -l</td>
+<td>シグナル名と番号の一覧を表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1153</td>
+<td>kill -STOP <pid></td>
+<td>SIGSTOP を送りプロセスを一時停止する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1154</td>
+<td>kill -CONT <pid></td>
+<td>SIGCONT を送り停止中プロセスを再開する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1155</td>
+<td>kill -QUIT <pid></td>
+<td>SIGQUIT を送る。コアダンプ生成を伴って終了。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ジョブ制御 （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1156</td>
+<td>nice <cmd></td>
+<td>デフォルトの増分 (+10) で優先度を下げてコマンドを起動する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1157</td>
+<td>nice -n <inc> <cmd></td>
+<td>nice 増分を明示指定して起動する。負値は root のみ可能。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1158</td>
+<td>renice -n <val> -p <pid></td>
+<td>稼働中プロセスの nice 値を変更する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1159</td>
+<td>nohup <cmd> &amp;</td>
+<td>SIGHUP を無視してバックグラウンド実行する。ログオフ後も継続。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1160</td>
+<td>wait</td>
+<td>ksh 組込み。バックグラウンドジョブの終了を待つ。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1161</td>
+<td>disown %<n></td>
+<td>ksh ジョブテーブルからジョブを切り離す (SIGHUP 送信抑止)。</td>
+<td>—</td>
+</tr>
+<tr>
+<td style="text-align: right;">1162</td>
+<td>bg %<n></td>
+<td>サスペンド中ジョブをバックグラウンドで再開する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1163</td>
+<td>fg %<n></td>
+<td>ジョブをフォアグラウンドに戻して実行する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1164</td>
+<td>jobs</td>
+<td>現シェルが管理するジョブ一覧を表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>cron/at （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1165</td>
+<td>crontab</td>
+<td>ユーザの cron スケジュールを編集/表示するコマンド。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1166</td>
+<td>crontab -l</td>
+<td>現ユーザの crontab エントリを一覧表示する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1167</td>
+<td>crontab -e</td>
+<td>現ユーザの crontab を $EDITOR で編集する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1168</td>
+<td>crontab -r</td>
+<td>現ユーザの crontab エントリを全削除する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1169</td>
+<td>crontab -u <user></td>
+<td>他ユーザの crontab を操作する (root のみ)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1170</td>
+<td>/var/spool/cron/crontabs/</td>
+<td>ユーザ毎の crontab 実体が置かれるディレクトリ。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1171</td>
+<td>at</td>
+<td>指定時刻に一度だけコマンドを実行するスケジューラ。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1172</td>
+<td>atq</td>
+<td>at で投入されたジョブのキューを表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1173</td>
+<td>atrm <job></td>
+<td>at キューからジョブを削除する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1174</td>
+<td>batch</td>
+<td>システム負荷が低い時にコマンドを実行するキュー投入コマンド。</td>
+<td>AIX1, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>WLM （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1175</td>
+<td>mkclass</td>
+<td>WLM クラスを作成する。CPU/メモリ/IO のシェア・上限を指定。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1176</td>
+<td>chclass</td>
+<td>既存 WLM クラスの属性 (shares, limits, tier 等) を変更する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1177</td>
+<td>lsclass</td>
+<td>定義済み WLM クラスの一覧を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1178</td>
+<td>rmclass</td>
+<td>WLM クラスを削除する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1179</td>
+<td>chwlm</td>
+<td>WLM サブシステムの起動/停止/設定変更を行う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1180</td>
+<td>smitty wlm</td>
+<td>SMIT メニューから WLM の設定 (クラス/規則/モニタ) を対話的に行う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1181</td>
+<td>WLM classes ファイル</td>
+<td>/etc/wlm/<config>/classes に WLM クラス定義が格納される。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1182</td>
+<td>WLM shares 属性</td>
+<td>クラス間の相対 CPU/メモリ取り分。1〜65535 で指定。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1183</td>
+<td>WLM tier 属性</td>
+<td>クラスの優先層 (0〜9)。低い tier が優先される。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1184</td>
+<td>wlmstat</td>
+<td>WLM クラス別のリソース消費をリアルタイム表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1185</td>
+<td>wlmcntrl</td>
+<td>WLM サブシステムの起動/停止/設定再読込を行う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>WPAR （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1186</td>
+<td>mkwpar</td>
+<td>WPAR (Workload Partition) を新規作成する。-n で名前指定。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1187</td>
+<td>lswpar</td>
+<td>定義済み/稼働中 WPAR の一覧を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1188</td>
+<td>chwpar</td>
+<td>WPAR の属性 (ネットワーク/ファイルシステム/リソース) を変更する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1189</td>
+<td>startwpar</td>
+<td>停止状態の WPAR を起動する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1190</td>
+<td>stopwpar</td>
+<td>稼働中の WPAR を停止する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1191</td>
+<td>rmwpar</td>
+<td>WPAR の定義を削除する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1192</td>
+<td>clogin</td>
+<td>WPAR にコンソールログインする (グローバルから内部へ入る)。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1193</td>
+<td>wparexec</td>
+<td>WPAR 内でコマンドを直接実行する (Application WPAR の起動)。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1194</td>
+<td>syncwpar</td>
+<td>WPAR とグローバル環境のソフトウェアレベルを同期する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1195</td>
+<td>savewpar</td>
+<td>WPAR の状態をバックアップイメージとして保存する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1196</td>
+<td>restwpar</td>
+<td>savewpar で保存したイメージから WPAR を復元する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>bindprocessor （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1197</td>
+<td>bindprocessor</td>
+<td>プロセスを特定の論理 CPU にバインドする。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1198</td>
+<td>bindprocessor -q</td>
+<td>利用可能な論理 CPU 番号を一覧表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1199</td>
+<td>bindprocessor -u <pid></td>
+<td>プロセスの CPU バインドを解除する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1200</td>
+<td>bindprocessor <pid> <cpu></td>
+<td>指定プロセスを指定論理 CPU にバインドする。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

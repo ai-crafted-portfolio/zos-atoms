@@ -1,0 +1,6103 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/tape/lv01/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lv02/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>TS2280 Tape Drive （311 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ts2280-tape-drive" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TS2280 Tape Drive （311 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-v3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aix-ksh/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-v3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../aix-ksh/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ts2280-tape-drive">TS2280 Tape Drive<a class="headerlink" href="#ts2280-tape-drive" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: テープ系 ／ <strong>本ページ件数</strong>: 311 件 ／ <strong>出典区分</strong>: 初版（事前知識補完を含む）</p>
+<div class="admonition warning">
+<p class="admonition-title">初版コンテンツ</p>
+<p>本ページは初版です。一部の技術項目は一次資料（公式マニュアル・Redbook 等）
+との突合を予定しており、出典欄に「一次資料 突合予定」と表示される項目があります。
+内容は実機運用前に必ず最新の一次資料で確認してください。</p>
+</div>
+<details class="note" open="open">
+<summary>TS2280 基本 （50 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>サブカテゴリ</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>製品概要</td>
+<td>TS2280 Tape Drive 型番 3580 Model H8S</td>
+<td>IBM TS2280 は Machine Type 3580 モデル H8S として提供される単体ハーフハイト LTO-8 SAS テープ・ドライブ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>製品概要</td>
+<td>ドライブ世代 LTO Ultrium 8 (LTO-8)</td>
+<td>ネイティブ容量 12 TB、圧縮時 30 TB (2.5:1)</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>製品概要</td>
+<td>フォーム・ファクター ハーフハイト</td>
+<td>従来フルハイトの半分の高さ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>製品概要</td>
+<td>タワー筐体 (Tabletop)</td>
+<td>卓上設置用タワー筐体に LTO-8 機構を内蔵</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>製品概要</td>
+<td>SAS-2 6 Gb/s 標準</td>
+<td>Serial Attached SCSI 6 Gb/s 標準採用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td>製品概要</td>
+<td>ネイティブ容量 12 TB / 圧縮 30 TB</td>
+<td>LTO-8 媒体ネイティブ 12 TB</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td>製品概要</td>
+<td>ネイティブ転送 300 MB/s</td>
+<td>LTO-8 最大ネイティブ転送</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td>製品概要</td>
+<td>Recommended Access Order (RAO)</td>
+<td>ファイル順序最適化機能</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td>製品概要</td>
+<td>LTFS (Linear Tape File System)</td>
+<td>LTFS 標準フォーマットサポート</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td>製品概要</td>
+<td>BAFW (Backhitch Aware Firmware)</td>
+<td>媒体摩耗低減のための内部最適化</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">11</td>
+<td>製品概要</td>
+<td>AES-256-GCM ハードウェア暗号化</td>
+<td>ドライブ内蔵暗号化エンジン</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">12</td>
+<td>製品概要</td>
+<td>FIPS 140-2 Level 1 (フィーチャー)</td>
+<td>FIPS 認証フィーチャー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">13</td>
+<td>製品概要</td>
+<td>LTO-8 WORM 対応</td>
+<td>Write Once Read Many</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">14</td>
+<td>製品概要</td>
+<td>Type-M (LTO-7M) 対応</td>
+<td>新品 LTO-7 を 9TB として初期化可能</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">15</td>
+<td>製品概要</td>
+<td>LTO-7 R/W 互換</td>
+<td>LTO-7 6TB 媒体読み書き</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">16</td>
+<td>製品概要</td>
+<td>LTO-6 RO 互換</td>
+<td>LTO-6 媒体読み取り専用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">17</td>
+<td>物理仕様</td>
+<td>物理寸法 タワー筐体</td>
+<td>約 65 mm × 213 mm × 365 mm</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">18</td>
+<td>物理仕様</td>
+<td>重量 約 8 kg</td>
+<td>タワー筐体込み本体重量</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">19</td>
+<td>物理仕様</td>
+<td>動作温度 10〜40 °C</td>
+<td>推奨動作温度範囲</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">20</td>
+<td>物理仕様</td>
+<td>動作湿度 20〜80%</td>
+<td>結露なきこと</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">21</td>
+<td>物理仕様</td>
+<td>保管温度 16〜32 °C</td>
+<td>媒体長期保管推奨</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">22</td>
+<td>物理仕様</td>
+<td>海抜 0〜3000 m</td>
+<td>動作可能高度</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">23</td>
+<td>物理仕様</td>
+<td>電源 100-240 VAC オートレンジ</td>
+<td>グローバル電源対応</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">24</td>
+<td>物理仕様</td>
+<td>電源コネクタ C13/C14</td>
+<td>単一 AC 入力</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">25</td>
+<td>物理仕様</td>
+<td>ラックマウント 1U キット</td>
+<td>オプション</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">26</td>
+<td>設置</td>
+<td>ラック設置 1U</td>
+<td>ラックキット使用時</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">27</td>
+<td>設置</td>
+<td>タワー設置 卓上</td>
+<td>卓上フラット面に設置</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">28</td>
+<td>設置</td>
+<td>SAS ケーブル長 最大 6 m</td>
+<td>推奨ケーブル長</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">29</td>
+<td>設置</td>
+<td>エアフロー 前面吸気・背面排気</td>
+<td>通気クリアランス必須</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">30</td>
+<td>設置</td>
+<td>保護接地 (PE) 確認</td>
+<td>設置時の接地確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">31</td>
+<td>梱包・開梱</td>
+<td>出荷内容チェックリスト</td>
+<td>本体・SAS ケーブル・電源コード・CC・初期媒体・マニュアル</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">32</td>
+<td>梱包・開梱</td>
+<td>梱包材保管</td>
+<td>返却用に保管推奨</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">33</td>
+<td>梱包・開梱</td>
+<td>出荷ロック解除</td>
+<td>出荷時メカニカルロックの解除</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">34</td>
+<td>梱包・開梱</td>
+<td>ESD 取り扱い</td>
+<td>リストストラップ着用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">35</td>
+<td>型番識別</td>
+<td>Machine Type 3580</td>
+<td>3580 系列</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">36</td>
+<td>型番識別</td>
+<td>Model H8S = LTO-8 SAS HH</td>
+<td>モデルコード意味</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">37</td>
+<td>型番識別</td>
+<td>S/N の確認</td>
+<td>製品ラベル/オペパネ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">38</td>
+<td>型番識別</td>
+<td>WWN の記録</td>
+<td>SAS WWN を構成図に記録</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">39</td>
+<td>保証</td>
+<td>ハードウェア保証期間</td>
+<td>出荷から 1 年(基本)</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">40</td>
+<td>保証</td>
+<td>延長保証フィーチャー</td>
+<td>保守延長</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">249</td>
+<td>LTO 規格</td>
+<td>LTO Ultrium 規格 (Ultrium-1〜9 系譜)</td>
+<td>Ultrium 系譜の世代と容量</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">250</td>
+<td>LTO 規格</td>
+<td>LTO-DC (Data Compression)</td>
+<td>ALDC アルゴリズム</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">251</td>
+<td>LTO 規格</td>
+<td>LTO テープ走行速度・ヘッド構造</td>
+<td>Linear 多チャネル方式</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">252</td>
+<td>LTO 規格</td>
+<td>LTO Wrap (テープ巻き)</td>
+<td>Wrap-by-Wrap 方式</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">253</td>
+<td>LTO 規格</td>
+<td>LTO Servo Track</td>
+<td>Pre-formatted Servo</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">254</td>
+<td>LTO 規格</td>
+<td>LTO Cartridge Memory (MAM)</td>
+<td>RFID チップ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">255</td>
+<td>LTO 規格</td>
+<td>LTFS 標準 (ISO/IEC 20919)</td>
+<td>ISO 規格化</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">256</td>
+<td>LTO 規格</td>
+<td>LTO Tape Path 物理層</td>
+<td>ヘッド→巻取り経路</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">257</td>
+<td>LTO 規格</td>
+<td>LTO Pre-Aligned Servo</td>
+<td>Servo Pre-Align</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">258</td>
+<td>LTO 規格</td>
+<td>LTO Generation Roadmap (LTO-9〜LTO-14 予定)</td>
+<td>ロードマップ</td>
+<td>TS2280DOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>TS2280 操作 （57 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>サブカテゴリ</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">41</td>
+<td>オペレータ・パネル</td>
+<td>パワーボタン (Power)</td>
+<td>電源 ON/OFF。長押しで強制電源断</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">42</td>
+<td>オペレータ・パネル</td>
+<td>Unload ボタン</td>
+<td>巻き戻し・排出 短押し</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">43</td>
+<td>オペレータ・パネル</td>
+<td>Unload 長押し = Force Unload</td>
+<td>媒体エラー時のフォースアンロード</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">44</td>
+<td>オペレータ・パネル</td>
+<td>Unload 3回押下 = Drive Dump 採取</td>
+<td>内部ダンプの保存トリガ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">45</td>
+<td>オペレータ・パネル</td>
+<td>シングルキャラクタ・ディスプレイ (SCD)</td>
+<td>1 桁の数字/英字で状態表示</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">46</td>
+<td>オペレータ・パネル</td>
+<td>SCD ドット (右下)</td>
+<td>ダンプ存在/エラー状態を示す</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">47</td>
+<td>LED 表示</td>
+<td>Ready/Activity LED (緑)</td>
+<td>点灯=待機、点滅=活動中</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">48</td>
+<td>LED 表示</td>
+<td>Encryption LED (白)</td>
+<td>暗号化動作中点灯</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">49</td>
+<td>LED 表示</td>
+<td>Error LED (アンバー)</td>
+<td>ドライブ/媒体エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">50</td>
+<td>LED 表示</td>
+<td>Cleaning LED (アンバー点滅)</td>
+<td>クリーニング要求</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">51</td>
+<td>SCD コード</td>
+<td>'0' POST 完了</td>
+<td>Power-On Self-Test 正常終了</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">52</td>
+<td>SCD コード</td>
+<td>'1' OEM ファーム活動</td>
+<td>ファームウェア活動表示</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">53</td>
+<td>SCD コード</td>
+<td>'2' 回復可能エラー</td>
+<td>リカバラブル・エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">54</td>
+<td>SCD コード</td>
+<td>'3' 高温警告</td>
+<td>Over Temperature</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">55</td>
+<td>SCD コード</td>
+<td>'4' ファームウェア異常</td>
+<td>ファーム異常検出</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">56</td>
+<td>SCD コード</td>
+<td>'5' ハードウェア障害</td>
+<td>HW エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">57</td>
+<td>SCD コード</td>
+<td>'6' 媒体障害</td>
+<td>媒体異常</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">58</td>
+<td>SCD コード</td>
+<td>'7' クリーニング要求</td>
+<td>Cleaning Required</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">59</td>
+<td>SCD コード</td>
+<td>'8' インターフェース障害</td>
+<td>SAS I/F 問題</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">60</td>
+<td>SCD コード</td>
+<td>'9' SAS ポート障害</td>
+<td>ポート障害</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">61</td>
+<td>SCD コード</td>
+<td>'A' 自己診断中</td>
+<td>Self-Test 実行中</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">62</td>
+<td>SCD コード</td>
+<td>'C' CC 期限切れ</td>
+<td>クリーニング・カートリッジ期限満了</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">63</td>
+<td>SCD コード</td>
+<td>'E' 書き込み失敗</td>
+<td>Write Error</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">64</td>
+<td>SCD コード</td>
+<td>'P' Encryption Read Error</td>
+<td>暗号鍵不足等で復号不可</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">65</td>
+<td>SCD コード</td>
+<td>'U' ファーム更新中</td>
+<td>Firmware Update 進行中</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">66</td>
+<td>SCD コード</td>
+<td>SCD ドット = ダンプ未取得</td>
+<td>ドライブ・ダンプ存在</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">67</td>
+<td>保守メニュー</td>
+<td>進入手順 (Unload 長押し)</td>
+<td>Unload 長押し→SCD で機能 No 選択→Unload で決定</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">68</td>
+<td>保守メニュー</td>
+<td>機能 1: Drive Dump 強制採取</td>
+<td>内部ダンプ取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">69</td>
+<td>保守メニュー</td>
+<td>機能 2: ファーム更新 (FMR Tape)</td>
+<td>FMR Tape 経由更新</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">70</td>
+<td>保守メニュー</td>
+<td>機能 3: FMR Tape 作成</td>
+<td>空 LTO 媒体を FMR 化</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">71</td>
+<td>保守メニュー</td>
+<td>機能 4: ドライブ Self-Test</td>
+<td>ドライブ単体テスト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">72</td>
+<td>保守メニュー</td>
+<td>機能 5: ヘッド・テスト</td>
+<td>ヘッド機構テスト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">73</td>
+<td>保守メニュー</td>
+<td>機能 6: 書き込みテスト</td>
+<td>スクラッチ媒体使用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">74</td>
+<td>保守メニュー</td>
+<td>機能 7: SCSI/SAS バス・テスト</td>
+<td>I/F バステスト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">75</td>
+<td>保守メニュー</td>
+<td>機能 8: ベンダー固有テスト</td>
+<td>内部診断</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">76</td>
+<td>保守メニュー</td>
+<td>機能 9: ダンプ→USB</td>
+<td>USB に Drive Dump 書出</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">77</td>
+<td>保守メニュー</td>
+<td>機能 A: SAS ポート診断</td>
+<td>SAS 診断</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">78</td>
+<td>保守メニュー</td>
+<td>終了 (Cancel)</td>
+<td>Unload 連打 or タイムアウト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">79</td>
+<td>カートリッジ操作</td>
+<td>カートリッジ挿入 (前面スロット)</td>
+<td>正しい向きで挿入</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">80</td>
+<td>カートリッジ操作</td>
+<td>自動ロード</td>
+<td>挿入で自動ロード</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">81</td>
+<td>カートリッジ操作</td>
+<td>Unload 操作と Eject</td>
+<td>巻き戻し→排出</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">82</td>
+<td>電源投入</td>
+<td>Power-On 手順</td>
+<td>電源 ON → POST → SCD '0'</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">83</td>
+<td>電源投入</td>
+<td>Force Power-Off (Power 長押し 4 秒)</td>
+<td>ハングアップ時のフォース OFF</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">84</td>
+<td>電源投入</td>
+<td>電源 OFF 前のアンロード推奨</td>
+<td>媒体損傷リスク回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">85</td>
+<td>ファームウェア</td>
+<td>FMR Tape 作成方法</td>
+<td>保守機能 3</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">86</td>
+<td>ファームウェア</td>
+<td>FMR Tape 経由更新</td>
+<td>保守機能 2</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">87</td>
+<td>ファームウェア</td>
+<td>ITDT 経由更新</td>
+<td>IBM Tape Diagnostic Tool</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">88</td>
+<td>ファームウェア</td>
+<td>バージョン確認</td>
+<td>ITDT or オペパネ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">89</td>
+<td>ファームウェア</td>
+<td>更新前のカートリッジ取出</td>
+<td>事前アンロード必須</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">90</td>
+<td>ファームウェア</td>
+<td>更新失敗時のリカバリ</td>
+<td>Force POR + 再 FMR</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">91</td>
+<td>ファームウェア</td>
+<td>ベンダー署名チェック</td>
+<td>署名付ファームのみ受理</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">259</td>
+<td>ホスト I/F SAS</td>
+<td>SAS Mini-SAS HD (SFF-8644)</td>
+<td>コネクタ規格</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">260</td>
+<td>ホスト I/F SAS</td>
+<td>SAS 1.0 / 2.0 / 3.0 互換</td>
+<td>レイヤ仕様</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">261</td>
+<td>ホスト I/F SAS</td>
+<td>SAS Multi-Initiator (ホスト 2 系統)</td>
+<td>2 ホスト接続</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">262</td>
+<td>ホスト I/F SAS</td>
+<td>SAS Topology (Point-to-Point)</td>
+<td>Point-to-Point</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">263</td>
+<td>ホスト I/F SAS</td>
+<td>SAS Persistent Reservations</td>
+<td>予約管理</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">264</td>
+<td>ホスト I/F SAS</td>
+<td>SAS HBA との互換性確認</td>
+<td>互換マトリクス</td>
+<td>TS2280DOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>カートリッジ管理 (TS2280) （39 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>サブカテゴリ</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">92</td>
+<td>LTO 世代</td>
+<td>LTO-8 媒体 R/W</td>
+<td>12 TB / 30 TB(圧縮)</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">93</td>
+<td>LTO 世代</td>
+<td>LTO-7 媒体 R/W</td>
+<td>6 TB / 15 TB(圧縮)</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">94</td>
+<td>LTO 世代</td>
+<td>LTO-6 媒体 RO</td>
+<td>読み取り専用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">95</td>
+<td>LTO 世代</td>
+<td>LTO-5 以下 非対応</td>
+<td>非サポート世代</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">96</td>
+<td>Type-M</td>
+<td>新規 LTO-7 を Type-M 化</td>
+<td>LTO-8 ドライブで 9 TB 化</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">97</td>
+<td>Type-M</td>
+<td>Type-M 化条件: 未書込み LTO-7</td>
+<td>書込み済は不可</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">98</td>
+<td>Type-M</td>
+<td>Type-M ラベル運用</td>
+<td>別ラベル運用推奨</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">99</td>
+<td>Type-M</td>
+<td>LTO-7 ドライブには戻せない</td>
+<td>LTO-8 専用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td>WORM</td>
+<td>LTO-8 WORM 媒体</td>
+<td>改ざん防止</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td>WORM</td>
+<td>WORM 媒体識別 (灰色シェル)</td>
+<td>シェル色で識別</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">102</td>
+<td>WORM</td>
+<td>WORM への Append のみ</td>
+<td>上書き不可</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">103</td>
+<td>WORM</td>
+<td>WORM の用途 (コンプライアンス)</td>
+<td>SEC 17a-4 等</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">104</td>
+<td>クリーニング</td>
+<td>LTO Universal Cleaning Cartridge</td>
+<td>ヘッド清掃</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">105</td>
+<td>クリーニング</td>
+<td>クリーニング推奨タイミング</td>
+<td>Cleaning LED 点滅時</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">106</td>
+<td>クリーニング</td>
+<td>CC 使用回数管理 (50 回上限目安)</td>
+<td>残数管理</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">107</td>
+<td>クリーニング</td>
+<td>SCD 'C' = CC 期限切れ</td>
+<td>期限切れ通知</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">108</td>
+<td>ラベル</td>
+<td>VOLSER 6 文字 + L8 等識別子</td>
+<td>Code 39</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">109</td>
+<td>ラベル</td>
+<td>L8/L7/LU 識別子</td>
+<td>世代/CC 識別</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">110</td>
+<td>ラベル</td>
+<td>ラベル接着位置 (右上凹部)</td>
+<td>規定位置</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">111</td>
+<td>ラベル</td>
+<td>反射率/余白要件</td>
+<td>Code 39 仕様</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">112</td>
+<td>MAM</td>
+<td>LTO-8 MAM 容量 16 KB</td>
+<td>非接触 RFID</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">113</td>
+<td>MAM</td>
+<td>MAM Volume Statistics</td>
+<td>Load Count / R-W Errors / Capacity</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">114</td>
+<td>MAM</td>
+<td>MAM Tape Alert ログ</td>
+<td>内部記録</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">115</td>
+<td>MAM</td>
+<td>MAM 内 PWWN/世代情報</td>
+<td>固有情報</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">116</td>
+<td>媒体寿命</td>
+<td>ロード回数監視 (20,000 回目安)</td>
+<td>ベンダー仕様</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">117</td>
+<td>媒体寿命</td>
+<td>保管温湿度 (16〜32°C / 20〜80%)</td>
+<td>長期保管環境</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">118</td>
+<td>媒体寿命</td>
+<td>媒体ライフ 30 年</td>
+<td>適切保管時</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">119</td>
+<td>媒体寿命</td>
+<td>TapeAlert 52/53 で交換判定</td>
+<td>Tape Now / Soon</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">120</td>
+<td>媒体寿命</td>
+<td>スクラッチ化と再使用</td>
+<td>消去再利用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">265</td>
+<td>媒体ハンドリング</td>
+<td>媒体落下回避ハンドリング</td>
+<td>落下回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">266</td>
+<td>媒体ハンドリング</td>
+<td>媒体清浄環境保管</td>
+<td>ダスト回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">267</td>
+<td>媒体ハンドリング</td>
+<td>媒体磁場回避 (4 kA/m 以下)</td>
+<td>磁場回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">268</td>
+<td>媒体ハンドリング</td>
+<td>媒体水濡れ厳禁</td>
+<td>水分回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">269</td>
+<td>媒体ハンドリング</td>
+<td>媒体大気変動による結露注意</td>
+<td>結露注意</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">270</td>
+<td>媒体ハンドリング</td>
+<td>媒体直射日光回避</td>
+<td>紫外線回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">271</td>
+<td>媒体ハンドリング</td>
+<td>運搬時の振動回避</td>
+<td>振動回避</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">272</td>
+<td>媒体ハンドリング</td>
+<td>媒体長期保管時の Re-tension 必要性</td>
+<td>Re-tension</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">273</td>
+<td>媒体ハンドリング</td>
+<td>媒体ラベル剥がれ防止</td>
+<td>ラベル管理</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">274</td>
+<td>媒体ハンドリング</td>
+<td>媒体使い回し時の媒体識別</td>
+<td>識別管理</td>
+<td>TS2280DOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ドライブ管理 (TS2280) （32 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>サブカテゴリ</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">121</td>
+<td>ファーム更新</td>
+<td>FMR Tape 経由</td>
+<td>オペパネ機能 2</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">122</td>
+<td>ファーム更新</td>
+<td>ITDT 経由</td>
+<td>GUI/CLI</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">123</td>
+<td>ファーム更新</td>
+<td>ホスト OS 別ベンダー・ツール</td>
+<td>Atape/lin_tape 等</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">124</td>
+<td>ファーム更新</td>
+<td>互換性マトリクス確認</td>
+<td>媒体/ドライブ/ドライバ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">125</td>
+<td>ファーム更新</td>
+<td>Recommended Firmware Level</td>
+<td>Fix Central 公開</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">126</td>
+<td>設定</td>
+<td>データ圧縮 ON/OFF</td>
+<td>Compression Default</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">127</td>
+<td>設定</td>
+<td>暗号化方式 LME/AME/SME</td>
+<td>切替</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">128</td>
+<td>設定</td>
+<td>SAS ID 自動割当</td>
+<td>設定不要</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">129</td>
+<td>設定</td>
+<td>RAO 有効化</td>
+<td>LTO-8 機能</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">130</td>
+<td>ログ収集</td>
+<td>Drive Dump (機能 1)</td>
+<td>内部ダンプ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">131</td>
+<td>ログ収集</td>
+<td>Dump → USB (機能 9)</td>
+<td>USB へ書出</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">132</td>
+<td>ログ収集</td>
+<td>ITDT リモート・ダンプ</td>
+<td>ホスト経由</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">133</td>
+<td>ログ収集</td>
+<td>Sense Data (KEY/ASC/ASCQ)</td>
+<td>syslog 確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">134</td>
+<td>ログ収集</td>
+<td>Log Sense Page 0x17 Volume Stats</td>
+<td>媒体毎統計</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">135</td>
+<td>ログ収集</td>
+<td>Log Sense Page 0x2E TapeAlert</td>
+<td>TapeAlert 取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">136</td>
+<td>ログ収集</td>
+<td>Log Sense Page 0x06 Drive Stats</td>
+<td>累計統計</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">137</td>
+<td>ログ収集</td>
+<td>Log Sense Page 0x37 Drive Dump</td>
+<td>SCSI 経由ダンプ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">275</td>
+<td>SCSI コマンド</td>
+<td>SCSI READ (08)</td>
+<td>READ コマンド</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">276</td>
+<td>SCSI コマンド</td>
+<td>SCSI WRITE (0A)</td>
+<td>WRITE コマンド</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">277</td>
+<td>SCSI コマンド</td>
+<td>SCSI WRITE FILEMARKS (10)</td>
+<td>FM 書込</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">278</td>
+<td>SCSI コマンド</td>
+<td>SCSI SPACE (11)</td>
+<td>Skip</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">279</td>
+<td>SCSI コマンド</td>
+<td>SCSI READ POSITION (34)</td>
+<td>位置取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">280</td>
+<td>SCSI コマンド</td>
+<td>SCSI LOCATE (2B)</td>
+<td>位置決め</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">281</td>
+<td>SCSI コマンド</td>
+<td>SCSI LOAD/UNLOAD (1B)</td>
+<td>Load/Unload</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">282</td>
+<td>SCSI コマンド</td>
+<td>SCSI ERASE (19)</td>
+<td>消去</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">283</td>
+<td>SCSI コマンド</td>
+<td>SCSI MODE SENSE (1A/5A)</td>
+<td>Mode 取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">284</td>
+<td>SCSI コマンド</td>
+<td>SCSI MODE SELECT (15/55)</td>
+<td>Mode 設定</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">285</td>
+<td>SCSI コマンド</td>
+<td>SCSI LOG SENSE (4D)</td>
+<td>Log 取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">286</td>
+<td>SCSI コマンド</td>
+<td>SCSI INQUIRY (12)</td>
+<td>INQUIRY</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">287</td>
+<td>SCSI コマンド</td>
+<td>SCSI TEST UNIT READY (00)</td>
+<td>TUR</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">288</td>
+<td>SCSI コマンド</td>
+<td>SCSI REPORT LUNS (A0)</td>
+<td>LUN 列挙</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">289</td>
+<td>SCSI コマンド</td>
+<td>SCSI SECURITY PROTOCOL IN/OUT (A2/B5)</td>
+<td>暗号化鍵</td>
+<td>TS2280DOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ホスト連携 (TS2280) （54 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>サブカテゴリ</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">138</td>
+<td>Linux</td>
+<td>st ドライバ (/dev/st0)</td>
+<td>Linux 標準 SCSI tape</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">139</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 status</td>
+<td>状態取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">140</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 rewind</td>
+<td>巻き戻し</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">141</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 erase</td>
+<td>媒体消去</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">142</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 offline</td>
+<td>オフライン化(Eject)</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">143</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 setblk N</td>
+<td>ブロックサイズ設定</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">144</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 fsf N</td>
+<td>フォワード Skip N File</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">145</td>
+<td>Linux</td>
+<td>mt -f /dev/st0 bsf N</td>
+<td>バック Skip N File</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">146</td>
+<td>Linux</td>
+<td>/dev/stN (rewind) vs /dev/nstN (no rewind)</td>
+<td>デバイス命名</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">147</td>
+<td>Linux</td>
+<td>lsscsi -g で /dev/sgN 確認</td>
+<td>Generic デバイス確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">148</td>
+<td>Linux</td>
+<td>IBM lin_tape ドライバ</td>
+<td>/dev/IBMtapeN を提供</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">149</td>
+<td>Linux</td>
+<td>lin_taped デーモン</td>
+<td>ドライバ常駐</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">150</td>
+<td>Linux</td>
+<td>cat /proc/scsi/IBMtape</td>
+<td>認識確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">151</td>
+<td>Linux</td>
+<td>tapeutil ツール (IBM)</td>
+<td>TUI/CLI</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">152</td>
+<td>Linux</td>
+<td>sg_inq /dev/sgN</td>
+<td>INQUIRY 確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">153</td>
+<td>Linux</td>
+<td>SAS HBA 認識 (dmesg)</td>
+<td>起動ログ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">154</td>
+<td>Linux LTFS</td>
+<td>mkltfs -d /dev/IBMtape0 -s VOL001</td>
+<td>LTFS フォーマット</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">155</td>
+<td>Linux LTFS</td>
+<td>ltfs -o devname=/dev/IBMtape0 /mnt/ltfs</td>
+<td>マウント</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">156</td>
+<td>Linux LTFS</td>
+<td>ltfsck -o /dev/IBMtape0</td>
+<td>LTFS チェック</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">157</td>
+<td>Linux LTFS</td>
+<td>umount /mnt/ltfs</td>
+<td>アンマウント</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">158</td>
+<td>Linux LTFS</td>
+<td>ltfs バージョン (SDE / LE+)</td>
+<td>Edition の選択</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">159</td>
+<td>AIX</td>
+<td>Atape ドライバ</td>
+<td>AIX 用 IBM ドライバ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">160</td>
+<td>AIX</td>
+<td>cfgmgr で /dev/rmt* 認識</td>
+<td>Atape 後に cfgmgr</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">161</td>
+<td>AIX</td>
+<td>/dev/rmt0/.1/.../.7 (mode/density)</td>
+<td>モード付デバイス</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">162</td>
+<td>AIX</td>
+<td>tctl -f /dev/rmt0 rewind</td>
+<td>巻き戻し</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">163</td>
+<td>AIX</td>
+<td>tctl -f /dev/rmt0 erase</td>
+<td>消去</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">164</td>
+<td>AIX</td>
+<td>tctl -f /dev/rmt0 offline</td>
+<td>オフライン化</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">165</td>
+<td>AIX</td>
+<td>tapeutil -f /dev/rmt0</td>
+<td>AIX 版 tapeutil</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">166</td>
+<td>AIX</td>
+<td>mksysb -f /dev/rmt0</td>
+<td>システム・バックアップ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">167</td>
+<td>AIX</td>
+<td>backup -f /dev/rmt0</td>
+<td>backup コマンド</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">168</td>
+<td>AIX</td>
+<td>restore -xvf /dev/rmt0</td>
+<td>restore コマンド</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">169</td>
+<td>Windows</td>
+<td>IBM Tape Device Driver (Win)</td>
+<td>Windows IBM ドライバ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">170</td>
+<td>Windows</td>
+<td>デバイスマネージャでテープ確認</td>
+<td>認識確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">171</td>
+<td>Windows</td>
+<td>ITDT (Windows GUI)</td>
+<td>管理ツール</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">172</td>
+<td>Windows</td>
+<td>Windows Backup / 3rd Party</td>
+<td>NTBackup/Veeam/CommVault</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">173</td>
+<td>Solaris</td>
+<td>IBMtape (Solaris) ドライバ</td>
+<td>Solaris 用</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">174</td>
+<td>BU 製品</td>
+<td>IBM Spectrum Protect (TSM)</td>
+<td>Device Class LTO 定義</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">175</td>
+<td>BU 製品</td>
+<td>IBM Spectrum Archive (LTFS)</td>
+<td>LE/LE+ ファイル・ストア</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">176</td>
+<td>BU 製品</td>
+<td>Veritas NetBackup</td>
+<td>STU 登録</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">177</td>
+<td>BU 製品</td>
+<td>Veeam Backup &amp; Replication</td>
+<td>Tape Server</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">178</td>
+<td>BU 製品</td>
+<td>CommVault</td>
+<td>Library 検出/MA 設定</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">179</td>
+<td>z/OS</td>
+<td>z/OS 直結用途は限定</td>
+<td>通常 TS7770 経由</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">180</td>
+<td>z/OS</td>
+<td>USS から mt 相当ユーティリティ</td>
+<td>OMVS 経由</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">181</td>
+<td>z/OS</td>
+<td>DFSMSrmm 直接管理対象外が一般的</td>
+<td>Open systems 中心</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">290</td>
+<td>Linux 詳細</td>
+<td>modinfo st</td>
+<td>st モジュール情報</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">291</td>
+<td>Linux 詳細</td>
+<td>modprobe st</td>
+<td>モジュール読込</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">292</td>
+<td>Linux 詳細</td>
+<td>udev rule (persistent name)</td>
+<td>persistent 命名</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">293</td>
+<td>Linux 詳細</td>
+<td>tar -cvf /dev/nst0 ...</td>
+<td>tar 出力</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">294</td>
+<td>Linux 詳細</td>
+<td>tar -xvf /dev/nst0 ...</td>
+<td>tar 入力</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">295</td>
+<td>Linux 詳細</td>
+<td>dd if=/dev/zero of=/dev/nst0 bs=64k</td>
+<td>R/W テスト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">296</td>
+<td>Linux 詳細</td>
+<td>sg_logs --page=0x17 /dev/sgN</td>
+<td>Vol Stats</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">297</td>
+<td>Linux 詳細</td>
+<td>sg_logs --page=0x2E /dev/sgN</td>
+<td>TapeAlert</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">298</td>
+<td>Linux 詳細</td>
+<td>sg_read_attr /dev/sgN</td>
+<td>Read Attribute</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">299</td>
+<td>Linux 詳細</td>
+<td>sg_write_buffer (Drive Dump)</td>
+<td>Drive Dump</td>
+<td>TS2280DOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>診断・保守 (TS2280) （79 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>サブカテゴリ</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">182</td>
+<td>TapeAlert</td>
+<td>Flag 01 Read Warning</td>
+<td>低リード品質警告</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">183</td>
+<td>TapeAlert</td>
+<td>Flag 02 Write Warning</td>
+<td>低ライト品質警告</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">184</td>
+<td>TapeAlert</td>
+<td>Flag 03 Hard Error</td>
+<td>ハード・エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">185</td>
+<td>TapeAlert</td>
+<td>Flag 04 Media</td>
+<td>媒体エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">186</td>
+<td>TapeAlert</td>
+<td>Flag 05 Read Failure</td>
+<td>読み取り失敗</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">187</td>
+<td>TapeAlert</td>
+<td>Flag 06 Write Failure</td>
+<td>書き込み失敗</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">188</td>
+<td>TapeAlert</td>
+<td>Flag 07 Media Life</td>
+<td>媒体寿命接近</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">189</td>
+<td>TapeAlert</td>
+<td>Flag 08 Not Data Grade</td>
+<td>非データグレード</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">190</td>
+<td>TapeAlert</td>
+<td>Flag 09 Write Protect</td>
+<td>書込禁止媒体</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">191</td>
+<td>TapeAlert</td>
+<td>Flag 10 No Removal</td>
+<td>取り出し不可</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">192</td>
+<td>TapeAlert</td>
+<td>Flag 11 Cleaning Media</td>
+<td>CC 検出</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">193</td>
+<td>TapeAlert</td>
+<td>Flag 12 Unsupported Format</td>
+<td>非対応フォーマット</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">194</td>
+<td>TapeAlert</td>
+<td>Flag 13 Recoverable Snapped</td>
+<td>回復可能テープ切れ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">195</td>
+<td>TapeAlert</td>
+<td>Flag 14 Unrecoverable Snapped</td>
+<td>回復不能テープ切れ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">196</td>
+<td>TapeAlert</td>
+<td>Flag 15 MAM Failure</td>
+<td>MAM 障害</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">197</td>
+<td>TapeAlert</td>
+<td>Flag 16 Forced Eject</td>
+<td>フォース・イジェクト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">198</td>
+<td>TapeAlert</td>
+<td>Flag 17 Read Only Format</td>
+<td>RO フォーマット</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">199</td>
+<td>TapeAlert</td>
+<td>Flag 18 Directory Corrupted</td>
+<td>ディレクトリ破損</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">200</td>
+<td>TapeAlert</td>
+<td>Flag 19 Nearing Media Life</td>
+<td>媒体寿命接近</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">201</td>
+<td>TapeAlert</td>
+<td>Flag 20 Clean Now</td>
+<td>即時クリーニング</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">202</td>
+<td>TapeAlert</td>
+<td>Flag 21 Clean Periodic</td>
+<td>定期クリーニング</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">203</td>
+<td>TapeAlert</td>
+<td>Flag 22 Expired Cleaning Media</td>
+<td>CC 期限切れ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">204</td>
+<td>TapeAlert</td>
+<td>Flag 23 Invalid Cleaning Tape</td>
+<td>非対応 CC</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">205</td>
+<td>TapeAlert</td>
+<td>Flag 30 Hardware A</td>
+<td>HW エラー A</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">206</td>
+<td>TapeAlert</td>
+<td>Flag 31 Hardware B</td>
+<td>HW エラー B</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">207</td>
+<td>TapeAlert</td>
+<td>Flag 32 Interface</td>
+<td>I/F 問題</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">208</td>
+<td>TapeAlert</td>
+<td>Flag 33 Eject Media</td>
+<td>媒体排出推奨</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">209</td>
+<td>TapeAlert</td>
+<td>Flag 34 Download Fail</td>
+<td>ファーム更新失敗</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">210</td>
+<td>TapeAlert</td>
+<td>Flag 35 Drive Humidity</td>
+<td>湿度警告</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">211</td>
+<td>TapeAlert</td>
+<td>Flag 36 Drive Temperature</td>
+<td>温度警告</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">212</td>
+<td>TapeAlert</td>
+<td>Flag 37 Drive Voltage</td>
+<td>電源電圧異常</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">213</td>
+<td>TapeAlert</td>
+<td>Flag 38 Predictive Failure</td>
+<td>予兆障害</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">214</td>
+<td>TapeAlert</td>
+<td>Flag 39 Diagnostics Required</td>
+<td>診断要求</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">215</td>
+<td>TapeAlert</td>
+<td>Flag 51 Tape Directory Invalid</td>
+<td>ディレクトリ無効</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">216</td>
+<td>TapeAlert</td>
+<td>Flag 52 Tape Now (Replace)</td>
+<td>直ちに媒体交換</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">217</td>
+<td>TapeAlert</td>
+<td>Flag 53 Tape Soon</td>
+<td>近日交換</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">218</td>
+<td>TapeAlert</td>
+<td>Flag 54 Cleaning Cartridge Expired</td>
+<td>CC 期限切れ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">219</td>
+<td>TapeAlert</td>
+<td>Flag 55 Invalid Cleaning Tape</td>
+<td>CC 種別違反</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">220</td>
+<td>ITDT</td>
+<td>ITDT 入手 (Fix Central)</td>
+<td>IBM Fix Central</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">221</td>
+<td>ITDT</td>
+<td>ITDT GUI 起動</td>
+<td>ドライブ一覧表示</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">222</td>
+<td>ITDT</td>
+<td>ITDT CLI (itdt) 起動</td>
+<td>コマンドライン</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">223</td>
+<td>ITDT</td>
+<td>itdt list</td>
+<td>接続ドライブ列挙</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">224</td>
+<td>ITDT</td>
+<td>itdt logsense</td>
+<td>Log Sense ページ取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">225</td>
+<td>ITDT</td>
+<td>itdt dump</td>
+<td>Drive Dump 取得</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">226</td>
+<td>ITDT</td>
+<td>itdt fwupdate</td>
+<td>ファーム更新</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">227</td>
+<td>ITDT</td>
+<td>itdt test (R/W Self Test)</td>
+<td>テスト・スイート</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">228</td>
+<td>ITDT</td>
+<td>itdt rdwr (Read/Write Loop)</td>
+<td>R/W ストレス</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">229</td>
+<td>ITDT</td>
+<td>結果ログ保存 (.txt/.zip)</td>
+<td>保存形式</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">230</td>
+<td>Sense Data</td>
+<td>Sense Key 0x03 Medium Error</td>
+<td>媒体エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">231</td>
+<td>Sense Data</td>
+<td>Sense Key 0x04 Hardware Error</td>
+<td>HW エラー</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">232</td>
+<td>Sense Data</td>
+<td>Sense Key 0x05 Illegal Request</td>
+<td>不正リクエスト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">233</td>
+<td>Sense Data</td>
+<td>Sense Key 0x06 Unit Attention</td>
+<td>Unit Attention</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">234</td>
+<td>Sense Data</td>
+<td>Sense Key 0x08 Blank Check</td>
+<td>ブランク検出</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">235</td>
+<td>Sense Data</td>
+<td>Sense Key 0x0B Aborted Command</td>
+<td>コマンド中断</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">236</td>
+<td>Sense Data</td>
+<td>ASC/ASCQ 一覧の参照</td>
+<td>SCSI 規格 + IBM 補足</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">237</td>
+<td>保守作業</td>
+<td>FRU リスト</td>
+<td>ドライブ/電源/SAS 基板</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">238</td>
+<td>保守作業</td>
+<td>ホット・スワップ不可</td>
+<td>電源 OFF 必須</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">239</td>
+<td>保守作業</td>
+<td>ホスト I/O Quiesce</td>
+<td>保守前</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">240</td>
+<td>保守作業</td>
+<td>Call Home なし</td>
+<td>TS2280 単体は非対応</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">241</td>
+<td>暗号化</td>
+<td>LME (Library Managed)</td>
+<td>ライブラリ統合時のみ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">242</td>
+<td>暗号化</td>
+<td>AME (Application Managed)</td>
+<td>アプリ供給鍵</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">243</td>
+<td>暗号化</td>
+<td>SME (System Managed)</td>
+<td>z/OS EKM 経由</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">244</td>
+<td>暗号化</td>
+<td>SKLM (KMIP)</td>
+<td>KMIP 経由鍵管理</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">245</td>
+<td>暗号化</td>
+<td>AES-256-GCM HW エンジン</td>
+<td>内蔵エンジン</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">246</td>
+<td>暗号化</td>
+<td>暗号化対応世代 LTO-4 以降</td>
+<td>LTO-4 以降</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">247</td>
+<td>暗号化</td>
+<td>鍵 ID と媒体の紐付け</td>
+<td>媒体毎の鍵 ID</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">248</td>
+<td>暗号化</td>
+<td>SCD 'P' 表示時の対処</td>
+<td>鍵パス確認</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">300</td>
+<td>FSC コード</td>
+<td>FSC (Fault Symptom Code) 体系</td>
+<td>内部コード</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">301</td>
+<td>FSC コード</td>
+<td>FSC 検索方法 (Drive Dump 内)</td>
+<td>ダンプ内検索</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">302</td>
+<td>FSC コード</td>
+<td>FSC と Sense Data の対応</td>
+<td>対応関係</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">303</td>
+<td>FSC コード</td>
+<td>FSC リカバリ手順</td>
+<td>リカバリ</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">304</td>
+<td>BU 製品連携</td>
+<td>TSM define devclass devtype=lto format=ultrium8c</td>
+<td>TSM LTO-8 圧縮</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">305</td>
+<td>BU 製品連携</td>
+<td>TSM define drive lto-drv1 device=/dev/IBMtape0</td>
+<td>TSM Drive</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">306</td>
+<td>BU 製品連携</td>
+<td>TSM checkin libvolume search=yes</td>
+<td>媒体チェックイン</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">307</td>
+<td>BU 製品連携</td>
+<td>TSM checkout libvolume</td>
+<td>媒体チェックアウト</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">308</td>
+<td>BU 製品連携</td>
+<td>TSM label libvolume search=yes</td>
+<td>ラベル付与</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">309</td>
+<td>BU 製品連携</td>
+<td>TSM query libvolume</td>
+<td>ライブラリ状態</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">310</td>
+<td>BU 製品連携</td>
+<td>TSM query drive</td>
+<td>ドライブ状態</td>
+<td>TS2280DOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">311</td>
+<td>BU 製品連携</td>
+<td>TSM query path</td>
+<td>パス状態</td>
+<td>TS2280DOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

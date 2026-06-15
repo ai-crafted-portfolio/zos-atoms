@@ -12,29 +12,31 @@
         <meta name="author" content="ai-crafted-portfolio">
       
       
-        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/">
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv01/">
       
       
+        <link rel="prev" href="../">
       
-        <link rel="next" href="breakdown/zos-v3/">
+      
+        <link rel="next" href="../lv02/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>z/OS 技術項目細分化ガイド</title>
+        <title>IPL とロード （139 件） - z/OS 技術項目細分化ガイド</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#zos" class="md-skip">
+        <a href="#ipl" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ホーム
+              IPL とロード （139 件）
             
           </span>
         </div>
@@ -211,11 +213,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -236,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-v3/" class="md-tabs__link">
+        <a href="../../zos-v3/" class="md-tabs__link">
           
   
   
@@ -254,11 +254,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="breakdown/zos-sysprog/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -280,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/z16/" class="md-tabs__link">
+        <a href="../../z16/" class="md-tabs__link">
           
   
   
@@ -302,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/tape/" class="md-tabs__link">
+        <a href="../../tape/" class="md-tabs__link">
           
   
   
@@ -324,7 +326,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/aix-ksh/" class="md-tabs__link">
+        <a href="../../aix-ksh/" class="md-tabs__link">
           
   
   
@@ -346,7 +348,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/python/" class="md-tabs__link">
+        <a href="../../python/" class="md-tabs__link">
           
   
   
@@ -368,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/vscode/" class="md-tabs__link">
+        <a href="../../vscode/" class="md-tabs__link">
           
   
   
@@ -388,7 +390,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="breakdown/verification-sample/" class="md-tabs__link">
+      <a href="../../verification-sample/" class="md-tabs__link">
         
   
   
@@ -423,7 +425,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -438,37 +440,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ホーム
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -484,59 +459,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -615,7 +537,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-v3/" class="md-nav__link ">
+            <a href="../../zos-v3/" class="md-nav__link ">
               
   
   
@@ -659,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv01/" class="md-nav__link">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
         
   
   
@@ -687,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv02/" class="md-nav__link">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
         
   
   
@@ -715,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv03/" class="md-nav__link">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
         
   
   
@@ -743,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv04/" class="md-nav__link">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
         
   
   
@@ -771,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv05/" class="md-nav__link">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
         
   
   
@@ -799,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv06/" class="md-nav__link">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
         
   
   
@@ -827,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv07/" class="md-nav__link">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
         
   
   
@@ -855,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv08/" class="md-nav__link">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
         
   
   
@@ -883,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv09/" class="md-nav__link">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
         
   
   
@@ -911,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv10/" class="md-nav__link">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
         
   
   
@@ -939,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv11/" class="md-nav__link">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
         
   
   
@@ -967,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv12/" class="md-nav__link">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
         
   
   
@@ -995,7 +917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv13/" class="md-nav__link">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
         
   
   
@@ -1023,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv14/" class="md-nav__link">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
         
   
   
@@ -1051,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv15/" class="md-nav__link">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
         
   
   
@@ -1079,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv16/" class="md-nav__link">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
         
   
   
@@ -1107,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv17/" class="md-nav__link">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
         
   
   
@@ -1135,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv18/" class="md-nav__link">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
         
   
   
@@ -1163,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv19/" class="md-nav__link">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
         
   
   
@@ -1191,7 +1113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv20/" class="md-nav__link">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
         
   
   
@@ -1219,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv21/" class="md-nav__link">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
         
   
   
@@ -1247,7 +1169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv22/" class="md-nav__link">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
         
   
   
@@ -1279,6 +1201,8 @@
       
   
   
+    
+  
   
   
     
@@ -1320,20 +1244,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-sysprog/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1351,13 +1278,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1374,10 +1301,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv01/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1393,6 +1329,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1405,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv02/" class="md-nav__link">
+      <a href="../lv02/" class="md-nav__link">
         
   
   
@@ -1433,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv03/" class="md-nav__link">
+      <a href="../lv03/" class="md-nav__link">
         
   
   
@@ -1461,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv04/" class="md-nav__link">
+      <a href="../lv04/" class="md-nav__link">
         
   
   
@@ -1489,7 +1426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv05/" class="md-nav__link">
+      <a href="../lv05/" class="md-nav__link">
         
   
   
@@ -1517,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv06/" class="md-nav__link">
+      <a href="../lv06/" class="md-nav__link">
         
   
   
@@ -1545,7 +1482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv07/" class="md-nav__link">
+      <a href="../lv07/" class="md-nav__link">
         
   
   
@@ -1573,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv08/" class="md-nav__link">
+      <a href="../lv08/" class="md-nav__link">
         
   
   
@@ -1601,7 +1538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv09/" class="md-nav__link">
+      <a href="../lv09/" class="md-nav__link">
         
   
   
@@ -1629,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv10/" class="md-nav__link">
+      <a href="../lv10/" class="md-nav__link">
         
   
   
@@ -1657,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv11/" class="md-nav__link">
+      <a href="../lv11/" class="md-nav__link">
         
   
   
@@ -1685,7 +1622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv12/" class="md-nav__link">
+      <a href="../lv12/" class="md-nav__link">
         
   
   
@@ -1713,7 +1650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv13/" class="md-nav__link">
+      <a href="../lv13/" class="md-nav__link">
         
   
   
@@ -1741,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv14/" class="md-nav__link">
+      <a href="../lv14/" class="md-nav__link">
         
   
   
@@ -1823,7 +1760,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/z16/" class="md-nav__link ">
+            <a href="../../z16/" class="md-nav__link ">
               
   
   
@@ -1867,7 +1804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv01/" class="md-nav__link">
+      <a href="../../z16/lv01/" class="md-nav__link">
         
   
   
@@ -1895,7 +1832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv02/" class="md-nav__link">
+      <a href="../../z16/lv02/" class="md-nav__link">
         
   
   
@@ -1923,7 +1860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv03/" class="md-nav__link">
+      <a href="../../z16/lv03/" class="md-nav__link">
         
   
   
@@ -1951,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv04/" class="md-nav__link">
+      <a href="../../z16/lv04/" class="md-nav__link">
         
   
   
@@ -1979,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv05/" class="md-nav__link">
+      <a href="../../z16/lv05/" class="md-nav__link">
         
   
   
@@ -2007,7 +1944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv06/" class="md-nav__link">
+      <a href="../../z16/lv06/" class="md-nav__link">
         
   
   
@@ -2035,7 +1972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv07/" class="md-nav__link">
+      <a href="../../z16/lv07/" class="md-nav__link">
         
   
   
@@ -2063,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv08/" class="md-nav__link">
+      <a href="../../z16/lv08/" class="md-nav__link">
         
   
   
@@ -2091,7 +2028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv09/" class="md-nav__link">
+      <a href="../../z16/lv09/" class="md-nav__link">
         
   
   
@@ -2119,7 +2056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv10/" class="md-nav__link">
+      <a href="../../z16/lv10/" class="md-nav__link">
         
   
   
@@ -2147,7 +2084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv11/" class="md-nav__link">
+      <a href="../../z16/lv11/" class="md-nav__link">
         
   
   
@@ -2175,7 +2112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv12/" class="md-nav__link">
+      <a href="../../z16/lv12/" class="md-nav__link">
         
   
   
@@ -2239,7 +2176,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/tape/" class="md-nav__link ">
+            <a href="../../tape/" class="md-nav__link ">
               
   
   
@@ -2283,7 +2220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv01/" class="md-nav__link">
+      <a href="../../tape/lv01/" class="md-nav__link">
         
   
   
@@ -2311,7 +2248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv02/" class="md-nav__link">
+      <a href="../../tape/lv02/" class="md-nav__link">
         
   
   
@@ -2339,7 +2276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv03/" class="md-nav__link">
+      <a href="../../tape/lv03/" class="md-nav__link">
         
   
   
@@ -2419,7 +2356,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/aix-ksh/" class="md-nav__link ">
+            <a href="../../aix-ksh/" class="md-nav__link ">
               
   
   
@@ -2463,7 +2400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv01/" class="md-nav__link">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
         
   
   
@@ -2491,7 +2428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv02/" class="md-nav__link">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
         
   
   
@@ -2519,7 +2456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv03/" class="md-nav__link">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
         
   
   
@@ -2547,7 +2484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv04/" class="md-nav__link">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
         
   
   
@@ -2575,7 +2512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv05/" class="md-nav__link">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
         
   
   
@@ -2603,7 +2540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv06/" class="md-nav__link">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
         
   
   
@@ -2631,7 +2568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv07/" class="md-nav__link">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
         
   
   
@@ -2659,7 +2596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv08/" class="md-nav__link">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
         
   
   
@@ -2687,7 +2624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv09/" class="md-nav__link">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
         
   
   
@@ -2715,7 +2652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv10/" class="md-nav__link">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
         
   
   
@@ -2743,7 +2680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv11/" class="md-nav__link">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
         
   
   
@@ -2829,7 +2766,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/python/" class="md-nav__link ">
+            <a href="../../python/" class="md-nav__link ">
               
   
   
@@ -2873,7 +2810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv01/" class="md-nav__link">
+      <a href="../../python/lv01/" class="md-nav__link">
         
   
   
@@ -2901,7 +2838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv02/" class="md-nav__link">
+      <a href="../../python/lv02/" class="md-nav__link">
         
   
   
@@ -2929,7 +2866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv03/" class="md-nav__link">
+      <a href="../../python/lv03/" class="md-nav__link">
         
   
   
@@ -2957,7 +2894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv04/" class="md-nav__link">
+      <a href="../../python/lv04/" class="md-nav__link">
         
   
   
@@ -2985,7 +2922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv05/" class="md-nav__link">
+      <a href="../../python/lv05/" class="md-nav__link">
         
   
   
@@ -3013,7 +2950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv06/" class="md-nav__link">
+      <a href="../../python/lv06/" class="md-nav__link">
         
   
   
@@ -3041,7 +2978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv07/" class="md-nav__link">
+      <a href="../../python/lv07/" class="md-nav__link">
         
   
   
@@ -3069,7 +3006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv08/" class="md-nav__link">
+      <a href="../../python/lv08/" class="md-nav__link">
         
   
   
@@ -3097,7 +3034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv09/" class="md-nav__link">
+      <a href="../../python/lv09/" class="md-nav__link">
         
   
   
@@ -3125,7 +3062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv10/" class="md-nav__link">
+      <a href="../../python/lv10/" class="md-nav__link">
         
   
   
@@ -3153,7 +3090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv11/" class="md-nav__link">
+      <a href="../../python/lv11/" class="md-nav__link">
         
   
   
@@ -3181,7 +3118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv12/" class="md-nav__link">
+      <a href="../../python/lv12/" class="md-nav__link">
         
   
   
@@ -3209,7 +3146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv13/" class="md-nav__link">
+      <a href="../../python/lv13/" class="md-nav__link">
         
   
   
@@ -3237,7 +3174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv14/" class="md-nav__link">
+      <a href="../../python/lv14/" class="md-nav__link">
         
   
   
@@ -3323,7 +3260,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/vscode/" class="md-nav__link ">
+            <a href="../../vscode/" class="md-nav__link ">
               
   
   
@@ -3367,7 +3304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv01/" class="md-nav__link">
+      <a href="../../vscode/lv01/" class="md-nav__link">
         
   
   
@@ -3395,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv02/" class="md-nav__link">
+      <a href="../../vscode/lv02/" class="md-nav__link">
         
   
   
@@ -3423,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv03/" class="md-nav__link">
+      <a href="../../vscode/lv03/" class="md-nav__link">
         
   
   
@@ -3451,7 +3388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv04/" class="md-nav__link">
+      <a href="../../vscode/lv04/" class="md-nav__link">
         
   
   
@@ -3479,7 +3416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv05/" class="md-nav__link">
+      <a href="../../vscode/lv05/" class="md-nav__link">
         
   
   
@@ -3507,7 +3444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv06/" class="md-nav__link">
+      <a href="../../vscode/lv06/" class="md-nav__link">
         
   
   
@@ -3535,7 +3472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv07/" class="md-nav__link">
+      <a href="../../vscode/lv07/" class="md-nav__link">
         
   
   
@@ -3563,7 +3500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv08/" class="md-nav__link">
+      <a href="../../vscode/lv08/" class="md-nav__link">
         
   
   
@@ -3591,7 +3528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv09/" class="md-nav__link">
+      <a href="../../vscode/lv09/" class="md-nav__link">
         
   
   
@@ -3619,7 +3556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv10/" class="md-nav__link">
+      <a href="../../vscode/lv10/" class="md-nav__link">
         
   
   
@@ -3647,7 +3584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv11/" class="md-nav__link">
+      <a href="../../vscode/lv11/" class="md-nav__link">
         
   
   
@@ -3675,7 +3612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv12/" class="md-nav__link">
+      <a href="../../vscode/lv12/" class="md-nav__link">
         
   
   
@@ -3703,7 +3640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv13/" class="md-nav__link">
+      <a href="../../vscode/lv13/" class="md-nav__link">
         
   
   
@@ -3731,7 +3668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv14/" class="md-nav__link">
+      <a href="../../vscode/lv14/" class="md-nav__link">
         
   
   
@@ -3766,7 +3703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/verification-sample/" class="md-nav__link">
+      <a href="../../verification-sample/" class="md-nav__link">
         
   
   
@@ -3806,47 +3743,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3862,212 +3758,1088 @@
 
 
 
-<h1 id="zos">z/OS 技術項目細分化ガイド<a class="headerlink" href="#zos" title="Permanent link">&para;</a></h1>
-<p>z/OS を中心に、AIX・Python・VS Code・テープ系ハードウェア等の技術項目を細分化した技術リファレンスです。各製品を大分類 (Lv1) ごとのページにまとめ、中分類 (Lv2) 単位の折り畳みテーブルで技術項目・単一焦点要約・出典を一覧できます。</p>
-<p>画面右上の検索から全ページを横断的に全文検索できます。</p>
-<h2 id="_1">コンテンツ一覧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="ipl">IPL とロード<a class="headerlink" href="#ipl" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: z/OS System Programming ／ <strong>本ページ件数</strong>: 139 件 ／ <strong>出典区分</strong>: 初版（事前知識補完を含む）</p>
+<div class="admonition warning">
+<p class="admonition-title">初版コンテンツ</p>
+<p>本ページは初版です。一部の技術項目は一次資料（公式マニュアル・Redbook 等）
+との突合を予定しており、出典欄に「一次資料 突合予定」と表示される項目があります。
+内容は実機運用前に必ず最新の一次資料で確認してください。</p>
+</div>
+<details class="note" open="open">
+<summary>IPL 全般 （16 件）</summary>
 <table>
 <thead>
 <tr>
-<th>製品</th>
-<th style="text-align: right;">件数</th>
-<th>出典区分</th>
-<th>入口</th>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>z/OS 全体 (v3)</td>
-<td style="text-align: right;">13,762</td>
-<td>Redbook ingest 反映済 v3</td>
-<td><a href="breakdown/zos-v3/">概要</a></td>
+<td style="text-align: right;">1</td>
+<td>Cold Start (CLPA)</td>
+<td>PLPA/COMMON ページ・データセット再作成。LOADxx の SYSP に IEASYSxx 指定</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>z/OS System Programming</td>
-<td style="text-align: right;">1,804</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/zos-sysprog/">概要</a></td>
+<td style="text-align: right;">2</td>
+<td>Warm Start</td>
+<td>前回 IPL のページ・データセット内容引継ぎ</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>IBM z16 ハードウェア</td>
-<td style="text-align: right;">1,249</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/z16/">概要</a></td>
+<td style="text-align: right;">3</td>
+<td>Quick Start</td>
+<td>PLPA/COMMON 内容保持で短時間 IPL</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>テープ系 (TS2280 / TS4300 / TS7770)</td>
-<td style="text-align: right;">1,045</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/tape/">概要</a></td>
+<td style="text-align: right;">4</td>
+<td>CVIO (Clear VIO)</td>
+<td>VIO データセット全消去</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>AIX + ksh</td>
-<td style="text-align: right;">2,681</td>
-<td>書籍出典</td>
-<td><a href="breakdown/aix-ksh/">概要</a></td>
+<td style="text-align: right;">5</td>
+<td>CLPA (Create LPA)</td>
+<td>LPA ライブラリ再構築</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>Python</td>
-<td style="text-align: right;">1,774</td>
-<td>Python 公式ドキュメント出典</td>
-<td><a href="breakdown/python/">概要</a></td>
+<td style="text-align: right;">6</td>
+<td>Stand-Alone Dump (SAD)</td>
+<td>AMDSADMP で作成、システム障害時の IPL 可能ダンプ取得手段</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>VS Code</td>
-<td style="text-align: right;">2,042</td>
-<td>VS Code 公式ドキュメント出典</td>
-<td><a href="breakdown/vscode/">概要</a></td>
+<td style="text-align: right;">7</td>
+<td>Re-IPL</td>
+<td>RESET CLEAR / RESET NORMAL</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td>検証手順サンプル</td>
+<td style="text-align: right;">8</td>
+<td>Loadparm 入力</td>
+<td>HMC Load 画面で SCP / IODF サフィックス / NUC サフィックス / IMSI 指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td>IPL 装置アドレス</td>
+<td>Load address: 4 桁 16 進</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td>LOAD CLEAR</td>
+<td>主記憶クリア後 IPL</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">11</td>
+<td>LOAD NORMAL</td>
+<td>主記憶保持 IPL</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">12</td>
+<td>IODF サフィックス</td>
+<td>Loadparm 2 桁: 使用する IODF データセット指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">13</td>
+<td>SCP (System Catalog Pointer)</td>
+<td>Loadparm 1 桁、SYS1.NUCLEUS のサフィックス</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">14</td>
+<td>IMSI フィールド</td>
+<td>Loadparm 1 桁、operator interaction 指定 (M/A/D/N)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">15</td>
+<td>POR (Power-On Reset)</td>
+<td>IOCDS 切替を伴う CSS 初期化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">16</td>
+<td>BCPii IPL コマンド</td>
+<td>プログラムからの z/OS IPL/Load 制御</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>LOADxx （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">17</td>
+<td>LOADxx メンバ</td>
+<td>SYS0.IPLPARM または SYS1.PARMLIB に格納</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">18</td>
+<td>HWNAME</td>
+<td>ハードウェア名 (CPC 名)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">19</td>
+<td>LPARNAME</td>
+<td>LPAR 名指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">20</td>
+<td>VMUSERID</td>
+<td>z/VM ゲスト時のユーザ ID</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">21</td>
+<td>IODF ステートメント</td>
+<td>IODF サフィックス、データセット名、CONFIGID, EDT-ID, OS, MTYPE</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">22</td>
+<td>SYSCAT ステートメント</td>
+<td>マスターカタログ ボリューム + 名前指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">23</td>
+<td>SYSPARM ステートメント</td>
+<td>IEASYSxx 連結指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">24</td>
+<td>IEASYM ステートメント</td>
+<td>IEASYMxx 連結指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">25</td>
+<td>PARMLIB ステートメント</td>
+<td>並列 PARMLIB 連結 (10 個まで)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">26</td>
+<td>NUCLEUS ステートメント</td>
+<td>NUCLST 番号指定 (1-9)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">27</td>
+<td>NUCLST ステートメント</td>
+<td>個別モジュール除外/包含</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">28</td>
+<td>ARCHLVL ステートメント</td>
+<td>アーキテクチャ・レベル (2 or 3)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">29</td>
+<td>PROCVIEW ステートメント</td>
+<td>CPU 表示 (CPU / CORE)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">30</td>
+<td>SYSPLEX ステートメント</td>
+<td>シスプレックス名指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">31</td>
+<td>VRREGN ステートメント</td>
+<td>ジョブ既定 REGION サイズ</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">32</td>
+<td>PLEXCFG ステートメント</td>
+<td>MULTISYSTEM / MONOPLEX / XCFLOCAL / ANY</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>NIP （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">33</td>
+<td>IEAVNIP0</td>
+<td>NIP (Nucleus Initialization Program) エントリ</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">34</td>
+<td>NIP コンソール</td>
+<td>IPL 進行表示 + WTOR 応答</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">35</td>
+<td>NIP メッセージ IEA101A</td>
+<td>SPECIFY SYSTEM PARAMETERS WTOR</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">36</td>
+<td>NIP メッセージ IEA106A</td>
+<td>SPECIFY MASTER CATALOG</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">37</td>
+<td>NIP メッセージ IEA371I</td>
+<td>IEASYSxx keyword processed</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">38</td>
+<td>NIP メッセージ IEA194I</td>
+<td>IEASYSxx not found / merge</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">39</td>
+<td>NIP メッセージ IEE174I</td>
+<td>PLPA 再作成 / CLPA 結果</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">40</td>
+<td>NIP メッセージ IEA888I</td>
+<td>LPA-list error</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">41</td>
+<td>NIP メッセージ IEA995I</td>
+<td>SYMPTOM DUMP</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">42</td>
+<td>NIP wait state</td>
+<td>Disabled wait code (0A2 等)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">43</td>
+<td>NIP IGGCATxx</td>
+<td>カタログ環境初期化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">44</td>
+<td>NIP IEFSSNxx</td>
+<td>サブシステム定義処理</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">45</td>
+<td>NIP IXGCNFxx</td>
+<td>System Logger 初期化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">46</td>
+<td>NIP BPXPRMxx</td>
+<td>OMVS (USS) 初期化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">47</td>
+<td>NIP COFVLFxx</td>
+<td>VLF (Virtual Lookaside Facility) 初期化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">48</td>
+<td>NIP IFAPRDxx</td>
+<td>プロダクト登録</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Nucleus （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">49</td>
+<td>SYS1.NUCLEUS</td>
+<td>IEANUC0x モジュール格納</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
 <td style="text-align: right;">50</td>
-<td>実コンソールセッション再現</td>
-<td><a href="breakdown/verification-sample/">概要</a></td>
+<td>IEANUC01</td>
+<td>標準ニュークリアス・モジュール</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">51</td>
+<td>NUCLSTxx</td>
+<td>個別 nucleus モジュール 包含/除外指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">52</td>
+<td>RMOD ステートメント</td>
+<td>MIN を超える Real モジュール除外</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">53</td>
+<td>EXIT 除外</td>
+<td>ニュークリアスからのモジュール除外</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">54</td>
+<td>INCL 包含</td>
+<td>オプション・モジュール包含</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">信頼性区分の凡例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Redbook ingest 反映済 / 公式 docs 出典 / 書籍出典</strong>: 一次資料に基づく内容。</li>
-<li><strong>初版</strong>: 事前知識による補完を含み、一次資料との突合（再生成）を予定。出典欄に「一次資料 突合予定」と表示される項目が該当します。</li>
-</ul>
-<h2 id="_3">出典コード凡例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+</details>
+<details class="note">
+<summary>LPA （9 件）</summary>
 <table>
 <thead>
 <tr>
-<th>出典コード</th>
-<th>意味</th>
-<th>主な製品</th>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>(一次資料 突合予定)</code></td>
-<td>初版項目（一次資料との突合を予定）</td>
-<td>IBM z16、z/OS System Programming</td>
+<td style="text-align: right;">55</td>
+<td>LPA (Link Pack Area)</td>
+<td>高頻度モジュール共有領域</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>AIX1</code></td>
-<td>AIX システム管理 1（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">56</td>
+<td>PLPA (Pageable LPA)</td>
+<td>ページング可能 LPA</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>AIX2</code></td>
-<td>AIX システム管理 2（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">57</td>
+<td>MLPA (Modified LPA)</td>
+<td>IPL 時に追加した LPA モジュール</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>AIX73</code></td>
-<td>IBM AIX 7.3 公式マニュアル</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">58</td>
+<td>FLPA (Fixed LPA)</td>
+<td>実記憶固定 LPA、IEAFIXxx で指定</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>AS1</code></td>
-<td>アドバンスドスキル Vol.1（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">59</td>
+<td>DLPA (Dynamic LPA)</td>
+<td>SETPROG LPA で動的追加</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>AS2</code></td>
-<td>アドバンスドスキル Vol.2（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">60</td>
+<td>ELPA (Extended LPA)</td>
+<td>16M 超 LPA</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>BAS</code></td>
-<td>MFOS入門（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">61</td>
+<td>LPALSTxx</td>
+<td>PLPA に取り込むライブラリ連結</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>GDPS</code></td>
-<td>IBM GDPS Redbooks 一式</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">62</td>
+<td>IEAFIXxx</td>
+<td>FLPA 取込モジュール指定</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 <tr>
-<td><code>KORN</code></td>
-<td>入門 Korn シェル（書籍）</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>MF</code></td>
-<td>メインフレーム実践（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>MQ</code></td>
-<td>IBM MQ 9.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>NV</code></td>
-<td>IBM NetView 6.4 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>PHA7</code></td>
-<td>PowerHA SystemMirror 7.x マニュアル</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>PYDOC</code></td>
-<td>Python 公式ドキュメント (docs.python.org/3)</td>
-<td>Python</td>
-</tr>
-<tr>
-<td><code>TS2280DOC</code></td>
-<td>IBM TS2280 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS4300DOC</code></td>
-<td>IBM TS4300 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS7770DOC</code></td>
-<td>IBM TS7770 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TSA</code></td>
-<td>IBM Z System Automation for z/OS 4.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>VSCAPI</code></td>
-<td>Visual Studio Code 拡張 API リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCCOP</code></td>
-<td>GitHub Copilot in VS Code ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCDOCS</code></td>
-<td>Visual Studio Code 公式ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCKB</code></td>
-<td>Visual Studio Code キーボードショートカット リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCREM</code></td>
-<td>Visual Studio Code リモート開発ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCSET</code></td>
-<td>Visual Studio Code 設定リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>ZOS31</code></td>
-<td>IBM z/OS 3.1 公式マニュアル</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">63</td>
+<td>IEALPAxx</td>
+<td>MLPA 取込モジュール指定</td>
+<td>(一次資料 突合予定)</td>
 </tr>
 </tbody>
 </table>
+</details>
+<details class="note">
+<summary>LINKLIST （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">64</td>
+<td>LNKLSTxx (旧)</td>
+<td>Linklist 連結指定 (廃止予定)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">65</td>
+<td>PROGxx LNKLST</td>
+<td>現行 Linklist 動的管理</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">66</td>
+<td>LLA (Library Lookaside)</td>
+<td>Linklist モジュール検索高速化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">67</td>
+<td>F LLA,REFRESH</td>
+<td>LLA キャッシュ更新</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">68</td>
+<td>CSVLLIX1/CSVLLIX2</td>
+<td>LLA exit</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>APF （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">69</td>
+<td>APF (Authorized Program Facility)</td>
+<td>RACF 不要の許可ライブラリ</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">70</td>
+<td>PROGxx APF</td>
+<td>APF リスト動的管理</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">71</td>
+<td>SETPROG APF,ADD</td>
+<td>APF ライブラリ動的追加</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">72</td>
+<td>SETPROG APF,DELETE</td>
+<td>APF ライブラリ動的削除</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">73</td>
+<td>DYNAMIC vs STATIC APF</td>
+<td>STATIC は IPL 必要、DYNAMIC は実行時更新可</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">74</td>
+<td>D PROG,APF</td>
+<td>APF リスト表示</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ASM （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">75</td>
+<td>ASM (Auxiliary Storage Manager)</td>
+<td>ページング処理</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">76</td>
+<td>Page データセット PLPA</td>
+<td>ページング可能 LPA バッキング</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">77</td>
+<td>Page データセット COMMON</td>
+<td>CSA/SQA バッキング</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">78</td>
+<td>Page データセット LOCAL</td>
+<td>プライベート領域バッキング</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">79</td>
+<td>Swap データセット</td>
+<td>アドレス空間 swap (非推奨)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">80</td>
+<td>PAGEADD コマンド</td>
+<td>ページデータセット動的追加</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">81</td>
+<td>PAGEDEL コマンド</td>
+<td>ページデータセット動的切離</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">82</td>
+<td>D ASM</td>
+<td>ASM 状況表示</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Catalog （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">83</td>
+<td>マスターカタログ</td>
+<td>IPL 時 LOADxx SYSCAT で指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">84</td>
+<td>ユーザカタログ</td>
+<td>alias でマスターから連鎖</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">85</td>
+<td>F CATALOG コマンド</td>
+<td>カタログアドレス空間制御</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">86</td>
+<td>VVDS</td>
+<td>VSAM ボリュームデータセット</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>VATLST （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">87</td>
+<td>VATLST00 PARMLIB</td>
+<td>ボリューム属性 (use attribute) 指定</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">88</td>
+<td>Mount status PRIVATE</td>
+<td>プライベート (DSN 完全一致 required)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">89</td>
+<td>Mount status PUBLIC</td>
+<td>パブリック</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">90</td>
+<td>Mount status STORAGE</td>
+<td>ストレージ</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">91</td>
+<td>Mount status RESERVED</td>
+<td>予約</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">92</td>
+<td>VATDEF ステートメント</td>
+<td>デフォルト use attribute</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IO （13 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">93</td>
+<td>IODF アクティブ</td>
+<td>現在使用中の IO 定義</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">94</td>
+<td>IODF バックアップ</td>
+<td>障害時切替用</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">95</td>
+<td>HCD (Hardware Configuration Definition)</td>
+<td>ISPF パネルから IODF 編集</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">96</td>
+<td>HCM (Hardware Configuration Manager)</td>
+<td>GUI IO 定義ツール</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">97</td>
+<td>Dynamic Activate</td>
+<td>ACTIVATE IODF=xx で IO 構成動的変更</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">98</td>
+<td>ACTIVATE SOFTWARE only</td>
+<td>ソフトウェア構成のみ動的有効化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">99</td>
+<td>ACTIVATE FORCE</td>
+<td>整合性エラーを警告のみ</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td>EDT (Eligible Device Table)</td>
+<td>GENERIC 装置振り分け表</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">101</td>
+<td>CSS (Channel Subsystem)</td>
+<td>z 機の I/O 制御層</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">102</td>
+<td>CHPID</td>
+<td>チャネルパス ID</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">103</td>
+<td>PAV (Parallel Access Volume)</td>
+<td>DASD 並列アクセス</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">104</td>
+<td>HyperPAV</td>
+<td>Alias 装置プール化</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">105</td>
+<td>zHyperLink</td>
+<td>DASD 超低遅延接続</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Wait State （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">106</td>
+<td>Disabled Wait 014</td>
+<td>Master scheduler 障害</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">107</td>
+<td>Disabled Wait 064</td>
+<td>console 不在/IO error</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">108</td>
+<td>Disabled Wait 03B</td>
+<td>Page dataset error</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">109</td>
+<td>Disabled Wait 0A1</td>
+<td>Master CATALOG 不可</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">110</td>
+<td>Disabled Wait 0A2</td>
+<td>NIP error</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">111</td>
+<td>Disabled Wait 0D1</td>
+<td>ASM init error</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">112</td>
+<td>Restartable Wait</td>
+<td>PSW bit 14=1: 再開可</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Symbol （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">113</td>
+<td>IEASYMxx</td>
+<td>システム・シンボル定義</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">114</td>
+<td>&amp;SYSNAME.</td>
+<td>システム名動的シンボル</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">115</td>
+<td>&amp;SYSPLEX.</td>
+<td>シスプレックス名</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">116</td>
+<td>&amp;SYSCLONE.</td>
+<td>システム・クローン (2 文字)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">117</td>
+<td>&amp;SYSR1.</td>
+<td>IPL ボリューム</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">118</td>
+<td>&amp;SYSR2.</td>
+<td>セカンダリ・ボリューム</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">119</td>
+<td>SYMDEF ステートメント</td>
+<td>シンボル定義</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">120</td>
+<td>D SYMBOLS</td>
+<td>シンボル一覧表示</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Master Sched （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">121</td>
+<td>Master Scheduler 起動</td>
+<td>MSTRJCL 経由</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">122</td>
+<td>MSTRJCL00</td>
+<td>マスター JCL</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">123</td>
+<td>MASTER アドレス空間</td>
+<td>ASID=0001 (ALLOCAS 等含む)</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">124</td>
+<td>MSTR サブシステム</td>
+<td>デフォルト・サブシステム名</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ARM （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">125</td>
+<td>ARM (Automatic Restart Manager)</td>
+<td>シスプレックス内自動再起動</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">126</td>
+<td>ARM 定義</td>
+<td>IXCMIAPU で ARM ポリシー定義</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">127</td>
+<td>ARM ELEMENT</td>
+<td>再起動対象要素</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">128</td>
+<td>ARM CALLBACK</td>
+<td>再起動 exit</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Sysplex （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">129</td>
+<td>XCF (Cross-System Coupling Facility)</td>
+<td>シスプレックス通信</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">130</td>
+<td>Couple データセット (CDS)</td>
+<td>シスプレックス・ポリシー格納</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">131</td>
+<td>Sysplex CDS</td>
+<td>シスプレックス本体 CDS</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">132</td>
+<td>CFRM CDS</td>
+<td>CF リソース管理</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">133</td>
+<td>SFM CDS</td>
+<td>Sysplex Failure Management</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">134</td>
+<td>ARM CDS</td>
+<td>ARM ポリシー</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">135</td>
+<td>Logger CDS</td>
+<td>System Logger ポリシー</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">136</td>
+<td>WLM CDS</td>
+<td>Workload Manager ポリシー</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">137</td>
+<td>MONOPLEX 構成</td>
+<td>1 system シスプレックス</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">138</td>
+<td>XCFLOCAL 構成</td>
+<td>シスプレックス機能なし</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+<tr>
+<td style="text-align: right;">139</td>
+<td>MULTISYSTEM 構成</td>
+<td>複数 system シスプレックス</td>
+<td>(一次資料 突合予定)</td>
+</tr>
+</tbody>
+</table>
+</details>
 
 
 
@@ -4122,10 +4894,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

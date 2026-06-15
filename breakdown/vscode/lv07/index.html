@@ -12,29 +12,31 @@
         <meta name="author" content="ai-crafted-portfolio">
       
       
-        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/">
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv07/">
       
       
+        <link rel="prev" href="../lv06/">
       
-        <link rel="next" href="breakdown/zos-v3/">
+      
+        <link rel="next" href="../lv08/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>z/OS 技術項目細分化ガイド</title>
+        <title>デバッグ (DAP) （130 件） - z/OS 技術項目細分化ガイド</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#zos" class="md-skip">
+        <a href="#dap" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ホーム
+              デバッグ (DAP) （130 件）
             
           </span>
         </div>
@@ -211,11 +213,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -236,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-v3/" class="md-tabs__link">
+        <a href="../../zos-v3/" class="md-tabs__link">
           
   
   
@@ -258,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-sysprog/" class="md-tabs__link">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
           
   
   
@@ -280,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/z16/" class="md-tabs__link">
+        <a href="../../z16/" class="md-tabs__link">
           
   
   
@@ -302,7 +302,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/tape/" class="md-tabs__link">
+        <a href="../../tape/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/aix-ksh/" class="md-tabs__link">
+        <a href="../../aix-ksh/" class="md-tabs__link">
           
   
   
@@ -346,7 +346,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/python/" class="md-tabs__link">
+        <a href="../../python/" class="md-tabs__link">
           
   
   
@@ -364,11 +364,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="breakdown/vscode/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -388,7 +390,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="breakdown/verification-sample/" class="md-tabs__link">
+      <a href="../../verification-sample/" class="md-tabs__link">
         
   
   
@@ -423,7 +425,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -438,37 +440,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ホーム
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -484,59 +459,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -615,7 +537,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-v3/" class="md-nav__link ">
+            <a href="../../zos-v3/" class="md-nav__link ">
               
   
   
@@ -659,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv01/" class="md-nav__link">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
         
   
   
@@ -687,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv02/" class="md-nav__link">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
         
   
   
@@ -715,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv03/" class="md-nav__link">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
         
   
   
@@ -743,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv04/" class="md-nav__link">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
         
   
   
@@ -771,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv05/" class="md-nav__link">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
         
   
   
@@ -799,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv06/" class="md-nav__link">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
         
   
   
@@ -827,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv07/" class="md-nav__link">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
         
   
   
@@ -855,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv08/" class="md-nav__link">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
         
   
   
@@ -883,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv09/" class="md-nav__link">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
         
   
   
@@ -911,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv10/" class="md-nav__link">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
         
   
   
@@ -939,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv11/" class="md-nav__link">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
         
   
   
@@ -967,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv12/" class="md-nav__link">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
         
   
   
@@ -995,7 +917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv13/" class="md-nav__link">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
         
   
   
@@ -1023,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv14/" class="md-nav__link">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
         
   
   
@@ -1051,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv15/" class="md-nav__link">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
         
   
   
@@ -1079,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv16/" class="md-nav__link">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
         
   
   
@@ -1107,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv17/" class="md-nav__link">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
         
   
   
@@ -1135,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv18/" class="md-nav__link">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
         
   
   
@@ -1163,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv19/" class="md-nav__link">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
         
   
   
@@ -1191,7 +1113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv20/" class="md-nav__link">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
         
   
   
@@ -1219,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv21/" class="md-nav__link">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
         
   
   
@@ -1247,7 +1169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv22/" class="md-nav__link">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
         
   
   
@@ -1333,7 +1255,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-sysprog/" class="md-nav__link ">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
               
   
   
@@ -1377,7 +1299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv01/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
         
   
   
@@ -1405,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv02/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
         
   
   
@@ -1433,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv03/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
         
   
   
@@ -1461,7 +1383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv04/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
         
   
   
@@ -1489,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv05/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
         
   
   
@@ -1517,7 +1439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv06/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
         
   
   
@@ -1545,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv07/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
         
   
   
@@ -1573,7 +1495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv08/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
         
   
   
@@ -1601,7 +1523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv09/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
         
   
   
@@ -1629,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv10/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
         
   
   
@@ -1657,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv11/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
         
   
   
@@ -1685,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv12/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
         
   
   
@@ -1713,7 +1635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv13/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
         
   
   
@@ -1741,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv14/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
         
   
   
@@ -1823,7 +1745,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/z16/" class="md-nav__link ">
+            <a href="../../z16/" class="md-nav__link ">
               
   
   
@@ -1867,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv01/" class="md-nav__link">
+      <a href="../../z16/lv01/" class="md-nav__link">
         
   
   
@@ -1895,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv02/" class="md-nav__link">
+      <a href="../../z16/lv02/" class="md-nav__link">
         
   
   
@@ -1923,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv03/" class="md-nav__link">
+      <a href="../../z16/lv03/" class="md-nav__link">
         
   
   
@@ -1951,7 +1873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv04/" class="md-nav__link">
+      <a href="../../z16/lv04/" class="md-nav__link">
         
   
   
@@ -1979,7 +1901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv05/" class="md-nav__link">
+      <a href="../../z16/lv05/" class="md-nav__link">
         
   
   
@@ -2007,7 +1929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv06/" class="md-nav__link">
+      <a href="../../z16/lv06/" class="md-nav__link">
         
   
   
@@ -2035,7 +1957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv07/" class="md-nav__link">
+      <a href="../../z16/lv07/" class="md-nav__link">
         
   
   
@@ -2063,7 +1985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv08/" class="md-nav__link">
+      <a href="../../z16/lv08/" class="md-nav__link">
         
   
   
@@ -2091,7 +2013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv09/" class="md-nav__link">
+      <a href="../../z16/lv09/" class="md-nav__link">
         
   
   
@@ -2119,7 +2041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv10/" class="md-nav__link">
+      <a href="../../z16/lv10/" class="md-nav__link">
         
   
   
@@ -2147,7 +2069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv11/" class="md-nav__link">
+      <a href="../../z16/lv11/" class="md-nav__link">
         
   
   
@@ -2175,7 +2097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv12/" class="md-nav__link">
+      <a href="../../z16/lv12/" class="md-nav__link">
         
   
   
@@ -2239,7 +2161,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/tape/" class="md-nav__link ">
+            <a href="../../tape/" class="md-nav__link ">
               
   
   
@@ -2283,7 +2205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv01/" class="md-nav__link">
+      <a href="../../tape/lv01/" class="md-nav__link">
         
   
   
@@ -2311,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv02/" class="md-nav__link">
+      <a href="../../tape/lv02/" class="md-nav__link">
         
   
   
@@ -2339,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv03/" class="md-nav__link">
+      <a href="../../tape/lv03/" class="md-nav__link">
         
   
   
@@ -2419,7 +2341,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/aix-ksh/" class="md-nav__link ">
+            <a href="../../aix-ksh/" class="md-nav__link ">
               
   
   
@@ -2463,7 +2385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv01/" class="md-nav__link">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
         
   
   
@@ -2491,7 +2413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv02/" class="md-nav__link">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
         
   
   
@@ -2519,7 +2441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv03/" class="md-nav__link">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
         
   
   
@@ -2547,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv04/" class="md-nav__link">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
         
   
   
@@ -2575,7 +2497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv05/" class="md-nav__link">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
         
   
   
@@ -2603,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv06/" class="md-nav__link">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
         
   
   
@@ -2631,7 +2553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv07/" class="md-nav__link">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
         
   
   
@@ -2659,7 +2581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv08/" class="md-nav__link">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
         
   
   
@@ -2687,7 +2609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv09/" class="md-nav__link">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
         
   
   
@@ -2715,7 +2637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv10/" class="md-nav__link">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
         
   
   
@@ -2743,7 +2665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv11/" class="md-nav__link">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
         
   
   
@@ -2829,7 +2751,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/python/" class="md-nav__link ">
+            <a href="../../python/" class="md-nav__link ">
               
   
   
@@ -2873,7 +2795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv01/" class="md-nav__link">
+      <a href="../../python/lv01/" class="md-nav__link">
         
   
   
@@ -2901,7 +2823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv02/" class="md-nav__link">
+      <a href="../../python/lv02/" class="md-nav__link">
         
   
   
@@ -2929,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv03/" class="md-nav__link">
+      <a href="../../python/lv03/" class="md-nav__link">
         
   
   
@@ -2957,7 +2879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv04/" class="md-nav__link">
+      <a href="../../python/lv04/" class="md-nav__link">
         
   
   
@@ -2985,7 +2907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv05/" class="md-nav__link">
+      <a href="../../python/lv05/" class="md-nav__link">
         
   
   
@@ -3013,7 +2935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv06/" class="md-nav__link">
+      <a href="../../python/lv06/" class="md-nav__link">
         
   
   
@@ -3041,7 +2963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv07/" class="md-nav__link">
+      <a href="../../python/lv07/" class="md-nav__link">
         
   
   
@@ -3069,7 +2991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv08/" class="md-nav__link">
+      <a href="../../python/lv08/" class="md-nav__link">
         
   
   
@@ -3097,7 +3019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv09/" class="md-nav__link">
+      <a href="../../python/lv09/" class="md-nav__link">
         
   
   
@@ -3125,7 +3047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv10/" class="md-nav__link">
+      <a href="../../python/lv10/" class="md-nav__link">
         
   
   
@@ -3153,7 +3075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv11/" class="md-nav__link">
+      <a href="../../python/lv11/" class="md-nav__link">
         
   
   
@@ -3181,7 +3103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv12/" class="md-nav__link">
+      <a href="../../python/lv12/" class="md-nav__link">
         
   
   
@@ -3209,7 +3131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv13/" class="md-nav__link">
+      <a href="../../python/lv13/" class="md-nav__link">
         
   
   
@@ -3237,7 +3159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv14/" class="md-nav__link">
+      <a href="../../python/lv14/" class="md-nav__link">
         
   
   
@@ -3269,6 +3191,8 @@
       
   
   
+    
+  
   
   
     
@@ -3310,20 +3234,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/vscode/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -3341,13 +3268,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3367,7 +3294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv01/" class="md-nav__link">
+      <a href="../lv01/" class="md-nav__link">
         
   
   
@@ -3395,7 +3322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv02/" class="md-nav__link">
+      <a href="../lv02/" class="md-nav__link">
         
   
   
@@ -3423,7 +3350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv03/" class="md-nav__link">
+      <a href="../lv03/" class="md-nav__link">
         
   
   
@@ -3451,7 +3378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv04/" class="md-nav__link">
+      <a href="../lv04/" class="md-nav__link">
         
   
   
@@ -3479,7 +3406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv05/" class="md-nav__link">
+      <a href="../lv05/" class="md-nav__link">
         
   
   
@@ -3507,7 +3434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv06/" class="md-nav__link">
+      <a href="../lv06/" class="md-nav__link">
         
   
   
@@ -3532,10 +3459,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="breakdown/vscode/lv07/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3551,6 +3487,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3563,7 +3500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv08/" class="md-nav__link">
+      <a href="../lv08/" class="md-nav__link">
         
   
   
@@ -3591,7 +3528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv09/" class="md-nav__link">
+      <a href="../lv09/" class="md-nav__link">
         
   
   
@@ -3619,7 +3556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv10/" class="md-nav__link">
+      <a href="../lv10/" class="md-nav__link">
         
   
   
@@ -3647,7 +3584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv11/" class="md-nav__link">
+      <a href="../lv11/" class="md-nav__link">
         
   
   
@@ -3675,7 +3612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv12/" class="md-nav__link">
+      <a href="../lv12/" class="md-nav__link">
         
   
   
@@ -3703,7 +3640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv13/" class="md-nav__link">
+      <a href="../lv13/" class="md-nav__link">
         
   
   
@@ -3731,7 +3668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv14/" class="md-nav__link">
+      <a href="../lv14/" class="md-nav__link">
         
   
   
@@ -3766,7 +3703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/verification-sample/" class="md-nav__link">
+      <a href="../../verification-sample/" class="md-nav__link">
         
   
   
@@ -3806,47 +3743,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3862,212 +3758,934 @@
 
 
 
-<h1 id="zos">z/OS 技術項目細分化ガイド<a class="headerlink" href="#zos" title="Permanent link">&para;</a></h1>
-<p>z/OS を中心に、AIX・Python・VS Code・テープ系ハードウェア等の技術項目を細分化した技術リファレンスです。各製品を大分類 (Lv1) ごとのページにまとめ、中分類 (Lv2) 単位の折り畳みテーブルで技術項目・単一焦点要約・出典を一覧できます。</p>
-<p>画面右上の検索から全ページを横断的に全文検索できます。</p>
-<h2 id="_1">コンテンツ一覧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="dap">デバッグ (DAP)<a class="headerlink" href="#dap" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: VS Code ／ <strong>本ページ件数</strong>: 130 件 ／ <strong>出典区分</strong>: VS Code 公式ドキュメント出典</p>
+<details class="note" open="open">
+<summary>Debug （130 件）</summary>
 <table>
 <thead>
 <tr>
-<th>製品</th>
-<th style="text-align: right;">件数</th>
-<th>出典区分</th>
-<th>入口</th>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>z/OS 全体 (v3)</td>
-<td style="text-align: right;">13,762</td>
-<td>Redbook ingest 反映済 v3</td>
-<td><a href="breakdown/zos-v3/">概要</a></td>
+<td style="text-align: right;">931</td>
+<td>—</td>
+<td>launch.json - version</td>
+<td>0.2.0</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>z/OS System Programming</td>
-<td style="text-align: right;">1,804</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/zos-sysprog/">概要</a></td>
+<td style="text-align: right;">932</td>
+<td>—</td>
+<td>launch.json - configurations[]</td>
+<td>構成配列</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>IBM z16 ハードウェア</td>
-<td style="text-align: right;">1,249</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/z16/">概要</a></td>
+<td style="text-align: right;">933</td>
+<td>—</td>
+<td>launch.json - compounds[]</td>
+<td>複合構成</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>テープ系 (TS2280 / TS4300 / TS7770)</td>
-<td style="text-align: right;">1,045</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/tape/">概要</a></td>
+<td style="text-align: right;">934</td>
+<td>—</td>
+<td>launch.json - inputs[]</td>
+<td>ユーザ入力</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>AIX + ksh</td>
-<td style="text-align: right;">2,681</td>
-<td>書籍出典</td>
-<td><a href="breakdown/aix-ksh/">概要</a></td>
+<td style="text-align: right;">935</td>
+<td>—</td>
+<td>config - name</td>
+<td>構成名</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>Python</td>
-<td style="text-align: right;">1,774</td>
-<td>Python 公式ドキュメント出典</td>
-<td><a href="breakdown/python/">概要</a></td>
+<td style="text-align: right;">936</td>
+<td>—</td>
+<td>config - type</td>
+<td>node/python/cppdbg 等</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>VS Code</td>
-<td style="text-align: right;">2,042</td>
-<td>VS Code 公式ドキュメント出典</td>
-<td><a href="breakdown/vscode/">概要</a></td>
+<td style="text-align: right;">937</td>
+<td>—</td>
+<td>config - request</td>
+<td>launch/attach</td>
+<td>VSCDOCS</td>
 </tr>
 <tr>
-<td>検証手順サンプル</td>
-<td style="text-align: right;">50</td>
-<td>実コンソールセッション再現</td>
-<td><a href="breakdown/verification-sample/">概要</a></td>
+<td style="text-align: right;">938</td>
+<td>—</td>
+<td>config - program</td>
+<td>実行プログラム</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">939</td>
+<td>—</td>
+<td>config - args</td>
+<td>引数</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">940</td>
+<td>—</td>
+<td>config - cwd</td>
+<td>作業ディレクトリ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">941</td>
+<td>—</td>
+<td>config - env</td>
+<td>環境変数</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">942</td>
+<td>—</td>
+<td>config - envFile</td>
+<td>.env</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">943</td>
+<td>—</td>
+<td>config - console</td>
+<td>internalConsole/integratedTerminal/externalTerminal</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">944</td>
+<td>—</td>
+<td>config - preLaunchTask</td>
+<td>事前タスク</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">945</td>
+<td>—</td>
+<td>config - postDebugTask</td>
+<td>事後タスク</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">946</td>
+<td>—</td>
+<td>config - stopOnEntry</td>
+<td>エントリで停止</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">947</td>
+<td>—</td>
+<td>config - skipFiles</td>
+<td>スキップファイル</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">948</td>
+<td>—</td>
+<td>config - smartStep</td>
+<td>Smart Step</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">949</td>
+<td>—</td>
+<td>config - justMyCode</td>
+<td>ユーザコードのみ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">950</td>
+<td>—</td>
+<td>config - sourceMaps</td>
+<td>SourceMap 利用</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">951</td>
+<td>—</td>
+<td>config - outFiles</td>
+<td>出力 JS パターン</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">952</td>
+<td>—</td>
+<td>config - presentation</td>
+<td>並び順/グループ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">953</td>
+<td>—</td>
+<td>config - serverReadyAction</td>
+<td>ポート検出で URL 起動</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">954</td>
+<td>—</td>
+<td>config - autoAttachChildProcesses</td>
+<td>子プロセス自動アタッチ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">955</td>
+<td>—</td>
+<td>config - port (attach)</td>
+<td>アタッチポート</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">956</td>
+<td>—</td>
+<td>config - address (attach)</td>
+<td>アタッチアドレス</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">957</td>
+<td>—</td>
+<td>config - processId (attach)</td>
+<td>PID</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">958</td>
+<td>—</td>
+<td>config - remoteRoot/localRoot</td>
+<td>リモートマップ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">959</td>
+<td>—</td>
+<td>config - pathMappings</td>
+<td>パスマッピング</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">960</td>
+<td>—</td>
+<td>inputs - promptString</td>
+<td>入力プロンプト</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">961</td>
+<td>—</td>
+<td>inputs - pickString</td>
+<td>選択</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">962</td>
+<td>—</td>
+<td>inputs - command</td>
+<td>コマンド実行値</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">963</td>
+<td>—</td>
+<td>Breakpoint - Line</td>
+<td>行 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">964</td>
+<td>—</td>
+<td>Breakpoint - Conditional (Expression)</td>
+<td>条件 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">965</td>
+<td>—</td>
+<td>Breakpoint - Conditional (Hit Count)</td>
+<td>回数 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">966</td>
+<td>—</td>
+<td>Breakpoint - Logpoint</td>
+<td>ログ出力</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">967</td>
+<td>—</td>
+<td>Breakpoint - Function Breakpoint</td>
+<td>関数 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">968</td>
+<td>—</td>
+<td>Breakpoint - Data Breakpoint</td>
+<td>データ BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">969</td>
+<td>—</td>
+<td>Breakpoint - Exception Breakpoint</td>
+<td>例外 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">970</td>
+<td>—</td>
+<td>Breakpoint - Inline Breakpoint</td>
+<td>同行 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">971</td>
+<td>—</td>
+<td>Breakpoint - Edit Breakpoint (Right Click)</td>
+<td>編集</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">972</td>
+<td>—</td>
+<td>Breakpoint - Enable/Disable</td>
+<td>有効化/無効化</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">973</td>
+<td>—</td>
+<td>Breakpoint - Remove All</td>
+<td>全削除</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">974</td>
+<td>—</td>
+<td>Breakpoint - Triggered Breakpoint</td>
+<td>トリガ BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">975</td>
+<td>—</td>
+<td>Step Over (F10)</td>
+<td>Step Over</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">976</td>
+<td>—</td>
+<td>Step Into (F11)</td>
+<td>Step Into</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">977</td>
+<td>—</td>
+<td>Step Out (Shift+F11)</td>
+<td>Step Out</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">978</td>
+<td>—</td>
+<td>Continue (F5)</td>
+<td>Continue</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">979</td>
+<td>—</td>
+<td>Pause (F6)</td>
+<td>Pause</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">980</td>
+<td>—</td>
+<td>Restart (Ctrl+Shift+F5)</td>
+<td>Restart</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">981</td>
+<td>—</td>
+<td>Stop (Shift+F5)</td>
+<td>Stop</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">982</td>
+<td>—</td>
+<td>Disconnect</td>
+<td>Disconnect</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">983</td>
+<td>—</td>
+<td>Reverse Continue (一部 DA)</td>
+<td>Time Travel Debug</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">984</td>
+<td>—</td>
+<td>Step Back (一部 DA)</td>
+<td>戻る</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">985</td>
+<td>—</td>
+<td>Variables View - Scope (Locals/Closure/Global)</td>
+<td>Scope</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">986</td>
+<td>—</td>
+<td>Variables View - Set Value</td>
+<td>実行中編集</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">987</td>
+<td>—</td>
+<td>Variables View - Copy Value</td>
+<td>値コピー</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">988</td>
+<td>—</td>
+<td>Variables View - Copy as Expression</td>
+<td>Watch 化</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">989</td>
+<td>—</td>
+<td>Watch View - Add Expression</td>
+<td>式追加</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">990</td>
+<td>—</td>
+<td>Watch View - Edit / Remove</td>
+<td>編集削除</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">991</td>
+<td>—</td>
+<td>Call Stack View - Frame Switch</td>
+<td>フレーム切替</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">992</td>
+<td>—</td>
+<td>Call Stack View - Copy Call Stack</td>
+<td>コピー</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">993</td>
+<td>—</td>
+<td>Call Stack View - Skip Files</td>
+<td>skipFiles</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">994</td>
+<td>—</td>
+<td>Breakpoints View - Toggle</td>
+<td>BP 一覧</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">995</td>
+<td>—</td>
+<td>Loaded Scripts View</td>
+<td>読込スクリプト</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">996</td>
+<td>—</td>
+<td>Debug Console - REPL</td>
+<td>評価</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">997</td>
+<td>—</td>
+<td>Debug Console - Filter</td>
+<td>フィルタ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">998</td>
+<td>—</td>
+<td>Inline Values</td>
+<td>行末値表示</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">999</td>
+<td>—</td>
+<td>Inline Hover Evaluation</td>
+<td>Hover 評価</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1000</td>
+<td>—</td>
+<td>Debug: Toolbar 位置 (floating/docked/hidden)</td>
+<td>Toolbar 位置</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1001</td>
+<td>—</td>
+<td>Debug: Multi-target Debug</td>
+<td>複合構成</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1002</td>
+<td>—</td>
+<td>Debug: JS Debug - Auto Attach (Smart/Always/onlyWithFlag)</td>
+<td>Auto Attach</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1003</td>
+<td>—</td>
+<td>Debug: JS Debug - Pick a Node.js Process</td>
+<td>プロセス選択</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1004</td>
+<td>—</td>
+<td>Debug: JS Debug - Skip Files (node_modules)</td>
+<td>Skip Files</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1005</td>
+<td>—</td>
+<td>Debug: Restart Frame</td>
+<td>Frame 再実行</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1006</td>
+<td>—</td>
+<td>Debug: Edit and Continue (Hot Reload)</td>
+<td>ホットリロード</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1007</td>
+<td>—</td>
+<td>DAP - Debug Adapter Protocol</td>
+<td>プロトコル</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1008</td>
+<td>—</td>
+<td>DAP - Initialize Request</td>
+<td>Init</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1009</td>
+<td>—</td>
+<td>DAP - Launch / Attach Request</td>
+<td>Launch/Attach</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1010</td>
+<td>—</td>
+<td>DAP - SetBreakpoints Request</td>
+<td>SetBreakpoints</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1011</td>
+<td>—</td>
+<td>DAP - StackTrace Request</td>
+<td>StackTrace</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1012</td>
+<td>—</td>
+<td>DAP - Scopes Request</td>
+<td>Scopes</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1013</td>
+<td>—</td>
+<td>DAP - Variables Request</td>
+<td>Variables</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1014</td>
+<td>—</td>
+<td>DAP - Continue / Next / StepIn / StepOut</td>
+<td>Step</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1015</td>
+<td>—</td>
+<td>DAP - Evaluate Request</td>
+<td>Evaluate</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1016</td>
+<td>—</td>
+<td>DAP - Threads Request</td>
+<td>Threads</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1017</td>
+<td>—</td>
+<td>DAP - Disconnect Request</td>
+<td>Disconnect</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1018</td>
+<td>—</td>
+<td>DAP - Stopped Event</td>
+<td>Stopped</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1019</td>
+<td>—</td>
+<td>DAP - Output Event</td>
+<td>Output</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1020</td>
+<td>—</td>
+<td>DAP - Terminated Event</td>
+<td>Terminated</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1021</td>
+<td>—</td>
+<td>DAP - Capabilities</td>
+<td>サポート機能</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1022</td>
+<td>—</td>
+<td>Debugger Extension - contributes.debuggers</td>
+<td>debuggers</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1023</td>
+<td>—</td>
+<td>Debugger Extension - contributes.breakpoints</td>
+<td>breakpoints</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1024</td>
+<td>—</td>
+<td>Debugger Extension - DebugConfigurationProvider</td>
+<td>Provider</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1025</td>
+<td>—</td>
+<td>Debugger Extension - DebugAdapterDescriptorFactory</td>
+<td>Factory</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1026</td>
+<td>—</td>
+<td>Debugger Extension - DebugAdapterTracker</td>
+<td>Tracker</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1027</td>
+<td>—</td>
+<td>Debugger Extension - InlineValuesProvider</td>
+<td>Inline Values</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1028</td>
+<td>—</td>
+<td>Debugger Extension - resolveDebugConfiguration</td>
+<td>解決</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1029</td>
+<td>—</td>
+<td>Debugger Extension - provideDebugConfigurations</td>
+<td>提供</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1030</td>
+<td>—</td>
+<td>type: node</td>
+<td>Node.js</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1031</td>
+<td>—</td>
+<td>type: pwa-node</td>
+<td>新 JS Debug</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1032</td>
+<td>—</td>
+<td>type: chrome</td>
+<td>Chrome デバッグ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1033</td>
+<td>—</td>
+<td>type: pwa-chrome</td>
+<td>pwa-chrome</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1034</td>
+<td>—</td>
+<td>type: msedge</td>
+<td>Edge デバッグ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1035</td>
+<td>—</td>
+<td>type: python</td>
+<td>Python Debugger</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1036</td>
+<td>—</td>
+<td>type: debugpy</td>
+<td>debugpy 統合 (新)</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1037</td>
+<td>—</td>
+<td>type: cppdbg</td>
+<td>C/C++ (gdb/lldb)</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1038</td>
+<td>—</td>
+<td>type: cppvsdbg</td>
+<td>C/C++ (Windows debugger)</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1039</td>
+<td>—</td>
+<td>type: coreclr</td>
+<td>.NET Core</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1040</td>
+<td>—</td>
+<td>type: go</td>
+<td>Go (delve)</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1041</td>
+<td>—</td>
+<td>type: java</td>
+<td>Java</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1042</td>
+<td>—</td>
+<td>type: lldb</td>
+<td>CodeLLDB</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1043</td>
+<td>—</td>
+<td>type: php</td>
+<td>Xdebug</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1044</td>
+<td>—</td>
+<td>type: ruby</td>
+<td>Ruby</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1045</td>
+<td>—</td>
+<td>type: rdbg</td>
+<td>Ruby rdbg</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1046</td>
+<td>—</td>
+<td>type: dart</td>
+<td>Dart/Flutter</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1047</td>
+<td>—</td>
+<td>type: kotlin</td>
+<td>Kotlin</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1048</td>
+<td>—</td>
+<td>Hot Code Reload (Java/Dart)</td>
+<td>ホットリロード</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1049</td>
+<td>—</td>
+<td>Inline Breakpoint (Statement)</td>
+<td>同行 BP</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1050</td>
+<td>—</td>
+<td>Triggered Breakpoint</td>
+<td>他 BP 到達後有効化</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1051</td>
+<td>—</td>
+<td>Skip File Patterns</td>
+<td>stackFrame スキップ</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1052</td>
+<td>—</td>
+<td>Source Map Renames</td>
+<td>変数名復元</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1053</td>
+<td>—</td>
+<td>Diagnostic Logging (trace: true)</td>
+<td>DA トレース</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1054</td>
+<td>—</td>
+<td>Save Open Editors Before Debug</td>
+<td>debug.saveBeforeStart</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1055</td>
+<td>—</td>
+<td>Debug: Show All Threads</td>
+<td>全スレッド表示</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1056</td>
+<td>—</td>
+<td>Debug: Reveal Active Editor in Debug Console</td>
+<td>Reveal</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1057</td>
+<td>—</td>
+<td>JavaScript Debug Terminal</td>
+<td>Auto Attach 専用ターミナル</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1058</td>
+<td>—</td>
+<td>Show Debug Console on first output</td>
+<td>debug.openDebug</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1059</td>
+<td>—</td>
+<td>Disassembly View</td>
+<td>アセンブリ表示</td>
+<td>VSCDOCS</td>
+</tr>
+<tr>
+<td style="text-align: right;">1060</td>
+<td>—</td>
+<td>Memory View</td>
+<td>メモリ表示 (DAP)</td>
+<td>VSCDOCS</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">信頼性区分の凡例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Redbook ingest 反映済 / 公式 docs 出典 / 書籍出典</strong>: 一次資料に基づく内容。</li>
-<li><strong>初版</strong>: 事前知識による補完を含み、一次資料との突合（再生成）を予定。出典欄に「一次資料 突合予定」と表示される項目が該当します。</li>
-</ul>
-<h2 id="_3">出典コード凡例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>出典コード</th>
-<th>意味</th>
-<th>主な製品</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>(一次資料 突合予定)</code></td>
-<td>初版項目（一次資料との突合を予定）</td>
-<td>IBM z16、z/OS System Programming</td>
-</tr>
-<tr>
-<td><code>AIX1</code></td>
-<td>AIX システム管理 1（書籍）</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>AIX2</code></td>
-<td>AIX システム管理 2（書籍）</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>AIX73</code></td>
-<td>IBM AIX 7.3 公式マニュアル</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>AS1</code></td>
-<td>アドバンスドスキル Vol.1（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>AS2</code></td>
-<td>アドバンスドスキル Vol.2（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>BAS</code></td>
-<td>MFOS入門（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>GDPS</code></td>
-<td>IBM GDPS Redbooks 一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>KORN</code></td>
-<td>入門 Korn シェル（書籍）</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>MF</code></td>
-<td>メインフレーム実践（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>MQ</code></td>
-<td>IBM MQ 9.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>NV</code></td>
-<td>IBM NetView 6.4 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>PHA7</code></td>
-<td>PowerHA SystemMirror 7.x マニュアル</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>PYDOC</code></td>
-<td>Python 公式ドキュメント (docs.python.org/3)</td>
-<td>Python</td>
-</tr>
-<tr>
-<td><code>TS2280DOC</code></td>
-<td>IBM TS2280 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS4300DOC</code></td>
-<td>IBM TS4300 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS7770DOC</code></td>
-<td>IBM TS7770 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TSA</code></td>
-<td>IBM Z System Automation for z/OS 4.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>VSCAPI</code></td>
-<td>Visual Studio Code 拡張 API リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCCOP</code></td>
-<td>GitHub Copilot in VS Code ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCDOCS</code></td>
-<td>Visual Studio Code 公式ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCKB</code></td>
-<td>Visual Studio Code キーボードショートカット リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCREM</code></td>
-<td>Visual Studio Code リモート開発ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCSET</code></td>
-<td>Visual Studio Code 設定リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>ZOS31</code></td>
-<td>IBM z/OS 3.1 公式マニュアル</td>
-<td>z/OS v3</td>
-</tr>
-</tbody>
-</table>
+</details>
 
 
 
@@ -4122,10 +4740,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

@@ -1,0 +1,5129 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv02/">
+      
+      
+        <link rel="prev" href="../lv01/">
+      
+      
+        <link rel="next" href="../lv03/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>JFS / JFS2 ファイルシステム （180 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jfs-jfs2" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              JFS / JFS2 ファイルシステム （180 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-v3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-v3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="jfs-jfs2">JFS / JFS2 ファイルシステム<a class="headerlink" href="#jfs-jfs2" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: AIX + ksh ／ <strong>本ページ件数</strong>: 180 件 ／ <strong>出典区分</strong>: 書籍出典</p>
+<details class="note" open="open">
+<summary>FS作成 - crfs （21 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">233</td>
+<td>crfs 概要</td>
+<td>crfs は /etc/filesystems にスタンザを登録した上で論理ボリュームを作成し JFS/JFS2 ファイルシステムを生成する高水準コマンド。mkfs と異なり LV 未指定でも自動的に LV を確保する。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">234</td>
+<td>crfs -v vfstype</td>
+<td>vfs タイプを指定する必須オプション。jfs2 (推奨), jfs, nfs, cdrfs などを指定する。jfs2 は 64bit inode で 16TB 超に対応。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">235</td>
+<td>crfs -g VolumeGroup</td>
+<td>ファイルシステムを作成する VG を指定する。-d で既存 LV を指定する場合は -g は不要。-g 指定時は LV が自動作成される。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">236</td>
+<td>crfs -d Device</td>
+<td>既存の論理ボリューム名を指定する。-g と排他。LV は事前に mklv で作成しておく必要があり、crfs はそこに FS 構造のみ書き込む。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">237</td>
+<td>crfs -m MountPoint</td>
+<td>マウントポイントを絶対パスで指定する。指定したディレクトリが存在しなければ crfs が自動作成する。/etc/filesystems の mount スタンザのキーになる。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">238</td>
+<td>crfs -A yes|no</td>
+<td>システム起動時 (mount all) に自動マウントするかを指定する。yes で /etc/filesystems に mount = true が書かれる。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">239</td>
+<td>crfs -p rw|ro</td>
+<td>デフォルトの読み書き許可。rw は読み書き、ro は読み取り専用。/etc/filesystems の type フィールドではなく account/options に反映。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">240</td>
+<td>crfs -a size=Value</td>
+<td>ファイルシステムサイズを指定。単位は 512B ブロック、または末尾に M (MB), G (GB), T (TB) を付ける。先頭に + を付けると相対増分指定。例: -a size=2G。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">241</td>
+<td>crfs -a bf=true (JFS only)</td>
+<td>JFS で 2GB 超の Large File Enabled ファイルシステムを作成する。JFS2 では常に大ファイル対応のため不要。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">242</td>
+<td>crfs -a logname=LV</td>
+<td>JFS/JFS2 ログ用 LV を明示指定する。指定しない場合 VG 内の既定 jfs2log が使用される。INLINE log (JFS2 専用) を使う場合は logname=INLINE を指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">243</td>
+<td>crfs -a log=INLINE (JFS2)</td>
+<td>JFS2 のインラインログ機能。ファイルシステム本体と同一 LV 内にログ領域を埋め込み、別ログ LV を不要にする。-a logsize で領域確保。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">244</td>
+<td>crfs -a logsize=Value (JFS2)</td>
+<td>INLINE ログのサイズを MB 単位で指定。最小 4MB、推奨 0.4% 程度。FS 拡張時のログ枯渇対策に十分な値を確保する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">245</td>
+<td>crfs -a ea=v1|v2 (JFS2)</td>
+<td>拡張属性 (Extended Attributes) のフォーマットバージョン。v2 は ACL/AIXC/NFS4 ACL と任意名前空間の EA をサポート。v1 は古い形式で機能制限あり。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">246</td>
+<td>crfs -a quota=userquota,groupquota</td>
+<td>クォータを有効化するスタンザを追加する。userquota / groupquota / userquota,groupquota を指定可能。quotaon コマンドで実際にクォータ強制を開始する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">247</td>
+<td>crfs -a frag/nbpi/ag (JFS only)</td>
+<td>JFS 固有チューニング。frag=512/1024/2048/4096 (フラグメントサイズ)、nbpi=N (Number of Bytes Per Inode、小値で inode 多数)、ag=8/16/32/64 (Allocation Group MB)。JFS2 では bsize=4096 固定・inode 動的のため不要。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">248</td>
+<td>crfs -a compress=lzs (JFS2)</td>
+<td>JFS2 のオンライン圧縮を有効化。LZS アルゴリズムで透過圧縮。読み取り時に展開、書き込み時に圧縮。CPU 負荷増・I/O 性能低下に注意。</td>
+<td>AIX73, AIX2</td>
+</tr>
+<tr>
+<td style="text-align: right;">249</td>
+<td>crfs -a efs=yes (JFS2)</td>
+<td>EFS (Encrypted File System) を有効化する。FS 単位で暗号化メタデータを管理し、ユーザ鍵で各ファイル暗号化を行う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">250</td>
+<td>crfs -a isnapshot=yes (JFS2)</td>
+<td>内部スナップショット (internal snapshot) 機能を有効化したファイルシステムとして作成する。専用スナップショット LV を不要にする。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">251</td>
+<td>crfs -a vix=yes (JFS2)</td>
+<td>可変 inode 拡張 (variable inode extension) を許可。inode 領域が動的に拡張される。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">252</td>
+<td>crfs -a mountguard=yes (JFS2)</td>
+<td>PowerHA / 共有 VG 環境で同一 FS の二重マウントを阻止する Mount Guard を有効化。マウント時に他ノード使用を検出すれば失敗させる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">253</td>
+<td>crfs -u MountGroup</td>
+<td>マウントグループ名を /etc/filesystems の mount スタンザに付与し、mount -t Group で同一グループの FS を一括マウント可能にする。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>FS作成 - mkfs （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">254</td>
+<td>mkfs 概要</td>
+<td>mkfs は低水準 FS 作成コマンド。LV を事前に mklv で作成しておく必要があり、/etc/filesystems への登録は行わない (crfs と対照的)。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">255</td>
+<td>mkfs -V vfstype</td>
+<td>ファイルシステムタイプを指定。jfs (旧 JFS), jfs2 (推奨)。/etc/vfs に定義された vfs エントリ名と一致させる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">256</td>
+<td>mkfs -L Label</td>
+<td>ボリュームラベルを設定する。lsfs や fsck で参照可能。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">257</td>
+<td>mkfs -m MountPoint</td>
+<td>マウントポイントをメタデータに記録する。/etc/filesystems への登録は行わない。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">258</td>
+<td>mkfs -s Size</td>
+<td>FS サイズを 512B ブロック単位で指定する。LV の物理サイズより小さく設定可能。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">259</td>
+<td>mkfs -o Options</td>
+<td>vfs 固有のオプションを渡す。例: -o nbpi=4096, -o log=/dev/loglv00。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">260</td>
+<td>mkfs.jfs / mkfs.jfs2</td>
+<td>vfs 種別ごとのフロントエンド。mkfs -V jfs2 と同等。直接呼ぶ場合は mkfs.jfs2 -O log=INLINE のようにオプション付与可。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">261</td>
+<td>mkfs.jfs2 -O log_partition_count</td>
+<td>JFS2 ログ用パーティション数。INLINE ログ使用時に内部割り当て数を制御する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">262</td>
+<td>mkfs.jfs2 -O outline / inline log</td>
+<td>ログ配置を outline (外部ログ LV) / inline (本体 LV 内) のいずれかで指定。inline はバックアップ・移行が楽。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">263</td>
+<td>mkfs.jfs2 -O isnapshot=yes</td>
+<td>FS 作成時に内部スナップショットを有効化する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/etc/filesystems （12 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">264</td>
+<td>スタンザ構造</td>
+<td>/etc/filesystems はマウントポイントをスタンザ名としたフラットテキスト。各スタンザは属性 = 値 で記述し、空行で区切る。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">265</td>
+<td>dev 属性</td>
+<td>dev = /dev/lvname の形式で論理ボリュームデバイスを指定する。FS 実体への入口。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">266</td>
+<td>vfs 属性</td>
+<td>vfs = jfs2 / jfs / nfs / cdrfs / procfs / autofs などのファイルシステム種別。/etc/vfs に対応エントリが必要。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">267</td>
+<td>log 属性</td>
+<td>log = /dev/jfs2log (例) で外部ログ LV を指定する。INLINE 時は log = INLINE。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">268</td>
+<td>mount 属性</td>
+<td>mount = true|false|automatic|removable。true で mount -a 対象、automatic でブート時自動マウント、false で手動のみ。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">269</td>
+<td>check 属性</td>
+<td>check = true|false|順序番号。fsck -p 時の検査対象と並列度を制御する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">270</td>
+<td>type 属性</td>
+<td>type = MountGroup。mount -t Group で一括マウントするためのグループ名。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">271</td>
+<td>options 属性</td>
+<td>options = rw,noatime,nodev など mount -o 相当のオプションをカンマ区切りで指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">272</td>
+<td>account 属性</td>
+<td>account = true|false。ディスク利用統計 (diskusg) の対象とするか。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">273</td>
+<td>quota 属性</td>
+<td>quota = userquota,groupquota。クォータ強制対象種別。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">274</td>
+<td>nodename 属性 (NFS)</td>
+<td>nodename = server。NFS マウント時にサーバ FQDN を指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">275</td>
+<td>free 属性 (JFS)</td>
+<td>free = true|false。FS のフォーマット直後を示すフラグ。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>FS変更 - chfs （14 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">276</td>
+<td>chfs 概要</td>
+<td>chfs はマウント済み or 未マウントの JFS/JFS2 ファイルシステム属性を変更する。LV サイズ拡張・mount フラグ変更・ログ変更などに用いる。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">277</td>
+<td>chfs -A yes|no</td>
+<td>自動マウント属性を変更する。/etc/filesystems の mount 値を書き換える。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">278</td>
+<td>chfs -a size=Value</td>
+<td>ファイルシステム拡張。+ で相対増分指定可 (例: -a size=+1G)。JFS2 ではオンライン拡張が可能。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">279</td>
+<td>chfs -a size=- (オンライン縮小)</td>
+<td>JFS2 のみ対応するオンライン縮小。-a size=-1G で 1GB 縮小、または絶対値で目標サイズを指定。inode/ブロック移動が発生するため時間を要する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">280</td>
+<td>chfs -m NewMountPoint</td>
+<td>マウントポイントを変更する。マウント中は変更不可、umount 後に実行する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">281</td>
+<td>chfs -d Attribute</td>
+<td>/etc/filesystems から指定属性を削除する。例: chfs -d account /home。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">282</td>
+<td>chfs -u MountGroup</td>
+<td>マウントグループ (type 属性) を変更する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">283</td>
+<td>chfs -a logname=LV</td>
+<td>FS が使用するログ LV を変更する。アンマウント状態で実行する必要がある。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">284</td>
+<td>chfs -a quota=...</td>
+<td>クォータ種別の有効/無効化。userquota / groupquota / 両方を指定。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">285</td>
+<td>chfs -a ea=v2 (JFS2)</td>
+<td>拡張属性フォーマットを v1 から v2 へ変換する。一旦 v2 にすると v1 に戻せない。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">286</td>
+<td>chfs -a splitcopy=/MP -a copy=N (スプリットミラー)</td>
+<td>ミラー化された JFS2 FS のオフライン複製を作成する。指定したミラーコピーを切り出して読み取り専用 FS としてマウント可能にする。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">287</td>
+<td>chfs -a freeze=N / refreeze=N / thaw</td>
+<td>FS を瞬時凍結する。バックアップ整合性確保用。freeze=秒数で自動解凍、thaw で即時解除。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">288</td>
+<td>chfs -a options=...</td>
+<td>mount オプション (rw, noatime, log=NULL など) を変更する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">289</td>
+<td>chfs -a mountguard=yes/no</td>
+<td>Mount Guard を後付け有効化・無効化する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>FS削除/参照 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">290</td>
+<td>rmfs</td>
+<td>ファイルシステムを削除する。/etc/filesystems スタンザ削除 + LV 削除を一括実行する高水準コマンド。事前 umount 必須。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">291</td>
+<td>rmfs -r</td>
+<td>マウントポイントディレクトリも併せて削除する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">292</td>
+<td>rmfs -i</td>
+<td>実行確認プロンプトを出す対話モード。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">293</td>
+<td>lsfs</td>
+<td>ファイルシステム一覧表示。マウントポイント / LV / vfs / サイズ / オプションを列挙する。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">294</td>
+<td>lsfs -q</td>
+<td>JFS/JFS2 詳細属性 (フラグメントサイズ, EA バージョン, ログ LV, 圧縮/暗号化フラグなど) を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">295</td>
+<td>lsfs -v vfstype</td>
+<td>指定種別の FS のみ列挙する。例: lsfs -v jfs2。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">296</td>
+<td>lsfs -a / -c / -l</td>
+<td>出力フォーマット切替。-c はコロン区切り、-l は long リスト。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>mount/umount （19 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">297</td>
+<td>mount 単独実行</td>
+<td>mount /mountpoint で /etc/filesystems のスタンザを参照し当該 FS をマウントする。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">298</td>
+<td>mount -a</td>
+<td>/etc/filesystems で mount=automatic|true の全 FS をマウント。起動時 rc.boot で実行される。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">299</td>
+<td>mount -t MountGroup</td>
+<td>type 属性が一致する FS 群を一括マウントする (PowerHA リソースグループ運用などで多用)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">300</td>
+<td>mount -V vfstype</td>
+<td>vfs 種別を明示する (例: mount -V cdrfs)。/etc/filesystems に登録のない FS を直接マウント可能。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">301</td>
+<td>mount -o options</td>
+<td>mount オプション。rw / ro / log=NULL / nointegrity / noatime / nodev / nosuid / rbrw など。カンマ区切り。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">302</td>
+<td>mount -o log=NULL (JFS2)</td>
+<td>ログを無効にして非整合性マウント。一時 FS 性能向上用 (再起動時に内容失われる前提)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">303</td>
+<td>mount -o nointegrity (JFS2)</td>
+<td>ログを書かずに性能優先。クラッシュ時 FS 破損の覚悟が必要。tmp 用途。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">304</td>
+<td>mount -o noatime</td>
+<td>アクセス時刻更新を抑止。大量参照ワークロードでメタデータ書込を削減し性能を改善する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">305</td>
+<td>mount -o rbrw / rbr</td>
+<td>Release Behind on Read / Write。シーケンシャル I/O ページキャッシュを早期解放しメモリ圧迫を軽減。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">306</td>
+<td>mount -o cio</td>
+<td>Concurrent I/O。DIO + iノードロックバイパス。Oracle 等 DB の二重キャッシュ回避用。</td>
+<td>AIX73, AIX2</td>
+</tr>
+<tr>
+<td style="text-align: right;">307</td>
+<td>mount -o dio</td>
+<td>Direct I/O。ファイルシステムキャッシュをバイパス。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">308</td>
+<td>mount -r / -o ro</td>
+<td>読み取り専用マウント。-r は -o ro のショートカット。書き込みは EROFS で拒否される。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">309</td>
+<td>mount (引数なし)</td>
+<td>現在マウント中の全 FS 一覧を表示。出力は node, mounted, mounted over, vfs, date, options 列。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">310</td>
+<td>umount /mountpoint</td>
+<td>ファイルシステムをアンマウント。使用中ファイルがあると EBUSY。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">311</td>
+<td>umount -f</td>
+<td>強制アンマウント (JFS2 一部)。使用中でも切り離す。NFS スタール時に有効。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">312</td>
+<td>umount -t/-V / unmount</td>
+<td>umount -t Group は type 属性単位、-V vfstype は種別単位で一括アンマウント。unmount は umount の別名 (同一バイナリ)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">313</td>
+<td>fuser /mountpoint</td>
+<td>FS を使用中のプロセス PID を列挙する。umount EBUSY 時のトラブルシュート定番。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">314</td>
+<td>fuser -k /mountpoint</td>
+<td>使用中プロセスに SIGKILL を送信する。umount 直前の強制クローズ用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">315</td>
+<td>fuser -cu</td>
+<td>FS 全体検査 (-c) とユーザ名表示 (-u) の組合せ。-x で実行中バイナリ保持プロセスも列挙し text file busy 解消に使う。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>JFS2拡張機能 （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">316</td>
+<td>拡張属性 EA v1/v2</td>
+<td>JFS2 の拡張属性。v1 は固定領域・サイズ制限あり、v2 は inode 動的拡張で任意名前空間 EA を保持。ACL や SELinux 風メタデータの基盤。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">317</td>
+<td>AIXC ACL</td>
+<td>AIX Classic ACL。所有者/グループ/その他に加え extended permissions を持つ。aclget / aclput / acledit で操作。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">318</td>
+<td>NFS4 ACL</td>
+<td>NFSv4 形式の ACL。allow/deny ACE、継承フラグ (file_inherit/dir_inherit) を持つ。EA v2 必須。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">319</td>
+<td>aclget</td>
+<td>ファイル/ディレクトリの ACL を取得し標準出力へ表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">320</td>
+<td>aclput</td>
+<td>標準入力から ACL 定義を読み込み設定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">321</td>
+<td>acledit</td>
+<td>$EDITOR を起動して ACL を対話編集する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">322</td>
+<td>ファイルセット (filesets)</td>
+<td>JFS2 内部の論理パーティション。クォータ・スナップショットを独立して制御できる単位。-a fileset_quota で個別容量制限。</td>
+<td>AIX73, AIX2</td>
+</tr>
+<tr>
+<td style="text-align: right;">323</td>
+<td>暗号化 EFS</td>
+<td>Encrypted File System。ユーザ鍵ストア (efskeymgr) を用い AES-128/192/256 で透過暗号化。efsenable で初期化、ファイル単位有効化。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">324</td>
+<td>EFS 管理コマンド一式</td>
+<td>efsenable で鍵ストア初期化、efskeymgr でユーザ鍵管理 (生成・パスフレーズ変更)、efsmgr -e でファイル単位暗号化開始 / -l で状態確認。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">325</td>
+<td>オンライン拡張</td>
+<td>chfs -a size=+1G のように稼働中の JFS2 を縮小なしで拡張可能。LV 拡張 → FS 認識を一括で実施する。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">326</td>
+<td>オンライン縮小</td>
+<td>JFS2 のみ対応。空き領域があれば chfs -a size で縮小可能。実装上 LV 末端のブロックを使用領域へ移動する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">327</td>
+<td>外部スナップショット</td>
+<td>snapshot -o snapfrom=/fs -o size=100M で別 LV にスナップを取得。読み取り専用マウントして backup 等の整合点として利用。</td>
+<td>AIX73, AIX2</td>
+</tr>
+<tr>
+<td style="text-align: right;">328</td>
+<td>内部スナップショット</td>
+<td>isnapshot=yes の FS で snapshot -o snapfrom コマンドだけで取得可能。専用 LV 不要、最大 64 世代。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">329</td>
+<td>snapshot コマンド</td>
+<td>JFS2 スナップショットの作成/削除/一覧。-o snapfrom (元), -o size (サイズ), -d (削除), -q (一覧)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">330</td>
+<td>rollback (chfs -a)</td>
+<td>スナップショット世代に戻す。chfs -a rollback=snapname /fs。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">331</td>
+<td>クォータ JFS2</td>
+<td>ユーザ/グループに加えファイルセット単位クォータをサポート。j2edquota / quotacheck -t jfs2 を使用。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>整合性・最適化 （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">332</td>
+<td>defragfs</td>
+<td>JFS/JFS2 の断片化を解消する。マウント中・読み書き中でも実行可能 (オンラインデフラグ)。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">333</td>
+<td>defragfs -q</td>
+<td>デフラグせず断片化レポートのみ出力 (query mode)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">334</td>
+<td>defragfs -r</td>
+<td>レポート + デフラグ実行。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">335</td>
+<td>fsck 概要</td>
+<td>ファイルシステム整合性検査・修復。FS をアンマウントしてから実行するのが原則。JFS2 はジャーナル再生で大半が自動回復するため通常不要。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">336</td>
+<td>fsck -y</td>
+<td>全プロンプトに自動 yes 応答。バッチ復旧用。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">337</td>
+<td>fsck -n</td>
+<td>全プロンプトに自動 no 応答。読み取り専用に動作する diagnostic mode。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">338</td>
+<td>fsck -p</td>
+<td>Preen mode。軽微な不整合のみ自動修復、対話なし。rc.boot から自動呼び出しされる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">339</td>
+<td>fsck -V vfstype</td>
+<td>vfs 種別指定 (jfs / jfs2)。混在環境で誤検査を避けるため使用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">340</td>
+<td>fsck -o options</td>
+<td>vfs 固有検査オプション。例: -o nolog でログ再生を無効。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">341</td>
+<td>fsck -f</td>
+<td>クリーン (前回正常アンマウント) であっても強制的に検査する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">342</td>
+<td>fsck -t File</td>
+<td>一時作業ファイルパス指定。/tmp が小さい際に明示指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">343</td>
+<td>tunefs</td>
+<td>FS チューニング属性を表示・変更する。fragmentation や inode 管理の調整。JFS2 では限定的。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">344</td>
+<td>tunefs -A</td>
+<td>ファイルシステムの ag (Allocation Group) 関連属性を調整する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">345</td>
+<td>tunefs -B</td>
+<td>JFS のブロックサイズ系属性表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">346</td>
+<td>fsdb</td>
+<td>ファイルシステムデバッガ。inode/superblock/dirent をブロック単位で確認・編集できる低レベルツール。緊急復旧用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">347</td>
+<td>fsdb 起動</td>
+<td>fsdb /dev/lvname の形で起動。? でヘルプ、quit で終了。誤操作で FS を破壊する危険性が高いため熟練者専用。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>LV/FS対応 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">348</td>
+<td>/dev/hd? と既定 FS</td>
+<td>rootvg の標準 LV 命名: /dev/hd4=/, /dev/hd2=/usr, /dev/hd3=/tmp, /dev/hd9var=/var, /dev/hd1=/home, /dev/hd11admin=/admin, /dev/hd10opt=/opt。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">349</td>
+<td>/dev/hd8 (ログ LV)</td>
+<td>rootvg 既定 JFS2 ログ LV。jfs2log タイプの LV。FS は持たない。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">350</td>
+<td>/dev/hd5 / hd6 / hd7</td>
+<td>hd5=boot LV, hd6=paging space (デフォルト), hd7=ダンプ用。FS としては使わない。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">351</td>
+<td>/dev/loglv00 等の自動命名</td>
+<td>ユーザ作成 VG で crfs が自動生成するログ LV の既定名。複数 VG で同名が重複しないよう連番付与。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">352</td>
+<td>LV タイプと FS の対応</td>
+<td>LV タイプ (lslv -L で確認) は jfs / jfs2 / jfslog / jfs2log / paging / boot / sysdump 等。crfs/chfs が自動設定する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>backup/restore （15 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">353</td>
+<td>backup -i (個別ファイル)</td>
+<td>標準入力から取得したファイルリストを名前ベースでバックアップする。find と組合せて差分バックアップ可能。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">354</td>
+<td>backup -Level filesystem (i-node)</td>
+<td>i-node ベースの完全/差分バックアップ。レベル 0〜9 を指定し、レベル N は直近のレベル N-1 より前以来の更新を取得する。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">355</td>
+<td>backup -f Device</td>
+<td>出力先デバイス指定。テープ (/dev/rmt0) や通常ファイル、パイプも指定可。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">356</td>
+<td>backup -p (パック)</td>
+<td>通常ファイルを pack で圧縮しながらアーカイブする。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">357</td>
+<td>backup -u</td>
+<td>/etc/dumpdates を更新し、レベル別バックアップ履歴を記録する。差分判定の基準となる。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">358</td>
+<td>backup -L Length</td>
+<td>テープ 1 巻あたりの長さ (バイト) を指定する。マルチボリュームバックアップで使用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">359</td>
+<td>backup -v (詳細)</td>
+<td>処理中のファイル名を逐次表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">360</td>
+<td>backup -b BlockSize</td>
+<td>ブロックサイズ (1024B 単位) 指定。テープ性能・互換性に影響。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">361</td>
+<td>restore -x</td>
+<td>アーカイブからファイルを取り出す (extract)。-d で指定ディレクトリ配下にも。</td>
+<td>AIX73, AIX1</td>
+</tr>
+<tr>
+<td style="text-align: right;">362</td>
+<td>restore -T</td>
+<td>アーカイブ内容の一覧表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">363</td>
+<td>restore -t (タイムスタンプ確認)</td>
+<td>より詳細なメタデータ付き一覧表示。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">364</td>
+<td>restore -i (対話)</td>
+<td>対話モードでファイルを選択的にリストアする。add / extract / quit などのサブコマンドあり。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">365</td>
+<td>restore -r (i-node 全復元)</td>
+<td>i-node 形式バックアップ全体を空 FS にリストアする。新規 FS への完全復旧用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">366</td>
+<td>restore -f Device / -B (stdin)</td>
+<td>入力デバイス指定 / 標準入力読み込み。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">367</td>
+<td>/etc/dumpdates</td>
+<td>backup -u で更新されるレベル別バックアップ日時履歴。差分バックアップの基準。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>アーカイブ （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">368</td>
+<td>pax 概要</td>
+<td>POSIX 標準のアーカイブツール。tar / cpio 両形式を読み書きでき AIX 推奨。-r/-w/-rw でモード指定。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">369</td>
+<td>pax -w (write)</td>
+<td>アーカイブ作成モード。標準出力または -f File へ書き出す。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">370</td>
+<td>pax -r (read)</td>
+<td>アーカイブ展開モード。-f File 指定で対象指定。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">371</td>
+<td>pax -x Format</td>
+<td>アーカイブ形式指定。ustar / cpio / pax。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">372</td>
+<td>cpio -o (出力)</td>
+<td>標準入力のファイル名リストからアーカイブ生成。find と組合せる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">373</td>
+<td>cpio -i (入力)</td>
+<td>アーカイブ展開モード。-d でディレクトリ自動作成、-m でタイムスタンプ保持、-v で詳細。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">374</td>
+<td>cpio -p (パススルー)</td>
+<td>ファイルを別ディレクトリへコピー (アーカイブを介さない高速複製)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">375</td>
+<td>tar -c / -x / -t</td>
+<td>tar 作成 / 展開 / 一覧。-v で詳細、-f で対象指定、-z は AIX 標準 tar には無いため gzip と組合せる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">376</td>
+<td>tar -f Device</td>
+<td>アーカイブファイル/デバイス指定。- で標準入出力。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">377</td>
+<td>tar -p</td>
+<td>permissions を保持して展開する。所有者を含む属性をできる限り保つ。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>NFS （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">378</td>
+<td>mount -V nfs</td>
+<td>NFS マウントの基本形。mount -V nfs server:/export /mnt のように指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">379</td>
+<td>mount -o vers=3</td>
+<td>NFSv3 でマウント。UDP/TCP, ファイルロックは rpc.lockd 経由。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">380</td>
+<td>mount -o vers=4</td>
+<td>NFSv4 マウント。stateful、組み込み ACL、コンパウンド RPC、TCP のみ。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">381</td>
+<td>mount -o hard / soft</td>
+<td>hard はサーバ応答まで永久リトライ (DB 用), soft はタイムアウトで EIO 返却 (応答性優先)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">382</td>
+<td>mount -o intr</td>
+<td>hard マウント時でも割り込み (^C) で処理中断を許可する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">383</td>
+<td>mount -o bg/fg/rsize/wsize</td>
+<td>bg: 起動時マウント失敗をバックグラウンドリトライ、fg: 即時失敗。rsize/wsize は RPC 読み書き 1 回の最大バイト数で性能チューニングの中心。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">384</td>
+<td>mount -o proto=tcp/udp</td>
+<td>RPC トランスポートプロトコル。NFSv4 は tcp のみ。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">385</td>
+<td>mount -o sec=...</td>
+<td>セキュリティモード。sys (UID マッピング), krb5 / krb5i / krb5p (Kerberos 認証/整合性/秘匿)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">386</td>
+<td>mount -o nosuid / nodev</td>
+<td>クライアント側で setuid バイナリやデバイスファイルを無効化する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">387</td>
+<td>/etc/exports</td>
+<td>NFS サーバのエクスポート定義ファイル。/path -opts,client=node1:node2 形式。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">388</td>
+<td>exportfs -a</td>
+<td>/etc/exports を読み込み全エントリをエクスポート反映する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">389</td>
+<td>exportfs -u</td>
+<td>指定エクスポートを取り消す。-au で全エクスポート停止。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">390</td>
+<td>exportfs -v / -i</td>
+<td>現在のエクスポート状態確認 / /etc/exports を無視して直接エクスポート。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">391</td>
+<td>mknfsmnt / chnfsmnt / rmnfsmnt</td>
+<td>NFS マウントを /etc/filesystems スタンザとして作成・変更・削除する高水準コマンド。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">392</td>
+<td>showmount -e server</td>
+<td>リモート NFS サーバのエクスポート一覧を確認する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">393</td>
+<td>automount / autofs</td>
+<td>オンデマンドマウント。/etc/auto_master と各マップで指定。アイドル時自動アンマウント。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>CacheFS （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">394</td>
+<td>CacheFS 概要</td>
+<td>NFS マウントのキャッシュレイヤ。リモート FS のブロックをローカル FS にキャッシュし読み取り高速化。AIX 7.3 では一部機能制限あり。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">395</td>
+<td>cfsadmin -c</td>
+<td>キャッシュディレクトリを作成する。-o maxblocks=N% などでサイズ上限を設定。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">396</td>
+<td>cfsadmin -l</td>
+<td>キャッシュ統計と構成を表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">397</td>
+<td>mount -V cachefs</td>
+<td>CacheFS としてリモート FS をマウントする。backfstype=nfs と cachedir を指定。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">398</td>
+<td>fsck_cachefs</td>
+<td>CacheFS キャッシュ整合性検査。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>AIO （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">399</td>
+<td>AIO 概要</td>
+<td>Asynchronous I/O。アプリケーションが I/O 完了を待たずに次処理を進める仕組み。Oracle 等の DB ワークロードで性能向上に必須。</td>
+<td>AIX73, AIX2</td>
+</tr>
+<tr>
+<td style="text-align: right;">400</td>
+<td>Legacy AIO vs POSIX AIO</td>
+<td>AIX には旧来の aio_<em> と POSIX 準拠 aio_</em> の 2 系統がある。AIX 6.1 以降 fastpath が標準。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">401</td>
+<td>ioo -o aio_maxreqs</td>
+<td>AIO 同時要求の最大数。デフォルト 65536。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">402</td>
+<td>ioo -o aio_maxservers</td>
+<td>AIO カーネルサーバスレッドの上限値。負荷に応じ動的増減する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">403</td>
+<td>ioo -o aio_minservers</td>
+<td>AIO カーネルサーバスレッドの最小値 (常時起動数)。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">404</td>
+<td>ioo -o aio_server_inactivity</td>
+<td>アイドルなサーバスレッドが終了するまでの秒数。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">405</td>
+<td>pstat -a | grep aios</td>
+<td>実行中の AIO サーバスレッド数の確認。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">406</td>
+<td>fastpath AIO</td>
+<td>JFS2/raw LV 向けに kproc を介さず直接 LVM へ I/O を投入する高速経路。aio_fastpath=1 がデフォルト。</td>
+<td>AIX73, AIX2</td>
+</tr>
+<tr>
+<td style="text-align: right;">407</td>
+<td>CIO + AIO の組合せ</td>
+<td>Concurrent I/O マウントの JFS2 上で AIO を使用すると DB の二重キャッシュを排除しつつ非同期 I/O 並列度を確保できる。</td>
+<td>AIX73, AIX2</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>クォータ （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">408</td>
+<td>quotaon / quotaoff</td>
+<td>FS のクォータ強制を開始/停止する。マウント済み FS に対して実行。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">409</td>
+<td>quotacheck</td>
+<td>FS を走査し quota ファイルを再構築する。クォータ有効化前に実行する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">410</td>
+<td>edquota / j2edquota</td>
+<td>ユーザ/グループ/ファイルセットのクォータ制限を編集する。j2edquota は JFS2 専用で fileset 単位制限が可能。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">411</td>
+<td>quota コマンド</td>
+<td>ユーザ視点で自身の使用量と制限を確認する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">412</td>
+<td>repquota</td>
+<td>FS 全体のクォータ使用状況をユーザ別に集計表示する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

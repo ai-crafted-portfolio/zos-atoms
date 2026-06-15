@@ -1,0 +1,5420 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv04/">
+      
+      
+        <link rel="prev" href="../lv03/">
+      
+      
+        <link rel="next" href="../lv05/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>JCL PROC / 制御 （181 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jcl-proc" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              JCL PROC / 制御 （181 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aix-ksh/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../aix-ksh/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="jcl-proc">JCL PROC / 制御<a class="headerlink" href="#jcl-proc" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: z/OS v3 ／ <strong>本ページ件数</strong>: 181 件 ／ <strong>出典区分</strong>: Redbook ingest 反映済 v3</p>
+<details class="note" open="open">
+<summary>PROC 文 構文 （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">567</td>
+<td>PROC 文の役割</td>
+<td>プロシジャの開始を宣言。シンボリック・パラメータのデフォルト値を定義可</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">568</td>
+<td>PROC 文の書式</td>
+<td>//pname PROC sym1=val1,sym2=val2 形式で 1 行目に記述</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">569</td>
+<td>pname (プロシジャ名)</td>
+<td>1-8 文字。先頭は英字または国別文字 ($,#,@)</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">570</td>
+<td>カタログ PROC の pname</td>
+<td>PDS メンバ名 = プロシジャ名となるので一致必須</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">571</td>
+<td>PROC 文の位置 (インストリーム)</td>
+<td>JOB 文の後・最初の EXEC 文の前に置く</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">572</td>
+<td>PROC 文の位置 (カタログ)</td>
+<td>PROCLIB メンバの 1 行目。省略するとデフォルト値定義不可</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">573</td>
+<td>PROC 文 オペランド省略</td>
+<td>シンボリック デフォルトが不要なら // pname PROC のみで可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">574</td>
+<td>PROC 文 継続行</td>
+<td>シンボリック リストはカンマで改行し継続行で列挙可</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>PEND 文 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">575</td>
+<td>PEND 文の役割</td>
+<td>インストリーム プロシジャの終了を示す</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">576</td>
+<td>PEND 文の書式</td>
+<td>//[label] PEND の形。オペランドなし</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">577</td>
+<td>PEND 文の位置</td>
+<td>PROC 文と対になり、呼出 EXEC より前に置く</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">578</td>
+<td>PEND 省略時のエラー</td>
+<td>インストリーム PROC で PEND を欠くと JCL エラー</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">579</td>
+<td>カタログ PROC と PEND</td>
+<td>カタログ式プロシジャでは PEND 文不要 (記述するとエラー)</td>
+<td>MF, BAS</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>PROC 種別 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">580</td>
+<td>インストリーム プロシジャ定義</td>
+<td>JOB 内で // pname PROC … // PEND で囲んで記述</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">581</td>
+<td>インストリーム PROC の最大数</td>
+<td>1 ジョブあたり 15 個まで定義可</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">582</td>
+<td>カタログ プロシジャ定義</td>
+<td>JES2/JES3 PROCLIB の PDS/PDSE メンバとして格納</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">583</td>
+<td>標準 PROCLIB 連結</td>
+<td>SYS1.PROCLIB はじめ JES の PROC00 連結が既定検索される</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">584</td>
+<td>インストリーム vs カタログ 検索順</td>
+<td>同名はインストリームが優先される</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">585</td>
+<td>インストリーム PROC の利点</td>
+<td>テスト中の編集が容易。本番化前のデバッグに使用</td>
+<td>BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">586</td>
+<td>カタログ PROC の利点</td>
+<td>再利用性・標準化・SCM 管理が容易</td>
+<td>BAS</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>シンボリック 定義 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">587</td>
+<td>シンボリック表記法</td>
+<td>&amp; に続けて 1-7 文字の英数字 (合計 8 文字以内)</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">588</td>
+<td>シンボリック 先頭文字</td>
+<td>&amp; の直後は英字または国別文字 ($,#,@)</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">589</td>
+<td>予約名の回避</td>
+<td>&amp;SYSUID, &amp;SYSDATE 等システム シンボルと衝突しない名前を選ぶ</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">590</td>
+<td>デフォルト値の指定</td>
+<td>PROC 文 / SET 文で &amp;sym=value 形式で既定値を与える</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">591</td>
+<td>デフォルト値 空指定</td>
+<td>&amp;sym= (右辺空) で長さ 0 の既定値を意味する</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">592</td>
+<td>デフォルト値 アポストロフィ</td>
+<td>空白や特殊文字を含む値は '…' で囲む</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">593</td>
+<td>デフォルト値 最大長</td>
+<td>シンボル値は最大 255 文字</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>シンボリック 参照 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">594</td>
+<td>シンボリック参照位置</td>
+<td>PROC 内 EXEC/DD オペランドで &amp;sym と書くと値に置換</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">595</td>
+<td>ピリオド付き参照 &amp;sym.X</td>
+<td>値置換後 X が続く形に。例 &amp;HLQ.DATA → USR1.DATA</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">596</td>
+<td>ピリオド自体を残す書き方</td>
+<td>&amp;sym.. と書くと 1 個目は区切り、2 個目が文字として残る</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">597</td>
+<td>シンボリック 未定義参照</td>
+<td>値も override もない参照は JCL エラー</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">598</td>
+<td>&amp;&amp; とアンパサンド本来文字</td>
+<td>値中で &amp;&amp; と書くと 1 個の &amp; がプログラム側に渡る</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">599</td>
+<td>シンボリック評価タイミング</td>
+<td>コンバーター / インタプリタ フェーズで実行前に解決される</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>シンボリック スコープ （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">600</td>
+<td>プロシジャ内ローカル</td>
+<td>PROC 文で定義したシンボルはそのプロシジャ内のみ有効</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">601</td>
+<td>ジョブ レベル SET 文</td>
+<td>SET 文で定義した値はジョブ全体で有効。PROC からも参照可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">602</td>
+<td>EXPORT による昇格</td>
+<td>EXPORT SYMLIST= 文でローカル シンボルをジョブ全体に公開</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">603</td>
+<td>システム シンボル</td>
+<td>&amp;SYSUID, &amp;SYSPLEX, &amp;SYSCLONE 等は常時参照可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">604</td>
+<td>ネスト PROC へのスコープ</td>
+<td>親 PROC のシンボル値は子 PROC に自動で渡らない (再宣言/EXPORT 必要)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">605</td>
+<td>JOB 文 シンボル参照不可</td>
+<td>JOB 文オペランドではシンボリック参照は無効</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>シンボリック override （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">606</td>
+<td>EXEC でのオーバライド</td>
+<td>EXEC PROC=pname,sym1=val1,sym2=val2 で既定値を上書き</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">607</td>
+<td>PROC= 省略時の書き方</td>
+<td>EXEC pname,sym1=val1 と PROC= を省略しても可</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">608</td>
+<td>オーバライド評価順</td>
+<td>EXEC override &gt; SET 値 &gt; PROC デフォルト</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">609</td>
+<td>オーバライド未定義シンボル</td>
+<td>PROC 内に同名シンボルがなくとも EXEC で与えれば有効</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">610</td>
+<td>オーバライド 値の空指定</td>
+<td>sym= で空文字を渡す。シンボルは長さ 0 に置換される</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">611</td>
+<td>PROC ネスト時のオーバライド</td>
+<td>ネスト PROC でも同シンボル名を再指定可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>シンボリック 命名 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">612</td>
+<td>名前付きシンボリック</td>
+<td>&amp;HLQ, &amp;LIB 等の意味のある名前を付ける標準形</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">613</td>
+<td>システム シンボル &amp;SYSUID</td>
+<td>ジョブ実行ユーザ ID に置換</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">614</td>
+<td>システム シンボル &amp;SYSPLEX</td>
+<td>SYSPLEX 名に置換</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">615</td>
+<td>システム シンボル &amp;SYSNAME</td>
+<td>システム (LPAR) 名に置換</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">616</td>
+<td>システム シンボル &amp;YYMMDD/&amp;LYYMMDD</td>
+<td>実行日付の各形式 (システム/現地)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">617</td>
+<td>入れ子参照</td>
+<td>シンボル値の中に別シンボルを書くと再帰的に解決される</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">618</td>
+<td>入れ子参照の上限</td>
+<td>再帰展開は実装上 5 階層程度まで。循環参照は JCL エラー</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>DD override 基本 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">619</td>
+<td>DD オーバライドの書式</td>
+<td>//stepname.ddname DD … の形でプロシジャ内 DD を上書き</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">620</td>
+<td>stepname の意味</td>
+<td>プロシジャ内のステップ名 (内側) を指す</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">621</td>
+<td>ddname の意味</td>
+<td>オーバライド対象の DD 名と完全一致させる</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">622</td>
+<td>オーバライド配置順</td>
+<td>呼出 EXEC 直後・ステップ順・DD 名は PROC 内の順序で並べる</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">623</td>
+<td>オーバライド順違反</td>
+<td>PROC 内 DD 順序と異なる順序で書くと JCL エラー</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">624</td>
+<td>未定義 DD 名指定</td>
+<td>プロシジャ内に存在しない DD 名を書くと「追加」となる</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">625</td>
+<td>オーバライドと連結</td>
+<td>DD 連結を上書きする場合は連結中の DD ごとに stepname.ddname 指定</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>DD override 追加 （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">626</td>
+<td>DD 追加の書式</td>
+<td>PROC に存在しない ddname を指定すると新規 DD として追加</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">627</td>
+<td>追加 DD の配置</td>
+<td>他オーバライドの後に書く。順序規則は元 DD と同様</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">628</td>
+<td>追加 DD と STEPLIB</td>
+<td>プロシジャに STEPLIB がなくともオーバライドで追加可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>DD override 削除 （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">629</td>
+<td>DD 削除の書式</td>
+<td>//stepname.ddname DD DUMMY と書き換えれば実質無効化</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">630</td>
+<td>完全削除の代替</td>
+<td>DD 文を物理削除できないため DUMMY 化または NULLFILE 指定</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>DD override DCB （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">631</td>
+<td>DCB サブパラの個別上書き</td>
+<td>//s.d DD DCB=(LRECL=80) のように DCB の一部だけ上書き</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">632</td>
+<td>DCB 全体置換</td>
+<td>DCB=(RECFM=FB,LRECL=80,BLKSIZE=800) で全体書換</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">633</td>
+<td>DISP オーバライド</td>
+<td>//s.d DD DISP=(OLD,KEEP) で処置のみ上書き</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">634</td>
+<td>VOL オーバライド</td>
+<td>VOL=SER= を上書きすると元 PROC のボリュームを差替え</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">635</td>
+<td>SPACE オーバライド</td>
+<td>SPACE= 全体を再指定。サブパラ単独上書き不可</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>PROC ネスト （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">636</td>
+<td>ネスト プロシジャの定義</td>
+<td>プロシジャ内 EXEC 文が別プロシジャを呼出すこと</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">637</td>
+<td>ネスト深さ制限</td>
+<td>最大 15 段までネスト可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">638</td>
+<td>ネスト時のステップ名表記</td>
+<td>stepname.procstep.procstep…ddname の形で参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">639</td>
+<td>ネスト DD オーバライドの順</td>
+<td>外側ステップ順 → 内側ステップ順で並べる</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">640</td>
+<td>ネスト時の RC 参照</td>
+<td>&amp;stepname.procstep.RC で深い階層の RC を参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">641</td>
+<td>ネストとシンボル スコープ</td>
+<td>ネスト子に親のシンボルは伝わらない (再宣言/EXPORT 必要)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">642</td>
+<td>ネスト循環参照</td>
+<td>PROC が直接/間接に自分自身を呼ぶと JCL エラー</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>COND 演算子 （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">643</td>
+<td>COND oper=LT</td>
+<td>RC &lt; code が真ならステップをバイパス (実行しない)</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">644</td>
+<td>COND oper=LE</td>
+<td>RC &lt;= code が真ならバイパス</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">645</td>
+<td>COND oper=EQ</td>
+<td>RC = code が真ならバイパス</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">646</td>
+<td>COND oper=NE</td>
+<td>RC ≠ code が真ならバイパス</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">647</td>
+<td>COND oper=GT</td>
+<td>RC &gt; code が真ならバイパス</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">648</td>
+<td>COND oper=GE</td>
+<td>RC &gt;= code が真ならバイパス</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">649</td>
+<td>COND の真偽逆ロジック</td>
+<td>条件が真でバイパス。直感と逆のため誤りやすい</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">650</td>
+<td>COND 値 code の範囲</td>
+<td>code は 0-4095 の整数で指定</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>COND EVEN （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">651</td>
+<td>COND=EVEN の意味</td>
+<td>先行ステップが ABEND してもこのステップを実行する</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">652</td>
+<td>EVEN と RC 条件併用</td>
+<td>COND=(EVEN,(4,LT)) のように EVEN + RC 条件を組合せ可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">653</td>
+<td>EVEN とシステム ABEND</td>
+<td>S0Cx 等システム ABEND の後でも実行される</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">654</td>
+<td>EVEN と JCL エラー</td>
+<td>JCL エラー継承時は EVEN でも実行されない</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>COND ONLY （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">655</td>
+<td>COND=ONLY の意味</td>
+<td>先行ステップが ABEND した場合のみこのステップを実行</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">656</td>
+<td>ONLY と RC 条件併用</td>
+<td>COND=(ONLY,(0,EQ,STEP1)) で ABEND 時 + RC 条件評価</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">657</td>
+<td>ONLY と JCL エラー</td>
+<td>JCL エラー継承時は ONLY ステップも実行されない</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>COND 前ステップ参照 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">658</td>
+<td>COND=(code,oper,stepname)</td>
+<td>特定ステップの RC とだけ比較</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">659</td>
+<td>COND=(code,oper,stepname.procstep)</td>
+<td>プロシジャ内ステップを参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">660</td>
+<td>COND 複数条件 OR</td>
+<td>最大 8 条件まで括弧内に並べ OR 結合</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">661</td>
+<td>未実行ステップの参照</td>
+<td>バイパスされたステップは比較対象外として無視される</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">662</td>
+<td>JOB COND との優先</td>
+<td>JOB COND が真なら全ステップバイパス。ステップ COND より優先</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IF/THEN/ELSE 基本 （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">663</td>
+<td>IF 文の書式</td>
+<td>//[label] IF (relexp) THEN 形式。THEN は同一行に必須</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">664</td>
+<td>ENDIF 文</td>
+<td>//[label] ENDIF で IF ブロック終了を明示。省略は JCL エラー</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">665</td>
+<td>ELSE 文</td>
+<td>//[label] ELSE で偽の場合の処理を記述 (任意)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">666</td>
+<td>ネスト深さ上限</td>
+<td>IF/THEN/ELSE は最大 15 段ネスト可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">667</td>
+<td>括弧によるグループ化</td>
+<td>(A &amp; B) | C のように優先順を明示可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">668</td>
+<td>論理 AND (&amp;)</td>
+<td>条件式の AND 結合演算子</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">669</td>
+<td>論理 OR (|)</td>
+<td>条件式の OR 結合演算子</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">670</td>
+<td>論理 NOT (¬/^)</td>
+<td>条件式の否定演算子。¬ または ^ が使える</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IF 関係式 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">671</td>
+<td>関係演算子 EQ/=</td>
+<td>等値判定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">672</td>
+<td>関係演算子 NE/¬=/^=</td>
+<td>不等価判定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">673</td>
+<td>関係演算子 GT/&gt;</td>
+<td>より大</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">674</td>
+<td>関係演算子 GE/&gt;=</td>
+<td>以上</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">675</td>
+<td>関係演算子 LT/&lt;</td>
+<td>より小</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">676</td>
+<td>関係演算子 LE/&lt;=</td>
+<td>以下</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IF ABEND （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">677</td>
+<td>IF ABEND THEN</td>
+<td>直前または指定ステップが ABEND した場合に真</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">678</td>
+<td>IF ¬ABEND THEN</td>
+<td>ABEND していない場合に真 (正常終了/バイパス)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">679</td>
+<td>stepname.ABEND 参照</td>
+<td>特定ステップが ABEND したかを判定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">680</td>
+<td>stepname.procstep.ABEND</td>
+<td>プロシジャ内ステップの ABEND を判定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">681</td>
+<td>ABEND と JCL エラー区別</td>
+<td>JCL エラーは ABEND 扱いにならない (別途 RUN=FALSE)</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IF ABENDCC （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">682</td>
+<td>IF ABENDCC=Sxxx</td>
+<td>システム ABEND コード (例 S0C7, S322) を判定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">683</td>
+<td>IF ABENDCC=Uxxxx</td>
+<td>ユーザ ABEND コード (例 U0040, U4095) を判定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">684</td>
+<td>stepname.ABENDCC 参照</td>
+<td>特定ステップの ABENDCC を取得</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">685</td>
+<td>ABENDCC 形式</td>
+<td>S + 3 桁 16 進 (システム), U + 4 桁 10 進 (ユーザ)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">686</td>
+<td>ABENDCC と ABEND 併用</td>
+<td>IF STEPA.ABEND &amp; STEPA.ABENDCC=S0C7 THEN … と複合可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IF RC 参照 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">687</td>
+<td>&amp;RC キーワード</td>
+<td>直前に実行されたステップの RC を参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">688</td>
+<td>&amp;MAXRC キーワード</td>
+<td>それまで実行された全ステップの最大 RC</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">689</td>
+<td>&amp;MAXCC / &amp;LASTCC (互換)</td>
+<td>IDCAMS 等で使われる &amp;MAXRC / &amp;RC の別名</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">690</td>
+<td>stepname.RC</td>
+<td>特定ステップの RC を参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">691</td>
+<td>stepname.procstep.RC</td>
+<td>プロシジャ内ステップの RC を参照</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">692</td>
+<td>stepname.RUN</td>
+<td>ステップが実行されたか (TRUE/FALSE)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">693</td>
+<td>未実行ステップの RC</td>
+<td>バイパス/未実行ステップは RC 比較対象外 (FALSE 扱い)</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>INCLUDE 文 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">694</td>
+<td>INCLUDE 文の役割</td>
+<td>INCLUDE グループ (JCL の一部) を取込む。共通 DD 文等に利用</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">695</td>
+<td>INCLUDE 書式</td>
+<td>//[label] INCLUDE MEMBER=membername</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">696</td>
+<td>INCLUDE 取込先</td>
+<td>JCLLIB で指定した連結データセットを検索</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">697</td>
+<td>INCLUDE 内容</td>
+<td>JOB/PROC/EXEC/DD/IF/SET など多くの JCL 文を含められる</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">698</td>
+<td>INCLUDE のネスト</td>
+<td>INCLUDE 内に別の INCLUDE を含められる (15 段まで)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">699</td>
+<td>INCLUDE とシンボル</td>
+<td>取込先のシンボル参照は外側コンテキストで解決される</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">700</td>
+<td>INCLUDE と PROC の違い</td>
+<td>INCLUDE はテキスト置換、PROC は呼出構造</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>JCLLIB 文 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">701</td>
+<td>JCLLIB 文の役割</td>
+<td>PROC / INCLUDE の検索ライブラリ連結を指定</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">702</td>
+<td>JCLLIB 書式</td>
+<td>//[label] JCLLIB ORDER=(lib1,lib2,…)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">703</td>
+<td>JCLLIB の位置</td>
+<td>JOB 文の後・最初の EXEC/PROC/INCLUDE より前に置く</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">704</td>
+<td>ORDER= の意味</td>
+<td>指定したライブラリの順に検索 (左から)</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">705</td>
+<td>1 ジョブ 1 JCLLIB</td>
+<td>JOB 内 JCLLIB 文は 1 個まで。複数指定は JCL エラー</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">706</td>
+<td>JCLLIB と PRIVATE PROCLIB</td>
+<td>個人/プロジェクト用 PROCLIB を本番 PROCLIB に優先させる用途</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">707</td>
+<td>JCLLIB ライブラリ数</td>
+<td>最大 15 個のライブラリを連結指定可</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>SET 文 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">708</td>
+<td>SET 文の役割</td>
+<td>ジョブ レベルでシンボリック値を設定・上書き</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">709</td>
+<td>SET 書式</td>
+<td>//[label] SET sym1=val1,sym2=val2</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">710</td>
+<td>SET と PROC デフォルトの優先</td>
+<td>SET 値 &gt; PROC デフォルト。EXEC override &gt; SET</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">711</td>
+<td>複数 SET 文</td>
+<td>同名シンボルは後の SET 文が前の値を上書き</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">712</td>
+<td>SET の位置</td>
+<td>対象シンボル参照より前に置けばどこでも可</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">713</td>
+<td>SET と空値</td>
+<td>sym= で長さ 0 の値を設定可</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">714</td>
+<td>SET と再帰参照</td>
+<td>SET sym=&amp;other は他シンボルを参照可 (実行時展開)</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>EXPORT 文 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">715</td>
+<td>EXPORT 文の役割</td>
+<td>シンボル値をジョブ後続ステップ / ネスト PROC に公開する</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">716</td>
+<td>EXPORT 書式</td>
+<td>//[label] EXPORT SYMLIST=(sym1,sym2,…) または SYMLIST=*</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">717</td>
+<td>SYMLIST=* の意味</td>
+<td>現在定義されている全シンボルを公開対象とする</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">718</td>
+<td>EXPORT のスコープ</td>
+<td>EXPORT 以降に実行されるステップ・PROC で参照可になる</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">719</td>
+<td>EXPORT と PROC</td>
+<td>ネスト PROC へシンボル値を引継ぐ標準手段</td>
+<td>MF, AS1</td>
+</tr>
+<tr>
+<td style="text-align: right;">720</td>
+<td>EXPORT と JES2 シンボル</td>
+<td>JES2 が認識するシステム シンボルとは別物。混同注意</td>
+<td>MF, AS1</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*JOBPARM （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">721</td>
+<td>/*JOBPARM 文 役割</td>
+<td>JES2 にジョブ単位のリソース要求を渡す。JES2 専用</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*JOBPARM サブ （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">722</td>
+<td>BYTES/CARDS/LINES/PAGES=n</td>
+<td>出力資源量の上限 (n × 1000 単位)</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">723</td>
+<td>COPIES=n</td>
+<td>ジョブ出力のコピー部数</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">724</td>
+<td>PROCLIB=ddname</td>
+<td>JES2 PROC00 以外の PROCLIB 連結を指定</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">725</td>
+<td>SYSAFF=sysname</td>
+<td>実行 LPAR の親和性指定</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">726</td>
+<td>TIME=mm</td>
+<td>ジョブ CPU 時間上限 (分)</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*MESSAGE （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">727</td>
+<td>/*MESSAGE 文 役割</td>
+<td>オペレータ コンソールへ任意テキストを送出</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">728</td>
+<td>/*MESSAGE 書式</td>
+<td>/*MESSAGE text の形。text は 1-71 文字</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*PRIORITY （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">729</td>
+<td>/*PRIORITY 文 役割</td>
+<td>ジョブ ジョブクラス内優先度を変更 (値 0-15、大きい程優先)</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">730</td>
+<td>/*PRIORITY と JOB PRTY</td>
+<td>JOB 文 PRTY= とは別経路で評価される</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*ROUTE （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">731</td>
+<td>/*ROUTE PRINT</td>
+<td>印刷出力の宛先プリンタ/ノードを指定</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">732</td>
+<td>/*ROUTE PRINT 書式</td>
+<td>/*ROUTE PRINT destname (例 RMT5, NODEA.U1)</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">733</td>
+<td>/*ROUTE XEQ</td>
+<td>ジョブを別ノードへ NJE 転送して実行 (/*ROUTE XEQ nodename)</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">734</td>
+<td>/*ROUTE PUNCH</td>
+<td>パンチ出力の宛先指定 (歴史的)</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*XMIT （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">735</td>
+<td>/*XMIT 文 役割</td>
+<td>後続 JCL を NJE 経由で他ノードに転送</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">736</td>
+<td>/*XMIT 書式</td>
+<td>/*XMIT nodename[,subparms] 続けて転送する JCL を記述</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">737</td>
+<td>/*XMIT 終端</td>
+<td>/* 区切りカードで XMIT ブロック終了</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">738</td>
+<td>/*XMIT と DLM=</td>
+<td>DLM=xx で代替区切り文字を指定可</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>/*OUTPUT （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">739</td>
+<td>/*OUTPUT 文 役割</td>
+<td>JES2 で SYSOUT データ セットに属性を与える (古い記法)</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">740</td>
+<td>/*OUTPUT 書式</td>
+<td>/*OUTPUT code subparm,… の形式</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">741</td>
+<td>/*OUTPUT と //OUTPUT JES2</td>
+<td>現在は //name OUTPUT JCL 文 (OUTPUT JCL) 推奨</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>区切りカード （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">742</td>
+<td>/* 区切りカードの役割</td>
+<td>インストリーム データセット (DD *) や XMIT の終端マーク</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">743</td>
+<td>/* の位置</td>
+<td>カラム 1-2 に / と * を書く。それ以降はコメント扱い</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">744</td>
+<td>DLM= による代替</td>
+<td>DD * DLM=## と書けば ## が代替区切りとして使える</td>
+<td>MF</td>
+</tr>
+<tr>
+<td style="text-align: right;">745</td>
+<td>// 単独カード</td>
+<td>カラム 1-2 が // で 3 以降が空白の行はジョブ終端</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">746</td>
+<td>// と コメント //*</td>
+<td>//* で始まる行はコメント行 (全文)</td>
+<td>MF, BAS</td>
+</tr>
+<tr>
+<td style="text-align: right;">747</td>
+<td>EOF と区切りカード</td>
+<td>ファイル終端 (EOF) は暗黙的に // 単独カード扱いとなる</td>
+<td>MF</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

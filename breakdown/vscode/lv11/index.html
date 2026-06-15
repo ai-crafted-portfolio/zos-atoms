@@ -1,0 +1,6138 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv11/">
+      
+      
+        <link rel="prev" href="../lv10/">
+      
+      
+        <link rel="next" href="../lv12/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>拡張機能 API （294 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              拡張機能 API （294 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-v3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aix-ksh/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-v3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../aix-ksh/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api">拡張機能 API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: VS Code ／ <strong>本ページ件数</strong>: 294 件 ／ <strong>出典区分</strong>: VS Code 公式ドキュメント出典</p>
+<details class="note" open="open">
+<summary>Activation Events （22 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1391</td>
+<td>—</td>
+<td>onLanguage:LANGUAGE</td>
+<td>言語起動</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1392</td>
+<td>—</td>
+<td>onCommand:COMMAND</td>
+<td>コマンド実行起動</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1393</td>
+<td>—</td>
+<td>onDebug</td>
+<td>デバッグ起動</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1394</td>
+<td>—</td>
+<td>onDebugInitialConfigurations</td>
+<td>Debug 構成初期化</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1395</td>
+<td>—</td>
+<td>onDebugResolve:TYPE</td>
+<td>Debug Resolve</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1396</td>
+<td>—</td>
+<td>onDebugDynamicConfigurations:TYPE</td>
+<td>動的構成</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1397</td>
+<td>—</td>
+<td>workspaceContains:PATTERN</td>
+<td>Glob ヒット起動</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1398</td>
+<td>—</td>
+<td>onFileSystem:SCHEME</td>
+<td>FS スキーム</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1399</td>
+<td>—</td>
+<td>onView:VIEW_ID</td>
+<td>View 表示</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1400</td>
+<td>—</td>
+<td>onUri</td>
+<td>URI 経由起動</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1401</td>
+<td>—</td>
+<td>onWebviewPanel:TYPE</td>
+<td>Webview 復元</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1402</td>
+<td>—</td>
+<td>onCustomEditor:ID</td>
+<td>Custom Editor</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1403</td>
+<td>—</td>
+<td>onAuthenticationRequest:PROVIDER</td>
+<td>認証要求</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1404</td>
+<td>—</td>
+<td>onStartupFinished</td>
+<td>起動完了後</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1405</td>
+<td>—</td>
+<td>onTaskType:TYPE</td>
+<td>Task 検出</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1406</td>
+<td>—</td>
+<td>onNotebook:TYPE</td>
+<td>Notebook</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1407</td>
+<td>—</td>
+<td>onRenderer:ID</td>
+<td>Notebook Renderer</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1408</td>
+<td>—</td>
+<td>onTerminalProfile:ID</td>
+<td>Terminal Profile</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1409</td>
+<td>—</td>
+<td>onWalkthrough:ID</td>
+<td>Walkthrough</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1410</td>
+<td>—</td>
+<td>onIssueReporterOpened</td>
+<td>Issue Reporter</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1411</td>
+<td>—</td>
+<td>onChatParticipant:ID</td>
+<td>Chat Participant</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1412</td>
+<td>—</td>
+<td>* (always)</td>
+<td>常時 (非推奨)</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Contribution Points （39 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1413</td>
+<td>—</td>
+<td>contributes.commands</td>
+<td>コマンド</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1414</td>
+<td>—</td>
+<td>contributes.menus</td>
+<td>メニュー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1415</td>
+<td>—</td>
+<td>contributes.keybindings</td>
+<td>キーバインド</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1416</td>
+<td>—</td>
+<td>contributes.configuration</td>
+<td>設定</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1417</td>
+<td>—</td>
+<td>contributes.configurationDefaults</td>
+<td>既定値上書き</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1418</td>
+<td>—</td>
+<td>contributes.languages</td>
+<td>言語登録</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1419</td>
+<td>—</td>
+<td>contributes.grammars</td>
+<td>TextMate Grammar</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1420</td>
+<td>—</td>
+<td>contributes.themes</td>
+<td>カラーテーマ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1421</td>
+<td>—</td>
+<td>contributes.iconThemes</td>
+<td>ファイルアイコンテーマ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1422</td>
+<td>—</td>
+<td>contributes.productIconThemes</td>
+<td>Product Icon Theme</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1423</td>
+<td>—</td>
+<td>contributes.snippets</td>
+<td>スニペット</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1424</td>
+<td>—</td>
+<td>contributes.jsonValidation</td>
+<td>JSON Schema</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1425</td>
+<td>—</td>
+<td>contributes.debuggers</td>
+<td>デバッガ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1426</td>
+<td>—</td>
+<td>contributes.breakpoints</td>
+<td>BP 言語</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1427</td>
+<td>—</td>
+<td>contributes.viewsContainers</td>
+<td>ビューコンテナ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1428</td>
+<td>—</td>
+<td>contributes.views</td>
+<td>ビュー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1429</td>
+<td>—</td>
+<td>contributes.viewsWelcome</td>
+<td>空ビュー文言</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1430</td>
+<td>—</td>
+<td>contributes.problemMatchers</td>
+<td>Problem Matcher</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1431</td>
+<td>—</td>
+<td>contributes.problemPatterns</td>
+<td>Problem Pattern</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1432</td>
+<td>—</td>
+<td>contributes.taskDefinitions</td>
+<td>Task 定義</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1433</td>
+<td>—</td>
+<td>contributes.colors</td>
+<td>Workbench カラー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1434</td>
+<td>—</td>
+<td>contributes.terminal.profiles</td>
+<td>ターミナルプロファイル</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1435</td>
+<td>—</td>
+<td>contributes.terminal.types</td>
+<td>Terminal Type</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1436</td>
+<td>—</td>
+<td>contributes.customEditors</td>
+<td>Custom Editor</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1437</td>
+<td>—</td>
+<td>contributes.notebooks</td>
+<td>Notebook</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1438</td>
+<td>—</td>
+<td>contributes.notebookRenderer</td>
+<td>Notebook Renderer</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1439</td>
+<td>—</td>
+<td>contributes.semanticTokenScopes</td>
+<td>Semantic Token</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1440</td>
+<td>—</td>
+<td>contributes.semanticTokenTypes</td>
+<td>Semantic Token Type</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1441</td>
+<td>—</td>
+<td>contributes.semanticTokenModifiers</td>
+<td>Semantic Token Modifier</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1442</td>
+<td>—</td>
+<td>contributes.authentication</td>
+<td>認証 Provider</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1443</td>
+<td>—</td>
+<td>contributes.walkthroughs</td>
+<td>Walkthrough</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1444</td>
+<td>—</td>
+<td>contributes.icons</td>
+<td>Codicon 追加</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1445</td>
+<td>—</td>
+<td>contributes.localizations</td>
+<td>ローカライズ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1446</td>
+<td>—</td>
+<td>contributes.resourceLabelFormatters</td>
+<td>URI Label</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1447</td>
+<td>—</td>
+<td>contributes.statusBarItems</td>
+<td>StatusBar アイテム</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1448</td>
+<td>—</td>
+<td>contributes.submenus</td>
+<td>サブメニュー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1449</td>
+<td>—</td>
+<td>contributes.continueEditSession</td>
+<td>Continue On</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1450</td>
+<td>—</td>
+<td>contributes.chatParticipants</td>
+<td>Chat Participant</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1451</td>
+<td>—</td>
+<td>contributes.languageModelTools</td>
+<td>Language Model Tools</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.window （31 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1452</td>
+<td>—</td>
+<td>vscode.window.showInformationMessage</td>
+<td>情報メッセージ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1453</td>
+<td>—</td>
+<td>vscode.window.showWarningMessage</td>
+<td>警告</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1454</td>
+<td>—</td>
+<td>vscode.window.showErrorMessage</td>
+<td>エラー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1455</td>
+<td>—</td>
+<td>vscode.window.showInputBox</td>
+<td>入力ボックス</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1456</td>
+<td>—</td>
+<td>vscode.window.showQuickPick</td>
+<td>QuickPick</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1457</td>
+<td>—</td>
+<td>vscode.window.createQuickPick</td>
+<td>QuickPick API</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1458</td>
+<td>—</td>
+<td>vscode.window.createInputBox</td>
+<td>InputBox API</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1459</td>
+<td>—</td>
+<td>vscode.window.createOutputChannel</td>
+<td>Output チャンネル</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1460</td>
+<td>—</td>
+<td>vscode.window.createWebviewPanel</td>
+<td>Webview</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1461</td>
+<td>—</td>
+<td>vscode.window.createTreeView</td>
+<td>TreeView</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1462</td>
+<td>—</td>
+<td>vscode.window.registerTreeDataProvider</td>
+<td>TreeDataProvider</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1463</td>
+<td>—</td>
+<td>vscode.window.createStatusBarItem</td>
+<td>StatusBar</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1464</td>
+<td>—</td>
+<td>vscode.window.setStatusBarMessage</td>
+<td>短期 StatusBar</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1465</td>
+<td>—</td>
+<td>vscode.window.createTerminal</td>
+<td>ターミナル</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1466</td>
+<td>—</td>
+<td>vscode.window.activeTextEditor</td>
+<td>アクティブエディタ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1467</td>
+<td>—</td>
+<td>vscode.window.visibleTextEditors</td>
+<td>表示エディタ群</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1468</td>
+<td>—</td>
+<td>vscode.window.onDidChangeActiveTextEditor</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1469</td>
+<td>—</td>
+<td>vscode.window.onDidChangeTextEditorSelection</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1470</td>
+<td>—</td>
+<td>vscode.window.showTextDocument</td>
+<td>Document 表示</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1471</td>
+<td>—</td>
+<td>vscode.window.showOpenDialog</td>
+<td>Open ダイアログ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1472</td>
+<td>—</td>
+<td>vscode.window.showSaveDialog</td>
+<td>Save ダイアログ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1473</td>
+<td>—</td>
+<td>vscode.window.withProgress</td>
+<td>進捗表示</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1474</td>
+<td>—</td>
+<td>vscode.window.registerCustomEditorProvider</td>
+<td>Custom Editor</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1475</td>
+<td>—</td>
+<td>vscode.window.registerWebviewViewProvider</td>
+<td>Webview View</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1476</td>
+<td>—</td>
+<td>vscode.window.registerFileDecorationProvider</td>
+<td>File Decoration</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1477</td>
+<td>—</td>
+<td>vscode.window.registerUriHandler</td>
+<td>URI Handler</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1478</td>
+<td>—</td>
+<td>vscode.window.createTextEditorDecorationType</td>
+<td>装飾</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1479</td>
+<td>—</td>
+<td>vscode.window.activeColorTheme</td>
+<td>現テーマ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1480</td>
+<td>—</td>
+<td>vscode.window.tabGroups.all</td>
+<td>TabGroups API</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1481</td>
+<td>—</td>
+<td>vscode.window.registerTerminalLinkProvider</td>
+<td>Terminal Link</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1482</td>
+<td>—</td>
+<td>vscode.window.registerTerminalProfileProvider</td>
+<td>Terminal Profile</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.commands （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1483</td>
+<td>—</td>
+<td>vscode.commands.registerCommand</td>
+<td>コマンド登録</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1484</td>
+<td>—</td>
+<td>vscode.commands.registerTextEditorCommand</td>
+<td>Editor コマンド</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1485</td>
+<td>—</td>
+<td>vscode.commands.executeCommand</td>
+<td>コマンド実行</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1486</td>
+<td>—</td>
+<td>vscode.commands.getCommands</td>
+<td>コマンド一覧</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.workspace （25 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1487</td>
+<td>—</td>
+<td>vscode.workspace.workspaceFolders</td>
+<td>Folder 一覧</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1488</td>
+<td>—</td>
+<td>vscode.workspace.name</td>
+<td>Workspace 名</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1489</td>
+<td>—</td>
+<td>vscode.workspace.getConfiguration</td>
+<td>設定取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1490</td>
+<td>—</td>
+<td>vscode.workspace.onDidChangeConfiguration</td>
+<td>設定変更</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1491</td>
+<td>—</td>
+<td>vscode.workspace.openTextDocument</td>
+<td>Document 開く</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1492</td>
+<td>—</td>
+<td>vscode.workspace.saveAll</td>
+<td>全保存</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1493</td>
+<td>—</td>
+<td>vscode.workspace.applyEdit</td>
+<td>WorkspaceEdit 適用</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1494</td>
+<td>—</td>
+<td>vscode.workspace.findFiles</td>
+<td>ファイル検索</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1495</td>
+<td>—</td>
+<td>vscode.workspace.createFileSystemWatcher</td>
+<td>ファイル監視</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1496</td>
+<td>—</td>
+<td>vscode.workspace.registerFileSystemProvider</td>
+<td>仮想 FS</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1497</td>
+<td>—</td>
+<td>vscode.workspace.registerTaskProvider</td>
+<td>Task Provider</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1498</td>
+<td>—</td>
+<td>vscode.workspace.registerTextDocumentContentProvider</td>
+<td>仮想 Document</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1499</td>
+<td>—</td>
+<td>vscode.workspace.registerNotebookSerializer</td>
+<td>Notebook Serializer</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1500</td>
+<td>—</td>
+<td>vscode.workspace.textDocuments</td>
+<td>開いている Document</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1501</td>
+<td>—</td>
+<td>vscode.workspace.notebookDocuments</td>
+<td>Notebook 一覧</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1502</td>
+<td>—</td>
+<td>vscode.workspace.onDidOpenTextDocument</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1503</td>
+<td>—</td>
+<td>vscode.workspace.onDidCloseTextDocument</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1504</td>
+<td>—</td>
+<td>vscode.workspace.onDidSaveTextDocument</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1505</td>
+<td>—</td>
+<td>vscode.workspace.onWillSaveTextDocument</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1506</td>
+<td>—</td>
+<td>vscode.workspace.onDidChangeTextDocument</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1507</td>
+<td>—</td>
+<td>vscode.workspace.fs</td>
+<td>FileSystem</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1508</td>
+<td>—</td>
+<td>vscode.workspace.asRelativePath</td>
+<td>相対化</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1509</td>
+<td>—</td>
+<td>vscode.workspace.getWorkspaceFolder</td>
+<td>URI から</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1510</td>
+<td>—</td>
+<td>vscode.workspace.isTrusted</td>
+<td>信頼判定</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1511</td>
+<td>—</td>
+<td>vscode.workspace.onDidGrantWorkspaceTrust</td>
+<td>信頼イベント</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.languages （32 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1512</td>
+<td>—</td>
+<td>vscode.languages.registerCompletionItemProvider</td>
+<td>補完</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1513</td>
+<td>—</td>
+<td>vscode.languages.registerHoverProvider</td>
+<td>Hover</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1514</td>
+<td>—</td>
+<td>vscode.languages.registerDefinitionProvider</td>
+<td>定義</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1515</td>
+<td>—</td>
+<td>vscode.languages.registerImplementationProvider</td>
+<td>実装</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1516</td>
+<td>—</td>
+<td>vscode.languages.registerTypeDefinitionProvider</td>
+<td>型定義</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1517</td>
+<td>—</td>
+<td>vscode.languages.registerReferenceProvider</td>
+<td>参照</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1518</td>
+<td>—</td>
+<td>vscode.languages.registerDocumentSymbolProvider</td>
+<td>Outline</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1519</td>
+<td>—</td>
+<td>vscode.languages.registerWorkspaceSymbolProvider</td>
+<td>Workspace シンボル</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1520</td>
+<td>—</td>
+<td>vscode.languages.registerCodeLensProvider</td>
+<td>CodeLens</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1521</td>
+<td>—</td>
+<td>vscode.languages.registerCodeActionsProvider</td>
+<td>Code Action</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1522</td>
+<td>—</td>
+<td>vscode.languages.registerDocumentFormattingEditProvider</td>
+<td>整形</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1523</td>
+<td>—</td>
+<td>vscode.languages.registerDocumentRangeFormattingEditProvider</td>
+<td>範囲整形</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1524</td>
+<td>—</td>
+<td>vscode.languages.registerOnTypeFormattingEditProvider</td>
+<td>入力整形</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1525</td>
+<td>—</td>
+<td>vscode.languages.registerRenameProvider</td>
+<td>リネーム</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1526</td>
+<td>—</td>
+<td>vscode.languages.registerSignatureHelpProvider</td>
+<td>引数ヒント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1527</td>
+<td>—</td>
+<td>vscode.languages.registerDocumentHighlightProvider</td>
+<td>Highlight</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1528</td>
+<td>—</td>
+<td>vscode.languages.registerFoldingRangeProvider</td>
+<td>Folding</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1529</td>
+<td>—</td>
+<td>vscode.languages.registerSelectionRangeProvider</td>
+<td>Smart Selection</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1530</td>
+<td>—</td>
+<td>vscode.languages.registerSemanticTokensProvider</td>
+<td>Semantic Token</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1531</td>
+<td>—</td>
+<td>vscode.languages.registerLinkedEditingRangeProvider</td>
+<td>Linked Editing</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1532</td>
+<td>—</td>
+<td>vscode.languages.registerCallHierarchyProvider</td>
+<td>Call Hierarchy</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1533</td>
+<td>—</td>
+<td>vscode.languages.registerTypeHierarchyProvider</td>
+<td>Type Hierarchy</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1534</td>
+<td>—</td>
+<td>vscode.languages.registerInlayHintsProvider</td>
+<td>Inlay Hints</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1535</td>
+<td>—</td>
+<td>vscode.languages.registerInlineCompletionItemProvider</td>
+<td>Inline Completion</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1536</td>
+<td>—</td>
+<td>vscode.languages.registerInlineValuesProvider</td>
+<td>Inline Values</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1537</td>
+<td>—</td>
+<td>vscode.languages.registerDocumentLinkProvider</td>
+<td>DocumentLink</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1538</td>
+<td>—</td>
+<td>vscode.languages.registerColorProvider</td>
+<td>Color Picker</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1539</td>
+<td>—</td>
+<td>vscode.languages.registerEvaluatableExpressionProvider</td>
+<td>Hover 評価</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1540</td>
+<td>—</td>
+<td>vscode.languages.createDiagnosticCollection</td>
+<td>Diagnostics</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1541</td>
+<td>—</td>
+<td>vscode.languages.setLanguageConfiguration</td>
+<td>Language Config</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1542</td>
+<td>—</td>
+<td>vscode.languages.getLanguages</td>
+<td>言語一覧</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1543</td>
+<td>—</td>
+<td>vscode.languages.match</td>
+<td>DocumentSelector マッチ</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.debug （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1544</td>
+<td>—</td>
+<td>vscode.debug.startDebugging</td>
+<td>デバッグ開始</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1545</td>
+<td>—</td>
+<td>vscode.debug.stopDebugging</td>
+<td>停止</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1546</td>
+<td>—</td>
+<td>vscode.debug.addBreakpoints</td>
+<td>BP 追加</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1547</td>
+<td>—</td>
+<td>vscode.debug.removeBreakpoints</td>
+<td>BP 削除</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1548</td>
+<td>—</td>
+<td>vscode.debug.registerDebugConfigurationProvider</td>
+<td>DebugConfigProvider</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1549</td>
+<td>—</td>
+<td>vscode.debug.registerDebugAdapterDescriptorFactory</td>
+<td>DebugAdapter</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1550</td>
+<td>—</td>
+<td>vscode.debug.registerDebugAdapterTrackerFactory</td>
+<td>Tracker</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1551</td>
+<td>—</td>
+<td>vscode.debug.activeDebugSession</td>
+<td>アクティブセッション</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1552</td>
+<td>—</td>
+<td>vscode.debug.onDidStartDebugSession</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1553</td>
+<td>—</td>
+<td>vscode.debug.onDidTerminateDebugSession</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1554</td>
+<td>—</td>
+<td>vscode.debug.onDidChangeBreakpoints</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.tasks （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1555</td>
+<td>—</td>
+<td>vscode.tasks.registerTaskProvider</td>
+<td>Task Provider</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1556</td>
+<td>—</td>
+<td>vscode.tasks.fetchTasks</td>
+<td>Task 取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1557</td>
+<td>—</td>
+<td>vscode.tasks.executeTask</td>
+<td>Task 実行</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1558</td>
+<td>—</td>
+<td>vscode.tasks.taskExecutions</td>
+<td>実行中</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1559</td>
+<td>—</td>
+<td>vscode.tasks.onDidStartTask</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1560</td>
+<td>—</td>
+<td>vscode.tasks.onDidEndTask</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1561</td>
+<td>—</td>
+<td>vscode.tasks.onDidStartTaskProcess</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1562</td>
+<td>—</td>
+<td>vscode.tasks.onDidEndTaskProcess</td>
+<td>イベント</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.extensions （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1563</td>
+<td>—</td>
+<td>vscode.extensions.getExtension</td>
+<td>拡張取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1564</td>
+<td>—</td>
+<td>vscode.extensions.all</td>
+<td>全拡張</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1565</td>
+<td>—</td>
+<td>vscode.extensions.onDidChange</td>
+<td>拡張変更</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.env （13 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1566</td>
+<td>—</td>
+<td>vscode.env.appName</td>
+<td>アプリ名</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1567</td>
+<td>—</td>
+<td>vscode.env.appHost</td>
+<td>ホスト</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1568</td>
+<td>—</td>
+<td>vscode.env.language</td>
+<td>UI 言語</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1569</td>
+<td>—</td>
+<td>vscode.env.uriScheme</td>
+<td>URI スキーム</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1570</td>
+<td>—</td>
+<td>vscode.env.clipboard.readText</td>
+<td>クリップボード読</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1571</td>
+<td>—</td>
+<td>vscode.env.clipboard.writeText</td>
+<td>クリップボード書</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1572</td>
+<td>—</td>
+<td>vscode.env.openExternal</td>
+<td>外部 URL 開く</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1573</td>
+<td>—</td>
+<td>vscode.env.asExternalUri</td>
+<td>外部 URI 変換</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1574</td>
+<td>—</td>
+<td>vscode.env.remoteName</td>
+<td>Remote 種別</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1575</td>
+<td>—</td>
+<td>vscode.env.shell</td>
+<td>既定 Shell</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1576</td>
+<td>—</td>
+<td>vscode.env.isTelemetryEnabled</td>
+<td>Telemetry 状態</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1577</td>
+<td>—</td>
+<td>vscode.env.createTelemetryLogger</td>
+<td>Telemetry Logger</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1578</td>
+<td>—</td>
+<td>vscode.env.sessionId</td>
+<td>セッション ID</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.authentication （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1579</td>
+<td>—</td>
+<td>vscode.authentication.getSession</td>
+<td>認証セッション取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1580</td>
+<td>—</td>
+<td>vscode.authentication.registerAuthenticationProvider</td>
+<td>Provider 登録</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1581</td>
+<td>—</td>
+<td>vscode.authentication.onDidChangeSessions</td>
+<td>セッション変更</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>vscode.notebooks （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1582</td>
+<td>—</td>
+<td>vscode.notebooks.createNotebookController</td>
+<td>Notebook Controller</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1583</td>
+<td>—</td>
+<td>vscode.notebooks.createRendererMessaging</td>
+<td>Renderer Messaging</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1584</td>
+<td>—</td>
+<td>vscode.notebooks.createNotebookSerializer</td>
+<td>Serializer</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Webview （15 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1585</td>
+<td>—</td>
+<td>Webview - createWebviewPanel</td>
+<td>パネル生成</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1586</td>
+<td>—</td>
+<td>Webview - WebviewView (in sidebar)</td>
+<td>Side bar 内</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1587</td>
+<td>—</td>
+<td>Webview - retainContextWhenHidden</td>
+<td>オプション</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1588</td>
+<td>—</td>
+<td>Webview - asWebviewUri</td>
+<td>ローカル URI 変換</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1589</td>
+<td>—</td>
+<td>Webview - cspSource</td>
+<td>CSP nonce</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1590</td>
+<td>—</td>
+<td>Webview - postMessage</td>
+<td>拡張→Web</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1591</td>
+<td>—</td>
+<td>Webview - onDidReceiveMessage</td>
+<td>Web→拡張</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1592</td>
+<td>—</td>
+<td>Webview - vscode.postMessage (web 側)</td>
+<td>Web 側 API</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1593</td>
+<td>—</td>
+<td>Webview - vscode.getState / setState</td>
+<td>状態保存</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1594</td>
+<td>—</td>
+<td>Webview - Serializer (registerWebviewPanelSerializer)</td>
+<td>復元</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1595</td>
+<td>—</td>
+<td>Webview - localResourceRoots</td>
+<td>ローカルリソース</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1596</td>
+<td>—</td>
+<td>Webview - enableScripts</td>
+<td>スクリプト許可</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1597</td>
+<td>—</td>
+<td>Webview - enableFindWidget</td>
+<td>検索</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1598</td>
+<td>—</td>
+<td>Webview - portMapping</td>
+<td>ポートマッピング</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1599</td>
+<td>—</td>
+<td>Webview - Toolkit (@vscode/webview-ui-toolkit)</td>
+<td>UI Toolkit</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>TreeView （24 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1600</td>
+<td>—</td>
+<td>TreeView - TreeDataProvider</td>
+<td>Provider</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1601</td>
+<td>—</td>
+<td>TreeView - getTreeItem</td>
+<td>Item 取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1602</td>
+<td>—</td>
+<td>TreeView - getChildren</td>
+<td>子取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1603</td>
+<td>—</td>
+<td>TreeView - getParent</td>
+<td>親取得</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1604</td>
+<td>—</td>
+<td>TreeView - resolveTreeItem</td>
+<td>遅延解決</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1605</td>
+<td>—</td>
+<td>TreeView - onDidChangeTreeData</td>
+<td>更新通知</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1606</td>
+<td>—</td>
+<td>TreeItem - label</td>
+<td>ラベル</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1607</td>
+<td>—</td>
+<td>TreeItem - id</td>
+<td>ID</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1608</td>
+<td>—</td>
+<td>TreeItem - description</td>
+<td>説明</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1609</td>
+<td>—</td>
+<td>TreeItem - tooltip</td>
+<td>ツールチップ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1610</td>
+<td>—</td>
+<td>TreeItem - iconPath</td>
+<td>アイコン</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1611</td>
+<td>—</td>
+<td>TreeItem - resourceUri</td>
+<td>URI</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1612</td>
+<td>—</td>
+<td>TreeItem - contextValue</td>
+<td>コンテキスト ID</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1613</td>
+<td>—</td>
+<td>TreeItem - collapsibleState</td>
+<td>折り畳み状態</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1614</td>
+<td>—</td>
+<td>TreeItem - command</td>
+<td>クリック時コマンド</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1615</td>
+<td>—</td>
+<td>TreeItem - checkboxState</td>
+<td>チェックボックス</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1616</td>
+<td>—</td>
+<td>TreeView - reveal</td>
+<td>選択</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1617</td>
+<td>—</td>
+<td>TreeView - selection / visible</td>
+<td>状態</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1618</td>
+<td>—</td>
+<td>TreeView - badge</td>
+<td>バッジ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1619</td>
+<td>—</td>
+<td>TreeView - title / message</td>
+<td>タイトル/メッセージ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1620</td>
+<td>—</td>
+<td>TreeView - dragAndDropController</td>
+<td>D&amp;D</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1621</td>
+<td>—</td>
+<td>TreeView - showCollapseAll</td>
+<td>折畳ボタン</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1622</td>
+<td>—</td>
+<td>TreeView - canSelectMany</td>
+<td>複数選択</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1623</td>
+<td>—</td>
+<td>Welcome View Content (contributes.viewsWelcome)</td>
+<td>空時メッセージ</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>Language Server (LSP) （35 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1624</td>
+<td>—</td>
+<td>Language Server Protocol - JSON-RPC</td>
+<td>LSP 基本</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1625</td>
+<td>—</td>
+<td>LSP - vscode-languageclient (Node)</td>
+<td>クライアントライブラリ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1626</td>
+<td>—</td>
+<td>LSP - vscode-languageserver (Node)</td>
+<td>サーバライブラリ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1627</td>
+<td>—</td>
+<td>LSP - initialize / initialized</td>
+<td>init</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1628</td>
+<td>—</td>
+<td>LSP - textDocument/didOpen</td>
+<td>didOpen</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1629</td>
+<td>—</td>
+<td>LSP - textDocument/didChange</td>
+<td>didChange</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1630</td>
+<td>—</td>
+<td>LSP - textDocument/didSave</td>
+<td>didSave</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1631</td>
+<td>—</td>
+<td>LSP - textDocument/didClose</td>
+<td>didClose</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1632</td>
+<td>—</td>
+<td>LSP - textDocument/completion</td>
+<td>completion</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1633</td>
+<td>—</td>
+<td>LSP - textDocument/hover</td>
+<td>hover</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1634</td>
+<td>—</td>
+<td>LSP - textDocument/definition</td>
+<td>definition</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1635</td>
+<td>—</td>
+<td>LSP - textDocument/references</td>
+<td>references</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1636</td>
+<td>—</td>
+<td>LSP - textDocument/documentSymbol</td>
+<td>documentSymbol</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1637</td>
+<td>—</td>
+<td>LSP - workspace/symbol</td>
+<td>workspace/symbol</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1638</td>
+<td>—</td>
+<td>LSP - textDocument/formatting</td>
+<td>formatting</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1639</td>
+<td>—</td>
+<td>LSP - textDocument/rangeFormatting</td>
+<td>rangeFormatting</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1640</td>
+<td>—</td>
+<td>LSP - textDocument/codeAction</td>
+<td>codeAction</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1641</td>
+<td>—</td>
+<td>LSP - textDocument/rename</td>
+<td>rename</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1642</td>
+<td>—</td>
+<td>LSP - textDocument/signatureHelp</td>
+<td>signatureHelp</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1643</td>
+<td>—</td>
+<td>LSP - textDocument/diagnostic (pull)</td>
+<td>diagnostic</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1644</td>
+<td>—</td>
+<td>LSP - textDocument/inlayHint</td>
+<td>inlayHint</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1645</td>
+<td>—</td>
+<td>LSP - textDocument/semanticTokens</td>
+<td>semanticTokens</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1646</td>
+<td>—</td>
+<td>LSP - textDocument/foldingRange</td>
+<td>foldingRange</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1647</td>
+<td>—</td>
+<td>LSP - textDocument/selectionRange</td>
+<td>selectionRange</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1648</td>
+<td>—</td>
+<td>LSP - textDocument/callHierarchy</td>
+<td>callHierarchy</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1649</td>
+<td>—</td>
+<td>LSP - workspace/executeCommand</td>
+<td>executeCommand</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1650</td>
+<td>—</td>
+<td>LSP - window/showMessage / showMessageRequest</td>
+<td>showMessage</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1651</td>
+<td>—</td>
+<td>LSP - window/logMessage</td>
+<td>logMessage</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1652</td>
+<td>—</td>
+<td>LSP - workspace/applyEdit</td>
+<td>applyEdit</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1653</td>
+<td>—</td>
+<td>LSP - DocumentSelector</td>
+<td>Selector</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1654</td>
+<td>—</td>
+<td>LSP - ServerCapabilities</td>
+<td>ServerCapabilities</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1655</td>
+<td>—</td>
+<td>LSP - ClientCapabilities</td>
+<td>ClientCapabilities</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1656</td>
+<td>—</td>
+<td>LSP - Synchronization (incremental/full)</td>
+<td>同期</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1657</td>
+<td>—</td>
+<td>LSP - Position Encoding (utf-16/utf-8/utf-32)</td>
+<td>PositionEncoding</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1658</td>
+<td>—</td>
+<td>LSP - Trace (off/messages/verbose)</td>
+<td>Trace</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>package.json （26 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>小分類</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1659</td>
+<td>—</td>
+<td>package.json - name</td>
+<td>名前</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1660</td>
+<td>—</td>
+<td>package.json - publisher</td>
+<td>Publisher</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1661</td>
+<td>—</td>
+<td>package.json - version</td>
+<td>version</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1662</td>
+<td>—</td>
+<td>package.json - engines.vscode</td>
+<td>対応 VS Code バージョン</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1663</td>
+<td>—</td>
+<td>package.json - main</td>
+<td>エントリ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1664</td>
+<td>—</td>
+<td>package.json - browser</td>
+<td>Web 版エントリ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1665</td>
+<td>—</td>
+<td>package.json - activationEvents</td>
+<td>起動契機</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1666</td>
+<td>—</td>
+<td>package.json - contributes</td>
+<td>Contribution</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1667</td>
+<td>—</td>
+<td>package.json - extensionDependencies</td>
+<td>拡張依存</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1668</td>
+<td>—</td>
+<td>package.json - extensionPack</td>
+<td>拡張パック</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1669</td>
+<td>—</td>
+<td>package.json - extensionKind</td>
+<td>ui/workspace</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1670</td>
+<td>—</td>
+<td>package.json - capabilities.untrustedWorkspaces</td>
+<td>未信頼挙動</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1671</td>
+<td>—</td>
+<td>package.json - capabilities.virtualWorkspaces</td>
+<td>仮想 WS 対応</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1672</td>
+<td>—</td>
+<td>package.json - l10n</td>
+<td>ローカライズ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1673</td>
+<td>—</td>
+<td>package.json - icon</td>
+<td>アイコン</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1674</td>
+<td>—</td>
+<td>package.json - galleryBanner</td>
+<td>Marketplace バナー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1675</td>
+<td>—</td>
+<td>package.json - badges</td>
+<td>Marketplace バッジ</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1676</td>
+<td>—</td>
+<td>package.json - sponsor.url</td>
+<td>スポンサー</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1677</td>
+<td>—</td>
+<td>package.json - pricing (Free/Trial)</td>
+<td>Pricing</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1678</td>
+<td>—</td>
+<td>package.json - preview</td>
+<td>プレビュー表示</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1679</td>
+<td>—</td>
+<td>package.json - qna</td>
+<td>Q&amp;A 設定</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1680</td>
+<td>—</td>
+<td>package.json - repository</td>
+<td>repository</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1681</td>
+<td>—</td>
+<td>package.json - bugs</td>
+<td>bugs</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1682</td>
+<td>—</td>
+<td>package.json - homepage</td>
+<td>homepage</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1683</td>
+<td>—</td>
+<td>package.json - keywords</td>
+<td>keywords</td>
+<td>VSCAPI</td>
+</tr>
+<tr>
+<td style="text-align: right;">1684</td>
+<td>—</td>
+<td>package.json - categories</td>
+<td>categories</td>
+<td>VSCAPI</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

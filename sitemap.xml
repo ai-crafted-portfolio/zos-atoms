@@ -2,314 +2,398 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ai-crafted-portfolio.github.io/zos-atoms/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/legend/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-acee-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ansible-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-arm-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ascb-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv04/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-at-tls-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv05/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-capcalc-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv06/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-catalog-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv07/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-certmgmt-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv08/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-cf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv09/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-cics-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv10/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-console-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv11/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-dasd-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-dataset-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-db2-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-dump-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ee-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv04/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ftp-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv05/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-gdg-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv06/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-gdps-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv07/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-grs-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv08/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-hsm-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv09/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-icsf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv10/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-idcams-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv11/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-iebcompr-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv12/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-iebcopy-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv13/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-iebgener-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv14/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-iefbr14-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/tape/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ims-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/tape/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ipcs-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/tape/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ipl-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/tape/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ird-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/verification-sample/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-ispf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-java-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-jcl-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-korn-shell-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-linuxonz-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv04/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-mq-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv05/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-netview-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv06/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-operlog-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv07/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-osa-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv08/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-parallelsysplex-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv09/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-parmlib-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv10/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-pds-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv11/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-pe-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv12/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-proclib-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv13/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-racf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/vscode/lv14/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-racf-adv-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-racf-passticket-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-recovery-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-rexx-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-rmf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv04/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-rrs-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv05/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-saf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv06/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-sched-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv07/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-sdsf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv08/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-smf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv09/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-sms-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv10/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-sort-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv11/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-system-symbols-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/z16/lv12/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-tape-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-tcpip-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-tso-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-uss-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-uss-fs-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv04/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-uss-permissions-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv05/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-uss-shell-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv06/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-utility-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv07/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-virtstor-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv08/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-vsam-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv09/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-vtam-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv10/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-waitstate-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv11/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-was-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv12/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-wlm-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv13/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-xcf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-sysprog/lv14/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-zcx-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
     <url>
-         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/atoms/zos-zosmf-001/</loc>
-         <lastmod>2026-06-04</lastmod>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv01/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv02/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv03/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv04/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv05/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv06/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv07/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv08/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv09/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv10/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv11/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv12/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv13/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv14/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv15/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv16/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv17/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv18/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv19/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv20/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv21/</loc>
+         <lastmod>2026-06-15</lastmod>
+    </url>
+    <url>
+         <loc>https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3/lv22/</loc>
+         <lastmod>2026-06-15</lastmod>
     </url>
 </urlset>

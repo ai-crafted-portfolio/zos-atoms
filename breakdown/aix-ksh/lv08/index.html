@@ -1,0 +1,5027 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/aix-ksh/lv08/">
+      
+      
+        <link rel="prev" href="../lv07/">
+      
+      
+        <link rel="next" href="../lv09/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>ブート / NIM / mksysb （148 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nim-mksysb" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ブート / NIM / mksysb （148 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-v3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-v3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="nim-mksysb">ブート / NIM / mksysb<a class="headerlink" href="#nim-mksysb" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: AIX + ksh ／ <strong>本ページ件数</strong>: 148 件 ／ <strong>出典区分</strong>: 書籍出典</p>
+<details class="note" open="open">
+<summary>bosboot （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1437</td>
+<td>bosboot コマンド概要</td>
+<td>ブートイメージ (BOS ブートレコード + カーネル + 最小限のファイルシステム) を構築し、ブート論理ボリューム (hd5) に書き込むコマンド。カーネル変更・ブート LV 移動・bosboot 関連 fileset 更新の直後に必須。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1438</td>
+<td>bosboot -a</td>
+<td>新しいブートイメージを作成して、ブート論理ボリューム (省略時 hd5) に書き込む。最も一般的な使用法。/usr/lib/boot 配下のブート関連ファイルから生成される。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1439</td>
+<td>bosboot -d device</td>
+<td>対象デバイスを指定 (例: -d /dev/hdisk0)。複数 rootvg ディスクや代替ディスクのブートレコード更新時に必要。デバイスフルパスを指定する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1440</td>
+<td>bosboot -l lv</td>
+<td>ブート論理ボリューム名を明示する (省略時は hd5)。multibos や alt_disk_copy の管理対象を明示する場合に使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1441</td>
+<td>bosboot -L</td>
+<td>大型ブートイメージ (Large Boot Image) を許可する。RAM ディスクサイズが既定の上限を越える場合に指定する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1442</td>
+<td>bosboot -k kernel</td>
+<td>ブートイメージに組み込むカーネルを明示する (例: /usr/lib/boot/unix_64)。カーネル切替時 (32bit/64bit/MP/UP) に使用。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1443</td>
+<td>bosboot -B</td>
+<td>ブートレコードのみ書き込み、ブートイメージ自体は再生成しない。bootlist 変更後の整合性確保に使う運用パターンがある。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1444</td>
+<td>bosboot -P proctype</td>
+<td>プロセッサタイプを明示してブートイメージを生成する (POWER アーキ別の最適化用)。通常は不要だが、移行用イメージ生成で利用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1445</td>
+<td>bosboot -s</td>
+<td>ブートイメージのサイズ計算 / 検証のみ行い、実際の書き込みは行わない。事前確認用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1446</td>
+<td>bosboot 実行タイミング</td>
+<td>カーネル変更 (32→64bit 等)、ブート LV の物理位置移動、デバイスドライバ ODM 変更、bos.rte.boot/bos.rte.install 更新の直後は必ず実行が必要。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>bootlist （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1447</td>
+<td>bootlist コマンド概要</td>
+<td>システム起動時に NVRAM が参照するブートデバイス順序を表示・変更する。normal / service / both / prevboot モードを操作可能。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1448</td>
+<td>bootlist -m normal</td>
+<td>通常 (multi-user) 起動用のブートデバイスリストを操作する。例: bootlist -m normal hdisk0 hdisk1。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1449</td>
+<td>bootlist -m service</td>
+<td>サービス (診断/メンテナンス) モード起動用のブートデバイスリストを操作する。NIM / CD / tape からの起動を仕込む場合に使う。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1450</td>
+<td>bootlist -m both</td>
+<td>normal と service の両方を同一リストで設定する。シンプルな構成で運用を統一したい場合に使う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1451</td>
+<td>bootlist -m prevboot</td>
+<td>直前のブートデバイスを表示する。マルチパス/代替ディスク運用での切り戻し検証に利用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1452</td>
+<td>bootlist -o</td>
+<td>現在設定されているブートデバイスリストを表示する。読み取り専用。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1453</td>
+<td>bootlist -v</td>
+<td>詳細表示。論理デバイス名に加え、blv (ブート LV) や属性も併せて表示する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1454</td>
+<td>bootlist デバイスリスト引数</td>
+<td>hdisk0 hdisk1 ... をスペース区切りで並べた順がブート優先順位になる。最大数はハード/モデル依存 (典型 5 個程度)。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1455</td>
+<td>bootlist サービスモード用途</td>
+<td>diag / NIM ブート / CD ブート 等を service モードに仕込むと、F5/F6 等で起動した際にサービス側リストが使われる。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1456</td>
+<td>bootlist NIM 経由ブート</td>
+<td>サービスリストに NIM Master を解決できるアダプタを設定すれば、ネットワークブートで bos_inst / diag / maintenance を起動可能。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>bootinfo （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1457</td>
+<td>bootinfo コマンド概要</td>
+<td>起動中システムのブート関連属性 (カーネル種別、プラットフォーム、LPAR モード、プロセッサ等) を問い合わせる照会コマンド。スクリプトでの判定に多用。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1458</td>
+<td>bootinfo -K</td>
+<td>稼働カーネルが 32bit か 64bit かを返す (32 / 64)。fileset 互換性チェックに使う典型コマンド。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1459</td>
+<td>bootinfo -T</td>
+<td>プラットフォームタイプを返す (例: chrp)。POWER 系では多くが chrp。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1460</td>
+<td>bootinfo -L</td>
+<td>LPAR モードか否かを返す。LPAR 環境/スタンドアロン環境を分岐するスクリプトで使われる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1461</td>
+<td>bootinfo -p</td>
+<td>プロセッサアーキテクチャ名 (例: PowerPC_POWER7) を返す。カーネル選択や互換性チェックに使う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1462</td>
+<td>bootinfo -y</td>
+<td>ハードウェアが 32bit か 64bit かを返す。-K (稼働カーネル) との違いに注意。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>inittab （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1463</td>
+<td>/etc/inittab 構文</td>
+<td>形式は Identifier:RunLevel:Action:Command の 4 カラム。Identifier は最大 14 文字。AIX 専用 action (boot/bootwait/sysinit) が存在する点が特徴。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1464</td>
+<td>inittab action: respawn</td>
+<td>プロセスが終了したら init が自動的に再起動する。getty / ttymon 系で多用。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1465</td>
+<td>inittab action: wait</td>
+<td>指定ランレベルに入った時に 1 回だけ実行し、終了を待つ。サブシステム初期化で典型。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1466</td>
+<td>inittab action: once</td>
+<td>指定ランレベルで 1 回だけ実行し、終了は待たない。バックグラウンドのデーモン投入に使う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1467</td>
+<td>inittab action: boot</td>
+<td>システムブート時に 1 回実行 (ランレベルに依存しない)。終了を待たない。AIX 特有。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1468</td>
+<td>inittab action: bootwait</td>
+<td>システムブート時に 1 回実行し、終了を待ってから次へ進む。AIX 特有。マウントなど順序依存の初期化に使う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1469</td>
+<td>inittab action: sysinit</td>
+<td>init が他の処理を始める前 (コンソールアクセス前) に実行される。最初期初期化用。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1470</td>
+<td>inittab action: initdefault</td>
+<td>init 起動時に遷移する既定ランレベルを定義する。Command 欄は使わず、ランレベル欄の値が使用される。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1471</td>
+<td>inittab action: powerfail</td>
+<td>SIGPWR (電源異常) 受信時に実行。UPS 連携や緊急シャットダウンスクリプトを差し込む。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1472</td>
+<td>inittab action: powerwait</td>
+<td>powerfail と同様だが完了を待つ。電源異常時に同期的な後処理が必要な場合に使用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1473</td>
+<td>inittab action: off</td>
+<td>エントリを無効化する。削除せず一時的に止める場合に使う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1474</td>
+<td>mkitab</td>
+<td>/etc/inittab に新規行を追加する公式コマンド。直接 vi 編集よりも mkitab / chitab / rmitab を推奨。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1475</td>
+<td>chitab</td>
+<td>/etc/inittab の既存エントリを変更する。Identifier をキーに動作 / コマンドを書き換える。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1476</td>
+<td>lsitab</td>
+<td>/etc/inittab の内容を表示する。lsitab -a で全件表示、lsitab id で 1 件表示。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1477</td>
+<td>rmitab</td>
+<td>/etc/inittab から指定 Identifier の行を削除する。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1478</td>
+<td>inittab 編集の注意</td>
+<td>壊れた inittab は init が起動を中断する原因になる。必ず lsitab / mkitab 系コマンドを使い、編集前にバックアップを取る。</td>
+<td>AIX1, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>init （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1479</td>
+<td>init コマンド概要</td>
+<td>PID 1 の親プロセス。/etc/inittab を読み込んでランレベル制御、プロセス起動 / 監視を行う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1480</td>
+<td>init -q</td>
+<td>/etc/inittab を再読込させ、現在ランレベルにおけるエントリを反映する。再起動なしで変更を取り込む手段。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1481</td>
+<td>telinit</td>
+<td>init と同一バイナリへのリンク。ランレベル遷移 (telinit 2, telinit s 等) を指示するために使う慣習名。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1482</td>
+<td>runlevel コマンド</td>
+<td>現在ランレベルと直前ランレベルを表示する。スクリプト判定に有用。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1483</td>
+<td>ランレベル概念</td>
+<td>0-9, S/M (シングルユーザ) など。AIX の既定マルチユーザは 2。0/1/6 は一般用途では予約的に扱う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1484</td>
+<td>ランレベル遷移</td>
+<td>init <level> で遷移。遷移時に inittab の対応 action 行が実行される (wait/once 等)。</td>
+<td>AIX1, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>rc.d （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1485</td>
+<td>/etc/rc.d 構造</td>
+<td>/etc/rc.d/init.d 配下に起動スクリプト本体、/etc/rc.d/rcN.d 配下に S/K プレフィックス付きのシンボリックリンクを置く SysV 互換構造。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1486</td>
+<td>/etc/rc.d/rc</td>
+<td>ランレベル遷移時に /etc/rc.d/rcN.d 配下の K<em> スクリプトを stop、S</em> スクリプトを start する。inittab から起動される。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1487</td>
+<td>rc.d スクリプトの基本契約</td>
+<td>init.d 配下のスクリプトは start / stop の引数を受け付け、適切な exit code を返すべき。SRC 連携が望ましい。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1488</td>
+<td>/etc/rc</td>
+<td>AIX 伝統的なシステム rc。/etc/inittab の bootwait で起動され、ファイルシステムマウントなどブート初期化を担う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1489</td>
+<td>/etc/rc.tcpip</td>
+<td>TCP/IP サブシステムを起動するシェルスクリプト。inittab の rctcpip エントリから起動される。</td>
+<td>AIX1, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>LED-Serial （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1490</td>
+<td>LED コード概念</td>
+<td>POWER 機の物理パネル/HMC に表示される 3-4 桁のコード。ブート段階や障害箇所を示す。代表例: 888 (チェックストップ表示)、c31 (コンソール選択待ち) 等。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1491</td>
+<td>シリアル端末経由ブート</td>
+<td>サービスプロセッサのシリアルコンソール経由でブートメッセージを観察し、SMS メニューに入って起動デバイスを変更できる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1492</td>
+<td>ASMI</td>
+<td>Advanced System Management Interface。サービスプロセッサに Web/シリアルでログインし、電源・ブート・診断を制御する低レベル管理面。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1493</td>
+<td>HMC からのブート</td>
+<td>Hardware Management Console から LPAR に対して通常/サービス起動を指示でき、ブートモード (Normal/SMS/Diag/Open Firmware) を選べる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1494</td>
+<td>SMS メニュー</td>
+<td>System Management Services。POWER のブート時に呼び出すファームウェアメニューで、ブートデバイス順序やネットワークブート設定を変更できる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>IPL （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1495</td>
+<td>IPL (Initial Program Load) 概念</td>
+<td>電源投入からカーネル起動までの POWER の初期化シーケンス全体。サービスプロセッサ → ファームウェア → ブートデバイス選択 → AIX カーネルロードの流れ。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1496</td>
+<td>POWER ブート手順</td>
+<td>1) サービスプロセッサ POST → 2) ファームウェア初期化 → 3) ブートリスト走査 → 4) BLV (hd5) ロード → 5) カーネル起動 → 6) rc.boot/init → 7) inittab。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>NIM-concept （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1497</td>
+<td>NIM 概要</td>
+<td>Network Installation Management。AIX を NIM Master からネットワーク経由でインストール / メンテナンスする統合フレームワーク。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1498</td>
+<td>NIM Master</td>
+<td>リソース (lpp_source/spot/mksysb 等) とクライアント定義を保持する管理サーバ。bos.sysmgt.nim.master fileset。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1499</td>
+<td>NIM Client</td>
+<td>NIM Master からインストール / カスタマイズを受ける対象。bos.sysmgt.nim.client fileset。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1500</td>
+<td>Standalone Client</td>
+<td>ローカルディスクから自走できる通常クライアント。bos_inst / cust / maintenance などの操作対象になる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1501</td>
+<td>Diskless / Dataless Client</td>
+<td>ローカル rootvg を持たず、SPOT を NFS マウントして起動するクライアント形態。診断 LPAR 等で利用。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1502</td>
+<td>NIM データベース</td>
+<td>/etc/objrepos 配下の ODM。マシン定義、リソース定義、ネットワーク定義などすべてのオブジェクトを保持する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1503</td>
+<td>NIM ネットワーク要件</td>
+<td>Master / Client 間の TCP (NFS, rsh/rcmd, bootp/tftp 系) 通信が必要。同一サブネットや NIM ゲートウェイ定義の設計が必要。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1504</td>
+<td>/etc/niminfo</td>
+<td>クライアント側に置かれる NIM 構成情報ファイル。Master 名、ポート、ホストネーム解決等の参照情報を保持する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1505</td>
+<td>nimclient コマンド概要</td>
+<td>クライアント側で NIM 操作を発行するためのコマンド。-p で構成確認、-o で操作実行、-l で一覧表示など。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>NIM-resource （14 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1506</td>
+<td>NIM リソース種別概念</td>
+<td>NIM 操作の入力/出力に使う再利用可能オブジェクト。Master 上の実体ファイルへのポインタとして登録され、複数クライアントから参照される。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1507</td>
+<td>lpp_source</td>
+<td>AIX BOS および追加 fileset の収集体。インストール/メンテナンスの基底ソース。バージョン整合性管理の単位となる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1508</td>
+<td>spot</td>
+<td>Shared Product Object Tree。BOS 起動可能な /usr ツリー相当。NIM ブートカーネルの提供元で、各操作の必須リソース。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1509</td>
+<td>mksysb (NIM リソース)</td>
+<td>クライアントの mksysb イメージを NIM 上で型 mksysb のリソースとして登録したもの。bos_inst (restore) に使用。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1510</td>
+<td>image_data</td>
+<td>rootvg のレイアウト (PP サイズ、LV/FS 構成) を定義するリソース。/image.data に対応。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1511</td>
+<td>bosinst_data</td>
+<td>BOS インストールのプロンプトレス回答シート。インストール方法 (new/migration/preserve) や言語/コンソール/ディスク選択を記述。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1512</td>
+<td>installp_bundle</td>
+<td>一括導入する fileset 群のリストファイル。cust 操作で適用する標準的なパッケージ束。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1513</td>
+<td>fix_bundle</td>
+<td>APAR / fix の束を表すリスト。emgr / instfix と連動して fix 適用を制御する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1514</td>
+<td>resolv_conf</td>
+<td>/etc/resolv.conf 内容を持つリソース。bos_inst 後のネットワーク設定を雛形として配布する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1515</td>
+<td>script</td>
+<td>クライアント上で実行する事後 (post) 処理スクリプト。bos_inst や cust 完了直後に走らせるカスタマイズに使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1516</td>
+<td>shell_res</td>
+<td>シェル系/補助リソース。アダプタ定義 (adapter_def)、nim_script、dump 等が補助リソースとして同系統で扱われる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1517</td>
+<td>dump</td>
+<td>システムダンプ採取用のリモートダンプデバイスを表すリソース。トラブル時の解析用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1518</td>
+<td>adapter_def</td>
+<td>セカンダリアダプタ設定を bos_inst 完了後に適用するためのリソース。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1519</td>
+<td>nim_script</td>
+<td>NIM が内部生成する制御スクリプト系リソース。利用者が直接編集することは想定しない。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>nim-cmd （17 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1520</td>
+<td>nim_master_setup</td>
+<td>NIM Master を初期セットアップするウィザードコマンド。bos.sysmgt.nim.master の導入確認、ネットワーク/lpp_source/spot リソース作成を一括化する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1521</td>
+<td>nim コマンド概要</td>
+<td>NIM Master 上で操作 (-o)、定義 (-t/-a)、変更を実行する中心コマンド。subcommand と属性で多機能を表現する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1522</td>
+<td>nim -o bos_inst</td>
+<td>クライアントへ BOS インストール (新規/復元/移行) を実行する操作。lpp_source / spot / bosinst_data / image_data 等を組み合わせて使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1523</td>
+<td>nim -o cust</td>
+<td>クライアントに対し fileset の追加導入 / 更新 (customize) を実行する。lpp_source と installp_bundle/filesets= の組合せが典型。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1524</td>
+<td>nim -o sync</td>
+<td>Master とリソース / クライアント定義の同期。spot の再構築 (sync_roots) など整合性回復に使う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1525</td>
+<td>nim -o showres</td>
+<td>リソースの内容 (例: lpp_source 中の fileset 一覧、bosinst_data の中身) を表示する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1526</td>
+<td>nim -o showlog</td>
+<td>操作ログ (bosinst / cust など) を表示する。ジョブ失敗時の原因追跡に必須。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1527</td>
+<td>nim -o change</td>
+<td>オブジェクト属性を変更する。例: マシンの cable_type を変更する等。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1528</td>
+<td>nim -o select</td>
+<td>グループに対するメンバ操作 (含める/外す) を行う。マシングループ単位で大規模配布する際に用いる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1529</td>
+<td>nim -o reset</td>
+<td>オブジェクトの状態 (Cstate) を初期に戻す。失敗ジョブが Bstate=ready 等で停止した場合の復旧に必須。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1530</td>
+<td>nim -o remove</td>
+<td>オブジェクトを NIM データベースから削除する。実体ファイルは別途扱いになる場合がある。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1531</td>
+<td>nim -t type</td>
+<td>新規オブジェクトを作成する際にタイプを指定する (例: -t lpp_source, -t standalone, -t mksysb)。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1532</td>
+<td>nim -F</td>
+<td>強制実行 (force)。状態整合性チェックをバイパスするため、復旧/破棄時の最終手段として使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1533</td>
+<td>nim -a attr=value</td>
+<td>属性指定。リソース作成・操作のパラメタを attr=value 形式で並べる中核オプション。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1534</td>
+<td>nim -p</td>
+<td>プレビュー (preview)。実際に変更を加えず、操作が成功するかを検証する。本番前のドライラン用。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1535</td>
+<td>nim -e</td>
+<td>拡張エラーログ / 拡張情報出力モード。トラブル解析時に詳細を取得するために使う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1536</td>
+<td>nimclient -p</td>
+<td>クライアント側で /etc/niminfo の内容や NIM 設定を表示する。クライアント参加状態の確認に使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>mksysb （11 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1537</td>
+<td>mksysb コマンド概要</td>
+<td>rootvg のフルシステムバックアップを作成する。テープ / ファイル / NIM 経由で取得でき、後で復元 / 移行 / クローンの基盤になる。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1538</td>
+<td>mksysb -i</td>
+<td>実行時に /image.data を mkszfile で自動生成する (rootvg レイアウト情報を新しく取り直す)。LV/FS 構成変更後に使う。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1539</td>
+<td>mksysb -e</td>
+<td>/etc/exclude.rootvg に列挙されたファイルを除外する。一時ファイル/ダンプ等を外して容量を絞る。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1540</td>
+<td>mksysb -X</td>
+<td>バックアップ中に /tmp が足りない場合に必要に応じて拡張する。サイズ不足エラーの回避策。</td>
+<td>AIX1, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1541</td>
+<td>mksysb -B</td>
+<td>バックアップ中、ブートイメージ / ブートレコード関連ステップをスキップする。特殊運用 (オフライン再生成等) で使用。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1542</td>
+<td>mksysb -p</td>
+<td>圧縮を無効化する (圧縮なし)。テープ装置側で圧縮を行う場合や、性能優先時に使う。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1543</td>
+<td>mksysb -m</td>
+<td>実行時に /image.data の作成と共に bosinst.data のマップファイルを取り込む。論理→物理マッピングを保つ。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1544</td>
+<td>mksysb tape 出力</td>
+<td>/dev/rmtN を出力先に指定。1 巻目にブートイメージ + BOS インストールイメージ、続いて rootvg イメージが格納される。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1545</td>
+<td>mksysb file 出力</td>
+<td>通常ファイル名を出力先に指定するとアーカイブファイル (.mksysb) になる。NIM への登録や DVD 化に利用。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1546</td>
+<td>mksysb NIM 経由</td>
+<td>NIM Master の mksysb リソース化で複数台のクローン展開やリモート復元に使う。bos_inst -a source=mksysb で復元する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1547</td>
+<td>listvgbackup</td>
+<td>mksysb / savevg 形式のバックアップから VG 情報を一覧する。-r で個別ファイル復元と組合せ可。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>alt_disk （8 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1548</td>
+<td>alt_disk_install (旧コマンド)</td>
+<td>旧来の包括コマンド。現行では alt_disk_copy / alt_disk_mksysb / alt_rootvg_op に機能分割された。古手順書/旧版マニュアルで言及されるため名称を覚えておく。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1549</td>
+<td>alt_disk_copy</td>
+<td>稼働中の rootvg を別の hdisk に複製してブート可能化する。OS アップグレード/カーネル変更前の安全弁として使う典型コマンド。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1550</td>
+<td>alt_disk_mksysb</td>
+<td>mksysb イメージを別ディスクに復元してブート可能化する。クローン作成 / 移行用。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1551</td>
+<td>alt_rootvg_op</td>
+<td>代替 rootvg のライフサイクル (起動切替、sleep/wake、削除等) を操作するコマンド。alt_disk_copy で作った altinst_rootvg の運用に使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1552</td>
+<td>alt_rootvg_op -W</td>
+<td>代替 rootvg を起動用 (wake-up) として有効化する。altinst_rootvg を活性化してファイル操作可能にする。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1553</td>
+<td>alt_rootvg_op -S</td>
+<td>代替 rootvg を sleep 状態に戻す。-W の対。マウント解除して以前の状態に戻す。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1554</td>
+<td>alt_rootvg_op -X</td>
+<td>代替 rootvg 定義を削除する。altinst_rootvg を破棄してディスクを解放したい時に使う。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1555</td>
+<td>alt_rootvg で root mirror</td>
+<td>alt_disk_copy 後に bootlist で両ディスクを並べることで、擬似的なミラー切替/切戻し基盤として運用するパターンがある。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>multibos （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1556</td>
+<td>multibos 概要</td>
+<td>rootvg 内に Standby BOS を構築し、稼働中インスタンス / スタンバイインスタンスを切替えながらアップデートできる機能。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1557</td>
+<td>multibos -S (Standby 作成)</td>
+<td>Standby BOS を新規作成する (Setup)。BOS 関連 LV (hd5/hd4/hd2 等) のコピー bos_* を構築する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1558</td>
+<td>multibos -B</td>
+<td>Standby BOS 用ブートイメージを作成 / 更新する。ブート切替の準備工程。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1559</td>
+<td>multibos -R (remove)</td>
+<td>Standby BOS を削除する (Remove)。bos_* LV やマウントポイントを破棄する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1560</td>
+<td>multibos -X</td>
+<td>Standby BOS を拡張 (eXpand) する。容量不足時に LV を拡張する操作。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1561</td>
+<td>multibos 切替</td>
+<td>bootlist と bosboot を Standby 側に合わせて再起動することで、Standby BOS を稼働側に昇格させる。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>savevg-restvg （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1562</td>
+<td>savevg 概要</td>
+<td>rootvg 以外の VG をバックアップするコマンド。mksysb のユーザ VG 版に相当する。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1563</td>
+<td>restvg 概要</td>
+<td>savevg で取得した VG イメージを復元する。-d で復元先ディスクを変更可能。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1564</td>
+<td>restvg -d disk</td>
+<td>復元対象 hdisk を明示する。元と異なるディスクへ復元する場合に必須。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>restbase （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1565</td>
+<td>restbase 概要</td>
+<td>BLV (ブート LV) からカスタマイズ済み ODM を ODM ベースに復元する低レベルコマンド。ブート時 rc.boot から呼ばれる。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1566</td>
+<td>restbase ユースケース</td>
+<td>通常は手で打たないが、ブート障害解析で BLV 内 ODM の整合性検証や手動展開を行う場面で登場する。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>nimadm （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1567</td>
+<td>nimadm 概要</td>
+<td>NIM Alternate Disk Migration。代替ディスクを使い、稼働中システムを無停止に近い形で別バージョン AIX へ移行する仕組み。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1568</td>
+<td>nimadm 前提</td>
+<td>NIM Master 側に対象バージョンの lpp_source と spot が必要。クライアントには空き hdisk が必要。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>wpar （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1569</td>
+<td>savewpar 概要</td>
+<td>WPAR (Workload Partition) のバックアップを取得する。WPAR のファイル空間 / 設定をアーカイブ化する。</td>
+<td>AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1570</td>
+<td>restwpar 概要</td>
+<td>savewpar で取得した WPAR を復元する。同一 LPAR / 別 LPAR への移送に使える。</td>
+<td>AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>image.data （4 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1571</td>
+<td>/image.data 概念</td>
+<td>rootvg のレイアウト (VG / LV / FS / PP サイズ等) を記述するテキスト定義。mksysb / BOS インストール時の構成図として参照される。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1572</td>
+<td>mkszfile</td>
+<td>/image.data を生成するコマンド。mksysb -i や savevg -i は内部的にこれを呼んで定義を最新化する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1573</td>
+<td>image.data 主要セクション</td>
+<td>image_data 自体、vg_data、lv_data、fs_data、lv_policy などのスタンザに分かれる。修正することでカスタムレイアウトでの復元が可能。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1574</td>
+<td>image.data 編集ユースケース</td>
+<td>復元時に PP サイズや FS サイズを変更したい / 別ディスクに収容したい場合に編集する。NIM では image_data リソース化する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>bosinst.data （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1575</td>
+<td>/bosinst.data 概念</td>
+<td>BOS インストールの応答ファイル。プロンプトレス導入、言語/コンソール/インストールメソッド/ディスク選択を記述する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1576</td>
+<td>bosinst.data 主要セクション</td>
+<td>control_flow (PROMPT, INSTALL_METHOD 等)、target_disk_data、locale 等のスタンザを持つ。NIM では bosinst_data リソース化する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1577</td>
+<td>PROMPT=no</td>
+<td>プロンプトを抑制して完全自動化する設定。バッチでの一斉導入に必須。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1578</td>
+<td>INSTALL_METHOD</td>
+<td>new_and_complete_overwrite / migrate / preserve から選択する。後述の BOS インストール方式と対応する。</td>
+<td>AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1579</td>
+<td>RECOVER_DEVICES</td>
+<td>デバイス構成 (ODM) を復元元から復元するか否かを制御する。クローン時の挙動を左右する重要キー。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>BOS-install （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1580</td>
+<td>bos.rte.install fileset</td>
+<td>BOS インストール基盤 fileset。installp / 関連コマンドの実体を含む。bosboot や mksysb の依存先となる中核 fileset。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1581</td>
+<td>new_and_complete_overwrite</td>
+<td>対象ディスクを完全に上書きする新規インストール。既存データは消える。クリーン構築の標準方式。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1582</td>
+<td>migration</td>
+<td>既存 AIX を上位バージョンへ移行する方式。ユーザ設定/データを保ったままバージョンを上げる。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1583</td>
+<td>preservation</td>
+<td>システム領域は再インストールしつつ、/home 等のユーザ FS を保持する方式。</td>
+<td>AIX1, AIX2, AIX73</td>
+</tr>
+<tr>
+<td style="text-align: right;">1584</td>
+<td>インストールメディア種別</td>
+<td>CD/DVD、NIM (ネットワーク)、テープ、mksysb イメージ復元の 4 系統が代表。NIM が大規模/自動化の主流。</td>
+<td>AIX2, AIX73</td>
+</tr>
+</tbody>
+</table>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

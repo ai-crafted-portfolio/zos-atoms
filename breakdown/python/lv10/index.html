@@ -12,29 +12,31 @@
         <meta name="author" content="ai-crafted-portfolio">
       
       
-        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/">
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/python/lv10/">
       
       
+        <link rel="prev" href="../lv09/">
       
-        <link rel="next" href="breakdown/zos-v3/">
+      
+        <link rel="next" href="../lv11/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>z/OS 技術項目細分化ガイド</title>
+        <title>並行・並列 (threading/multiprocessing/asyncio) （124 件） - z/OS 技術項目細分化ガイド</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#zos" class="md-skip">
+        <a href="#threadingmultiprocessingasyncio" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ホーム
+              並行・並列 (threading/multiprocessing/asyncio) （124 件）
             
           </span>
         </div>
@@ -211,11 +213,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -236,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-v3/" class="md-tabs__link">
+        <a href="../../zos-v3/" class="md-tabs__link">
           
   
   
@@ -258,7 +258,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/zos-sysprog/" class="md-tabs__link">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
           
   
   
@@ -280,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/z16/" class="md-tabs__link">
+        <a href="../../z16/" class="md-tabs__link">
           
   
   
@@ -302,7 +302,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/tape/" class="md-tabs__link">
+        <a href="../../tape/" class="md-tabs__link">
           
   
   
@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/aix-ksh/" class="md-tabs__link">
+        <a href="../../aix-ksh/" class="md-tabs__link">
           
   
   
@@ -342,11 +342,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="breakdown/python/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -368,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="breakdown/vscode/" class="md-tabs__link">
+        <a href="../../vscode/" class="md-tabs__link">
           
   
   
@@ -388,7 +390,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="breakdown/verification-sample/" class="md-tabs__link">
+      <a href="../../verification-sample/" class="md-tabs__link">
         
   
   
@@ -423,7 +425,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -438,37 +440,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ホーム
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -484,59 +459,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -615,7 +537,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-v3/" class="md-nav__link ">
+            <a href="../../zos-v3/" class="md-nav__link ">
               
   
   
@@ -659,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv01/" class="md-nav__link">
+      <a href="../../zos-v3/lv01/" class="md-nav__link">
         
   
   
@@ -687,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv02/" class="md-nav__link">
+      <a href="../../zos-v3/lv02/" class="md-nav__link">
         
   
   
@@ -715,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv03/" class="md-nav__link">
+      <a href="../../zos-v3/lv03/" class="md-nav__link">
         
   
   
@@ -743,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv04/" class="md-nav__link">
+      <a href="../../zos-v3/lv04/" class="md-nav__link">
         
   
   
@@ -771,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv05/" class="md-nav__link">
+      <a href="../../zos-v3/lv05/" class="md-nav__link">
         
   
   
@@ -799,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv06/" class="md-nav__link">
+      <a href="../../zos-v3/lv06/" class="md-nav__link">
         
   
   
@@ -827,7 +749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv07/" class="md-nav__link">
+      <a href="../../zos-v3/lv07/" class="md-nav__link">
         
   
   
@@ -855,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv08/" class="md-nav__link">
+      <a href="../../zos-v3/lv08/" class="md-nav__link">
         
   
   
@@ -883,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv09/" class="md-nav__link">
+      <a href="../../zos-v3/lv09/" class="md-nav__link">
         
   
   
@@ -911,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv10/" class="md-nav__link">
+      <a href="../../zos-v3/lv10/" class="md-nav__link">
         
   
   
@@ -939,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv11/" class="md-nav__link">
+      <a href="../../zos-v3/lv11/" class="md-nav__link">
         
   
   
@@ -967,7 +889,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv12/" class="md-nav__link">
+      <a href="../../zos-v3/lv12/" class="md-nav__link">
         
   
   
@@ -995,7 +917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv13/" class="md-nav__link">
+      <a href="../../zos-v3/lv13/" class="md-nav__link">
         
   
   
@@ -1023,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv14/" class="md-nav__link">
+      <a href="../../zos-v3/lv14/" class="md-nav__link">
         
   
   
@@ -1051,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv15/" class="md-nav__link">
+      <a href="../../zos-v3/lv15/" class="md-nav__link">
         
   
   
@@ -1079,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv16/" class="md-nav__link">
+      <a href="../../zos-v3/lv16/" class="md-nav__link">
         
   
   
@@ -1107,7 +1029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv17/" class="md-nav__link">
+      <a href="../../zos-v3/lv17/" class="md-nav__link">
         
   
   
@@ -1135,7 +1057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv18/" class="md-nav__link">
+      <a href="../../zos-v3/lv18/" class="md-nav__link">
         
   
   
@@ -1163,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv19/" class="md-nav__link">
+      <a href="../../zos-v3/lv19/" class="md-nav__link">
         
   
   
@@ -1191,7 +1113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv20/" class="md-nav__link">
+      <a href="../../zos-v3/lv20/" class="md-nav__link">
         
   
   
@@ -1219,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv21/" class="md-nav__link">
+      <a href="../../zos-v3/lv21/" class="md-nav__link">
         
   
   
@@ -1247,7 +1169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-v3/lv22/" class="md-nav__link">
+      <a href="../../zos-v3/lv22/" class="md-nav__link">
         
   
   
@@ -1333,7 +1255,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/zos-sysprog/" class="md-nav__link ">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
               
   
   
@@ -1377,7 +1299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv01/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
         
   
   
@@ -1405,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv02/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
         
   
   
@@ -1433,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv03/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
         
   
   
@@ -1461,7 +1383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv04/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
         
   
   
@@ -1489,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv05/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
         
   
   
@@ -1517,7 +1439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv06/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
         
   
   
@@ -1545,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv07/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
         
   
   
@@ -1573,7 +1495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv08/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
         
   
   
@@ -1601,7 +1523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv09/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
         
   
   
@@ -1629,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv10/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
         
   
   
@@ -1657,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv11/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
         
   
   
@@ -1685,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv12/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
         
   
   
@@ -1713,7 +1635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv13/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
         
   
   
@@ -1741,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/zos-sysprog/lv14/" class="md-nav__link">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
         
   
   
@@ -1823,7 +1745,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/z16/" class="md-nav__link ">
+            <a href="../../z16/" class="md-nav__link ">
               
   
   
@@ -1867,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv01/" class="md-nav__link">
+      <a href="../../z16/lv01/" class="md-nav__link">
         
   
   
@@ -1895,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv02/" class="md-nav__link">
+      <a href="../../z16/lv02/" class="md-nav__link">
         
   
   
@@ -1923,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv03/" class="md-nav__link">
+      <a href="../../z16/lv03/" class="md-nav__link">
         
   
   
@@ -1951,7 +1873,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv04/" class="md-nav__link">
+      <a href="../../z16/lv04/" class="md-nav__link">
         
   
   
@@ -1979,7 +1901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv05/" class="md-nav__link">
+      <a href="../../z16/lv05/" class="md-nav__link">
         
   
   
@@ -2007,7 +1929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv06/" class="md-nav__link">
+      <a href="../../z16/lv06/" class="md-nav__link">
         
   
   
@@ -2035,7 +1957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv07/" class="md-nav__link">
+      <a href="../../z16/lv07/" class="md-nav__link">
         
   
   
@@ -2063,7 +1985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv08/" class="md-nav__link">
+      <a href="../../z16/lv08/" class="md-nav__link">
         
   
   
@@ -2091,7 +2013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv09/" class="md-nav__link">
+      <a href="../../z16/lv09/" class="md-nav__link">
         
   
   
@@ -2119,7 +2041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv10/" class="md-nav__link">
+      <a href="../../z16/lv10/" class="md-nav__link">
         
   
   
@@ -2147,7 +2069,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv11/" class="md-nav__link">
+      <a href="../../z16/lv11/" class="md-nav__link">
         
   
   
@@ -2175,7 +2097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/z16/lv12/" class="md-nav__link">
+      <a href="../../z16/lv12/" class="md-nav__link">
         
   
   
@@ -2239,7 +2161,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/tape/" class="md-nav__link ">
+            <a href="../../tape/" class="md-nav__link ">
               
   
   
@@ -2283,7 +2205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv01/" class="md-nav__link">
+      <a href="../../tape/lv01/" class="md-nav__link">
         
   
   
@@ -2311,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv02/" class="md-nav__link">
+      <a href="../../tape/lv02/" class="md-nav__link">
         
   
   
@@ -2339,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/tape/lv03/" class="md-nav__link">
+      <a href="../../tape/lv03/" class="md-nav__link">
         
   
   
@@ -2419,7 +2341,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/aix-ksh/" class="md-nav__link ">
+            <a href="../../aix-ksh/" class="md-nav__link ">
               
   
   
@@ -2463,7 +2385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv01/" class="md-nav__link">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
         
   
   
@@ -2491,7 +2413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv02/" class="md-nav__link">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
         
   
   
@@ -2519,7 +2441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv03/" class="md-nav__link">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
         
   
   
@@ -2547,7 +2469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv04/" class="md-nav__link">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
         
   
   
@@ -2575,7 +2497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv05/" class="md-nav__link">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
         
   
   
@@ -2603,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv06/" class="md-nav__link">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
         
   
   
@@ -2631,7 +2553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv07/" class="md-nav__link">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
         
   
   
@@ -2659,7 +2581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv08/" class="md-nav__link">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
         
   
   
@@ -2687,7 +2609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv09/" class="md-nav__link">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
         
   
   
@@ -2715,7 +2637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv10/" class="md-nav__link">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
         
   
   
@@ -2743,7 +2665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/aix-ksh/lv11/" class="md-nav__link">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
         
   
   
@@ -2775,6 +2697,8 @@
       
   
   
+    
+  
   
   
     
@@ -2816,20 +2740,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/python/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -2847,13 +2774,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2873,7 +2800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv01/" class="md-nav__link">
+      <a href="../lv01/" class="md-nav__link">
         
   
   
@@ -2901,7 +2828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv02/" class="md-nav__link">
+      <a href="../lv02/" class="md-nav__link">
         
   
   
@@ -2929,7 +2856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv03/" class="md-nav__link">
+      <a href="../lv03/" class="md-nav__link">
         
   
   
@@ -2957,7 +2884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv04/" class="md-nav__link">
+      <a href="../lv04/" class="md-nav__link">
         
   
   
@@ -2985,7 +2912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv05/" class="md-nav__link">
+      <a href="../lv05/" class="md-nav__link">
         
   
   
@@ -3013,7 +2940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv06/" class="md-nav__link">
+      <a href="../lv06/" class="md-nav__link">
         
   
   
@@ -3041,7 +2968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv07/" class="md-nav__link">
+      <a href="../lv07/" class="md-nav__link">
         
   
   
@@ -3069,7 +2996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv08/" class="md-nav__link">
+      <a href="../lv08/" class="md-nav__link">
         
   
   
@@ -3097,7 +3024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv09/" class="md-nav__link">
+      <a href="../lv09/" class="md-nav__link">
         
   
   
@@ -3122,10 +3049,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="breakdown/python/lv10/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3141,6 +3077,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3153,7 +3090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv11/" class="md-nav__link">
+      <a href="../lv11/" class="md-nav__link">
         
   
   
@@ -3181,7 +3118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv12/" class="md-nav__link">
+      <a href="../lv12/" class="md-nav__link">
         
   
   
@@ -3209,7 +3146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv13/" class="md-nav__link">
+      <a href="../lv13/" class="md-nav__link">
         
   
   
@@ -3237,7 +3174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/python/lv14/" class="md-nav__link">
+      <a href="../lv14/" class="md-nav__link">
         
   
   
@@ -3323,7 +3260,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="breakdown/vscode/" class="md-nav__link ">
+            <a href="../../vscode/" class="md-nav__link ">
               
   
   
@@ -3367,7 +3304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv01/" class="md-nav__link">
+      <a href="../../vscode/lv01/" class="md-nav__link">
         
   
   
@@ -3395,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv02/" class="md-nav__link">
+      <a href="../../vscode/lv02/" class="md-nav__link">
         
   
   
@@ -3423,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv03/" class="md-nav__link">
+      <a href="../../vscode/lv03/" class="md-nav__link">
         
   
   
@@ -3451,7 +3388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv04/" class="md-nav__link">
+      <a href="../../vscode/lv04/" class="md-nav__link">
         
   
   
@@ -3479,7 +3416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv05/" class="md-nav__link">
+      <a href="../../vscode/lv05/" class="md-nav__link">
         
   
   
@@ -3507,7 +3444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv06/" class="md-nav__link">
+      <a href="../../vscode/lv06/" class="md-nav__link">
         
   
   
@@ -3535,7 +3472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv07/" class="md-nav__link">
+      <a href="../../vscode/lv07/" class="md-nav__link">
         
   
   
@@ -3563,7 +3500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv08/" class="md-nav__link">
+      <a href="../../vscode/lv08/" class="md-nav__link">
         
   
   
@@ -3591,7 +3528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv09/" class="md-nav__link">
+      <a href="../../vscode/lv09/" class="md-nav__link">
         
   
   
@@ -3619,7 +3556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv10/" class="md-nav__link">
+      <a href="../../vscode/lv10/" class="md-nav__link">
         
   
   
@@ -3647,7 +3584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv11/" class="md-nav__link">
+      <a href="../../vscode/lv11/" class="md-nav__link">
         
   
   
@@ -3675,7 +3612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv12/" class="md-nav__link">
+      <a href="../../vscode/lv12/" class="md-nav__link">
         
   
   
@@ -3703,7 +3640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv13/" class="md-nav__link">
+      <a href="../../vscode/lv13/" class="md-nav__link">
         
   
   
@@ -3731,7 +3668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/vscode/lv14/" class="md-nav__link">
+      <a href="../../vscode/lv14/" class="md-nav__link">
         
   
   
@@ -3766,7 +3703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="breakdown/verification-sample/" class="md-nav__link">
+      <a href="../../verification-sample/" class="md-nav__link">
         
   
   
@@ -3806,47 +3743,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コンテンツ一覧
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        信頼性区分の凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        出典コード凡例
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -3862,212 +3758,1067 @@
 
 
 
-<h1 id="zos">z/OS 技術項目細分化ガイド<a class="headerlink" href="#zos" title="Permanent link">&para;</a></h1>
-<p>z/OS を中心に、AIX・Python・VS Code・テープ系ハードウェア等の技術項目を細分化した技術リファレンスです。各製品を大分類 (Lv1) ごとのページにまとめ、中分類 (Lv2) 単位の折り畳みテーブルで技術項目・単一焦点要約・出典を一覧できます。</p>
-<p>画面右上の検索から全ページを横断的に全文検索できます。</p>
-<h2 id="_1">コンテンツ一覧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h1 id="threadingmultiprocessingasyncio">並行・並列 (threading/multiprocessing/asyncio)<a class="headerlink" href="#threadingmultiprocessingasyncio" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: Python ／ <strong>本ページ件数</strong>: 124 件 ／ <strong>出典区分</strong>: Python 公式ドキュメント出典</p>
+<details class="note" open="open">
+<summary>GIL （5 件）</summary>
 <table>
 <thead>
 <tr>
-<th>製品</th>
-<th style="text-align: right;">件数</th>
-<th>出典区分</th>
-<th>入口</th>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>z/OS 全体 (v3)</td>
-<td style="text-align: right;">13,762</td>
-<td>Redbook ingest 反映済 v3</td>
-<td><a href="breakdown/zos-v3/">概要</a></td>
+<td style="text-align: right;">1157</td>
+<td>Global Interpreter Lock の概要</td>
+<td>CPython では Python バイトコード実行に GIL が必要で、CPU バウンド並列はスレッドでは速くならない。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>z/OS System Programming</td>
-<td style="text-align: right;">1,804</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/zos-sysprog/">概要</a></td>
+<td style="text-align: right;">1158</td>
+<td>I/O バウンドと GIL</td>
+<td>ファイル/ネットワーク I/O 待ちでは GIL が解放されるためスレッドが有効。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>IBM z16 ハードウェア</td>
-<td style="text-align: right;">1,249</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/z16/">概要</a></td>
+<td style="text-align: right;">1159</td>
+<td>GIL 解放する C 拡張</td>
+<td>numpy/openssl/zlib などは GIL を解放するため重い計算でもスレッドが効く場面がある。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>テープ系 (TS2280 / TS4300 / TS7770)</td>
-<td style="text-align: right;">1,045</td>
-<td>初版（事前知識補完を含む）</td>
-<td><a href="breakdown/tape/">概要</a></td>
+<td style="text-align: right;">1160</td>
+<td>GIL なし Python (3.13+ PEP 703)</td>
+<td>free-threaded build (no-GIL) が experimental で提供開始。3.12 時点では従来通り。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td>AIX + ksh</td>
-<td style="text-align: right;">2,681</td>
-<td>書籍出典</td>
-<td><a href="breakdown/aix-ksh/">概要</a></td>
-</tr>
-<tr>
-<td>Python</td>
-<td style="text-align: right;">1,774</td>
-<td>Python 公式ドキュメント出典</td>
-<td><a href="breakdown/python/">概要</a></td>
-</tr>
-<tr>
-<td>VS Code</td>
-<td style="text-align: right;">2,042</td>
-<td>VS Code 公式ドキュメント出典</td>
-<td><a href="breakdown/vscode/">概要</a></td>
-</tr>
-<tr>
-<td>検証手順サンプル</td>
-<td style="text-align: right;">50</td>
-<td>実コンソールセッション再現</td>
-<td><a href="breakdown/verification-sample/">概要</a></td>
+<td style="text-align: right;">1161</td>
+<td>sub-interpreters PEP 684</td>
+<td>GIL を分離した複数インタプリタ。3.12 で C-API レベル、3.13 で Python API。</td>
+<td>PYDOC</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">信頼性区分の凡例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Redbook ingest 反映済 / 公式 docs 出典 / 書籍出典</strong>: 一次資料に基づく内容。</li>
-<li><strong>初版</strong>: 事前知識による補完を含み、一次資料との突合（再生成）を予定。出典欄に「一次資料 突合予定」と表示される項目が該当します。</li>
-</ul>
-<h2 id="_3">出典コード凡例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+</details>
+<details class="note">
+<summary>threading 基本 （6 件）</summary>
 <table>
 <thead>
 <tr>
-<th>出典コード</th>
-<th>意味</th>
-<th>主な製品</th>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>(一次資料 突合予定)</code></td>
-<td>初版項目（一次資料との突合を予定）</td>
-<td>IBM z16、z/OS System Programming</td>
+<td style="text-align: right;">1162</td>
+<td>threading.Thread(target=, args=)</td>
+<td>スレッド生成。start() で開始、join() で完了待ち。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AIX1</code></td>
-<td>AIX システム管理 1（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1163</td>
+<td>daemon スレッド</td>
+<td>メインスレッド終了時に強制終了する補助スレッド。daemon=True で指定。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AIX2</code></td>
-<td>AIX システム管理 2（書籍）</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1164</td>
+<td>threading.current_thread()</td>
+<td>現在のスレッドオブジェクト取得。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AIX73</code></td>
-<td>IBM AIX 7.3 公式マニュアル</td>
-<td>AIX + ksh</td>
+<td style="text-align: right;">1165</td>
+<td>threading.active_count()</td>
+<td>アクティブなスレッド数。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AS1</code></td>
-<td>アドバンスドスキル Vol.1（書籍）</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1166</td>
+<td>threading.enumerate()</td>
+<td>全アクティブスレッドのリスト。</td>
+<td>PYDOC</td>
 </tr>
 <tr>
-<td><code>AS2</code></td>
-<td>アドバンスドスキル Vol.2（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>BAS</code></td>
-<td>MFOS入門（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>GDPS</code></td>
-<td>IBM GDPS Redbooks 一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>KORN</code></td>
-<td>入門 Korn シェル（書籍）</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>MF</code></td>
-<td>メインフレーム実践（書籍）</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>MQ</code></td>
-<td>IBM MQ 9.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>NV</code></td>
-<td>IBM NetView 6.4 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>PHA7</code></td>
-<td>PowerHA SystemMirror 7.x マニュアル</td>
-<td>AIX + ksh</td>
-</tr>
-<tr>
-<td><code>PYDOC</code></td>
-<td>Python 公式ドキュメント (docs.python.org/3)</td>
-<td>Python</td>
-</tr>
-<tr>
-<td><code>TS2280DOC</code></td>
-<td>IBM TS2280 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS4300DOC</code></td>
-<td>IBM TS4300 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TS7770DOC</code></td>
-<td>IBM TS7770 公式ドキュメント</td>
-<td>テープ系</td>
-</tr>
-<tr>
-<td><code>TSA</code></td>
-<td>IBM Z System Automation for z/OS 4.3 マニュアル一式</td>
-<td>z/OS v3</td>
-</tr>
-<tr>
-<td><code>VSCAPI</code></td>
-<td>Visual Studio Code 拡張 API リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCCOP</code></td>
-<td>GitHub Copilot in VS Code ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCDOCS</code></td>
-<td>Visual Studio Code 公式ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCKB</code></td>
-<td>Visual Studio Code キーボードショートカット リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCREM</code></td>
-<td>Visual Studio Code リモート開発ドキュメント</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>VSCSET</code></td>
-<td>Visual Studio Code 設定リファレンス</td>
-<td>VS Code</td>
-</tr>
-<tr>
-<td><code>ZOS31</code></td>
-<td>IBM z/OS 3.1 公式マニュアル</td>
-<td>z/OS v3</td>
+<td style="text-align: right;">1167</td>
+<td>Thread サブクラス化</td>
+<td>run() をオーバーライドして専用スレッド型を定義。</td>
+<td>PYDOC</td>
 </tr>
 </tbody>
 </table>
+</details>
+<details class="note">
+<summary>threading 同期 （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1168</td>
+<td>threading.Lock</td>
+<td>排他制御。acquire() / release() / with でロック確保。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1169</td>
+<td>threading.RLock</td>
+<td>同一スレッドが再帰的に取得可能な再入可能ロック。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1170</td>
+<td>threading.Semaphore</td>
+<td>個数制限付きロック。同時実行数を制御。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1171</td>
+<td>threading.BoundedSemaphore</td>
+<td>release 過剰を検出するセマフォ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1172</td>
+<td>threading.Event</td>
+<td>1 ビットフラグ。set/clear/wait による単純な状態通知。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1173</td>
+<td>threading.Condition</td>
+<td>wait/notify による条件変数。Lock とセットで使う。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1174</td>
+<td>threading.Barrier</td>
+<td>N 個のスレッドが揃うまで待機。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1175</td>
+<td>queue.Queue / LifoQueue / PriorityQueue</td>
+<td>スレッド安全な FIFO/LIFO/Priority キュー。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1176</td>
+<td>queue.SimpleQueue</td>
+<td>FIFO のみ、追加機能なしの高速版。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>threading ローカル （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1177</td>
+<td>threading.local()</td>
+<td>スレッドごとに独立した属性を持つオブジェクト。コンテキスト保持に。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>threading タイマー （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1178</td>
+<td>threading.Timer(interval, func)</td>
+<td>指定秒後に func を 1 回実行するスレッド。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>threading 制御 （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1179</td>
+<td>thread.is_alive()</td>
+<td>スレッドの稼働状態。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1180</td>
+<td>thread.name / ident / native_id</td>
+<td>識別情報。デバッグ用。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1181</td>
+<td>threading.excepthook</td>
+<td>Thread 内未補足例外の最終フック (3.8+)。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>multiprocessing （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1182</td>
+<td>Process(target=, args=)</td>
+<td>別プロセスで関数実行。GIL を回避して CPU バウンド並列可能。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1183</td>
+<td>Process.start / join / terminate</td>
+<td>プロセス制御。terminate は SIGTERM。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1184</td>
+<td>start method spawn / fork / forkserver</td>
+<td>Linux fork はメモリ共有、spawn は再起動、forkserver は中間プロセス経由。3.14 で macOS は spawn 既定。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1185</td>
+<td>Pool(processes=)</td>
+<td>プロセスプール。map / imap / apply_async でタスク投入。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1186</td>
+<td>Pool.map / imap_unordered</td>
+<td>順序保持 / 不問。imap は遅延評価。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1187</td>
+<td>Pool.apply_async</td>
+<td>1 タスク非同期投入。AsyncResult で待機。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1188</td>
+<td>Pool.close / join / terminate</td>
+<td>投入終了 / 完了待ち / 強制終了。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>multiprocessing 通信 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1189</td>
+<td>multiprocessing.Queue</td>
+<td>プロセス間 FIFO。pickle 経由でやり取り。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1190</td>
+<td>multiprocessing.Pipe</td>
+<td>双方向 1:1 通信。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1191</td>
+<td>Manager().dict() / list()</td>
+<td>別プロセスで管理されるプロキシオブジェクト。リモート呼び出しコストあり。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1192</td>
+<td>shared_memory.SharedMemory</td>
+<td>プロセス間でメモリを共有 (3.8+)。numpy 配列を低コストで渡す。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1193</td>
+<td>shared_memory.ShareableList</td>
+<td>限定型の共有リスト。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1194</td>
+<td>Value / Array</td>
+<td>共有メモリ上の単値 / 配列 (ctypes 型)。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>multiprocessing 同期 （1 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1195</td>
+<td>multiprocessing.Lock / Semaphore / Event</td>
+<td>threading 系と同名 API。プロセス間で使える。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>multiprocessing 注意 （3 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1196</td>
+<td>fork と asyncio</td>
+<td>asyncio loop を fork すると子プロセスで予期せぬ動作。spawn を推奨。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1197</td>
+<td>Windows でのエントリ guard</td>
+<td>if <strong>name</strong> == '<strong>main</strong>': で Pool を作る必要がある。spawn で再 import されるため。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1198</td>
+<td>pickle できない関数</td>
+<td>ローカル関数/ラムダは Pool で使えない。トップレベル関数にする。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>concurrent.futures （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1199</td>
+<td>ThreadPoolExecutor</td>
+<td>スレッドプール。submit/map/shutdown。with 文で resource 管理。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1200</td>
+<td>ProcessPoolExecutor</td>
+<td>プロセスプール。multiprocessing.Pool より高レベル。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1201</td>
+<td>executor.submit(fn, *args)</td>
+<td>1 タスク投入。Future を返す。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1202</td>
+<td>executor.map(fn, iter)</td>
+<td>iter の要素を並列処理。順序保持。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1203</td>
+<td>Future.result(timeout) / exception()</td>
+<td>結果取得 / 例外取得。完了まで待機。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1204</td>
+<td>Future.add_done_callback</td>
+<td>完了時コールバック登録。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1205</td>
+<td>wait(fs, timeout, return_when)</td>
+<td>FIRST_COMPLETED / ALL_COMPLETED / FIRST_EXCEPTION で待機制御。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1206</td>
+<td>as_completed(fs)</td>
+<td>完了順にイテレート。バックグラウンドタスク収集に便利。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1207</td>
+<td>executor.shutdown(wait=, cancel_futures=)</td>
+<td>受付停止 + 完了待機。3.9+ で cancel_futures を指定可。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>asyncio 基本 （16 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1208</td>
+<td>async def コルーチン</td>
+<td>コルーチンを定義する。呼び出しで coroutine オブジェクトを返す。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1209</td>
+<td>await 式</td>
+<td>コルーチン/Future/Task の完了を待つ。async def の中だけ使用可。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1210</td>
+<td>asyncio.run(main())</td>
+<td>新しいイベントループを作り main コルーチンを実行する高レベル API。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1211</td>
+<td>asyncio.create_task(coro)</td>
+<td>コルーチンを Task としてスケジューリング。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1212</td>
+<td>asyncio.gather(*coros, return_exceptions=)</td>
+<td>並列実行 + 結果取得。例外は最初の 1 つで raise (return_exceptions=True で全収集)。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1213</td>
+<td>asyncio.wait(tasks, timeout, return_when)</td>
+<td>低レベル待機。done/pending の集合を返す。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1214</td>
+<td>asyncio.wait_for(coro, timeout)</td>
+<td>タイムアウト付き待機。TimeoutError 発生。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1215</td>
+<td>asyncio.shield(coro)</td>
+<td>外側 cancel から保護する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1216</td>
+<td>asyncio.sleep(seconds)</td>
+<td>ノンブロッキング sleep。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1217</td>
+<td>asyncio.TaskGroup (3.11+)</td>
+<td>with TaskGroup() as tg: tg.create_task(...) のスコープ付き並列。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1218</td>
+<td>asyncio.Timeout (3.11+)</td>
+<td>with asyncio.timeout(s): の async CM。複数 await を一括キャンセル。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1219</td>
+<td>asyncio.timeout_at</td>
+<td>絶対時刻でタイムアウトする版。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1220</td>
+<td>asyncio.to_thread(fn, *args) (3.9+)</td>
+<td>同期関数を別スレッドで実行し非同期化。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1221</td>
+<td>asyncio.get_event_loop / get_running_loop</td>
+<td>後者はループ内で呼ぶ前提。前者は deprecated 傾向。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1222</td>
+<td>asyncio.run_in_executor</td>
+<td>low-level API。executor で同期関数を非同期化。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1223</td>
+<td>asyncio.iscoroutine / iscoroutinefunction</td>
+<td>判定ユーティリティ。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>asyncio 同期 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1224</td>
+<td>asyncio.Lock</td>
+<td>async with lock: で排他制御。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1225</td>
+<td>asyncio.Event</td>
+<td>set/clear/wait による状態通知。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1226</td>
+<td>asyncio.Condition</td>
+<td>async 版条件変数。Lock とセット。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1227</td>
+<td>asyncio.Semaphore / BoundedSemaphore</td>
+<td>個数制限付き同期。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1228</td>
+<td>asyncio.Queue / LifoQueue / PriorityQueue</td>
+<td>async 安全なキュー。put_nowait / get_nowait もある。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1229</td>
+<td>asyncio.Future</td>
+<td>低レベル。create_task より先行する API。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>asyncio ネットワーク （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1230</td>
+<td>asyncio.open_connection(host, port)</td>
+<td>TCP クライアントの reader/writer ペアを取得。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1231</td>
+<td>asyncio.start_server(handler, host, port)</td>
+<td>シンプル TCP サーバ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1232</td>
+<td>StreamReader / StreamWriter</td>
+<td>read/readline/readuntil/write/drain/close の API。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1233</td>
+<td>asyncio.subprocess</td>
+<td>create_subprocess_exec/shell で子プロセスを非同期に扱う。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1234</td>
+<td>asyncio.Protocol</td>
+<td>低レベルプロトコル実装。Transport と組合せ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1235</td>
+<td>loop.run_in_executor</td>
+<td>同期 I/O を別スレッドへ。互換性のためのブリッジ。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>asyncio 例外 （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1236</td>
+<td>CancelledError</td>
+<td>Task キャンセル時に内部に raise。3.8+ で BaseException 直下。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1237</td>
+<td>TimeoutError</td>
+<td>wait_for / asyncio.timeout で発生。3.11+ で組み込み TimeoutError と統合。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1238</td>
+<td>ExceptionGroup と TaskGroup</td>
+<td>TaskGroup 内で複数 Task が失敗すると ExceptionGroup として伝搬。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1239</td>
+<td>Task.cancel(msg)</td>
+<td>Task をキャンセル。CancelledError(msg) が内部に。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1240</td>
+<td>Task.cancelling()</td>
+<td>キャンセル中フラグ。3.11+。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1241</td>
+<td>Task.uncancel() (3.11+)</td>
+<td>キャンセル状態を解除して継続。timeout 連携で使われる。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>asyncio context （2 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1242</td>
+<td>contextvars.ContextVar</td>
+<td>async 安全なコンテキスト変数。Task 間で独立。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1243</td>
+<td>contextvars.copy_context()</td>
+<td>現在のコンテキストを複製。create_task は内部で実施。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>並行パターン （6 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1244</td>
+<td>Producer/Consumer</td>
+<td>queue.Queue や asyncio.Queue を介してデータをやり取り。背圧 (backpressure) 制御に最大サイズを利用。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1245</td>
+<td>Worker Pool</td>
+<td>ThreadPoolExecutor / ProcessPoolExecutor / Pool で固定ワーカが queue を処理。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1246</td>
+<td>Fan-out / Fan-in</td>
+<td>gather / as_completed で並列実行し結果を集約。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1247</td>
+<td>リトライ + バックオフ</td>
+<td>tenacity / 自作デコレータで指数バックオフ。CancelledError は再 raise する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1248</td>
+<td>circuit breaker</td>
+<td>外部依存の連続失敗で一時的にブロックする。同期/非同期両方に実装あり。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1249</td>
+<td>rate limiter</td>
+<td>Semaphore + sleep でレート制御。token bucket / leaky bucket。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>落とし穴 （9 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1250</td>
+<td>CPU バウンドにスレッド</td>
+<td>GIL のためほぼ無意味。multiprocessing / 拡張 / asyncio + to_thread を検討。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1251</td>
+<td>I/O バウンドにプロセス</td>
+<td>プロセス生成コストとシリアライズコストで遅くなる。スレッドや asyncio を選ぶ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1252</td>
+<td>fork 後の競合</td>
+<td>ロック保持中に fork すると子で deadlock。spawn 推奨。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1253</td>
+<td>ブロッキング呼び出しを async で</td>
+<td>time.sleep / requests.get などをそのまま async に書くとループ全体が止まる。to_thread/aiohttp 等を使う。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1254</td>
+<td>Task の握り潰し</td>
+<td>create_task した Task を参照しないと GC される。strong reference を保持する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1255</td>
+<td>asyncio.run の入れ子禁止</td>
+<td>既にループが走っているところで asyncio.run はエラー。await を使う。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1256</td>
+<td>spawned process のログ</td>
+<td>ロガー設定は親と独立。logging の initial config を子側で再設定する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1257</td>
+<td>shared_memory のクリーンアップ</td>
+<td>明示的に unlink() しないとリソースが残る。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1258</td>
+<td>ThreadPoolExecutor の cancel 制限</td>
+<td>submit 後すでに走っている task は cancel できない。CooperativeCancellation を設計に組み込む。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>代替手段 （5 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1259</td>
+<td>numpy / pandas ベクトル化</td>
+<td>Python ループより圧倒的高速。GIL も解放する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1260</td>
+<td>Cython / mypyc</td>
+<td>ホットパスを C 化。GIL 解放制御も可能。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1261</td>
+<td>Numba JIT</td>
+<td>@njit で型推論 + 機械語化。並列化オプションあり。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1262</td>
+<td>Ray / Dask</td>
+<td>分散並列フレームワーク。multiprocessing.Pool より大規模。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1263</td>
+<td>Trio / AnyIO</td>
+<td>structured concurrency に重きを置いた async ライブラリ。asyncio 互換層あり。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>3.12 関連 （7 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1264</td>
+<td>PEP 684 sub-interpreter</td>
+<td>GIL を分離した複数インタプリタ。C-API レベル提供。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1265</td>
+<td>PEP 703 free-threaded build</td>
+<td>GIL 撤去版 Python の実験。3.13+ で experimental 提供。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1266</td>
+<td>asyncio.eager_task_factory (3.12+)</td>
+<td>create_task 直後にコルーチンを 1 ステップ実行する factory。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1267</td>
+<td>asyncio.TaskGroup 安定化</td>
+<td>3.11 で導入されて以来運用パターンが定着。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1268</td>
+<td>asyncio.Runner</td>
+<td>asyncio.run の細かい制御を提供する CM。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1269</td>
+<td>shared_memory のリーク警告</td>
+<td>明示的に close+unlink を促す resource_tracker。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1270</td>
+<td>logging 設定の改善</td>
+<td>QueueHandler / QueueListener との連携で multiprocess ログ集約が容易に。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="note">
+<summary>ベストプラクティス （10 件）</summary>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>単一焦点要約</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1271</td>
+<td>I/O は asyncio、CPU は multiprocessing</td>
+<td>適材適所の使い分けが基本。一方で必要なら混合する (gather + to_thread)。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1272</td>
+<td>structured concurrency</td>
+<td>TaskGroup / Trio で寿命が親に束縛される設計。リーク防止。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1273</td>
+<td>Cancel に対応する</td>
+<td>CancelledError を catch して finally でリソース解放、再 raise する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1274</td>
+<td>blocking 関数の隔離</td>
+<td>asyncio 内で blocking 呼び出しは to_thread / loop.run_in_executor で隔離。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1275</td>
+<td>プロセス起動コスト</td>
+<td>ProcessPoolExecutor は小タスクで遅くなる。チャンクで投入する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1276</td>
+<td>デバッグ</td>
+<td>PYTHONASYNCIODEBUG=1 で警告を増やす。logging も同時に活用。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1277</td>
+<td>テスト</td>
+<td>pytest-asyncio や trio-test を活用。asyncio.run を直接呼ぶより fixture で。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1278</td>
+<td>fork 安全な init</td>
+<td>child init で seeds (random) / connection pool を再初期化する。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1279</td>
+<td>リソース上限</td>
+<td>セマフォで同時並列数を制限し DoS / rate limit 違反を防ぐ。</td>
+<td>PYDOC</td>
+</tr>
+<tr>
+<td style="text-align: right;">1280</td>
+<td>graceful shutdown</td>
+<td>SIGTERM を受けて TaskGroup を cancel し finally で flush する。</td>
+<td>PYDOC</td>
+</tr>
+</tbody>
+</table>
+</details>
 
 
 
@@ -4122,10 +4873,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
