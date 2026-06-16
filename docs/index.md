@@ -2,13 +2,15 @@
 
 z/OS を中心に、AIX・Python・VS Code・テープ系ハードウェア等の技術項目を細分化した技術リファレンスです。各製品を大分類 (Lv1) ごとのページにまとめ、中分類 (Lv2) 単位の折り畳みテーブルで技術項目・単一焦点要約・出典を一覧できます。
 
+z/OS v3 は技術項目に加え、項目ごとの検証手順（コンソールセッション再現）と理解度チェック（4 択 + 解説）を収録しています。
+
 画面右上の検索から全ページを横断的に全文検索できます。
 
 ## コンテンツ一覧
 
 | 製品 | 件数 | 出典区分 | 入口 |
 |---|---:|---|---|
-| z/OS 全体 (v3) | 13,762 | Redbook ingest 反映済 v3 | [概要](breakdown/zos-v3/index.md) |
+| z/OS v3 — 技術項目 + 検証手順 + 理解度チェック | 13,762 | Redbook ingest 反映済 v3 | [概要](breakdown/zos-v3-with-verify/index.md) |
 | z/OS System Programming | 1,804 | 初版（事前知識補完を含む） | [概要](breakdown/zos-sysprog/index.md) |
 | IBM z16 ハードウェア | 1,249 | 初版（事前知識補完を含む） | [概要](breakdown/z16/index.md) |
 | テープ系 (TS2280 / TS4300 / TS7770) | 1,045 | 初版（事前知識補完を含む） | [概要](breakdown/tape/index.md) |
