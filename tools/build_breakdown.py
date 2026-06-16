@@ -24,35 +24,81 @@ SITE_URL = "https://ai-crafted-portfolio.github.io/zos-atoms/"
 # --------------------------------------------------------------------------- #
 # Sanitiser: strip internal tooling vocabulary from any text that reaches docs
 # --------------------------------------------------------------------------- #
-# (NO MCP HIT) marks rows補完 from prior knowledge -> public-safe wording.
-_PHRASE_SUBS = [
+# Internal retrieval-pipeline vocabulary leaks into the gold verify/quiz text
+# (チャンク=chunk, バケット=bucket, 出典命中=retrieval-hit, corpus, verbatim, the
+# MCP_NO_HIT / Q-NO_HIT markers, ...). We strip it with ordered LITERAL substring
+# replacements — no \b word boundaries (those silently miss tokens glued to CJK or
+# to '_'). Longest / most specific phrases first so fallbacks don't double-rewrite.
+_SCRUB = [
+    # ---- whole-sentence provenance notes (raw "MCP ..." source forms) ----
+    ("[MCP 命中なし — Quiz 生成不可]", "(この項目の確認問題は一次資料との突合後に追加予定)"),
+    ("周辺チャンクが MCP corpus に存在しない為、verbatim 引用は省略。",
+     "出力例は一次資料との突合後に追加予定。"),
+    ("本項目に対する MCP チャンクが取得できなかったため、コンソール手順は未生成。",
+     "本項目の検証手順は一次資料との突合後に追加予定。"),
+    ("MCP 検索コーパスに該当チャンクなし。", "一次資料との突合予定。"),
+    # ---- "MCP 命中チャンク" provenance variants (specific -> generic) ----
+    ("MCP 命中チャンク参照: MCP_NO_HIT", "出典参照: 公式資料"),
+    ("MCP 命中チャンク参照:", "出典参照:"),
+    ("MCP 命中チャンクから抽出、原文ママ", "原文ママ"),
+    ("MCP 命中チャンクから抽出", "公式資料から抽出"),
+    ("MCP 命中チャンクから生成", "公式資料から生成"),
+    ("MCP 命中チャンクと整合", "公式資料と整合"),
+    ("MCP 命中チャンク page", "出典: 公式資料"),
+    ("MCP 命中チャンク", "公式資料"),
+    ("MCP 一部命中", "一次資料 部分一致"),
+    ("[MCP 命中なし]", "(一次資料 突合予定)"),
+    ("[MCP 命中]", ""),
+    ("MCP 命中ゼロ", "一次資料 該当なし"),
+    ("MCP 命中なし", "一次資料 突合予定"),
+    ("命中ゼロ", "該当なし"),
+    # ---- defensive: any pre-converted "出典命中" form ----
+    ("出典命中チャンク", "公式資料"),
+    ("出典命中なし", "一次資料 突合予定"),
+    # ---- legacy MCP phrase forms ----
     ("(NO MCP HIT)", "(一次資料 突合予定)"),
     ("（NO MCP HIT）", "(一次資料 突合予定)"),
     ("内容説明 (MCP)", "内容説明"),
     ("内容説明（MCP）", "内容説明"),
+    ("MCP_NO_HIT", "(一次資料 未突合)"),
+    ("Q-NO_HIT", "(確認問題 未突合)"),
     ("MCP_PARTIAL", "一次資料 部分一致"),
-    ("MCP verbatim", "一次資料 記載どおり"),
+    ("MCP verbatim", "一次資料 原文ママ"),
     ("MCP 未記載", "一次資料 未記載"),
     ("MCP 整合度", "出典整合度"),
     ("MCP 出典", "出典"),
-    ("MCP 命中", "出典命中"),
     ("MCP コレクション", "資料集合"),
     ("MCP product", "資料"),
     ("(MCP)", ""),
     ("（MCP）", ""),
+    # ---- bare retrieval vocabulary ----
+    ("verbatim 抜粋", "原文抜粋"),
+    ("verbatim 引用", "原文引用"),
+    ("verbatim", "原文ママ"),
+    ("バケットの ", ""),
+    ("バケット", "区分"),
+    ("該当チャンク", "該当資料"),
+    ("周辺チャンク", "周辺資料"),
+    ("チャンク", "資料"),
+    ("検索コーパス", "資料集"),
+    ("コーパス", "資料集"),
+    ("corpus", "資料集"),
 ]
-# Bare tokens to remove entirely (case-insensitive, word-ish boundaries).
+# MCP glued to CJK / punctuation: replace only when NOT inside an ASCII word, so
+# real terms keep working (NMCPINIT, NMCPTEST, SYMCPACFWRAP, ...).
+_MCP_RE = re.compile(r"(?<![A-Za-z])MCP(?![A-Za-z])")
+# Other tooling tokens that never collide with z/OS terms as standalone words.
 _TOKEN_RE = re.compile(
-    r"\b(?:MCP|RAG|ChromaDB|chromadb-manager|HNSW|search_manual|chunks?|ADR-\d+|ADR)\b",
-    re.IGNORECASE,
+    r"\b(?:RAG|ChromaDB|chromadb-manager|HNSW|search_manual|ADR-\d+|ADR)\b",
 )
 
 def sanitize(value):
     if value is None:
         return ""
     s = str(value)
-    for a, b in _PHRASE_SUBS:
+    for a, b in _SCRUB:
         s = s.replace(a, b)
+    s = _MCP_RE.sub("一次資料", s)
     s = _TOKEN_RE.sub("一次資料", s)
     # NB: intentionally preserve internal whitespace so the verification console
     # sessions keep their column alignment (the "実コンソールセッション再現" look).
@@ -107,11 +153,6 @@ def tape(row, sheet):  # #,Lv1カテゴリ,Lv2サブ,項目名,説明,出典,備
                 item=row[3], summary=row[4], source=row[5])
 
 PRODUCTS = [
-    dict(key="zos-v3", nav="z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)",
-         heading="z/OS 全体 (v3)", product="z/OS v3", count=13762,
-         source_note="Redbook ingest 反映済 v3", provisional=False,
-         path=r"C:\decisions\zos-kb\zos_tech_breakdown_v3.xlsx",
-         sheet="技術項目一覧", extract=std, mid_header=None),
     dict(key="zos-sysprog", nav="z/OS System Programming (1,804 項目, 初版)",
          heading="z/OS System Programming", product="z/OS System Programming",
          count=1804, source_note="初版（事前知識補完を含む）", provisional=True,
@@ -346,6 +387,253 @@ def build_verify():
     return dict(items=len(items), procs=len(procs))
 
 # --------------------------------------------------------------------------- #
+# z/OS v3 with verification steps + Quiz (FULL_v2 workbook)
+# --------------------------------------------------------------------------- #
+ZV_KEY = "zos-v3-with-verify"
+ZV_LABEL = "z/OS v3 (検証手順 + Quiz 付き)"
+ZV_HEADING = "z/OS v3 — 技術項目 + 検証手順 + 理解度チェック"
+ZV_NOTE = "Redbook ingest 反映済 v3"
+ZV_PATH = r"C:\PDF\zos_tech_breakdown_v3_with_verify_FULL_v2.xlsx"
+ZV_PAGE_CAP = 300   # max 技術項目 per page before Lv2 / part split
+
+
+def _fence(text):
+    """Return a backtick fence longer than any backtick run inside text."""
+    longest = 0
+    for run in re.findall(r"`+", text):
+        longest = max(longest, len(run))
+    return "`" * max(3, longest + 1)
+
+
+def _ind(lines, block):
+    """Append block (str) indented by 4 spaces, line by line, to lines."""
+    for ln in block.split("\n"):
+        lines.append(("    " + ln).rstrip())
+
+
+def _render_verify_quiz(rec, out):
+    """Append one collapsible per item carrying its 検証手順 + Quiz."""
+    v, q = rec["verify"], rec["quiz"]
+    if not v and not q:
+        return
+    title = "#%s %s" % (cell(rec["seq"]), cell(rec["item"]))
+    out.append('??? example "%s"' % title.replace('"', "'"))
+    out.append("")
+    if v:
+        purpose = sanitize(v[6])
+        session = sanitize(v[7])
+        pre = sanitize(v[8]); ph = sanitize(v[9]); recd = sanitize(v[10])
+        out.append("    **検証手順**")
+        out.append("")
+        if purpose:
+            out.append("    検証目的: %s" % purpose.replace("\n", " "))
+            out.append("")
+        fence = _fence(session)
+        out.append("    %stext" % fence)
+        _ind(out, session.rstrip())
+        out.append("    %s" % fence)
+        out.append("")
+        if pre:
+            out.append("    前提条件: %s" % pre.replace("\n", " "))
+            out.append("")
+        if ph:
+            out.append("    プレースホルダ: %s" % ph.replace("\n", " "))
+            out.append("")
+        if recd:
+            out.append("    記録項目:")
+            out.append("")
+            for ln in recd.split("\n"):
+                ln = ln.strip()
+                if ln:
+                    out.append("    - %s" % sanitize(ln))
+            out.append("")
+    if q:
+        # cols: 5問題文 6A 7B 8C 9D 10正解 11解説 12出典
+        question = sanitize(q[5])
+        choices = [sanitize(q[6]), sanitize(q[7]), sanitize(q[8]), sanitize(q[9])]
+        ans = sanitize(q[10]); expl = sanitize(q[11])
+        if v:
+            out.append("    ---")
+            out.append("")
+        out.append("    **理解度チェック**")
+        out.append("")
+        out.append("    問題: %s" % question.replace("\n", " "))
+        out.append("")
+        for label, ch in zip("ABCD", choices):
+            if ch:
+                out.append("    - %s. %s" % (label, ch.replace("\n", " ")))
+        out.append("")
+        out.append("    正解: **%s**" % ans)
+        out.append("")
+        if expl:
+            out.append("    解説: %s" % expl.replace("\n", " "))
+            out.append("")
+    out.append("")
+
+
+def _render_zv_page(h1, sections, cfg_total):
+    """sections = list[(lv2name, [rec,...])]. Returns markdown string."""
+    page_n = sum(len(r) for _, r in sections)
+    b = []
+    b.append("# %s" % h1)
+    b.append("")
+    b.append("**製品**: z/OS v3 ／ **本ページ件数**: %d 件 ／ **出典区分**: %s"
+             % (page_n, ZV_NOTE))
+    b.append("")
+    b.append("各技術項目の表に続き、検証手順（コンソールセッション再現）と"
+             "理解度チェック（4 択 + 解説）を項目ごとの折り畳みで収録しています。")
+    b.append("")
+    for lv2, recs in sections:
+        nverify = sum(1 for r in recs if r["verify"] or r["quiz"])
+        b.append("## %s" % lv2)
+        b.append("")
+        b.append("**本節**: %d 件（うち検証手順・確認問題 %d 件）" % (len(recs), nverify))
+        b.append("")
+        b.append("| 連番 | 技術項目 | 内容説明 | 出典 |")
+        b.append("|---:|---|---|---|")
+        for r in recs:
+            detail = r["detail"] if sanitize(r["detail"]) else r["summary"]
+            b.append("| %s | %s | %s | %s |" % (
+                cell(r["seq"]), cell(r["item"]), cell(detail),
+                cell(r["source"])))
+        b.append("")
+        if nverify:
+            b.append("### 検証手順 ・ 理解度チェック")
+            b.append("")
+            for r in recs:
+                _render_verify_quiz(r, b)
+    return "\n".join(b).rstrip() + "\n"
+
+
+def build_zos_verify(legend_acc):
+    wb = openpyxl.load_workbook(ZV_PATH, read_only=True, data_only=True)
+    vmap, qmap = {}, {}
+    for r in data_rows(wb["検証手順"]):
+        if r[2] is not None:
+            vmap[str(r[2]).lstrip("#").strip()] = r
+    for r in data_rows(wb["Quiz"]):
+        if r[1] is not None:
+            qmap[str(r[1]).lstrip("#").strip()] = r
+    records = []
+    for r in data_rows(wb["技術項目一覧"]):
+        seq = str(r[0]).strip() if r[0] is not None else ""
+        codes = source_codes(r[11])
+        for code in codes:
+            legend_acc.setdefault(code, set()).add("z/OS v3")
+        records.append(dict(
+            seq=seq, page=sanitize(r[1]) or "(未分類)", section=sanitize(r[2]) or "(その他)",
+            item=r[3], summary=r[4], detail=r[5],
+            source=", ".join(codes) if codes else "—",
+            verify=vmap.get(seq), quiz=qmap.get(seq)))
+    wb.close()
+
+    outdir = os.path.join(BREAKDOWN, ZV_KEY)
+    os.makedirs(outdir, exist_ok=True)
+
+    lv1_groups = ordered_groups(records, lambda r: r["page"])
+    counter = [0]
+
+    def newname():
+        counter[0] += 1
+        return "g%03d.md" % counter[0]
+
+    # nav tree: list of nodes. node = (label, filename) leaf, or (label, [children])
+    nav_nodes = []
+    overview = []  # (lv1name, total, first_filename)
+
+    for lv1, recs in lv1_groups:
+        total = len(recs)
+        lv2_groups = ordered_groups(recs, lambda r: r["section"])
+        if total <= ZV_PAGE_CAP:
+            fname = newname()
+            md = _render_zv_page(lv1, lv2_groups, total)
+            with open(os.path.join(outdir, fname), "w", encoding="utf-8") as f:
+                f.write(md)
+            nav_nodes.append((("%s （%d 件）" % (lv1, total)), fname))
+            overview.append((lv1, total, fname))
+            continue
+
+        # Large Lv1: pack consecutive Lv2 groups into pages of <= ZV_PAGE_CAP,
+        # splitting only a single Lv2 that alone exceeds the cap.
+        pages = []          # each page = list[(lv2name, recs_slice)]
+        cur, cur_n = [], 0
+        for lv2, lrecs in lv2_groups:
+            if len(lrecs) > ZV_PAGE_CAP:
+                if cur:
+                    pages.append(cur); cur, cur_n = [], 0
+                for i in range(0, len(lrecs), ZV_PAGE_CAP):
+                    pages.append([(lv2, lrecs[i:i + ZV_PAGE_CAP])])
+                continue
+            if cur_n + len(lrecs) > ZV_PAGE_CAP and cur:
+                pages.append(cur); cur, cur_n = [], 0
+            cur.append((lv2, lrecs)); cur_n += len(lrecs)
+        if cur:
+            pages.append(cur)
+
+        children, first_fname = [], None
+        npages = len(pages)
+        for ci, sections in enumerate(pages, start=1):
+            fname = newname()
+            if first_fname is None:
+                first_fname = fname
+            page_n = sum(len(r) for _, r in sections)
+            h1 = "%s （%d/%d）" % (lv1, ci, npages)
+            md = _render_zv_page(h1, sections, page_n)
+            with open(os.path.join(outdir, fname), "w", encoding="utf-8") as f:
+                f.write(md)
+            label = "%d/%d: %s （%d 件）" % (ci, npages, sections[0][0], page_n)
+            children.append((label, fname))
+        nav_nodes.append((("%s （%d 件）" % (lv1, total)), children))
+        overview.append((lv1, total, first_fname))
+
+    # product index / overview page
+    idx = []
+    idx.append("# %s" % ZV_HEADING)
+    idx.append("")
+    idx.append("**製品**: z/OS v3 ／ **全件数**: %s 件 ／ **出典区分**: %s"
+               % ("{:,}".format(len(records)), ZV_NOTE))
+    idx.append("")
+    nq = sum(1 for r in records if r["verify"])
+    idx.append("技術項目を大分類 (Lv1) ごとにまとめ、各項目に検証手順"
+               "（コンソールセッション再現）と理解度チェック（4 択 + 解説）を"
+               "折り畳みで収録しています（検証手順・確認問題 各 %s 件）。"
+               % "{:,}".format(nq))
+    idx.append("")
+    idx.append("## カテゴリ一覧")
+    idx.append("")
+    idx.append("| # | カテゴリ (Lv1) | 件数 | ページ |")
+    idx.append("|---:|---|---:|---|")
+    for j, (lv1, total, first_fname) in enumerate(overview, start=1):
+        idx.append("| %d | %s | %d | [%s](%s) |"
+                   % (j, cell(lv1), total, "開く", first_fname))
+    idx.append("")
+    idx.append("> 合計 %s 件 / %d カテゴリ。"
+               % ("{:,}".format(len(records)), len(overview)))
+    idx.append("")
+    with open(os.path.join(outdir, "index.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(idx).rstrip() + "\n")
+
+    # nav block (full product entry, ready to splice into mkdocs.yml nav)
+    nav_block = []
+    nav_block.append("  - %s:" % yq(ZV_LABEL))
+    nav_block.append("      - 概要: breakdown/%s/index.md" % ZV_KEY)
+    for label, target in nav_nodes:
+        if isinstance(target, str):
+            nav_block.append("      - %s: breakdown/%s/%s"
+                             % (yq(label), ZV_KEY, target))
+        else:
+            nav_block.append("      - %s:" % yq(label))
+            for clabel, cfname in target:
+                nav_block.append("          - %s: breakdown/%s/%s"
+                                 % (yq(clabel), ZV_KEY, cfname))
+
+    page_count = counter[0]
+    return dict(key=ZV_KEY, label=ZV_LABEL, heading=ZV_HEADING,
+                note=ZV_NOTE, total=len(records), pages=page_count,
+                verify=nq, nav_block=nav_block)
+
+
+# --------------------------------------------------------------------------- #
 # home + mkdocs.yml
 # --------------------------------------------------------------------------- #
 LEGEND_NAMES = {
@@ -381,7 +669,7 @@ LEGEND_NAMES = {
     "(一次資料 突合予定)": "初版項目（一次資料との突合を予定）",
 }
 
-def build_home(results, verify):
+def build_home(results, verify, zv=None):
     b = []
     b.append("# z/OS 技術項目細分化ガイド")
     b.append("")
@@ -389,12 +677,19 @@ def build_home(results, verify):
              "細分化した技術リファレンスです。各製品を大分類 (Lv1) ごとのページにまとめ、"
              "中分類 (Lv2) 単位の折り畳みテーブルで技術項目・単一焦点要約・出典を一覧できます。")
     b.append("")
+    b.append("z/OS v3 は技術項目に加え、項目ごとの検証手順（コンソールセッション再現）と"
+             "理解度チェック（4 択 + 解説）を収録しています。")
+    b.append("")
     b.append("画面右上の検索から全ページを横断的に全文検索できます。")
     b.append("")
     b.append("## コンテンツ一覧")
     b.append("")
     b.append("| 製品 | 件数 | 出典区分 | 入口 |")
     b.append("|---|---:|---|---|")
+    if zv:
+        b.append("| %s | %s | %s | [概要](breakdown/%s/index.md) |" % (
+            cell(zv["heading"]), "{:,}".format(zv["total"]),
+            zv["note"], zv["key"]))
     for r in results:
         cfg = next(c for c in PRODUCTS if c["key"] == r["key"])
         b.append("| %s | %s | %s | [概要](breakdown/%s/index.md) |" % (
@@ -424,7 +719,7 @@ def build_home(results, verify):
     with open(os.path.join(DOCS, "index.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(b).rstrip() + "\n")
 
-def build_mkdocs(results, verify):
+def build_mkdocs(results, verify, zv=None):
     lines = []
     lines.append('site_name: "z/OS 技術項目細分化ガイド"')
     lines.append('site_description: "z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス"')
@@ -482,6 +777,8 @@ extra:
 """)
     lines.append("nav:")
     lines.append("  - ホーム: index.md")
+    if zv:
+        lines.extend(zv["nav_block"])
     for r in results:
         lines.append("  - %s:" % yq(r["nav"]))
         lines.append("      - 概要: breakdown/%s/index.md" % r["key"])
@@ -504,13 +801,18 @@ def main():
         results.append(res)
         print("[%s] total=%d declared=%d pages=%d"
               % (res["key"], res["total"], res["declared"], len(res["pages"])))
+    zv = build_zos_verify(LEGEND_USED)
+    print("[%s] total=%d pages=%d verify+quiz=%d"
+          % (zv["key"], zv["total"], zv["pages"], zv["verify"]))
     verify = build_verify()
     print("[verify] items=%d procs=%d" % (verify["items"], verify["procs"]))
-    build_home(results, verify)
-    build_mkdocs(results, verify)
+    build_home(results, verify, zv)
+    build_mkdocs(results, verify, zv)
     # report
     report = dict(products=[{k: r[k] for k in ("key", "total", "declared")}
                             | {"pages": len(r["pages"])} for r in results],
+                  zos_v3_with_verify=dict(total=zv["total"], pages=zv["pages"],
+                                          verify_quiz=zv["verify"]),
                   verify=verify,
                   legend_codes=sorted(LEGEND_USED.keys()))
     with open(os.path.join(ROOT, "buildreport.json"), "w", encoding="utf-8") as f:

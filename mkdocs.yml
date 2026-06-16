@@ -54,30 +54,86 @@ extra:
 
 nav:
   - ホーム: index.md
-  - "z/OS 全体 (Redbook ingest 反映済 v3, 13,762 項目)":
-      - 概要: breakdown/zos-v3/index.md
-      - "JCL JOB 文 （162 件）": breakdown/zos-v3/lv01.md
-      - "JCL EXEC 文 （142 件）": breakdown/zos-v3/lv02.md
-      - "JCL DD 文 （262 件）": breakdown/zos-v3/lv03.md
-      - "JCL PROC / 制御 （181 件）": breakdown/zos-v3/lv04.md
-      - "JES2 （268 件）": breakdown/zos-v3/lv05.md
-      - "RACF USER/GROUP/DATASET （365 件）": breakdown/zos-v3/lv06.md
-      - "RACF SETROPTS/RDEFINE/RACDCERT （390 件）": breakdown/zos-v3/lv07.md
-      - "DFSMS / IDCAMS / VSAM （250 件）": breakdown/zos-v3/lv08.md
-      - "TSO / ISPF / SDSF （355 件）": breakdown/zos-v3/lv09.md
-      - "MVS オペレータコマンド （310 件）": breakdown/zos-v3/lv10.md
-      - "ユーティリティ （258 件）": breakdown/zos-v3/lv11.md
-      - "Assembler / システム・プログラミング （572 件）": breakdown/zos-v3/lv12.md
-      - "UNIX System Services (USS) （235 件）": breakdown/zos-v3/lv13.md
-      - "SMP/E / SMF / WLM （398 件）": breakdown/zos-v3/lv14.md
-      - "Comm Server / VTAM / TCP/IP （322 件）": breakdown/zos-v3/lv15.md
-      - "診断 (IPCS / Trace / ABEND) （220 件）": breakdown/zos-v3/lv16.md
-      - "プログラミング言語 (COBOL / PL/I / LE) （220 件）": breakdown/zos-v3/lv17.md
-      - "Sysplex / XCF / GRS / CF （171 件）": breakdown/zos-v3/lv18.md
-      - "Tivoli NetView z/OS 自動化 （4963 件）": breakdown/zos-v3/lv19.md
-      - "Z System Automation (TSA) （1644 件）": breakdown/zos-v3/lv20.md
-      - "GDPS 災害対策・サイトスイッチ （1073 件）": breakdown/zos-v3/lv21.md
-      - "IBM MQ メッセージング （1001 件）": breakdown/zos-v3/lv22.md
+  - "z/OS v3 (検証手順 + Quiz 付き)":
+      - 概要: breakdown/zos-v3-with-verify/index.md
+      - "JCL JOB 文 （162 件）": breakdown/zos-v3-with-verify/g001.md
+      - "JCL EXEC 文 （142 件）": breakdown/zos-v3-with-verify/g002.md
+      - "JCL DD 文 （262 件）": breakdown/zos-v3-with-verify/g003.md
+      - "JCL PROC / 制御 （181 件）": breakdown/zos-v3-with-verify/g004.md
+      - "JES2 （268 件）": breakdown/zos-v3-with-verify/g005.md
+      - "RACF USER/GROUP/DATASET （365 件）":
+          - "1/2: ADDUSER 基本 （290 件）": breakdown/zos-v3-with-verify/g006.md
+          - "2/2: LISTDSD 基本 （75 件）": breakdown/zos-v3-with-verify/g007.md
+      - "RACF SETROPTS/RDEFINE/RACDCERT （390 件）":
+          - "1/2: SETROPTS 基本 （300 件）": breakdown/zos-v3-with-verify/g008.md
+          - "2/2: RACDCERT LISTCHAIN （90 件）": breakdown/zos-v3-with-verify/g009.md
+      - "DFSMS / IDCAMS / VSAM （250 件）": breakdown/zos-v3-with-verify/g010.md
+      - "TSO / ISPF / SDSF （355 件）":
+          - "1/2: TSO_ALLOCATE （282 件）": breakdown/zos-v3-with-verify/g011.md
+          - "2/2: SDSF_PANEL （73 件）": breakdown/zos-v3-with-verify/g012.md
+      - "MVS オペレータコマンド （310 件）":
+          - "1/2: D A （295 件）": breakdown/zos-v3-with-verify/g013.md
+          - "2/2: K （15 件）": breakdown/zos-v3-with-verify/g014.md
+      - "ユーティリティ （258 件）": breakdown/zos-v3-with-verify/g015.md
+      - "Assembler / システム・プログラミング （572 件）":
+          - "1/2: HLASM 文形式 （299 件）": breakdown/zos-v3-with-verify/g016.md
+          - "2/2: 命令: 権限切替 （273 件）": breakdown/zos-v3-with-verify/g017.md
+      - "UNIX System Services (USS) （235 件）": breakdown/zos-v3-with-verify/g018.md
+      - "SMP/E / SMF / WLM （398 件）":
+          - "1/2: SMP/E RECEIVE （295 件）": breakdown/zos-v3-with-verify/g019.md
+          - "2/2: SMF Logstream （103 件）": breakdown/zos-v3-with-verify/g020.md
+      - "Comm Server / VTAM / TCP/IP （322 件）":
+          - "1/2: VTAM ATCSTRxx （297 件）": breakdown/zos-v3-with-verify/g021.md
+          - "2/2: DVIPA （25 件）": breakdown/zos-v3-with-verify/g022.md
+      - "診断 (IPCS / Trace / ABEND) （220 件）": breakdown/zos-v3-with-verify/g023.md
+      - "プログラミング言語 (COBOL / PL/I / LE) （220 件）": breakdown/zos-v3-with-verify/g024.md
+      - "Sysplex / XCF / GRS / CF （171 件）": breakdown/zos-v3-with-verify/g025.md
+      - "Tivoli NetView z/OS 自動化 （4963 件）":
+          - "1/24: Assembler 拡張 （273 件）": breakdown/zos-v3-with-verify/g026.md
+          - "2/24: NetView Pipes （194 件）": breakdown/zos-v3-with-verify/g027.md
+          - "3/24: NetView コマンド （300 件）": breakdown/zos-v3-with-verify/g028.md
+          - "4/24: NetView コマンド （284 件）": breakdown/zos-v3-with-verify/g029.md
+          - "5/24: PL/I / C 拡張 （167 件）": breakdown/zos-v3-with-verify/g030.md
+          - "6/24: REXX / コマンドリスト （182 件）": breakdown/zos-v3-with-verify/g031.md
+          - "7/24: RODM / GMFHS （150 件）": breakdown/zos-v3-with-verify/g032.md
+          - "8/24: アプリケーションプログラミング （154 件）": breakdown/zos-v3-with-verify/g033.md
+          - "9/24: インストール / 構成 （300 件）": breakdown/zos-v3-with-verify/g034.md
+          - "10/24: インストール / 構成 （300 件）": breakdown/zos-v3-with-verify/g035.md
+          - "11/24: インストール / 構成 （67 件）": breakdown/zos-v3-with-verify/g036.md
+          - "12/24: カスタマイズ (CNMSTYLE 等) （151 件）": breakdown/zos-v3-with-verify/g037.md
+          - "13/24: セキュリティ (SAF 連携) （217 件）": breakdown/zos-v3-with-verify/g038.md
+          - "14/24: データモデル （111 件）": breakdown/zos-v3-with-verify/g039.md
+          - "15/24: トラブルシューティング （277 件）": breakdown/zos-v3-with-verify/g040.md
+          - "16/24: パフォーマンス・チューニング （209 件）": breakdown/zos-v3-with-verify/g041.md
+          - "17/24: ユーザーズガイド (操作) （300 件）": breakdown/zos-v3-with-verify/g042.md
+          - "18/24: ユーザーズガイド (操作) （300 件）": breakdown/zos-v3-with-verify/g043.md
+          - "19/24: ユーザーズガイド (操作) （41 件）": breakdown/zos-v3-with-verify/g044.md
+          - "20/24: 管理リファレンス （300 件）": breakdown/zos-v3-with-verify/g045.md
+          - "21/24: 管理リファレンス （300 件）": breakdown/zos-v3-with-verify/g046.md
+          - "22/24: 管理リファレンス （55 件）": breakdown/zos-v3-with-verify/g047.md
+          - "23/24: 自動化テーブル / 状態判定 （300 件）": breakdown/zos-v3-with-verify/g048.md
+          - "24/24: 自動化テーブル / 状態判定 （31 件）": breakdown/zos-v3-with-verify/g049.md
+      - "Z System Automation (TSA) （1644 件）":
+          - "1/8: Workload Scheduler 連携 （226 件）": breakdown/zos-v3-with-verify/g050.md
+          - "2/8: オペレータコマンド （171 件）": breakdown/zos-v3-with-verify/g051.md
+          - "3/8: カスタマイズ / プログラミング （300 件）": breakdown/zos-v3-with-verify/g052.md
+          - "4/8: カスタマイズ / プログラミング （29 件）": breakdown/zos-v3-with-verify/g053.md
+          - "5/8: プログラマーズリファレンス （262 件）": breakdown/zos-v3-with-verify/g054.md
+          - "6/8: ユーザーズガイド （216 件）": breakdown/zos-v3-with-verify/g055.md
+          - "7/8: 自動化ポリシー定義 （274 件）": breakdown/zos-v3-with-verify/g056.md
+          - "8/8: 計画 / インストール （166 件）": breakdown/zos-v3-with-verify/g057.md
+      - "GDPS 災害対策・サイトスイッチ （1073 件）":
+          - "1/6: Active-Active 概要・計画 （129 件）": breakdown/zos-v3-with-verify/g058.md
+          - "2/6: DS8000 Copy Services （300 件）": breakdown/zos-v3-with-verify/g059.md
+          - "3/6: DS8000 Copy Services （217 件）": breakdown/zos-v3-with-verify/g060.md
+          - "4/6: DS8000 Global Mirror ベストプラクティス （77 件）": breakdown/zos-v3-with-verify/g061.md
+          - "5/6: GDPS Family 概要 / 機能 （258 件）": breakdown/zos-v3-with-verify/g062.md
+          - "6/6: z/OS Global Mirror ベストプラクティス （92 件）": breakdown/zos-v3-with-verify/g063.md
+      - "IBM MQ メッセージング （1001 件）":
+          - "1/4: MQ Explorer （294 件）": breakdown/zos-v3-with-verify/g064.md
+          - "2/4: インストール （283 件）": breakdown/zos-v3-with-verify/g065.md
+          - "3/4: 構成 (QM / Queue / Channel) （232 件）": breakdown/zos-v3-with-verify/g066.md
+          - "4/4: 開発リファレンス （192 件）": breakdown/zos-v3-with-verify/g067.md
   - "z/OS System Programming (1,804 項目, 初版)":
       - 概要: breakdown/zos-sysprog/index.md
       - "IPL とロード （139 件）": breakdown/zos-sysprog/lv01.md
