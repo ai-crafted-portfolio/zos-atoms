@@ -1,0 +1,6584 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="z/OS・AIX・Python・VS Code 等の技術項目を細分化した技術リファレンス">
+      
+      
+        <meta name="author" content="ai-crafted-portfolio">
+      
+      
+        <link rel="canonical" href="https://ai-crafted-portfolio.github.io/zos-atoms/breakdown/zos-v3-with-verify/g053/">
+      
+      
+        <link rel="prev" href="../g052/">
+      
+      
+        <link rel="next" href="../g054/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>4/8: カスタマイズ / プログラミング （29 件） - z/OS 技術項目細分化ガイド</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans JP";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#z-system-automation-tsa-48" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-header__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            z/OS 技術項目細分化ガイド
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4/8: カスタマイズ / プログラミング （29 件）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ダークモードに切替"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="ダークモードに切替" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="ライトモードに切替"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="ライトモードに切替" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  ホーム
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS v3 (検証手順 + Quiz 付き)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../zos-sysprog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  z/OS System Programming (1,804 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../z16/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IBM z16 ハードウェア (1,249 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tape/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../aix-ksh/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AIX + ksh (2,681 項目)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Python (1,774 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vscode/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  VS Code (2,042 項目, 公式 docs 出典)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../verification-sample/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  検証手順サンプル 50 件
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="z/OS 技術項目細分化ガイド" class="md-nav__button md-logo" aria-label="z/OS 技術項目細分化ガイド" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    z/OS 技術項目細分化ガイド
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS v3 (検証手順 + Quiz 付き)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS v3 (検証手順 + Quiz 付き)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g001/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL JOB 文 （162 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g002/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL EXEC 文 （142 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g003/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL DD 文 （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g004/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JCL PROC / 制御 （181 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g005/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JES2 （268 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    RACF USER/GROUP/DATASET （365 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g006/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: ADDUSER 基本 （290 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g007/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: LISTDSD 基本 （75 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    RACF SETROPTS/RDEFINE/RACDCERT （390 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g008/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: SETROPTS 基本 （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g009/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: RACDCERT LISTCHAIN （90 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g010/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS / IDCAMS / VSAM （250 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSO / ISPF / SDSF （355 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g011/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: TSO_ALLOCATE （282 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g012/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: SDSF_PANEL （73 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVS オペレータコマンド （310 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MVS オペレータコマンド （310 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g013/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: D A （295 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g014/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: K （15 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g015/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーティリティ （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_13" id="__nav_2_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Assembler / システム・プログラミング （572 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g016/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: HLASM 文形式 （299 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g017/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: 命令: 権限切替 （273 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g018/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNIX System Services (USS) （235 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_15" id="__nav_2_15_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMP/E / SMF / WLM （398 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: SMP/E RECEIVE （295 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: SMF Logstream （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_16" id="__nav_2_16_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Comm Server / VTAM / TCP/IP （322 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/2: VTAM ATCSTRxx （297 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/2: DVIPA （25 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g023/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (IPCS / Trace / ABEND) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g024/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プログラミング言語 (COBOL / PL/I / LE) （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sysplex / XCF / GRS / CF （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_20" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_20" id="__nav_2_20_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tivoli NetView z/OS 自動化 （4963 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/24: Assembler 拡張 （273 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g027/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/24: NetView Pipes （194 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g028/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3/24: NetView コマンド （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g029/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4/24: NetView コマンド （284 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g030/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5/24: PL/I / C 拡張 （167 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g031/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6/24: REXX / コマンドリスト （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g032/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7/24: RODM / GMFHS （150 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g033/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8/24: アプリケーションプログラミング （154 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g034/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9/24: インストール / 構成 （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g035/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10/24: インストール / 構成 （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g036/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11/24: インストール / 構成 （67 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g037/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12/24: カスタマイズ (CNMSTYLE 等) （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g038/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13/24: セキュリティ (SAF 連携) （217 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g039/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14/24: データモデル （111 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g040/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15/24: トラブルシューティング （277 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g041/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16/24: パフォーマンス・チューニング （209 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g042/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17/24: ユーザーズガイド (操作) （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g043/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18/24: ユーザーズガイド (操作) （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g044/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19/24: ユーザーズガイド (操作) （41 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g045/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20/24: 管理リファレンス （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g046/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21/24: 管理リファレンス （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g047/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22/24: 管理リファレンス （55 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g048/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23/24: 自動化テーブル / 状態判定 （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g049/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24/24: 自動化テーブル / 状態判定 （31 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_21" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_21" id="__nav_2_21_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_21_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Z System Automation (TSA) （1644 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g050/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/8: Workload Scheduler 連携 （226 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g051/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/8: オペレータコマンド （171 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g052/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3/8: カスタマイズ / プログラミング （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4/8: カスタマイズ / プログラミング （29 件）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4/8: カスタマイズ / プログラミング （29 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        カスタマイズ / プログラミング
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタマイズ / プログラミング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        検証手順 ・ 理解度チェック
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g054/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5/8: プログラマーズリファレンス （262 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g055/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6/8: ユーザーズガイド （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g056/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7/8: 自動化ポリシー定義 （274 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g057/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8/8: 計画 / インストール （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_22" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_22" id="__nav_2_22_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GDPS 災害対策・サイトスイッチ （1073 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g058/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/6: Active-Active 概要・計画 （129 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g059/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/6: DS8000 Copy Services （300 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g060/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3/6: DS8000 Copy Services （217 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g061/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4/6: DS8000 Global Mirror ベストプラクティス （77 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g062/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5/6: GDPS Family 概要 / 機能 （258 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g063/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6/6: z/OS Global Mirror ベストプラクティス （92 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_23" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_23" id="__nav_2_23_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM MQ メッセージング （1001 件）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g064/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1/4: MQ Explorer （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g065/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2/4: インストール （283 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g066/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3/4: 構成 (QM / Queue / Channel) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../g067/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4/4: 開発リファレンス （192 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../zos-sysprog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    z/OS System Programming (1,804 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPL とロード （139 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PARMLIB メンバー （177 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCLIB (Master JCL / STC) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYS1.* データセット （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コンソール管理 + MPF / Console Switch （107 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SLIP (Serviceability Level Indicator Processing) （114 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dump 取得 (SVC/SYSMDUMP/SYSABEND) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ABEND/PSW 解析 （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSPROG コマンド (D/R/F/C/V/P/T/I/E) （175 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workload Manager (Service Class/Goal/RG) （120 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMF レコード詳細 （151 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMF (Resource Measurement Facility) （95 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IPCS (Interactive Problem Control System) （121 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zos-sysprog/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DFSMS (HSM/RMM/dss) / ICSF / SMP/E （168 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../z16/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IBM z16 ハードウェア (1,249 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モデル構成 (A01 / Max39 / Max168) （126 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CEC 物理構造 (Frame / Drawer / CPC Drawer) （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセッサ (Telum チップ・コア・キャッシュ階層) （88 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    メモリ (DIMM, RAIM) （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    I/O Drawer + PCIe+ Gen3 ファンアウト （86 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャネルサブシステム (CSS, LCSS, MIF, HCD) （134 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FICON Express32S （89 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OSA Express7S （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coupling Express LR / ICA SR / CFCC （104 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crypto Express8S + CPACF （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR/SM・LPAR （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../z16/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HMC + SE (Hardware Management Console / Support Element) （135 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../tape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    テープ系 TS2280 / TS4300 / TS7770 (1,045 項目, 初版)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS2280 Tape Drive （311 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS4300 Tape Library （306 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tape/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TS7770 VTL （428 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../aix-ksh/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AIX + ksh (2,681 項目)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AIX + ksh (2,681 項目)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LVM (Volume Group / Logical Volume) （232 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JFS / JFS2 ファイルシステム （180 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ODM (Object Data Manager) （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ユーザ管理 / RBAC / セキュリティ （215 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク TCP/IP （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロセス管理・パフォーマンス （220 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバイス管理 + installp / SUMA （236 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ブート / NIM / mksysb （148 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仮想化 LPAR/VIOS/WPAR + Storage MPIO （308 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    診断 (errpt/snap) + PowerHA （216 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aix-ksh/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Korn Shell (ksh / ksh93) （573 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../python/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python (1,774 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本構文・データ型 （164 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    制御構造 （102 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    関数・スコープ （119 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    クラス・オブジェクト指向 （140 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例外処理 （112 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    モジュール・パッケージ （110 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ I/O (os/sys/io/pathlib) （166 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ コレクション (collections/itertools/functools) （116 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準ライブラリ 数値・日時 (datetime/decimal/math/statistics) （127 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    並行・並列 (threading/multiprocessing/asyncio) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ネットワーク・Web (socket/urllib/http/json/xml) （109 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テスト・デバッグ (unittest/pytest/pdb/logging) （143 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    型ヒント・dataclass （118 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    venv・パッケージ管理 (pip/wheel/uv/poetry) （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../vscode/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VS Code (2,042 項目, 公式 docs 出典)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI・基本操作 （83 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット （276 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定 (settings.json/keybindings.json) （182 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace と マルチルート （100 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    エディタ機能 （156 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    デバッグ (DAP) （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タスク (tasks.json) （103 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git / Source Control （130 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル統合 （97 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能 API （294 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    拡張機能配布 (vsce/Marketplace) （101 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Development （133 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vscode/lv14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Copilot / 言語サーバ統合 （124 件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検証手順サンプル 50 件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        カスタマイズ / プログラミング
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタマイズ / プログラミング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        検証手順 ・ 理解度チェック
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="z-system-automation-tsa-48">Z System Automation (TSA) （4/8）<a class="headerlink" href="#z-system-automation-tsa-48" title="Permanent link">&para;</a></h1>
+<p><strong>製品</strong>: z/OS v3 ／ <strong>本ページ件数</strong>: 29 件 ／ <strong>出典区分</strong>: Redbook ingest 反映済 v3</p>
+<p>各技術項目の表に続き、検証手順（コンソールセッション再現）と理解度チェック（4 択 + 解説）を項目ごとの折り畳みで収録しています。</p>
+<h2 id="_1">カスタマイズ / プログラミング<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><strong>本節</strong>: 29 件（うち検証手順・確認問題 10 件）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">連番</th>
+<th>技術項目</th>
+<th>内容説明</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">10742</td>
+<td>The Linux Console Connection to NetView</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.92)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10743</td>
+<td>Tips to find SNMP MIB attributes for GETRAW queries</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.101)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10744</td>
+<td>Topology</td>
+<td>Topology は カスタマイズ・プログラミング の項目。Technical changes or additions to the text and illustrations are indicated by a vertical line to the left of the change. Changed and New Information: Changes fo</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10745</td>
+<td>Trapping messages issued with the UNIX __console() service</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.113)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10746</td>
+<td>Trapping UNIX syslogd Messages</td>
+<td>Trapping UNIX syslogd Messages は カスタマイズ・プログラミング の項目。The incoming messages with predefined thresholds of infrequent, frequent, and critical levels. If such a defined threshold is exceeded, it is …</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10747</td>
+<td>TSO User Monitoring</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.275)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10748</td>
+<td>Types of SDF Panels</td>
+<td>Types of SDF Panels は カスタマイズ・プログラミング の項目。Appendix B. Customizing the Status Display Facility. Overview of the Status Display Facility: This information explains how to customize the Status Displ…</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10749</td>
+<td>Usage Notes</td>
+<td>Usage Notes は カスタマイズ・プログラミング の項目。Defined using the SYSTEM_SHUTDOWN message ID in the MESSAGES/USER DATA policy item for the MVS Component entry type. These actions can include instructing SA z/</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10750</td>
+<td>Use RDS for TSO</td>
+<td>Use RDS for TSO は カスタマイズ・プログラミング の項目。A pool of spare volumes. Note that if you do not define spare volumes for a CDS type, no recovery is performed for this type. For details on the use of the c…</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10751</td>
+<td>User Exits for BUILD Processing</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.169)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10752</td>
+<td>User Exits for CONVERT Processing</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.171)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10753</td>
+<td>User Exits for COPY Processing</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.170)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10754</td>
+<td>User Exits for DELETE Processing</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.171)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10755</td>
+<td>User Exits for Other Functions</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.172)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10756</td>
+<td>User Exits for RENAME and IMPORT Functions</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.171)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10757</td>
+<td>Using AOCTRACE to Trace Automation Procedure Processing</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.38)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10758</td>
+<td>Using Assist Mode to Test Automation Procedures</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.38)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10759</td>
+<td>Using assistive technologies</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.17)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10760</td>
+<td>Using Pipes and ISQCCMD for Synchronous HW Commands</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.97)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10761</td>
+<td>Using SDF for Multiple Systems</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.258)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10762</td>
+<td>Verify the Installation</td>
+<td>Verify the Installation は カスタマイズ・プログラミング の項目。Be called during the processing of certain commands. Sample exits are provided with the product. For details on copying and updating sample exits, re…</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10763</td>
+<td>VM Second Level Systems Support</td>
+<td>VM Second Level Systems Support は カスタマイズ・プログラミング の項目。REXX Coding Example: For examples of code that can be placed at the beginning and end of your REXX automation procedures to handle trace and …</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10764</td>
+<td>Where to Find More Testing Information</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.39)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10765</td>
+<td>Who Should Use This Publication</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.19)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10766</td>
+<td>Writing a Recovery Routine</td>
+<td>Writing a Recovery Routine は カスタマイズ・プログラミング の項目。The health status of the monitored object is propagated to the APLs and APGs and results in a combined health status there. You can define and con…</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10767</td>
+<td>Writing the SMF Report to DB2</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.86)</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10768</td>
+<td>WTOR Processing</td>
+<td>WTOR Processing は カスタマイズ・プログラミング の項目。Defined using the SYSTEM_SHUTDOWN message ID in the MESSAGES/USER DATA policy item for the MVS Component entry type. These actions can include instructing SA…</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10769</td>
+<td>Z System Automation Library</td>
+<td>Z System Automation Library は カスタマイズ・プログラミング の項目。Where to Find More Information Z System Automation Library. Table 1 on page xix shows the information units in Z System Automation library. These…</td>
+<td>TSA</td>
+</tr>
+<tr>
+<td style="text-align: right;">10770</td>
+<td>z13/z13s Specific Timeout Values for Selected Hardware Commands</td>
+<td>(TSA_z_OS_4.3_Customizing_and_Programming.pdf p.277)</td>
+<td>TSA</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">検証手順 ・ 理解度チェック<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<details class="example">
+<summary>#10744 Topology</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Topology の位置付け・仕様を確認し、当該マニュアル p.20 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[セッション環境]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[コマンド 1] Topology に該当する 定義 を実行
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[オプション説明]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  対象項目   Topology
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  参照頁     p.20 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>[出力 1]
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Technical changes or additions to the text and illustrations are indicated by a vertical line to the left of the change. Changed and New Information: Changes for INGALERT alert points: COMM_FAILEDA: The description of this alert point is revised. COMMLOST: This is a new alert point added to identify and alert gateway …
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.20、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Topology のマニュアル該当頁の引用テキスト記録</li>
+<li>② Topology の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Topology' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. Technical changes or additions to the text and illustrations are indicated by a vertical line to the left of …</li>
+<li>B. AOFEXC27 に関する説明</li>
+<li>C. AOFEXC08 に関する説明</li>
+<li>D. AOFEXC21 に関する説明</li>
+</ul>
+<p>正解: <strong>A</strong></p>
+<p>解説: Topology の本文 (TSA z/OS カスタマイズおよびプログラミング p.20) に対応するのは選択肢 A。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.20、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10746 Trapping UNIX syslogd Messages</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Trapping UNIX syslogd Messages の位置付け・仕様を確認し、当該マニュアル p.187 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[セッション環境]
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>[コマンド 1] Trapping UNIX syslogd Messages に該当する 定義 を実行
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>[オプション説明]
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  対象項目   Trapping UNIX syslogd Messages
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  参照頁     p.187 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>[出力 1]
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>The incoming messages with predefined thresholds of infrequent, frequent, and critical levels. If such a defined threshold is exceeded, it is used as the option for selecting the appropriate commands according to the first field in the command entry of the MESSAGES/USER DATA policy item of the configuration file.
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.187、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Trapping UNIX syslogd Messages のマニュアル該当頁の引用テキスト記録</li>
+<li>② Trapping UNIX syslogd Messages の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Trapping UNIX syslogd Messages' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. AOFEXDEF に関する説明</li>
+<li>B. WTOR Processing に関する説明</li>
+<li>C. The incoming messages with predefined thresholds of infrequent, frequent, and critical levels. If such a defi…</li>
+<li>D. AOFRSA08 に関する説明</li>
+</ul>
+<p>正解: <strong>C</strong></p>
+<p>解説: Trapping UNIX syslogd Messages の本文 (TSA z/OS カスタマイズおよびプログラミング p.187) に対応するのは選択肢 C。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.187、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10748 Types of SDF Panels</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Types of SDF Panels の位置付け・仕様を確認し、当該マニュアル p.251 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[セッション環境]
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>[コマンド 1] Types of SDF Panels に該当する 定義 を実行
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>[オプション説明]
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  対象項目   Types of SDF Panels
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  参照頁     p.251 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>[出力 1]
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>Appendix B. Customizing the Status Display Facility. Overview of the Status Display Facility: This information explains how to customize the Status Display Facility (SDF) panels, descriptors, and operations. How the Status Display Facility Works: The SA z/OS Status Display Facility (SDF) uses colors and highlighting t…
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.251、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Types of SDF Panels のマニュアル該当頁の引用テキスト記録</li>
+<li>② Types of SDF Panels の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Types of SDF Panels' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. Automation Control File Reload Action Exit に関する説明</li>
+<li>B. AOFEXC04 に関する説明</li>
+<li>C. Appendix B. Customizing the Status Display Facility. Overview of the Status Display Facility: This informatio…</li>
+<li>D. Static Exits に関する説明</li>
+</ul>
+<p>正解: <strong>C</strong></p>
+<p>解説: Types of SDF Panels の本文 (TSA z/OS カスタマイズおよびプログラミング p.251) に対応するのは選択肢 C。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.251、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10749 Usage Notes</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Usage Notes の位置付け・仕様を確認し、当該マニュアル p.162 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[セッション環境]
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>[コマンド 1] Usage Notes に該当する 定義 を実行
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>[オプション説明]
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  対象項目   Usage Notes
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  参照頁     p.162 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>[出力 1]
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Defined using the SYSTEM_SHUTDOWN message ID in the MESSAGES/USER DATA policy item for the MVS Component entry type. These actions can include instructing SA z/OS to shut down resources out of the affected dependency tree of GDPS STOPAPPL, shut down file systems, and so on. Table 24. Example GDPS_SYSTEM_SHUTDOWN Comma…
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.162、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Usage Notes のマニュアル該当頁の引用テキスト記録</li>
+<li>② Usage Notes の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Usage Notes' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. AOFEXC03 に関する説明</li>
+<li>B. Defined using the SYSTEM_SHUTDOWN message ID in the MESSAGES/USER DATA policy item for the MVS Component entr…</li>
+<li>C. Static Exits に関する説明</li>
+<li>D. Read-Only Variables に関する説明</li>
+</ul>
+<p>正解: <strong>B</strong></p>
+<p>解説: Usage Notes の本文 (TSA z/OS カスタマイズおよびプログラミング p.162) に対応するのは選択肢 B。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.162、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10750 Use RDS for TSO</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Use RDS for TSO の位置付け・仕様を確認し、当該マニュアル p.134 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[セッション環境]
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>[コマンド 1] Use RDS for TSO に該当する 定義 を実行
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>[オプション説明]
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  対象項目   Use RDS for TSO
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  参照頁     p.134 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>[出力 1]
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>A pool of spare volumes. Note that if you do not define spare volumes for a CDS type, no recovery is performed for this type. For details on the use of the customization dialogs, see Enabling Continuous Availability of Couple Data Sets on page 125. You can control access to those functions of INGPLEX CDS that modify t…
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.134、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Use RDS for TSO のマニュアル該当頁の引用テキスト記録</li>
+<li>② Use RDS for TSO の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Use RDS for TSO' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. Looping Address Space Suppression に関する説明</li>
+<li>B. Activate the Monitor に関する説明</li>
+<li>C. AOFEXC22 に関する説明</li>
+<li>D. A pool of spare volumes. Note that if you do not define spare volumes for a CDS type, no recovery is performe…</li>
+</ul>
+<p>正解: <strong>D</strong></p>
+<p>解説: Use RDS for TSO の本文 (TSA z/OS カスタマイズおよびプログラミング p.134) に対応するのは選択肢 D。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.134、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10762 Verify the Installation</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Verify the Installation の位置付け・仕様を確認し、当該マニュアル p.180 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[セッション環境]
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>[コマンド 1] Verify the Installation に該当する 定義 を実行
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>[オプション説明]
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  対象項目   Verify the Installation
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  参照頁     p.180 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>[出力 1]
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>Be called during the processing of certain commands. Sample exits are provided with the product. For details on copying and updating sample exits, refer to IBM Z System Automation Planning and Installation. AOFEXC00: The AOFEXC00 exit routine is called if the selection L has been entered in the AOC command dialog. No …
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.180、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Verify the Installation のマニュアル該当頁の引用テキスト記録</li>
+<li>② Verify the Installation の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Verify the Installation' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. Use RDS for TSO に関する説明</li>
+<li>B. Looping Address Space Suppression に関する説明</li>
+<li>C. Be called during the processing of certain commands. Sample exits are provided with the product. For details …</li>
+<li>D. Customization Dialog Exits に関する説明</li>
+</ul>
+<p>正解: <strong>C</strong></p>
+<p>解説: Verify the Installation の本文 (TSA z/OS カスタマイズおよびプログラミング p.180) に対応するのは選択肢 C。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.180、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10763 VM Second Level Systems Support</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における VM Second Level Systems Support の位置付け・仕様を確認し、当該マニュアル p.39 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[セッション環境]
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>[コマンド 1] VM Second Level Systems Support に該当する 定義 を実行
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>[オプション説明]
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  対象項目   VM Second Level Systems Support
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  参照頁     p.39 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>[出力 1]
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>REXX Coding Example: For examples of code that can be placed at the beginning and end of your REXX automation procedures to handle trace and debug settings, see AOFEXC00 in the SINGSAMP library. When writing code to support the debug feature, you should expose loc. on all your procedures and insert fragments of code t…
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.39、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① VM Second Level Systems Support のマニュアル該当頁の引用テキスト記録</li>
+<li>② VM Second Level Systems Support の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'VM Second Level Systems Support' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. AOFEXX04 に関する説明</li>
+<li>B. Processor Operations Commands に関する説明</li>
+<li>C. AOFEXI03 に関する説明</li>
+<li>D. REXX Coding Example: For examples of code that can be placed at the beginning and end of your REXX automation…</li>
+</ul>
+<p>正解: <strong>D</strong></p>
+<p>解説: VM Second Level Systems Support の本文 (TSA z/OS カスタマイズおよびプログラミング p.39) に対応するのは選択肢 D。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.39、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10766 Writing a Recovery Routine</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Writing a Recovery Routine の位置付け・仕様を確認し、当該マニュアル p.44 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[セッション環境]
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>[コマンド 1] Writing a Recovery Routine に該当する 定義 を実行
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>[オプション説明]
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  対象項目   Writing a Recovery Routine
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  参照頁     p.44 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>[出力 1]
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>The health status of the monitored object is propagated to the APLs and APGs and results in a combined health status there. You can define and connect MTRs in the customization dialog (see IBM Z System Automation Defining Automation Policy). Monitor resources obtain the health status of an object in two different ways…
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.44、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Writing a Recovery Routine のマニュアル該当頁の引用テキスト記録</li>
+<li>② Writing a Recovery Routine の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Writing a Recovery Routine' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. AOFRSA0G に関する説明</li>
+<li>B. The health status of the monitored object is propagated to the APLs and APGs and results in a combined health…</li>
+<li>C. AOFEXSTA に関する説明</li>
+<li>D. AOFRSD0G に関する説明</li>
+</ul>
+<p>正解: <strong>B</strong></p>
+<p>解説: Writing a Recovery Routine の本文 (TSA z/OS カスタマイズおよびプログラミング p.44) に対応するのは選択肢 B。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.44、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10768 WTOR Processing</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における WTOR Processing の位置付け・仕様を確認し、当該マニュアル p.162 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>[セッション環境]
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>[コマンド 1] WTOR Processing に該当する 定義 を実行
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>[オプション説明]
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  対象項目   WTOR Processing
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>  参照頁     p.162 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>[出力 1]
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>Defined using the SYSTEM_SHUTDOWN message ID in the MESSAGES/USER DATA policy item for the MVS Component entry type. These actions can include instructing SA z/OS to shut down resources out of the affected dependency tree of GDPS STOPAPPL, shut down file systems, and so on. Table 24. Example GDPS_SYSTEM_SHUTDOWN Comma…
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.162、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① WTOR Processing のマニュアル該当頁の引用テキスト記録</li>
+<li>② WTOR Processing の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'WTOR Processing' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. AOFEXC20 に関する説明</li>
+<li>B. Defined using the SYSTEM_SHUTDOWN message ID in the MESSAGES/USER DATA policy item for the MVS Component entr…</li>
+<li>C. The Assist Mode Facility に関する説明</li>
+<li>D. AOFRSA0E に関する説明</li>
+</ul>
+<p>正解: <strong>B</strong></p>
+<p>解説: WTOR Processing の本文 (TSA z/OS カスタマイズおよびプログラミング p.162) に対応するのは選択肢 B。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.162、原文ママ)</p>
+</details>
+<details class="example">
+<summary>#10769 Z System Automation Library</summary>
+<p><strong>検証手順</strong></p>
+<p>検証目的: カスタマイズ・プログラミング における Z System Automation Library の位置付け・仕様を確認し、当該マニュアル p.19 の記述を実装上の根拠として記録すること。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[セッション環境]
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>NetView 自動化プロシージャ (REXX/CLIST) 編集環境
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>[コマンド 1] Z System Automation Library に該当する 定義 を実行
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>[オプション説明]
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  対象項目   Z System Automation Library
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>  参照頁     p.19 (TSA z/OS カスタマイズおよびプログラミング)
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>[出力 1]
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>Where to Find More Information Z System Automation Library. Table 1 on page xix shows the information units in Z System Automation library. These manuals can be downloaded from IBM Documentation. Get Started Guide SC27-9532: This book is intended for SA z/OS beginners. It contains the information about early planning,…
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>  (出典: TSA z/OS カスタマイズおよびプログラミング p.19、原文ママ)
+</code></pre></div>
+<p>前提条件: NetView REXX/CLIST 編集権限あり、ACF/AT ビルド権限あり</p>
+<p>プレースホルダ: [CNM01]=NetView ドメイン ID、[OPER]=オペレータ ID</p>
+<p>記録項目:</p>
+<ul>
+<li>① Z System Automation Library のマニュアル該当頁の引用テキスト記録</li>
+<li>② Z System Automation Library の実行/参照コマンド・パネル名</li>
+<li>③ 出力結果ログ (NetView NETLOG / SDF / SYSLOG)</li>
+<li>④ 関連メッセージ ID (AOFxxx / INGxxx) の有無</li>
+<li>⑤ 実装エビデンス (ポリシー差分 / コード差分)</li>
+</ul>
+<hr />
+<p><strong>理解度チェック</strong></p>
+<p>問題: カスタマイズ・プログラミング における 'Z System Automation Library' に該当する説明として最も適切なものはどれか?</p>
+<ul>
+<li>A. Where to Find More Information Z System Automation Library. Table 1 on page xix shows the information units i…</li>
+<li>B. Import System Automation Resources に関する説明</li>
+<li>C. Verify the Installation に関する説明</li>
+<li>D. Processing of Primary WTORs に関する説明</li>
+</ul>
+<p>正解: <strong>A</strong></p>
+<p>解説: Z System Automation Library の本文 (TSA z/OS カスタマイズおよびプログラミング p.19) に対応するのは選択肢 A。他の選択肢は同 Lv1 領域の隣接項目で文脈が異なる。(出典: TSA z/OS カスタマイズおよびプログラミング p.19、原文ママ)</p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ai-crafted-portfolio
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
