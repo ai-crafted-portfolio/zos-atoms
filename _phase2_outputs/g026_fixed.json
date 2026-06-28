@@ -1,0 +1,959 @@
+{
+ "page": "g026",
+ "product": "IBM NetView 6.4",
+ "total_rows": 273,
+ "target_rows": 273,
+ "fixed_count": 50,
+ "rows": [
+  {
+   "row_id": "5082",
+   "title": "Abend Code",
+   "naiyou_jp": "NetView のアセンブラー拡張モジュールでは、サービス・ルーチン呼び出しやマクロ実行が失敗した際、レジスター15のリターン・コードに加えてアベンド（異常終了）コードが返される場合がある。NetView マクロと OS マクロが同等のサービスを提供する場合は、ストレージ管理やログ管理を NetView が一貫して把握できるよう NetView マクロを優先して使用する。これにより不正なストレージ解放等に起因するアベンドを回避できる。",
+   "verify_steps": "1) NetView コンソールで `LIST STATUS=TASKS` を実行し、対象サブタスクの稼働状態を確認する。\n2) アベンドが発生したタスクについて `LIST DSIxxxx`（該当タスク名）で状態を表示。\n期待結果: 異常終了したタスクは Not Active と表示され、ネットワーク・ログにアベンド・コード（例: DWO で始まるメッセージや SVC ダンプ）が記録される。",
+   "quiz": {
+    "q": "NetView のアセンブラー・モジュールで OS マクロと同等の NetView マクロが存在する場合、推奨されるのはどちらか。",
+    "choices": [
+     "OS マクロを使用する",
+     "NetView マクロを使用する",
+     "両方を併用する",
+     "アベンド時のみ NetView マクロを使用する"
+    ],
+    "answer": 1,
+    "explanation": "NetView がストレージやログを一貫管理できるよう、同等サービスでは NetView マクロを優先する。これによりアベンドの原因となる不整合を防げる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.272",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5086",
+   "title": "AIFR–Automation Internal Function Request",
+   "naiyou_jp": "AIFR（Automation Internal Function Request、自動化内部機能要求）は、NetView の自動化テーブルを通過するイベント（メッセージや MSU など）を表す内部制御ブロックである。DSIAIFRO マッピング・マクロで定義され、メッセージ・データ・ブロック（MDB）の各フィールドが AIFR のフィールド（IFRAUxxx 等）に対応付けられる。自動化テーブルの IF 文はこの AIFR を解析して条件判定とアクション実行を行う。",
+   "verify_steps": "1) NetView コンソールで自動化テーブルにトレースを設定: `AUTOTEST STATUS` で稼働中テーブルを確認。\n2) 対象メッセージを発生させ、`AUTOCNT` でテーブル使用状況レポートを生成する。\n期待結果: メッセージ BNH370I が AIFR を解析した各ステートメントごとに出力され、AIFR がどの IF 文にマッチしたかを確認できる。",
+   "quiz": {
+    "q": "AIFR（Automation Internal Function Request）とは何を表すか。",
+    "choices": [
+     "端末画面のパネル定義",
+     "自動化テーブルを通過するイベントを表す内部制御ブロック",
+     "ディスク上のメッセージ定義",
+     "オペレーターの権限テーブル"
+    ],
+    "answer": 1,
+    "explanation": "AIFR は自動化テーブルを流れるメッセージ等のイベントを表す内部要求で、DSIAIFRO で定義され自動化テーブルの IF 文が解析する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.130",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5119",
+   "title": "DSI6SNDS: Send a Message Unit",
+   "naiyou_jp": "DSI6SNDS は LU 6.2 のセッション上でメッセージ単位（message unit）を送信する NetView アセンブラー・サービス・マクロである。高性能トランスポートやハイ・パフォーマンス・メッセージ送信機構と連携し、登録済みアプリケーション間でデータを転送する。DSI6REGS による LU 6.2 登録が前提となる。",
+   "verify_steps": "1) NetView で `LIST APPLS` 等によりLU 6.2 登録アプリケーションの状態を確認する。\n2) 該当アプリケーションのトランスポート・タスクを `LIST STATUS=TASKS` で確認。\n期待結果: 登録済みアプリケーションが Active と表示され、メッセージ単位送信時にネットワーク・ログへ送受信レコードが記録される。",
+   "quiz": {
+    "q": "DSI6SNDS マクロが用いるセッション・プロトコルはどれか。",
+    "choices": [
+     "VTAM PLU-SLU 基本セッション",
+     "LU 6.2",
+     "HTTP",
+     "TCP/IP ソケット"
+    ],
+    "answer": 1,
+    "explanation": "DSI6SNDS は LU 6.2 セッション上でメッセージ単位を送信するサービスであり、DSI6REGS による LU 6.2 登録が前提となる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.263",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5138",
+   "title": "DSIFRE: Free Storage",
+   "naiyou_jp": "DSIFRE マクロは、DSIGET で取得した NetView 管理下のストレージを解放するためのサービス・マクロである。内部的に FREMAIN を使用して解放する。解放長や解放対象が誤っている場合（DSIGET で取得していない領域の解放、長さ不一致など）、NetView のストレージ管理表が破壊され DWO115W や DWO049W メッセージとともにアベンドが発生する可能性がある。",
+   "verify_steps": "1) DSIGET/DSIFRE を発行するユーザー・モジュールを稼働させ、NetView コンソールで `LIST STORAGE` 等によりタスクのストレージ使用量を確認する。\n2) 解放後に再度ストレージ使用量を確認する。\n期待結果: DSIFRE 後にタスク・ストレージ使用量が減少する。長さ不一致時は DWO115W メッセージがログに出力される。",
+   "quiz": {
+    "q": "DSIFRE で解放すべきストレージはどのように取得されている必要があるか。",
+    "choices": [
+     "GETMAIN で取得",
+     "DSIGET で取得",
+     "自動化テーブルで定義",
+     "DSIPSS で取得"
+    ],
+    "answer": 1,
+    "explanation": "DSIFRE は DSIGET で取得した NetView 管理下のストレージを FREMAIN を使って解放する。DSIGET 以外で取得した領域を解放すると管理表破壊やアベンドの原因となる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.183",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5140",
+   "title": "DSIGET: Get Storage",
+   "naiyou_jp": "DSIGET マクロは NetView 管理下のストレージを取得するサービス・マクロである。オプションで取得したストレージをタスク・ベクター・ブロック（DSITVB）にキューイングできる。取得時に NetView のストレージ・プール構造やマップに不整合・オーバーレイが検出されると、リターン・コードや DWO049W メッセージで通知される。取得したストレージは DSIFRE で解放する。",
+   "verify_steps": "1) DSIGET を使用するモジュールを稼働させ、`LIST STORAGE`（または DEFAULTS STORDUMP 設定確認）でストレージ状態を確認する。\n2) 取得後にタスク・ストレージ量を再確認する。\n期待結果: 正常時はレジスター15に0が返り、ストレージ量が増加。オーバーレイ検出時は非ゼロのリターン・コードと DWO049W が出力される。",
+   "quiz": {
+    "q": "DSIGET で取得したストレージをタスクに関連付けてキューイングできる制御ブロックはどれか。",
+    "choices": [
+     "DSIMVT（メイン・ベクター・テーブル）",
+     "DSITVB（タスク・ベクター・ブロック）",
+     "DSICBH（制御ブロック・ヘッダー）",
+     "BUFHDR（バッファー・ヘッダー）"
+    ],
+    "answer": 1,
+    "explanation": "DSIGET はオプションで取得ストレージを DSITVB にキューイングできる。解放は DSIFRE で行う。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.183",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5161",
+   "title": "DSIPSS: Presentation Services",
+   "naiyou_jp": "DSIPSS マクロはオペレーターの端末画面にメッセージを書き込む、または別の NetView プログラムにメッセージを送るプレゼンテーション・サービス・マクロである。呼び出されるプレゼンテーション・サービス・ルーチンが画面フォーマットを制御し、デバイスごとに固有の形式にデータを編成して送信する。実行には DSIMVT アドレス可能性が必要である。フルスクリーン・パネル表示や複数の画面モードをサポートする。",
+   "verify_steps": "1) NetView オペレーター・ステーション・タスク（OST）にログオンする。\n2) DSIPSS を使用するコマンド・プロセッサー（例: サンプル CNMS4279/APSSFULL）を実行する。\n期待結果: 指定したメッセージまたはフルスクリーン・パネルがオペレーター端末に表示され、入力待ちとなる。",
+   "quiz": {
+    "q": "DSIPSS マクロを使用するために必要なアドレス可能性はどれか。",
+    "choices": [
+     "DSITVB アドレス可能性",
+     "DSIMVT アドレス可能性",
+     "DSICWB アドレス可能性",
+     "DSITIB アドレス可能性"
+    ],
+    "answer": 1,
+    "explanation": "DSIPSS はオペレーター画面への出力を行うプレゼンテーション・サービスで、DSIMVT（メイン・ベクター・テーブル）アドレス可能性が必要。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.206",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5159",
+   "title": "DSIPOS: ECB Post Services",
+   "naiyou_jp": "DSIPOS マクロは、イベントの完了を示すためにイベント制御ブロック（ECB）をポストするサービス・マクロである。DSIWAT でウェイト中の ECB を DSIPOS でポストすることで、待機していたタスクの実行を再開させる。実行には DSIMVT アドレス可能性が必要である。即時コマンド中、出口ルーチン中、LOGOFF/ABEND 再開ルーチン中に発行するとリターン・コード16が返る。",
+   "verify_steps": "1) DSIWAT/DSIPOS を使用するモジュールを稼働させ、`LIST STATUS=TASKS` でタスク状態を確認する。\n2) 待機中タスクに対するイベントを発生させる。\n期待結果: DSIPOS により ECB がポストされ、DSIWAT で待機していたタスクが Active へ遷移して処理を再開する。",
+   "quiz": {
+    "q": "DSIPOS マクロの役割はどれか。",
+    "choices": [
+     "ストレージの取得",
+     "ECB をポストしてイベント完了を通知する",
+     "メッセージのログ記録",
+     "パネルの表示"
+    ],
+    "answer": 1,
+    "explanation": "DSIPOS は ECB をポストしてイベント完了を示し、DSIWAT で待機中のタスクを再開させる。DSIMVT アドレス可能性が必要。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.221",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5179",
+   "title": "DSIWAT: ECB Wait Services",
+   "naiyou_jp": "DSIWAT マクロは1つの ECB または ECB リスト上でイベントの発生を待機するサービス・マクロである。ECBLIST オペランドでリスト先頭を指定し、リスト最終要素は高位ビット（X'80000000'）を立てて示す。いずれかの ECB が DSIPOS でポストされると実行が再開される。長時間を要するイベントの待機や自タスク ECB への反復 DSIWAT は避け、定期的に NetView へ制御を返してタスクの内部処理時間を確保する必要がある。",
+   "verify_steps": "1) DSIWAT を使用するユーザー・タスクを稼働させ、`LIST STATUS=TASKS` で状態を確認する。\n2) 待機対象イベントを発生させ DSIPOS でポストさせる。\n期待結果: 待機中タスクは ECB ポストにより再開し、`LIST` で Active と表示される。長時間ブロックすると他タスク処理が遅延する。",
+   "quiz": {
+    "q": "DSIWAT で ECB リストの最終要素を示す方法はどれか。",
+    "choices": [
+     "リスト長をレジスター0に設定",
+     "最終アドレスの高位ビット（X'80000000'）を立てる",
+     "末尾にゼロ・ワードを置く",
+     "COMPCDE オペランドを指定"
+    ],
+    "answer": 1,
+    "explanation": "DSIWAT の ECBLIST では、最終要素のアドレスに高位ビット X'80000000' を立ててリストの終端を示す。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.229",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5180",
+   "title": "DSIWCS: Write Console Services",
+   "naiyou_jp": "DSIWCS マクロはシステム・オペレーター・コンソールにメッセージ・バッファーを書き込むサービス・マクロである。メッセージ・バッファーには初期化済みの NetView バッファー・ヘッダー（BUFHDR）が必要で、CNMSTYLE の ROUTECDE 文で指定したルート・コードが使用される。メッセージ長が120文字を超える場合は単一行メッセージ DSI899I として継続される。内部で DSIWLS を発行してコンソールへの書き込みをログに記録する。DBCS メッセージはサポートされない。",
+   "verify_steps": "1) DSIWCS を使用するモジュールを稼働させ、メッセージをシステム・コンソールに出力する。\n2) MVS システム・ログ（SYSLOG）およびネットワーク・ログを確認する。\n期待結果: 指定メッセージが ROUTECDE のルート・コードに従ってシステム・コンソールへ表示され、120文字超は DSI899I として継続。DSIWLS によりログにも記録される。",
+   "quiz": {
+    "q": "DSIWCS でメッセージ長が120文字を超えた場合の動作はどれか。",
+    "choices": [
+     "切り捨てられる",
+     "単一行メッセージ DSI899I として継続される",
+     "アベンドする",
+     "DBCS に変換される"
+    ],
+    "answer": 1,
+    "explanation": "DSIWCS はメッセージ長が120文字を超えると DSI899I として継続する。初期化済み BUFHDR が必要で、内部で DSIWLS によりログ記録される。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.229",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5181",
+   "title": "DSIWLS: Write Log Services",
+   "naiyou_jp": "DSIWLS マクロは情報をネットワーク・ログ、システム・ログ、ハードコピー・ログ、外部ログ、または順次ログに記録するサービス・マクロ（write-to-log サービス）である。NetView のメッセージ書き込みやコンソール書き込み（DSIWCS）から内部的に呼び出され、運用イベントの記録に用いられる。",
+   "verify_steps": "1) DSIWLS を使用するモジュール（またはコンソール出力）を稼働させる。\n2) `BROWSE NETLOGA` 等でネットワーク・ログを参照する。\n期待結果: 記録対象メッセージが指定したログ（ネットワーク・ログ等）に出力されていることを確認できる。",
+   "quiz": {
+    "q": "DSIWLS マクロが情報を記録できる宛先に含まれないものはどれか。",
+    "choices": [
+     "ネットワーク・ログ",
+     "システム・ログ",
+     "端末画面のフルスクリーン・パネル",
+     "ハードコピー・ログ"
+    ],
+    "answer": 2,
+    "explanation": "DSIWLS は各種ログ（ネットワーク／システム／ハードコピー／外部／順次）への記録を行う。端末画面への出力は DSIPSS の役割である。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.230",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5149",
+   "title": "DSILOGDS: NetView Log",
+   "naiyou_jp": "DSILOGDS は NetView ログ（ネットワーク・ログ）のデータ・サービスを提供するマクロで、ログ・データ・サービス・タスク（DSILOG）を介してログ・レコードの記録・取り出しを行う。記録先にはネットワーク・ログ、CanzLog、MVS システム・ログ、ハードコピー装置、順次ログ（SAMREC）があり、ネットワーク・ログではユーザー定義の VSAM レコード・サイズに応じてレコードが切り捨てられることがある。",
+   "verify_steps": "1) NetView コンソールで `LIST STATUS=TASKS` を実行し、ログ・データ・サービス・タスク（DSILOG）が Active であることを確認する。\n2) ログに書き込むイベントを発生させ、`BROWSE NETLOGA` でネットワーク・ログを参照する。\n期待結果: DSILOG が Active で、記録したレコードがネットワーク・ログ（VSAM）に格納される。",
+   "quiz": {
+    "q": "DSILOGDS が用いるデータ・サービス・タスクはどれか。",
+    "choices": [
+     "DSIVSAM",
+     "DSILOG",
+     "DSIPSS",
+     "DSIAUTO"
+    ],
+    "answer": 1,
+    "explanation": "DSILOGDS はログ・データ・サービス・タスク DSILOG を介して NetView ログへの記録・取り出しを行う。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.196",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5132",
+   "title": "DSIDKS: Disk Services",
+   "naiyou_jp": "DSIDKS マクロはディスク上のメンバー（パネルやメッセージ定義などの区分データセット・メンバー、または VSAM キー付きファイル）に対する読み取り・接続（CONN）等のディスク・サービスを提供する。TYPE=CONN 等の操作完了時にフルワード領域に結果が返される。NetView の VSAM ファイルはデータ・サービス・タスクで管理され、セキュリティ定義（WRITESEC 等）で保護される。",
+   "verify_steps": "1) NetView コンソールで対象データ・サービス・タスクの状態を `LIST STATUS=TASKS` で確認する。\n2) DSIDKS を使用してメンバーを読み取るコマンドを実行する。\n期待結果: 指定メンバーが正常に読み取られリターン・コード0が返る。メンバー未検出時は NAME not found（RC=36 等）が返る。",
+   "quiz": {
+    "q": "DSIDKS マクロが提供するサービスはどれか。",
+    "choices": [
+     "端末画面への出力",
+     "ディスク上のメンバー／ファイルへのアクセス（読み取り・接続）",
+     "ECB のポスト",
+     "自動化テーブルの解析"
+    ],
+    "answer": 1,
+    "explanation": "DSIDKS はディスク・サービス・マクロで、メンバーや VSAM ファイルへのアクセス（読み取り・CONN 等）を提供する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.158",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5160",
+   "title": "DSIPRS: Parsing Services",
+   "naiyou_jp": "DSIPRS マクロは指定または既定の区切り文字を用いてコマンドを構文解析するサービス・マクロである。DSIPRS はペアで発行する必要があり、1回目は PDBSIZE を指定して解析に必要なパース記述子ブロック（DSIPDB）の長さを求め、2回目で実際にコマンドを十分な長さのバッファーへ解析する。解析結果は DSIPDB に格納される。",
+   "verify_steps": "1) DSIPRS を使用するコマンド・プロセッサーを実装・稼働させ、パラメーター付きコマンドを NetView コンソールから入力する。\n2) コマンドの動作結果を確認する。\n期待結果: 入力コマンドがトークンに分割され、各パラメーターが期待どおり処理される。PDBSIZE が不足する場合は必要長が返る。",
+   "quiz": {
+    "q": "DSIPRS マクロを正しく使用する方法はどれか。",
+    "choices": [
+     "単独で1回発行する",
+     "ペアで発行し、1回目で DSIPDB の必要長を求める",
+     "DSIPSS と同時に発行する",
+     "ECBLIST を指定して発行する"
+    ],
+    "answer": 1,
+    "explanation": "DSIPRS はペアで発行し、1回目で PDBSIZE により DSIPDB の必要長を求め、2回目で実際の解析を行う。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.203",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5178",
+   "title": "DSIVARS: Variable Services",
+   "naiyou_jp": "DSIVARS マクロは NetView の変数（タスク・グローバル変数、共通グローバル変数、呼び出し元コマンド変数など）の取得・設定を行う変数サービス・マクロである。共通グローバル変数を扱う際は、1回の DSIVARS 呼び出しで複数変数を指定しても値が一貫するよう、処理中は変数プールが他タスクからアクセスできないようロックされる。アセンブラー出口から VARTYPE=CALLER を指定することはサポートされず予測不能な結果を招く。",
+   "verify_steps": "1) NetView コンソールで `GLOBALV PUTC TESTVAR ABC`（共通グローバル変数設定）を実行する。\n2) DSIVARS で同変数を読み取るモジュール／プロシージャーを実行、または `GLOBALV LISTC TESTVAR` で確認する。\n期待結果: 設定した共通グローバル変数値（ABC）が一貫して取得できる。",
+   "quiz": {
+    "q": "DSIVARS で共通グローバル変数を処理している間に行われることはどれか。",
+    "choices": [
+     "変数プールがロックされ他タスクのアクセスが排除される",
+     "全タスクが停止する",
+     "変数が自動削除される",
+     "ログが消去される"
+    ],
+    "answer": 0,
+    "explanation": "DSIVARS は共通グローバル変数処理中、値の一貫性を保つため変数プールをロックし他 NetView タスクのアクセスを排除する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.228",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5157",
+   "title": "DSIPDB: Parse Descriptor Block",
+   "naiyou_jp": "DSIPDB はパース記述子ブロック（Parse Descriptor Block）を定義するマッピング・マクロである。DSIPRS による構文解析の結果（解析されたトークンの位置・長さ等）を格納する制御ブロックで、DSIPRS の1回目の発行で必要長を算出し、2回目の発行で実際の解析結果が書き込まれる。",
+   "verify_steps": "1) DSIPRS/DSIPDB を使用するコマンド・プロセッサーを稼働させ、複数トークンのコマンドを入力する。\n2) 各トークンが正しく分離されて処理されることを確認する。\n期待結果: DSIPDB に解析されたトークン情報が格納され、コマンドが正しく解釈される。",
+   "quiz": {
+    "q": "DSIPDB（パース記述子ブロック）の用途はどれか。",
+    "choices": [
+     "ストレージ取得結果の格納",
+     "DSIPRS による構文解析結果の格納",
+     "ECB リストの保持",
+     "ログ・レコードの保持"
+    ],
+    "answer": 1,
+    "explanation": "DSIPDB は DSIPRS の構文解析結果（トークン位置・長さ等）を格納する制御ブロックである。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.134",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5154",
+   "title": "DSIMVT: Main Vector Table",
+   "naiyou_jp": "DSIMVT はメイン・ベクター・テーブル（Main Vector Table, MVT）をマッピングするマクロである。MVT は NetView 全体で1つ存在し、各種サービス・ルーチンへのアドレスやシステム全体の情報を保持する。DSIPSS・DSIWCS など多くのサービス・マクロは「DSIMVT アドレス可能性が必要」とされ、コマンド・プロセッサーでは CWB→TIB→TVB→MVT（TVBMVT）の連鎖でアドレスを確立する。",
+   "verify_steps": "1) NetView コンソールで `DISPMOD DSIMNTEX` を実行し、MVT 関連モジュールのアドレスを表示する。\n2) ストレージ表示機能で DSIMVT 制御ブロック先頭を確認する。\n期待結果: MVT のアドレスが取得でき、サービス・ルーチンのアドレス可能性確立に利用できる。",
+   "quiz": {
+    "q": "DSIMVT（MVT）について正しいものはどれか。",
+    "choices": [
+     "タスクごとに複数存在する",
+     "NetView 全体で1つ存在し、サービス・ルーチンのアドレス等を保持する",
+     "ディスク上のメンバーである",
+     "ECB のリストである"
+    ],
+    "answer": 1,
+    "explanation": "MVT は NetView 全体で1つ存在し、サービス・ルーチンのアドレス等を保持する。多くのマクロが DSIMVT アドレス可能性を要求する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.116",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5176",
+   "title": "DSITVB: Task Vector Block",
+   "naiyou_jp": "DSITVB はタスク・ベクター・ブロック（Task Vector Block, TVB）をマッピングするマクロである。TVB はサブタスクの状態に関する情報を保持し、NetView の各サブタスクは1つの TVB を持つ。DSIPSS 等の一部サービス・ルーチンは TVB を参照し、TVBMVT フィールドから MVT のアドレスを得る。コマンド・プロセッサーではアドレス可能性確立の連鎖（CWB→TIB→TVB→MVT）に用いられる。",
+   "verify_steps": "1) NetView コンソールで `LIST STATUS=TASKS` を実行し、各サブタスクの状態を表示する。\n2) 対象タスクの稼働状態を確認する。\n期待結果: 各サブタスクの状態（Active 等）が表示され、これは TVB が保持する状態情報に対応する。",
+   "quiz": {
+    "q": "DSITVB（TVB）について正しいものはどれか。",
+    "choices": [
+     "NetView 全体で1つだけ存在する",
+     "各サブタスクが1つずつ持ち、サブタスクの状態情報を保持する",
+     "パネル定義を保持する",
+     "ログ・レコードを保持する"
+    ],
+    "answer": 1,
+    "explanation": "TVB は各サブタスクが1つずつ持ち、サブタスクの状態情報を保持する。TVBMVT から MVT アドレスを得られる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.157",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5129",
+   "title": "DSICWB: Command Work Block",
+   "naiyou_jp": "DSICWB はコマンド・ワーク・ブロック（Command Work Block, CWB）をマッピングするマクロである。CWB はコマンド・プロセッサーのパラメーター、セーブ領域、ワーク領域を含む。標準制御ブロック・ヘッダー（CWBCBH）と256バイトのワーク領域（CWBADATD）を持ち、追加ストレージが必要な場合は DSIGET で取得し DSIFRE で解放する。コマンド・プロセッサーは入力としてレジスター1に CWB のアドレスを受け取る。",
+   "verify_steps": "1) コマンド・プロセッサー（CWB を受け取るユーザー・コマンド）を NetView に定義し、コンソールから実行する。\n2) コマンドが指定パラメーターを正しく処理することを確認する。\n期待結果: レジスター1経由で渡された CWB のパラメーターをもとにコマンドが正常実行される。",
+   "quiz": {
+    "q": "DSICWB（CWB）に含まれないものはどれか。",
+    "choices": [
+     "コマンド・プロセッサーのパラメーター",
+     "セーブ領域",
+     "256バイトのワーク領域",
+     "MVT 全体のコピー"
+    ],
+    "answer": 3,
+    "explanation": "CWB はコマンド・プロセッサーのパラメーター、セーブ領域、ワーク領域（256バイトの CWBADATD 等）を含むが、MVT のコピーは保持しない。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.126",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5097",
+   "title": "BUFHDR: Buffer Header",
+   "naiyou_jp": "BUFHDR は NetView バッファー・ヘッダー（Buffer Header）をマッピングするマクロである。メッセージ・バッファーの先頭に置かれ、メッセージ・タイプ（HDRMTYPE）、行種別インジケーター（HDRIND: タイトル行 HDRLNLBL／データ行 HDRLNDAT／最終行 HDRLNEND）、テキスト変位（HDRTDISP）などを保持する。DSIWCS や DSIPSS でメッセージを表示・送信する際は初期化済みの BUFHDR が必須である。",
+   "verify_steps": "1) BUFHDR を初期化してメッセージを構築するモジュール（DSIWCS/DSIPSS 使用）を稼働させる。\n2) メッセージをコンソールまたはオペレーター画面に出力する。\n期待結果: BUFHDR の行種別指定（タイトル／データ／最終行）に従ってメッセージが整形表示される。未初期化の場合は出力されない。",
+   "quiz": {
+    "q": "BUFHDR の HDRIND でデータの最終行を示す値はどれか。",
+    "choices": [
+     "HDRLNLBL",
+     "HDRLNDAT",
+     "HDRLNEND",
+     "HDRTYPEL"
+    ],
+    "answer": 2,
+    "explanation": "HDRIND はタイトル行（HDRLNLBL）、データ行（HDRLNDAT）、最終データ行（HDRLNEND）を示す。最終行は HDRLNEND。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.113",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5187",
+   "title": "Establishing Addressability",
+   "naiyou_jp": "アセンブラー・モジュールが制御ブロックのフィールドを参照する前に、その制御ブロックへのアドレス可能性を確立する必要がある。コマンド・プロセッサーでは、レジスター1の CWB から CWBTIB で TIB を、TIBTVB で TVB を、TVBMVT で MVT を順にロードし、それぞれ USING 命令でアドレス可能性を確立する。この連鎖により DSIPSS 等が要求する DSIMVT アドレス可能性を得る。",
+   "verify_steps": "1) USING の連鎖（DSICWB→DSITIB→DSITVB→DSIMVT）を実装したコマンド・プロセッサーを稼働させる。\n2) MVT を要求するサービス（例: DSIPSS）を呼び出すコマンドを実行する。\n期待結果: アドレス可能性が正しく確立され、DSIPSS 等のサービスがアベンドせず正常実行される。",
+   "quiz": {
+    "q": "コマンド・プロセッサーで MVT へのアドレス可能性を確立する正しい連鎖はどれか。",
+    "choices": [
+     "MVT→TVB→TIB→CWB",
+     "CWB→TIB→TVB→MVT（CWBTIB, TIBTVB, TVBMVT）",
+     "CWB→MVT 直接",
+     "TVB→CWB→MVT"
+    ],
+    "answer": 1,
+    "explanation": "CWB から CWBTIB で TIB、TIBTVB で TVB、TVBMVT で MVT を順にロードし USING で確立する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5105",
+   "title": "Control Block Requirements",
+   "naiyou_jp": "ソース・プログラムのアセンブル時には、プログラムが参照する NetView 制御ブロックの DSECT を組み込む必要がある。インストレーション出口ルーチンでは出口パラメーター・リスト（DSIUSE）を組み込む。USE には TVB、サービス・ワーク・ブロック（SWB）、パース記述子ブロック（PDB）、バッファー・ヘッダー（BUFHDR、DSITIB DSECT で定義）のアドレスが含まれるため、これらにアクセスするには対応する DSECT も必要となる。",
+   "verify_steps": "1) 必要な DSECT（例: DSIUSE, DSITVB, DSISWB, DSIPDB）を組み込んだ出口ルーチンをアセンブル・リンクする。\n2) NetView 起動時に出口が正しくロードされることを `LIST` 等で確認する。\n期待結果: 必要な DSECT が揃っていればアセンブル・エラーなくモジュールが生成され、出口が稼働する。",
+   "quiz": {
+    "q": "インストレーション出口ルーチンで組み込む出口パラメーター・リストはどれか。",
+    "choices": [
+     "DSICWB",
+     "DSIUSE",
+     "DSIMVT",
+     "DSIPDB"
+    ],
+    "answer": 1,
+    "explanation": "インストレーション出口では出口パラメーター・リスト DSIUSE を組み込む。USE は TVB・SWB・PDB・BUFHDR のアドレスを含む。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.25",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5146",
+   "title": "DSIKVS: Keyword/Value Services",
+   "naiyou_jp": "DSIKVS はキーワード／値サービス・マクロで、コマンドに指定されたキーワードに対応する値を取得する。SWB（サービス・ワーク・ブロック）、CMD（左寄せでブランク埋めした8バイトのコマンド名）、SCTADDR（システム・コマンド表アドレス）、KEYWORD（8バイトのキーワード・フィールド）、VALUE を指定して呼び出す。コマンド構文解析と組み合わせ、キーワード形式のパラメーター処理に用いる。",
+   "verify_steps": "1) キーワード形式パラメーターを受け取るコマンド・プロセッサー（DSIKVS 使用）を NetView に定義する。\n2) コンソールから `コマンド KEYWORD=値` の形式で実行する。\n期待結果: 指定キーワードに対応する値が DSIKVS で取得され、コマンドが期待どおり動作する。",
+   "quiz": {
+    "q": "DSIKVS マクロが取得するものはどれか。",
+    "choices": [
+     "ストレージ・アドレス",
+     "コマンドのキーワードに対応する値",
+     "ECB のポスト状態",
+     "日時情報"
+    ],
+    "answer": 1,
+    "explanation": "DSIKVS はコマンドに指定されたキーワードに対応する値を取得するサービスである。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.181",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5148",
+   "title": "DSILOD: Load User-Defined Module",
+   "naiyou_jp": "DSILOD はユーザー定義モジュールをロードするサービス・マクロである。指定モジュールを主記憶にロードしてエントリー・ポイント・アドレスを返す。ロードに失敗するとアベンド（例: DSILOD が DUIALOAD のロードに失敗するとアベンド・コード X'039' が発行される）が起こり得るため、対象モジュールが正しくインストールされ NetView からアクセス可能であることが前提となる。対のサービス DSIDEL でモジュールを削除（解放）する。",
+   "verify_steps": "1) ユーザー定義モジュールを NetView のステップリブ／DSIPARM 等に配置する。\n2) DSILOD を使用するコマンドを実行し、`LIST` やログでロード成否を確認する。\n期待結果: モジュールが正しく配置されていればロード成功。未配置・アクセス不可ならアベンド（X'039' 等）がログに記録される。",
+   "quiz": {
+    "q": "DSILOD でロードしたモジュールを削除（解放）する対のマクロはどれか。",
+    "choices": [
+     "DSIFRE",
+     "DSIDEL",
+     "DSIPOP",
+     "DSIDKS"
+    ],
+    "answer": 1,
+    "explanation": "DSILOD でロードしたユーザー定義モジュールは DSIDEL で削除（解放）する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.185",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5130",
+   "title": "DSIDATIM: Date and Time",
+   "naiyou_jp": "DSIDATIM は現在の日付と時刻を取得するサービス・マクロである。取得した日時はメッセージ表示やログ記録、タイム・スタンプ付けに用いられる。サンプル ADATTIM（CNMS4274）では DSICBS・DSIDATIM・DSIPSS を用いて日付と時刻をオペレーター画面に表示する。",
+   "verify_steps": "1) DSIDATIM を使用するコマンド（例: サンプル ADATTIM/CNMS4274）を NetView に導入し実行する。\n2) 出力された日時を確認する。\n期待結果: 現在の日付・時刻がオペレーター画面に表示され、システム時刻と一致する。",
+   "quiz": {
+    "q": "DSIDATIM マクロの機能はどれか。",
+    "choices": [
+     "ストレージ取得",
+     "現在の日付と時刻の取得",
+     "キーワード値の取得",
+     "モジュールのロード"
+    ],
+    "answer": 1,
+    "explanation": "DSIDATIM は現在の日付と時刻を取得するサービス・マクロである。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.155",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5126",
+   "title": "DSICBS: Control Block Services",
+   "naiyou_jp": "DSICBS はユーザー作成プログラムのアセンブル時に、必要な制御ブロックの DSECT を生成するマクロである。各制御ブロックが一度だけ組み込まれること、必要な内側の制御ブロックが先に定義されることを保証し、DSECT のフォーマットや印刷／抑止を制御する。DSIMVT アドレス可能性は不要である。多くのアセンブラー・サンプルで制御ブロック定義に使用される。",
+   "verify_steps": "1) DSICBS で必要な制御ブロックを指定したモジュールをアセンブルする。\n2) アセンブル・リストで DSECT が重複なく正しい順序で生成されていることを確認する。\n期待結果: 指定制御ブロックの DSECT が一度だけ、内側ブロックを先行させて生成され、アセンブル・エラーが出ない。",
+   "quiz": {
+    "q": "DSICBS マクロの役割はどれか。",
+    "choices": [
+     "制御ブロックの DSECT をアセンブル時に生成する",
+     "実行時にストレージを取得する",
+     "ECB を待機する",
+     "ログに書き込む"
+    ],
+    "answer": 0,
+    "explanation": "DSICBS はアセンブル時に制御ブロックの DSECT を生成し、重複排除や定義順序を保証する。DSIMVT アドレス可能性は不要。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.169",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5131",
+   "title": "DSIDEL: Delete User-Defined Module",
+   "naiyou_jp": "DSIDEL は DSILOD でロードしたユーザー定義モジュールを削除（解放）するサービス・マクロである。不要になったモジュールを主記憶から解放し、ストレージを回収する。DSILOD（ロード）と対で使用する。",
+   "verify_steps": "1) DSILOD でモジュールをロードした後、DSIDEL でそれを削除するコマンドを実行する。\n2) `LIST` 等でモジュールの状態を確認する。\n期待結果: 対象モジュールが解放され、再度参照するには再ロードが必要となる。",
+   "quiz": {
+    "q": "DSIDEL マクロは何と対で使用するか。",
+    "choices": [
+     "DSIGET",
+     "DSILOD",
+     "DSIPSS",
+     "DSIWAT"
+    ],
+    "answer": 1,
+    "explanation": "DSIDEL は DSILOD（ユーザー定義モジュールのロード）と対で、ロード済みモジュールを削除（解放）する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.156",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5162",
+   "title": "DSIPUSH: Establish Long-Running Command",
+   "naiyou_jp": "DSIPUSH は長期実行コマンド（long-running command）を確立し、コマンド要素をスタックに積むサービス・マクロである。長期実行コマンドは、メッセージ自動化など NetView の重要機能を継続させながら待機を行うために使用され、低優先順位キュー上の他コマンドの実行を可能にする。RESUME ルーチンのスケジューリングと組み合わせ、非同期イベント完了時に処理を再開する。スタックからの除去は DSIPOP で行う。",
+   "verify_steps": "1) 長期実行コマンド（DSIPUSH 使用）を NetView コンソールで開始する。\n2) `LIST` で当該コマンドがスタックに積まれ待機していることを確認し、対象イベント発生で再開させる。\n期待結果: コマンドが待機状態となっても他の低優先順位コマンドが実行可能で、イベント完了時に RESUME ルーチンが起動する。",
+   "quiz": {
+    "q": "DSIPUSH を用いる長期実行コマンドの利点はどれか。",
+    "choices": [
+     "他のコマンドをすべて停止させる",
+     "待機中も NetView の重要機能（メッセージ自動化等）を継続でき、他コマンドも実行できる",
+     "ストレージを自動解放する",
+     "コンソール出力を高速化する"
+    ],
+    "answer": 1,
+    "explanation": "DSIPUSH による長期実行コマンドは、待機中もメッセージ自動化等を継続させ、低優先順位キュー上の他コマンドの実行を可能にする。除去は DSIPOP。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.212",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5121",
+   "title": "DSIAUTO: Invoke Automation Services",
+   "naiyou_jp": "DSIAUTO は NetView の自動化サービスを呼び出すサービス・マクロ（プロダクト・センシティブ・プログラミング・インターフェース）である。メッセージや MSU を自動化テーブルに通して処理させ、自動化アクションを起動する。DSIBAM（自動化メッセージの構築）や DSIBAMKW（自動化メッセージ・キーワードの構築）と連携して、ユーザー・プログラムから自動化を駆動する。",
+   "verify_steps": "1) DSIAUTO を使用するモジュールを稼働させ、自動化対象メッセージを発生させる。\n2) `AUTOCNT` で自動化テーブル使用状況を確認する。\n期待結果: メッセージが自動化テーブルを通過し、該当する自動化アクションが起動されたことをログ・レポートで確認できる。",
+   "quiz": {
+    "q": "DSIAUTO マクロの機能はどれか。",
+    "choices": [
+     "ストレージ取得",
+     "NetView 自動化サービスの呼び出し",
+     "コンソールへの書き込み",
+     "モジュールのロード"
+    ],
+    "answer": 1,
+    "explanation": "DSIAUTO は NetView の自動化サービスを呼び出し、メッセージ／MSU を自動化テーブルで処理させる。DSIBAM/DSIBAMKW と連携する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.147",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5199",
+   "title": "High-Priority Command Processors",
+   "naiyou_jp": "高優先順位コマンド・プロセッサー（High-Priority Command Processor）は通常のコマンド・プロセッサーと同じだが、タイプ H のコマンドが DEFAULTS／OVERRIDE コマンドの CMD 優先順位設定にかかわらず常に高優先順位でキューイングされる点が異なる。緊急性の高い運用コマンドを優先的に処理させる用途に用いる。",
+   "verify_steps": "1) NetView コンソールで `DEFAULTS` を実行し現在のコマンド優先順位設定を確認する。\n2) タイプ H として定義したコマンドを実行する。\n期待結果: タイプ H コマンドは CMD 優先順位設定にかかわらず高優先順位キューで処理され、低優先順位コマンドより先に実行される。",
+   "quiz": {
+    "q": "タイプ H（高優先順位）コマンド・プロセッサーの特徴はどれか。",
+    "choices": [
+     "CMD 優先順位設定に関係なく常に高優先順位でキューイングされる",
+     "必ず即時コマンドとして動く",
+     "ログにのみ出力する",
+     "自動化テーブルを経由する"
+    ],
+    "answer": 0,
+    "explanation": "高優先順位コマンド（タイプ H）は DEFAULTS/OVERRIDE の CMD 優先順位設定にかかわらず高優先順位でキューイングされる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.73",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5109",
+   "title": "Data Services Task (DST)",
+   "naiyou_jp": "データ・サービス・タスク（Data Services Task, DST）はオプション・タスク基盤の上に構築された NetView インターフェースの集合で、コマンド・メッセージ・出口の各機能を提供する。サブタスク処理モジュール DSIZDST、初期化出口、データ・サービス・コマンド・プロセッサー（DSCP）を備え、CNM データ・サービス（DSIZCSMS による CNMI 経由のデータ送受信）や VSAM ファシリティの管理を行う。NetView 起動時または START TASK コマンドで開始できる。",
+   "verify_steps": "1) NetView コンソールで `LIST STATUS=TASKS` を実行し、DST（例: BNJDSERV, DSILOG 等）の状態を確認する。\n2) 停止中の DST を `START TASK=タスク名` で開始する。\n期待結果: 対象 DST が Active となり、CNM または VSAM のデータ・サービスを提供する。",
+   "quiz": {
+    "q": "DST（データ・サービス・タスク）が管理できるファシリティはどれか。",
+    "choices": [
+     "端末画面のパネルのみ",
+     "VSAM または CNM（通信ネットワーク管理）ファシリティ",
+     "オペレーターの権限テーブルのみ",
+     "システム・コンソールのルート・コードのみ"
+    ],
+    "answer": 1,
+    "explanation": "DST はコマンド・メッセージ・出口機能を提供し、VSAM や CNM ファシリティを管理する。NetView 起動時または START TASK で開始できる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.96",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5320",
+   "title": "PING",
+   "naiyou_jp": "NetView の PING コマンドは、NCCF（Network Communications Control Facility）から発行して TCP/IP ホストへの到達性を確認する IP 管理機能である。指定したホスト名（または localhost）へパケットを送信し、宛先ホストにパケットが正常に到達したかを応答出力で確認できる。IP 管理機能の動作検証や接続障害の切り分けに用いる。",
+   "verify_steps": "1) NetView（NCCF）コンソールで `ping localhost` を実行する。\n2) 続いて `ping <到達可能なTCP/IPホスト名>` を実行する。\n期待結果: PING 出力に宛先ホストへパケットが正常到達した旨が表示され、応答が返る。到達不可ならタイムアウト等のエラーが表示される。",
+   "quiz": {
+    "q": "NetView の PING コマンドはどの環境から発行して何を確認するか。",
+    "choices": [
+     "VTAM から、SNA セッションの状態",
+     "NCCF から、TCP/IP ホストへの到達性",
+     "TSO から、データセットの存在",
+     "IPCS から、ダンプの整形"
+    ],
+    "answer": 1,
+    "explanation": "PING は NCCF から発行し、指定 TCP/IP ホストへの到達性（パケット到達の成否）を確認する。IP 管理機能の検証に用いる。"
+   },
+   "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.138",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5286",
+   "title": "Checking Connection Status (IPSTAT)",
+   "naiyou_jp": "IPSTAT は NetView の接続管理機能で、z/OS 環境へ接続するユーザーの問題を診断するためにコネクションの状態を確認する機能である。接続のエンドポイントの特定、接続タイプ（TN3270・FTP・SMTP 等）の識別、接続状態の把握などを行える。以前は AON タワーを必要としたが、現在は不要となっている。",
+   "verify_steps": "1) NetView コンソールで TCP/IP 接続管理を開始（必要に応じ `TCPCONN START`）する。\n2) 別ホストから telnet または ftp で NetView ホストへ接続後、IPSTAT 関連コマンドで接続状態を表示する。\n期待結果: 接続のエンドポイント、接続タイプ（TN3270/FTP/SMTP 等）、状態が表示され、問題のある接続を切り分けられる。",
+   "quiz": {
+    "q": "IPSTAT（接続状態確認）で識別できる情報に含まれるものはどれか。",
+    "choices": [
+     "接続タイプ（TN3270・FTP・SMTP 等）",
+     "アセンブラー・マクロの構文",
+     "ディスク・メンバーの内容",
+     "自動化テーブルのラベル"
+    ],
+    "answer": 0,
+    "explanation": "IPSTAT は接続エンドポイントや接続タイプ（TN3270・FTP・SMTP 等）、状態を識別して接続問題を診断する。AON は不要。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.106",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5308",
+   "title": "Managing Dynamic Virtual IP Addresses",
+   "naiyou_jp": "動的仮想 IP アドレス（DVIPA）の管理機能は、物理アダプターを単一障害点から除外してアプリケーション接続障害を排除するための重要技術を支援する。分散 DVIPA は接続要求の負荷をターゲット間に分散し、サーバー障害時のフェイルセーフを提供する。NetView は Discovery Manager により DVIPA 定義・状態（DVIPA）、DVIPA 接続（DVCONN）、VIPA ルートと分散接続ルーティング（DVROUT）、シスプレックス・ディストリビューター／ターゲット統計（DVTAD）を収集・管理する。",
+   "verify_steps": "1) NetView で Discovery Manager の DVIPA 関連収集（DVIPA/DVCONN/DVROUT/DVTAD）が有効か確認する。\n2) DVIPA リソースを表示するコマンド／GUI で定義・状態・分散接続を確認する。\n期待結果: DVIPA の定義・状態、分散 DVIPA のターゲットや接続ルーティング情報が表示され、フェイルオーバー構成を監視できる。",
+   "quiz": {
+    "q": "分散 DVIPA（distributed DVIPA）の主な利点はどれか。",
+    "choices": [
+     "パケットを暗号化する",
+     "接続要求の負荷を分散しサーバー障害時のフェイルセーフを提供する",
+     "アセンブラー・コードを生成する",
+     "ログを圧縮する"
+    ],
+    "answer": 1,
+    "explanation": "分散 DVIPA は接続要求の負荷をターゲット間に分散し、物理アダプターやサーバー障害を単一障害点から除外する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.31",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5292",
+   "title": "Controlling, Collecting, and Formatting Packet Trace Data",
+   "naiyou_jp": "NetView はパケット内容の検査による問題判別のため、IP パケットおよび OSA（Open Systems Adapter）パケット・トレース・データのリアルタイム取得と整形を提供する。ヘッダーとペイロードの両方を扱い、整形フォーマットは IPCS（Interactive Problem Control System）と同一のため新しい形式を学ぶ必要がない。フォーマッターが IP スタックに直接統合されており変換ミスマッチが生じない。整形前の未整形バイナリ形式も自動化ルーチン向けに利用できる。",
+   "verify_steps": "1) NetView でパケット・トレース収集を定義・開始する（パケット・トレース・データ収集の定義に従う）。\n2) トレース・データを整形表示するコマンドで内容を確認する。\n期待結果: IPCS と同一フォーマットでパケットのヘッダー・ペイロードが整形表示され、未整形バイナリ形式も取得できる。",
+   "quiz": {
+    "q": "NetView のパケット・トレース整形フォーマットの特徴はどれか。",
+    "choices": [
+     "独自の新フォーマットを学ぶ必要がある",
+     "IPCS と同一フォーマットで表示される",
+     "SNA NMVT 形式である",
+     "REXX 専用形式である"
+    ],
+    "answer": 1,
+    "explanation": "NetView のパケット・トレース整形は IPCS と同一フォーマットのため新形式を学ぶ必要がなく、未整形バイナリ形式も利用できる。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.77",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5313",
+   "title": "Master NetView Program and NetView XCF Groups",
+   "naiyou_jp": "シスプレックス管理において NetView は z/OS のクロス・システム・カップリング・ファシリティ（XCF）サービスを用いてリソース探索・管理データの転送・制御 NetView の実装を行う。制御役の NetView をマスター NetView プログラムと呼び、シスプレックス全体の完全なビューを持つ。マスターは NetView ユーザー・インターフェース、NetView 管理コンソール、Tivoli Enterprise Portal と対話する論理的なポイントとなる。複数の NetView インスタンスは同一 XCF グループに参加して状態を共有する。",
+   "verify_steps": "1) NetView コンソールで XCF グループの状態を表示するコマンドを実行し、参加 NetView インスタンスを確認する。\n2) どのインスタンスがマスターかを確認する。\n期待結果: XCF グループに複数 NetView が参加し、1つがマスターとしてシスプレックス全体ビューを保持していることが表示される。",
+   "quiz": {
+    "q": "シスプレックス管理でマスター NetView プログラムが持つものはどれか。",
+    "choices": [
+     "単一システムのみのビュー",
+     "シスプレックス全体の完全なビュー",
+     "アセンブラー・マクロ一覧",
+     "パケット・トレースのみ"
+    ],
+    "answer": 1,
+    "explanation": "マスター NetView は XCF を用いてシスプレックス全体の完全なビューを持ち、ユーザー・インターフェースや管理コンソールとの論理的対話点となる。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.31",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5300",
+   "title": "Handling SNMP Traps",
+   "naiyou_jp": "SNMP トラップの処理では、問題を抱えた管理対象エンティティから発行されたトラップを Event/Automation Service が受信し、アラート NMVT に変換する。変換されたアラート NMVT を NetView 自動化で処理し、ハードウェア・モニターでフィルタリング・ルーティングしたうえで自動化テーブルに渡してアクション（コマンド実行）を起こす。トラップを解析するには、その SNMP トラップが含む情報をある程度把握しておく必要がある。",
+   "verify_steps": "1) NetView で Event/Automation Service を起動し SNMP トラップ受信を有効にする。\n2) SNMP エージェントからトラップを発生させ、ハードウェア・モニターと自動化テーブルの処理を確認する。\n期待結果: トラップがアラート NMVT に変換され、ハードウェア・モニター経由で自動化テーブルに渡り、定義したアクション（コマンド実行）が起動する。",
+   "quiz": {
+    "q": "NetView で SNMP トラップを自動化処理する際、トラップは何に変換されるか。",
+    "choices": [
+     "REXX 変数",
+     "アラート NMVT",
+     "VSAM レコード",
+     "パケット・トレース"
+    ],
+    "answer": 1,
+    "explanation": "Event/Automation Service が SNMP トラップを受信しアラート NMVT に変換、自動化テーブルで処理してアクションを起こす。"
+   },
+   "source": "NetView_6.4_Customization_Guide.pdf p.158",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5318",
+   "title": "Monitoring Critical Ports",
+   "naiyou_jp": "重要ポートの監視機能は、定義したスタック配下の TCP/IP ポートが正しくリッスンしているかを監視する IP 管理機能である。TESTPORT コマンドで監視対象ホスト・ポート・監視間隔・タイムアウト（NetView の既定は300秒）を指定できる。制御ファイルに定義した IP リソース（IPPORT, IPTELNET, IPTN3270, TCP390, IPHOST 等）ごとに状態が表示される。IP ポート監視では、定義スタック配下の全ポートが NetView 起動時から常時監視され、個別の開始・停止はできない。",
+   "verify_steps": "1) NetView コンソールで `TESTPORT <host> <port>` を実行して特定ポートの接続性を試験する。\n2) 制御ファイルで定義した IPPORT リソースの監視状態を表示する。\n期待結果: 指定ポートへの接続試験結果が表示され、定義スタック配下のポートが常時監視状態であることを確認できる。タイムアウト既定は300秒。",
+   "quiz": {
+    "q": "NetView の IP ポート監視について正しいものはどれか。",
+    "choices": [
+     "ポートは個別に開始・停止できる",
+     "定義スタック配下の全ポートが起動時から常時監視され個別停止できない",
+     "監視には自動化テーブルが必須",
+     "UDP ポートのみ監視できる"
+    ],
+    "answer": 1,
+    "explanation": "IP ポート監視では定義スタック配下の全ポートが NetView 起動時から常時監視され、個別の開始・停止はできない。TESTPORT のタイムアウト既定は300秒。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.124",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5305",
+   "title": "IPLOG",
+   "naiyou_jp": "IPLOG は基本 IP サービスの一つで、リモート・ホスト上の syslog デーモンへメッセージを送信して処理させる NetView コマンドである。標準的な UNIX プロトコルに従い、NetView コマンド行から直接、または REXX プロシージャーやその他の自動化ルーチンの中から発行できる。IP リソース管理のための制御機能を提供する基本 IP サービスに含まれる。",
+   "verify_steps": "1) NetView コマンド行で `IPLOG` コマンドを実行し、リモート・ホストの syslog にメッセージを送信する。\n2) リモート・ホストの syslog を確認する。\n期待結果: 送信したメッセージがリモート・ホストの syslog デーモンによって受信・記録される。",
+   "quiz": {
+    "q": "IPLOG コマンドの機能はどれか。",
+    "choices": [
+     "ローカル VSAM への書き込み",
+     "リモート・ホストの syslog デーモンへメッセージを送信する",
+     "パケット・トレースの整形",
+     "SNA セッションの確立"
+    ],
+    "answer": 1,
+    "explanation": "IPLOG は基本 IP サービスの一つで、リモート・ホストの syslog デーモンへメッセージを送信する。コマンド行や REXX/自動化から発行できる。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.129",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5306",
+   "title": "IPXLATE() REXX Function",
+   "naiyou_jp": "IPXLATE() REXX 関数は、文字列が有効な表示形式（presentation form）の IP アドレスかどうかを検証する関数である。有効であれば、その IP アドレスを別の表示形式（例: IPv6 の圧縮 colon-hex 形式など）へ変換することもできる。C 言語向けの Cnmipxl マクロや PL/I 向けの CNMIPXLATE マクロと同様の IP アドレス変換機能を REXX から利用できるようにするものである。",
+   "verify_steps": "1) NetView の REXX プロシージャー内で `x = IPXLATE('192.168.0.1')` のように呼び出す。\n2) 戻り値を確認する。\n期待結果: 入力が有効な IP アドレス表示形式なら検証に成功し、要求した別表示形式への変換結果が返る。無効なら変換されない／エラーが返る。",
+   "quiz": {
+    "q": "IPXLATE() REXX 関数の用途はどれか。",
+    "choices": [
+     "VSAM レコードの読み取り",
+     "IP アドレス文字列の検証と別表示形式への変換",
+     "ECB のポスト",
+     "パネルの表示"
+    ],
+    "answer": 1,
+    "explanation": "IPXLATE() は IP アドレス表示形式の検証と、別の表示形式への変換を行う REXX 関数である。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.135",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5310",
+   "title": "Managing SNA over IP",
+   "naiyou_jp": "SNA over IP の管理は、Enterprise Extender 技術を用いて SNA トラフィックを IP ネットワーク上で伝送する機能を対象とする。Enterprise Extender は SNA のパス情報単位（PIU）を APPN ノード上で高性能ルーティング（HPR）により転送し、IP 上では UDP を用いて運ぶ。SNA のみのルーティングより複雑なため、問題判別にはセッション・パートナーへのルーティングに関する追加情報が必要になる場合がある。NetView はこの SNA over IP 経路を監視・管理する情報を提供する。",
+   "verify_steps": "1) NetView コンソールで Enterprise Extender 関連のセッション／ルーティング情報を表示するコマンドを実行する。\n2) SNA over IP のセッション・パートナーへの経路を確認する。\n期待結果: SNA PIU が IP（UDP）上の Enterprise Extender 経路で伝送されている状態が表示され、問題判別に必要な経路情報を得られる。",
+   "quiz": {
+    "q": "Enterprise Extender が SNA トラフィックを IP 上で運ぶ際に使用するトランスポート・プロトコルはどれか。",
+    "choices": [
+     "TCP",
+     "UDP",
+     "SCTP",
+     "ICMP"
+    ],
+    "answer": 1,
+    "explanation": "Enterprise Extender は SNA PIU を APPN/HPR でルーティングし、IP 上では UDP を用いて伝送する。"
+   },
+   "source": "NetView_6.4_IP_Management.pdf p.128",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5183",
+   "title": "DSIZCSMS: CNM Data Services",
+   "naiyou_jp": "DSIZCSMS はデータ・サービス・マクロで、通信ネットワーク管理インターフェース（CNMI）を介して CNM データを要求・送信する。呼び出し元のネットワーク・サービス要求／応答 RU をフォワード RU に埋め込み、アクセス・メソッドの CNMI 経由で SSCP に渡す。SSCP は埋め込まれた RU を指定された宛先へ送信する。MVT アドレス可能性は不要である。データ・サービス・タスク（DST）配下で使用される。",
+   "verify_steps": "1) NetView コンソールで `LIST STATUS=TASKS` により CNM 用 DST（例: BNJDSERV）が Active か確認する。\n2) DSIZCSMS を使用してネットワーク管理 RU を CNMI 経由で送信するコマンドを実行する。\n期待結果: RU がフォワード RU として SSCP に渡され、CNMI 経由で指定宛先へ送信される。応答が DST に戻る。",
+   "quiz": {
+    "q": "DSIZCSMS が CNM データを送受信するインターフェースはどれか。",
+    "choices": [
+     "TCP/IP ソケット",
+     "CNMI（通信ネットワーク管理インターフェース）",
+     "DSIPSS プレゼンテーション",
+     "VSAM KSDS"
+    ],
+    "answer": 1,
+    "explanation": "DSIZCSMS は RU をフォワード RU に埋め込み、CNMI 経由で SSCP に渡して宛先へ送信する CNM データ・サービス・マクロである。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.232",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5150",
+   "title": "DSIMBS: Message Build Services",
+   "naiyou_jp": "DSIMBS はメッセージ・ビルド・サービス・マクロで、DSIMDS で定義されたメッセージ定義モジュールを参照して表示用メッセージを組み立てる。インストレーション出口・コマンド・プロセッサー・サブタスクでユーザー定義メッセージを生成・表示する際に用いられ、組み立てたメッセージは DSIPSS や DSIWCS 等で表示する。DSIMDS（定義）と対で使用する。",
+   "verify_steps": "1) DSIMDS でメッセージ定義モジュールを作成・アセンブル・リンクし、DSIMBS で当該メッセージを組み立てるモジュールを稼働させる。\n2) メッセージを表示するコマンドを実行する。\n期待結果: 定義済みメッセージ番号に対応するテキストが（変数差し込みを含め）正しく組み立てられ表示される。",
+   "quiz": {
+    "q": "DSIMBS が参照するメッセージ定義を作成するマクロはどれか。",
+    "choices": [
+     "DSIPSS",
+     "DSIMDS",
+     "DSIKVS",
+     "DSIPRS"
+    ],
+    "answer": 1,
+    "explanation": "DSIMBS は DSIMDS で定義したメッセージ定義モジュールを参照してメッセージを組み立てる。両者は対で使用する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.186",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5151",
+   "title": "DSIMDS: Message Definition Services",
+   "naiyou_jp": "DSIMDS はメッセージ定義サービス・マクロで、DSIMBS マクロが使用するメッセージ定義モジュールを生成する。生成したモジュールは出口・コマンド・プロセッサー・サブタスクでメッセージを表示するために用いる。コーディング後はアセンブルして NetView ロード・ライブラリーにリンク・エディットする必要がある。DSIMDS にはリターン・コードがなく、DSIMVT アドレス可能性も不要である。モジュール生成には3つの形式（開始文・本体・終了）を用いる。",
+   "verify_steps": "1) DSIMDS の3形式（開始・メッセージ本体・終了）でメッセージ定義モジュールを記述する。\n2) アセンブルして NetView ロード・ライブラリーにリンク・エディットし、DSIMBS から参照させる。\n期待結果: メッセージ定義モジュールが正しく生成・配置され、DSIMBS で組み立てたメッセージが表示される。",
+   "quiz": {
+    "q": "DSIMDS について正しいものはどれか。",
+    "choices": [
+     "リターン・コードを返し DSIMVT アドレス可能性が必要",
+     "リターン・コードがなく DSIMVT アドレス可能性も不要",
+     "ディスクへ直接書き込む",
+     "ECB を待機する"
+    ],
+    "answer": 1,
+    "explanation": "DSIMDS はメッセージ定義モジュールを生成するマクロで、リターン・コードがなく DSIMVT アドレス可能性も不要。3形式で記述しリンク・エディットする。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.189",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5168",
+   "title": "DSISCT: System Command Table",
+   "naiyou_jp": "DSISCT はシステム・コマンド表（System Command Table）をマッピングするマクロである。システム・コマンド表には、CMDDEF 定義文で NetView に定義された各コマンドに対応するシステム・コマンド・エントリー（DSISCE）が含まれる。表自体にユーザー・フィールドはないが、ダミー制御ブロックを得るために組み込む必要がある。各 SCE はコマンド動詞（SCEVERB）やコマンド・プロセッサーのエントリー・ポイント・アドレス（SCERCADR）を保持する。",
+   "verify_steps": "1) NetView コンソールで `LIST コマンド名` を実行し、CMDDEF で定義されたコマンドの定義状態を確認する。\n2) DSICES を使用してコマンド動詞の SCE を取得するモジュールを稼働させる。\n期待結果: 定義済みコマンドの SCE（動詞・エントリー・ポイント）が取得でき、コマンドが正しくディスパッチされる。",
+   "quiz": {
+    "q": "システム・コマンド表（DSISCT）の各エントリー（DSISCE）に保持される情報はどれか。",
+    "choices": [
+     "IP アドレス",
+     "コマンド動詞とコマンド・プロセッサーのエントリー・ポイント・アドレス",
+     "パケット・トレース・データ",
+     "VSAM レコード長"
+    ],
+    "answer": 1,
+    "explanation": "DSISCT は CMDDEF で定義された各コマンドの SCE（DSISCE）を含み、SCE はコマンド動詞（SCEVERB）やエントリー・ポイント（SCERCADR）を保持する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.135",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5124",
+   "title": "DSIC2T: Code Point Translation Service Reference",
+   "naiyou_jp": "DSIC2T はコード・ポイント変換サービス（Code Point Translation Service）を参照するマクロである。NetView Bridge を問題管理データベースと併用し、NetView アラート受信時に問題レコードを開く場合、アラート内の数値コード・ポイントを読みやすいテキストへ変換する必要がある。このコード・ポイント変換サービスがその変換を実行する。変換後のテキストの移動先アドレスを指定して呼び出す。",
+   "verify_steps": "1) DSIC2T を使用するモジュール（アラート処理）を稼働させ、コード・ポイントを含むアラートを発生させる。\n2) 変換結果のテキストを確認する。\n期待結果: アラート内の数値コード・ポイントが対応する読みやすいテキストに変換され、指定領域へ格納される。",
+   "quiz": {
+    "q": "DSIC2T（コード・ポイント変換サービス）が変換するものはどれか。",
+    "choices": [
+     "IP アドレスを別形式へ",
+     "アラート内の数値コード・ポイントを読みやすいテキストへ",
+     "16進文字列を2進へ",
+     "コマンド動詞を SCE へ"
+    ],
+    "answer": 1,
+    "explanation": "DSIC2T はアラート内の数値コード・ポイントを読みやすいテキストへ変換する。NetView Bridge による問題レコード生成等で用いる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.155",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5128",
+   "title": "DSICVTHE: Convert to Hexadecimal",
+   "naiyou_jp": "DSICVTHE は変換サービス・マクロで、データを16進数表現へ、または16進数の EBCDIC 表現を実際の16進値へ変換する。TRANSLATE オプション（Y/N、既定 N）で変換実行の有無を制御する。ダンプ表示やデバッグ目的でバイナリ・データを可読な16進文字列に整形する際などに用いる。",
+   "verify_steps": "1) DSICVTHE を使用するモジュールを稼働させ、バイナリ・データを16進表現へ変換する処理を実行する。\n2) 出力を確認する。\n期待結果: 入力データが16進文字列表現に変換されて出力される。TRANSLATE=N（既定）では変換は行われない。",
+   "quiz": {
+    "q": "DSICVTHE の TRANSLATE オプションの既定値はどれか。",
+    "choices": [
+     "Y（変換する）",
+     "N（変換しない）",
+     "H（半変換）",
+     "A（自動）"
+    ],
+    "answer": 1,
+    "explanation": "DSICVTHE の TRANSLATE オプションは既定が N（変換しない）で、Y を指定すると16進変換を実行する。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.154",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5122",
+   "title": "DSIBAM: Build Automation Message",
+   "naiyou_jp": "DSIBAM はアラート自動化メッセージを構築するマクロで、サンプル CNMS4284 が生成するアラート自動化メッセージに含めるキーワード=データ・トークンを指定する。DOMID（ドメイン ID 付加）、HIER（階層）、MSGID、CONTROL、DATALIN などのオペランドを持つ。DSIBAM は CNMS4284 からのみ発行可能である。関連する DSIBAMKW はキーワード=データ・トークンへデータを移すサブルーチン SR$TK の呼び出し規約を確立する。",
+   "verify_steps": "1) サンプル CNMS4284 をベースに DSIBAM を用いてアラート自動化メッセージを生成するモジュールを稼働させる。\n2) 生成されたアラート自動化メッセージが自動化テーブルで処理されることを確認する。\n期待結果: 指定したキーワード=データ・トークンを含むアラート自動化メッセージが生成され、自動化テーブルでアクションが起動する。",
+   "quiz": {
+    "q": "DSIBAM マクロを発行できるのはどのサンプルからか。",
+    "choices": [
+     "任意のコマンド・プロセッサー",
+     "CNMS4284 からのみ",
+     "DSIEX01 出口からのみ",
+     "REXX プロシージャーから"
+    ],
+    "answer": 1,
+    "explanation": "DSIBAM はアラート自動化メッセージのキーワード=データ・トークンを指定するマクロで、サンプル CNMS4284 からのみ発行できる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.148",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5155",
+   "title": "DSINOR: Resource Object Data Manager",
+   "naiyou_jp": "DSINOR は RODM（Resource Object Data Manager）へアクセスするためのマクロである。NetView アドレス空間からは DSIQTSK タスクを介して RODM データ・キャッシュを管理する。DSIQTSK は RODM アドレス空間との通信専用の NetView オプション・タスク（OPT）で、CNMSTYLE メンバーに定義し START TASK コマンドで開始する。コマンド・プロセッサーで DSINOR を使うアプリケーションでは、RODM へのアクセス・レベルを制御する権限チェック可能なキーワードを設けるべきである。",
+   "verify_steps": "1) NetView コンソールで `LIST STATUS=TASKS` により DSIQTSK が Active か確認し、停止中なら `START TASK=DSIQTSK` で開始する。\n2) DSINOR を使用するコマンドで RODM データにアクセスする。\n期待結果: DSIQTSK 経由で RODM に接続でき、DSINOR による照会・更新が成功する。",
+   "quiz": {
+    "q": "NetView アドレス空間から RODM データ・キャッシュを管理する専用タスクはどれか。",
+    "choices": [
+     "DSILOG",
+     "DSIQTSK",
+     "DSIZDST",
+     "DSIWTOMT"
+    ],
+    "answer": 1,
+    "explanation": "RODM へは DSINOR でアクセスし、NetView アドレス空間からは RODM 通信専用の OPT タスク DSIQTSK を介して管理する（CNMSTYLE 定義・START TASK 起動）。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.200",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5141",
+   "title": "DSIGETDS: Data Queue Manipulation Service",
+   "naiyou_jp": "DSIGETDS はデータ・キュー操作サービス・マクロで、初期データ・キュー（TVBAIIFR が指す）にある単一行・複数行メッセージや MSU（管理サービス単位）を取り出す。自動化やデータ・サービス処理で、タスクに渡されたメッセージ／MSU を取得して解析する際に用いる。サンプル AGETDS（CNMS4294）では DSIGETDS で TVBAIIFR が指す MSU を取り出す。",
+   "verify_steps": "1) DSIGETDS を使用するモジュール（例: サンプル AGETDS/CNMS4294）を稼働させ、MSU／メッセージを含むイベントを発生させる。\n2) 取り出された MSU の内容を確認する。\n期待結果: 初期データ・キュー（TVBAIIFR）から MSU や単一行／複数行メッセージが取得され、後続処理で解析できる。",
+   "quiz": {
+    "q": "DSIGETDS が初期データ・キューを参照するために用いるフィールドはどれか。",
+    "choices": [
+     "TVBMVT",
+     "TVBAIIFR",
+     "CWBADATD",
+     "HDRTDISP"
+    ],
+    "answer": 1,
+    "explanation": "DSIGETDS は TVBAIIFR が指す初期データ・キューから単一行・複数行メッセージや MSU を取り出す。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.167",
+   "rag_hit": true
+  },
+  {
+   "row_id": "5127",
+   "title": "DSICES: Command Entry Services",
+   "naiyou_jp": "DSICES はコマンド・エントリー・サービス・マクロで、指定したコマンド動詞またはコマンド・プロセッサーに対応するシステム・コマンド・エントリー（DSISCE）を返す。返された SCE のアドレスは DSIPAS（パラメーター別名サービス）の入力にもなる。コマンドの動的な照会やディスパッチ処理で、動詞から対応するコマンド・プロセッサー情報を得るために用いる。",
+   "verify_steps": "1) DSICES を使用するモジュールを稼働させ、既知のコマンド動詞に対する SCE 取得を行う。\n2) 取得した SCE の動詞・エントリー・ポイントを確認する。\n期待結果: 指定動詞に対応する DSISCE が返り、コマンド・プロセッサーのエントリー・ポイント等を参照できる。未定義動詞では見つからない旨が返る。",
+   "quiz": {
+    "q": "DSICES マクロが返すものはどれか。",
+    "choices": [
+     "IP アドレス",
+     "コマンド動詞に対応するシステム・コマンド・エントリー（DSISCE）",
+     "16進変換結果",
+     "RODM オブジェクト"
+    ],
+    "answer": 1,
+    "explanation": "DSICES は指定したコマンド動詞／コマンド・プロセッサーに対応する DSISCE を返す。その SCE アドレスは DSIPAS の入力にもなる。"
+   },
+   "source": "NetView_6.4_Programming_Assembler.pdf p.152",
+   "rag_hit": true
+  }
+ ]
+}

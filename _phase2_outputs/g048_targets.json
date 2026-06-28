@@ -1,0 +1,707 @@
+[
+ {
+  "row_id": "9716",
+  "title": "10. PPT as the MVS or TAF OPCTL Operator",
+  "page": "492"
+ },
+ {
+  "row_id": "9717",
+  "title": "11. OST or NNT as MVS or TAF OPCTL Operator",
+  "page": "492"
+ },
+ {
+  "row_id": "9720",
+  "title": "14. DSIPSS for PPT or NetView Authorized-Receiver Messages",
+  "page": "493"
+ },
+ {
+  "row_id": "9721",
+  "title": "15. OST or NNT Message Queue Processing",
+  "page": "494"
+ },
+ {
+  "row_id": "9722",
+  "title": "16. NetView Console Output or SYSOP Message Queue Processing",
+  "page": "494"
+ },
+ {
+  "row_id": "9723",
+  "title": "17. OST or NNT DSIPSS",
+  "page": "495"
+ },
+ {
+  "row_id": "9724",
+  "title": "2. Cross-Domain Commands (OST to NNT)",
+  "page": "488"
+ },
+ {
+  "row_id": "9728",
+  "title": "6. Replies to NetView WTOR",
+  "page": "489"
+ },
+ {
+  "row_id": "9731",
+  "title": "9. Cross-Domain Messages and Commands (NNT to OST)",
+  "page": "491"
+ },
+ {
+  "row_id": "9734",
+  "title": "Accessing RODM from the NetView Program",
+  "page": "374"
+ },
+ {
+  "row_id": "9737",
+  "title": "Activating Autotasks",
+  "page": "133"
+ },
+ {
+  "row_id": "9738",
+  "title": "Activating the MVS Command Exit",
+  "page": "508"
+ },
+ {
+  "row_id": "9739",
+  "title": "Additional Command-List Capabilities for MVS",
+  "page": "127"
+ },
+ {
+  "row_id": "9742",
+  "title": "Advantages of Using EMCS Consoles with the NetView Program",
+  "page": "89"
+ },
+ {
+  "row_id": "9749",
+  "title": "Associating Autotasks with Multiple Console Support Consoles",
+  "page": "134"
+ },
+ {
+  "row_id": "9751",
+  "title": "Automating Close to the Source",
+  "page": "341"
+ },
+ {
+  "row_id": "9752",
+  "title": "Automating Initialization, Monitoring, Recovery, and Shutdown",
+  "page": "332"
+ },
+ {
+  "row_id": "9753",
+  "title": "Automating Messages and Management Services Units (MSUs)",
+  "page": "313"
+ },
+ {
+  "row_id": "9754",
+  "title": "Automating Other Data by Generating Messages",
+  "page": "327"
+ },
+ {
+  "row_id": "9755",
+  "title": "Automating Other Systems, Devices, and Networks",
+  "page": "369"
+ },
+ {
+  "row_id": "9758",
+  "title": "Automation in an MVS Sysplex",
+  "page": "95"
+ },
+ {
+  "row_id": "9764",
+  "title": "Automation Using the Terminal Access Facility",
+  "page": "391"
+ },
+ {
+  "row_id": "9765",
+  "title": "Automation with the Resource Object Data Manager",
+  "page": "99"
+ },
+ {
+  "row_id": "9774",
+  "title": "Benefits of NetView Command Facility Screens",
+  "page": "309"
+ },
+ {
+  "row_id": "9776",
+  "title": "Changing Route Codes and Descriptor Codes",
+  "page": "139"
+ },
+ {
+  "row_id": "9777",
+  "title": "Changing the Exclusion or Inclusion List",
+  "page": "510"
+ },
+ {
+  "row_id": "9778",
+  "title": "Changing, Dropping, and Listing Focal Points",
+  "page": "364"
+ },
+ {
+  "row_id": "9779",
+  "title": "Choosing a Configuration",
+  "page": "363"
+ },
+ {
+  "row_id": "9780",
+  "title": "Choosing a Forwarding Method",
+  "page": "362"
+ },
+ {
+  "row_id": "9781",
+  "title": "Choosing a Task",
+  "page": "131"
+ },
+ {
+  "row_id": "9783",
+  "title": "CMDTEXT Exclusion List and CMDTEXT Inclusion List",
+  "page": "507"
+ },
+ {
+  "row_id": "9784",
+  "title": "Coding a Command Revision Table",
+  "page": "146"
+ },
+ {
+  "row_id": "9785",
+  "title": "Coding a Message Revision Table",
+  "page": "138"
+ },
+ {
+  "row_id": "9787",
+  "title": "Command Exclusion List and Command Inclusion List",
+  "page": "506"
+ },
+ {
+  "row_id": "9789",
+  "title": "Command Lists and Command Processors",
+  "page": "123"
+ },
+ {
+  "row_id": "9794",
+  "title": "Commands Excluded by NetView Command Exit",
+  "page": "510"
+ },
+ {
+  "row_id": "9795",
+  "title": "Commands in a JES3 Environment",
+  "page": "441"
+ },
+ {
+  "row_id": "9796",
+  "title": "Commands Issued from a Console",
+  "page": "469"
+ },
+ {
+  "row_id": "9798",
+  "title": "Console Exclusion List and Console Inclusion List",
+  "page": "505"
+ },
+ {
+  "row_id": "9802",
+  "title": "Creating a Project Plan",
+  "page": "70"
+ },
+ {
+  "row_id": "9803",
+  "title": "Creating Full-Screen Panels",
+  "page": "337"
+ },
+ {
+  "row_id": "9804",
+  "title": "Cross-Reference Listing of Command Lists and Samples",
+  "page": "544"
+ },
+ {
+  "row_id": "9805",
+  "title": "Customizing the Advanced Automation Sample Set",
+  "page": "540"
+ },
+ {
+  "row_id": "9807",
+  "title": "Deactivating Autotasks",
+  "page": "134"
+ },
+ {
+  "row_id": "9808",
+  "title": "Deactivating the MVS Command Exit",
+  "page": "509"
+ },
+ {
+  "row_id": "9809",
+  "title": "Deciding Which Messages and MSUs to Automate",
+  "page": "313"
+ },
+ {
+  "row_id": "9810",
+  "title": "Deciding Which Method to Use to Write Automation Table Statements",
+  "page": "313"
+ },
+ {
+  "row_id": "9811",
+  "title": "Defining an Automation Project",
+  "page": "69"
+ },
+ {
+  "row_id": "9812",
+  "title": "Defining and Activating Autotasks",
+  "page": "299"
+ },
+ {
+  "row_id": "9813",
+  "title": "Defining Autotasks",
+  "page": "133"
+ },
+ {
+  "row_id": "9814",
+  "title": "Defining Autotasks Consistently",
+  "page": "341"
+ },
+ {
+  "row_id": "9815",
+  "title": "Defining Responsibilities",
+  "page": "341"
+ },
+ {
+  "row_id": "9818",
+  "title": "Design Guidelines for Automation Tables",
+  "page": "238"
+ },
+ {
+  "row_id": "9820",
+  "title": "Detailed NetView Message and Command Flows",
+  "page": "479"
+ },
+ {
+  "row_id": "9821",
+  "title": "Developing a Portable Automation Table",
+  "page": "342"
+ },
+ {
+  "row_id": "9823",
+  "title": "Developing Goals and Objectives for Automation",
+  "page": "73"
+ },
+ {
+  "row_id": "9824",
+  "title": "Differences between NetView and Multiple Console Support Consoles",
+  "page": "307"
+ },
+ {
+  "row_id": "9827",
+  "title": "Displaying the MVS Command Management Setting",
+  "page": "508"
+ },
+ {
+  "row_id": "9830",
+  "title": "Enabling MVS Command Management in the NetView Environment",
+  "page": "501"
+ },
+ {
+  "row_id": "9831",
+  "title": "Enabling the MVS Command Exit on MVS",
+  "page": "502"
+ },
+ {
+  "row_id": "9834",
+  "title": "Establishing Communication between the NetView System and the Operating System",
+  "page": "293"
+ },
+ {
+  "row_id": "9837",
+  "title": "Example of a Message Revision Table",
+  "page": "142"
+ },
+ {
+  "row_id": "9838",
+  "title": "Example of an Automation-Table Listing",
+  "page": "243"
+ },
+ {
+  "row_id": "9839",
+  "title": "Example of SNMP trap automation",
+  "page": "452"
+ },
+ {
+  "row_id": "9840",
+  "title": "Examples of Using NetView Program Interfaces",
+  "page": "64"
+ },
+ {
+  "row_id": "9846",
+  "title": "Focal Point Support Unique to the NetView Program",
+  "page": "359"
+ },
+ {
+  "row_id": "9847",
+  "title": "Full-Screen Functions and the Terminal Access Facility",
+  "page": "362"
+ },
+ {
+  "row_id": "9848",
+  "title": "General Processing of CONSOLE and COMMAND Inclusion and Exclusion Lists",
+  "page": "510"
+ },
+ {
+  "row_id": "9852",
+  "title": "How to Consolidate Consoles",
+  "page": "307"
+ },
+ {
+  "row_id": "9855",
+  "title": "Identifying Events with the Automation Table",
+  "page": "476"
+ },
+ {
+  "row_id": "9856",
+  "title": "Identifying the Goals of Your Organization",
+  "page": "70"
+ },
+ {
+  "row_id": "9859",
+  "title": "Implementation",
+  "page": "458"
+ },
+ {
+  "row_id": "9861",
+  "title": "Implementing an Automation Project",
+  "page": "85"
+ },
+ {
+  "row_id": "9862",
+  "title": "Implementing Automation Incrementally",
+  "page": "427"
+ },
+ {
+  "row_id": "9866",
+  "title": "Installation Exit XITCI for BNJDSERV",
+  "page": "289"
+ },
+ {
+  "row_id": "9868",
+  "title": "Installation Exits DSIEX16 and DSIEX16B",
+  "page": "289"
+ },
+ {
+  "row_id": "9869",
+  "title": "Installing and Testing Before Distribution",
+  "page": "342"
+ },
+ {
+  "row_id": "9870",
+  "title": "Installing Multiple NetView Programs",
+  "page": "407"
+ },
+ {
+  "row_id": "9873",
+  "title": "Introducing the Resource Object Data Manager",
+  "page": "99"
+ },
+ {
+  "row_id": "9874",
+  "title": "Issuing an MVS Command from a NetView Operator ID",
+  "page": "474"
+ },
+ {
+  "row_id": "9875",
+  "title": "Issuing Commands from RODM Methods",
+  "page": "373"
+ },
+ {
+  "row_id": "9877",
+  "title": "LIST TIMER and PURGE TIMER",
+  "page": "132"
+ },
+ {
+  "row_id": "9878",
+  "title": "Loading Command Lists into Storage",
+  "page": "127"
+ },
+ {
+  "row_id": "9879",
+  "title": "Locating and Renaming the Sample Set for Automation",
+  "page": "515"
+ },
+ {
+  "row_id": "9886",
+  "title": "Managing Multiple Automation Tables",
+  "page": "254"
+ },
+ {
+  "row_id": "9887",
+  "title": "Managing Multiple RODM Data Caches",
+  "page": "371"
+ },
+ {
+  "row_id": "9888",
+  "title": "Message and Command Flow in VTAM",
+  "page": "475"
+ },
+ {
+  "row_id": "9890",
+  "title": "Message Flow in a JES3 Complex",
+  "page": "439"
+ },
+ {
+  "row_id": "9897",
+  "title": "Messages and Commands through VTAM Interfaces",
+  "page": "471"
+ },
+ {
+  "row_id": "9898",
+  "title": "Messages Issued as WTOs to Be Displayed or Processed by the NetView Program",
+  "page": "470"
+ },
+ {
+  "row_id": "9899",
+  "title": "Modifying Command Procedures",
+  "page": "312"
+ },
+ {
+  "row_id": "9900",
+  "title": "Monitoring Alerts with the Hardware Monitor",
+  "page": "336"
+ },
+ {
+  "row_id": "9901",
+  "title": "Monitoring Alerts with the NetView Management Console",
+  "page": "337"
+ },
+ {
+  "row_id": "9903",
+  "title": "Multiple Console Support Operator Use of Command Lists",
+  "page": "473"
+ },
+ {
+  "row_id": "9906",
+  "title": "MVS Command Management Processing on the NetView Program",
+  "page": "512"
+ },
+ {
+  "row_id": "9907",
+  "title": "MVS Commands Issued by the NetView Program",
+  "page": "470"
+ },
+ {
+  "row_id": "9908",
+  "title": "MVS Message and Command Processing",
+  "page": "467"
+ },
+ {
+  "row_id": "9911",
+  "title": "MVS System Log and NetView Network Log Records",
+  "page": "437"
+ },
+ {
+  "row_id": "9913",
+  "title": "NetView Commands Issued as Subsystem Commands from an MVS Console",
+  "page": "471"
+ },
+ {
+  "row_id": "9914",
+  "title": "NetView Commands Issued with MODIFY (F) Command from an MVS Console",
+  "page": "471"
+ },
+ {
+  "row_id": "9915",
+  "title": "NetView Commands Used for TAF",
+  "page": "394"
+ },
+ {
+  "row_id": "9922",
+  "title": "NetView Program Hardware-Monitor Data and MSU Routing",
+  "page": "114"
+ },
+ {
+  "row_id": "9923",
+  "title": "NetView Program Information Routing for Automation",
+  "page": "101"
+ },
+ {
+  "row_id": "9930",
+  "title": "Operating-System Automation Facilities and Interactions with the NetView Program",
+  "page": "58"
+ },
+ {
+  "row_id": "9934",
+  "title": "Overview",
+  "page": "391"
+ },
+ {
+  "row_id": "9935",
+  "title": "Overview of Automation Products",
+  "page": "53"
+ },
+ {
+  "row_id": "9936",
+  "title": "Overview of Timer Commands",
+  "page": "129"
+ },
+ {
+  "row_id": "9937",
+  "title": "Planning Charts",
+  "page": "460"
+ },
+ {
+  "row_id": "9938",
+  "title": "Planning for Automation in a Sysplex",
+  "page": "95"
+ },
+ {
+  "row_id": "9939",
+  "title": "Planning for Automation in Selected Environments",
+  "page": "87"
+ },
+ {
+  "row_id": "9940",
+  "title": "Planning for Extended Multiple Console Support Consoles",
+  "page": "90"
+ },
+ {
+  "row_id": "9941",
+  "title": "Planning for Using RODM in Automation",
+  "page": "100"
+ },
+ {
+  "row_id": "9942",
+  "title": "Policy File Management",
+  "page": "270"
+ },
+ {
+  "row_id": "9945",
+  "title": "Preparing to Use the Advanced Automation Sample Set",
+  "page": "536"
+ },
+ {
+  "row_id": "9954",
+  "title": "Propagating Automation to Other NetView Systems",
+  "page": "341"
+ },
+ {
+  "row_id": "9958",
+  "title": "Resource Controls, Task Priorities, and Multitasking",
+  "page": "417"
+ },
+ {
+  "row_id": "9960",
+  "title": "Restrictions",
+  "page": "511"
+ },
+ {
+  "row_id": "9962",
+  "title": "Running Multiple NetView Programs Per System",
+  "page": "407"
+ },
+ {
+  "row_id": "9965",
+  "title": "Saving and Restoring Timer Commands",
+  "page": "131"
+ },
+ {
+  "row_id": "9969",
+  "title": "Sending Email or Alphanumeric Pages",
+  "page": "338"
+ },
+ {
+  "row_id": "9970",
+  "title": "Setting Up Communication between the NetView Program and MVS",
+  "page": "517"
+ },
+ {
+  "row_id": "9971",
+  "title": "Setting Up TAF",
+  "page": "392"
+ },
+ {
+  "row_id": "9976",
+  "title": "Solicited and Unsolicited System MVS Extended Console Messages for an OST, NNT, or Autotask",
+  "page": "496"
+ },
+ {
+  "row_id": "9977",
+  "title": "Solicited and Unsolicited System MVS Extended Console Messages for the PPT",
+  "page": "496"
+ },
+ {
+  "row_id": "9980",
+  "title": "Starting MVS Command Management",
+  "page": "508"
+ },
+ {
+  "row_id": "9981",
+  "title": "Starting MVS Command Processing",
+  "page": "508"
+ },
+ {
+  "row_id": "9982",
+  "title": "Starting the Exclusion or Inclusion List",
+  "page": "510"
+ },
+ {
+  "row_id": "9983",
+  "title": "Stopping MVS Command Management",
+  "page": "509"
+ },
+ {
+  "row_id": "9984",
+  "title": "Stopping MVS Command Management and Deleting the CNMCAUaa Member",
+  "page": "509"
+ },
+ {
+  "row_id": "9985",
+  "title": "Stopping MVS Command Management and Keeping the CNMCAUaa Member",
+  "page": "509"
+ },
+ {
+  "row_id": "9986",
+  "title": "Stopping the MVS Command Exit from Being Invoked",
+  "page": "509"
+ },
+ {
+  "row_id": "9988",
+  "title": "Suppressing additional command echoes and IEE295I messages",
+  "page": "503"
+ },
+ {
+  "row_id": "9989",
+  "title": "Suppressing Messages and Filtering Alerts",
+  "page": "301"
+ },
+ {
+  "row_id": "9995",
+  "title": "Testing MVS Command Management",
+  "page": "510"
+ },
+ {
+  "row_id": "9996",
+  "title": "The NetView Program in a JES3 Environment",
+  "page": "442"
+ },
+ {
+  "row_id": "9997",
+  "title": "The Sample Set for Automation",
+  "page": "515"
+ },
+ {
+  "row_id": "9998",
+  "title": "The SNMP trap automation task",
+  "page": "445"
+ },
+ {
+  "row_id": "10003",
+  "title": "Understanding AON Automation and Recovery",
+  "page": "397"
+ },
+ {
+  "row_id": "10005",
+  "title": "Understanding Automation Notification Logging in the Hardware Monitor",
+  "page": "399"
+ },
+ {
+  "row_id": "10011",
+  "title": "Usage Reports for Command Revision Tables",
+  "page": "156"
+ },
+ {
+  "row_id": "10012",
+  "title": "Usage Reports for Message Revision Tables",
+  "page": "143"
+ }
+]

@@ -1,0 +1,579 @@
+{
+  "page": "g063",
+  "product": "IBM GDPS 4.7",
+  "total_rows": 92,
+  "target_rows": 30,
+  "fixed_count": 30,
+  "rows": [
+    {
+      "row_id": "12670",
+      "title": "Adding storage capacity",
+      "naiyou_jp": "zGM環境に新しいボリュームペアを追加してストレージ容量を拡張する際は、容量だけでなく追加負荷を受け止められるかを事前に確認する必要があります。具体的には、SDMと一次ストレージ間の帯域が十分か、SDM LPARに追加負荷を処理するリソースがあるか、ワークロードの再分散が必要か、スイッチやルータのポート数が足りるかを評価します。zGMを運用するジョブには追加するボリュームペアを反映する修正が必要で、初期コピー中のSDMセッションへの追加タイミングも重要な検討事項となります。",
+      "verify_steps": "1. コンソールから既存セッションの状態を確認: F ANTAS001,XQUERY STATESAVE\n2. 追加対象ボリュームの一次/補助の対応を確認したうえでペアを追加: F ANTAS001,XADDPAIR SESS1 VOLUME(PRI001 AUX001)\n3. 初期コピーの進捗を監視: F ANTAS001,XQUERY SESS1 VOLUME\n   → 追加ボリュームが DUP(duplex) になるまで COPY 状態が表示される\n4. 追加後にSDMとの帯域・LPARリソース不足が出ていないか性能モニターで確認する",
+      "quiz": {
+        "q": "zGM環境にストレージ容量（ボリュームペア）を追加する際に事前確認すべき項目として、適切でないものはどれか。",
+        "choices": [
+          "SDMと一次ストレージシステム間の帯域が十分か",
+          "SDM LPARに追加負荷を処理するリソースがあるか",
+          "ワークロードの再分散が必要か、スイッチ/ルータのポートが足りるか",
+          "一次サイトのアプリケーションを停止してから追加する必要があるか"
+        ],
+        "answer": 3,
+        "explanation": "zGMは非同期コピーであり、ボリュームペアの追加にあたってアプリケーションを停止する必要はありません。確認すべきは帯域、SDM LPARのリソース、ワークロードの再分散、スイッチ/ルータのポート数などです。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.64",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12671",
+      "title": "An introduction to z/OS Global Mirror",
+      "naiyou_jp": "z/OS Global Mirror（zGM、旧称Extended Remote Copy/XRC）は、アプリケーションサーバが存在する一次サイトのストレージから遠隔の補助（二次）サイトへデータを複製する非同期ミラーリング技術です。補助サイト上の全ボリュームは直近の整合時点まで一貫性を保ち、整合グループ単位で更新が適用されます。pacing（ペーシング）機能が一次サイトの書き込みI/Oを抑制してコピープロセスの過負荷を防ぐため、RPOが無制限に拡大することを防止しつつアプリケーション性能への影響を緩和します。zGMは無制限の距離で実装でき、DRソリューションであると同時にデータ移行にも利用できます。",
+      "verify_steps": "1. 一次ストレージでzGM(XRC)フィーチャーが有効か確認: dscli> lskey IBM.2107-75XXXXX\n   → z/OS Global Mirror が Activated と表示される\n2. SDMセッションを開始: F ANTAS001,XSTART SESS1 ...\n3. セッション概要を確認: F ANTAS001,XQUERY SESS1\n   → 補助サイトの整合時点(consistency time)が表示され、一次に追従していることを確認",
+      "quiz": {
+        "q": "z/OS Global Mirror（zGM/XRC）の特徴として正しいものはどれか。",
+        "choices": [
+          "同期ミラーリングであり常にRPO=0を保証する",
+          "非同期ミラーリングで無制限の距離に対応し、pacingでRPOの無制限拡大を防ぐ",
+          "一次サイトと補助サイトを必ず同一ビルディング内に置く必要がある",
+          "DR専用でデータ移行には利用できない"
+        ],
+        "answer": 1,
+        "explanation": "zGMは非同期コピーで無制限の距離をサポートし、write pacingにより一次の書き込みを抑制してRPOの無制限な拡大を防ぎます。RPO=0は同期コピー（Metro Mirror）のみが達成でき、zGMはDRとデータ移行の両方に利用できます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.16",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12674",
+      "title": "Checklists for z/OS Global Mirror",
+      "naiyou_jp": "付録Aのチェックリストは、zGM環境の構築・テスト・運用に向けて検証すべき事項を体系的にまとめたものです。XRCテストの設計では、SDMと一次ディスクシステム間の接続性と帯域の検証、XRCコマンドおよびデータセットアクセスのセキュリティ制御の検証、機能テスト（コマンドのテスト）、XRC管理手順の策定とテスト、自動化手順のテストなどを実施するためのテストスケジュールを設計します。これらのチェック項目を網羅することで、本番投入前に環境の妥当性を確認できます。",
+      "verify_steps": "1. SDMと一次ディスク間の接続性を確認: D M=DEV(xxxx) で一次デバイスのパス状態を確認\n2. XRCコマンドのセキュリティ制御を検証: RACFでANTRQST/XRCコマンドプロファイルの認可を確認\n3. 機能テストとしてセッションを開始/停止: F ANTAS001,XSTART ... → F ANTAS001,XEND ...\n4. 各チェックリスト項目（接続性・セキュリティ・機能・管理手順・自動化）の合否を記録する",
+      "quiz": {
+        "q": "付録AのXRCテストチェックリストで設計すべきテストスケジュールに含まれない項目はどれか。",
+        "choices": [
+          "SDMと一次ディスクシステム間の接続性と帯域の検証",
+          "XRCコマンドとデータセットアクセスのセキュリティ制御の検証",
+          "機能テスト（コマンドのテスト）と管理・自動化手順のテスト",
+          "アプリケーションのソースコードの静的解析"
+        ],
+        "answer": 3,
+        "explanation": "チェックリストは接続性・帯域、セキュリティ制御、機能テスト、管理手順、自動化手順のテストを対象とします。アプリケーションのソースコード静的解析はzGMチェックリストの範囲外です。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.107",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12678",
+      "title": "Considerations about z/OS Global Mirror planning",
+      "naiyou_jp": "zGMのプランニングでは、可能であればzGMボリュームペアをアプリケーション種別ごとにグループ化し、異なるアプリケーションとその一次ボリュームを個別のSDMセッションに分散させることが有効です。大規模あるいは特に活動の激しいアプリケーションでは、複数のSDMセッションを作成する必要が生じる場合があります。小容量構成でも例外的に高いI/O率を持ち、読み書き比が1:1（あるいは書き込みが読み込みを上回る）といったインストールも存在するため、こうした特性を考慮した設計が求められます。",
+      "verify_steps": "1. 既存ボリュームのI/O特性（読み書き比、書き込みMBps）をRMFで採取\n2. アプリケーション種別ごとにボリュームをグループ化する設計を作成\n3. アプリケーション別にSDMセッションを定義: F ANTAS001,XADDPAIR SESS_APP1 ...\n4. セッションごとの負荷を確認: F ANTAS001,XQUERY SESS_APP1 → 各セッションが偏りなく動作しているか確認",
+      "quiz": {
+        "q": "zGMプランニングにおけるSDMセッションの設計指針として適切なものはどれか。",
+        "choices": [
+          "全ボリュームを必ず単一のSDMセッションにまとめる",
+          "可能であればアプリケーション種別ごとにボリュームをグループ化し個別のSDMセッションに分散させる",
+          "I/O率や読み書き比は設計に影響しないため考慮しない",
+          "書き込みが読み込みを上回る構成は存在しないため想定不要"
+        ],
+        "answer": 1,
+        "explanation": "zGMではアプリケーション種別ごとにボリュームペアをグループ化し個別のSDMセッションに分散させることが有効です。大規模・高負荷アプリでは複数セッションが必要になることもあり、I/O率や読み書き比も設計上重要な考慮点です。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.35",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12679",
+      "title": "Considerations for zSeries/Virtual Machine",
+      "naiyou_jp": "SDMは独立したz/OS LPAR上、または同一もしくは別のz/VMシステム上で稼働するz/OSゲストのいずれでも実行できます。z/OSゲストシステムをSDMに使用する場合、対象ボリュームはホストのz/VMシステムに対して「unsupported」として定義する必要があります。古いz/VMシステム上で稼働するアプリケーションの書き込みはタイムスタンプが付与されませんが、z/VM V6.1以降ではタイムスタンプがサポートされます。なお、z/OSおよびLinuxオペレーティングシステムはz/VMのゲストとして稼働する場合でもタイムスタンプ付き書き込みを行います。",
+      "verify_steps": "1. z/VMのバージョンを確認し、タイムスタンプ書き込みサポート（V6.1以降）を確認\n2. z/OSゲストでSDMを稼働させる場合、対象ボリュームがホストz/VMにunsupportedとして定義されているか確認\n3. SDMセッションを開始しタイムスタンプの一貫性を確認: F ANTAS001,XQUERY SESS1\n   → 整合時点(consistency time)が正しく進んでいることを確認",
+      "quiz": {
+        "q": "SDMをz/VM上のz/OSゲストで稼働させる場合の正しい考慮事項はどれか。",
+        "choices": [
+          "対象ボリュームはホストz/VMにsupportedとして定義する",
+          "対象ボリュームはホストz/VMにunsupportedとして定義する必要がある",
+          "z/VMのバージョンに関わらず常にタイムスタンプが付与される",
+          "z/OSゲストではSDMを実行できない"
+        ],
+        "answer": 1,
+        "explanation": "z/OSゲストをSDMに使う場合、対象ボリュームはホストz/VMにunsupportedとして定義する必要があります。タイムスタンプはz/VM V6.1以降でサポートされ、z/OS/Linuxはゲストでもタイムスタンプ書き込みを行います。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.39",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12680",
+      "title": "Creating an SDM parmlib data set",
+      "naiyou_jp": "SDMの全パラメータはSYS1.PARMLIBのANTXIN00メンバーで指定できますが、より柔軟に管理するためにhlq.XCOPY.PARMLIBデータセットを別途作成することが推奨されます。作成手順の詳細は『z/OS DFSMS Advanced Copy Services（SC35-0428）』に記載されています。parmlibメンバーにはSDMのストレージ使用量を制御するSTORAGEパラメータ（例: BuffersPerStorageControl）などを設定し、推奨値を適用してSDMのリアルストレージ要件を管理します。",
+      "verify_steps": "1. SYS1.PARMLIBのANTXIN00メンバー、または hlq.XCOPY.PARMLIB を編集しSTORAGEパラメータを設定\n2. SDMを起動してparmlibが読み込まれることを確認: F ANTAS001,XSTART SESS1 ...\n3. 現在のパラメータ設定を確認: F ANTAS001,XQUERY SESS1 ENVIRONMENT\n   → ANTXINxx で設定した値が反映されていることを確認",
+      "quiz": {
+        "q": "SDMのparmlibデータセットの作成に関する推奨事項として正しいものはどれか。",
+        "choices": [
+          "パラメータはSYS1.PARMLIBのANTXIN00メンバーでしか指定できない",
+          "柔軟性向上のため hlq.XCOPY.PARMLIB データセットを作成することが推奨される",
+          "SDMパラメータはparmlibでは設定できずコンソールコマンドのみで指定する",
+          "STORAGEパラメータは設定してはならない"
+        ],
+        "answer": 1,
+        "explanation": "全パラメータはANTXIN00で指定可能ですが、柔軟性のため hlq.XCOPY.PARMLIB を作成することが推奨されます。STORAGE（BuffersPerStorageControl等）でSDMのストレージ使用量を制御します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.90",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12684",
+      "title": "Determining what data should be copied",
+      "naiyou_jp": "DRのために何を複製すべきかを決定するプロセスでは、すべてのボリュームが同じ重要度ではない点を踏まえ、どのボリュームが他より重要かを理解することが有効です。最も逼迫しやすい資源は一次サイトと補助サイト間の回線帯域であることが多く、業務上の重要度に応じて複製対象を取捨選択します。書き込みI/Oのスキュー（偏り）や、業務クリティカル度の低いデータを含むボリュームの存在も考慮事項であり、回線帯域が一時的に書き込み量を下回る場合には、重要データとSDMセッションを保護するためにwrite pacingの利用を検討します。",
+      "verify_steps": "1. 各ボリュームの業務重要度と書き込みI/O量をRMFレポートで分類\n2. 重要度の高いボリュームのみをzGMセッションに追加: F ANTAS001,XADDPAIR SESS1 VOLUME(...)\n3. 帯域が不足する重要ボリュームにwrite pacingを適用、性能優先ボリュームはDONOTBLOCKで除外\n4. F ANTAS001,XQUERY SESS1 VOLUME でペアリング状況を確認",
+      "quiz": {
+        "q": "DRで複製対象データを決定する際に最も逼迫しやすい資源として挙げられているものはどれか。",
+        "choices": [
+          "一次サイトと補助サイト間の回線帯域",
+          "コンソールの画面解像度",
+          "TSOユーザーのログオン数",
+          "JCLの行数"
+        ],
+        "answer": 0,
+        "explanation": "最も逼迫しやすい資源は一次サイトと補助サイト間の回線帯域であることが多く、業務重要度に応じて複製対象を選定し、必要に応じてwrite pacingで重要データとSDMセッションを保護します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.42",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12698",
+      "title": "Infrastructure data sets placement considerations for zGM",
+      "naiyou_jp": "zGMのインフラデータセット（ジャーナル、コントロール、ステートの各データセット）はzGM環境の性能にとってクリティカルであり、特にジャーナルが最も慎重な配置検討を要します。実績として、ジャーナルデータセットを多数のランクに分散し、補助ターゲットとランクを共有させる方式がうまく機能しています。コントロールデータセットとステートデータセットを補助ターゲットとともに配置する方式も良好な結果を示しています。配置後はすべてのボリュームの性能を監視し、環境の健全性を高く維持することが重要です。",
+      "verify_steps": "1. ジャーナル/コントロール/ステートデータセットの配置（ランク、LSS）を確認\n2. SDMセッションを稼働させ各データセットの性能を採取: RMFでボリューム応答時間を監視\n3. F ANTAS001,XQUERY SESS1 ENVIRONMENT でデータセット割り当てを確認\n4. ジャーナルが多数ランクに分散され補助ターゲットと適切に共有されているか性能で評価",
+      "quiz": {
+        "q": "zGMのインフラデータセット配置で最も慎重な検討を要するものはどれか。",
+        "choices": [
+          "ジャーナルデータセット",
+          "SYS1.LINKLIB",
+          "SMFデータセット",
+          "ページデータセット"
+        ],
+        "answer": 0,
+        "explanation": "ジャーナル、コントロール、ステートの各データセットのうち、ジャーナルが最も慎重な配置検討を要します。多数のランクへ分散し補助ターゲットとランクを共有する方式が実績上有効です。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.57",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12703",
+      "title": "Management with GDPS in zGM",
+      "naiyou_jp": "GDPSはIBM Global Servicesが提供する業界最高水準の可用性ソリューションであり、複数サイトにまたがってアプリケーション可用性を向上させます。具体的には、システム・ディスク・テープサブシステムの監視、Parallel Sysplexの運用タスクの自動化、システムレベルやサイトレベルでの計画的/非計画的アクティビティを単一の制御点から実行する機能を提供します。GDPS/XRCはレプリケーション管理と本番環境の自動回復を担い、SDM LPARの管理（シャットダウン、IPL、自動回復）や本番データ・システムの回復サイトへの切り替えをサポートします。",
+      "verify_steps": "1. GDPS制御システムからzGM環境のステータスを確認（GDPSパネルまたはNetView）\n2. SDM LPARの状態をGDPSが監視していることを確認\n3. 計画切替スクリプトの定義を確認し、テスト用に dry-run を実行\n4. F ANTAS001,XQUERY SESS1 でレプリケーション状態がGDPS表示と一致することを確認",
+      "quiz": {
+        "q": "GDPS/XRC（GDPS in zGM）が提供する機能として適切でないものはどれか。",
+        "choices": [
+          "SDM LPARの管理（シャットダウン、IPL、自動回復）",
+          "本番データ・システムの回復サイトへの切り替え",
+          "システム・ディスク・テープサブシステムの監視と運用タスクの自動化",
+          "アプリケーションのソースコードのコンパイル"
+        ],
+        "answer": 3,
+        "explanation": "GDPS/XRCはレプリケーション管理、SDM LPARの管理、回復サイトへの切り替え、監視・自動化を提供します。アプリケーションのソースコードのコンパイルはGDPSの機能ではありません。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.30",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12705",
+      "title": "Maximizing data currency to maintain peak performance",
+      "naiyou_jp": "データカレンシー（一次サイトと補助サイトの書き込み時間差、すなわちRPOの基礎となる指標）を最大化するには、RPOサービスレベルを達成しつつ本番への許容できない影響を避ける必要があります。記録セット生成率がzGMのオフロード率を長期間超過すると、特定の一次ボリュームの残余カウント（residual count）が増え続け、しきい値に達するとwrite pacingが注入されて新規の本番更新が抑制されます。write pacing注入の根本原因を特定するには、zGMオフロード率に影響する要因を調査することが重要です。",
+      "verify_steps": "1. 各ボリュームの残余カウント(residual count)とデータエクスポージャー時間を監視: F ANTAS001,XQUERY SESS1\n2. 記録セット生成率とzGMオフロード率の差を性能モニターで採取\n3. write pacingが頻繁に注入されている場合、SDMリーダー/帯域/補助書き込みのボトルネックを調査\n4. チューニング後に整合時点(consistency time)が一次に追従しRPOが目標内に収まることを確認",
+      "quiz": {
+        "q": "データカレンシー（RPO）が悪化しwrite pacingが注入される直接の契機は何か。",
+        "choices": [
+          "残余カウントがしきい値に達したとき",
+          "コンソールにログオンしたとき",
+          "JCLをサブミットしたとき",
+          "RMFを起動したとき"
+        ],
+        "answer": 0,
+        "explanation": "記録セット生成率がzGMオフロード率を長期間超過すると残余カウントが増え続け、しきい値に達した時点でwrite pacingが注入され新規の本番更新が抑制されます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.72",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12707",
+      "title": "Maximizing write to auxiliary efficiency",
+      "naiyou_jp": "補助ボリュームへの書き込み効率を最大化する目的は、すべての更新をできるだけ速やかに補助ボリュームへ適用してSDMのメモリバッファを解放し、次の記録セット群をキャッシュのサイドファイルから取得できるようにすることです。理想的には、補助ボリュームへの書き込みスループットが、レプリケーションを通じた到着レートのピークと同等以上であることが望まれます。MaxBytesTransferred値は補助ボリュームへ整合グループデータを書き込むチャネルプログラムの最大サイズを制御し、PavVolumes値は単一ボリュームへの整合グループ書き込みに複数の並列I/Oストリーム（最大6本）を使用させます。",
+      "verify_steps": "1. 補助書き込み関連パラメータを確認: F ANTAS001,XQUERY SESS1 ENVIRONMENT\n   → MaxBytesTransferred, PavVolumes の現行値を確認\n2. parmlib(ANTXINxx)でMaxBytesTransferredを大きめに、PavVolumesを有効化\n3. SDMを再起動しパラメータ反映を確認: F ANTAS001,XSTART ...\n4. 補助書き込みスループットが到着ピークレート以上か性能モニターで確認",
+      "quiz": {
+        "q": "補助ボリュームへの書き込み効率を最大化する主目的はどれか。",
+        "choices": [
+          "更新を速やかに補助に適用しSDMメモリバッファを解放して次の記録セットを取得可能にする",
+          "一次ボリュームの容量を増やす",
+          "コンソールメッセージを減らす",
+          "ジャーナルデータセットを削除する"
+        ],
+        "answer": 0,
+        "explanation": "目的は更新をできるだけ速く補助ボリュームへ適用しSDMメモリバッファを解放することです。MaxBytesTransferredやPavVolumesといったパラメータで補助書き込みスループットを最適化します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.83",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12708",
+      "title": "Maximizing write to journal data set efficiency",
+      "naiyou_jp": "zGMは補助ボリュームへ書き込む前に、すべてのコピーデータをジャーナルデータセットにジャーナリングします。zGMの性能への影響を避けるため、効率的なジャーナリングプロセスを維持する必要があります。ジャーナリング性能を最大化するには、ジャーナルデータセットをどこにどう割り当てるかを慎重に決定します。従来の割り当て指針は、ジャーナルデータセットのボリュームと補助ボリュームを別のLSSに分離する、ジャーナルデータセットをストライプデータセットとして定義する、並列性のためにできるだけ多くのディスクボリュームに分散する、というものでしたが、ストレージプールストライピングやEasy Tierの恩恵を受けられる新しいインストールでは必ずしも厳密には要求されなくなっています。",
+      "verify_steps": "1. ジャーナルデータセットの割り当て（LSS、ストライピング、ボリューム分散）を確認\n2. SDMを稼働させジャーナル書き込みの応答時間をRMFで採取\n3. F ANTAS001,XQUERY SESS1 ENVIRONMENT でジャーナル関連の設定を確認\n4. ジャーナルがボトルネックになっていないか（補助書き込み待ちが発生していないか）性能で確認",
+      "quiz": {
+        "q": "zGMのジャーナル書き込み効率に関する記述として正しいものはどれか。",
+        "choices": [
+          "zGMは補助ボリューム書き込み後にジャーナリングする",
+          "zGMは補助ボリュームへ書き込む前に全コピーデータをジャーナルにジャーナリングする",
+          "ジャーナリングは性能に無関係なので最適化は不要",
+          "ジャーナルデータセットは必ず一次ボリュームと同一LSSに置く"
+        ],
+        "answer": 1,
+        "explanation": "zGMは補助ボリュームへ適用する前にすべてのコピーデータをジャーナルにジャーナリングします。効率的なジャーナリングは性能維持に重要で、配置（LSS分離、ストライピング、分散）を慎重に決定します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.84",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12710",
+      "title": "Monitoring z/OS Global Mirror",
+      "naiyou_jp": "zGM環境にはなんらかの監視を確立する必要があります。RMFやIBM Tivoli Storage Productivity Center for Replication（TSPC）などの性能監視製品はある程度役立ちますが、これらはzGMに特化した監視を行いません。各種XQueryコマンドを定期発行することでzGMの監視を実装することも可能ですが、それは実用的ではありません。リアルタイム監視はクライアントから性能不良の苦情があった際に現状を把握するのに重要で、長期監視は通常状態を把握して異常を検出するために必要です。専用ツールとしてはXRC Performance Monitorが利用できます。",
+      "verify_steps": "1. 現状の性能を即時確認: F ANTAS001,XQUERY SESS1\n2. RMFまたはTSPCで一次/補助ストレージの長期性能を採取\n3. XRC Performance Monitorのデータ収集を有効化（約10秒ごとに性能サンプルを生成）\n4. ヒストリーモニターで過去の性能傾向を確認し、通常状態からの逸脱を検出",
+      "quiz": {
+        "q": "zGM環境の監視に関する記述として正しいものはどれか。",
+        "choices": [
+          "RMFとTSPCだけでzGM固有の監視が完結する",
+          "XQueryコマンドの定期発行のみで十分実用的である",
+          "RMF/TSPCはzGM特化監視ではなく、専用のXRC Performance Monitorの利用が有効である",
+          "監視はまったく不要である"
+        ],
+        "answer": 2,
+        "explanation": "RMFやTSPCは役立ちますがzGMに特化した監視は行わず、XQuery定期発行のみは実用的ではありません。専用ツールのXRC Performance Monitorを使い、リアルタイムと長期の両方を監視することが有効です。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.63",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12713",
+      "title": "Parameters that control pacing of application writes",
+      "naiyou_jp": "アプリケーションの書き込みペーシングを制御するパラメータは、RPOを維持しSDMのレジリエンシーを高めるために一次システムの書き込み活動を抑制します。記録セットカウント上限に達した場合や最大キャッシュ使用率に達した場合、アプリケーションI/Oを長時間遅延させるよりもXRCを一時停止する方が望ましく、SuspendOnLongBusy値でこの一時停止機能を有効化することが強く推奨されます。もう一つの遅延機構は従来手法のdevice blockingで、残余カウントがしきい値に達するとデバイスを1秒間not readyにします。最高性能が必要なアプリケーションはXADDPAIRのDONOTBLOCKパラメータでペーシングから除外できます。",
+      "verify_steps": "1. 現行のペーシングパラメータを確認: F ANTAS001,XQUERY SESS1 ENVIRONMENT\n   → SuspendOnLongBusy, DvcBlockingThreshold 等を確認\n2. parmlib(ANTXINxx)でSuspendOnLongBusyを有効化\n3. 性能優先ボリュームをペーシング除外: F ANTAS001,XADDPAIR SESS1 VOLUME(...) DONOTBLOCK\n4. ピーク時にwrite pacing/suspendが想定どおり動作するか監視",
+      "quiz": {
+        "q": "記録セットカウント上限や最大キャッシュ使用率に達した場合に推奨される動作はどれか。",
+        "choices": [
+          "アプリケーションI/Oを無期限に遅延させ続ける",
+          "SuspendOnLongBusyによりXRCを一時停止する方が望ましい",
+          "SDMを即座に削除する",
+          "一次ボリュームをフォーマットする"
+        ],
+        "answer": 1,
+        "explanation": "アプリケーションI/Oを長時間遅延させるより、SuspendOnLongBusyでXRCを一時停止する方が望ましく強く推奨されます。最高性能が必要なボリュームはDONOTBLOCKでペーシングから除外できます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.89",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12715",
+      "title": "Parameters that optimize consistency group writes to auxiliary",
+      "naiyou_jp": "整合グループの補助ボリュームへの書き込みを最適化するパラメータの目的は、すべての更新をできるだけ速やかに補助ボリュームへ適用してSDMメモリバッファを解放し、次の記録セット群をキャッシュサイドファイルから取得できるようにすることです。理想的には補助への書き込みスループットが到着ピークレート以上であることが望まれます。MaxBytesTransferred値は補助ボリュームへ整合グループデータを書き込むチャネルプログラムの最大サイズを制御し、最新ディスクのフルストライド書き込み能力を活用するため大きな値を用います。PavVolumes値はSDMが単一ボリュームへ整合グループを書き込む際に最大6本の並列I/Oストリームを使用できるようにし、ボリュームサイズが大きくHyperPAVを使う環境で特に重要です。",
+      "verify_steps": "1. 整合グループ書き込み関連パラメータを確認: F ANTAS001,XQUERY SESS1 ENVIRONMENT\n   → MaxBytesTransferred, PavVolumes の現行値を確認\n2. parmlibでMaxBytesTransferredを大きめに設定しPavVolumesを有効化\n3. HyperPAVエイリアスが補助ボリュームに割り当てられているか確認\n4. SDM再起動後、整合グループの補助書き込みスループットを性能モニターで確認",
+      "quiz": {
+        "q": "単一ボリュームへの整合グループ書き込みに複数（最大6本）の並列I/Oストリームを使用させるパラメータはどれか。",
+        "choices": [
+          "PavVolumes",
+          "SuspendOnLongBusy",
+          "DONOTBLOCK",
+          "MonitorWakeup"
+        ],
+        "answer": 0,
+        "explanation": "PavVolumes値はSDMが単一ボリュームへ整合グループを書き込む際に最大6本の並列I/Oストリームを使用できるようにします。MaxBytesTransferredはチャネルプログラムの最大サイズを制御します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.87",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12722",
+      "title": "Planning for configuration and workload changes",
+      "naiyou_jp": "構成やワークロードの変化、ワークロードの再分配、特にn1（MBps）の数値が変化する場合に備えた計画が重要です。データムーバ間の持続的なワークロード不均衡を防ぐため、高活動ボリューム・リーダー・LSSをデータムーバ間で均衡させ、個々のLPARで利用可能なリソース（プロセッサとメモリ）が許す最大数のデータムーバを稼働させ、LPAR上でクラスタリングを有効化してクラスタ間でデータムーバを均衡させ、CPCリソースをデータムーバLPAR間で均衡させるといった指針があります。容量計画では一般的な目安としてn3 = 1.5 × n2 から始めるとよいとされています。",
+      "verify_steps": "1. 各データムーバの負荷（高活動ボリューム、リーダー、LSS）を性能モニターで採取\n2. 不均衡があればボリューム/リーダーを再配置: F ANTAS001,XADDPAIR / XDELPAIR で再分散\n3. LPARあたりのデータムーバ数とCPC/メモリリソースを確認しクラスタリングを有効化\n4. ワークロード変更後にデータムーバ間の均衡が保たれているか確認",
+      "quiz": {
+        "q": "データムーバ間の持続的なワークロード不均衡を防ぐ指針として適切でないものはどれか。",
+        "choices": [
+          "高活動ボリューム・リーダー・LSSをデータムーバ間で均衡させる",
+          "利用可能なリソースが許す最大数のデータムーバを稼働させる",
+          "LPARでクラスタリングを有効化しクラスタ間でデータムーバを均衡させる",
+          "すべてのワークロードを単一のデータムーバに集中させる"
+        ],
+        "answer": 3,
+        "explanation": "不均衡を防ぐにはワークロードをデータムーバ間で均衡させる必要があります。単一データムーバへの集中はかえって不均衡とボトルネックを招くため不適切です。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.52",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12723",
+      "title": "Planning to protect critical data and applications",
+      "naiyou_jp": "重要データとアプリケーションを保護するための計画では、ボリュームごとに業務クリティカル度が異なる点と、ボリューム間の書き込みI/Oスキュー（偏り）を考慮します。一次ストレージに到着する書き込みデータ量が、補助サイトへ複製できる帯域を一時的に上回る期間が生じうる場合、重要データとSDMセッションを保護するためにwrite pacingの利用を検討します。これにより回線帯域が逼迫する状況でも、業務上重要なボリュームの整合性とRPOを優先的に維持できます。",
+      "verify_steps": "1. ボリュームごとの業務クリティカル度と書き込みI/Oスキューを分類\n2. 重要ボリュームにwrite pacingを適用し帯域逼迫時の保護を設定\n3. 性能優先かつ非クリティカルなボリュームは慎重にDONOTBLOCKで除外\n4. ピーク時にwrite pacingが重要データとSDMセッションを保護しているか監視: F ANTAS001,XQUERY SESS1",
+      "quiz": {
+        "q": "一次への書き込み量が補助サイトへの複製帯域を一時的に上回りうる場合、重要データを保護するために検討すべきものはどれか。",
+        "choices": [
+          "write pacingの利用",
+          "一次ボリュームの削除",
+          "コンソールの再起動",
+          "全ボリュームのDONOTBLOCK指定"
+        ],
+        "answer": 0,
+        "explanation": "書き込み量が複製帯域を一時的に上回る場合、重要データとSDMセッションを保護するためにwrite pacingの利用を検討します。全ボリュームのDONOTBLOCKはRPOの無制限拡大を招くため不適切です。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.51",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12729",
+      "title": "Processor requirement considerations for SDM",
+      "naiyou_jp": "SDMは整合グループの作成と、記録セット読み込み・ジャーナル書き込み・補助ボリューム書き込みのI/O処理にMIPS（毎秒百万命令）を必要とします。SDM LPARのプロセッサMIPSが不足すると整合グループ作成の速度やジャーナル・補助への書き込み速度が遅延します。プロセッサ容量計画の基本指針は、一次書き込み更新100件あたり5〜6 MIPS、システム使用率約30%程度です。良い実践として、SDM（または結合SDM）を1つ以上の専用LPARで稼働させ、各SDM LPARに十分なリアルストレージを割り当て、SDM LPARのCPUリソースを制約・制限しないこと、SDMが高いPR/SM重みを持つことが挙げられます。",
+      "verify_steps": "1. SDM LPARのMIPSとプロセッサ使用率をRMFで採取\n2. 一次書き込み更新レートを確認し 5〜6 MIPS/100更新 の目安と照合\n3. SDM LPARが専用で、CPUリソースが制限されていないか、PR/SM重みが高いか確認\n4. リアルストレージ割り当てが十分か確認し、不足時はparmlibのSTORAGEパラメータを調整",
+      "quiz": {
+        "q": "SDMのプロセッサ容量計画の基本指針として正しいものはどれか。",
+        "choices": [
+          "一次書き込み更新100件あたり5〜6 MIPS",
+          "一次書き込み更新100件あたり0.1 MIPS",
+          "MIPSはSDMの性能に無関係",
+          "SDMは必ず共有LPARでのみ稼働させる"
+        ],
+        "answer": 0,
+        "explanation": "プロセッサ容量計画の基本指針は一次書き込み更新100件あたり5〜6 MIPSです。MIPS不足は整合グループ作成や書き込みを遅延させ、SDMは専用LPARで稼働させCPUを制限しないことが推奨されます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.47",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12730",
+      "title": "Recovery site definitions",
+      "naiyou_jp": "回復サイトの定義では、回復用のOSconfigを用意する必要があります。このOSconfigには補助デバイスまたは三次デバイス（それ以外は含めない）をオペレーティングシステムに対して定義し、SDMのOSconfigには定義されていない本番専用デバイスも併せて定義します。回復サイトでは補助ボリューム上で本番システムをIPLできるよう構成を整え、災害発生時や計画切替時にzGMの補助データから本番環境を立ち上げられるようにします。",
+      "verify_steps": "1. 回復用OSconfigに補助/三次デバイスのみが定義されているか確認\n2. 本番専用デバイスが回復OSconfigに含まれているか確認\n3. 回復テストとして補助ボリュームからのIPL構成を検証（XEND→RECOVER後）\n4. F ANTAS001,XQUERY SESS1 で補助ボリュームの整合性を確認したうえで回復手順を確認",
+      "quiz": {
+        "q": "回復サイトのOSconfig定義に関する記述として正しいものはどれか。",
+        "choices": [
+          "一次デバイスのみを定義する",
+          "補助または三次デバイス（それ以外は含めない）を定義し、本番専用デバイスも含める",
+          "デバイス定義は不要である",
+          "SDMのOSconfigと完全に同一にする"
+        ],
+        "answer": 1,
+        "explanation": "回復用OSconfigには補助または三次デバイス（それ以外は含めない）を定義し、SDMのOSconfigに無い本番専用デバイスも併せて定義します。これにより補助ボリュームから本番を回復できます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.49",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12731",
+      "title": "Recovery site in a production sysplex",
+      "naiyou_jp": "回復サイトが本番のシスプレックス内にある場合、あるいは一次サイトと回復サイトの間に標準的なFICON距離の接続がある場合の考慮事項です。このような構成では、回復サイトが本番シスプレックスの一部として機能し、補助または三次デバイス上で回復システムをIPLできるよう、適切なOSconfigとデバイス定義を準備します。本番シスプレックスと回復サイトの距離・接続形態に応じて、回復時のデバイス構成とシステム立ち上げ手順を計画します。",
+      "verify_steps": "1. 回復サイトと本番シスプレックスの接続（FICON距離）を確認\n2. 回復用OSconfigに補助/三次デバイスが定義されているか確認\n3. 回復システムのIPL構成（シスプレックス内回復）を検証\n4. F ANTAS001,XQUERY SESS1 で補助ボリュームの整合性を確認し回復手順をリハーサル",
+      "quiz": {
+        "q": "「Recovery site in a production sysplex」が想定する構成として正しいものはどれか。",
+        "choices": [
+          "回復サイトが本番シスプレックス内にある、または標準FICON距離の接続がある構成",
+          "回復サイトが存在しない構成",
+          "一次ボリュームのみで回復する構成",
+          "ミラーリングを行わない構成"
+        ],
+        "answer": 0,
+        "explanation": "回復サイトが本番シスプレックス内にある、または一次と回復の間に標準FICON距離の接続がある構成を想定し、補助/三次デバイス上で回復システムをIPLできるよう構成を準備します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.50",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12732",
+      "title": "Requirements for z/OS Global Mirror",
+      "naiyou_jp": "z/OS Global Mirrorの要件には一次ディスクストレージシステムの要件が含まれます。SDMの対向となるのは一次ストレージシステムのファームウェアであり、この一次ストレージシステムはzGMフィーチャーが活性化されている必要があります。フィーチャーが活性化されているかは、DS CLIのlskeyコマンドで確認できます。zGMはIBM DS8000ストレージシステム向けに提供される非同期リモートコピーソリューションであり、ハードウェアとソフトウェアを組み合わせて構成されます。",
+      "verify_steps": "1. 一次ストレージでzGM(XRC)フィーチャーが活性化されているか確認: dscli> lskey IBM.2107-75XXXXX\n   → z/OS Global Mirror が Activated と表示されることを確認\n2. SDM側ソフトウェア（DFSMSdfp）が前提を満たすか確認\n3. SDMセッションを開始してフィーチャーが機能するか確認: F ANTAS001,XSTART SESS1 ...",
+      "quiz": {
+        "q": "一次ストレージシステムでzGM(XRC)フィーチャーが活性化されているか確認する方法はどれか。",
+        "choices": [
+          "DS CLIのlskeyコマンドで確認する",
+          "コンソールでD Tコマンドを発行する",
+          "JCLをサブミットする",
+          "RMFを再起動する"
+        ],
+        "answer": 0,
+        "explanation": "一次ストレージシステムにはzGMフィーチャーが活性化されている必要があり、DS CLIのlskeyコマンドで活性化状態を確認できます。zGMはDS8000向けの非同期リモートコピーソリューションです。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.36",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12735",
+      "title": "Scenarios for installation deployment and upgrade",
+      "naiyou_jp": "この章ではzGMを初めて導入する場合、あるいは一部のコンポーネントをアップグレードする場合に考慮すべき重要な点を扱います。プランニング（第2章）の完了を前提としています。zGM（旧称XRC）は長年z/OSで提供されてきたDFSMSdfpの一部であり、その導入に追加のz/OSソフトウェアは不要です。初期導入前に実施・確認すべき重要なアクションには、新機能を初めて使う際の通常の準備が含まれます。なお、FlashCopyターゲットが利用できない場合、DRテストを行うにはzGMミラーリングを終了（XENDコマンド）し、RECOVERコマンドでジャーナルから最新更新を適用して補助ボリュームのVOLSERを対応する一次ボリュームに割り当てます。",
+      "verify_steps": "1. プランニング（第2章）が完了していることを確認\n2. zGMがDFSMSdfpの一部として利用可能で追加ソフトが不要であることを確認\n3. DRテスト時、FlashCopyが無い場合: F ANTAS001,XEND SESS1 → F ANTAS001,XRECOVER SESS1\n4. RECOVER後に補助ボリュームのVOLSERが一次に割り当てられテスト可能になることを確認",
+      "quiz": {
+        "q": "zGMの導入に関する記述として正しいものはどれか。",
+        "choices": [
+          "zGMはDFSMSdfpの一部で、導入に追加のz/OSソフトウェアは不要である",
+          "zGMの導入には別売の専用ソフトウェアが必須である",
+          "zGMはz/OSでは利用できない",
+          "zGM導入にはプランニングは不要である"
+        ],
+        "answer": 0,
+        "explanation": "zGM（旧XRC）はDFSMSdfpの一部であり、導入に追加のz/OSソフトウェアは不要です。導入はプランニング（第2章）の完了を前提とします。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.59",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12736",
+      "title": "Scenarios for ongoing operations",
+      "naiyou_jp": "継続的な運用のシナリオでは、zGM環境の性能監視と分析が中心となります。XRC Performance Monitorを用いると、ベンチマーク目的でも実際の本番環境でも、システム性能を非常に高いレベルから非常に低いレベルまで、リアルタイムと履歴の両モードで詳細に観察できます。スプレッドシートに取り込んで性能レポートやグラフを作成できるデータセットを生成し、性能監視中に主要なzGMパラメータを自動チェックして通知を投稿します。XRC Performance Monitorはヒストリーモニターなど3つのモジュールから構成され、約15分間隔で主要性能情報を見やすいソート済みテーブルに表示します。",
+      "verify_steps": "1. XRC Performance Monitorのデータ収集を有効化（SDMが約10秒ごとに性能サンプルを生成）\n2. 収集ユーティリティでサンプルをHISTORYファイルに集約\n3. ヒストリーモニターで過去の性能（約15分間隔のテーブル）を確認\n4. 主要zGMパラメータの自動チェック通知を確認し、必要に応じてXQUERYで詳細を確認",
+      "quiz": {
+        "q": "XRC Performance Monitorのヒストリーモニターが性能情報を要約する間隔として正しいものはどれか。",
+        "choices": [
+          "約15分間隔",
+          "1秒間隔",
+          "24時間間隔",
+          "1か月間隔"
+        ],
+        "answer": 0,
+        "explanation": "ヒストリーモニターは過去の時点でのzGM(XRC)の稼働状況を約15分間隔で主要性能情報のソート済みテーブルとして表示します。SDMは既定で約10秒ごとに性能サンプルを生成します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.93",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12747",
+      "title": "Terms and process definitions for z/OS Global Mirror",
+      "naiyou_jp": "zGMの用語とプロセス定義では、主要なコンポーネントとデータの流れを定義します。コントロールデータセットは補助ボリュームとジャーナルデータセットに関する整合グループ情報を保持し、回復操作に必要な情報を含みます。ジャーナルデータセットは一次ボリュームで変更されSDMが読み取った一時的なユーザーデータを保持し、SDMは整合グループを形成するデータを補助ボリュームへ適用する前にジャーナルへ書き込んでデータをハード化します。整合グループ（consistency group）や記録セット（record set）、SDMセッションといった用語がzGMの動作を理解する基礎となります。",
+      "verify_steps": "1. zGMデータセット（コントロール/ジャーナル/ステート）の役割を構成定義で確認\n2. SDMセッションを開始し整合グループが形成されることを確認: F ANTAS001,XSTART SESS1\n3. F ANTAS001,XQUERY SESS1 で整合時点(consistency time)と記録セットの処理状況を確認\n4. ジャーナルへのハード化が補助適用前に行われていることを性能観点で確認",
+      "quiz": {
+        "q": "zGMのコントロールデータセットが保持する情報として正しいものはどれか。",
+        "choices": [
+          "補助ボリュームとジャーナルデータセットに関する整合グループ情報（回復に必要）",
+          "アプリケーションのソースコード",
+          "コンソールのログオン履歴",
+          "JESのジョブ出力"
+        ],
+        "answer": 0,
+        "explanation": "コントロールデータセットは補助ボリュームとジャーナルデータセットに関する整合グループ情報を保持し、回復操作に必要な情報を含みます。ジャーナルは補助適用前のデータをハード化するために用いられます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.17",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12749",
+      "title": "The data set for zGM",
+      "naiyou_jp": "zGMのデータセット（ジャーナル、コントロール、ステート）はSMS管理ボリューム上に配置され、ステートデータセットはPDSE（partitioned data set extended）です。これらのデータセットを割り当てる際はSMS環境のセットアップや変更が必要になる場合があり、目的のボリュームに割り当てられるようにします。zGMのデータセットには命名規則があり、データセット名には常にセッション名が含まれます。割り当て方法の詳細は『z/OS DFSMS Advanced Copy Services（SC35-0428）』を参照します。対象にはジャーナル・ステート・コントロール・マスター・クラスタステート・クラスタの各データセットが含まれます。",
+      "verify_steps": "1. zGMデータセットがSMS管理ボリュームに正しく割り当てられているか確認\n2. ステートデータセットがPDSEとして定義されているか確認\n3. データセット名にセッション名が含まれる命名規則に従っているか確認\n4. SDMを起動し各データセットが正しく割り当てられて機能することを確認: F ANTAS001,XSTART SESS1",
+      "quiz": {
+        "q": "zGMのステートデータセットのデータセット形式として正しいものはどれか。",
+        "choices": [
+          "PDSE（partitioned data set extended）",
+          "順次データセット(PS)",
+          "VSAM KSDS",
+          "PDS（旧来の区分データセット）"
+        ],
+        "answer": 0,
+        "explanation": "ステートデータセットはPDSE（partitioned data set extended）です。zGMデータセットはSMS管理ボリュームに置かれ、名前には常にセッション名が含まれる命名規則に従います。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.57",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12750",
+      "title": "The MzGM Incremental Resync function",
+      "naiyou_jp": "MzGM（z/OS Metro/Global Mirror）は複数ターゲットの3サイトソリューションで、Metro Mirrorの関係とz/OS Global Mirror（zGM）の関係から構成されます。Incremental Resynchronization（IR、増分再同期）機能は、Metro Mirrorと併用したzGMコピー機能に対する拡張で、RMZ Resyncとも呼ばれます。典型的な構成では、ボリュームAがA-B間のMetro Mirror関係の一次であり、A-B両ディスクサブシステムはPPRC FCPリンクで接続されます。一次（アプリケーション）ボリュームAはアプリケーションLPARからアクセスされ、サイト障害時に残った2サイト間で全コピーを行わず増分のみで再同期できるため、再同期時間と帯域を大幅に削減します。",
+      "verify_steps": "1. MzGM(3サイト)構成でMetro MirrorとzGMの関係が定義されているか確認\n2. ボリュームAのMetro Mirror関係(A-B)とzGM関係を確認: dscli> lspprc ...\n3. サイト障害をシミュレートし、Incremental Resyncで増分のみ再同期されることを確認\n4. 全コピーではなく増分再同期により再同期時間が短縮されることを確認",
+      "quiz": {
+        "q": "MzGM Incremental Resync（IR）機能の主な利点はどれか。",
+        "choices": [
+          "サイト障害後の再同期を全コピーではなく増分のみで行い、時間と帯域を削減する",
+          "一次ボリュームを暗号化する",
+          "コンソールメッセージを抑制する",
+          "アプリケーションを2倍速で実行する"
+        ],
+        "answer": 0,
+        "explanation": "MzGMは3サイト構成（Metro Mirror + zGM）で、Incremental Resync機能によりサイト障害後の再同期を全コピーではなく増分のみで実行し、再同期時間と帯域を大幅に削減します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.33",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12751",
+      "title": "The zGM enhanced multiple reader (enhanced reader) function",
+      "naiyou_jp": "zGM拡張マルチリーダー（enhanced reader）機能は、DS8000 Release 3（2009年）で導入された高性能機能で、従来のマルチリーダーやマルチユーティリティボリューム方式より高い性能を提供します。この機能は一次ボリュームと1つのリーダータスクとの固定的な結びつきを解消し、LCU内の全SDMリーダーが変更データの転送に等しく寄与できるようにします。具体的には、LCUに対して定義された全リーダーをリーダーのプール（一次および1つ以上の補助セッション）として扱い、そのLCU内のミラー対象ボリューム全体への更新をプール全体で均等に分散します。単一ボリュームが単一リーダーのスループットを超える高い書き込み活動を持つ場合でも、複数リーダーで処理することでコピー帯域を改善します。",
+      "verify_steps": "1. DS8000のリリースがenhanced multiple readerをサポートしているか確認(R3以降)\n2. LCUに対し複数リーダー（プール）が定義されているか確認: F ANTAS001,XQUERY SESS1 ENVIRONMENT\n3. 高書き込み活動の単一ボリュームに複数リーダーが割り当てられることを性能で確認\n4. enhanced reader適用前後でドレインレート/コピー帯域が改善することを比較",
+      "quiz": {
+        "q": "zGM拡張マルチリーダー（enhanced reader）機能の特徴として正しいものはどれか。",
+        "choices": [
+          "一次ボリュームと1リーダータスクの固定結合を解消し、LCU内の全リーダーで更新を均等分散する",
+          "リーダー数を1つに固定する",
+          "補助ボリュームを暗号化する",
+          "ジャーナルデータセットを不要にする"
+        ],
+        "answer": 0,
+        "explanation": "enhanced multiple reader機能は一次ボリュームと単一リーダーの固定結合を解消し、LCU内の全リーダーをプールとして扱って更新を均等に分散します。これにより高書き込みボリュームのコピー帯域が改善します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.28",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12758",
+      "title": "Using XQuery to verify SDM parameter settings",
+      "naiyou_jp": "XQueryを使用してSDMのパラメータ設定を検証できます。XQUERYコマンドは、デフォルトを含むすべてのパラメータをアルファベット順に列挙でき、探したいパラメータを見つけやすくします。例として、XQUERY ENVIRONMENT_PARM REPORTはセッション（例: SESS1）とアドレススペース名（例: ANTAS001）に対して環境パラメータレポートを生成し、各パラメータの名前と値を表示します。これによりparmlib（ANTXINxx）で設定した値が正しく反映されているかを実際の稼働セッションに対して確認できます。",
+      "verify_steps": "1. 稼働中セッションのパラメータをXQueryで列挙: F ANTAS001,XQUERY SESS1 ENVIRONMENT\n   → XQUERY ENVIRONMENT_PARM REPORT が表示される\n2. レポートに各パラメータ名と現行値（デフォルト含む）がアルファベット順に出力されることを確認\n3. parmlib(ANTXINxx)で設定した値とレポート値が一致するか照合\n4. 不一致があればparmlibを修正しSDM再起動後に再度XQueryで確認",
+      "quiz": {
+        "q": "XQUERY ENVIRONMENT_PARM レポートの特徴として正しいものはどれか。",
+        "choices": [
+          "デフォルトを含む全パラメータをアルファベット順に列挙する",
+          "パラメータを一切表示しない",
+          "ジャーナルデータセットを削除する",
+          "セッションを強制終了する"
+        ],
+        "answer": 0,
+        "explanation": "XQUERYはデフォルトを含むすべてのパラメータをアルファベット順に列挙でき、稼働セッションに対してparmlib(ANTXINxx)設定が正しく反映されているか検証できます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.91",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12759",
+      "title": "What to expect from z/OS Global Mirror",
+      "naiyou_jp": "zGMに期待できる内容の中心はデータカレンシー（RPO）です。データカレンシーとは一次サイトでデータが最後に書き込まれた時点と、同じデータが補助サイトに書き込まれた時点との時間差を指し、災害後の遠隔サイトでのデータ損失量を決定します。企業はこの時間差に対して平均・最大・パーセンタイルといった固有の要件（RPO）を持つことがあります。RPO=0を達成できるのはMetro Mirrorのような同期コピーのみであり、zGMを含むすべての非同期コピーは数秒から1時間以上に及ぶデータカレンシー時間差を持ちます。zGMではこのデータカレンシー時間はデータエクスポージャー時間とも呼ばれます。",
+      "verify_steps": "1. 稼働セッションのデータカレンシー（整合時点と現在時刻の差）を確認: F ANTAS001,XQUERY SESS1\n2. データエクスポージャー時間（RPO）が業務要件内に収まっているか確認\n3. ピーク時にRPOが拡大しないかwrite pacing/残余カウントを監視\n4. RPO=0が必要な場合は同期コピー(Metro Mirror)の検討が必要であることを確認",
+      "quiz": {
+        "q": "zGMのRPO（データカレンシー）に関する記述として正しいものはどれか。",
+        "choices": [
+          "zGMは非同期コピーで、RPO=0は達成できず数秒〜1時間以上のデータカレンシー時間差を持つ",
+          "zGMは常にRPO=0を保証する",
+          "RPOは災害後のデータ損失量とは無関係である",
+          "非同期コピーでもRPO=0が達成できる"
+        ],
+        "answer": 0,
+        "explanation": "RPO=0は同期コピー（Metro Mirror）のみが達成でき、zGMを含む非同期コピーは数秒から1時間以上のデータカレンシー時間差（データエクスポージャー時間）を持ちます。これが災害後のデータ損失量を決定します。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.36",
+      "rag_hit": true
+    },
+    {
+      "row_id": "12760",
+      "title": "Write pacing and device blocking",
+      "naiyou_jp": "write pacing（書き込みペーシング）はコピープロセスの過負荷を防ぐため一次サイトの書き込みI/Oを抑制する機構で、各記録セットに加えられる遅延量はペーシングレベルの関数であり、ペーシングレベルは関連するwrite pacingパラメータ設定と対象ボリュームの既存の残余カウントによって決まります。ペーシング中もデバイスはI/O要求の処理が可能で、デバイス書き込みがペーシングされる間もアプリケーションの読み取りはペーシングされずに継続できます。最高性能が必要なアプリケーションはXADDPAIRコマンドのDONOTBLOCKパラメータでwrite pacingから除外できますが、RPOの無制限な拡大を許容しない限り、多くのボリュームにこのオプションを使うのは避けるべきです。もう一つの機構device blockingは残余カウントがしきい値に達するとデバイスを一定時間not readyにします。",
+      "verify_steps": "1. write pacing関連パラメータと残余カウントを確認: F ANTAS001,XQUERY SESS1 VOLUME\n2. ペーシングレベルと注入遅延が想定どおりか性能モニターで確認\n3. 性能優先ボリュームをペーシング除外: F ANTAS001,XADDPAIR SESS1 VOLUME(...) DONOTBLOCK\n4. DONOTBLOCKを多用していないか、RPOが拡大していないかを監視",
+      "quiz": {
+        "q": "write pacingのペーシングレベル（各記録セットへの遅延量）を決定する要素はどれか。",
+        "choices": [
+          "write pacingパラメータ設定と対象ボリュームの既存の残余カウント",
+          "コンソールのログオンユーザー数",
+          "JCLの行数",
+          "SMFデータセットのサイズ"
+        ],
+        "answer": 0,
+        "explanation": "ペーシングレベル（各記録セットに加える遅延量）はwrite pacingパラメータ設定と対象ボリュームの既存の残余カウントによって決まります。ペーシング中も読み取りは継続でき、DONOTBLOCKで除外可能ですが多用はRPO拡大を招きます。"
+      },
+      "source": "GDPS_REDP4878_zOS_Global_Mirror_Planning_Operations_Best_Practices.pdf p.27",
+      "rag_hit": true
+    }
+  ]
+}

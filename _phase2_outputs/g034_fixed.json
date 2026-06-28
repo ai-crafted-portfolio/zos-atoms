@@ -1,0 +1,959 @@
+{
+  "page": "g034",
+  "product": "IBM NetView 6.4",
+  "total_rows": 300,
+  "target_rows": 270,
+  "fixed_count": 50,
+  "rows": [
+    {
+      "row_id": "6786",
+      "title": "1-Byte Console IDs",
+      "naiyou_jp": "z/OS V1R8 で 1 バイトのコンソール ID のサポートが廃止されたため、NetView プログラムではコンソールを定義する際に 1 バイトのコンソール ID を使用できなくなりました。代わりに 2〜8 文字のコンソール名を使用します。既存の定義で 1 バイト ID を使っている場合は移行時にコンソール名へ変更する必要があります。",
+      "verify_steps": "1. システムコンソールから NetView サブシステム手続きを開始する: S CNMPSSI。2. CNM541I NetView subsystem CNMP is fully functional のメッセージを確認する。3. 続いて S CNMPROC で NetView 本体を開始する。4. NetView 内でコンソール定義を確認し、1 バイト ID ではなく 2〜8 文字のコンソール名が指定されていることを確認する。",
+      "quiz": {
+        "q": "z/OS V1R8 以降、NetView でコンソールを定義する際に使用すべき識別子はどれですか。",
+        "choices": [
+          "1 バイトのコンソール ID",
+          "2〜8 文字のコンソール名",
+          "16 進数のデバイスアドレス",
+          "VTAM の LU 名"
+        ],
+        "answer": 1,
+        "explanation": "z/OS V1R8 で 1 バイトコンソール ID のサポートが廃止されたため、NetView では 2〜8 文字のコンソール名を使用します。(NetView_6.4_Installation_Migration_Guide.pdf p.76)"
+      },
+      "source": "NetView_6.4_Installation_Migration_Guide.pdf p.76",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6787",
+      "title": "A01APPLS (CNMS0013)",
+      "naiyou_jp": "A01APPLS (CNMS0013) は NetView プログラムのアプリケーション (APPL) メジャーノードを定義するサンプルメンバーで、A01MPU に対して最初にコーディングされる APPL メジャーノードです。NetView を VTAM へ定義する際は、この APPL メジャーノードを修正します。NETB 側では B01MPU 用に B01APPLS (CNMS0113) が対応します。各 NetView タスクの APPL ステートメントがこのメンバーに含まれます。",
+      "verify_steps": "1. CNMSJ003 ジョブでサンプル A01APPLS (CNMS0013) を VTAMLST データセットへコピーする。2. メンバー内の各 APPL ステートメントを自サイトの値に合わせて編集する。3. VTAM コンソールから V NET,ACT,ID=A01APPLS でメジャーノードを活動化する。4. D NET,ID=A01APPLS でステータスが ACTIV であることを確認する。",
+      "quiz": {
+        "q": "A01APPLS (CNMS0013) サンプルメンバーが定義するものはどれですか。",
+        "choices": [
+          "VTAM 始動オプション",
+          "NetView アプリケーション (APPL) メジャーノード",
+          "クロスドメインリソースマネージャー",
+          "隣接 SSCP テーブル"
+        ],
+        "answer": 1,
+        "explanation": "A01APPLS (CNMS0013) は NetView の APPL メジャーノードを定義し、VTAM へ NetView を定義する際に修正します。(NetView_6.4_Installation_Getting_Started.pdf p.122)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.122",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6788",
+      "title": "AAUPRMLP",
+      "naiyou_jp": "AAUPRMLP はセッションモニター (AAUTSKLP タスク) の初期化メンバーのデフォルト名です。RTM (応答時間モニター) データ収集を行うかどうかは、このメンバーで RTM=YES が指定されているかどうかで判断され、デフォルトは収集なし (0) です。また KEEPRTM 値で RTM データを収集したセッションについて保持する収集期間数を指定します。",
+      "verify_steps": "1. DSIPARM 内の AAUPRMLP メンバーを参照し RTM=YES の有無を確認する。2. RTM 収集を有効にする場合は RTM=YES と KEEPRTM 値を設定する。3. NetView から COLLECT RTM コマンドを発行して RTM データ収集を開始する。4. セッションモニターの応答メッセージで収集開始が成功したことを確認する。",
+      "quiz": {
+        "q": "AAUPRMLP メンバーで RTM データ収集を有効にするために指定するステートメントはどれですか。",
+        "choices": [
+          "RTM=YES",
+          "COLLECT=ON",
+          "SAW=YES",
+          "TRACE=RTM"
+        ],
+        "answer": 0,
+        "explanation": "AAUTSKLP の初期化メンバー (デフォルト AAUPRMLP) で RTM=YES を指定すると RTM データ収集が有効になります。(NetView_6.4_Tuning_Guide.pdf p.137)"
+      },
+      "source": "NetView_6.4_Tuning_Guide.pdf p.137",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6791",
+      "title": "Accessing the REST Server from a Browser",
+      "naiyou_jp": "サーバーと同じネットワーク上のユーザーは、Web ブラウザーから NetView REST サーバーへアクセスできます。アクセスする URI の形式は https://[サーバードメイン]:[REST サーバーポート] です。REST サーバーは NetView の各種 API を通じて要求の送受信を可能にするため、ブラウザーからの接続前にサーバーの構成と起動を済ませておく必要があります。",
+      "verify_steps": "1. NetView REST サーバーを起動済みであることを確認する。2. Web ブラウザーで https://[サーバードメイン]:[REST サーバーポート] を開く。3. REST サーバーのレスポンスが返ることを確認する。4. 認証に失敗する場合はホスト名・ポート番号・ネットワーク経路を確認する。",
+      "quiz": {
+        "q": "ブラウザーから NetView REST サーバーへアクセスする URI の形式はどれですか。",
+        "choices": [
+          "ftp://[サーバードメイン]:[ポート]",
+          "https://[サーバードメイン]:[REST サーバーポート]",
+          "telnet://[サーバードメイン]",
+          "http://localhost:80"
+        ],
+        "answer": 1,
+        "explanation": "同一ネットワーク上のユーザーは https://[server domain]:[REST Server Port] の形式で REST サーバーへアクセスできます。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.242)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.242",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6792",
+      "title": "Activating Command Revision",
+      "naiyou_jp": "MVS コマンドリビジョン機能は、MVS へ発行されるコマンド (JES 向け・NetView 向け・NetView MVS コマンド経由で発行されたものを含む) を検査・変更・拒否できる機能です。REVISE CMD コマンドを使用してコマンドリビジョンテーブルを活動化・非活動化・テスト・一覧表示・状況確認します。MVS コマンドが発行されると NetView SSI コードが高速検索アルゴリズムで該当する UPON ステートメントを探し、その条件とアクションを適用します。",
+      "verify_steps": "1. CNMSTYLE の function.autotask.MVSCmdRevision = MVSCMDS でリビジョン用オートタスクを定義する。2. NetView から REVISE CMD コマンドでコマンドリビジョンテーブルを活動化する。3. REVISE CMD ... TEST でテーブルの動作をテストする。4. 対象 MVS コマンドを発行し、変更または拒否が意図どおり行われることを確認する。",
+      "quiz": {
+        "q": "コマンドリビジョンテーブルを活動化・テスト・状況確認するために使用するコマンドはどれですか。",
+        "choices": [
+          "REVISE CMD",
+          "AUTOCMD",
+          "SETPROG APF",
+          "COLLECT RTM"
+        ],
+        "answer": 0,
+        "explanation": "REVISE CMD コマンドでコマンドリビジョンテーブルの活動化・非活動化・テスト・一覧・状況確認ができます。(NetView_6.4_Automation_Guide.pdf p.146)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.146",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6798",
+      "title": "Adding REST Server to the Zowe API-Mediation Layer",
+      "naiyou_jp": "NetView REST サーバーを Zowe API メディエーションレイヤーへ統合するには、サンプルの NetViewRestServer.yml ファイル (/usr/lpp/netview/v6r4/restsrvr/samples) を使用します。Zowe アプリ側の app.component.ts の BASE_URL ('https://localhost:3275/ibm/netview/v1') は、REST サーバーが Zowe と同一システム上かつポートが一致していれば変更不要ですが、異なる場合はドメインとポートを REST サーバーに合わせて変更します。Zowe のアプリ変更手順に従ってください。",
+      "verify_steps": "1. サンプル NetViewRestServer.yml を Zowe メディエーションレイヤーの構成ディレクトリへコピーする。2. app.component.ts の BASE_URL のドメインとポートが REST サーバーと一致しているか確認する。3. 不一致なら localhost:3275 を実際のドメイン:ポートへ変更する。4. Zowe API カタログで NetView サービスが登録・到達可能であることを確認する。",
+      "quiz": {
+        "q": "REST サーバーが Zowe と別システムにある場合、app.component.ts で変更すべき値はどれですか。",
+        "choices": [
+          "APF 許可リスト",
+          "BASE_URL のドメインとポート (localhost:3275)",
+          "DSITBL01 の順序",
+          "コンソール名"
+        ],
+        "answer": 1,
+        "explanation": "REST サーバーが別システムの場合、BASE_URL の localhost:3275 を実際のドメインとポートに変更します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.243)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.243",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6803",
+      "title": "Adjacent SSCP Table",
+      "naiyou_jp": "隣接 SSCP テーブルは、リソースの所在が不明なときに VTAM に照会させたい SSCP の一覧です。NetView の所有 CDRM が定義されていない場合、VTAM はこのテーブルを使って所有 CDRM を特定します。VTAM は所在不明の CDRSC を検索する際、テーブル内の各 SSCP に順番に問い合わせ、リソースが見つかるかリストの末尾に達するまで続けます。隣接 SSCP テーブルをコーディングすれば、CDRSC ステートメントの一部または全部を省略できます。",
+      "verify_steps": "1. サンプル A01ADJ (CNMS0012) を VTAMLST へコピーする。2. 各 ADJCDRM の名前を自ホストに隣接するホスト名に合わせて変更する。3. VTAM で V NET,ACT,ID=A01ADJ により隣接 SSCP テーブルを活動化する。4. 所在不明リソースへのセッション開始を試み、VTAM がテーブル順に SSCP を照会することを確認する。",
+      "quiz": {
+        "q": "隣接 SSCP テーブルの役割として正しいものはどれですか。",
+        "choices": [
+          "APPL メジャーノードを定義する",
+          "所在不明のリソースを VTAM に照会させる SSCP の一覧を提供する",
+          "RTM データを収集する",
+          "REST サーバーのポートを定義する"
+        ],
+        "answer": 1,
+        "explanation": "隣接 SSCP テーブルは、リソースの所在が不明なとき VTAM が順番に照会する SSCP のリストです。(NetView_6.4_Installation_Getting_Started.pdf p.126)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.126",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6814",
+      "title": "APF-authorizing your libraries",
+      "naiyou_jp": "NetView の必須モジュールを APF 許可ライブラリーのリストに追加する必要があります。システムを再始動せずに動的に追加するには、まず MVS コマンド SETPROG APF,FORMAT=DYNAMIC を発行し、続いて各ライブラリーに対して SETPROG APF,ADD,DSNAME=NETVIEW.V6R4M0.CNMLINK,VOLUME=vol-ser のように発行します。CNMLINK、SAQNLINK、SCNMLNK1 などの NetView ライブラリーを許可対象に含めます。",
+      "verify_steps": "1. MVS コンソールから SETPROG APF,FORMAT=DYNAMIC を発行して APF リストを動的形式にする。2. SETPROG APF,ADD,DSNAME=NETVIEW.V6R4M0.CNMLINK,VOLUME=vol-ser を発行する。3. 他の必須ライブラリー (SAQNLINK、SCNMLNK1 等) も同様に追加する。4. D PROG,APF でライブラリーが APF 許可済みであることを確認する。",
+      "quiz": {
+        "q": "システム再始動なしに NetView ライブラリーを動的に APF 許可するために最初に発行する MVS コマンドはどれですか。",
+        "choices": [
+          "SETPROG APF,FORMAT=DYNAMIC",
+          "SETPROG LPA,ADD",
+          "REVISE CMD",
+          "S CNMPROC"
+        ],
+        "answer": 0,
+        "explanation": "SETPROG APF,FORMAT=DYNAMIC を発行してから SETPROG APF,ADD でライブラリーを動的に追加します。(NetView_6.4_Installation_Migration_Guide.pdf p.130)"
+      },
+      "source": "NetView_6.4_Installation_Migration_Guide.pdf p.130",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6808",
+      "title": "Allocating Data Sets Using the CNMSJ002 Job",
+      "naiyou_jp": "CNMSJ002 ジョブは VTAMLST および VTAMLIB データセットを割り振ります。NETVIEW.V6R4USER.CNM01.VTAMLST にはサンプルネットワーク用の VTAM ソース定義が、NETVIEW.V6R4USER.VTAMLIB にはサンプルネットワーク用の VTAM ロードモジュールが格納されます。VTAMLIB データセットは SYS1.PARMLIB の PROGxx または IEAAPFxx で許可ライブラリーのリストに追加する必要があります。",
+      "verify_steps": "1. CNMSJ002 ジョブをサブミットして VTAMLST と VTAMLIB データセットを割り振る。2. ジョブの戻りコードが 0 であることを確認する。3. NETVIEW.V6R4USER.VTAMLIB を PROGxx または IEAAPFxx の許可ライブラリーに追加する。4. データセットが正しく割り振られたことを ISPF 等で確認する。",
+      "quiz": {
+        "q": "CNMSJ002 ジョブが割り振るデータセットはどれですか。",
+        "choices": [
+          "VTAMLST と VTAMLIB",
+          "RODM の VSAM クラスター",
+          "Canzlog アーカイブデータセット",
+          "REXX ランタイムライブラリー"
+        ],
+        "answer": 0,
+        "explanation": "CNMSJ002 はサンプルネットワーク用の VTAMLST と VTAMLIB データセットを割り振ります。(NetView_6.4_Installation_Getting_Started.pdf p.38)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.38",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6830",
+      "title": "Automation Table",
+      "naiyou_jp": "独自のオートメーションテーブルは、CNMSTUSR または CxxSTGEN メンバー内の AUTOCMD ステートメントを使って追加できます。独自のオートメーションテーブルは DSITBL01 オートメーションテーブルより前に配置し、ローカルカスタマイズには CONTINUE(YES) をコーディングして後続のテーブルステートメントも引き続き処理されるようにします。これにより製品提供のテーブルを上書きせずに自動化ルールを拡張できます。",
+      "verify_steps": "1. CNMSTUSR メンバーに AUTOCMD ステートメントで独自オートメーションテーブルを追加する。2. 自テーブルを DSITBL01 より前に配置し、ローカルエントリーに CONTINUE(YES) を付ける。3. NetView から AUTOTBL コマンドでテーブルを読み込む。4. 対象メッセージを発生させ、独自ルールと DSITBL01 の両方が処理されることを確認する。",
+      "quiz": {
+        "q": "独自オートメーションテーブルの各ローカルエントリーで後続のテーブル処理を継続させるために指定するものはどれですか。",
+        "choices": [
+          "CONTINUE(YES)",
+          "RTM=YES",
+          "FORMAT=DYNAMIC",
+          "SEC=BY"
+        ],
+        "answer": 0,
+        "explanation": "ローカルカスタマイズに CONTINUE(YES) をコーディングすると、後続の DSITBL01 等のテーブルステートメントも引き続き処理されます。(NetView_6.4_Installation_Migration_Guide.pdf p.89)"
+      },
+      "source": "NetView_6.4_Installation_Migration_Guide.pdf p.89",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6794",
+      "title": "Activating the NetView Program",
+      "naiyou_jp": "NetView プログラムは CNMPROC ジョブを使って始動します。始動するには、システムコンソールで S CNMPROC コマンドを入力します。サブシステムインターフェース手続き CNMPSSI が正常に始動すると CNM541I NetView subsystem CNMP is fully functional が表示され、その後に NetView 本体手続き CNMPROC を始動できます。",
+      "verify_steps": "1. 先に S CNMPSSI でサブシステム手続きを始動し、CNM541I の表示を確認する。2. システムコンソールから S CNMPROC を入力して NetView 本体を始動する。3. NetView へログオンする。4. WHO コマンドでセッション情報を表示し、正常稼働を確認する。",
+      "quiz": {
+        "q": "NetView プログラム本体を始動するためにシステムコンソールで入力するコマンドはどれですか。",
+        "choices": [
+          "S CNMPROC",
+          "SETPROG APF",
+          "REVISE CMD",
+          "V NET,ACT"
+        ],
+        "answer": 0,
+        "explanation": "システムコンソールで S CNMPROC を入力すると NetView プログラムが始動します。(NetView_6.4_Installation_Getting_Started.pdf p.88)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.88",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6809",
+      "title": "Allocating VSAM Clusters for RODM",
+      "naiyou_jp": "CNMSJ004 ジョブは RODM 用の VSAM クラスターを定義します。RODM に関連するデータセット名と、それらの VSAM クラスター情報を含むメンバー名が対応付けられています。CNMSJ004 を実行する前に、VSAM クラスターの名前・ボリューム・カタログ・パスワードを指定する EKGSI101 と CNMSID01 をレビューします。CNMSJ004 は基本 NetView インストール時に実行されるサンプルジョブで、既に RODM の VSAM クラスター作成に使われている場合があります。",
+      "verify_steps": "1. EKGSI101 と CNMSID01 をレビューして VSAM クラスターの名前・ボリューム・パスワードを確認する。2. CNMSJ004 ジョブをサブミットして RODM 用 VSAM クラスターを割り振る。3. ジョブの戻りコードを確認する。4. IDCAMS LISTCAT 等で VSAM クラスターが定義されたことを確認する。",
+      "quiz": {
+        "q": "RODM 用の VSAM クラスターを定義するインストールジョブはどれですか。",
+        "choices": [
+          "CNMSJ002",
+          "CNMSJ004",
+          "CNMSJ000",
+          "CNMPROC"
+        ],
+        "answer": 1,
+        "explanation": "CNMSJ004 ジョブが RODM の VSAM クラスターを定義します。(NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.23)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.23",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6822",
+      "title": "Assigning Operators to Groups",
+      "naiyou_jp": "ASSIGN コマンドの GROUP オプションを使うと、オペレーターのリストを特定のグループへ割り当てられます。作成したオペレーターグループは、他の ASSIGN コマンド、コマンドリスト内の MSGROUTE コマンド、オートメーションテーブルの EXEC(ROUTE) アクションなどで利用できます。たとえばオペレーター OPER1 と OPER2 をグループ +GROUP1 へ割り当てるには ASSIGN コマンドを発行します。",
+      "verify_steps": "1. NetView から ASSIGN GROUP=+GROUP1,OP=(OPER1,OPER2) のように発行してオペレーターをグループへ割り当てる。2. ASSIGN または LIST コマンドで割り当て結果を確認する。3. グループをメッセージ経路指定 (MSGROUTE) に指定して動作を確認する。4. REFRESH で定義変更を反映させる。",
+      "quiz": {
+        "q": "オペレーターをグループへ割り当てるために使用するコマンドとオプションはどれですか。",
+        "choices": [
+          "ASSIGN コマンドの GROUP オプション",
+          "REVISE CMD コマンド",
+          "SETPROG APF コマンド",
+          "COLLECT RTM コマンド"
+        ],
+        "answer": 0,
+        "explanation": "ASSIGN コマンドの GROUP オプションでオペレーターのリストをグループへ割り当てます。(NetView_6.4_Users_Guide_NetView.pdf p.199)"
+      },
+      "source": "NetView_6.4_Users_Guide_NetView.pdf p.199",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6827",
+      "title": "Automated Operations Network",
+      "naiyou_jp": "自動運用ネットワーク (AON) は、ネットワーク自動化のためにカスタマイズ・拡張可能な、ポリシーベースのドロップイン型プログラム群を提供します。AON は SNA Automation (AON/SNA) と TCP/IP Automation (AON/TCP) という、複数のネットワークプロトコルにまたがる一貫した自動化を実現するコンポーネントで構成されます。AON はネットワークリソースの問題を示すアラートやメッセージを横取りし、障害リソースの回復を試みて、回復するまでリソースを監視します。",
+      "verify_steps": "1. AON タワーを有効化する構成 (CNMSTYLE のタワー設定) を確認する。2. AON/SNA または AON/TCP コンポーネントを始動する。3. 監視対象リソースを意図的に停止させ、アラート/メッセージを発生させる。4. AON が回復を試み、リソースを監視していることを NetView の表示で確認する。",
+      "quiz": {
+        "q": "AON が提供するネットワークプロトコル別の自動化コンポーネントの組み合わせはどれですか。",
+        "choices": [
+          "AON/SNA と AON/TCP",
+          "RODM と GMFHS",
+          "VTAM と NCP",
+          "REST と Zowe"
+        ],
+        "answer": 0,
+        "explanation": "AON は SNA Automation (AON/SNA) と TCP/IP Automation (AON/TCP) で構成され、複数プロトコルにまたがる自動化を提供します。(NetView_6.4_Automation_Guide.pdf p.397)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.397",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6878",
+      "title": "CNMSTYLE",
+      "naiyou_jp": "NetView の初期化ステートメントは DSIPARM データセット内の CNMSTYLE メンバーで定義されます。CNMSTYLE ステートメントを変更するには、製品提供の CNMSTYLE メンバー自体は編集せず、対象ステートメントを CNMSTUSR メンバー (システム全体のカスタマイズ) または CxxSTGEN メンバー (ドメイン固有のカスタマイズ) へコピーして更新します。一部の CNMSTYLE ステートメントにはタワーパラメーター、またはタワーとサブタワーのパラメーターが付きます。",
+      "verify_steps": "1. DSIPARM の CNMSTYLE メンバーから変更したいステートメントを特定する。2. システム全体の変更は CNMSTUSR、ドメイン固有の変更は CxxSTGEN へコピーする。3. コピーしたステートメントを更新する (CNMSTYLE 本体は編集しない)。4. NetView を再始動またはリフレッシュして変更が反映されることを確認する。",
+      "quiz": {
+        "q": "CNMSTYLE ステートメントを変更する際の正しい方法はどれですか。",
+        "choices": [
+          "CNMSTYLE メンバー本体を直接編集する",
+          "ステートメントを CNMSTUSR または CxxSTGEN にコピーして更新する",
+          "VTAMLST にコピーする",
+          "REST API で変更する"
+        ],
+        "answer": 1,
+        "explanation": "製品提供の CNMSTYLE は直接編集せず、CNMSTUSR (システム全体) または CxxSTGEN (ドメイン固有) にコピーして更新します。(NetView_6.4_Administration_Reference.pdf p.31)"
+      },
+      "source": "NetView_6.4_Administration_Reference.pdf p.31",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6856",
+      "title": "Changing the Domain Name (DOMAINID)",
+      "naiyou_jp": "NetView のドメイン ID やパスワードを CNMPROC (CNMSJ009) 手続きで指定した場合、CNMSTYLE メンバー内の DOMAIN ステートメントや ACBpassword ステートメントは使用されず無視されます。これらが使われるのは CNMPROC 手続きが渡すパラメーターが null の場合のみです。ドメインパスワードが CNMPROC 手続きにも CNMSTYLE メンバーにも指定されていない場合は、ドメイン名がパスワードになります。",
+      "verify_steps": "1. CNMPROC (CNMSJ009) 手続きでドメイン ID とパスワードが指定されているか確認する。2. CNMSTYLE の DOMAIN/ACBpassword ステートメントとの優先関係を確認する。3. NetView を始動し、想定したドメイン名でアクティブになることを確認する。4. ドメインパスワード未指定時はドメイン名がパスワードになる点に留意する。",
+      "quiz": {
+        "q": "ドメイン ID が CNMPROC 手続きで指定されている場合、CNMSTYLE の DOMAIN ステートメントはどう扱われますか。",
+        "choices": [
+          "常に優先される",
+          "CNMPROC のパラメーターが null でない限り無視される",
+          "エラーになる",
+          "両方が結合される"
+        ],
+        "answer": 1,
+        "explanation": "CNMPROC 手続きでドメイン ID/パスワードを指定した場合、渡すパラメーターが null でない限り CNMSTYLE の DOMAIN/ACBpassword は無視されます。(NetView_6.4_Installation_Migration_Guide.pdf p.116)"
+      },
+      "source": "NetView_6.4_Installation_Migration_Guide.pdf p.116",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6883",
+      "title": "Command Facility",
+      "naiyou_jp": "コマンド機能 (Command Facility) は NetView のコマンドラインインターフェースを提供し、オペレーターが NetView や MVS のコマンドを発行できる中核機能です。コマンドは CMDDEF 定義ステートメントで定義され、TYPE オペランドで通常コマンド (R)、即時コマンド (I)、両方 (B)、データサービスコマンド (D)、通常またはデータサービス (RD) などの種別を指定します。CMDDEF で定義していない REXX や CLIST もコマンド名として扱われます。",
+      "verify_steps": "1. NetView にログオンしてコマンド機能パネルを表示する。2. WHO コマンドを入力してセッション情報が表示されることを確認する。3. CMDDEF ステートメントで定義したコマンドを発行し、種別 (TYPE) どおりに動作することを確認する。4. HELP コマンドでオンラインヘルプが表示されることを確認する。",
+      "quiz": {
+        "q": "コマンドの種別 (通常・即時・データサービス等) を指定する CMDDEF のオペランドはどれですか。",
+        "choices": [
+          "TYPE",
+          "GROUP",
+          "RTM",
+          "VOLUME"
+        ],
+        "answer": 0,
+        "explanation": "CMDDEF の TYPE オペランドで R(通常)、I(即時)、B(両方)、D(データサービス)、RD などのコマンド種別を指定します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.114)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.114",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6925",
+      "title": "Cross-Domain Resource Managers",
+      "naiyou_jp": "クロスドメインリソース (CDRSC) の所有者をクロスドメインリソースマネージャー (CDRM) と呼びます。サンプルネットワークでは各 CDRM に CDRDYN=YES と CDRSC=OPT がコーディングされており、これによりクロスドメインリソースの動的定義が可能になります。通信したいネットワーク内外のすべてのホストについて CDRM ステートメントを定義します。NetView の所有 CDRM が定義されていない場合、VTAM は隣接 SSCP テーブルを使って所有 CDRM を特定します。",
+      "verify_steps": "1. CDRM メジャーノードのサンプルを VTAMLST へコピーする。2. 各 CDRM に CDRDYN=YES と CDRSC=OPT をコーディングする。3. 通信対象の各ホストに対応する CDRM ステートメントを追加する。4. VTAM で CDRM メジャーノードを活動化し、クロスドメインリソースが動的に定義されることを確認する。",
+      "quiz": {
+        "q": "クロスドメインリソースの動的定義を有効にするために CDRM にコーディングするオペランドの組み合わせはどれですか。",
+        "choices": [
+          "CDRDYN=YES と CDRSC=OPT",
+          "RTM=YES と KEEPRTM",
+          "TYPE=R と TYPE=I",
+          "APF=DYNAMIC"
+        ],
+        "answer": 0,
+        "explanation": "各 CDRM に CDRDYN=YES と CDRSC=OPT をコーディングすると、クロスドメインリソースの動的定義が有効になります。(NetView_6.4_Installation_Getting_Started.pdf p.125)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.125",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6926",
+      "title": "Cross-Domain Resources",
+      "naiyou_jp": "VTAM がアクセスする他ドメイン内の論理ユニット (LU) をクロスドメインリソース (CDRSC) と呼びます。CICS や TSO のように他ホスト上に存在するアプリケーションや、他ドメインの端末も CDRSC になり得ます。CDRSC 定義は必須ではなく、CDRSC はネットワーク内の他ホストへのポーリングによって所有者を動的に定義できます。CDRSC は VBUILD (TYPE=CDRSC) ステートメントと、各リソースごとの CDRSC ステートメントから成る 1 つ以上の CDRSC メジャーノードで定義できます。",
+      "verify_steps": "1. CDRSC メジャーノードのサンプル (例: A01CDRSC CNMS0015) を VTAMLST へコピーする。2. VBUILD TYPE=CDRSC と各 CDRSC ステートメントを確認する。3. VTAM で CDRSC メジャーノードを活動化する。4. 他ドメインの LU へのセッションを開始し、CDRSC が解決されることを確認する。",
+      "quiz": {
+        "q": "クロスドメインリソース (CDRSC) の説明として正しいものはどれですか。",
+        "choices": [
+          "VTAM がアクセスする他ドメイン内の論理ユニット (LU)",
+          "NetView の APF 許可ライブラリー",
+          "RTM データの収集期間",
+          "REST サーバーのポート番号"
+        ],
+        "answer": 0,
+        "explanation": "CDRSC は VTAM がアクセスする他ドメイン内の LU で、CICS や TSO などのアプリケーションや他ドメインの端末が該当します。(NetView_6.4_Installation_Getting_Started.pdf p.125)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.125",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6962",
+      "title": "Defining NetView Operators",
+      "naiyou_jp": "NetView オペレーターは DSIOPF メンバーで OPERATOR 定義ステートメントを使って定義し、オペレータープロファイルは DSIPRF データセットで定義します。DSIOPF ではオペレーター ID を第 1 列に書き、対応するパスワードを PASSWORD ステートメントで指定し、PROFILEN でプロファイルメンバーを関連付けます (例: NEWOPER OPERATOR PASSWORD=NEWOPER / PROFILEN DSIPROFB)。1 つのオペレーターに複数のプロファイルをコーディングしたり、同じプロファイルを複数オペレーターで共有したりできます。",
+      "verify_steps": "1. DSIOPF メンバーに OPERATOR ステートメントでオペレーター ID とパスワードを追加する。2. PROFILEN で DSIPRF 内のプロファイルメンバーを関連付ける。3. NetView をリフレッシュまたは再始動する。4. 追加したオペレーター ID で NetView へログオンできることを確認する。",
+      "quiz": {
+        "q": "NetView オペレーターの ID とパスワードを定義するメンバーと定義ステートメントの組み合わせはどれですか。",
+        "choices": [
+          "DSIOPF メンバーの OPERATOR ステートメント",
+          "CNMSTYLE の DOMAIN ステートメント",
+          "VTAMLST の APPL ステートメント",
+          "DSIPARM の CMDDEF ステートメント"
+        ],
+        "answer": 0,
+        "explanation": "オペレーター ID とパスワードは DSIOPF メンバーの OPERATOR 定義ステートメントで定義し、プロファイルは DSIPRF で定義します。(NetView_6.4_Security_Reference.pdf p.120)"
+      },
+      "source": "NetView_6.4_Security_Reference.pdf p.120",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6979",
+      "title": "Defining the Hardware Monitor",
+      "naiyou_jp": "ハードウェアモニターはアラートを処理し、独自のハードウェアモニターデータベースに記録します。GENALERT インターフェースを使用する NetView プログラムには、固有のハードウェアモニターデータベースと、活動状態の BNJDSERV タスクが必要です。ハードウェアモニターのデータベースは SWITCH コマンドでプライマリーとセカンダリーを切り替えられます。アラート記録を開始するには NetView コンソールから NPDA REPORTS ON コマンドを発行します。",
+      "verify_steps": "1. BNJDSERV タスクが活動状態であることを確認する (なければ START する)。2. ハードウェアモニターのデータベースが定義されていることを確認する。3. NetView から NPDA REPORTS ON を発行してアラート記録を開始する。4. アラートを発生させ、ハードウェアモニターのパネル (ALERTSD) に表示されることを確認する。",
+      "quiz": {
+        "q": "ハードウェアモニターがアラートを処理するために活動状態である必要があるタスクはどれですか。",
+        "choices": [
+          "BNJDSERV",
+          "CNMPSSI",
+          "AAUTSKLP",
+          "MVSCMDS"
+        ],
+        "answer": 0,
+        "explanation": "GENALERT インターフェースを使う NetView には固有のハードウェアモニターデータベースと活動状態の BNJDSERV タスクが必要です。(NetView_6.4_Automation_Guide.pdf p.410)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.410",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6992",
+      "title": "Defining the Session Monitor",
+      "naiyou_jp": "セッションモニターは NetView のコンポーネントで、SNA セッションに関する情報を収集します。セッションに関する基本データはセッションアウェアネス (SAW) データと呼ばれます。SAW のほかに収集できるデータ種別には、アカウンティングデータ、可用性データ、セッションパス情報単位 (PIU)、NCP トレースデータ、応答時間モニター (RTM) などがあります。収集される情報にはセッションパラメーター、構成データ、イベントのタイムスタンプ、セッションパートナー識別、応答時間が含まれます。",
+      "verify_steps": "1. セッションモニタータスク (AAUTSKLP) を始動する。2. 初期化メンバー (AAUPRMLP) で SAW や RTM の収集設定を確認する。3. SNA セッションを確立する。4. NetView でセッションモニターの表示を行い、SAW データやセッション情報が収集されていることを確認する。",
+      "quiz": {
+        "q": "セッションモニターが収集する SNA セッションの基本データの呼称はどれですか。",
+        "choices": [
+          "セッションアウェアネス (SAW) データ",
+          "コマンドリビジョンテーブル",
+          "隣接 SSCP テーブル",
+          "APF 許可リスト"
+        ],
+        "answer": 0,
+        "explanation": "セッションモニターが収集するセッションの基本データはセッションアウェアネス (SAW) データと呼ばれます。(NetView_6.4_Tuning_Guide.pdf p.65)"
+      },
+      "source": "NetView_6.4_Tuning_Guide.pdf p.65",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6995",
+      "title": "Defining the Terminal Access Facility",
+      "naiyou_jp": "端末アクセス機能 (TAF) は、NetView オペレーターが他のアプリケーションとフルスクリーンセッションを確立できる機能です。フルスクリーン (FLSCN) セッションは LU2 セッションで SNA 3270 端末をエミュレートし、CICS・IMS・TSO・NPM などのアプリケーション画面を NetView 端末上で直接ログオンしたかのように表示できます。TAF のセットアップは、TAF ソース LU 用の定義ステートメントを VTAMLST に追加し、同じソース LU 用の端末定義を CICS や IMS などのアプリケーションに追加することで構成されます。",
+      "verify_steps": "1. VTAMLST に TAF ソース LU 用の定義ステートメントを追加する。2. CICS や IMS などのアプリケーション側に同じソース LU 用の端末定義を追加する。3. VTAM で定義を活動化する。4. NetView から TAF で対象アプリケーションへフルスクリーンセッションを確立し、画面が表示されることを確認する。",
+      "quiz": {
+        "q": "TAF のフルスクリーン (FLSCN) セッションがエミュレートする端末はどれですか。",
+        "choices": [
+          "SNA 3270 端末 (LU2)",
+          "1 バイトコンソール",
+          "REST クライアント",
+          "VSAM クラスター"
+        ],
+        "answer": 0,
+        "explanation": "TAF のフルスクリーン (FLSCN) セッションは LU2 セッションで SNA 3270 端末をエミュレートします。(NetView_6.4_Automation_Guide.pdf p.391)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.391",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7017",
+      "title": "DSICTMOD",
+      "naiyou_jp": "DSICTMOD は NetView の定数モジュールで、各種 NetView 機能のタイムアウト値、ストレージサイズ、センスコード、ストレージ管理パフォーマンスオプションの値を含みます。サンプルジョブ CNMS0055 (旧 CNMS0055) でアセンブル・リンクエディットして既定値を変更できます。AMASPZAP などのシステムサービス補助を使って変更することも、CNMS0055 で再アセンブルして置き換えることも可能です。なお、タスクおよび共通グローバル変数の定数は廃止され、NetView が必要に応じてストレージを動的に拡張します。",
+      "verify_steps": "1. サンプルジョブ CNMS0055 のパラメーターを自サイトの値に合わせて修正する。2. CNMS0055 をサブミットして DSICTMOD をアセンブル・リンクエディットする。3. ジョブの戻りコードが 0 であることを確認する。4. NetView を再始動し、変更したタイムアウト値等が反映されることを確認する。",
+      "quiz": {
+        "q": "DSICTMOD 定数モジュールに含まれる値として正しいものはどれですか。",
+        "choices": [
+          "各種機能のタイムアウト値やストレージサイズ",
+          "オペレーターのパスワード",
+          "VTAM の APPL 名",
+          "REST サーバーのポート"
+        ],
+        "answer": 0,
+        "explanation": "DSICTMOD は各種 NetView 機能のタイムアウト値、ストレージサイズ、センスコード、パフォーマンスオプションを含み、CNMS0055 で更新します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.26)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.26",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7018",
+      "title": "DSIDMN",
+      "naiyou_jp": "DSIDMN は NetView のタスク定義を保持する DSIPARM メンバーです。サブタスクは TASK ステートメント (例: TASK.SQLOGTSK.PRI=2, TASK.SQLOGTSK.INIT=N) で定義し、メンバー名・優先順位・NetView 初期化時に始動するかどうかを指定します。INIT=N のように初期化時に始動しないタスクは、後から START コマンドで始動できます。",
+      "verify_steps": "1. DSIPARM (CNMSTYLE 経由) で対象サブタスクの TASK.taskname ステートメントを確認する。2. PRI (優先順位) と INIT (初期化時始動の有無) を設定する。3. NetView から START TASK=taskname でタスクを始動する。4. LIST STATUS=TASKS 等でタスクが活動状態になったことを確認する。",
+      "quiz": {
+        "q": "DSIDMN/CNMSTYLE のタスク定義で、NetView 初期化時にサブタスクを始動しないよう指定するキーワードはどれですか。",
+        "choices": [
+          "INIT=N",
+          "PRI=2",
+          "RTM=YES",
+          "TYPE=I"
+        ],
+        "answer": 0,
+        "explanation": "TASK.taskname.INIT=N を指定するとそのサブタスクは NetView 初期化時には始動されず、後で START コマンドで始動できます。(NetView_6.4_Programming_Assembler.pdf p.97)"
+      },
+      "source": "NetView_6.4_Programming_Assembler.pdf p.97",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7049",
+      "title": "Enabling RODM",
+      "naiyou_jp": "RODM (Resource Object Data Manager) を利用可能にするには、NetView の DSIQTSK タスクを始動します。NETOP1 として NetView にログオンし、オペレーターパネルから START TASK=DSIQTSK を発行します (NetView 初期化時に始動済みの場合は不要)。DSIQTSK が始動すると自動的に RODM1 と RODM2 へ接続し、RODM1 が既定の RODM (現行ランタイム RODM) になります。CNMQAPI サービスを通じて RODM とやり取りします。",
+      "verify_steps": "1. RODM が MVS サブシステムとして定義され始動済みであることを確認する。2. NETOP1 として NetView にログオンする。3. START TASK=DSIQTSK を発行する。4. DSIQTSK が RODM1/RODM2 に接続し、RODM1 が既定 RODM になっていることを確認する。",
+      "quiz": {
+        "q": "NetView から RODM への接続を確立するために始動するタスクはどれですか。",
+        "choices": [
+          "DSIQTSK",
+          "BNJDSERV",
+          "CNMPSSI",
+          "AAUTSKLP"
+        ],
+        "answer": 0,
+        "explanation": "DSIQTSK タスクを始動すると自動的に RODM1/RODM2 へ接続し、RODM1 が既定の RODM になります。(NetView_6.4_Automation_Guide.pdf p.378)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.378",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7054",
+      "title": "Enabling the Event/Automation Service",
+      "naiyou_jp": "イベント/オートメーションサービス (E/AS) は、アラートアダプターサービスや確認済みアラートアダプターサービスなどから構成され、プラットフォーム横断の集中ネットワーク管理を可能にします。NetView アラートをアラートアダプターサービスへ経路指定するには、ハードウェアモニターの TECROUTE フィルターと AREC フィルターを PASS に設定します (既定では無効)。E/AS は z/OS システムコンソールから IHSAEVNT ジョブで、または UNIX System Services シェルから始動できます。",
+      "verify_steps": "1. ハードウェアモニターの SRFILTER コマンドで TECROUTE と AREC フィルターを PASS に設定する。2. z/OS コンソールから S IHSAEVNT で E/AS を始動する。3. E/AS の構成ファイル (alert_adpt.conf 等) を確認する。4. アラートを発生させ、アラートアダプター経由で外部へ転送されることを確認する。",
+      "quiz": {
+        "q": "NetView アラートを Event/Automation Service のアラートアダプターへ経路指定するために PASS に設定するハードウェアモニターのフィルターはどれですか。",
+        "choices": [
+          "TECROUTE と AREC",
+          "RTM と KEEPRTM",
+          "APF と LPA",
+          "DOMAIN と ACBpassword"
+        ],
+        "answer": 0,
+        "explanation": "NetView アラートをアラートアダプターサービスへ経路指定するには、TECROUTE フィルターと AREC フィルターを PASS に設定します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.218)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.218",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7045",
+      "title": "Enabling MVS Command Revision",
+      "naiyou_jp": "MVS コマンドリビジョンを有効にするには、CNMSTUSR または CxxSTGEN メンバーで function.autotask.MVSCmdRevision=operid ステートメントを指定し、リビジョン用オートタスクを定義します。コマンドリビジョン出口は NetView サブシステムインターフェース (SSI) を使用するため、NetView サブシステムアドレススペースが始動済みで、ロードモジュール DSIRVCEX が利用可能でコマンドリビジョン出口が有効になっていることを確認します。なお MVS コマンドリビジョンは旧 MVScmdMgt タワーを必要としません。",
+      "verify_steps": "1. CNMSTUSR または CxxSTGEN で function.autotask.MVSCmdRevision=MVSCMDS を指定する。2. ロードモジュール DSIRVCEX が APF 許可ライブラリーにあることを確認する。3. NetView サブシステムアドレススペース (CNMPSSI) を始動する。4. MVS コマンドを発行し、コマンドリビジョンが処理されることを確認する。",
+      "quiz": {
+        "q": "MVS コマンドリビジョン用のオートタスクを定義する CNMSTYLE ステートメントはどれですか。",
+        "choices": [
+          "function.autotask.MVSCmdRevision=operid",
+          "TASK.SQLOGTSK.INIT=N",
+          "XCF.GROUPNUM=01",
+          "RTM=YES"
+        ],
+        "answer": 0,
+        "explanation": "function.autotask.MVSCmdRevision=operid を CNMSTUSR/CxxSTGEN に指定してリビジョン用オートタスクを定義し、コマンドリビジョン出口は SSI を使用します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.203)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.203",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7042",
+      "title": "Enabling GMFHS",
+      "naiyou_jp": "GMFHS (Graphic Monitor Facility host subsystem) は NetView マネジメントコンソールに RODM リソースのビューと情報を供給するコンポーネントです。RODM および NetView マネジメントコンソールと連携し、ネットワークのグラフィカルビューを表示し、コンソールのビューから選択したリソースへコマンドを経路指定します。GMFHS がコマンドを受け付けるには、RODM の API が利用可能で、GMFHS の構成初期化が完了し、Network Management Gateway (NMG) セッションが確立している必要があります。",
+      "verify_steps": "1. RODM (DSIQTSK 経由) が始動済みであることを確認する。2. GMFHS 始動手続き CNMGMFHS (CNMSJH10) を始動する。3. ドメイン構成定義が正常に初期化された旨のメッセージを確認する。4. NetView マネジメントコンソールセッションを開き、RODM リソースのグラフィカルビューが表示されることを確認する。",
+      "quiz": {
+        "q": "GMFHS が NetView マネジメントコンソールに供給するものはどれですか。",
+        "choices": [
+          "RODM リソースのビューと情報",
+          "オペレーターのパスワード",
+          "VTAM 始動オプション",
+          "APF 許可リスト"
+        ],
+        "answer": 0,
+        "explanation": "GMFHS は RODM および NMC と連携し、RODM リソースのグラフィカルビューと情報を NetView マネジメントコンソールに供給します。(NetView_6.4_Users_Guide_NetView.pdf p.38)"
+      },
+      "source": "NetView_6.4_Users_Guide_NetView.pdf p.38",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7061",
+      "title": "Enabling Workload Management to Manage the NetView Program",
+      "naiyou_jp": "z/OS ワークロードマネージャー (WLM) を使って、システムやシスプレックス上の他タスクとの関係で NetView タスクのパフォーマンスを管理できます。WLM を有効にすると、NetView はタスク初期化時に WLM を呼び出してタスク情報を渡し、WLM が適切なサービスクラスへ割り当てます。各サービスクラスには異なるパフォーマンス目標と重要度を設定できます。CNMSTYLE 内の WLM ステートメント (既定ではコメントアウト) をコーディングまたはコメント解除して有効化し、サービスポリシー・ワークロード・サービスクラスを含む WLM サービス定義を作成します。",
+      "verify_steps": "1. CNMSTYLE の WLM ステートメントをコメント解除またはコーディングする。2. TSO で WLM ダイアログを開き、サービスポリシー・ワークロード・サービスクラスを含むサービス定義を作成・活動化する。3. NetView を始動する。4. WLM 管理下で NetView タスクが指定したサービスクラスに割り当てられていることを確認する。",
+      "quiz": {
+        "q": "WLM を有効にすると NetView がタスク初期化時に WLM へ渡し、WLM が割り当てるものはどれですか。",
+        "choices": [
+          "サービスクラス",
+          "APPL メジャーノード",
+          "隣接 SSCP テーブル",
+          "コマンドリビジョンテーブル"
+        ],
+        "answer": 0,
+        "explanation": "WLM 有効時、NetView はタスク初期化時に WLM を呼び出してタスク情報を渡し、WLM が適切なサービスクラスへ割り当てます。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.204)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.204",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7084",
+      "title": "Forwarding Alerts through LU 6.2",
+      "naiyou_jp": "LU 6.2 経由のアラート転送機能には DSI6DST タスクとハードウェアモニターの BNJDSERV タスクがともに活動状態である必要があります。ハードウェアモニターの記録フィルターを使って、どのアラートを転送するかを選択できます。ROUTE フィルターが転送対象アラートを選択しますが、アラートは焦点へ送られる前に ESREC フィルターと AREC フィルターを通過しなければなりません。中間ノードの NetView は、エントリーポイントから LU 6.2 で受信したアラートを焦点へ再転送できます (LUC で受信したアラートは再転送されません)。",
+      "verify_steps": "1. DSI6DST タスクと BNJDSERV タスクが活動状態であることを確認する。2. ハードウェアモニターの ROUTE/ESREC/AREC フィルターを設定し、転送対象アラートを選択する。3. エントリーポイントでアラートを発生させる。4. 焦点 NetView でアラートが LU 6.2 経由で受信されることを確認する。",
+      "quiz": {
+        "q": "LU 6.2 経由のアラート転送に必要な、活動状態であるべきタスクの組み合わせはどれですか。",
+        "choices": [
+          "DSI6DST と BNJDSERV",
+          "DSIQTSK と CNMPSSI",
+          "AAUTSKLP と MVSCMDS",
+          "CNMNET と CNMPROC"
+        ],
+        "answer": 0,
+        "explanation": "LU 6.2 経由のアラート転送には DSI6DST タスクとハードウェアモニターの BNJDSERV タスクがともに活動状態である必要があります。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.188)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.188",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7029",
+      "title": "DSITCPCF",
+      "naiyou_jp": "NetView の TCP/IP サービスは TCP/IP ソケットライブラリーを使用するため、NetView アプリケーションは TCP/IP ソケットアプリケーションになります。TCP/IP ソケットアプリケーションは TCP/IP 構成データを参照する必要があり、そのアクセス方法は z/OS Communications Server によって定義されます。NetView 始動手続きには TCP/IP 構成データの場所を示す SYSTCPD DD ステートメントの例が用意されています。DEFAULTS.TCPNAME 値を正しく設定すれば、クライアントコマンド (REXEC, RSH, IPLOG, TN3270) はサーバータスクが活動状態でなくても発行できます。",
+      "verify_steps": "1. NetView 始動手続きの SYSTCPD DD で TCP/IP 構成データの場所を指定する。2. DEFAULTS.TCPNAME 値が正しいことを確認する。3. NetView を始動する。4. NetView から TN3270 等のクライアントコマンドを発行し、TCP/IP 接続が確立することを確認する。",
+      "quiz": {
+        "q": "TCP/IP ソケットアプリケーションである NetView が構成データの場所を示すために NetView 始動手続きで使用する DD ステートメントはどれですか。",
+        "choices": [
+          "SYSTCPD",
+          "DSILOG",
+          "STEPLIB",
+          "VTAMLST"
+        ],
+        "answer": 0,
+        "explanation": "NetView 始動手続きの SYSTCPD DD ステートメントで TCP/IP 構成データの場所を示します。(NetView_6.4_Installation_Getting_Started.pdf p.61)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.61",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6986",
+      "title": "Defining the Network Log",
+      "naiyou_jp": "ネットワークログのデータは DSILOGP (プライマリー) または DSILOGS (セカンダリー) ファイルに格納されます。データセットを 1 つだけ割り振った場合、そのデータセットが満杯になるとロギングは停止します。セカンダリーデータセットを定義しておくと、プライマリーが満杯になった際に自動的にセカンダリーが使用されます。ログ関連のステートメントは DSILOG ステートメントの MEM キーワードで指定されたメンバー内に、DSTINIT ステートメントの後にコーディングします。",
+      "verify_steps": "1. ネットワークログ用にプライマリー DSILOGP とセカンダリー DSILOGS の VSAM データセットを割り振る。2. DSILOG ステートメントの MEM で指定したメンバーにログ定義をコーディングする。3. NetView を始動する。4. プライマリーログを満杯にし、自動的にセカンダリーへ切り替わることを確認する。",
+      "quiz": {
+        "q": "プライマリーのネットワークログデータセットが満杯になったときの動作として正しいものはどれですか。",
+        "choices": [
+          "セカンダリーが定義されていれば自動的に使用される",
+          "常にロギングが完全に停止する",
+          "VTAM が再始動する",
+          "RODM へ書き込まれる"
+        ],
+        "answer": 0,
+        "explanation": "セカンダリーデータセット (DSILOGS) を定義しておくと、プライマリー (DSILOGP) が満杯になった際に自動的に使用されます。(NetView_6.4_Administration_Reference.pdf p.349)"
+      },
+      "source": "NetView_6.4_Administration_Reference.pdf p.349",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6994",
+      "title": "Defining the Status Monitor",
+      "naiyou_jp": "状況モニター (Status Monitor) は、VTAM ドメインで定義されたリソースの状況に関する情報を収集・要約する NetView コンポーネントで、最大 999999 個のリソースを扱えます。状況モニターのプリプロセッサーは VTAMLST データセット内のリソース定義を使って DSINDEF という DSIPARM メンバーを作成します。オペレーターは STATMON コマンドでドメインステータスサマリーパネルにアクセスし、リソースの活動化・非活動化・状況表示を行えます。カラー端末では色、モノクロ端末では高/標準輝度でリソース状態を区別表示します。",
+      "verify_steps": "1. VTAMLST のリソース定義から状況モニタープリプロセッサーで DSINDEF メンバーを生成する。2. NetView から STATMON コマンドを発行する。3. ドメインステータスサマリーパネルが表示されることを確認する。4. ノード名を指定してノードステータス詳細パネルを表示し、リソース状態が色分け表示されることを確認する。",
+      "quiz": {
+        "q": "状況モニターのドメインステータスサマリーパネルにアクセスするコマンドはどれですか。",
+        "choices": [
+          "STATMON",
+          "BROWSE",
+          "REVISE CMD",
+          "SETPROG APF"
+        ],
+        "answer": 0,
+        "explanation": "STATMON コマンドで状況モニターのドメインステータスサマリーパネルにアクセスし、リソースの状況を確認できます。(NetView_6.4_Users_Guide_NetView.pdf p.240)"
+      },
+      "source": "NetView_6.4_Users_Guide_NetView.pdf p.240",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6836",
+      "title": "Browse Facility",
+      "naiyou_jp": "BROWSE コマンドリストを使うと、ネットワークログ (CANZLOG パラメーター)、区分データセット (PDS) のメンバー、またはストレージ内のメンバーをスキャンできます。対象のメンバーやネットワークログはローカルまたはリモートの NetView 上にあってもかまいません。ストレージ内のメンバーは PIPE INSTORE ステージでロードされたものです。標準の NetView DD 名のメンバーは、メンバー名のみ、または DD 名とメンバー名の両方を指定して参照できます。ログ参照では開始/終了の日時や、メッセージ本文と一致させる文字列で絞り込めます。",
+      "verify_steps": "1. NetView から BROWSE NETLOGA のようにネットワークログを参照する。2. 開始・終了日時や検索文字列で絞り込む。3. BROWSE ddname member で区分データセットのメンバーを参照する。4. 表示されたログレコードやメンバー内容を確認する。",
+      "quiz": {
+        "q": "BROWSE コマンドで参照できる対象として正しいものはどれですか。",
+        "choices": [
+          "ネットワークログ、PDS のメンバー、ストレージ内のメンバー",
+          "VTAM 始動オプションのみ",
+          "RODM の VSAM クラスターのみ",
+          "WLM サービスクラスのみ"
+        ],
+        "answer": 0,
+        "explanation": "BROWSE コマンドはネットワークログ (CANZLOG)、区分データセットのメンバー、ストレージ内のメンバーをスキャンでき、ローカル/リモート双方に対応します。(NetView_6.4_Command_Reference_Vol1_A-N.pdf p.149)"
+      },
+      "source": "NetView_6.4_Command_Reference_Vol1_A-N.pdf p.149",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6885",
+      "title": "Command Lists",
+      "naiyou_jp": "コマンドリスト (CLIST) は、REXX または NetView コマンドリスト言語で記述された一連のコマンドで、DSICLD ライブラリーに格納されます。LOADCL でストレージにロードされた CLIST はインストレージのものが使用され、そうでなければ NetView は DSICLD ライブラリーからディスク上の CLIST を読み込みます。CLIST はメンバー名または同義語名で参照し、LIST CLIST=clist_name で内容を表示できます。ヘッダー行に CLIST がストレージとディスクのどちらで見つかったかが示されます。",
+      "verify_steps": "1. REXX または NetView コマンドリスト言語で記述した CLIST を DSICLD ライブラリーへ格納する。2. 必要に応じて LOADCL clist_name でストレージにロードする。3. NetView から LIST CLIST=clist_name で内容を表示する。4. ヘッダー行でストレージ/ディスクのいずれから読み込まれたかを確認する。",
+      "quiz": {
+        "q": "ストレージにロードされていない CLIST を NetView が読み込むライブラリーはどれですか。",
+        "choices": [
+          "DSICLD",
+          "VTAMLST",
+          "DSIPRF",
+          "CNMLINK"
+        ],
+        "answer": 0,
+        "explanation": "ストレージにロードされていない CLIST は DSICLD ライブラリーからディスク上のものが読み込まれます。(NetView_6.4_Command_Reference_Vol1_A-N.pdf p.523)"
+      },
+      "source": "NetView_6.4_Command_Reference_Vol1_A-N.pdf p.523",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6968",
+      "title": "Defining RODM as an MVS Subsystem",
+      "naiyou_jp": "RODM を使用する前に、SYS1.PARMLIB の IEFSSNxx メンバーで RODM を MVS サブシステムとして定義する必要があります。必要なサブシステム名は EKGX で、これが MVS サブシステム名テーブルに見つからない場合、RODM は EKG1914E メッセージを出して終了します。サブシステム名エントリー EKGX を IEFSSNxx に追加した後、MVS を再 IPL して RODM を再始動します。",
+      "verify_steps": "1. SYS1.PARMLIB の IEFSSNxx メンバーにサブシステム名エントリー EKGX を追加する。2. MVS を再 IPL する。3. RODM を始動する (例: S EKGXRODM)。4. EKG1914E が出ず RODM が正常に初期化されることを確認する。",
+      "quiz": {
+        "q": "RODM を MVS サブシステムとして定義する際に IEFSSNxx に追加するサブシステム名はどれですか。",
+        "choices": [
+          "EKGX",
+          "CNMP",
+          "DSIQ",
+          "AAUT"
+        ],
+        "answer": 0,
+        "explanation": "RODM のサブシステム名は EKGX で、SYS1.PARMLIB の IEFSSNxx に追加し、再 IPL 後に RODM を始動します。(NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.23)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.23",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6984",
+      "title": "Defining the NetView Resource Manager Autotask",
+      "naiyou_jp": "AUTONRM は NetView Resource Manager の処理に使用されるオートタスクで、DSIOPF メンバーで AUTONRM OPERATOR PASSWORD=AUTONRM / PROFILEN DSIPROFC のように定義します。DSIOPF メンバーを変更した場合は、NetView を再始動するか、NetView コマンドラインから REFRESH OPERS コマンドを発行して変更を活動化します。CNMSTYLE ステートメントをコピーして別のオートタスクを指定することもできます。",
+      "verify_steps": "1. DSIOPF メンバーに AUTONRM オートタスクを定義する (PASSWORD=AUTONRM, PROFILEN DSIPROFC)。2. NetView を再始動するか REFRESH OPERS を発行する。3. NetView Resource Manager を始動する。4. AUTONRM オートタスクが活動状態であることを確認する。",
+      "quiz": {
+        "q": "NetView Resource Manager の処理に使用される既定のオートタスク名はどれですか。",
+        "choices": [
+          "AUTONRM",
+          "AUTO1",
+          "MVSCMDS",
+          "NETOP1"
+        ],
+        "answer": 0,
+        "explanation": "AUTONRM は NetView Resource Manager 処理用のオートタスクで、DSIOPF メンバーに定義します。(NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.53)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.53",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7059",
+      "title": "Enabling the UNIX Command Server",
+      "naiyou_jp": "NetView は UNIX コマンドサーバー、一部の AON/TCP 機能、イベント/オートメーションサービスのために z/OS UNIX System Services を使用します。UNIX コマンドサーバーは NetView から UNIX コマンドを発行するための機能で、コマンド機能から START UNIXSERV=* コマンドを入力して始動します。UNIX 機能を利用するには、事前に z/OS UNIX を NetView 用に準備しておく必要があります。",
+      "verify_steps": "1. z/OS UNIX System Services が NetView 用に準備されていることを確認する。2. NetView のコマンド機能から START UNIXSERV=* を入力する。3. UNIX コマンドサーバータスクが始動したことを確認する。4. NetView から UNIX コマンドを発行し、応答が返ることを確認する。",
+      "quiz": {
+        "q": "NetView から UNIX コマンドサーバーを始動するコマンドはどれですか。",
+        "choices": [
+          "START UNIXSERV=*",
+          "S CNMPROC",
+          "REVISE CMD",
+          "STATMON"
+        ],
+        "answer": 0,
+        "explanation": "コマンド機能から START UNIXSERV=* を入力すると UNIX コマンドサーバーが始動します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.214)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.214",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6954",
+      "title": "Defining Hardcopy Printers",
+      "naiyou_jp": "ハードコピープリンターは HARDCOPY ステートメントで定義し、VTAM に定義された 1〜8 文字の LU 名で指定します。必要な数だけプリンターを定義でき、複数のオペレーターが 1 台のプリンターを共有できますが、各オペレーターが同時に印刷できるプリンターは 1 台のみです。NetView は他のアプリケーションや別の NetView とプリンターを共有できません。定義するハードコピーデバイスは LU タイプ 0 または LU タイプ 1 でなければなりません。変更を反映するには NetView を再始動します。",
+      "verify_steps": "1. HARDCOPY ステートメントでプリンターの LU 名 (1〜8 文字) を定義する。2. NetView を再始動して変更を反映する。3. オペレーターをハードコピープリンターに割り当てる。4. メッセージがハードコピープリンターへ出力されることを確認する。",
+      "quiz": {
+        "q": "ハードコピープリンターを定義する際に指定する識別子はどれですか。",
+        "choices": [
+          "VTAM に定義された 1〜8 文字の LU 名",
+          "RODM のサブシステム名 EKGX",
+          "APF 許可ライブラリー名",
+          "WLM サービスクラス名"
+        ],
+        "answer": 0,
+        "explanation": "HARDCOPY ステートメントで VTAM に定義された 1〜8 文字の LU 名 (LU タイプ 0 または 1) を指定してプリンターを定義します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.107)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.107",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6943",
+      "title": "Defining Buffer Pools",
+      "naiyou_jp": "NetView は初期化時に VSAM BLDVRP マクロを発行して LSR (Local Shared Resources) リソースプールを作成します。このリソースプールは、BLDVRP マクロに渡される VSAM 制御インターバル (CI) サイズに基づいてバッファープールに分割されます。NetView では DSIZVLSR モジュールが BLDVRP に渡されるパラメーターリストであり、これによって割り振るバッファーの数とサイズを VSAM に指示できます。LSR リソースプールはさらに DATA バッファープールと INDEX バッファープールに細分化でき、VSAMPOOL コマンドで各プールの統計を表示できます。",
+      "verify_steps": "1. DSIZVLSR モジュールで LSR リソースプールとバッファープール (CI サイズ別) を定義する。2. NetView を始動して BLDVRP によるリソースプール作成を確認する。3. NetView から VSAMPOOL コマンドを発行する。4. DATA/INDEX バッファープールの統計が表示されることを確認する。",
+      "quiz": {
+        "q": "NetView の LSR リソースプールとバッファープールを定義するモジュールはどれですか。",
+        "choices": [
+          "DSIZVLSR",
+          "DSICTMOD",
+          "DSIOPF",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "DSIZVLSR モジュールが BLDVRP パラメーターリストとして LSR リソースプールとバッファープールを定義します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.32)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.32",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7064",
+      "title": "Establishing Nonpersistent Sessions",
+      "naiyou_jp": "非永続セッションのサポートにより、使用頻度の低い NetView 間 LUC セッションを非活動化できます。NetView 間の LUC セッションを非永続にするには、NetView 定数モジュール DSICTMOD のセッション非活動間隔 (タイムアウト間隔) の値を CNMS0055 を使って変更します。セッション間の非活動間隔がこの値を超えると、NetView はセッションを切断します。変更後は CNMS0055 を使って DSICTMOD を再アセンブルする必要があります。",
+      "verify_steps": "1. CNMS0055 で DSICTMOD のセッション非活動間隔 (タイムアウト) の値を設定する。2. CNMS0055 をサブミットして DSICTMOD を再アセンブル・リンクエディットする。3. NetView を再始動する。4. 低使用率の LUC セッションが設定した非活動間隔の経過後に切断されることを確認する。",
+      "quiz": {
+        "q": "NetView 間 LUC セッションを非永続にするために、セッション非活動間隔を設定するモジュールはどれですか。",
+        "choices": [
+          "DSICTMOD",
+          "DSILOGP",
+          "DSIZVLSR",
+          "EKGCUST"
+        ],
+        "answer": 0,
+        "explanation": "DSICTMOD のセッション非活動間隔を CNMS0055 で変更すると、非活動が続いた LUC セッションが切断され非永続セッションになります。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.195)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.195",
+      "rag_hit": true
+    },
+    {
+      "row_id": "7041",
+      "title": "Enabling DVIPA Management",
+      "naiyou_jp": "NetView は動的仮想 IP アドレス (DVIPA) 情報を収集・表示し、DVIPA とそれを使用する TCP/IP 接続との関係を監視します。監視対象には DVIPA の定義と状況、サーバーヘルスを含む分散 DVIPA、DVIPA 接続、VIPA ルート、分散 DVIPA 接続ルーティングが含まれます。これらは CNMSTYLE の DVIPA タワーおよびサブタワー (DVCONN, DVROUT, DVTAD) を有効化することで収集されます。シスプレックス内で DVIPA に影響する変化はイベントを生成します。",
+      "verify_steps": "1. CNMSTYLE で DVIPA タワーと必要なサブタワー (DVCONN/DVROUT/DVTAD) を有効化する。2. NetView を再始動する。3. NetView の IP 管理表示で DVIPA 定義・状況が収集されていることを確認する。4. DVIPA に影響する変更を発生させ、イベントが生成されることを確認する。",
+      "quiz": {
+        "q": "DVIPA の定義と状況データの探索を有効にする CNMSTYLE のタワーはどれですか。",
+        "choices": [
+          "DVIPA",
+          "GRAPHICS",
+          "MVSCmdMgt",
+          "NLDM"
+        ],
+        "answer": 0,
+        "explanation": "CNMSTYLE の DVIPA タワー (およびサブタワー DVCONN/DVROUT/DVTAD) を有効化すると DVIPA の定義・状況・接続等が収集されます。(NetView_6.4_Installation_Getting_Started.pdf p.67)"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.67",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6900",
+      "title": "Configuring NetView Sysplex Management",
+      "naiyou_jp": "Z NetView でシスプレックスを単一の制御点から管理するには、シスプレックス内の各 NetView が z/OS XCF グループに参加し、マスター NetView・マスター対応 NetView・基本 NetView のいずれかの役割を持つように定義する必要があります。さらに、ディスカバリーマネージャーや DVIPA 管理のデータが表示のためにマスター NetView へ流れる必要があります。NetView XCF グループは DSIPLXnn という名前で、nn は CNMSTYLE の XCF.GROUPNUM ステートメントの値です。",
+      "verify_steps": "1. CNMSTYLE で各 NetView の役割 (master/master-capable/basic) と XCF.GROUPNUM を設定する。2. NetView を始動して XCF グループ DSIPLXnn に参加させる。3. マスター NetView で D グループ状況を確認する。4. ディスカバリー/DVIPA データがマスター NetView に集約表示されることを確認する。",
+      "quiz": {
+        "q": "シスプレックスを単一の制御点から管理するために NetView が参加する必要があるものはどれですか。",
+        "choices": [
+          "z/OS XCF グループ (DSIPLXnn)",
+          "VTAM の APPL メジャーノード",
+          "RACF データベース",
+          "WLM サービスクラス"
+        ],
+        "answer": 0,
+        "explanation": "シスプレックス管理には、各 NetView が z/OS XCF グループ (DSIPLXnn) に参加し、master/master-capable/basic の役割を持つ必要があります。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.165)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.165",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6948",
+      "title": "Defining Critical IP Port Monitoring",
+      "naiyou_jp": "IP ポート監視では、定義されたスタック配下のすべてのポートが NetView 始動時に常にアクティブに監視され、個別に開始・停止することはできません。監視対象のポートと監視間隔は、CNMSTUSR または CxxSTGEN メンバーの COMMON.IPPORTMON.IPADD、COMMON.IPPORTMON.INTVL、COMMON.IPPORTMON.PORTNUM ステートメントで定義します。TESTPORT コマンドで個別にポートをテストでき、port_timeout (既定 300 秒) を超えると接続要求が終了します。",
+      "verify_steps": "1. CNMSTUSR/CxxSTGEN に COMMON.IPPORTMON.IPADD/INTVL/PORTNUM を指定して監視対象ポートと間隔を定義する。2. NetView を再始動する。3. NetView から TESTPORT コマンドで対象ポートをテストする。4. ポート監視のステータス表示で対象ポートが監視されていることを確認する。",
+      "quiz": {
+        "q": "監視対象 IP ポートと監視間隔を定義する CNMSTUSR/CxxSTGEN のステートメント接頭辞はどれですか。",
+        "choices": [
+          "COMMON.IPPORTMON",
+          "XCF.GROUPNUM",
+          "function.autotask",
+          "TASK.SQLOGTSK"
+        ],
+        "answer": 0,
+        "explanation": "COMMON.IPPORTMON.IPADD/INTVL/PORTNUM ステートメントで TESTPORT による監視対象ポートと間隔を定義します。(NetView_6.4_Installation_Configuring_Additional_Components.pdf p.150)"
+      },
+      "source": "NetView_6.4_Installation_Configuring_Additional_Components.pdf p.150",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6909",
+      "title": "Configuring XCF Services",
+      "naiyou_jp": "XCF.GROUPNUM ステートメントは、NetView が参加できる DSIPLXnn グループを定義する 2 文字のサフィックスを指定します。このサフィックスにより、シスプレックス内の NetView をグループに分けて編成できます。各 NetView は XCF.GROUPNUM で定義された 1 つの DSIPLXnn グループにのみ参加でき (ユーザー定義グループには追加で参加可能)、各 DSIPLXnn グループは独立してマスターを持ちます。たとえば CNM01/CNM03 に XCF.GROUPNUM=01、CNM02/CNM04 に =02 を指定すると DSIPLX01 と DSIPLX02 の 2 グループが作成されます。",
+      "verify_steps": "1. CNMSTYLE (CNMSTUSR/CxxSTGEN) で XCF.GROUPNUM=nn を指定する。2. NetView を始動する。3. DSIXCFMT タスクが XCF グループへの参加を処理することを確認する。4. 各 NetView が指定した DSIPLXnn グループに参加していることを確認する。",
+      "quiz": {
+        "q": "NetView が参加する DSIPLXnn XCF グループのサフィックスを定義する CNMSTYLE ステートメントはどれですか。",
+        "choices": [
+          "XCF.GROUPNUM",
+          "DOMAINID",
+          "function.autotask.MVSCmdRevision",
+          "COMMON.IPPORTMON.PORTNUM"
+        ],
+        "answer": 0,
+        "explanation": "XCF.GROUPNUM ステートメントが、NetView が参加する DSIPLXnn グループの 2 文字サフィックスを定義します。(NetView_6.4_Administration_Reference.pdf p.287)"
+      },
+      "source": "NetView_6.4_Administration_Reference.pdf p.287",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6837",
+      "title": "Bypassing or Defining Security",
+      "naiyou_jp": "NetView のコマンド認可は、NetView コマンド認可テーブルか、RACF などの SAF 製品で行えます。SAF 製品へ移行する場合でも、SAF 製品がセキュリティー判定を下せないときのバックアップとして NetView コマンド認可テーブルを残しておくのが安全です。SAF が判定を返さない際に常に同じ判定をしたい場合は、CNMSTYLE で SECOPTS.CMDAUTH=SAF.PASS または SAF.FAIL を指定します。現在のセキュリティー設定は LIST SECOPTS コマンドで表示できます。サンプル CNMSAF2 と CNMSAFPW に NetView オペレーターとコマンドの RACF 定義が含まれます。",
+      "verify_steps": "1. CNMSTYLE で SECOPTS.CMDAUTH の値 (TABLE/SAF.PASS/SAF.FAIL 等) を設定する。2. 必要に応じてサンプル CNMSAF2/CNMSAFPW の RACF 定義を適用する。3. NetView から LIST SECOPTS で現在のセキュリティー設定を表示する。4. 権限のないコマンドが正しく拒否されることを確認する。",
+      "quiz": {
+        "q": "SAF 製品がコマンドセキュリティー判定を下せないときに常に許可するよう指定する CNMSTYLE の値はどれですか。",
+        "choices": [
+          "SECOPTS.CMDAUTH=SAF.PASS",
+          "XCF.GROUPNUM=01",
+          "RTM=YES",
+          "CDRDYN=YES"
+        ],
+        "answer": 0,
+        "explanation": "SAF が判定を返さない場合に常に許可するには SECOPTS.CMDAUTH=SAF.PASS を、拒否するには SAF.FAIL を指定します。(NetView_6.4_Security_Reference.pdf p.156)"
+      },
+      "source": "NetView_6.4_Security_Reference.pdf p.156",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6989",
+      "title": "Defining the Save/Restore Function",
+      "naiyou_jp": "保存/復元 (Save/Restore) 機能は DSISVRT タスク (DST) によって提供されます。この機能が使用中かどうかは、LIST STATUS=TASKS または TASKUTIL コマンドで DSISVRT タスクが活動状態かを確認して判断します。たとえば GLOBALV SAVET で保存したタスクグローバル変数を GLOBALV RESTORET * で復元するには、事前に SAVET を実行済みであることと DSISVRT DST が活動状態であることが必要です。焦点情報も保存/復元データベースを通じて保持されます。",
+      "verify_steps": "1. NetView から LIST STATUS=TASKS で DSISVRT タスクが活動状態か確認する。2. 非活動なら起動手続きで DSISVRT を開始する。3. GLOBALV SAVET でタスクグローバル変数を保存する。4. GLOBALV RESTORET * で変数が復元されることを確認する。",
+      "quiz": {
+        "q": "保存/復元機能を提供し、GLOBALV RESTORET の前提となる活動状態であるべきタスクはどれですか。",
+        "choices": [
+          "DSISVRT",
+          "DSIQTSK",
+          "BNJDSERV",
+          "CNMPSSI"
+        ],
+        "answer": 0,
+        "explanation": "保存/復元機能は DSISVRT タスクが提供し、GLOBALV RESTORET は SAVET 済みであることと DSISVRT が活動状態であることに依存します。(NetView_6.4_Tuning_Guide.pdf p.132)"
+      },
+      "source": "NetView_6.4_Tuning_Guide.pdf p.132",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6998",
+      "title": "Defining the VTAM Primary Program Operator Interface Task",
+      "naiyou_jp": "各 NetView プログラムには 1 つの一次プログラムオペレーターインターフェースタスク (PPT) があり、NetView 始動時に開始されます。PPT は VTAM プログラマブルオペレーターインターフェース (POI) 用の特別な VTAM ACB を開き、VTAM からの非送信請求データやシステムコンソールと VTAM 間のメッセージを受信します。PPT が AUTH=PPO の VTAM アプリケーションとして定義され活動状態のとき、非送信請求の VTAM メッセージは POI 経由で NetView へ送られます。POI が非活動の場合、非送信請求 VTAM メッセージは WTO で発行され MVS サブシステムインターフェース経由で NetView が受け取ります。同一システムで複数の NetView が稼働する場合、通常 1 つを除き PPT は二次 POI 受信側にします。",
+      "verify_steps": "1. NetView の PPT を AUTH=PPO の VTAM アプリケーションとして定義する。2. NetView を始動し PPT が開始されることを確認する。3. VTAM コマンドを NetView から POI 経由で発行する。4. 非送信請求の VTAM メッセージが NetView に届くことを確認する。",
+      "quiz": {
+        "q": "非送信請求の VTAM メッセージが POI 経由で NetView へ送られるために、PPT を定義する VTAM アプリケーションの AUTH 値はどれですか。",
+        "choices": [
+          "AUTH=PPO",
+          "AUTH=SAF",
+          "AUTH=PPT",
+          "AUTH=DYNAMIC"
+        ],
+        "answer": 0,
+        "explanation": "PPT を AUTH=PPO の VTAM アプリケーションとして定義すると、非送信請求 VTAM メッセージが POI 経由で NetView へ送られます。(NetView_6.4_Automation_Guide.pdf p.471)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.471",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6949",
+      "title": "Defining Data Sets to the NetView Program",
+      "naiyou_jp": "NetView は BNJPNL1/2、CNMPNL1、DSIARPT、DSIASRC、DSICLD、DSILIST、DSIMSG、DSIOPEN、DSIPARM、DSIPRF、DSIVTAM などの DDNAME を持つデータセットを始動手続きの JCL DD ステートメントで定義します (例: //DSICLD DD DSN=datasetname,DISP=SHR)。これらは連結でき、NetView が稼働中は開いたまま保持されます。自作・変更したメンバーは、保守や製品変更で上書きされないよう、製品提供の DSIPARM データセットより前に連結したデータセットに格納します。",
+      "verify_steps": "1. NetView 始動手続きの JCL で各 DDNAME (DSICLD, DSIPARM 等) の DD ステートメントを定義する。2. 必要に応じて複数データセットを連結する (DISP=SHR)。3. 自作メンバーを製品提供 DSIPARM より前のデータセットに置く。4. NetView を始動し、メンバーが正しく読み込まれることを確認する。",
+      "quiz": {
+        "q": "自作・変更した DSIPARM メンバーを保守で上書きされないようにするための推奨方法はどれですか。",
+        "choices": [
+          "製品提供 DSIPARM より前に連結したデータセットに格納する",
+          "VTAMLIB に格納する",
+          "RODM の VSAM クラスターに格納する",
+          "WLM サービス定義に格納する"
+        ],
+        "answer": 0,
+        "explanation": "自作・変更メンバーは、製品提供の DSIPARM より前に連結したデータセットに格納すると、後続の保守や製品変更による上書きを防げます。(NetView_6.4_Customization_Guide.pdf p.81)"
+      },
+      "source": "NetView_6.4_Customization_Guide.pdf p.81",
+      "rag_hit": true
+    }
+  ]
+}

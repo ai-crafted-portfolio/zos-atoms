@@ -1,0 +1,905 @@
+[
+ {
+  "row_id": "11689",
+  "title": "Active/Active site configuration options",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.26)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11690",
+  "title": "Active/Active sites concept",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.26)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11691",
+  "title": "Active/Standby or Active/Query Configuration",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.91)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11692",
+  "title": "Application considerations",
+  "naiyou": "Chapter 7. Other Considerations. This chapter describes other considerations for GDPS Active/Active solution planning. This chapter includes the following sections: Application considerations. Storage-based replication considerations. Handling batch. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.101、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11693",
+  "title": "Application Middleware for IBM GDPS Active/Active",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.67)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11694",
+  "title": "Architectural overview",
+  "naiyou": "Chapter 2. Architectural overview. The design of the GDPS Active/Active solution is a paradigm shift from a failover model to a near continuous availability model. The other GDPS solutions are built upon storage-based replication. Because data on storage is not readily accessible, in general it takes a longer time to recover from an outage. GDPS Active/Ac... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.23、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11695",
+  "title": "Base Control Program internal interface (BCPii) considerations",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11696",
+  "title": "Batch optimization",
+  "naiyou": "Chapter 7. Other Considerations. This chapter describes other considerations for GDPS Active/Active solution planning. This chapter includes the following sections: Application considerations. Storage-based replication considerations. Handling batch. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.101、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11697",
+  "title": "Batch workload",
+  "naiyou": "Handling batch workloads in a GDPS Active/Active environment. To make this example simple, the following naming conventions are used for a three site configuration: Active site Sysplex: SYSPLEXA, Standby site Sysplex: SYSPLEXB. The easiest way to handle batch in GDPS Active/Active solution is to ensure that there is no running batch during the Active/Acti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.107、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11698",
+  "title": "Benefits of using GDPS Active/Active",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.21)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11699",
+  "title": "Both sites running workloads",
+  "naiyou": "8 IBM GDPS Active/Active Overview and Planning. One site is actively processing transactions and the other site is on standby. The standby site has all of the infrastructure components (LPARs, systems, middleware, and so on) and applications so that it is ready to receive work. Active/Active query workloads can be distributed between sites based on custom... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.20、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11700",
+  "title": "Business decision",
+  "naiyou": "78 IBM GDPS Active/Active Overview and Planning. When describing workload, it is usually separated into online workload and batch workload. For online workload, you can further divide it by line of business. Active/Active workload has more strict definitions. An Active/Active workload is a business-related definition. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.90、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11701",
+  "title": "Challenges of the batch workload to GDPS Active/Active",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.107)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11702",
+  "title": "Checklist",
+  "naiyou": "identify GDPS Active/Active workloads. After you have an idea about how the GDPS Active/Active solution can help these cases, you need to identify the Active/Active workloads. The suggested approach includes these steps: Understand the workloads and the environment. Analyze the workloads to identify and define the Active/Active workload entity, and map it... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.93、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11703",
+  "title": "Components of GDPS Active/Active",
+  "naiyou": "12 IBM GDPS Active/Active Overview and Planning. 2.1 Components of GDPS Active/Active. GDPS Active/Active is for mission critical workloads that have stringent recovery objects, which cannot be achieved by storage replication-based GDPS offerings: RTO nearly zero, measured in seconds. RPO nearly zero, measured in seconds. Non-disruptive planned switch, in... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.24、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11704",
+  "title": "Components of the monitoring architecture",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.62)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11705",
+  "title": "Controllers windows and functions",
+  "naiyou": "IBM NetView agent requires IBM Tivoli Monitoring. 5.9.2 IBM GDPS Integration. IBM Tivoli NetView for z/OS provides the base for all IBM GDPS solutions and provides the following capabilities: Automation platform. Capacity to build a state machine. Communication between NetView programs. Audit trail using the Consolidated Audit, NetView, and z/OS log. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11706",
+  "title": "Controlling and monitoring",
+  "naiyou": "Chapter 5. Controlling and monitoring. 5.11.5 Planned Actions windows and functions. IBM GDPS Active/Active Planned Actions are initiated from the Planned Actions window within the GDPS user interface. When you select the Planned Actions task from the menu bar, you see a Planned Actions window similar to that shown in Figure 5-8. Planned Actions allows yo... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.77、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11707",
+  "title": "Data replication overview using software",
+  "naiyou": "24 IBM GDPS Active/Active Overview and Planning. 3.1 Data replication overview using software. The GDPS Active/Active solution relies on software-based asynchronous replication techniques to synchronize DB2, IMS, or VSAM data between sites. The replication technology consists of capture engines, apply engines, and a transport infrastructure. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.36、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11708",
+  "title": "Decide on an Active/Standby or Active/Query configuration",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.94)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11709",
+  "title": "Decision Point",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11710",
+  "title": "Disaster recovery (DR) solution option",
+  "naiyou": "80 IBM GDPS Active/Active Overview and Planning. 6.2.5 Disaster recovery (DR) solution option. Your site might have already implemented a DR solution. GDPS Active/Active provides support to integrate or cooperate with your DR solution. In short, the primary focus for GDPS Active/Active is to provide near-continuous availability for your Active/Active (A/A... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.92、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11711",
+  "title": "Evolution of GDPS Active/Active solution",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.18)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11712",
+  "title": "Failure detection",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11713",
+  "title": "GDPS Active/Active co-operation with GDPS/PPRC",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.104)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11714",
+  "title": "GDPS Active/Active integration with GDPS/MGM",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.105)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11715",
+  "title": "GDPS Active/Active monitoring and alerting",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.80)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11716",
+  "title": "GDPS Active/Active product",
+  "naiyou": "e statically routing to one site and can fail over to the other site in case of workload failure. Infrastructures are all active on both sites. It is the fundamental paradigm shift from a failover model to a continuous availability model. In an Active/Standby configuration, each site is identical with the same data, the same hardware, and the same applica... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.26、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11717",
+  "title": "GDPS Active/Active site switch of workloads",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.99)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11718",
+  "title": "GDPS Active/Active solution concepts",
+  "naiyou": "Chapter 1. Introduction. This chapter describes the concepts and business value of the GDPS Active/Active solution. It includes the following sections: GDPS Active/Active solution concepts, Benefits of using GDPS Active/Active. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.17、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11719",
+  "title": "GDPS Active/Active Workload",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.26)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11720",
+  "title": "GDPS and data replication",
+  "naiyou": "24 IBM GDPS Active/Active Overview and Planning. 3.1 Data replication overview using software. The GDPS Active/Active solution relies on software-based asynchronous replication techniques to synchronize DB2, IMS, or VSAM data between sites. The replication technology consists of capture engines, apply engines, and a transport infrastructure. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.36、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11721",
+  "title": "GDPS environment",
+  "naiyou": "Chapter 2. Architectural overview 17 GDPS Active/Active provides basic functions like other storage-based GDPS solutions provide, such as system-related functions (ACTIVATE/DEACTIVATE, RESET, LOAD), monitoring system and alerting, and batch script interface. More important, GDPS Active/Active solution controls transaction routing, and planned or unplanned... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.29、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11722",
+  "title": "GDPS Offerings",
+  "naiyou": "12 IBM GDPS Active/Active Overview and Planning. 2.1 Components of GDPS Active/Active. GDPS Active/Active is for mission critical workloads that have stringent recovery objects, which cannot be achieved by storage replication-based GDPS offerings: RTO nearly zero, measured in seconds. RPO nearly zero, measured in seconds. Non-disruptive planned switch, in... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.24、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11723",
+  "title": "GDPS Standard Actions",
+  "naiyou": "The other part of the NetView interface consists of the panels that are provided by GDPS to help you manage and inspect the environment. The main GDPS panel is shown in Figure 5-3. From this panel, you can perform the following actions: Query and control the disk remote copy configuration. Start GDPS standard actions (the ability to control and initiate a... (出典: GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.176、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11724",
+  "title": "Graceful switch",
+  "naiyou": "The easiest way to handle batch in GDPS Active/Active solution is to ensure that there is no running batch during the Active/Active workload or site switch. During a GDPS Active/Active graceful switch, a GDPS Active/Active script prompts the user to stop related batch. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.107、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11725",
+  "title": "Handling batch",
+  "naiyou": "Handling batch workloads in a GDPS Active/Active environment. To make this example simple, the following naming conventions are used for a three site configuration: Active site Sysplex: SYSPLEXA, Standby site Sysplex: SYSPLEXB. The easiest way to handle batch in GDPS Active/Active solution is to ensure that there is no running batch during the Active/Acti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.107、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11726",
+  "title": "Hardware prerequisites and corequisites",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11727",
+  "title": "Help from IBM",
+  "naiyou": "GDPS Metro/z/OS Global Mirror. A three-site solution that provides CA across two sites within metropolitan distances and DR to a third site at virtually unlimited distances. It is based on a multitarget mirroring technology that combines PPRC and XRC (also known as z/OS Global Mirror on IBM storage subsystems). GDPS Active/Active. A multisite CA/DR soluti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.113、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11728",
+  "title": "Hints and Tips",
+  "naiyou": "aspects of your disaster recovery provision for these sysplexes from a single point. GDPS Active/Active provides functions to integrate with existing DR solutions. Before attempting to integrate with a disaster recovery plan, take the following into consideration: Review existing DR solution. Decide how to integrate with GDPS Active/Active solution. Refin... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.95、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11729",
+  "title": "How do I contact IBM for GDPS services?",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.113)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11730",
+  "title": "How does IIDR for DB2 work?",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.37)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11731",
+  "title": "How does IIDR for IMS work?",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.47)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11732",
+  "title": "How does IIDR for VSAM work?",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.43)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11733",
+  "title": "IBM GDPS Active/Active monitor processing",
+  "naiyou": "Chapter 5. Controlling and monitoring. 5.11.5 Planned Actions windows and functions. IBM GDPS Active/Active Planned Actions are initiated from the Planned Actions window within the GDPS user interface. When you select the Planned Actions task from the menu bar, you see a Planned Actions window similar to that shown in Figure 5-8. Planned Actions allows yo... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.77、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11734",
+  "title": "IBM GDPS Active/Active Monitor processing during a workload or site failure",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.68)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11735",
+  "title": "IBM GDPS Active/Active web interface",
+  "naiyou": "Chapter 5. Controlling and monitoring. 5.11.5 Planned Actions windows and functions. IBM GDPS Active/Active Planned Actions are initiated from the Planned Actions window within the GDPS user interface. When you select the Planned Actions task from the menu bar, you see a Planned Actions window similar to that shown in Figure 5-8. Planned Actions allows yo... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.77、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11736",
+  "title": "IBM GDPS Integration",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11737",
+  "title": "IBM Global Technology Services and GDPS service offering",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.109)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11738",
+  "title": "IBM InfoSphere Data Replication for DB2 in GDPS Active/Active",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.36)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11739",
+  "title": "IBM InfoSphere Data Replication for IMS in GDPS/AA",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.47)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11740",
+  "title": "IBM InfoSphere Data Replication for VSAM in GDPS/AA",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.42)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11741",
+  "title": "IBM Installation Services for GDPS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.111)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11742",
+  "title": "IBM Multi-site Workload Lifeline for z/OS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.66)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11743",
+  "title": "IBM NetView Agent",
+  "naiyou": "IBM NetView agent requires IBM Tivoli Monitoring. 5.9.2 IBM GDPS Integration. IBM Tivoli NetView for z/OS provides the base for all IBM GDPS solutions and provides the following capabilities: Automation platform. Capacity to build a state machine. Communication between NetView programs. Audit trail using the Consolidated Audit, NetView, and z/OS log. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11744",
+  "title": "IBM OMEGAMON XE Family",
+  "naiyou": "IBM NetView agent requires IBM Tivoli Monitoring. 5.9.2 IBM GDPS Integration. IBM Tivoli NetView for z/OS provides the base for all IBM GDPS solutions and provides the following capabilities: Automation platform. Capacity to build a state machine. Communication between NetView programs. Audit trail using the Consolidated Audit, NetView, and z/OS log. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11745",
+  "title": "IBM Redbooks",
+  "naiyou": "GDPS Metro/z/OS Global Mirror. A three-site solution that provides CA across two sites within metropolitan distances and DR to a third site at virtually unlimited distances. It is based on a multitarget mirroring technology that combines PPRC and XRC (also known as z/OS Global Mirror on IBM storage subsystems). GDPS Active/Active. A multisite CA/DR soluti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.113、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11746",
+  "title": "IBM Redbooks promotions",
+  "naiyou": "Active workloads are running and managed by GDPS. There are redundant workload instances for each workload. Each workload instance can run in each of the Active/Active sites. At any time, for each Update Active/Active update workload, GDPS/PPRC, GDPS/XRC or GDPS/GM. Failover model. Near CA model. Recovery time ~ 2 min. Recovery time < 1 hour. Recovery tim... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.19、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11747",
+  "title": "IBM Tivoli Monitoring",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.32)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11748",
+  "title": "IBM Tivoli Monitoring and IBM Tivoli NetView for z/OS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.32)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11749",
+  "title": "IBM Tivoli Monitoring components",
+  "naiyou": "IBM NetView agent requires IBM Tivoli Monitoring. 5.9.2 IBM GDPS Integration. IBM Tivoli NetView for z/OS provides the base for all IBM GDPS solutions and provides the following capabilities: Automation platform. Capacity to build a state machine. Communication between NetView programs. Audit trail using the Consolidated Audit, NetView, and z/OS log. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11750",
+  "title": "IBM Tivoli Monitoring operational considerations",
+  "naiyou": "IBM NetView agent requires IBM Tivoli Monitoring. 5.9.2 IBM GDPS Integration. IBM Tivoli NetView for z/OS provides the base for all IBM GDPS solutions and provides the following capabilities: Automation platform. Capacity to build a state machine. Communication between NetView programs. Audit trail using the Consolidated Audit, NetView, and z/OS log. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11751",
+  "title": "IBM Tivoli NetView for z/OS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.32)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11752",
+  "title": "IBM Tivoli NetView for z/OS and IBM Tivoli NetView Monitoring for GDPS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.69)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11753",
+  "title": "IBM Tivoli System Automation for z/OS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.66)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11754",
+  "title": "Identify GDPS Active/Active workloads",
+  "naiyou": "identify GDPS Active/Active workloads. After you have an idea about how the GDPS Active/Active solution can help these cases, you need to identify the Active/Active workloads. The suggested approach includes these steps: Understand the workloads and the environment. Analyze the workloads to identify and define the Active/Active workload entity, and map it... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.93、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11755",
+  "title": "Identify the workload",
+  "naiyou": "78 IBM GDPS Active/Active Overview and Planning. When describing workload, it is usually separated into online workload and batch workload. For online workload, you can further divide it by line of business. Active/Active workload has more strict definitions. An Active/Active workload is a business-related definition. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.90、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11756",
+  "title": "IIDR for DB2 and GDPS Active/Active",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.40)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11757",
+  "title": "IIDR for DB2 architectural overview",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.40)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11758",
+  "title": "IIDR for IMS and GDPS/AA",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.48)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11759",
+  "title": "IIDR for IMS Architectural Overview",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.48)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11760",
+  "title": "IIDR for VSAM and GDPS/AA",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.45)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11761",
+  "title": "IIDR for VSAM architectural overview",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.43)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11762",
+  "title": "Installation",
+  "naiyou": "82 IBM GDPS Active/Active Overview and Planning. Understand the relationship between Active/Active workloads and non-Active/Active workloads, especially the impact to the data from non-Active/Active workloads, such as the batch workload. Assess potential impact of global transaction or transactions, which come across different type of data source or multi... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.94、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11763",
+  "title": "Integrate with current disaster recovery plan",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.95)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11764",
+  "title": "Interaction with other components within GDPS Active/Active",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.56)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11765",
+  "title": "Introduction",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.17)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11766",
+  "title": "Isolation from catastrophic failures",
+  "naiyou": "8 IBM GDPS Active/Active Overview and Planning. One site is actively processing transactions and the other site is on standby. The standby site has all of the infrastructure components (LPARs, systems, middleware, and so on) and applications so that it is ready to receive work. Active/Active query workloads can be distributed between sites based on custom... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.20、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11767",
+  "title": "Key concepts",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11768",
+  "title": "Launching Tivoli Enterprise Portal from the GDPS web interface",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.78)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11769",
+  "title": "Lifeline Advisor",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11770",
+  "title": "Lifeline Agent",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11771",
+  "title": "Lifeline communication route",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11772",
+  "title": "Lifeline in graceful switch",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11773",
+  "title": "Lifeline recommendation on workload distribution",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.57)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11774",
+  "title": "Middleware",
+  "naiyou": "8 IBM GDPS Active/Active Overview and Planning. One site is actively processing transactions and the other site is on standby. The standby site has all of the infrastructure components (LPARs, systems, middleware, and so on) and applications so that it is ready to receive work. Active/Active query workloads can be distributed between sites based on custom... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.20、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11775",
+  "title": "Minimizing latency (and RPO) and improving replication performance by using parallel apply",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.46)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11776",
+  "title": "Multi-site Workload Lifeline Components",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11777",
+  "title": "Multi-Site Workload Lifeline for z/OS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.30)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11778",
+  "title": "NetView Web Application requirements",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11779",
+  "title": "Network Connectivity and bandwidth considerations",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.86)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11780",
+  "title": "Online resources",
+  "naiyou": "GDPS Metro/z/OS Global Mirror. A three-site solution that provides CA across two sites within metropolitan distances and DR to a third site at virtually unlimited distances. It is based on a multitarget mirroring technology that combines PPRC and XRC (also known as z/OS Global Mirror on IBM storage subsystems). GDPS Active/Active. A multisite CA/DR soluti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.113、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11781",
+  "title": "Online workload consideration",
+  "naiyou": "90 IBM GDPS Active/Active Overview and Planning 7.1 Application considerations From an application point of view, typically, workloads are classified as online workload and batch workload. GDPS Active/Active mainly monitors and manages online workloads. The user must handle the batch workload and integrate it with GDPS Active/Active. 7.1.1 Online workload... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.102、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11782",
+  "title": "Other considerations",
+  "naiyou": "Chapter 7. Other Considerations. This chapter describes other considerations for GDPS Active/Active solution planning. This chapter includes the following sections: Application considerations. Storage-based replication considerations. Handling batch. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.101、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11783",
+  "title": "Other publications",
+  "naiyou": "GDPS Metro/z/OS Global Mirror. A three-site solution that provides CA across two sites within metropolitan distances and DR to a third site at virtually unlimited distances. It is based on a multitarget mirroring technology that combines PPRC and XRC (also known as z/OS Global Mirror on IBM storage subsystems). GDPS Active/Active. A multisite CA/DR soluti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.113、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11784",
+  "title": "Other web interface options",
+  "naiyou": "5.11.7 Other web interface options. Other options available to the operator through the web interface and are discussed in GDPS/Active-Active 1.4 Planning and Implementation Guide. Status Display Facility (SDF). SDF is the focal point for monitoring the GDPS Active/Active environment. A link to SDF is available on the top portion of every web interface fr... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.79、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11785",
+  "title": "Overview",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.62)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11786",
+  "title": "Overview of IBM Tivoli Monitoring",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.62)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11787",
+  "title": "Plan GDPS Active/Active use cases",
+  "naiyou": "aspects of your disaster recovery provision for these sysplexes from a single point. GDPS Active/Active provides functions to integrate with existing DR solutions. Before attempting to integrate with a disaster recovery plan, take the following into consideration: Review existing DR solution. Decide how to integrate with GDPS Active/Active solution. Refin... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.95、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11788",
+  "title": "Plan software data replication",
+  "naiyou": "identify GDPS Active/Active workloads. After you have an idea about how the GDPS Active/Active solution can help these cases, you need to identify the Active/Active workloads. The suggested approach includes these steps: Understand the workloads and the environment. Analyze the workloads to identify and define the Active/Active workload entity, and map it... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.93、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11789",
+  "title": "Plan the monitoring",
+  "naiyou": "aspects of your disaster recovery provision for these sysplexes from a single point. GDPS Active/Active provides functions to integrate with existing DR solutions. Before attempting to integrate with a disaster recovery plan, take the following into consideration: Review existing DR solution. Decide how to integrate with GDPS Active/Active solution. Refin... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.95、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11790",
+  "title": "Plan the workload distribution",
+  "naiyou": "identify GDPS Active/Active workloads. After you have an idea about how the GDPS Active/Active solution can help these cases, you need to identify the Active/Active workloads. The suggested approach includes these steps: Understand the workloads and the environment. Analyze the workloads to identify and define the Active/Active workload entity, and map it... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.93、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11791",
+  "title": "Planned Actions windows and functions",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.77)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11792",
+  "title": "Planning considerations",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.83)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11793",
+  "title": "Preparation",
+  "naiyou": "82 IBM GDPS Active/Active Overview and Planning. Understand the relationship between Active/Active workloads and non-Active/Active workloads, especially the impact to the data from non-Active/Active workloads, such as the batch workload. Assess potential impact of global transaction or transactions, which come across different type of data source or multi... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.94、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11794",
+  "title": "Prerequisite software for controlling and monitoring",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.62)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11795",
+  "title": "Prerequisites for each component",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.84)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11796",
+  "title": "Production",
+  "naiyou": "aspects of your disaster recovery provision for these sysplexes from a single point. GDPS Active/Active provides functions to integrate with existing DR solutions. Before attempting to integrate with a disaster recovery plan, take the following into consideration: Review existing DR solution. Decide how to integrate with GDPS Active/Active solution. Refin... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.95、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11797",
+  "title": "Reduce planned and unplanned outages for critical applications",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.22)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11798",
+  "title": "Server/Application State Protocol (SASP)-compliant routing",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11799",
+  "title": "Single consistency groups or multiple?",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.91)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11800",
+  "title": "Sites windows and functions",
+  "naiyou": "Chapter 5. Controlling and monitoring. 5.11.5 Planned Actions windows and functions. IBM GDPS Active/Active Planned Actions are initiated from the Planned Actions window within the GDPS user interface. When you select the Planned Actions task from the menu bar, you see a Planned Actions window similar to that shown in Figure 5-8. Planned Actions allows yo... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.77、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11801",
+  "title": "Software data replication",
+  "naiyou": "20 IBM GDPS Active/Active Overview and Planning. Software data replication will preserve transaction consistency by only applying committed data and using dependency analysis to maintain the correct order. Software data replication latency comes from capture delay, transmit delay, and apply delay. GDPS Active/Active needs to know the software data replica... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.32、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11802",
+  "title": "Software data replication products",
+  "naiyou": "20 IBM GDPS Active/Active Overview and Planning. Software data replication will preserve transaction consistency by only applying committed data and using dependency analysis to maintain the correct order. Software data replication latency comes from capture delay, transmit delay, and apply delay. GDPS Active/Active needs to know the software data replica... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.32、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11803",
+  "title": "Software prerequisites and corequisites",
+  "naiyou": "identify GDPS Active/Active workloads. After you have an idea about how the GDPS Active/Active solution can help these cases, you need to identify the Active/Active workloads. The suggested approach includes these steps: Understand the workloads and the environment. Analyze the workloads to identify and define the Active/Active workload entity, and map it... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.93、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11804",
+  "title": "Software replication considerations",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11805",
+  "title": "Solution",
+  "naiyou": "The easiest way to handle batch in GDPS Active/Active solution is to ensure that there is no running batch during the Active/Active workload or site switch. During a GDPS Active/Active graceful switch, a GDPS Active/Active script prompts the user to stop related batch. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.107、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11806",
+  "title": "Storage-based replication considerations",
+  "naiyou": "Chapter 7. Other Considerations. This chapter describes other considerations for GDPS Active/Active solution planning. This chapter includes the following sections: Application considerations. Storage-based replication considerations. Handling batch. (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.101、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11807",
+  "title": "Study the outage",
+  "naiyou": "identify GDPS Active/Active workloads. After you have an idea about how the GDPS Active/Active solution can help these cases, you need to identify the Active/Active workloads. The suggested approach includes these steps: Understand the workloads and the environment. Analyze the workloads to identify and define the Active/Active workload entity, and map it... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.93、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11808",
+  "title": "Sysplex configuration",
+  "naiyou": "6.1.6 Base Control Program internal interface (BCPii) considerations BCPii is an internal HMC interface that is supported by System Automation. GDPS uses this interface through System Automation. This interface allows GDPS to communicate directly with the hardware for HMC automation functions, such as LOAD, ACTIVATE, and RESET. BCPii supports IBM System z... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.87、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11809",
+  "title": "Technical Consulting Workshop",
+  "naiyou": "GDPS Metro/z/OS Global Mirror. A three-site solution that provides CA across two sites within metropolitan distances and DR to a third site at virtually unlimited distances. It is based on a multitarget mirroring technology that combines PPRC and XRC (also known as z/OS Global Mirror on IBM storage subsystems). GDPS Active/Active. A multisite CA/DR soluti... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.113、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11810",
+  "title": "Testing",
+  "naiyou": "82 IBM GDPS Active/Active Overview and Planning. Understand the relationship between Active/Active workloads and non-Active/Active workloads, especially the impact to the data from non-Active/Active workloads, such as the batch workload. Assess potential impact of global transaction or transactions, which come across different type of data source or multi... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.94、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11811",
+  "title": "Tivoli OMEGAMON XE on z/OS",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.70)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11812",
+  "title": "Tuning",
+  "naiyou": "aspects of your disaster recovery provision for these sysplexes from a single point. GDPS Active/Active provides functions to integrate with existing DR solutions. Before attempting to integrate with a disaster recovery plan, take the following into consideration: Review existing DR solution. Decide how to integrate with GDPS Active/Active solution. Refin... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.95、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11813",
+  "title": "What are GDPS service offerings and how do they address business requirements?",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.110)",
+  "src": "GDPS",
+  "type": "bare"
+ },
+ {
+  "row_id": "11814",
+  "title": "What is IBM Global Technology Services?",
+  "naiyou": "two sites separated by metropolitan distances. The solution is based on the same technology as GDPS/PPRC, but does not include much of the systems automation capability that makes GDPS/PPRC a more complete DR solution. GDPS/XRC: DR solution across two sites separated by virtually unlimited distance between sites. The solution is based on the IBM XRC async... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.112、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11815",
+  "title": "Workload distribution",
+  "naiyou": "on servers and databases need to be active on both sites. Application modules and settings on both sites must be synchronized before a switch. Maintenance processes on both sites must be enhanced for a workload switch as well. Workload distribution: Currently, the GDPS Active/Active solution only supports TCP/IP connections. The GDPS Active/Active solutio... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.102、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11816",
+  "title": "Workload distribution and balancing",
+  "naiyou": "intelligent load balancing of workloads across two sites at unlimited distance to achieve nearly continuous availability. It plays an integral role in the GDPS Active/Active solution and provides the following benefits: Improved performance: New connections of workloads are routed to the applications, servers, and systems most capable of processing them s... (出典: GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.51、原文ママ)",
+  "src": "GDPS",
+  "type": "raweng"
+ },
+ {
+  "row_id": "11817",
+  "title": "Workload Management windows and functions",
+  "naiyou": "(GDPS_SG24-8241_Active-Active_Overview_and_Planning.pdf p.75)",
+  "src": "GDPS",
+  "type": "bare"
+ }
+]

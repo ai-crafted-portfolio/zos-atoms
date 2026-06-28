@@ -1,0 +1,3609 @@
+{
+  "page": "g032",
+  "product": "IBM NetView 6.4",
+  "total_rows": 150,
+  "target_rows": 150,
+  "fixed_count": 150,
+  "rows": [
+    {
+      "row_id": "6482",
+      "title": "About the Examples",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「About the Examples」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6483",
+      "title": "Access and Control Function",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Access and Control Function」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6484",
+      "title": "Accessing and Changing GMFHS-Defined Fields",
+      "naiyou_jp": "GMFHS（Graphic Monitor Facility ホスト・サブシステム）は RODM および NetView 管理コンソールと連携し、ネットワーク資源のグラフィック・ビューを表示してビューから選択した資源へコマンドを発行するホスト・プログラムである。ビューには資源の状況（status）情報と構成（configuration）情報の両方が含まれ、RODM データ・キャッシュの内容を変更することでGMFHS と管理コンソールの動作を制御できる。「Accessing and Changing GMFHS-Defined Fields」はこの GMFHS と RODM の連携領域に属する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "GMFHS サブタスク（DUIFCDST 等）の稼働を確認: LIST STATUS=TASKS で DUI 系タスクが ACTIVE であることを確認。",
+        "NetView 管理コンソールにサインオンし、RODM ベースのネットワーク・ビューを開く。",
+        "ビュー上の資源を選択し status と configuration が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS が表示するビューに含まれる情報の種類はどれか。",
+        "choices": [
+          "状況（status）情報のみ",
+          "構成（configuration）情報のみ",
+          "状況情報と構成情報の両方",
+          "セキュリティ監査ログのみ"
+        ],
+        "answer": 2,
+        "explanation": "GMFHS のビューには資源の status と configuration の両方が含まれる（Programmer's Guide p.103）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.17 / Users_Guide_NetView.pdf p.38"
+    },
+    {
+      "row_id": "6485",
+      "title": "Accessing publications online",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Accessing publications online」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6486",
+      "title": "Additional RODM Documentation",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Additional RODM Documentation」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6487",
+      "title": "Advantages of Using the Supplied Data Models for Automation",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Advantages of Using the Supplied Data Models for Automation」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6488",
+      "title": "Aggregation Concepts",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Aggregation Concepts」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6489",
+      "title": "Application Programming Reference",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Application Programming Reference」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6490",
+      "title": "Application Programming Using RODM",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Application Programming Using RODM」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6491",
+      "title": "Applying Policy to Views",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Applying Policy to Views」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6492",
+      "title": "Applying Span-of-Control to Set and Clear Operator Status",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Applying Span-of-Control to Set and Clear Operator Status」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6493",
+      "title": "Applying Span-of-Control to Views",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Applying Span-of-Control to Views」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6494",
+      "title": "Asynchronous Error Notification",
+      "naiyou_jp": "RODM 通知（notification）プロセスは、フィールド値が変化したときに登録済みユーザー・アプリケーションへ通知する仕組みで、setup・wait・notification・cleanup の4 段階から成る。notify サブフィールドは通知サブスクリプションのリストを保持し、オブジェクト単位だけでなくクラス単位の通知も定義できる（クラスのフィールド変更時に起動）。オブジェクト削除通知では setup が通常と異なり、notify サブフィールド作成・通知メソッド導入・フィールド・サブスクライブを行わない。通知メソッドは自動化タスクに特に有用である。「Asynchronous Error Notification」はこの RODM 通知に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象フィールドに notify サブフィールドを作成し通知メソッドを導入する。",
+        "EKG_AddNotifySubscription でサブスクリプションを登録する。",
+        "通知キューと ECB を作成し wait 状態にする。",
+        "対象フィールドを変更し、登録アプリケーションに通知が届くことを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM 通知メソッドがトリガーされるのはどのタイミングか。",
+        "choices": [
+          "フィールドが照会されたとき",
+          "フィールドの値が変化したとき",
+          "RODM が起動したとき",
+          "チェックポイント取得時"
+        ],
+        "answer": 1,
+        "explanation": "通知メソッドはフィールドの値が変化したときにトリガーされ、ユーザー・アプリケーションへ変更を通知する（p.32）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.322, p.326, p.347"
+    },
+    {
+      "row_id": "6495",
+      "title": "BLDVIEWS",
+      "naiyou_jp": "BLDVIEWS は新規ビュー／集約（aggregate）の作成や既存ビュー／集約の更新に用いる REXX exec である。GMFHS・SNA トポロジー・マネージャー・MultiSystem Manager の各データ・モデルのオブジェクトと連携し、GMFHS クラス上に資源を作成できる（ただしこれらの他クラス上にはオブジェクトを作成しない）。制御文は DSIPARM メンバーや完全修飾の順次データ・セットで渡す。BLDVIEWS の処理は静的で、実行時点で RODM に存在した資源のみを対象とするため、資源が後から追加・削除された場合は再実行が必要である。「BLDVIEWS」はこの BLDVIEWS 機能に関する項目である。",
+      "verify_steps": [
+        "NetView コマンド行で制御文メンバーを用意（例: 順次データ・セット ESP.GAF.DATA(MYDEFS)）。",
+        "BLDVIEWS MYMEMBER を実行する。",
+        "TEST=YES を指定して構文チェックのみ行い、エラーがないことを確認。",
+        "本実行後、NetView 管理コンソールで生成されたビュー／集約が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "BLDVIEWS で作成したビューの特性として正しいものはどれか。",
+        "choices": [
+          "RODM 変更に応じて動的に自動更新される",
+          "実行時点の RODM 資源のみを対象とする静的なビューである",
+          "ローダー・ファイルの一部として保存される",
+          "コールド・スタート後も自動的に再構築される"
+        ],
+        "answer": 1,
+        "explanation": "BLDVIEWS の処理は静的で、実行時に存在した資源のみ対象。変更反映には再実行が必要（p.579）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.65"
+    },
+    {
+      "row_id": "6496",
+      "title": "BLDVIEWS Control Statement Examples",
+      "naiyou_jp": "BLDVIEWS は新規ビュー／集約（aggregate）の作成や既存ビュー／集約の更新に用いる REXX exec である。GMFHS・SNA トポロジー・マネージャー・MultiSystem Manager の各データ・モデルのオブジェクトと連携し、GMFHS クラス上に資源を作成できる（ただしこれらの他クラス上にはオブジェクトを作成しない）。制御文は DSIPARM メンバーや完全修飾の順次データ・セットで渡す。BLDVIEWS の処理は静的で、実行時点で RODM に存在した資源のみを対象とするため、資源が後から追加・削除された場合は再実行が必要である。「BLDVIEWS Control Statement Examples」はこの BLDVIEWS 機能に関する項目である。",
+      "verify_steps": [
+        "NetView コマンド行で制御文メンバーを用意（例: 順次データ・セット ESP.GAF.DATA(MYDEFS)）。",
+        "BLDVIEWS MYMEMBER を実行する。",
+        "TEST=YES を指定して構文チェックのみ行い、エラーがないことを確認。",
+        "本実行後、NetView 管理コンソールで生成されたビュー／集約が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "BLDVIEWS で作成したビューの特性として正しいものはどれか。",
+        "choices": [
+          "RODM 変更に応じて動的に自動更新される",
+          "実行時点の RODM 資源のみを対象とする静的なビューである",
+          "ローダー・ファイルの一部として保存される",
+          "コールド・スタート後も自動的に再構築される"
+        ],
+        "answer": 1,
+        "explanation": "BLDVIEWS の処理は静的で、実行時に存在した資源のみ対象。変更反映には再実行が必要（p.579）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.65"
+    },
+    {
+      "row_id": "6497",
+      "title": "BLDVIEWS Control Statements",
+      "naiyou_jp": "BLDVIEWS は新規ビュー／集約（aggregate）の作成や既存ビュー／集約の更新に用いる REXX exec である。GMFHS・SNA トポロジー・マネージャー・MultiSystem Manager の各データ・モデルのオブジェクトと連携し、GMFHS クラス上に資源を作成できる（ただしこれらの他クラス上にはオブジェクトを作成しない）。制御文は DSIPARM メンバーや完全修飾の順次データ・セットで渡す。BLDVIEWS の処理は静的で、実行時点で RODM に存在した資源のみを対象とするため、資源が後から追加・削除された場合は再実行が必要である。「BLDVIEWS Control Statements」はこの BLDVIEWS 機能に関する項目である。",
+      "verify_steps": [
+        "NetView コマンド行で制御文メンバーを用意（例: 順次データ・セット ESP.GAF.DATA(MYDEFS)）。",
+        "BLDVIEWS MYMEMBER を実行する。",
+        "TEST=YES を指定して構文チェックのみ行い、エラーがないことを確認。",
+        "本実行後、NetView 管理コンソールで生成されたビュー／集約が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "BLDVIEWS で作成したビューの特性として正しいものはどれか。",
+        "choices": [
+          "RODM 変更に応じて動的に自動更新される",
+          "実行時点の RODM 資源のみを対象とする静的なビューである",
+          "ローダー・ファイルの一部として保存される",
+          "コールド・スタート後も自動的に再構築される"
+        ],
+        "answer": 1,
+        "explanation": "BLDVIEWS の処理は静的で、実行時に存在した資源のみ対象。変更反映には再実行が必要（p.579）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.65"
+    },
+    {
+      "row_id": "6498",
+      "title": "BLDVIEWS Processing",
+      "naiyou_jp": "BLDVIEWS は新規ビュー／集約（aggregate）の作成や既存ビュー／集約の更新に用いる REXX exec である。GMFHS・SNA トポロジー・マネージャー・MultiSystem Manager の各データ・モデルのオブジェクトと連携し、GMFHS クラス上に資源を作成できる（ただしこれらの他クラス上にはオブジェクトを作成しない）。制御文は DSIPARM メンバーや完全修飾の順次データ・セットで渡す。BLDVIEWS の処理は静的で、実行時点で RODM に存在した資源のみを対象とするため、資源が後から追加・削除された場合は再実行が必要である。「BLDVIEWS Processing」はこの BLDVIEWS 機能に関する項目である。",
+      "verify_steps": [
+        "NetView コマンド行で制御文メンバーを用意（例: 順次データ・セット ESP.GAF.DATA(MYDEFS)）。",
+        "BLDVIEWS MYMEMBER を実行する。",
+        "TEST=YES を指定して構文チェックのみ行い、エラーがないことを確認。",
+        "本実行後、NetView 管理コンソールで生成されたビュー／集約が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "BLDVIEWS で作成したビューの特性として正しいものはどれか。",
+        "choices": [
+          "RODM 変更に応じて動的に自動更新される",
+          "実行時点の RODM 資源のみを対象とする静的なビューである",
+          "ローダー・ファイルの一部として保存される",
+          "コールド・スタート後も自動的に再構築される"
+        ],
+        "answer": 1,
+        "explanation": "BLDVIEWS の処理は静的で、実行時に存在した資源のみ対象。変更反映には再実行が必要（p.579）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.65"
+    },
+    {
+      "row_id": "6499",
+      "title": "Building Views",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Building Views」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6500",
+      "title": "Bus Network Layout View Interface",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Bus Network Layout View Interface」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6501",
+      "title": "Change Field Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Change Field Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6502",
+      "title": "Changing Network Definitions When GMFHS Is Running",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Changing Network Definitions When GMFHS Is Running」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6503",
+      "title": "Choosing a View Layout Type",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Choosing a View Layout Type」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6504",
+      "title": "Coding Your RODM Method",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Coding Your RODM Method」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6505",
+      "title": "Communicating with Network Management Gateways",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Communicating with Network Management Gateways」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6506",
+      "title": "Compound Query Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Compound Query Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6507",
+      "title": "Connecting to RODM",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Connecting to RODM」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6508",
+      "title": "Connectivity Tree Layout View",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Connectivity Tree Layout View」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6509",
+      "title": "Considerations When Designing a Data Model",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Considerations When Designing a Data Model」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6510",
+      "title": "Correlation Concepts",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Correlation Concepts」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6511",
+      "title": "Create Actions Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Create Actions Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6512",
+      "title": "Customizing GMFHS to Process and Receive Alerts and Resolutions",
+      "naiyou_jp": "GMFHS は非 SNA 資源の状況および SNA 資源の alert-received（イベント通知）ユーザー状況を、アラートや解決（resolution）を受信して監視する。GMFHS のカスタマイズでは、RODM に作成するオブジェクト名をアラートが提供する資源名と一致させる必要がある。DUIFEDEF フィードバック・インディケーターが複数の非 SNA 資源名を示す場合、GMFHS は返されたクラス内で各名前のオブジェクトを探し、DUIFEDEF が返す DisplayStatus（または状況マッピング・テーブル）で表示状況を決定する。「Customizing GMFHS to Process and Receive Alerts and Resolutions」はこのアラート／解決の処理に関する項目である。",
+      "verify_steps": [
+        "GMFHS が稼働中であることを確認する。",
+        "アラートの資源名と一致する名前で RODM にオブジェクトを作成する。",
+        "対象資源のアラート／解決を発生させ、GMFHS が受信・処理することを確認。",
+        "NetView 管理コンソールで対象オブジェクトの DisplayStatus が更新されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS のアラート処理を正しく機能させるための前提はどれか。",
+        "choices": [
+          "管理コンソールを管理者でサインオンする",
+          "RODM に作成するオブジェクト名をアラートの資源名と一致させる",
+          "LayoutType を 4 に設定する",
+          "チェックポイントを毎時取得する"
+        ],
+        "answer": 1,
+        "explanation": "RODM オブジェクト名をアラートが提供する資源名と一致させる必要がある（p.173）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.173, p.177, p.179"
+    },
+    {
+      "row_id": "6513",
+      "title": "Customizing the Correlation Function",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Customizing the Correlation Function」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6514",
+      "title": "Customizing the RODM Unload Function",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「Customizing the RODM Unload Function」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6515",
+      "title": "Deciding Which Method Type to Use",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Deciding Which Method Type to Use」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6516",
+      "title": "Defining Non-SNA Presentation Protocol",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Non-SNA Presentation Protocol」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6517",
+      "title": "Defining Non-SNA Resources to the NetView Program",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Non-SNA Resources to the NetView Program」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6518",
+      "title": "Defining Non-SNA Session Protocols",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Non-SNA Session Protocols」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6519",
+      "title": "Defining Non-SNA Transport Protocols",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Non-SNA Transport Protocols」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6520",
+      "title": "Defining Resources to the NetView Program",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Resources to the NetView Program」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6521",
+      "title": "Defining Your Configuration to RODM",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Your Configuration to RODM」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6522",
+      "title": "Defining Your Network to GMFHS",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Defining Your Network to GMFHS」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6523",
+      "title": "Delete Actions Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Delete Actions Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6524",
+      "title": "Deleting Views",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Deleting Views」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6525",
+      "title": "DELVIEWS",
+      "naiyou_jp": "BLDVIEWS は新規ビュー／集約（aggregate）の作成や既存ビュー／集約の更新に用いる REXX exec である。GMFHS・SNA トポロジー・マネージャー・MultiSystem Manager の各データ・モデルのオブジェクトと連携し、GMFHS クラス上に資源を作成できる（ただしこれらの他クラス上にはオブジェクトを作成しない）。制御文は DSIPARM メンバーや完全修飾の順次データ・セットで渡す。BLDVIEWS の処理は静的で、実行時点で RODM に存在した資源のみを対象とするため、資源が後から追加・削除された場合は再実行が必要である。「DELVIEWS」はこの BLDVIEWS 機能に関する項目である。",
+      "verify_steps": [
+        "NetView コマンド行で制御文メンバーを用意（例: 順次データ・セット ESP.GAF.DATA(MYDEFS)）。",
+        "BLDVIEWS MYMEMBER を実行する。",
+        "TEST=YES を指定して構文チェックのみ行い、エラーがないことを確認。",
+        "本実行後、NetView 管理コンソールで生成されたビュー／集約が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "BLDVIEWS で作成したビューの特性として正しいものはどれか。",
+        "choices": [
+          "RODM 変更に応じて動的に自動更新される",
+          "実行時点の RODM 資源のみを対象とする静的なビューである",
+          "ローダー・ファイルの一部として保存される",
+          "コールド・スタート後も自動的に再構築される"
+        ],
+        "answer": 1,
+        "explanation": "BLDVIEWS の処理は静的で、実行時に存在した資源のみ対象。変更反映には再実行が必要（p.579）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.65"
+    },
+    {
+      "row_id": "6526",
+      "title": "Disconnecting from RODM",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Disconnecting from RODM」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6527",
+      "title": "DUIFEDEF Alert Processing",
+      "naiyou_jp": "GMFHS は非 SNA 資源の状況および SNA 資源の alert-received（イベント通知）ユーザー状況を、アラートや解決（resolution）を受信して監視する。GMFHS のカスタマイズでは、RODM に作成するオブジェクト名をアラートが提供する資源名と一致させる必要がある。DUIFEDEF フィードバック・インディケーターが複数の非 SNA 資源名を示す場合、GMFHS は返されたクラス内で各名前のオブジェクトを探し、DUIFEDEF が返す DisplayStatus（または状況マッピング・テーブル）で表示状況を決定する。「DUIFEDEF Alert Processing」はこのアラート／解決の処理に関する項目である。",
+      "verify_steps": [
+        "GMFHS が稼働中であることを確認する。",
+        "アラートの資源名と一致する名前で RODM にオブジェクトを作成する。",
+        "対象資源のアラート／解決を発生させ、GMFHS が受信・処理することを確認。",
+        "NetView 管理コンソールで対象オブジェクトの DisplayStatus が更新されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS のアラート処理を正しく機能させるための前提はどれか。",
+        "choices": [
+          "管理コンソールを管理者でサインオンする",
+          "RODM に作成するオブジェクト名をアラートの資源名と一致させる",
+          "LayoutType を 4 に設定する",
+          "チェックポイントを毎時取得する"
+        ],
+        "answer": 1,
+        "explanation": "RODM オブジェクト名をアラートが提供する資源名と一致させる必要がある（p.173）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.173, p.177, p.179"
+    },
+    {
+      "row_id": "6528",
+      "title": "Elliptical Layout View",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Elliptical Layout View」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6529",
+      "title": "Enabling the Correlation Function",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Enabling the Correlation Function」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6530",
+      "title": "Error Conditions in Transactions",
+      "naiyou_jp": "RODM 通知（notification）プロセスは、フィールド値が変化したときに登録済みユーザー・アプリケーションへ通知する仕組みで、setup・wait・notification・cleanup の4 段階から成る。notify サブフィールドは通知サブスクリプションのリストを保持し、オブジェクト単位だけでなくクラス単位の通知も定義できる（クラスのフィールド変更時に起動）。オブジェクト削除通知では setup が通常と異なり、notify サブフィールド作成・通知メソッド導入・フィールド・サブスクライブを行わない。通知メソッドは自動化タスクに特に有用である。「Error Conditions in Transactions」はこの RODM 通知に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象フィールドに notify サブフィールドを作成し通知メソッドを導入する。",
+        "EKG_AddNotifySubscription でサブスクリプションを登録する。",
+        "通知キューと ECB を作成し wait 状態にする。",
+        "対象フィールドを変更し、登録アプリケーションに通知が届くことを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM 通知メソッドがトリガーされるのはどのタイミングか。",
+        "choices": [
+          "フィールドが照会されたとき",
+          "フィールドの値が変化したとき",
+          "RODM が起動したとき",
+          "チェックポイント取得時"
+        ],
+        "answer": 1,
+        "explanation": "通知メソッドはフィールドの値が変化したときにトリガーされ、ユーザー・アプリケーションへ変更を通知する（p.32）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.322, p.326, p.347"
+    },
+    {
+      "row_id": "6531",
+      "title": "FLCARODM",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「FLCARODM」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6532",
+      "title": "FLCARODM Command",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「FLCARODM Command」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6533",
+      "title": "FLCARODM Functions",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「FLCARODM Functions」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6534",
+      "title": "Function Parameter Descriptions",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Function Parameter Descriptions」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6535",
+      "title": "Function Reference",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Function Reference」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6536",
+      "title": "GMFHS Automation Example",
+      "naiyou_jp": "GMFHS（Graphic Monitor Facility ホスト・サブシステム）は RODM および NetView 管理コンソールと連携し、ネットワーク資源のグラフィック・ビューを表示してビューから選択した資源へコマンドを発行するホスト・プログラムである。ビューには資源の状況（status）情報と構成（configuration）情報の両方が含まれ、RODM データ・キャッシュの内容を変更することでGMFHS と管理コンソールの動作を制御できる。「GMFHS Automation Example」はこの GMFHS と RODM の連携領域に属する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "GMFHS サブタスク（DUIFCDST 等）の稼働を確認: LIST STATUS=TASKS で DUI 系タスクが ACTIVE であることを確認。",
+        "NetView 管理コンソールにサインオンし、RODM ベースのネットワーク・ビューを開く。",
+        "ビュー上の資源を選択し status と configuration が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS が表示するビューに含まれる情報の種類はどれか。",
+        "choices": [
+          "状況（status）情報のみ",
+          "構成（configuration）情報のみ",
+          "状況情報と構成情報の両方",
+          "セキュリティ監査ログのみ"
+        ],
+        "answer": 2,
+        "explanation": "GMFHS のビューには資源の status と configuration の両方が含まれる（Programmer's Guide p.103）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.17 / Users_Guide_NetView.pdf p.38"
+    },
+    {
+      "row_id": "6537",
+      "title": "GMFHS Fields Used By the View Layout Facility",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「GMFHS Fields Used By the View Layout Facility」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6538",
+      "title": "GMFHS Initialization",
+      "naiyou_jp": "GMFHS（Graphic Monitor Facility ホスト・サブシステム）は RODM および NetView 管理コンソールと連携し、ネットワーク資源のグラフィック・ビューを表示してビューから選択した資源へコマンドを発行するホスト・プログラムである。ビューには資源の状況（status）情報と構成（configuration）情報の両方が含まれ、RODM データ・キャッシュの内容を変更することでGMFHS と管理コンソールの動作を制御できる。「GMFHS Initialization」はこの GMFHS と RODM の連携領域に属する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "GMFHS サブタスク（DUIFCDST 等）の稼働を確認: LIST STATUS=TASKS で DUI 系タスクが ACTIVE であることを確認。",
+        "NetView 管理コンソールにサインオンし、RODM ベースのネットワーク・ビューを開く。",
+        "ビュー上の資源を選択し status と configuration が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS が表示するビューに含まれる情報の種類はどれか。",
+        "choices": [
+          "状況（status）情報のみ",
+          "構成（configuration）情報のみ",
+          "状況情報と構成情報の両方",
+          "セキュリティ監査ログのみ"
+        ],
+        "answer": 2,
+        "explanation": "GMFHS のビューには資源の status と configuration の両方が含まれる（Programmer's Guide p.103）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.17 / Users_Guide_NetView.pdf p.38"
+    },
+    {
+      "row_id": "6539",
+      "title": "Grid Layout",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Grid Layout」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6540",
+      "title": "Grid Layout Notes",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Grid Layout Notes」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6541",
+      "title": "Hierarchical Graph Layout View",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Hierarchical Graph Layout View」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6542",
+      "title": "How GMFHS Uses RODM",
+      "naiyou_jp": "GMFHS（Graphic Monitor Facility ホスト・サブシステム）は RODM および NetView 管理コンソールと連携し、ネットワーク資源のグラフィック・ビューを表示してビューから選択した資源へコマンドを発行するホスト・プログラムである。ビューには資源の状況（status）情報と構成（configuration）情報の両方が含まれ、RODM データ・キャッシュの内容を変更することでGMFHS と管理コンソールの動作を制御できる。「How GMFHS Uses RODM」はこの GMFHS と RODM の連携領域に属する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "GMFHS サブタスク（DUIFCDST 等）の稼働を確認: LIST STATUS=TASKS で DUI 系タスクが ACTIVE であることを確認。",
+        "NetView 管理コンソールにサインオンし、RODM ベースのネットワーク・ビューを開く。",
+        "ビュー上の資源を選択し status と configuration が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS が表示するビューに含まれる情報の種類はどれか。",
+        "choices": [
+          "状況（status）情報のみ",
+          "構成（configuration）情報のみ",
+          "状況情報と構成情報の両方",
+          "セキュリティ監査ログのみ"
+        ],
+        "answer": 2,
+        "explanation": "GMFHS のビューには資源の status と configuration の両方が含まれる（Programmer's Guide p.103）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.17 / Users_Guide_NetView.pdf p.38"
+    },
+    {
+      "row_id": "6543",
+      "title": "IBM Z NetView library",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「IBM Z NetView library」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6544",
+      "title": "Identifying Network Elements to Define",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Identifying Network Elements to Define」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6545",
+      "title": "Introduction to the RODM Load Function",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Introduction to the RODM Load Function」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6546",
+      "title": "Layout Type Descriptions",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Layout Type Descriptions」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6547",
+      "title": "Learning About RODM",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Learning About RODM」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6548",
+      "title": "Link/Unlink Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Link/Unlink Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6549",
+      "title": "Load Function Reference",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Load Function Reference」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6550",
+      "title": "Loading the Data Models and Network Definitions",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Loading the Data Models and Network Definitions」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6551",
+      "title": "Loading the GMFHS Data Model",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Loading the GMFHS Data Model」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6552",
+      "title": "Local Area Network Layout View",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Local Area Network Layout View」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6553",
+      "title": "Locate Objects Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Locate Objects Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6554",
+      "title": "Managing SNA Resources with the NetView Program",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Managing SNA Resources with the NetView Program」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6555",
+      "title": "Manual Network Definition Overview",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Manual Network Definition Overview」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6556",
+      "title": "Maximizing RODM Performance",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Maximizing RODM Performance」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6557",
+      "title": "Method Actions Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Method Actions Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6558",
+      "title": "Method Anchor Service",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Method Anchor Service」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6559",
+      "title": "Monitoring Topology Managers",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Monitoring Topology Managers」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6560",
+      "title": "Multivalued Fields and Links between Objects",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Multivalued Fields and Links between Objects」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6561",
+      "title": "Navigating within RODMView",
+      "naiyou_jp": "RODMView は RODM データ・キャッシュ内フィールド値の参照・更新を行うアプリケーション・プログラムで、NetView の OST タスク配下で稼働する。NetView コマンド行で rodmview を入力するとメイン・メニューが表示され、メイン・メニューやアクセラレーター PF キーでナビゲートできる。RODMView コマンドでメソッドのトリガー（オブジェクト独立またはオブジェクト固有の named メソッド）や、クラス・オブジェクト・フィールド値の追加・変更・削除が可能である。「Navigating within RODMView」はこの RODMView に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "コマンド行で rodmview と入力し Enter キーを押す。",
+        "RODMView メイン・メニューが表示されることを確認し、対象クラス／オブジェクトへナビゲートする。",
+        "フィールド値を参照し、必要に応じ更新後に値が反映されることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODMView を起動する操作はどれか。",
+        "choices": [
+          "管理コンソールで右クリック・メニューを開く",
+          "NetView コマンド行で rodmview と入力し Enter",
+          "FLCARODM コマンドを発行する",
+          "BLDVIEWS exec を実行する"
+        ],
+        "answer": 1,
+        "explanation": "NetView コマンド・ファシリティの行に rodmview と入力するとメイン・メニューが表示される（Users Guide p.151）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503 / Users_Guide_NetView.pdf p.151"
+    },
+    {
+      "row_id": "6562",
+      "title": "Notifying Your Application about Changes in GMFHS Fields",
+      "naiyou_jp": "RODM 通知（notification）プロセスは、フィールド値が変化したときに登録済みユーザー・アプリケーションへ通知する仕組みで、setup・wait・notification・cleanup の4 段階から成る。notify サブフィールドは通知サブスクリプションのリストを保持し、オブジェクト単位だけでなくクラス単位の通知も定義できる（クラスのフィールド変更時に起動）。オブジェクト削除通知では setup が通常と異なり、notify サブフィールド作成・通知メソッド導入・フィールド・サブスクライブを行わない。通知メソッドは自動化タスクに特に有用である。「Notifying Your Application about Changes in GMFHS Fields」はこの RODM 通知に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象フィールドに notify サブフィールドを作成し通知メソッドを導入する。",
+        "EKG_AddNotifySubscription でサブスクリプションを登録する。",
+        "通知キューと ECB を作成し wait 状態にする。",
+        "対象フィールドを変更し、登録アプリケーションに通知が届くことを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM 通知メソッドがトリガーされるのはどのタイミングか。",
+        "choices": [
+          "フィールドが照会されたとき",
+          "フィールドの値が変化したとき",
+          "RODM が起動したとき",
+          "チェックポイント取得時"
+        ],
+        "answer": 1,
+        "explanation": "通知メソッドはフィールドの値が変化したときにトリガーされ、ユーザー・アプリケーションへ変更を通知する（p.32）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.322, p.326, p.347"
+    },
+    {
+      "row_id": "6563",
+      "title": "Object and Class Locking in RODM",
+      "naiyou_jp": "RODM 通知（notification）プロセスは、フィールド値が変化したときに登録済みユーザー・アプリケーションへ通知する仕組みで、setup・wait・notification・cleanup の4 段階から成る。notify サブフィールドは通知サブスクリプションのリストを保持し、オブジェクト単位だけでなくクラス単位の通知も定義できる（クラスのフィールド変更時に起動）。オブジェクト削除通知では setup が通常と異なり、notify サブフィールド作成・通知メソッド導入・フィールド・サブスクライブを行わない。通知メソッドは自動化タスクに特に有用である。「Object and Class Locking in RODM」はこの RODM 通知に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象フィールドに notify サブフィールドを作成し通知メソッドを導入する。",
+        "EKG_AddNotifySubscription でサブスクリプションを登録する。",
+        "通知キューと ECB を作成し wait 状態にする。",
+        "対象フィールドを変更し、登録アプリケーションに通知が届くことを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM 通知メソッドがトリガーされるのはどのタイミングか。",
+        "choices": [
+          "フィールドが照会されたとき",
+          "フィールドの値が変化したとき",
+          "RODM が起動したとき",
+          "チェックポイント取得時"
+        ],
+        "answer": 1,
+        "explanation": "通知メソッドはフィールドの値が変化したときにトリガーされ、ユーザー・アプリケーションへ変更を通知する（p.32）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.322, p.326, p.347"
+    },
+    {
+      "row_id": "6564",
+      "title": "Object Data Stream Detail",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Object Data Stream Detail」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6565",
+      "title": "Object Deletion Notification",
+      "naiyou_jp": "RODM 通知（notification）プロセスは、フィールド値が変化したときに登録済みユーザー・アプリケーションへ通知する仕組みで、setup・wait・notification・cleanup の4 段階から成る。notify サブフィールドは通知サブスクリプションのリストを保持し、オブジェクト単位だけでなくクラス単位の通知も定義できる（クラスのフィールド変更時に起動）。オブジェクト削除通知では setup が通常と異なり、notify サブフィールド作成・通知メソッド導入・フィールド・サブスクライブを行わない。通知メソッドは自動化タスクに特に有用である。「Object Deletion Notification」はこの RODM 通知に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象フィールドに notify サブフィールドを作成し通知メソッドを導入する。",
+        "EKG_AddNotifySubscription でサブスクリプションを登録する。",
+        "通知キューと ECB を作成し wait 状態にする。",
+        "対象フィールドを変更し、登録アプリケーションに通知が届くことを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM 通知メソッドがトリガーされるのはどのタイミングか。",
+        "choices": [
+          "フィールドが照会されたとき",
+          "フィールドの値が変化したとき",
+          "RODM が起動したとき",
+          "チェックポイント取得時"
+        ],
+        "answer": 1,
+        "explanation": "通知メソッドはフィールドの値が変化したときにトリガーされ、ユーザー・アプリケーションへ変更を通知する（p.32）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.322, p.326, p.347"
+    },
+    {
+      "row_id": "6566",
+      "title": "Ordering publications",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Ordering publications」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6567",
+      "title": "Overview",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Overview」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6568",
+      "title": "Privacy policy considerations",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Privacy policy considerations」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6569",
+      "title": "Process for Loading the RODM Data Cache",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Process for Loading the RODM Data Cache」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6570",
+      "title": "Programming Interfaces",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Programming Interfaces」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6571",
+      "title": "Putting It All Together",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Putting It All Together」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6572",
+      "title": "Radial Layout View by Cluster ID",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Radial Layout View by Cluster ID」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6573",
+      "title": "Radial Layout View by Link Type",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Radial Layout View by Link Type」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6574",
+      "title": "Receiving and Monitoring Alerts or Resolutions",
+      "naiyou_jp": "GMFHS は非 SNA 資源の状況および SNA 資源の alert-received（イベント通知）ユーザー状況を、アラートや解決（resolution）を受信して監視する。GMFHS のカスタマイズでは、RODM に作成するオブジェクト名をアラートが提供する資源名と一致させる必要がある。DUIFEDEF フィードバック・インディケーターが複数の非 SNA 資源名を示す場合、GMFHS は返されたクラス内で各名前のオブジェクトを探し、DUIFEDEF が返す DisplayStatus（または状況マッピング・テーブル）で表示状況を決定する。「Receiving and Monitoring Alerts or Resolutions」はこのアラート／解決の処理に関する項目である。",
+      "verify_steps": [
+        "GMFHS が稼働中であることを確認する。",
+        "アラートの資源名と一致する名前で RODM にオブジェクトを作成する。",
+        "対象資源のアラート／解決を発生させ、GMFHS が受信・処理することを確認。",
+        "NetView 管理コンソールで対象オブジェクトの DisplayStatus が更新されることを確認する。"
+      ],
+      "quiz": {
+        "q": "GMFHS のアラート処理を正しく機能させるための前提はどれか。",
+        "choices": [
+          "管理コンソールを管理者でサインオンする",
+          "RODM に作成するオブジェクト名をアラートの資源名と一致させる",
+          "LayoutType を 4 に設定する",
+          "チェックポイントを毎時取得する"
+        ],
+        "answer": 1,
+        "explanation": "RODM オブジェクト名をアラートが提供する資源名と一致させる必要がある（p.173）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.173, p.177, p.179"
+    },
+    {
+      "row_id": "6575",
+      "title": "Result Stem",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Result Stem」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6576",
+      "title": "Return Codes",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Return Codes」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6577",
+      "title": "RODM Abstract Data Types",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Abstract Data Types」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6578",
+      "title": "RODM Automation Platform Services",
+      "naiyou_jp": "RODM Collection Manager は RODM の内容を能動的に監視し、指定した条件に従ってビューや集約を動的に更新する NetView 機能である。BLDVIEWS の静的なビューと異なり、コレクションの追加・変更・削除に追随して継続的に更新されるため、名前や状況を超えた複雑な条件でビューを管理できる。NetView 管理コンソールから利用するには管理者としてサインオンする必要がある。NetView Resource Manager のサンプル・ローダー・ファイル（CNMSJH12 等）が提供される。「RODM Automation Platform Services」はこの RODM 自動化プラットフォーム／コレクション・マネージャー領域に属する項目である。",
+      "verify_steps": [
+        "NetView 管理コンソールに管理者としてサインオンする。",
+        "RODM Collection Manager メイン・メニューを開く。",
+        "コレクション定義オブジェクトに基づくビュー／集約を作成する。",
+        "RODM 内容を変更し、Collection Manager がビューを自動更新することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM Collection Manager と BLDVIEWS のビュー管理の違いはどれか。",
+        "choices": [
+          "Collection Manager は静的、BLDVIEWS は動的",
+          "Collection Manager は動的に継続更新、BLDVIEWS は静的",
+          "両者とも完全に静的",
+          "両者とも完全に動的"
+        ],
+        "answer": 1,
+        "explanation": "Collection Manager は RODM 内容を監視して動的に更新する。BLDVIEWS は静的（p.578 / NMC p.77）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.171, p.578 / NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.77"
+    },
+    {
+      "row_id": "6579",
+      "title": "RODM Classes",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Classes」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6580",
+      "title": "RODM Collection Manager",
+      "naiyou_jp": "RODM Collection Manager は RODM の内容を能動的に監視し、指定した条件に従ってビューや集約を動的に更新する NetView 機能である。BLDVIEWS の静的なビューと異なり、コレクションの追加・変更・削除に追随して継続的に更新されるため、名前や状況を超えた複雑な条件でビューを管理できる。NetView 管理コンソールから利用するには管理者としてサインオンする必要がある。NetView Resource Manager のサンプル・ローダー・ファイル（CNMSJH12 等）が提供される。「RODM Collection Manager」はこの RODM 自動化プラットフォーム／コレクション・マネージャー領域に属する項目である。",
+      "verify_steps": [
+        "NetView 管理コンソールに管理者としてサインオンする。",
+        "RODM Collection Manager メイン・メニューを開く。",
+        "コレクション定義オブジェクトに基づくビュー／集約を作成する。",
+        "RODM 内容を変更し、Collection Manager がビューを自動更新することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM Collection Manager と BLDVIEWS のビュー管理の違いはどれか。",
+        "choices": [
+          "Collection Manager は静的、BLDVIEWS は動的",
+          "Collection Manager は動的に継続更新、BLDVIEWS は静的",
+          "両者とも完全に静的",
+          "両者とも完全に動的"
+        ],
+        "answer": 1,
+        "explanation": "Collection Manager は RODM 内容を監視して動的に更新する。BLDVIEWS は静的（p.578 / NMC p.77）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.171, p.578 / NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.77"
+    },
+    {
+      "row_id": "6581",
+      "title": "RODM Fields",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Fields」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6582",
+      "title": "RODM in Network Automation",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM in Network Automation」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6583",
+      "title": "RODM Method Services",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「RODM Method Services」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6584",
+      "title": "RODM Notification Process",
+      "naiyou_jp": "RODM 通知（notification）プロセスは、フィールド値が変化したときに登録済みユーザー・アプリケーションへ通知する仕組みで、setup・wait・notification・cleanup の4 段階から成る。notify サブフィールドは通知サブスクリプションのリストを保持し、オブジェクト単位だけでなくクラス単位の通知も定義できる（クラスのフィールド変更時に起動）。オブジェクト削除通知では setup が通常と異なり、notify サブフィールド作成・通知メソッド導入・フィールド・サブスクライブを行わない。通知メソッドは自動化タスクに特に有用である。「RODM Notification Process」はこの RODM 通知に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象フィールドに notify サブフィールドを作成し通知メソッドを導入する。",
+        "EKG_AddNotifySubscription でサブスクリプションを登録する。",
+        "通知キューと ECB を作成し wait 状態にする。",
+        "対象フィールドを変更し、登録アプリケーションに通知が届くことを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM 通知メソッドがトリガーされるのはどのタイミングか。",
+        "choices": [
+          "フィールドが照会されたとき",
+          "フィールドの値が変化したとき",
+          "RODM が起動したとき",
+          "チェックポイント取得時"
+        ],
+        "answer": 1,
+        "explanation": "通知メソッドはフィールドの値が変化したときにトリガーされ、ユーザー・アプリケーションへ変更を通知する（p.32）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.322, p.326, p.347"
+    },
+    {
+      "row_id": "6585",
+      "title": "RODM Objects",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Objects」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6586",
+      "title": "RODM Programming Tasks",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Programming Tasks」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6587",
+      "title": "RODM Return and Reason Codes",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「RODM Return and Reason Codes」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6588",
+      "title": "RODM Samples and Macros",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Samples and Macros」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6589",
+      "title": "RODM Subfields",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Subfields」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6590",
+      "title": "RODM Tools",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「RODM Tools」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6591",
+      "title": "RODM Unload Function",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「RODM Unload Function」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6592",
+      "title": "RODMView",
+      "naiyou_jp": "RODMView は RODM データ・キャッシュ内フィールド値の参照・更新を行うアプリケーション・プログラムで、NetView の OST タスク配下で稼働する。NetView コマンド行で rodmview を入力するとメイン・メニューが表示され、メイン・メニューやアクセラレーター PF キーでナビゲートできる。RODMView コマンドでメソッドのトリガー（オブジェクト独立またはオブジェクト固有の named メソッド）や、クラス・オブジェクト・フィールド値の追加・変更・削除が可能である。「RODMView」はこの RODMView に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "コマンド行で rodmview と入力し Enter キーを押す。",
+        "RODMView メイン・メニューが表示されることを確認し、対象クラス／オブジェクトへナビゲートする。",
+        "フィールド値を参照し、必要に応じ更新後に値が反映されることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODMView を起動する操作はどれか。",
+        "choices": [
+          "管理コンソールで右クリック・メニューを開く",
+          "NetView コマンド行で rodmview と入力し Enter",
+          "FLCARODM コマンドを発行する",
+          "BLDVIEWS exec を実行する"
+        ],
+        "answer": 1,
+        "explanation": "NetView コマンド・ファシリティの行に rodmview と入力するとメイン・メニューが表示される（Users Guide p.151）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503 / Users_Guide_NetView.pdf p.151"
+    },
+    {
+      "row_id": "6593",
+      "title": "RODMView Restrictions",
+      "naiyou_jp": "RODMView は RODM データ・キャッシュ内フィールド値の参照・更新を行うアプリケーション・プログラムで、NetView の OST タスク配下で稼働する。NetView コマンド行で rodmview を入力するとメイン・メニューが表示され、メイン・メニューやアクセラレーター PF キーでナビゲートできる。RODMView コマンドでメソッドのトリガー（オブジェクト独立またはオブジェクト固有の named メソッド）や、クラス・オブジェクト・フィールド値の追加・変更・削除が可能である。「RODMView Restrictions」はこの RODMView に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "コマンド行で rodmview と入力し Enter キーを押す。",
+        "RODMView メイン・メニューが表示されることを確認し、対象クラス／オブジェクトへナビゲートする。",
+        "フィールド値を参照し、必要に応じ更新後に値が反映されることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODMView を起動する操作はどれか。",
+        "choices": [
+          "管理コンソールで右クリック・メニューを開く",
+          "NetView コマンド行で rodmview と入力し Enter",
+          "FLCARODM コマンドを発行する",
+          "BLDVIEWS exec を実行する"
+        ],
+        "answer": 1,
+        "explanation": "NetView コマンド・ファシリティの行に rodmview と入力するとメイン・メニューが表示される（Users Guide p.151）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503 / Users_Guide_NetView.pdf p.151"
+    },
+    {
+      "row_id": "6594",
+      "title": "Running BLDVIEWS",
+      "naiyou_jp": "BLDVIEWS は新規ビュー／集約（aggregate）の作成や既存ビュー／集約の更新に用いる REXX exec である。GMFHS・SNA トポロジー・マネージャー・MultiSystem Manager の各データ・モデルのオブジェクトと連携し、GMFHS クラス上に資源を作成できる（ただしこれらの他クラス上にはオブジェクトを作成しない）。制御文は DSIPARM メンバーや完全修飾の順次データ・セットで渡す。BLDVIEWS の処理は静的で、実行時点で RODM に存在した資源のみを対象とするため、資源が後から追加・削除された場合は再実行が必要である。「Running BLDVIEWS」はこの BLDVIEWS 機能に関する項目である。",
+      "verify_steps": [
+        "NetView コマンド行で制御文メンバーを用意（例: 順次データ・セット ESP.GAF.DATA(MYDEFS)）。",
+        "BLDVIEWS MYMEMBER を実行する。",
+        "TEST=YES を指定して構文チェックのみ行い、エラーがないことを確認。",
+        "本実行後、NetView 管理コンソールで生成されたビュー／集約が表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "BLDVIEWS で作成したビューの特性として正しいものはどれか。",
+        "choices": [
+          "RODM 変更に応じて動的に自動更新される",
+          "実行時点の RODM 資源のみを対象とする静的なビューである",
+          "ローダー・ファイルの一部として保存される",
+          "コールド・スタート後も自動的に再構築される"
+        ],
+        "answer": 1,
+        "explanation": "BLDVIEWS の処理は静的で、実行時に存在した資源のみ対象。変更反映には再実行が必要（p.579）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.65"
+    },
+    {
+      "row_id": "6595",
+      "title": "Running the RODM Unload Function",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「Running the RODM Unload Function」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6596",
+      "title": "Sample Automation Code",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Sample Automation Code」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6597",
+      "title": "Sample Network",
+      "naiyou_jp": "非 SNA ネットワークの資源は RODM データ・キャッシュ内のオブジェクトとして表現される。作成できるオブジェクトには管理オブジェクト（management object）と被管理オブジェクト（managed object）があり、GMFHS と NetView 管理コンソールがこれらを用いて非 SNA 資源を管理する。SNA 資源は SNA トポロジー・マネージャーを使ってサブエリア／APPN ネットワーク管理として扱われ、ビューには状況と構成の両方が含まれる。「Sample Network」はこの非 SNA／SNA 資源の NetView への定義に関する項目である。",
+      "verify_steps": [
+        "RODM ロード機能で非 SNA 資源を表すオブジェクトを定義・ロードする。",
+        "RODMVIEW で被管理オブジェクト／管理オブジェクトが作成されたことを確認。",
+        "GMFHS／管理コンソールでこれらの資源がビューに表示されることを確認。",
+        "資源を選択しコマンド発行と状況表示が機能することを確認する。"
+      ],
+      "quiz": {
+        "q": "非 SNA ネットワーク資源は RODM 内で何として表現されるか。",
+        "choices": [
+          "VTAM メジャー・ノード",
+          "RODM データ・キャッシュ内のオブジェクト",
+          "SMF レコード",
+          "JCL ステートメント"
+        ],
+        "answer": 1,
+        "explanation": "非 SNA 資源は RODM データ・キャッシュ内のオブジェクト（管理／被管理オブジェクト）として表現される（p.30）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29, p.30, p.650"
+    },
+    {
+      "row_id": "6598",
+      "title": "Simple Query Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Simple Query Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6599",
+      "title": "Special Characters",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Special Characters」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6600",
+      "title": "Starting RODMView",
+      "naiyou_jp": "RODMView は RODM データ・キャッシュ内フィールド値の参照・更新を行うアプリケーション・プログラムで、NetView の OST タスク配下で稼働する。NetView コマンド行で rodmview を入力するとメイン・メニューが表示され、メイン・メニューやアクセラレーター PF キーでナビゲートできる。RODMView コマンドでメソッドのトリガー（オブジェクト独立またはオブジェクト固有の named メソッド）や、クラス・オブジェクト・フィールド値の追加・変更・削除が可能である。「Starting RODMView」はこの RODMView に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールにログオンする。",
+        "コマンド行で rodmview と入力し Enter キーを押す。",
+        "RODMView メイン・メニューが表示されることを確認し、対象クラス／オブジェクトへナビゲートする。",
+        "フィールド値を参照し、必要に応じ更新後に値が反映されることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODMView を起動する操作はどれか。",
+        "choices": [
+          "管理コンソールで右クリック・メニューを開く",
+          "NetView コマンド行で rodmview と入力し Enter",
+          "FLCARODM コマンドを発行する",
+          "BLDVIEWS exec を実行する"
+        ],
+        "answer": 1,
+        "explanation": "NetView コマンド・ファシリティの行に rodmview と入力するとメイン・メニューが表示される（Users Guide p.151）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503 / Users_Guide_NetView.pdf p.151"
+    },
+    {
+      "row_id": "6601",
+      "title": "Starting the RODM Unload Function",
+      "naiyou_jp": "FLCARODM は RODM ツールの一つで、RODM データ・キャッシュに対する照会・更新を行うコマンド・インターフェースを提供する。RODM アンロード・ユーティリティはデータ・キャッシュの内容を RODM ローダー言語ステートメントとして出力し、後で再ロードできる（チェックポイントとは異なり、チェックポイントは再始動用のバイナリ表現である）。FLCARODM は戻りコード・理由コードで処理結果を返す。「Starting the RODM Unload Function」はこの RODM ツール（FLCARODM／アンロード）に関する項目である。",
+      "verify_steps": [
+        "RODM が稼働中であることを確認する。",
+        "RODM アンロード機能を実行し、データ・キャッシュ内容をローダー言語ステートメントとして出力。",
+        "出力データ・セットにローダー文が生成されたことを確認。",
+        "FLCARODM の戻りコード／理由コードが正常（0）であることを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM アンロード・ユーティリティの出力形式として正しいものはどれか。",
+        "choices": [
+          "バイナリのチェックポイント・データ・セット",
+          "再ロード可能な RODM ローダー言語ステートメント",
+          "SMF レコード",
+          "管理コンソールの XML 定義"
+        ],
+        "answer": 1,
+        "explanation": "アンロード・ユーティリティは内容を RODM ローダー言語文として出力し再ロードできる。チェックポイントはバイナリ表現（Graphical Components p.64）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.573 / NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.64 / Users_Guide_NetView.pdf p.186"
+    },
+    {
+      "row_id": "6602",
+      "title": "Stem Building Subroutines",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Stem Building Subroutines」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6603",
+      "title": "Subfield Actions Function",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Subfield Actions Function」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6604",
+      "title": "Summarizing RODM Functions",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Summarizing RODM Functions」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6605",
+      "title": "Supplied Methods",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Supplied Methods」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6606",
+      "title": "Tasks Best Performed with Methods",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Tasks Best Performed with Methods」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6607",
+      "title": "Tasks Best Performed with User Applications",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Tasks Best Performed with User Applications」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6608",
+      "title": "Terminology in this Library",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Terminology in this Library」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6609",
+      "title": "Token-Ring Network Layout View Interface",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「Token-Ring Network Layout View Interface」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6610",
+      "title": "Tools for RODM",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Tools for RODM」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6611",
+      "title": "Topology Object Correlation",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Topology Object Correlation」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6612",
+      "title": "Types of Methods",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Types of Methods」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6613",
+      "title": "Understanding RODM Concepts",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Understanding RODM Concepts」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6614",
+      "title": "Using Control Blocks",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Using Control Blocks」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6615",
+      "title": "Using Correlation for Objects You Create",
+      "naiyou_jp": "トポロジー・オブジェクト相関（correlation）機能は、IP・オープン・トポロジーなど異なるトポロジー機能が管理する資源を自動的に関連付ける。相関集約オブジェクトにより、NetView 管理コンソール・オペレーターは相関資源間のナビゲートや統合データの参照ができる。相関機能のすべてのカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる。RODMVIEW で設定した相関値は RODM 再生成までしか保持されないため、CLIST や BLDVIEWS スクリプトで Correlater フィールドを設定すれば再実行で復元できる。「Using Correlation for Objects You Create」はこの相関機能に関する項目である。",
+      "verify_steps": [
+        "FLCSDM8 RODM ロード・ファイルで相関対象クラスをカスタマイズする。",
+        "RODM ロード機能で FLCSDM8 をロードする。",
+        "RODMVIEW または BLDVIEWS で対象オブジェクトの Correlater フィールドに相関値を設定。",
+        "NetView 管理コンソールで相関資源間をナビゲートし統合データが表示されることを確認する。"
+      ],
+      "quiz": {
+        "q": "相関機能のカスタマイズに使用する RODM ロード・ファイルはどれか。",
+        "choices": [
+          "FLCSDM8",
+          "EKGCTABL",
+          "DSIPARM",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "相関機能のカスタマイズは FLCSDM8 RODM ロード・ファイルで行い、ロード後に有効になる（p.334）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329, p.333, p.334 / IP_Management.pdf p.26"
+    },
+    {
+      "row_id": "6616",
+      "title": "Using GMFHS Methods",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Using GMFHS Methods」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6617",
+      "title": "Using IBM Z NetView online help",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Using IBM Z NetView online help」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6618",
+      "title": "Using Load Function Statements",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Using Load Function Statements」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6619",
+      "title": "Using NetView Resource Manager",
+      "naiyou_jp": "RODM Collection Manager は RODM の内容を能動的に監視し、指定した条件に従ってビューや集約を動的に更新する NetView 機能である。BLDVIEWS の静的なビューと異なり、コレクションの追加・変更・削除に追随して継続的に更新されるため、名前や状況を超えた複雑な条件でビューを管理できる。NetView 管理コンソールから利用するには管理者としてサインオンする必要がある。NetView Resource Manager のサンプル・ローダー・ファイル（CNMSJH12 等）が提供される。「Using NetView Resource Manager」はこの RODM 自動化プラットフォーム／コレクション・マネージャー領域に属する項目である。",
+      "verify_steps": [
+        "NetView 管理コンソールに管理者としてサインオンする。",
+        "RODM Collection Manager メイン・メニューを開く。",
+        "コレクション定義オブジェクトに基づくビュー／集約を作成する。",
+        "RODM 内容を変更し、Collection Manager がビューを自動更新することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM Collection Manager と BLDVIEWS のビュー管理の違いはどれか。",
+        "choices": [
+          "Collection Manager は静的、BLDVIEWS は動的",
+          "Collection Manager は動的に継続更新、BLDVIEWS は静的",
+          "両者とも完全に静的",
+          "両者とも完全に動的"
+        ],
+        "answer": 1,
+        "explanation": "Collection Manager は RODM 内容を監視して動的に更新する。BLDVIEWS は静的（p.578 / NMC p.77）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.171, p.578 / NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.77"
+    },
+    {
+      "row_id": "6620",
+      "title": "Using RODM for Network Automation",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Using RODM for Network Automation」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6621",
+      "title": "Using the Application Program Interfaces",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Using the Application Program Interfaces」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6622",
+      "title": "Using the Collection Definition Objects",
+      "naiyou_jp": "RODM Collection Manager は RODM の内容を能動的に監視し、指定した条件に従ってビューや集約を動的に更新する NetView 機能である。BLDVIEWS の静的なビューと異なり、コレクションの追加・変更・削除に追随して継続的に更新されるため、名前や状況を超えた複雑な条件でビューを管理できる。NetView 管理コンソールから利用するには管理者としてサインオンする必要がある。NetView Resource Manager のサンプル・ローダー・ファイル（CNMSJH12 等）が提供される。「Using the Collection Definition Objects」はこの RODM 自動化プラットフォーム／コレクション・マネージャー領域に属する項目である。",
+      "verify_steps": [
+        "NetView 管理コンソールに管理者としてサインオンする。",
+        "RODM Collection Manager メイン・メニューを開く。",
+        "コレクション定義オブジェクトに基づくビュー／集約を作成する。",
+        "RODM 内容を変更し、Collection Manager がビューを自動更新することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM Collection Manager と BLDVIEWS のビュー管理の違いはどれか。",
+        "choices": [
+          "Collection Manager は静的、BLDVIEWS は動的",
+          "Collection Manager は動的に継続更新、BLDVIEWS は静的",
+          "両者とも完全に静的",
+          "両者とも完全に動的"
+        ],
+        "answer": 1,
+        "explanation": "Collection Manager は RODM 内容を監視して動的に更新する。BLDVIEWS は静的（p.578 / NMC p.77）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.171, p.578 / NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.77"
+    },
+    {
+      "row_id": "6623",
+      "title": "Using the Method API",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Using the Method API」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    },
+    {
+      "row_id": "6624",
+      "title": "Using the RODM Automation Platform",
+      "naiyou_jp": "RODM Collection Manager は RODM の内容を能動的に監視し、指定した条件に従ってビューや集約を動的に更新する NetView 機能である。BLDVIEWS の静的なビューと異なり、コレクションの追加・変更・削除に追随して継続的に更新されるため、名前や状況を超えた複雑な条件でビューを管理できる。NetView 管理コンソールから利用するには管理者としてサインオンする必要がある。NetView Resource Manager のサンプル・ローダー・ファイル（CNMSJH12 等）が提供される。「Using the RODM Automation Platform」はこの RODM 自動化プラットフォーム／コレクション・マネージャー領域に属する項目である。",
+      "verify_steps": [
+        "NetView 管理コンソールに管理者としてサインオンする。",
+        "RODM Collection Manager メイン・メニューを開く。",
+        "コレクション定義オブジェクトに基づくビュー／集約を作成する。",
+        "RODM 内容を変更し、Collection Manager がビューを自動更新することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM Collection Manager と BLDVIEWS のビュー管理の違いはどれか。",
+        "choices": [
+          "Collection Manager は静的、BLDVIEWS は動的",
+          "Collection Manager は動的に継続更新、BLDVIEWS は静的",
+          "両者とも完全に静的",
+          "両者とも完全に動的"
+        ],
+        "answer": 1,
+        "explanation": "Collection Manager は RODM 内容を監視して動的に更新する。BLDVIEWS は静的（p.578 / NMC p.77）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.171, p.578 / NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.77"
+    },
+    {
+      "row_id": "6625",
+      "title": "Using the RODM Load Function",
+      "naiyou_jp": "RODM ロード機能は、ロード機能入力ファイル（高水準ステートメントとプリミティブ・ステートメント）を処理して RODM データ・キャッシュをロード・更新・検証する。提供される操作は PARSE（構文チェックのみ）、LOAD（データ・キャッシュへ反映）、VERIFY（変更せず内容と突合）の 3 種で、OPERATION パラメーターで指定する。高水準ステートメントは内部でプリミティブに変換され、クラス・オブジェクト・フィールド・サブフィールドの作成／削除、親子関係の確立、フィールド値設定、メソッド起動を行う。「Using the RODM Load Function」はこの RODM ロード機能に関する項目である。",
+      "verify_steps": [
+        "ロード機能入力データ・セット（高水準／プリミティブ文）を用意する。",
+        "OPERATION=PARSE で実行し構文エラーがないことを出力リストで確認。",
+        "OPERATION=LOAD で実行し RODM データ・キャッシュへ反映する。",
+        "出力リストで戻りコードを確認し、RODMVIEW で作成されたクラス／オブジェクトを検証する。"
+      ],
+      "quiz": {
+        "q": "構文だけを検査しデータ・キャッシュを変更しない RODM ロード操作はどれか。",
+        "choices": [
+          "LOAD",
+          "PARSE",
+          "CHECKPOINT",
+          "UNLOAD"
+        ],
+        "answer": 1,
+        "explanation": "OPERATION=PARSE は構文を検査するのみでキャッシュを変更しない。VERIFY は内容と突合、LOAD で反映（p.268）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.240, p.256, p.268 / p.244"
+    },
+    {
+      "row_id": "6626",
+      "title": "Using the User Application Program Interface",
+      "naiyou_jp": "RODM ユーザー API（EKGUAPI）を介してアプリケーションはデータ・キャッシュへアクセスする。各呼び出しではアクセス制御ブロックを参照／定義し、Connect 後に発行する後続の API 呼び出しを認証する。複数アプリケーションが同時に RODM にアクセスでき、access ブロックの sign_on_token でユーザーを識別する。RODM はユーザーの許可レベルを検証し、各関数は特定の許可を要求する。エラー時は戻りコード（例: 8）と理由コードをトランザクション情報ブロックに返し、RODM ログに記録される。「Using the User Application Program Interface」はこの RODM プログラミング・インターフェース／戻りコード領域に属する項目である。",
+      "verify_steps": [
+        "アプリケーションからアクセス制御ブロックを定義し EKGUAPI で RODM へ Connect する。",
+        "sign_on_token で識別されることと、RODM が許可レベルを検証することを確認。",
+        "API 関数（照会／変更）を発行し、戻りコード／理由コードを確認する。",
+        "エラー時は RODM ログの非ゼロ戻りコード・理由コード（例: RC8 RSN127=未許可）で原因を特定する。"
+      ],
+      "quiz": {
+        "q": "RODM が API 呼び出しでユーザーを識別するために使用するものはどれか。",
+        "choices": [
+          "JCL の USER パラメーター",
+          "アクセス・ブロックの sign_on_token フィールド",
+          "データ・セット名",
+          "LayoutType フィールド"
+        ],
+        "answer": 1,
+        "explanation": "access ブロックの sign_on_token フィールドで各トランザクションのユーザーを識別する（p.308）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.308, p.460, p.450"
+    },
+    {
+      "row_id": "6627",
+      "title": "View Layout Examples",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「View Layout Examples」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6628",
+      "title": "View Layout Facility",
+      "naiyou_jp": "ビュー・レイアウト・ファシリティは、ネットワーク・モデルの視覚的解釈を容易にするため複数のレイアウト・タイプを生成する。提供されるレイアウトにはリンク／クラスター ID 別の放射状（radial）、トークンリング、LAN、楕円（elliptical）、階層（hierarchical）、接続ツリー（connectivity tree）、グリッド（grid）などがある。各ノードの LayoutType フィールドでレイアウト種別を指定し、LayoutSequence で配置順序を制御する。「View Layout Facility」はこのビュー・レイアウト機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW で対象ビュー・オブジェクトを表示する。",
+        "LayoutType フィールドに目的のレイアウト値を設定する（例: トークンリング=4）。",
+        "必要に応じ各ノードの LayoutSequence を設定（既定 0）。",
+        "NetView 管理コンソールでビューを開き、指定どおりのレイアウトで描画されることを確認する。"
+      ],
+      "quiz": {
+        "q": "ビューのレイアウト種別を指定する GMFHS フィールドはどれか。",
+        "choices": [
+          "LayoutSequence",
+          "LayoutType",
+          "DisplayStatus",
+          "Correlater"
+        ],
+        "answer": 1,
+        "explanation": "LayoutType フィールドにレイアウト種別を設定する（例: トークンリングは値 4）。LayoutSequence は配置順序（p.678 / DM Ref p.201）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671, p.678 / NetView_6.4_Data_Model_Reference.pdf p.201"
+    },
+    {
+      "row_id": "6629",
+      "title": "Writing Applications that Use RODM",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Writing Applications that Use RODM」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6630",
+      "title": "Writing Automation Code",
+      "naiyou_jp": "RODM（Resource Object Data Manager）はホスト・プロセッサのメモリ上に常駐するオブジェクト指向データ・キャッシュであり、ネットワークやシステムの資源をオブジェクトとして表現する。約 200 万オブジェクトを保持でき、構成データと資源状況情報を高速・高トランザクションで扱える。NetView はトポロジーや状況などの管理情報を RODM に投入し、ネットワーク自動化およびシステム自動化の基盤として利用する。「Writing Automation Code」はこの RODM の中核概念に関する項目である。",
+      "verify_steps": [
+        "NetView コンソールで RODM アドレス空間が稼働中か確認する。",
+        "DSIQTSK 経由で対象 RODM が管理対象に定義されていることを CNMSTYLE で確認。",
+        "RODMVIEW コマンドを発行し、データ・キャッシュ内のクラス／オブジェクトが参照できることを確認。",
+        "オブジェクト数や代表クラスを照会し、想定どおりの内容が存在することを確認する。"
+      ],
+      "quiz": {
+        "q": "RODM データ・キャッシュが置かれる場所はどこか。",
+        "choices": [
+          "DASD 上の VSAM データ・セット",
+          "ホスト・プロセッサのメモリ（in-storage）",
+          "結合ファシリティ（CF）構造",
+          "リモート・データベース・サーバー"
+        ],
+        "answer": 1,
+        "explanation": "RODM はホスト・メモリ上の in-storage データ・キャッシュである（Users Guide / Automation Guide）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337 / Users_Guide_NetView.pdf p.38 / NetView_6.4_Automation_Guide.pdf p.371"
+    },
+    {
+      "row_id": "6631",
+      "title": "Writing RODM Methods",
+      "naiyou_jp": "RODM メソッドは RODM データ・キャッシュ内のフィールド値の照会・変更時にトリガーされるユーザー作成プログラムである。query メソッドはフィールド照会時に、change メソッドは変更時にトリガーされ（サブフィールド変更ではトリガーされない）、フィルタリングやポリシー検証を行える。メソッドにはオブジェクト固有（query/change/notify/named）とオブジェクト独立があり、メソッド API は RODM データとサービスへのエントリー・ポイントを提供し、トランザクション情報ブロック・関数ブロック・応答ブロックを受け渡す。「Writing RODM Methods」はこの RODM メソッド機能に関する項目である。",
+      "verify_steps": [
+        "RODMVIEW を起動し対象オブジェクト／フィールドを表示する。",
+        "対象フィールドに change サブフィールドでメソッドが定義されていることを確認。",
+        "EKG_ChangeField でフィールド値を変更し change メソッドが起動することを RODM ログ（UAPI トレース）で確認。",
+        "戻りコード／理由コードが 0 で正常終了することを確認する。"
+      ],
+      "quiz": {
+        "q": "フィールドの値を変更したときにトリガーされる RODM メソッドはどれか。",
+        "choices": [
+          "query メソッド",
+          "change メソッド",
+          "notify メソッドのみ",
+          "どのメソッドもトリガーされない"
+        ],
+        "answer": 1,
+        "explanation": "フィールド値の変更で change メソッドがトリガーされる。サブフィールド変更では起動しない（p.34）。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf",
+      "rag_hit": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.32, p.346, p.349"
+    }
+  ]
+}

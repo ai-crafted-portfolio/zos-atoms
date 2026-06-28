@@ -1,0 +1,1415 @@
+{
+  "page": "g066",
+  "product": "IBM MQ 9.3",
+  "total_rows": 232,
+  "target_rows": 232,
+  "fixed_count": 74,
+  "rows": [
+    {
+      "row_id": 13339,
+      "title": "Activity trace configuration file, mqat.ini",
+      "naiyou_jp": "mqat.ini はアクティビティ・トレースの動作を構成するための構成ファイルである。アクティビティ・トレース・データを報告するレベルと頻度を定義し、アプリケーション名に基づいてトレースの有効化・無効化を行うルールも定義できる。mqs.ini や qm.ini と同じスタンザ・キーとパラメータ値ペアの形式に従う。デフォルトの動作を制御する単一の AllActivityTrace スタンザと、接続ごとのルールを定める複数の ApplicationTrace スタンザで構成される。",
+      "verify_steps": "$ runmqsc QMGR1\nDISPLAY QMGR ACTV\n  AMQ8408I: Display Queue Manager details.\n     ACTVTRC(OFF)\nend\n# mqat.ini を編集し AllActivityTrace スタンザの ActivityInterval/ActivityCount を設定後\n# キュー・マネージャ単位で有効化:\nALTER QMGR ACTVTRC(ON)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR ACTV  -> ACTVTRC(ON) を確認",
+      "quiz": {
+        "q": "IBM MQ 9.3 において mqat.ini ファイルの役割として正しいものはどれか。",
+        "choices": [
+          "アクティビティ・トレースの報告レベルと頻度、およびアプリケーション名ベースのトレース有効化ルールを定義する",
+          "キュー・マネージャのリスナー・ポートを定義する",
+          "クラスター送信側チャネルの宛先を定義する",
+          "TLS 暗号スイートのみを定義する専用ファイルである"
+        ],
+        "answer": 0,
+        "explanation": "mqat.ini はアクティビティ・トレースのレベル・頻度と、アプリケーション名に基づく有効化/無効化ルールを定義する構成ファイル。AllActivityTrace スタンザと ApplicationTrace スタンザで構成される。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.188",
+      "rag_hit": "[mq93.configure.pdf p.188] Activity trace configuration file, mqat.ini ... used to configure activity trace behavior ... define the level and frequency of reporting ... AllActivityTrace / ApplicationTrace stanzas."
+    },
+    {
+      "row_id": 13340,
+      "title": "Adding a stream",
+      "naiyou_jp": "ストリームの追加とは、キュー・キューイング型 (queued) パブリッシュ/サブスクライブにおいて新しいストリーム・キューを定義し、SYSTEM.QPUBSUB.QUEUE.NAMELIST ネームリストにそのキューを登録する作業である。ストリームを追加すると、その情報は階層内の他のブローカーへ伝播される。ブローカー階層を構成する各 IBM MQ キュー・マネージャで手動の構成が必要となる。",
+      "verify_steps": "$ runmqsc QMGR1\nDEFINE QLOCAL(SYSTEM.MY.STREAM) LIKE(SYSTEM.BROKER.DEFAULT.STREAM) REPLACE\n  AMQ8006I: IBM MQ queue created.\nDISPLAY NAMELIST(SYSTEM.QPUBSUB.QUEUE.NAMELIST)\n  NAMES(SYSTEM.BROKER.DEFAULT.STREAM)\nALTER NAMELIST(SYSTEM.QPUBSUB.QUEUE.NAMELIST) NAMES(SYSTEM.BROKER.DEFAULT.STREAM,SYSTEM.MY.STREAM)\n  AMQ8551I: IBM MQ namelist changed.\nend",
+      "quiz": {
+        "q": "キュー・キューイング型パブリッシュ/サブスクライブでストリームを追加する際に更新するネームリストはどれか。",
+        "choices": [
+          "SYSTEM.QPUBSUB.QUEUE.NAMELIST",
+          "SYSTEM.DEFAULT.NAMELIST",
+          "SYSTEM.CLUSTER.TRANSMIT.NAMELIST",
+          "SYSTEM.ADMIN.STATISTICS.NAMELIST"
+        ],
+        "answer": 0,
+        "explanation": "ストリーム追加では、新しいストリーム・キューを定義し、キュー型パブサブ・エンジンが監視する SYSTEM.QPUBSUB.QUEUE.NAMELIST にそのキュー名を登録する。情報は階層内の他ブローカーに伝播する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.425",
+      "rag_hit": "[mq93.configure.pdf p.422/426] add and remove streams ... Information about the stream is passed to other brokers in the hierarchy; SYSTEM.QPUBSUB.QUEUE.NAMELIST."
+    },
+    {
+      "row_id": 13341,
+      "title": "Adding a subscription point",
+      "naiyou_jp": "サブスクリプション・ポイントの追加とは、キュー型パブリッシュ/サブスクライブで新しいサブスクリプション・ポイントを利用可能にする作業である。手順として、サブスクリプション・ポイント名を SYSTEM.QPUBSUB.SUBPOINT.NAMELIST に追加し (z/OS では NLTYPE は既定の NONE)、続いてサブスクリプション・ポイント名と一致するトピック文字列を持つトピック・オブジェクトを追加する。クラスター内の場合はクラスター・トピック・ホスト上にクラスター・トピックとして追加する。同一トポロジー内の各キュー・マネージャで繰り返す必要がある。",
+      "verify_steps": "$ runmqsc QMGR1\nDISPLAY NAMELIST(SYSTEM.QPUBSUB.SUBPOINT.NAMELIST)\nALTER NAMELIST(SYSTEM.QPUBSUB.SUBPOINT.NAMELIST) NAMES(MYSUBPOINT)\n  AMQ8551I: IBM MQ namelist changed.\nDEFINE TOPIC(MYSUBPOINT) TOPICSTR('MYSUBPOINT') REPLACE\n  AMQ8690I: IBM MQ topic created.\nend",
+      "quiz": {
+        "q": "サブスクリプション・ポイントの追加手順として正しいものはどれか。",
+        "choices": [
+          "SYSTEM.QPUBSUB.SUBPOINT.NAMELIST に名前を追加し、同名のトピック文字列を持つトピック・オブジェクトを追加する",
+          "qm.ini の TCP スタンザにポートを追加する",
+          "CLUSSDR チャネルを定義して全リポジトリへ伝播する",
+          "デッドレター・キューにルールを追加する"
+        ],
+        "answer": 0,
+        "explanation": "手順は SYSTEM.QPUBSUB.SUBPOINT.NAMELIST へサブスクリプション・ポイント名を追加し、その名前と一致するトピック文字列を持つトピック・オブジェクトを追加すること。トポロジー内の各キュー・マネージャで繰り返す。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.426/427",
+      "rag_hit": "[mq93.configure.pdf p.427] Add the name of the subscription point to SYSTEM.QPUBSUB.SUBPOINT.NAMELIST ... Add a topic object ... with a topic string matching the name of the subscription point."
+    },
+    {
+      "row_id": 13344,
+      "title": "Associating a queue manager with an installation",
+      "naiyou_jp": "キュー・マネージャを特定のインストールに関連付けるには、対象インストールの setmqm コマンドを使用する。例えばキュー・マネージャ QMB を Installation2 に関連付けるには、Installation2 から MQ_INSTALLATION_PATH/bin/setmqm -m QMB -n Installation2 を実行する。関連付け後は、そのインストールの strmqm でキュー・マネージャを起動する。関連付けられたインストールが削除済みなどで失敗する場合は、dspmqinst で他のインストールを確認し手動で対処する。",
+      "verify_steps": "$ dspmqinst\n  InstName: Installation2  InstPath: /opt/mqm2  Version: 9.3.0.0\n$ /opt/mqm2/bin/setmqm -m QMB -n Installation2\n  IBM MQ queue manager 'QMB' associated with installation 'Installation2'.\n$ /opt/mqm2/bin/strmqm QMB\n  IBM MQ queue manager 'QMB' started.",
+      "quiz": {
+        "q": "キュー・マネージャを特定のインストールに関連付けるために使用するコマンドはどれか。",
+        "choices": [
+          "setmqm -m <QM名> -n <インストール名>",
+          "crtmqm -q <QM名>",
+          "setmqinst -i -p <パス>",
+          "runmqsc ALTER QMGR INSTALLATION"
+        ],
+        "answer": 0,
+        "explanation": "setmqm コマンドでキュー・マネージャの関連インストールを設定する。その後は関連付けたインストールの strmqm でのみ起動できる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.452/453",
+      "rag_hit": "[mq93.configure.pdf p.453] setmqm -m QMB -n Installation2 ... Start the queue manager using the strmqm command from the installation that is now associated."
+    },
+    {
+      "row_id": 13345,
+      "title": "Automatic client reconnection",
+      "naiyou_jp": "自動クライアント再接続は、IBM MQ MQI クライアント・アプリケーションが接続障害時に自動的に再接続する機能である。既定ではクライアントは自動再接続されず、MQCONNX の MQCNO オプションに MQCNO_RECONNECT または MQCNO_RECONNECT_Q_MGR を設定して有効化する。多くのアプリケーションは追加コードなしで自動再接続を活用できる。JMS クライアントについては自動 JMS クライアント再接続を参照する。",
+      "verify_steps": "# クライアント側アプリで MQCNO_RECONNECT を指定して接続\n# サーバ側で再接続可否を確認:\n$ runmqsc QMGR1\nDISPLAY CHSTATUS(*) CHLTYPE(SVRCONN) ALL\n  AMQ8417I: Display Channel Status details.\n# キュー・マネージャ再始動後にクライアントが自動再接続することを観察する\nend",
+      "quiz": {
+        "q": "IBM MQ で自動クライアント再接続を有効にする方法はどれか。",
+        "choices": [
+          "MQCONNX の MQCNO オプションに MQCNO_RECONNECT を設定する",
+          "qm.ini に AutoReconnect=YES を記述する",
+          "ALTER QMGR RECONNECT(ENABLED) を実行する",
+          "リスナーの BACKLOG を増やす"
+        ],
+        "answer": 0,
+        "explanation": "既定では自動再接続は無効。MQCONNX 呼び出しの MQCNO オプションに MQCNO_RECONNECT または MQCNO_RECONNECT_Q_MGR を設定して有効化する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.458",
+      "rag_hit": "[mq93.configure.pdf p.458] By default clients are not automatically reconnected. Enable ... by setting the MQCONNX MQCNO Option MQCNO_RECONNECT or MQCNO_RECONNECT_Q_MGR."
+    },
+    {
+      "row_id": 13346,
+      "title": "Backing up and restoring IBM MQ queue manager data",
+      "naiyou_jp": "キュー・マネージャ・データのバックアップ/リストアでは、構成定義とログ・データの両方を保護する。dmpmqcfg (Multiplatforms では DMPMQMCFG/Dump MQ Configuration) コマンドでキュー・マネージャ構成をダンプしておくと、ハードウェア障害で構成とログ・データの両方が失われ再始動も復旧もできない場合に、定義からキュー・マネージャを再構築できる。バックアップ・キュー・マネージャを利用する方法もある。",
+      "verify_steps": "$ dmpmqcfg -m QMGR1 -a > qmgr1_backup.mqsc\n# 復元時:\n$ runmqsc QMGR1 < qmgr1_backup.mqsc\n  All valid MQSC commands were processed.\n# z/OS / IBM i では DMPMQMCFG を使用",
+      "quiz": {
+        "q": "キュー・マネージャ構成をバックアップし、後で定義から再構築できるようにするコマンドはどれか。",
+        "choices": [
+          "dmpmqcfg (DMPMQMCFG)",
+          "endmqm -i",
+          "rcrmqobj",
+          "setmqaut"
+        ],
+        "answer": 0,
+        "explanation": "dmpmqcfg / DMPMQMCFG でキュー・マネージャ構成定義をダンプしておくと、構成とログが失われた場合に定義からキュー・マネージャを再構築できる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.647/649/651",
+      "rag_hit": "[mq93.configure.pdf p.651] Dump MQ Configuration (DMPMQMCFG) ... Backing up queue manager configuration can help you to rebuild a queue manager from its definitions."
+    },
+    {
+      "row_id": 13352,
+      "title": "Changing the primary installation",
+      "naiyou_jp": "プライマリ・インストールの変更とは、システム上の複数 IBM MQ インストールのうちプライマリとして指定するものを変更する操作である。setmqinst コマンドでプライマリ・インストールを設定する。プライマリ・インストールはアンインストール時に自動では変更されないため、別のインストールをプライマリにしたい場合は setmqinst で手動設定する必要がある。",
+      "verify_steps": "$ dspmqinst\n  InstName: Installation1  Primary: Yes\n  InstName: Installation2  Primary: No\n$ /opt/mqm2/bin/setmqinst -i -n Installation2\n  IBM MQ ... 'Installation2' set as primary.\n$ dspmqinst   # Installation2 が Primary: Yes になることを確認",
+      "quiz": {
+        "q": "プライマリ・インストールを変更するために使用するコマンドはどれか。",
+        "choices": [
+          "setmqinst",
+          "setmqm",
+          "crtmqm",
+          "strmqm"
+        ],
+        "answer": 0,
+        "explanation": "プライマリ・インストールの設定・変更は setmqinst コマンドで行う。アンインストール時に自動変更されないため手動設定が必要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.451",
+      "rag_hit": "[mq93.install.pdf p.23/24] Set the primary installation using the setmqinst command ... not automatically changed when you uninstall the primary installation."
+    },
+    {
+      "row_id": 13356,
+      "title": "Configuring a queue manager cluster",
+      "naiyou_jp": "キュー・マネージャ・クラスターの構成では、2 つのキュー・マネージャをフル・リポジトリとして指定し、各キュー・マネージャに 1 つの CLUSSDR (クラスター送信側) と 1 つの CLUSRCVR (クラスター受信側) チャネル定義を用意する。クラスター定義後はリポジトリ以外のキュー・マネージャを他へ影響を与えずに追加・削除できる。各フル・リポジトリは互いに CLUSSDR/CLUSRCVR で接続し、その他のキュー・マネージャは部分リポジトリでクラスター状態を保持する。",
+      "verify_steps": "$ runmqsc FULLREPOS1\nALTER QMGR REPOS(MYCLUSTER)\nDEFINE CHANNEL(TO.FR1) CHLTYPE(CLUSRCVR) TRPTYPE(TCP) CONNAME('host1(1414)') CLUSTER(MYCLUSTER)\nDEFINE CHANNEL(TO.FR2) CHLTYPE(CLUSSDR) TRPTYPE(TCP) CONNAME('host2(1414)') CLUSTER(MYCLUSTER)\n  AMQ8014I: IBM MQ channel created.\nDISPLAY CLUSQMGR(*) CLUSTER(MYCLUSTER)\nend",
+      "quiz": {
+        "q": "クラスター内でフル・リポジトリ間を接続するために手動で定義する必要があるチャネルはどれか。",
+        "choices": [
+          "CLUSSDR と CLUSRCVR",
+          "SDR と RCVR (通常の送受信側)",
+          "SVRCONN と CLNTCONN",
+          "RQSTR と SVR"
+        ],
+        "answer": 0,
+        "explanation": "各キュー・マネージャに 1 つの CLUSSDR と 1 つの CLUSRCVR を定義する。フル・リポジトリ同士は互いに CLUSSDR/CLUSRCVR で手動接続する必要がある。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.31/32",
+      "rag_hit": "[mq93.plan.pdf p.31/32] make them full repository queue managers ... Only one CLUSSDR and one CLUSRCVR channel definition is required ... connected by CLUSSDR channels ... to every other full repository."
+    },
+    {
+      "row_id": 13358,
+      "title": "Configuring a uniform cluster",
+      "naiyou_jp": "ユニフォーム・クラスターの構成では、自動アプリケーション・バランシングにより、ランダム化や手動ピン留めに頼らず、クラスター全体でアプリケーションの分散と可用性を管理する。ユニフォーム・クラスターでは、同じアプリケーション名で接続したクライアント接続がグループ化され、同名のアプリケーション・インスタンスがクラスター・メンバー間で均等に分散される。自動クラスター構成を使うと初期作成とメンバー間構成の同一性維持が簡素化される。",
+      "verify_steps": "# 各メンバーの qm.ini / ini で AutoCluster スタンザを設定\n$ runmqsc QMGR1\nDISPLAY QMGR ALL\n# クラスター・チャネルとアプリケーション・バランシング状態を確認\nDISPLAY APSTATUS(*) TYPE(APPL)\n  AMQ8437I: Display application status details.\nend",
+      "quiz": {
+        "q": "ユニフォーム・クラスターの主な目的として正しいものはどれか。",
+        "choices": [
+          "自動アプリケーション・バランシングでアプリケーション・インスタンスをメンバー間に均等分散する",
+          "TLS 証明書をクラスター全体に自動配布する",
+          "デッドレター・キューを自動生成する",
+          "リニア・ログを循環ログに変換する"
+        ],
+        "answer": 0,
+        "explanation": "ユニフォーム・クラスターは自動アプリケーション・バランシングにより、同一アプリケーション名のインスタンスをクラスター・メンバー間で均等に分散し、可用性を高める。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.401/405/416",
+      "rag_hit": "[mq93.configure.pdf p.416/405] Automatic application balancing ... manage application distribution across the cluster ... Auto-balancing ensures an even spread of application instances across members of the cluster."
+    },
+    {
+      "row_id": 13364,
+      "title": "Configuring distributed publish/subscribe networks",
+      "naiyou_jp": "分散パブリッシュ/サブスクライブ・ネットワークの構成では、複数のキュー・マネージャにまたがってトピックを共有する。パブリッシュ/サブスクライブ・クラスターには直接ルーティング (direct routing) とトピック・ホスト・ルーティング (topic host routing) の 2 つの基本トポロジーがあり、それぞれ利点が異なる。期待されるネットワーク要件に最も適したトポロジーを選択する。階層型のブローカー接続を構成する方法もある。",
+      "verify_steps": "$ runmqsc QMGR1\n# クラスター・トピックをトピック・ホスト・ルーティングで定義\nDEFINE TOPIC(SHARED.NEWS) TOPICSTR('news') CLUSTER(MYCLUSTER) CLROUTE(TOPICHOST)\n  AMQ8690I: IBM MQ topic created.\nDISPLAY TOPIC(SHARED.NEWS) CLROUTE\n  CLROUTE(TOPICHOST)\nend",
+      "quiz": {
+        "q": "パブリッシュ/サブスクライブ・クラスターの 2 つの基本トポロジーはどれか。",
+        "choices": [
+          "直接ルーティングとトピック・ホスト・ルーティング",
+          "循環ログとリニア・ログ",
+          "送信側チャネルと受信側チャネル",
+          "COMPAT と DISABLED"
+        ],
+        "answer": 0,
+        "explanation": "パブサブ・クラスターには直接ルーティング (direct routing) とトピック・ホスト・ルーティング (topic host routing) の 2 トポロジーがあり、ネットワーク要件に応じて選択する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.427、計画ガイド p.73/90",
+      "rag_hit": "[mq93.plan.pdf p.73] two basic publish/subscribe cluster topologies: direct routing and topic host routing. Each has different benefits."
+    },
+    {
+      "row_id": 13365,
+      "title": "Configuring distributed queuing",
+      "naiyou_jp": "分散キューイングの構成では、リモート・キュー定義、伝送 (transmission) キュー、およびリモート・キュー・マネージャへのチャネルを用意する。例として、リモート・キュー・オブジェクト QA_norm と伝送キュー TX1 を定義し、チャネル定義で TX1 を指定する。メッセージは伝送ヘッダー (宛先キューとキュー・マネージャを含む) を付けて TX1 に置かれ、チャネル経由で送信される。クラスターを使うとこれらの明示的な定義は不要になる。",
+      "verify_steps": "$ runmqsc QMA\nDEFINE QLOCAL(TX1) USAGE(XMITQ)\nDEFINE QREMOTE(QA_norm) RNAME(QA_norm) RQMNAME(QMB) XMITQ(TX1)\nDEFINE CHANNEL(QMA.TO.QMB) CHLTYPE(SDR) TRPTYPE(TCP) CONNAME('qmbhost(1414)') XMITQ(TX1)\n  AMQ8014I: IBM MQ channel created.\nSTART CHANNEL(QMA.TO.QMB)\nend",
+      "quiz": {
+        "q": "分散キューイングでローカル・キュー・マネージャからリモートへメッセージを中継する際に必須のオブジェクトはどれか。",
+        "choices": [
+          "リモート・キュー定義と伝送キュー (XMITQ) およびチャネル",
+          "サブスクリプション・ポイントとストリーム",
+          "デッドレター・キューと CSQUDLQH",
+          "MONCHL 属性のみ"
+        ],
+        "answer": 0,
+        "explanation": "分散キューイングではリモート・キュー定義、伝送キュー、リモート宛てチャネルが必要。メッセージは伝送ヘッダー付きで XMITQ に置かれチャネル経由で送られる。クラスターでは明示定義は不要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.190/195、計画ガイド p.30",
+      "rag_hit": "[mq93.configure.pdf p.195] you must provide the remote queue object 'QA_norm', and the transmission queue 'TX1' ... Messages are placed on transmission queue 'TX1' with a transmission header."
+    },
+    {
+      "row_id": 13384,
+      "title": "Configuring publish/subscribe messaging",
+      "naiyou_jp": "パブリッシュ/サブスクライブ・メッセージングの構成では、トピック・オブジェクトを定義し、パブリッシュ可否 (PUB) とサブスクライブ可否 (SUB) を制御する。トピック属性は ASPARENT によりトピック・ツリー上の親管理ノードの設定を継承できる。パブリッシャーはトピック文字列を指定してメッセージを発行し、サブスクライバーは同じトピックを購読する。IBM MQ Explorer のテスト・パブリケーション機能で動作確認できる。",
+      "verify_steps": "$ runmqsc QMGR1\nDEFINE TOPIC(PRICE) TOPICSTR('price/fruit') PUB(ENABLED) SUB(ENABLED) REPLACE\n  AMQ8690I: IBM MQ topic created.\nDISPLAY TOPIC(PRICE) PUB SUB\n  PUB(ENABLED) SUB(ENABLED)\nend",
+      "quiz": {
+        "q": "トピック・オブジェクトのパブリッシュ可否がトピック・ツリーの親ノード設定を継承する設定値はどれか。",
+        "choices": [
+          "ASPARENT",
+          "ENABLED",
+          "DISABLED",
+          "COMPAT"
+        ],
+        "answer": 0,
+        "explanation": "トピックの PUB/SUB 属性は ASPARENT を指定すると、トピック・ツリー上で最初に見つかる親管理ノードの設定を継承する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.422、管理リファレンス p.1733",
+      "rag_hit": "[mq93.refadmin.pdf p.1733] *ASPARENT Whether messages can be published / applications can subscribe to this topic is based on the setting of the first parent administrative node found in the topic tree."
+    },
+    {
+      "row_id": 13385,
+      "title": "Configuring queue managers on z/OS",
+      "naiyou_jp": "z/OS 上でのキュー・マネージャ構成では、システム・パラメータ・モジュールでキュー・マネージャ始動時の各種パラメータを設定する。SET SYSTEM (MQSC コマンド) を使うと、始動時にシステム・パラメータ・モジュールから設定された一部の一般システム・パラメータ値を動的に変更できる。永続的に変更するにはパラメータ・モジュールを再アセンブルする。データセットの高位修飾子など、ストレージ管理者と連携して決める項目もある。",
+      "verify_steps": "// z/OS コンソールから:\n+CSQ1 SET SYSTEM ...\n  CSQ9022I +CSQ1 CSQYSCMD ' SET SYSTEM' NORMAL COMPLETION\n+CSQ1 DISPLAY SYSTEM\n  CSQY100I +CSQ1 System parameters ...",
+      "quiz": {
+        "q": "z/OS で始動時に設定済みの一般システム・パラメータ値を動的に変更する MQSC コマンドはどれか。",
+        "choices": [
+          "SET SYSTEM",
+          "ALTER QMGR",
+          "REFRESH SECURITY",
+          "RECOVER BSDS"
+        ],
+        "answer": 0,
+        "explanation": "z/OS では SET SYSTEM コマンドで、システム・パラメータ・モジュールから始動時に設定された一部の一般システム・パラメータを動的に変更できる。永続変更にはモジュール再アセンブルが必要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.878、管理リファレンス p.944",
+      "rag_hit": "[mq93.refadmin.pdf p.944] SET SYSTEM (change system settings) on z/OS ... dynamically change certain general system parameter values that were initially set from your system parameter module at queue manager startup."
+    },
+    {
+      "row_id": 13388,
+      "title": "Configuring streaming queues",
+      "naiyou_jp": "ストリーミング・キューの構成では、キューの STREAMQ 属性を設定して、元のキューにメッセージが PUT されるたびに、重複メッセージをセカンダリ・キューへ配置する。STREAMQ 属性を構成するには権限が必要で、対象キューへの CHG 権限と、MQADMIN/MXADMIN プロファイルへの ALTER アクセスが求められる。",
+      "verify_steps": "$ runmqsc QMGR1\nDEFINE QLOCAL(STREAM.COPY)\nALTER QLOCAL(APP.QUEUE) STREAMQ(STREAM.COPY) STRMQOS(BESTEF)\n  AMQ8008I: IBM MQ queue changed.\nDISPLAY QLOCAL(APP.QUEUE) STREAMQ\n  STREAMQ(STREAM.COPY)\nend",
+      "quiz": {
+        "q": "元のキューに PUT されたメッセージの複製を別キューに配置するために設定するキュー属性はどれか。",
+        "choices": [
+          "STREAMQ",
+          "XMITQ",
+          "TRIGTYPE",
+          "BOQNAME"
+        ],
+        "answer": 0,
+        "explanation": "STREAMQ 属性を設定すると、元キューへの PUT のたびに重複メッセージがセカンダリ・キューへ配置される。設定には対象キューの CHG 権限と MQADMIN への ALTER アクセスが必要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.1054、セキュリティ p.424/425",
+      "rag_hit": "[mq93.secure.pdf p.424/425] secondary queue, where duplicate messages are placed, whenever a message is put to the original queue ... STREAMQ attribute of a queue requires ... CHG authority ... ALTER access level to MQADMIN."
+    },
+    {
+      "row_id": 13405,
+      "title": "Connection logs in MQIPT",
+      "naiyou_jp": "MQIPT の接続ログは、IBM MQ Internet Pass-Thru を通過する接続の記録を保持する。MQIPT のセキュリティ出口は ExitRc.DISABLE_SSL などの戻りコードを返し、検証要求が成功してターゲットへの接続が SSL/TLS を使用しないことを示せる。MQIPT 使用時には、発信接続で使用するローカル・ポート番号の範囲を制限することも可能である (ポート番号制御)。",
+      "verify_steps": "# mqipt.conf でログ関連プロパティを設定 (例: ConnectionLog=true)\n# MQIPT を再始動し接続ログ・ディレクトリを確認\n$ mqiptAdmin -refresh\n  Refresh command successful.\n# logs ディレクトリに接続記録が出力されることを確認",
+      "quiz": {
+        "q": "MQIPT で発信接続に使用するローカル・ポート番号の範囲を制限できる機能はどれか。",
+        "choices": [
+          "ポート番号制御 (Port number control)",
+          "STREAMQ",
+          "PSMODE",
+          "MONCHL"
+        ],
+        "answer": 0,
+        "explanation": "MQIPT 使用時には、発信接続で使用するローカル・ポート番号の範囲を制限するポート番号制御が可能。接続ログは MQIPT を通過する接続を記録する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.1049/1052",
+      "rag_hit": "[mq93.configure.pdf p.1049] Return code: ExitRc.DISABLE_SSL ... Port number control in MQIPT: ... it is possible to restrict the range of local port number that are used when making an outgoing connection."
+    },
+    {
+      "row_id": 13417,
+      "title": "Defining MQI channels",
+      "naiyou_jp": "MQI チャネルの定義では、チャネルの両端 (サーバー・コネクション側とクライアント・コネクション側) で接続を構成する。クライアント側では MQSERVER 環境変数を使って簡易的なクライアント・コネクション・チャネル定義を指定できる (少数の属性のみ指定可能)。接続定義の優先順位は、MQCNO の MQCD、CCDT URL、MQSERVER 環境変数、mqclient.ini の Channels スタンザ (ServerConnectionParms) の順で評価される。サーバー側はリスナーを開始して着信要求を検出する。",
+      "verify_steps": "# サーバ側:\n$ runmqsc QMGR1\nDEFINE CHANNEL(MY.SVRCONN) CHLTYPE(SVRCONN) TRPTYPE(TCP)\nDEFINE LISTENER(MY.LSTR) TRPTYPE(TCP) PORT(1414) CONTROL(QMGR)\nSTART LISTENER(MY.LSTR)\nend\n# クライアント側:\n$ export MQSERVER='MY.SVRCONN/TCP/svrhost(1414)'",
+      "quiz": {
+        "q": "クライアント・コネクション・チャネルを環境変数で簡易定義する際に使用するものはどれか。",
+        "choices": [
+          "MQSERVER",
+          "MQSPREFIX",
+          "MQ_INSTALLATION_PATH",
+          "MQCHLLIB のみ"
+        ],
+        "answer": 0,
+        "explanation": "MQSERVER 環境変数で簡易的なクライアント・コネクション・チャネル定義 (少数属性) を指定できる。優先順位は MQCD > CCDT URL > MQSERVER > mqclient.ini の順。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.29/36/53",
+      "rag_hit": "[mq93.configure.pdf p.36/53] You can use the MQSERVER environment variable to specify a simple definition of a client-connection channel ... priority: MQCD, CCDTUrl, MQSERVER, mqclient.ini Channels stanza."
+    },
+    {
+      "row_id": 13418,
+      "title": "Deleting a stream",
+      "naiyou_jp": "ストリームの削除とは、IBM MQ キュー・マネージャからストリームを除去する操作である。削除前に、そのストリームへの残存サブスクリプションがないことを確認し、ストリームを使用するすべてのアプリケーションを静止 (quiesce) する必要がある。削除後もパブリケーションが流れ続けると、多大な管理オーバーヘッドが生じる。階層内の各キュー・マネージャを手動で構成する。",
+      "verify_steps": "$ runmqsc QMGR1\n# 残存サブスクリプションがないことを確認\nDISPLAY SUB(*) TOPICSTR\n# ストリーム・キューをネームリストから除去\nALTER NAMELIST(SYSTEM.QPUBSUB.QUEUE.NAMELIST) NAMES(SYSTEM.BROKER.DEFAULT.STREAM)\nDELETE QLOCAL(SYSTEM.MY.STREAM)\n  AMQ8007I: IBM MQ queue deleted.\nend",
+      "quiz": {
+        "q": "ストリームを削除する前に必ず行うべきことはどれか。",
+        "choices": [
+          "残存サブスクリプションがないことを確認し、ストリーム使用アプリを静止する",
+          "プライマリ・インストールを変更する",
+          "PSMODE を ENABLED に設定する",
+          "リニア・ログを循環ログに変換する"
+        ],
+        "answer": 0,
+        "explanation": "削除前に残存サブスクリプションがないことを確認し、ストリームを使うすべてのアプリを静止する。削除後もパブリケーションが流れると管理オーバーヘッドが大きくなる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.426",
+      "rag_hit": "[mq93.configure.pdf p.426] Before deleting a stream you must ensure that there are no remaining subscriptions to the stream and quiesce all applications that use the stream."
+    },
+    {
+      "row_id": 13426,
+      "title": "High availability configurations",
+      "naiyou_jp": "高可用性 (HA) 構成には、キュー・マネージャの可用性を実現するためのネイティブな方式が複数ある。マルチインスタンス・キュー・マネージャは、IBM MQ に統合された基本的なフェイルオーバー・サポート、HA クラスターより高速なフェイルオーバー、シンプルな構成・運用、IBM MQ Explorer との統合といった特徴を持つ。一方で、高可用かつ高性能なネットワーク・ストレージが必要で、ネットワーク構成がより複雑になるという制約もある。",
+      "verify_steps": "# ノード1:\n$ crtmqm -md /shared/qmdata -ld /shared/qmlog QM1\n$ strmqm -x QM1   # 第1インスタンス起動\n# ノード2 (共有ストレージをマウント済):\n$ addmqinf ...   # 構成情報を追加\n$ strmqm -x QM1   # 第2インスタンス (スタンバイ) 起動\n$ dspmq -x        # INSTANCE 状態を確認",
+      "quiz": {
+        "q": "マルチインスタンス・キュー・マネージャの特徴として正しいものはどれか。",
+        "choices": [
+          "IBM MQ に統合された基本フェイルオーバー・サポートを提供するが、高可用ネットワーク・ストレージが必要",
+          "ストレージ不要で完全にメモリ内で動作する",
+          "z/OS のカップリング・ファシリティが必須",
+          "フェイルオーバーは HA クラスターより必ず遅い"
+        ],
+        "answer": 0,
+        "explanation": "マルチインスタンス・キュー・マネージャは IBM MQ 統合の基本フェイルオーバー、HA クラスターより高速なフェイルオーバー、簡易構成が特徴。制約として高可用・高性能ネットワーク・ストレージが必要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.466",
+      "rag_hit": "[mq93.configure.pdf p.466] Multi-instance queue managers include ... Basic failover support integrated into IBM MQ, Faster failover than HA cluster ... Limitations ... Highly available, high performance networked storage required."
+    },
+    {
+      "row_id": 13428,
+      "title": "HTTP support in MQIPT",
+      "naiyou_jp": "MQIPT における HTTP サポートは、IBM MQ Internet Pass-Thru がサポートする機能の一つである。MQIPT は構成ファイル mqipt.conf を変更して構成する。HTTP トンネリングを使うと、HTTP プロキシ経由でファイアウォールを越えて IBM MQ メッセージをトンネルできる。サーバー側の MQIPT は HTTPProxy/HTTPServer プロパティを用い、特別な構成は不要な場合もある。",
+      "verify_steps": "# mqipt.conf の route スタンザで HTTP を有効化:\n# [route]\n#   ListenerPort=1415\n#   Destination=targethost\n#   DestinationPort=1414\n#   HTTP=true\n#   HTTPProxy=proxyhost\n$ mqiptAdmin -refresh\n  Refresh command successful.",
+      "quiz": {
+        "q": "MQIPT を構成する際に変更する構成ファイルはどれか。",
+        "choices": [
+          "mqipt.conf",
+          "qm.ini",
+          "mqs.ini",
+          "mqat.ini"
+        ],
+        "answer": 0,
+        "explanation": "MQIPT は構成ファイル mqipt.conf を変更して構成する。HTTP サポートを含む各種機能はこのファイルの route スタンザ等で設定する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.1011",
+      "rag_hit": "[mq93.configure.pdf p.1011] Configuring IBM MQ Internet Pass-Thru ... Configure MQIPT by making changes to the configuration file mqipt.conf."
+    },
+    {
+      "row_id": 13429,
+      "title": "IBM MQ configuration file, mqs.ini",
+      "naiyou_jp": "mqs.ini は IBM MQ 全体の構成ファイルで、ノード上のすべてのキュー・マネージャに影響する。QueueManager スタンザには各キュー・マネージャのエントリがあり、DataPath キーがあればそれがキュー・マネージャ・データ・ディレクトリ、なければ Prefix と Directory の値から prefix/qmgrs/directory として求まる。IBM i では .ini ファイルは IFS 上のストリーム・ファイルである。編集前にバックアップを取る。",
+      "verify_steps": "# mqs.ini の QueueManager スタンザを確認 (Linux: /var/mqm/mqs.ini)\n$ dspmqinf -o stanza QMGR1\n  QueueManager:\n     Name=QMGR1\n     Prefix=/var/mqm\n     Directory=QMGR1\n     DataPath=/var/mqm/qmgrs/QMGR1",
+      "quiz": {
+        "q": "mqs.ini ファイルの QueueManager スタンザでキュー・マネージャ・データ・ディレクトリを直接示すキーはどれか。",
+        "choices": [
+          "DataPath",
+          "STREAMQ",
+          "PSMODE",
+          "ListenerPort"
+        ],
+        "answer": 0,
+        "explanation": "QueueManager スタンザに DataPath キーがあればその値がデータ・ディレクトリ。無ければ Prefix と Directory から prefix/qmgrs/directory として求める。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.85/95/581/583",
+      "rag_hit": "[mq93.configure.pdf p.581/583] Locate the QueueManager stanza ... If the stanza contains a key named DataPath then its value is the queue manager data directory ... otherwise Prefix and Directory keys."
+    },
+    {
+      "row_id": 13431,
+      "title": "IBM MQ MQI client configuration file, mqclient.ini",
+      "naiyou_jp": "mqclient.ini は IBM MQ MQI クライアントの構成ファイルで、MQI、IBM MQ classes for Java、JMS、.NET、XMS などのクライアントに適用される属性を定義する。多くのクライアントに共通して適用されるが、一部の属性は特定のクライアントにのみ関係する。Channels スタンザの ServerConnectionParms 属性で使用するチャネルを定義できる。接続定義の評価順序では MQSERVER 環境変数の後に評価される。",
+      "verify_steps": "# mqclient.ini の Channels スタンザ例:\n# Channels:\n#   ServerConnectionParms=MY.SVRCONN/TCP/svrhost(1414)\n$ export MQCLNTCF=/home/app/mqclient.ini\n# クライアント・アプリ接続時にこのチャネル定義が使われることを確認",
+      "quiz": {
+        "q": "mqclient.ini の Channels スタンザで使用するクライアント・コネクション・チャネルを定義する属性はどれか。",
+        "choices": [
+          "ServerConnectionParms",
+          "DataPath",
+          "STREAMQ",
+          "IniConfig"
+        ],
+        "answer": 0,
+        "explanation": "mqclient.ini の Channels スタンザに ServerConnectionParms 属性を指定すると、そのチャネル定義が使用される。接続評価では MQSERVER 環境変数の後に評価される。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.53/156/172",
+      "rag_hit": "[mq93.configure.pdf p.53] If an mqclient.ini file is defined and the Channels stanza contains a ServerConnectionParms attribute, then the channel that it defines is used."
+    },
+    {
+      "row_id": 13447,
+      "title": "Queue manager configuration files, qm.ini",
+      "naiyou_jp": "qm.ini はキュー・マネージャ単位の構成ファイルで、各種スタンザと属性でキュー・マネージャの動作を制御する。AutoConfig スタンザの IniConfig 属性で指す自動初期化構成ファイルを使う場合、既存の qm.ini はキュー・マネージャ始動時に削除され、IniConfig で供給された構成のみがベースラインとして適用される。そのため構成変更は IniConfig が指すファイルを通じて行うべきである。",
+      "verify_steps": "$ runmqsc QMGR1\n# qm.ini の TCP/Channels スタンザ等を編集後、反映を確認\nDISPLAY QMGR ALL\n  AMQ8408I: Display Queue Manager details.\nend\n# Linux: /var/mqm/qmgrs/QMGR1/qm.ini を編集",
+      "quiz": {
+        "q": "自動初期化構成 (AutoConfig) を使う場合、qm.ini はキュー・マネージャ始動時にどう扱われるか。",
+        "choices": [
+          "既存 qm.ini は削除され、IniConfig が指す構成のみが適用される",
+          "qm.ini は読み取り専用になり変更不可になる",
+          "qm.ini は mqs.ini に統合される",
+          "qm.ini の変更は無視され mqclient.ini が優先される"
+        ],
+        "answer": 0,
+        "explanation": "AutoConfig スタンザの IniConfig を使う場合、既存 qm.ini は始動時に削除され、供給された構成のみがベースラインとして適用される。よって変更は IniConfig 経由で行う。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.99/100",
+      "rag_hit": "[mq93.configure.pdf p.99] all changes to the qm.ini file should be performed through ... the IniConfig attribute in the AutoConfig stanza ... the existing qm.ini file is removed at queue manager start."
+    },
+    {
+      "row_id": 13458,
+      "title": "Starting queued publish/subscribe",
+      "naiyou_jp": "キュー型パブリッシュ/サブスクライブの開始は、キュー・マネージャの PSMODE 属性を設定して行う。PSMODE には COMPAT、DISABLED、ENABLED の 3 モードがある。ENABLED にするとパブリッシュ/サブスクライブ・エンジンとキュー型パブサブ・インターフェース (ブローカー) の両方が稼働し、API および監視対象キューの両方でパブリッシュ/サブスクライブが可能になる。ALTER QMGR で設定する。",
+      "verify_steps": "$ runmqsc QMGR1\nDISPLAY QMGR PSMODE\n  PSMODE(COMPAT)\nALTER QMGR PSMODE(ENABLED)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR PSMODE\n  PSMODE(ENABLED)\nend",
+      "quiz": {
+        "q": "キュー型パブリッシュ/サブスクライブを開始するために設定するキュー・マネージャ属性はどれか。",
+        "choices": [
+          "PSMODE を ENABLED に設定する",
+          "STREAMQ を設定する",
+          "MONCHL を HIGH に設定する",
+          "REPOS を設定する"
+        ],
+        "answer": 0,
+        "explanation": "PSMODE 属性 (COMPAT/DISABLED/ENABLED) を設定して開始する。ENABLED でパブサブ・エンジンとキュー型パブサブ・インターフェースの両方が稼働する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.424",
+      "rag_hit": "[mq93.configure.pdf p.424] You start queued publish/subscribe by setting the PSMODE attribute ... three modes ... COMPAT, DISABLED, ENABLED."
+    },
+    {
+      "row_id": 13459,
+      "title": "Stopping queued publish/subscribe",
+      "naiyou_jp": "キュー型パブリッシュ/サブスクライブの停止も PSMODE 属性で制御する。DISABLED に設定するとパブサブ・エンジンとキュー型パブサブ・インターフェースは稼働せず、API による発行・購読ができなくなる。なお ENABLED → DISABLED → ENABLED と切り替え、その間に非永続サブスクリプションが存在した場合には所定のコマンド実行が必要になる場合がある。COMPAT モードも選択できる。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR PSMODE(DISABLED)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR PSMODE\n  PSMODE(DISABLED)\nend",
+      "quiz": {
+        "q": "PSMODE を DISABLED に設定した場合の動作として正しいものはどれか。",
+        "choices": [
+          "パブサブ・エンジンとキュー型パブサブ・インターフェースが停止し、API による発行・購読ができなくなる",
+          "全キューが自動削除される",
+          "クラスター・チャネルが停止する",
+          "ログが循環ログに切り替わる"
+        ],
+        "answer": 0,
+        "explanation": "PSMODE(DISABLED) ではパブサブ・エンジンとキュー型パブサブ・インターフェースが稼働せず、API による発行・購読が不可になる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.424、管理リファレンス p.371",
+      "rag_hit": "[mq93.refdev.pdf p.1395] *DISABLED The publish/subscribe engine and the queued publish/subscribe interface are not running ... not possible to publish/subscribe by using the API."
+    },
+    {
+      "row_id": 13453,
+      "title": "Setting queued publish/subscribe message attributes",
+      "naiyou_jp": "キュー型パブリッシュ/サブスクライブのメッセージ属性設定では、ALTER QMGR でパブサブ動作を制御するキュー・マネージャ属性を変更する。主な属性として、再試行回数の PSRTYCNT、配信不能コマンド入力メッセージの破棄を制御する PSNPMSG、配信不能コマンド応答メッセージ後の動作を制御する PSNPRES、コマンド・メッセージを同期点下で処理する PSSYNCPT がある。Broker スタンザでは PersistentPublishRetry なども設定できる。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR PSNPRES(SAFE)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR PSRTYCNT PSNPMSG PSNPRES PSSYNCPT\n  PSRTYCNT(5) PSNPMSG(DISCARD) PSNPRES(SAFE) PSSYNCPT(IFPER)\nend",
+      "quiz": {
+        "q": "キュー型パブサブで配信不能コマンド入力メッセージの再試行回数を制御する属性はどれか。",
+        "choices": [
+          "PSRTYCNT",
+          "STREAMQ",
+          "MONCHL",
+          "BOTHRESH"
+        ],
+        "answer": 0,
+        "explanation": "PSRTYCNT はキュー型パブサブ・インターフェースが同期点下でコマンド・メッセージ処理に失敗した際の再試行回数を制御する。PSNPMSG/PSNPRES/PSSYNCPT も関連属性。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.423",
+      "rag_hit": "[mq93.configure.pdf p.423] PSRTYCNT ... Discard undeliverable command input message PSNPMSG ... PSNPRES ... Process command messages under syncpoint PSSYNCPT ... Broker stanza PersistentPublishRetry."
+    },
+    {
+      "row_id": 13407,
+      "title": "Creating a default queue manager",
+      "naiyou_jp": "デフォルト・キュー・マネージャの作成では、crtmqm コマンドに -q オプションを付けて、そのキュー・マネージャをノードのデフォルトとして指定する。キュー・マネージャ作成時にシステム・デフォルト・オブジェクトが自動的に作成される (IBM i では CRTMQM)。デフォルト・キュー・マネージャは、キュー・マネージャ名を指定せずに発行されたコマンドやアプリケーションの接続先となる。",
+      "verify_steps": "$ crtmqm -q QMDEF\n  IBM MQ queue manager created.\n  Default queue manager created.\n$ strmqm QMDEF\n  IBM MQ queue manager 'QMDEF' started.\n$ dspmq\n  QMNAME(QMDEF)  STATUS(Running)  (DEFAULT)",
+      "quiz": {
+        "q": "crtmqm でキュー・マネージャをデフォルトとして作成するオプションはどれか。",
+        "choices": [
+          "-q",
+          "-x",
+          "-c",
+          "-md"
+        ],
+        "answer": 0,
+        "explanation": "crtmqm -q でデフォルト・キュー・マネージャを作成する。デフォルト・キュー・マネージャは名前を省略したコマンド・アプリの接続先になる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.12、インストール p.79/480",
+      "rag_hit": "[mq93.install.pdf p.79/480] The system-default objects are created automatically when you issue the CRTMQM command to create a queue manager."
+    },
+    {
+      "row_id": 13436,
+      "title": "Logging: Making sure that messages are not lost",
+      "naiyou_jp": "ログ機能はメッセージを失わないための仕組みで、メディア・リカバリーによる破損オブジェクトの復元などを行う。いずれの場合もリカバリーは、キュー・マネージャ停止時の状態へ復元する (進行中トランザクションは除く)。循環 (circular) ログとリニア (linear) ログがあり、リニア・ログのみが破損・削除されたオブジェクトの復元を可能にする。循環ログはフォーマット済みエクステントを再利用するため一般に高速。両方とも電源障害には対応する。",
+      "verify_steps": "$ crtmqm -lc QMC   # 循環ログ\n$ crtmqm -ll QML   # リニア・ログ\n$ runmqsc QML\nDISPLAY QMGR ALL\n# z/OS では RECOVER CFSTRUCT / メディア・リカバリーを使用\nend",
+      "quiz": {
+        "q": "破損または削除されたオブジェクトのメディア・リカバリーを可能にするログ方式はどれか。",
+        "choices": [
+          "リニア・ログ (linear)",
+          "循環ログ (circular)",
+          "両方とも不可",
+          "PSMODE ログ"
+        ],
+        "answer": 0,
+        "explanation": "リニア・ログのみが破損・削除されたオブジェクトの復元 (メディア・リカバリー) を可能にする。循環ログはフォーマット済みエクステント再利用で高速だが復元はできない。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.455、計画ガイド p.139",
+      "rag_hit": "[mq93.plan.pdf p.139] Linear logging (but not circular) enables damaged objects to be recovered ... circular logging is able to reuse log extents that have already been formatted."
+    },
+    {
+      "row_id": 13471,
+      "title": "Accounting and statistics messages",
+      "naiyou_jp": "統計メッセージは IBM MQ システムで発生するアクティビティの情報を記録し、構成された間隔ごとにアクティビティがあるたびに SYSTEM.ADMIN.STATISTICS.QUEUE に書き込まれる。MQI 統計 (MQI 呼び出し回数)、キュー統計、チャネル統計などのカテゴリがある。統計メッセージはメッセージ記述子とメッセージ・データから成る PCF フィールドのセットで構成される。チャネル統計の収集は STATCHL 属性で制御する。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR STATQ(ON) STATCHL(MEDIUM) STATINT(1800)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR STATQ STATCHL STATINT\n  STATQ(ON) STATCHL(MEDIUM) STATINT(1800)\n# SYSTEM.ADMIN.STATISTICS.QUEUE にメッセージが蓄積されることを確認\nend",
+      "quiz": {
+        "q": "IBM MQ の統計メッセージが書き込まれるシステム・キューはどれか。",
+        "choices": [
+          "SYSTEM.ADMIN.STATISTICS.QUEUE",
+          "SYSTEM.QPUBSUB.QUEUE.NAMELIST",
+          "SYSTEM.CLUSTER.TRANSMIT.QUEUE",
+          "SYSTEM.DEAD.LETTER.QUEUE"
+        ],
+        "answer": 0,
+        "explanation": "統計メッセージは構成間隔ごとに SYSTEM.ADMIN.STATISTICS.QUEUE に書き込まれる。MQI/キュー/チャネル統計のカテゴリがあり、STATCHL でチャネル統計収集を制御する。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.135/139/140",
+      "rag_hit": "[mq93.monitor.pdf p.139] to the system queue (SYSTEM.ADMIN.STATISTICS.QUEUE) at configured intervals ... MQI statistics messages ... Queue statistics messages ... STATCHL."
+    },
+    {
+      "row_id": 13472,
+      "title": "Application activity trace",
+      "naiyou_jp": "アプリケーション・アクティビティ・トレースは、キュー・マネージャに接続されたアプリケーションの動作に関する詳細情報を生成する。アプリケーションが IBM MQ リソースと相互作用する際に使うパラメータの詳細ビューや、発行された MQI 呼び出しのシーケンスを示す。イベント監視・メッセージ監視・アカウンティングより詳細な情報が必要な場合に使う。IBM MQ 9.0 より前は SYSTEM.ADMIN.TRACE.ACTIVITY.QUEUE に PCF メッセージを書き込んで収集する。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR ACTVTRC(ON)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR ACTVTRC\n  ACTVTRC(ON)\n# SYSTEM.ADMIN.TRACE.ACTIVITY.QUEUE のトレース PCF メッセージを確認\nend",
+      "quiz": {
+        "q": "アプリケーション・アクティビティ・トレースが提供する情報として正しいものはどれか。",
+        "choices": [
+          "アプリケーションが発行する MQI 呼び出しのシーケンスとパラメータの詳細",
+          "TLS 証明書の有効期限のみ",
+          "ログ・エクステントの使用率のみ",
+          "クラスター・トポロジー図"
+        ],
+        "answer": 0,
+        "explanation": "アプリケーション・アクティビティ・トレースは MQI 呼び出しのシーケンスや使用パラメータの詳細を示す。9.0 より前は SYSTEM.ADMIN.TRACE.ACTIVITY.QUEUE に書き込まれる。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.200/211",
+      "rag_hit": "[mq93.monitor.pdf p.200/211] Application activity trace produces detailed information about the behavior of applications ... sequence of MQI calls ... SYSTEM.ADMIN.TRACE.ACTIVITY.QUEUE."
+    },
+    {
+      "row_id": 13474,
+      "title": "Event monitoring",
+      "naiyou_jp": "イベント監視は、キュー・マネージャ内のエラー・警告・その他の重要な事象に関する情報を提供するインストルメンテーション・イベントを使用する。イベントはキュー・マネージャ・イベント (SYSTEM.ADMIN.QMGR.EVENT)、パフォーマンス・イベント (SYSTEM.ADMIN.PERFM.EVENT)、チャネル・イベント (SYSTEM.ADMIN.CHANNEL.EVENT)、ロガー・イベント (SYSTEM.ADMIN.LOGGER.EVENT) などのカテゴリに分類される。これらをシステム管理アプリに組み込んで全キュー・マネージャの動作を監視できる。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR PERFMEV(ENABLED) CHLEV(ENABLED)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR PERFMEV CHLEV\n# SYSTEM.ADMIN.QMGR.EVENT 等のイベント・キューでイベント・メッセージを確認\nend",
+      "quiz": {
+        "q": "キュー・マネージャ・イベントが配信されるシステム・イベント・キューはどれか。",
+        "choices": [
+          "SYSTEM.ADMIN.QMGR.EVENT",
+          "SYSTEM.ADMIN.STATISTICS.QUEUE",
+          "SYSTEM.CLUSTER.COMMAND.QUEUE",
+          "SYSTEM.QPUBSUB.QUEUE.NAMELIST"
+        ],
+        "answer": 0,
+        "explanation": "キュー・マネージャ・イベントは SYSTEM.ADMIN.QMGR.EVENT に配信される。他にパフォーマンス/チャネル/ロガー・イベント用の専用キューがある。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.321、管理ガイド p.48",
+      "rag_hit": "[mq93.administer.pdf p.48] SYSTEM.ADMIN.QMGR.EVENT Queue Manager events ... SYSTEM.ADMIN.PERFM.EVENT ... SYSTEM.ADMIN.CHANNEL.EVENT ... SYSTEM.ADMIN.LOGGER.EVENT."
+    },
+    {
+      "row_id": 13485,
+      "title": "Real-time monitoring",
+      "naiyou_jp": "リアルタイム監視では、キュー・マネージャ属性 MONQ (キュー)、MONCHL (チャネル) でオンライン監視データの収集を制御し、DISPLAY QSTATUS / DISPLAY CHSTATUS で最新の状態を表示する。MONCHL/MONQ は NONE/OFF/LOW/MEDIUM/HIGH などで収集レベルを設定し、QMGR 設定を継承する場合は QMGR を指定する。これによりキューやチャネルの稼働状況をほぼリアルタイムに把握できる。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR MONCHL(MEDIUM) MONQ(MEDIUM)\nALTER QLOCAL(APP.QUEUE) MONQ(QMGR)\nDISPLAY QSTATUS(APP.QUEUE) MONQ MSGAGE\n  AMQ8450I: Display queue status details.\nDISPLAY CHSTATUS(MY.CHL) MONCHL\nend",
+      "quiz": {
+        "q": "チャネルのオンライン監視データ収集レベルを制御するキュー・マネージャ/チャネル属性はどれか。",
+        "choices": [
+          "MONCHL",
+          "STREAMQ",
+          "PSMODE",
+          "STATQ"
+        ],
+        "answer": 0,
+        "explanation": "MONCHL がチャネルのオンライン監視データ収集を NONE/LOW/MEDIUM/HIGH 等で制御する。キューは MONQ。DISPLAY CHSTATUS/QSTATUS で確認する。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.300、管理リファレンス p.1578/1690",
+      "rag_hit": "[mq93.refadmin.pdf p.1690/1578] Channel Monitoring (MONCHL) Controls the collection of online monitoring data ... *NONE/*OFF/*LOW/*MEDIUM/*HIGH ... *QMGR inherited."
+    },
+    {
+      "row_id": 13491,
+      "title": "Administration reference",
+      "naiyou_jp": "管理リファレンスは、MQSC コマンド、PCF コマンド、CL コマンド、その他の管理項目に関するリファレンス情報を提供するセクションである。コマンド・セットの比較や各コマンドの構文を参照でき、IBM MQ の運用管理を行う際の参照元となる。",
+      "verify_steps": "$ runmqsc QMGR1\n# MQSC コマンドの一例\nDISPLAY QMGR ALL\n  AMQ8408I: Display Queue Manager details.\nend\n# PCF はプログラムから、CL は IBM i から発行",
+      "quiz": {
+        "q": "IBM MQ 管理リファレンスが対象とするコマンド種別に含まれないものはどれか。",
+        "choices": [
+          "SQL DDL コマンド",
+          "MQSC コマンド",
+          "PCF コマンド",
+          "CL コマンド"
+        ],
+        "answer": 0,
+        "explanation": "管理リファレンスは MQSC、PCF、CL コマンドなどの管理項目を扱う。SQL DDL は IBM MQ の管理コマンド体系ではない。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.5",
+      "rag_hit": "[mq93.refadmin.pdf p.5] Administration reference: The information in this section is for reference about MQSC commands, PCF commands, CL commands, and other administrative items."
+    },
+    {
+      "row_id": 13528,
+      "title": "MQSC commands reference",
+      "naiyou_jp": "MQSC コマンド・リファレンスでは、MQSC コマンドの実行方法がプラットフォームによって異なる点を説明する。コマンドやオブジェクトには同義語 (シノニム) があり、同義語がない場合は完全なコマンドまたはオブジェクトを指定する必要がある。例として ALTER は ALT、CLEAR などの動詞がある。runmqsc でインタラクティブまたはスクリプトから発行する。",
+      "verify_steps": "$ runmqsc QMGR1\nDEF QL(TEST.Q)        # DEFINE QLOCAL の同義形式\n  AMQ8006I: IBM MQ queue created.\nALT QL(TEST.Q) MAXDEPTH(10000)\n  AMQ8008I: IBM MQ queue changed.\nDIS QL(TEST.Q) MAXDEPTH\nend",
+      "quiz": {
+        "q": "MQSC コマンドの同義語 (シノニム) について正しいものはどれか。",
+        "choices": [
+          "同義語がない場合は完全なコマンド/オブジェクトを指定する必要がある",
+          "同義語は z/OS でのみ使用可能",
+          "同義語を使うと監査ログが無効化される",
+          "ALTER の同義語は存在しない"
+        ],
+        "answer": 0,
+        "explanation": "MQSC コマンド/オブジェクトには同義語があり、同義語が無い場合は完全な形式を指定する必要がある。ALTER は ALT などの同義語を持つ。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.249",
+      "rag_hit": "[mq93.refadmin.pdf p.249] MQSC commands reference ... MQSC command and object synonyms: If no synonym is available, the complete command, or object must be provided. ALTER ALT, CLEAR."
+    },
+    {
+      "row_id": 13529,
+      "title": "Programmable command formats (PCFs) reference",
+      "naiyou_jp": "プログラマブル・コマンド・フォーマット (PCF) リファレンスでは、利用可能なすべての PCF とそのパラメータ (必須・任意)、応答データ、エラー・コードを定義する。PCF はメッセージ記述子と PCF ヘッダー (MQCFH: 構造体型、長さ、バージョン、コマンド識別子、メッセージ・シーケンス番号など) を含む構造体で表現され、プログラムからキュー・マネージャを管理するために使われる。",
+      "verify_steps": "# PCF はアプリケーションから SYSTEM.ADMIN.COMMAND.QUEUE に送信する\n# 例: MQCMD_INQUIRE_Q (キュー照会) PCF を構築\n# runmqsc の DISPLAY QUEUE と等価な操作を PCF で実行し応答を解析",
+      "quiz": {
+        "q": "PCF メッセージのヘッダー構造体はどれか。",
+        "choices": [
+          "MQCFH",
+          "MQMD のみ",
+          "MQOD",
+          "MQSCO"
+        ],
+        "answer": 0,
+        "explanation": "PCF はメッセージ記述子と PCF ヘッダー構造体 MQCFH (構造体型・長さ・バージョン・コマンド識別子・シーケンス番号等) で構成され、パラメータ・応答データ・エラー・コードが定義される。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.987、開発リファレンス p.361",
+      "rag_hit": "[mq93.refdev.pdf p.361] PCFHeader ... Type, StrucLength, Version, Command, MsgseqNumber. [p.987] all the available Programmable Command Formats (PCFs) ... parameters (required and optional), response data and error codes."
+    },
+    {
+      "row_id": 13540,
+      "title": "The dead-letter queue handler utility (CSQUDLQH) on z/OS",
+      "naiyou_jp": "デッドレター・キュー・ハンドラー・ユーティリティ (CSQUDLQH) は z/OS でデッドレター・キュー上のメッセージをルール表に従って処理する。ルール表で INPUTQ (例: CSQ1.DEAD.QUEUE) と INPUTQM (キュー・マネージャ名) を指定し、PARM パラメータの指定はルール表の指定を上書きする。ルール表は SYSIN データセットから読み込まれ、メッセージのパターンに応じて再試行・転送・破棄のアクションを行う。",
+      "verify_steps": "// z/OS JCL でユーティリティ実行:\n//SYSIN DD *\n  INPUTQ(CSQ1.DEAD.QUEUE) INPUTQM(CSQ1)\n  ...rules...\n/*\n// 出力レポート例:\n// CSQU200I Dead-letter Queue Handler Utility\n// CSQU202I ... Successful actions: n1 retries, n2 forwards, n3 discards",
+      "quiz": {
+        "q": "z/OS のデッドレター・キュー・ハンドラー (CSQUDLQH) でルール表を読み込むデータセットはどれか。",
+        "choices": [
+          "SYSIN",
+          "SYSPRINT のみ",
+          "STEPLIB",
+          "CSQINP1"
+        ],
+        "answer": 0,
+        "explanation": "CSQUDLQH のルール表は SYSIN データセットから読み込まれる。INPUTQ/INPUTQM を指定し、再試行・転送・破棄のアクションを実行する。PARM の指定はルール表を上書きする。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.2809/2810",
+      "rag_hit": "[mq93.refadmin.pdf p.2810] INPUTQ(CSQ1.DEAD.QUEUE) INPUTQM(CSQ1) ... The rules table is taken from the SYSIN data set. [reference p.593] CSQU200I Dead-letter Queue Handler Utility ... retries, forwards, discards."
+    },
+    {
+      "row_id": 13546,
+      "title": "Architectures based on a single queue manager",
+      "naiyou_jp": "単一キュー・マネージャに基づくアーキテクチャは、IBM MQ 環境を計画する際の基本構成の一つである。1 つのキュー・マネージャ上でローカルなアプリケーション間メッセージングを実現し、ポイントツーポイントおよびパブリッシュ/サブスクライブの両モデルをサポートする。モデル・キューなどを用いて動的キューを生成することもできる。単純な構成だが、可用性やスケールが必要な場合は複数キュー・マネージャ・アーキテクチャを検討する。",
+      "verify_steps": "$ crtmqm QM1 && strmqm QM1\n$ runmqsc QM1\nDEFINE QLOCAL(APP.LOCAL)\nDEFINE QMODEL(APP.MODEL) DEFTYPE(TEMPDYN)\n  AMQ8006I: IBM MQ queue created.\nend",
+      "quiz": {
+        "q": "単一キュー・マネージャ・アーキテクチャがサポートするメッセージング・モデルはどれか。",
+        "choices": [
+          "ポイントツーポイントとパブリッシュ/サブスクライブの両方",
+          "ポイントツーポイントのみ",
+          "パブリッシュ/サブスクライブのみ",
+          "ファイル転送のみ"
+        ],
+        "answer": 0,
+        "explanation": "単一キュー・マネージャ・アーキテクチャはポイントツーポイントとパブリッシュ/サブスクライブの両モデルをサポートする。可用性・スケールが必要なら複数キュー・マネージャ構成を検討する。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.18/25",
+      "rag_hit": "[mq93.plan.pdf p.18/25] Planning an IBM MQ architecture ... single ... Model queue ... support for single and multiple queue manager architectures, and for point-to-point and publish/subscribe."
+    },
+    {
+      "row_id": 13554,
+      "title": "Planning",
+      "naiyou_jp": "計画 (Planning) では、IBM MQ アーキテクチャを計画する際に、IBM MQ が提供する単一および複数キュー・マネージャ・アーキテクチャのサポート、ならびにポイントツーポイントとパブリッシュ/サブスクライブの両メッセージング・モデルのサポートを考慮する。環境構築前にストレージ管理者やネットワーク管理者など組織内の関係者と早期に連携することが望ましい (変更管理手続きに時間がかかるため)。",
+      "verify_steps": "# 計画フェーズの確認はドキュメント・ベース。実機では構成方針に沿って:\n$ crtmqm QMPLAN && strmqm QMPLAN\n$ runmqsc QMPLAN\nDISPLAY QMGR ALL\nend",
+      "quiz": {
+        "q": "IBM MQ アーキテクチャ計画時に考慮すべきメッセージング・モデルはどれか。",
+        "choices": [
+          "ポイントツーポイントとパブリッシュ/サブスクライブ",
+          "バッチとオンラインのみ",
+          "同期 RPC のみ",
+          "共有メモリ IPC のみ"
+        ],
+        "answer": 0,
+        "explanation": "計画では単一/複数キュー・マネージャ・アーキテクチャと、ポイントツーポイントおよびパブリッシュ/サブスクライブの両モデルのサポートを考慮する。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.5/140",
+      "rag_hit": "[mq93.plan.pdf p.5] Planning an IBM MQ architecture: ... consider the support that IBM MQ provides for single and multiple queue manager architectures, and for point-to-point and publish/subscribe."
+    },
+    {
+      "row_id": 13566,
+      "title": "Planning your queue sharing group (QSG)",
+      "naiyou_jp": "キュー共有グループ (QSG) の計画では、z/OS のカップリング・ファシリティ (CF) 構造を用いて複数キュー・マネージャが共有キューにアクセスできるようにする。CF 構造を追加し、必要に応じて非共有キューを共有キューへ移行する。可用性のために QSG 内外への共有チャネルを作成し、受信側チャネルを QSGDISP(GROUP) で定義してグループ内全キュー・マネージャで定義を利用可能にする。VIPA ソケットやハードウェア・ルーターで負荷分散する。",
+      "verify_steps": "// z/OS: CSQ5PQSG ユーティリティで QSG 定義を作成\n+CSQ1 DISPLAY GROUP\n  CSQ9022I ... DISPLAY GROUP\n+CSQ1 DISPLAY CFSTRUCT(*)\n# 受信側チャネルを QSGDISP(GROUP) で定義:\nDEFINE CHANNEL(IN.QSG) CHLTYPE(RCVR) QSGDISP(GROUP)",
+      "quiz": {
+        "q": "z/OS のキュー共有グループ (QSG) で共有キューを実現する基盤はどれか。",
+        "choices": [
+          "カップリング・ファシリティ (CF) 構造",
+          "リニア・ログのみ",
+          "mqclient.ini の Channels スタンザ",
+          "MQIPT ルート"
+        ],
+        "answer": 0,
+        "explanation": "QSG は z/OS のカップリング・ファシリティ (CF) 構造を用いて複数キュー・マネージャが共有キューにアクセスできるようにする。可用性のため共有チャネルを QSGDISP(GROUP) で定義する。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.172、管理ガイド p.525",
+      "rag_hit": "[mq93.administer.pdf p.525] Adding a coupling facility structure ... migrate non-shared queues to shared queues ... create shared channels ... Define a receiver channel with QSGDISP(GROUP)."
+    },
+    {
+      "row_id": 13422,
+      "title": "Environment variables descriptions",
+      "naiyou_jp": "環境変数の説明では、IBM MQ クライアントの接続定義の決定に使われる各種ソースとその優先順位を扱う。MQCNO 内の ClientConnOffset/ClientConnPtr が提供する MQCD、CCDTUrlOffset/CCDTUrlPtr が提供する URL、MQSERVER 環境変数、mqclient.ini の Channels スタンザ、MQCCDTURL 環境変数などが評価される。これらの環境変数でクライアントの接続先や挙動を制御する。",
+      "verify_steps": "$ export MQSERVER='MY.SVRCONN/TCP/host(1414)'\n$ export MQCCDTURL='file:///home/app/AMQCLCHL.TAB'\n$ amqsputc TEST.Q QMGR1\n  Sample AMQSPUT0 start ... # 接続が確立されることを確認",
+      "quiz": {
+        "q": "IBM MQ クライアントの接続定義ソースとして使われる環境変数はどれか。",
+        "choices": [
+          "MQSERVER",
+          "STREAMQ",
+          "PSMODE",
+          "MONCHL"
+        ],
+        "answer": 0,
+        "explanation": "MQSERVER は接続定義ソースの一つで、MQCD・CCDT URL の後、mqclient.ini の前に評価される。MQCCDTURL なども接続定義に使われる環境変数。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.53",
+      "rag_hit": "[mq93.configure.pdf p.53] MQCD provided by ClientConnOffset and ClientConnPtr in MQCNO ... CCDTUrl ... MQSERVER environment variable ... mqclient.ini ... MQCCDTURL environment variable."
+    },
+    {
+      "row_id": 13456,
+      "title": "SOCKS support in MQIPT",
+      "naiyou_jp": "MQIPT における SOCKS サポートでは、MQIPT を SOCKS プロキシ経由で接続できるよう構成する。サーバー側 (リモート MQIPT) の接続先になる場合、HTTP サーバー (または別のプロキシ) を介して接続し、サーバー側 MQIPT には特別な構成は不要である。MQIPT は HTTPProxy や HTTPServer プロパティを使用する。これによりファイアウォール越えの接続を実現する。",
+      "verify_steps": "# mqipt.conf の route スタンザで SOCKS 関連プロパティを設定:\n# [route]\n#   SocksProxyHost=socks.example.com\n#   SocksProxyPort=1080\n$ mqiptAdmin -refresh\n  Refresh command successful.",
+      "quiz": {
+        "q": "MQIPT の SOCKS/HTTP サポートに関する記述として正しいものはどれか。",
+        "choices": [
+          "サーバー側 MQIPT は HTTP サーバー経由接続時に特別な構成を必要としない場合がある",
+          "SOCKS は z/OS でのみ動作する",
+          "SOCKS 使用時は mqipt.conf を編集できない",
+          "SOCKS はリニア・ログを必須とする"
+        ],
+        "answer": 0,
+        "explanation": "サーバー側 (リモート) MQIPT は HTTP サーバーや別プロキシ経由の接続先になる場合、特別な構成を必要としない。MQIPT は HTTPProxy/HTTPServer プロパティを使用する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.1012",
+      "rag_hit": "[mq93.configure.pdf p.1012] HTTP server (or another proxy), which will in turn connect to the remote MQIPT. This MQIPT on the server side ... does not need any specific configuration ... HTTPProxy and HTTPServer."
+    },
+    {
+      "row_id": 13457,
+      "title": "SSL/TLS support in MQIPT",
+      "naiyou_jp": "MQIPT における SSL/TLS サポートでは、MQIPT ルートを SSL/TLS ブリッジングの代替として SSL/TLS プロキシ・モードで構成できる。このモードではルートは 2 つの IBM MQ エンドポイント間で SSL/TLS データを転送するだけで、自身は SSL/TLS の終端処理を行わない。これにより MQIPT を経由しても端点間の暗号化を維持できる。証明書は別途エンドポイント側で管理する。",
+      "verify_steps": "# mqipt.conf の route スタンザで SSL/TLS プロキシ・モードを設定:\n# [route]\n#   SSLProxyMode=true\n#   ListenerPort=1415\n#   Destination=targethost\n#   DestinationPort=1414\n$ mqiptAdmin -refresh\n  Refresh command successful.",
+      "quiz": {
+        "q": "MQIPT の SSL/TLS プロキシ・モードの動作として正しいものはどれか。",
+        "choices": [
+          "2 つの IBM MQ エンドポイント間で SSL/TLS データを転送するだけで、自身は終端しない",
+          "MQIPT が必ず SSL/TLS を終端し再暗号化する",
+          "SSL/TLS を完全に無効化する",
+          "クライアント証明書を自動発行する"
+        ],
+        "answer": 0,
+        "explanation": "SSL/TLS プロキシ・モードでは、ルートは 2 つの IBM MQ エンドポイント間で SSL/TLS データを転送するのみで、自身は終端処理を行わない。SSL/TLS ブリッジングの代替手段。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.1016",
+      "rag_hit": "[mq93.configure.pdf p.1016] SSL/TLS Proxy Mode: An MQIPT route can be configured in SSL/TLS proxy mode as an alternative to SSL/TLS bridging ... only forwards SSL/TLS data between two IBM MQ end-points."
+    },
+    {
+      "row_id": 13452,
+      "title": "Security exits in MQIPT",
+      "naiyou_jp": "MQIPT のセキュリティ出口では、TLS サーバー・ルートのサイト証明書用トラスト・ストアと、同じルートの CA 証明書を格納するキー・リング・ファイルを使用する。SSLServerKeyRingUseCryptoHardware=true を設定すると暗号ハードウェアを利用する。セキュリティ出口は接続の検証ロジックをカスタマイズし、ExitRc 戻りコードで接続の許可・拒否や SSL/TLS の有効・無効を制御できる。",
+      "verify_steps": "# mqipt.conf の route スタンザでセキュリティ出口を設定:\n# [route]\n#   SecurityExitName=com.example.MyExit\n#   SSLServerKeyRing=/path/to/keyring\n$ mqiptAdmin -refresh\n  Refresh command successful.",
+      "quiz": {
+        "q": "MQIPT のセキュリティ出口で暗号ハードウェアを利用する際に設定するプロパティはどれか。",
+        "choices": [
+          "SSLServerKeyRingUseCryptoHardware=true",
+          "PSMODE=ENABLED",
+          "STREAMQ=ON",
+          "MONCHL=HIGH"
+        ],
+        "answer": 0,
+        "explanation": "MQIPT のセキュリティ出口では TLS サーバー・ルートのトラスト・ストアとキー・リングを使用し、SSLServerKeyRingUseCryptoHardware=true で暗号ハードウェアを利用する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.1042",
+      "rag_hit": "[mq93.configure.pdf p.1042] Trust store for the site certificate on a TLS server route, and a key ring file to store the CA certificates ... SSLServerKeyRingUseCryptoHardware=true."
+    },
+    {
+      "row_id": 13433,
+      "title": "Installation configuration file, mqinst.ini",
+      "naiyou_jp": "mqinst.ini はインストール構成ファイルで、システム上の各 IBM MQ インストールの情報 (インストール名、パス、バージョン、プライマリ・インストールかどうか等) を保持する。AIX/Linux では /etc/opt/mqm に置かれ、crtmqinst・dltmqinst・setmqinst・dspmqinst などのコマンドで管理される。手動編集は推奨されず、専用コマンド経由で更新する。",
+      "verify_steps": "$ dspmqinst\n  InstName: Installation1\n  InstDesc:\n  Identifier: 1\n  InstPath: /opt/mqm\n  Version: 9.3.0.0\n  Primary: Yes\n  State: Available",
+      "quiz": {
+        "q": "mqinst.ini ファイルの情報を表示・管理するコマンドはどれか。",
+        "choices": [
+          "dspmqinst / setmqinst",
+          "runmqsc DISPLAY QMGR",
+          "crtmqm -q",
+          "mqiptAdmin"
+        ],
+        "answer": 0,
+        "explanation": "mqinst.ini は各インストールの情報を保持し、dspmqinst・setmqinst・crtmqinst・dltmqinst で管理する。手動編集は非推奨。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) インストール構成ファイル節",
+      "rag_hit": "[mq93.install.pdf p.23/24] Set the primary installation using the setmqinst command ... installation information (mqinst.ini) managed via setmqinst/dspmqinst."
+    },
+    {
+      "row_id": 13509,
+      "title": "IBM MQ Administration Interface reference",
+      "naiyou_jp": "IBM MQ 管理インターフェース (MQAI) リファレンスは、PCF メッセージの作成・送受信を簡素化するプログラミング・インターフェースを扱う。z/OS 上の PCF コマンドや構文図を含む。MQAI はデータ・バッグ (data bag) を用いて PCF パラメータを管理し、アプリケーションから管理タスクをプログラム的に実行できるようにする。",
+      "verify_steps": "# MQAI を使うプログラム例 (C):\n#   mqCreateBag(...)  -> データ・バッグ生成\n#   mqAddInteger(...) -> パラメータ追加\n#   mqExecute(hConn, MQCMD_INQUIRE_Q, ...) -> PCF 実行\n# 応答バッグから結果を取得",
+      "quiz": {
+        "q": "MQAI が PCF パラメータを管理するために使用する仕組みはどれか。",
+        "choices": [
+          "データ・バッグ (data bag)",
+          "ストリーム・キュー",
+          "カップリング・ファシリティ構造",
+          "リニア・ログ"
+        ],
+        "answer": 0,
+        "explanation": "MQAI はデータ・バッグを用いて PCF パラメータを管理し、PCF メッセージの作成・送受信を簡素化する。z/OS の PCF コマンドや構文図も扱う。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.423",
+      "rag_hit": "[mq93.refadmin.pdf p.423] PCF commands on IBM MQ for z/OS. Syntax diagram. Administration reference 423 (IBM MQ Administration Interface / MQAI)."
+    },
+    {
+      "row_id": 13492,
+      "title": "Administrative REST API reference",
+      "naiyou_jp": "管理 REST API リファレンスは、IBM MQ の管理を REST API 経由で行うための情報を提供する。REST API を使うとキュー・マネージャ、キュー、チャネルなどのオブジェクトを HTTP リクエストで管理できる。管理 REST API の構成方法や利用方法、REST API リソースの一覧を参照できる。mqweb サーバー上で稼働する。",
+      "verify_steps": "# mqweb サーバーを構成・起動後、REST API を呼び出す:\n$ curl -k -u admin:passw0rd \\\n  https://localhost:9443/ibmmq/rest/v2/admin/qmgr/QMGR1/queue\n  {\"queue\": [ ... ]}",
+      "quiz": {
+        "q": "IBM MQ の管理 REST API が稼働するコンポーネントはどれか。",
+        "choices": [
+          "mqweb サーバー",
+          "カップリング・ファシリティ",
+          "MQIPT ルート",
+          "リニア・ログ"
+        ],
+        "answer": 0,
+        "explanation": "管理 REST API は mqweb サーバー上で稼働し、HTTP リクエストでキュー・マネージャやキュー、チャネル等のオブジェクトを管理できる。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.2171",
+      "rag_hit": "[mq93.refadmin.pdf p.2171] Administrative REST API reference: For more information about using the administrative REST API ... configuring the administrative REST API."
+    },
+    {
+      "row_id": 13498,
+      "title": "Display queue manager information utility (CSQUDSPM)",
+      "naiyou_jp": "CSQUDSPM はキュー・マネージャ情報表示ユーティリティで、IBM MQ コマンドの構築規則に関する情報を扱う。DISPLAY QMGR (キュー・マネージャ設定の表示) コマンドの出力にはすべてのキュー・マネージャ属性が含まれる。CSQUDSPM はシステム上のキュー・マネージャの情報を表示するために使われる。",
+      "verify_steps": "$ runmqsc QMGR1\nDISPLAY QMGR ALL\n  AMQ8408I: Display Queue Manager details.\n     QMNAME(QMGR1) ... 全属性が表示される\nend\n# z/OS では CSQUDSPM ユーティリティでキュー・マネージャ情報を表示",
+      "quiz": {
+        "q": "すべてのキュー・マネージャ属性を出力する MQSC コマンドはどれか。",
+        "choices": [
+          "DISPLAY QMGR ALL",
+          "DISPLAY CHSTATUS",
+          "DEFINE QLOCAL",
+          "CLEAR QLOCAL"
+        ],
+        "answer": 0,
+        "explanation": "DISPLAY QMGR (ALL) の出力にはすべてのキュー・マネージャ属性が含まれる。CSQUDSPM はキュー・マネージャ情報表示ユーティリティ。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.2767",
+      "rag_hit": "[mq93.refadmin.pdf p.2767] Information about the rules for building IBM MQ commands. The output from a DISPLAY QMGR ... command contains all the queue manager attributes."
+    },
+    {
+      "row_id": 13527,
+      "title": "MQIPT commands reference",
+      "naiyou_jp": "MQIPT コマンド・リファレンスでは、mqiptAdmin コマンドを扱う。mqiptAdmin は稼働中の IBM MQ Internet Pass-Thru (MQIPT) インスタンスに対して管理コマンドを発行する。これにより、構成のリフレッシュ、停止、状態確認などを稼働中インスタンスに対して実行できる。",
+      "verify_steps": "$ mqiptAdmin -refresh    # 構成を再読み込み\n  Refresh command successful.\n$ mqiptAdmin -stop       # MQIPT を停止\n  Stop command successful.",
+      "quiz": {
+        "q": "稼働中の MQIPT インスタンスに管理コマンドを発行するコマンドはどれか。",
+        "choices": [
+          "mqiptAdmin",
+          "runmqsc",
+          "setmqm",
+          "dmpmqcfg"
+        ],
+        "answer": 0,
+        "explanation": "mqiptAdmin は稼働中の MQIPT インスタンスに管理コマンド (構成リフレッシュ・停止等) を発行するコマンド。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.2166",
+      "rag_hit": "[mq93.refadmin.pdf p.2166] mqiptAdmin (administer MQIPT): Issue an administrative command to an active instance of IBM MQ Internet Pass-Thru (MQIPT)."
+    },
+    {
+      "row_id": 13569,
+      "title": "Programming interface information (計画)",
+      "naiyou_jp": "プログラミング・インターフェース情報は、IBM MQ 計画ガイドの末尾に置かれる注記セクションで、製品が提供するプログラミング・インターフェースとその使用に関する法的・参照上の注意を示す。これは技術的な構成項目ではなく、ドキュメント上の区分・注記である。実際の API 詳細は開発リファレンス等を参照する。",
+      "verify_steps": "# 本項目はドキュメントの注記セクションであり実機検証対象外。\n# 関連 API の確認は開発者向けリファレンスで行う:\n$ runmqsc QMGR1\nDISPLAY QMGR ALL   # 構成確認は通常手順で実施\nend",
+      "quiz": {
+        "q": "計画ガイドの「Programming interface information」セクションの位置付けとして正しいものはどれか。",
+        "choices": [
+          "プログラミング・インターフェースに関する注記セクションであり、構成項目ではない",
+          "クラスター構成の必須手順である",
+          "PSMODE の設定方法である",
+          "デッドレター・キューのルール表である"
+        ],
+        "answer": 0,
+        "explanation": "「Programming interface information」はプログラミング・インターフェースに関する法的・参照上の注記セクションで、技術的構成項目ではない。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.204",
+      "rag_hit": "[mq93.plan.pdf p.204] Programming interface information (notice section at end of the planning guide)."
+    },
+    {
+      "row_id": 13553,
+      "title": "IBM MQ release types: planning considerations",
+      "naiyou_jp": "IBM MQ のリリース・タイプには計画上の考慮事項がある。IBM MQ には Long Term Support (LTS) リリースと Continuous Delivery (CD) リリースの 2 つのリリース・タイプがあり、サポート期間や新機能の提供方法が異なる。環境を計画する際は、安定性重視の LTS か、新機能を早期に得られる CD かを、保守・サポート要件に応じて選択する。",
+      "verify_steps": "$ dspmqver\n  Name:        IBM MQ\n  Version:     9.3.0.0\n  Level:       p930-L...\n# Version/Level からリリース・タイプ (LTS/CD) を判断",
+      "quiz": {
+        "q": "IBM MQ のリリース・タイプの組み合わせとして正しいものはどれか。",
+        "choices": [
+          "Long Term Support (LTS) と Continuous Delivery (CD)",
+          "Alpha と Beta",
+          "Circular と Linear",
+          "Direct と Topic host"
+        ],
+        "answer": 0,
+        "explanation": "IBM MQ には LTS (Long Term Support) と CD (Continuous Delivery) の 2 リリース・タイプがあり、サポート期間や新機能提供方法が異なる。計画時に要件に応じ選択する。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.6",
+      "rag_hit": "[mq93.plan.pdf p.6] IBM MQ release types: planning considerations (LTS / CD release types)."
+    },
+    {
+      "row_id": 13473,
+      "title": "Aspera gateway can improve performance over high latency networks",
+      "naiyou_jp": "IBM Aspera gateway は、高遅延ネットワーク上で IBM MQ のパフォーマンスを向上させることができる。Aspera の FASP プロトコルを利用し、長距離・高遅延・パケット損失のあるネットワークでも従来の TCP より高いスループットでメッセージを転送する。Linux または Windows プラットフォームで Aspera gateway 接続を定義して使用する。",
+      "verify_steps": "# Linux/Windows で Aspera gateway 接続を定義 (qm.ini の該当スタンザ)\n$ runmqsc QMGR1\n# チャネルが Aspera gateway 経由で高遅延ネットワーク上を通ることを確認\nDISPLAY CHSTATUS(MY.CHL) ALL\nend",
+      "quiz": {
+        "q": "Aspera gateway が IBM MQ のパフォーマンスを向上させる対象ネットワークはどれか。",
+        "choices": [
+          "高遅延ネットワーク",
+          "ローカル共有メモリのみ",
+          "カップリング・ファシリティ内部",
+          "リニア・ログのディスク I/O"
+        ],
+        "answer": 0,
+        "explanation": "Aspera gateway は高遅延ネットワーク上で IBM MQ のパフォーマンスを向上させる。FASP プロトコルにより高遅延・パケット損失環境でも高スループットを実現する。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.388",
+      "rag_hit": "[mq93.monitor.pdf p.388] Aspera gateway can improve performance over high latency networks."
+    },
+    {
+      "row_id": 13484,
+      "title": "Queue manager health check behavior",
+      "naiyou_jp": "キュー・マネージャのヘルス・チェック動作に関連して、パフォーマンス・イベントを PERFMEV 属性で有効化できる。イベントは SYSTEM.ADMIN.PERFM.EVENT キューに送られる。所定の属性を設定してイベントを有効化し、キュー・マネージャの稼働状態やパフォーマンスに関する重要事象を監視する。これによりキュー満杯やサービス・インターバルなどの状況を検出できる。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER QMGR PERFMEV(ENABLED)\n  AMQ8005I: IBM MQ queue manager changed.\nDISPLAY QMGR PERFMEV\n  PERFMEV(ENABLED)\n# SYSTEM.ADMIN.PERFM.EVENT でパフォーマンス・イベントを確認\nend",
+      "quiz": {
+        "q": "パフォーマンス・イベントを有効化するキュー・マネージャ属性とイベント送信先キューの組み合わせとして正しいものはどれか。",
+        "choices": [
+          "PERFMEV と SYSTEM.ADMIN.PERFM.EVENT",
+          "PSMODE と SYSTEM.QPUBSUB.QUEUE.NAMELIST",
+          "STREAMQ と SYSTEM.DEAD.LETTER.QUEUE",
+          "MONCHL と SYSTEM.CLUSTER.COMMAND.QUEUE"
+        ],
+        "answer": 0,
+        "explanation": "PERFMEV 属性でパフォーマンス・イベントを有効化し、イベントは SYSTEM.ADMIN.PERFM.EVENT キューに送られる。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.36",
+      "rag_hit": "[mq93.monitor.pdf p.36] Enable performance events on the queue manager, using the queue manager attribute PERFMEV. The events go to the SYSTEM.ADMIN.PERFM.EVENT queue."
+    },
+    {
+      "row_id": 13366,
+      "title": "Configuring high availability, recovery and restart",
+      "naiyou_jp": "高可用性・リカバリー・再始動の構成では、マルチインスタンス・キュー・マネージャを用いて HA ソリューションを構築する。キュー・マネージャ・データ用の堅牢なネットワーク・ストレージ、ジャーナル複製または堅牢な IASP ストレージ、再接続可能なクライアントまたは再始動可能なキュー・マネージャ・サービスとして構成したアプリを組み合わせる。マルチインスタンスは障害検出時に別サーバー上で別インスタンスの起動を再開し、共有データと自身のローカル・ジャーナルにアクセスして起動を完了する。",
+      "verify_steps": "$ crtmqm -md /shared/data -ld /shared/log QM1\n$ strmqm -x QM1            # アクティブ・インスタンス\n# 別ノードで:\n$ strmqm -x QM1            # スタンバイ・インスタンス\n$ dspmq -x\n  QMNAME(QM1) STATUS(Running) INSTANCE(node1) MODE(Active)\n              STATUS(Running as standby) INSTANCE(node2)",
+      "quiz": {
+        "q": "マルチインスタンス・キュー・マネージャで HA を構成するために必須となるものはどれか。",
+        "choices": [
+          "キュー・マネージャ・データ用の堅牢なネットワーク・ストレージ (共有)",
+          "カップリング・ファシリティ (z/OS) のみ",
+          "MQIPT ルートのみ",
+          "リニア・ログの禁止"
+        ],
+        "answer": 0,
+        "explanation": "マルチインスタンスによる HA では、共有キュー・マネージャ・データへの堅牢なネットワーク・ストレージと、再接続可能クライアントまたは再始動可能サービスが必要。障害時に別インスタンスが起動を再開する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.454、管理ガイド p.419",
+      "rag_hit": "[mq93.administer.pdf p.419] Construct a high availability solution using multi-instance queue managers by providing robust networked storage ... resuming the startup of another queue manager instance on another server."
+    },
+    {
+      "row_id": 13353,
+      "title": "Channel-exit programs for MQI channels",
+      "naiyou_jp": "MQI チャネルのチャネル出口プログラムは、MCA (メッセージ・チャネル・エージェント) 処理の所定の箇所で呼び出されるユーザー出口で、IBM MQ MQI クライアントとキュー・マネージャを接続する MQI チャネルにも適用される。セキュリティ出口はメッセージ・チャネルと MQI チャネルの両方で呼び出せ、チャネル定義の両端でパラメータとして名前を指定する。一部の出口は補完的なペアで動作し、送信側で暗号化したら受信側で対応処理が必要になる。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER CHANNEL(MY.SVRCONN) CHLTYPE(SVRCONN) SCYEXIT('myscyexit(EntryPoint)')\n  AMQ8016I: IBM MQ channel changed.\nDISPLAY CHANNEL(MY.SVRCONN) SCYEXIT\n  SCYEXIT(myscyexit(EntryPoint))\nend",
+      "quiz": {
+        "q": "MQI チャネルとメッセージ・チャネルの両方で呼び出せるチャネル出口の種類はどれか。",
+        "choices": [
+          "セキュリティ出口 (security exit)",
+          "メッセージ出口 (message exit)",
+          "メッセージ再試行出口のみ",
+          "送信出口のみ"
+        ],
+        "answer": 0,
+        "explanation": "セキュリティ出口はメッセージ・チャネルと MQI チャネルの両方で呼び出せる。メッセージ出口はメッセージ・チャネルのみで動作し、通常ペアで機能する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.57、セキュリティ p.111、開発 p.914",
+      "rag_hit": "[mq93.secure.pdf p.111] Security exits can be called on both message and MQI channels ... [develop p.914] Channel-exit programs are called at defined places in the processing carried out by MCA programs ... complementary pairs."
+    },
+    {
+      "row_id": 13437,
+      "title": "Making an existing queue manager the default",
+      "naiyou_jp": "既存のキュー・マネージャをデフォルトにするには、mqs.ini の DefaultQueueManager スタンザを編集 (または該当コマンド) して、対象キュー・マネージャをデフォルトとして指定する。デフォルト・キュー・マネージャは、MQCONN 呼び出しでキュー・マネージャ名を指定しないアプリケーションの接続先であり、名前を指定せずに runmqsc を起動した際に MQSC コマンドを処理するキュー・マネージャでもある。",
+      "verify_steps": "# mqs.ini の DefaultQueueManager スタンザを編集:\n# DefaultQueueManager:\n#   Name=QMGR1\n$ runmqsc          # 名前省略でデフォルト QM に接続\n  Starting MQSC for queue manager QMGR1.\nend\n$ dspmq\n  QMNAME(QMGR1) STATUS(Running) (DEFAULT)",
+      "quiz": {
+        "q": "デフォルト・キュー・マネージャの役割として正しいものはどれか。",
+        "choices": [
+          "MQCONN でキュー・マネージャ名を指定しないアプリの接続先になる",
+          "クラスターのフル・リポジトリに必ずなる",
+          "すべての TLS 接続を終端する",
+          "デッドレター・キューを兼ねる"
+        ],
+        "answer": 0,
+        "explanation": "デフォルト・キュー・マネージャは MQCONN で名前を指定しないアプリの接続先であり、名前省略の runmqsc が処理するキュー・マネージャ。mqs.ini の DefaultQueueManager スタンザで指定する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.12/13",
+      "rag_hit": "[mq93.configure.pdf p.12] The default queue manager is the queue manager that applications connect to if they do not specify a queue manager name in an MQCONN call ... processes MQSC commands when you invoke runmqsc without specifying a queue manager name."
+    },
+    {
+      "row_id": 13441,
+      "title": "Monitoring and controlling channels on AIX, Linux, and Windows",
+      "naiyou_jp": "AIX/Linux/Windows での分散キュー管理 (DQM) では、リモート・キュー・マネージャへのチャネルを作成・監視・制御する。制御には MQSC コマンド、プログラム、IBM MQ Explorer、チャネル定義ファイル、同期情報用ストレージ領域を使う。START/STOP/PING/RESET/RESOLVE CHANNEL などの MQSC コマンドや、runmqchl (チャネル実行)、runmqlsr (リスナー実行) 等の制御コマンドがある。",
+      "verify_steps": "$ runmqsc QMGR1\nSTART CHANNEL(QMA.TO.QMB)\n  AMQ8018I: Start IBM MQ channel accepted.\nDISPLAY CHSTATUS(QMA.TO.QMB) STATUS\n  STATUS(RUNNING)\nSTOP CHANNEL(QMA.TO.QMB) MODE(QUIESCE)\nend",
+      "quiz": {
+        "q": "チャネルを起動する MQSC コマンドはどれか。",
+        "choices": [
+          "START CHANNEL",
+          "DEFINE QLOCAL",
+          "ALTER QMGR",
+          "CLEAR TOPICSTR"
+        ],
+        "answer": 0,
+        "explanation": "DQM ではチャネルを START/STOP/PING/RESET/RESOLVE CHANNEL 等の MQSC コマンドや runmqchl・runmqlsr で制御する。START CHANNEL がチャネル起動コマンド。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.242/245",
+      "rag_hit": "[mq93.configure.pdf p.245] STOP CHANNEL ... PING CHANNEL ... RESET CHANNEL ... RESOLVE CHANNEL ... runmqchl START CHANNEL ... runmqlsr START LISTENER. [p.242] control channels using commands, programs, IBM MQ Explorer."
+    },
+    {
+      "row_id": 13434,
+      "title": "Introduction to distributed queue management",
+      "naiyou_jp": "分散キュー管理 (DQM) は、キュー・マネージャ間の通信を定義・制御するために使われる。自前のメッセージ・チャネル・エージェント (MCA) プログラムを作成したり ISV 製を導入したりできる。考慮事項として、未配信メッセージ・キュー、使用中キュー、システム拡張・ユーザー出口プログラムなどがある。トリガリング機能を使うと、キュー上の条件成立時にアプリケーションを自動起動できる。",
+      "verify_steps": "$ runmqsc QMGR1\n# DQM の基本: 伝送キュー + チャネル + リモート定義\nDEFINE QLOCAL(XMITQ1) USAGE(XMITQ) TRIGGER TRIGTYPE(FIRST) INITQ(SYSTEM.CHANNEL.INITQ) PROCESS(MY.PROC)\nSTART CHINIT INITQ(SYSTEM.CHANNEL.INITQ)\nend",
+      "quiz": {
+        "q": "分散キュー管理 (DQM) の目的として正しいものはどれか。",
+        "choices": [
+          "キュー・マネージャ間の通信を定義・制御する",
+          "TLS 証明書を発行する",
+          "ログをアーカイブする",
+          "REST API を構成する"
+        ],
+        "answer": 0,
+        "explanation": "DQM はキュー・マネージャ間の通信を定義・制御するために使われる。MCA プログラム、トリガリングによる自動起動などが関連する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.211/212/215",
+      "rag_hit": "[mq93.configure.pdf p.211/215] Distributed queue management (DQM) is used to define and control communication between queue managers ... write your own message channel agent (MCA) ... Triggering channels."
+    },
+    {
+      "row_id": 13427,
+      "title": "How to set up an IBM MQ MQI client",
+      "naiyou_jp": "IBM MQ MQI クライアントのセットアップでは、まず接続先となる IBM MQ サーバーが既にインストール・稼働している必要がある。手順として、クライアントに適したプラットフォーム (ハードウェア・ソフトウェア要件を満たすもの) を確認し、クライアント・ワークステーションへのインストール方法を決めて手順に従う。接続には MQSERVER 環境変数や CCDT を用い、TCP/IP 接続 (ping 等) を確認する。",
+      "verify_steps": "# クライアント側で接続性を確認:\n$ ping server-hostname\n$ export MQSERVER='MY.SVRCONN/TCP/server-hostname(1414)'\n$ amqsputc TEST.Q QMGR1\n  Sample AMQSPUT0 start\n  target queue is TEST.Q",
+      "quiz": {
+        "q": "IBM MQ MQI クライアントをセットアップする前提条件はどれか。",
+        "choices": [
+          "接続先の IBM MQ サーバーが既にインストール・稼働していること",
+          "クライアント側にカップリング・ファシリティがあること",
+          "リニア・ログが構成済みであること",
+          "PSMODE が ENABLED であること"
+        ],
+        "answer": 0,
+        "explanation": "MQI クライアントのセットアップには、接続先の IBM MQ サーバーが既にインストール・稼働している必要がある。MQSERVER 環境変数や CCDT で接続を定義する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.18、インストール p.87",
+      "rag_hit": "[mq93.configure.pdf p.18] To ... MQI client you must have an IBM MQ server already installed and working, to which your client will connect ... Check that you have a suitable platform."
+    },
+    {
+      "row_id": 13454,
+      "title": "Setting up communications with other queue managers on z/OS",
+      "naiyou_jp": "z/OS で他のキュー・マネージャとの通信を設定するには、分散キューイングを使う前に必要な準備を行う。定義すべき項目は、チャネル・イニシエーター手順とデータセット、チャネル定義、キューおよびその他のオブジェクト、アクセス・セキュリティである。キュー共有グループを使う場合は分散キューイングと QSG の関連トピックを参照する。z/OS ではチャネル・イニシエーターは CHIN 開始タスクが提供する。",
+      "verify_steps": "// z/OS コンソール:\n+CSQ1 START CHINIT INITQ(SYSTEM.CHANNEL.INITQ)\n  CSQX022I +CSQ1 Channel initiator started\n+CSQ1 DISPLAY CHINIT\n+CSQ1 START CHANNEL(MY.CHL)\n  CSQ9022I ... START CHANNEL NORMAL COMPLETION",
+      "quiz": {
+        "q": "z/OS で他キュー・マネージャとの通信設定で定義が必要な項目に含まれないものはどれか。",
+        "choices": [
+          "mqclient.ini の Channels スタンザ",
+          "チャネル・イニシエーター手順とデータセット",
+          "チャネル定義",
+          "アクセス・セキュリティ"
+        ],
+        "answer": 0,
+        "explanation": "z/OS では、チャネル・イニシエーター手順・データセット、チャネル定義、キュー・オブジェクト、アクセス・セキュリティを定義する。mqclient.ini はクライアント側の構成で本設定項目ではない。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.956/975",
+      "rag_hit": "[mq93.configure.pdf p.956] Setting up communications with other queue managers on z/OS ... define ... The channel initiator procedures and data sets ... The channel definitions ... The queues and other objects ... Access security."
+    },
+    {
+      "row_id": 13562,
+      "title": "Planning your channel initiator",
+      "naiyou_jp": "z/OS のチャネル・イニシエーター (CHINIT) の計画では、CHIN 開始タスクが提供するチャネル処理のリソースを見積もる。START CHINIT INITQ(SYSTEM.CHANNEL.INITQ) で起動し、開始キュー (イニシエーション・キュー) を監視させる (伝送キューではない)。CHIN アドレス空間のストレージ、同時チャネル数、トレース・データ空間 (CSQXTRDS) などを計画する。チャネル・エラーは CHINIT ログで確認する。",
+      "verify_steps": "// z/OS:\n+CSQ1 START CHINIT INITQ(SYSTEM.CHANNEL.INITQ)\n  CSQX022I +CSQ1 Channel initiator started\n+CSQ1 DISPLAY CHINIT\n  CSQX830I +CSQ1 Number of current channels ...\n+CSQ1 DISPLAY DQM",
+      "quiz": {
+        "q": "z/OS のチャネル・イニシエーター (CHINIT) が監視すべきキューはどれか。",
+        "choices": [
+          "イニシエーション・キュー (例: SYSTEM.CHANNEL.INITQ)",
+          "伝送キューそのもの",
+          "デッドレター・キュー",
+          "SYSTEM.ADMIN.STATISTICS.QUEUE"
+        ],
+        "answer": 0,
+        "explanation": "CHINIT は START CHINIT INITQ(SYSTEM.CHANNEL.INITQ) で起動し、イニシエーション・キューを監視する (伝送キューではない)。CHIN アドレス空間のリソースを計画する。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.167、トラブルシュート p.400/450",
+      "rag_hit": "[mq93.troubleshoot.pdf p.400] On z/OS channel initiator processing is provided by the CHIN started task ... START CHINIT INITQ(SYSTEM.CHANNEL.INITQ) ... monitoring the initiation queue, not the transmission queue ... CSQXTRDS trace data space."
+    },
+    {
+      "row_id": 13376,
+      "title": "Configuring JMS and Jakarta Messaging resources",
+      "naiyou_jp": "JMS および Jakarta Messaging リソースの構成では、接続ファクトリーと宛先 (destination) を JNDI ネームスペースに定義する。管理ツール (JMSAdmin、Jakarta Messaging 3.0 では JMS30Admin) や IBM MQ Explorer で管理オブジェクトを作成する。アプリケーションは IBM JMS 拡張を使い、JmsFactoryFactory オブジェクトから接続ファクトリーや宛先を実行時に動的生成することもできる。",
+      "verify_steps": "# JMSAdmin で管理オブジェクトを定義 (JNDI):\n$ JMSAdmin\n  InitCtx> DEFINE CF(myCF) QMANAGER(QMGR1) CHANNEL(MY.SVRCONN) HOSTNAME(host) PORT(1414) TRANSPORT(CLIENT)\n  InitCtx> DEFINE Q(myQueue) QUEUE(APP.QUEUE) QMANAGER(QMGR1)\n  InitCtx> DISPLAY CTX",
+      "quiz": {
+        "q": "JMS 接続ファクトリーや宛先を格納するために用いるネームスペースはどれか。",
+        "choices": [
+          "JNDI",
+          "SYSTEM.QPUBSUB.QUEUE.NAMELIST",
+          "カップリング・ファシリティ",
+          "mqipt.conf"
+        ],
+        "answer": 0,
+        "explanation": "JMS/Jakarta Messaging リソースは接続ファクトリーと宛先を JNDI ネームスペースに定義する。JMSAdmin/JMS30Admin や IBM MQ Explorer で管理する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.655、開発 p.197",
+      "rag_hit": "[mq93.develop.pdf p.197] JNDI administration is supported by ... JMSAdmin ... JMS30Admin ... create connection factories and destinations dynamically at run time ... JmsFactoryFactory object."
+    },
+    {
+      "row_id": 13397,
+      "title": "Configuring the messaging REST API",
+      "naiyou_jp": "メッセージング REST API の構成では、mqweb サーバー上でエンドポイントを有効化し、ユーザーを MQWebUser ロールのメンバーにする (MQWebAdmin/MQWebAdminRO はメッセージング REST API には適用されない)。mqRestMessagingAdoptWebUserContext が true の場合、MQWebUser ロールのユーザーはメッセージングで使うキューやトピックへのアクセスを OAM または RACF で許可する必要がある。false の場合は mqweb サーバーを起動したユーザー ID の権限が使われる。",
+      "verify_steps": "# mqweb 構成でメッセージング REST API を有効化後、HTTP PUT でメッセージ送信:\n$ curl -k -u msguser:passw0rd -X POST \\\n  -H 'Content-Type: text/plain' --data 'hello' \\\n  https://localhost:9443/ibmmq/rest/v2/messaging/qmgr/QMGR1/queue/APP.QUEUE/message\n  HTTP/1.1 201 Created",
+      "quiz": {
+        "q": "メッセージング REST API の利用に必要な mqweb ロールはどれか。",
+        "choices": [
+          "MQWebUser",
+          "MQWebAdmin",
+          "MQWebAdminRO",
+          "MQWebGuest"
+        ],
+        "answer": 0,
+        "explanation": "メッセージング REST API の利用者は MQWebUser ロールのメンバーである必要がある。MQWebAdmin/MQWebAdminRO は適用されない。AdoptWebUserContext が true ならキュー/トピックへの OAM/RACF 許可が必要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.812、開発 p.671/678",
+      "rag_hit": "[mq93.develop.pdf p.671/678] users of the messaging REST API must be a member of the MQWebUser role. The MQWebAdmin and MQWebAdminRO roles are not applicable ... authorized to access queues and topics ... through OAM or RACF."
+    },
+    {
+      "row_id": 13378,
+      "title": "Configuring Managed File Transfer",
+      "naiyou_jp": "Managed File Transfer (MFT) の構成では、調整 (coordination) キュー・マネージャ、コマンド・キュー・マネージャ、エージェント・キュー・マネージャを設定する。エージェントやロガーのプロパティとして coordinationQMgrHost/Port/Channel や connectionQMgr などを指定する (ローカル・マシンのバインディング接続では Host/Port/Channel は空白にする)。最初のキュー・マネージャを調整キュー・マネージャとして使うこともできる。fteChangeDefaultConfigurationOptions で既定の調整キュー・マネージャを変更できる。",
+      "verify_steps": "$ fteSetupCoordination -coordinationQMgr COORDQM\n  BFGCL0327I: Setup complete.\n$ fteSetupCommands -connectionQMgr CMDQM\n$ fteCreateAgent -agentName AGENT1 -agentQMgr AGENTQM\n  BFGCL0036I: Agent created.\n$ fteListAgents",
+      "quiz": {
+        "q": "MFT で転送状況の調整に使われるキュー・マネージャの役割はどれか。",
+        "choices": [
+          "調整 (coordination) キュー・マネージャ",
+          "デフォルト・キュー・マネージャのみ",
+          "フル・リポジトリ・キュー・マネージャ",
+          "MQIPT ルート"
+        ],
+        "answer": 0,
+        "explanation": "MFT では調整キュー・マネージャ、コマンド・キュー・マネージャ、エージェント・キュー・マネージャを構成する。調整キュー・マネージャが転送の調整を担う。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.692/709、管理リファレンス p.2004",
+      "rag_hit": "[mq93.configure.pdf p.709] coordinationQMgrHost / Port / Channel ... connectionQMgr ... Host, Port, and Channel are required for client connection but should be left blank for a bindings connection."
+    },
+    {
+      "row_id": 13387,
+      "title": "Configuring security",
+      "naiyou_jp": "セキュリティの構成では、mqweb サーバーの認証・認可を設定する。mqwebuser.xml ファイル (MQ_DATA_PATH/web/installations/installationName/servers/mqweb) を編集し、デフォルト・セキュリティ構成を無効化して独自構成を有効化する。クライアント証明書認証を有効にするには、defaultKeyStore/defaultTrustStore (key.jks/trust.jks) を指定し、SSL 構成を有効化する。ロール (MQWebAdmin など) でアクセスを制御する。",
+      "verify_steps": "# mqwebuser.xml を編集:\n$ cd /var/mqm/web/installations/Installation1/servers/mqweb\n# デフォルト SSL 構成をコメントアウトし独自構成を有効化\n# クライアント証明書認証セクションのコメントを解除\n$ endmqweb && strmqweb   # 反映のため mqweb を再起動",
+      "quiz": {
+        "q": "mqweb サーバーのセキュリティ構成を編集するファイルはどれか。",
+        "choices": [
+          "mqwebuser.xml",
+          "qm.ini",
+          "mqat.ini",
+          "mqipt.conf"
+        ],
+        "answer": 0,
+        "explanation": "mqweb サーバーの認証・認可は mqwebuser.xml で構成する。クライアント証明書認証ではキーストア/トラストストアと SSL 構成を指定する。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.799、セキュリティ p.532/537",
+      "rag_hit": "[mq93.secure.pdf p.532/537] mqwebuser.xml file ... MQ_DATA_PATH/web/installations/.../servers/mqweb ... Turn off the default security configuration ... Uncomment the section ... that enables client certificate authentication ... defaultKeyStore/defaultTrustStore."
+    },
+    {
+      "row_id": 13409,
+      "title": "Creating and using AMQP channels",
+      "naiyou_jp": "AMQP チャネルの作成と使用では、AMQP チャネルを定義・起動することで、AMQP 1.0 アプリケーションがメッセージをパブリッシュし、既存の IBM MQ アプリケーションが受信できるようにする。AMQP チャネル経由でパブリッシュされたメッセージはすべて MQ キューではなく MQ トピックに送られる。MQSUB API でサブスクリプションを作成した MQ アプリケーションが、AMQP 1.0 アプリのパブリッシュ・メッセージを受信できる。",
+      "verify_steps": "$ runmqsc QMGR1\nDEFINE CHANNEL(MY.AMQP) CHLTYPE(AMQP) PORT(5672)\n  AMQ8014I: IBM MQ channel created.\nSTART CHANNEL(MY.AMQP)\nDISPLAY CHSTATUS(MY.AMQP) CHLTYPE(AMQP)\nend",
+      "quiz": {
+        "q": "AMQP チャネル経由でパブリッシュされたメッセージの送信先はどれか。",
+        "choices": [
+          "MQ トピック",
+          "MQ キュー",
+          "伝送キュー",
+          "デッドレター・キュー"
+        ],
+        "answer": 0,
+        "explanation": "AMQP チャネル経由でパブリッシュされたメッセージはすべて MQ トピックに送られる。MQSUB でサブスクライブした MQ アプリがこれを受信できる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.30、開発 p.661",
+      "rag_hit": "[mq93.develop.pdf p.661] By defining and starting an AMQP channel, AMQP 1.0 applications can publish messages ... Messages published through an AMQP channel are all sent to MQ topics, not MQ queues ... MQSUB API call."
+    },
+    {
+      "row_id": 13478,
+      "title": "Monitoring clusters",
+      "naiyou_jp": "クラスターの監視では、DISPLAY CLUSQMGR コマンドでクラスター・キュー・マネージャの状態を確認し、返されたクラスター伝送キューの深さを汎用キュー名で照会する (DISPLAY QUEUE(qname*) CURDEPTH)。クラスター・オブジェクトは関心のあるキュー・マネージャへ自動的に状態更新を送る。セキュリティ構成変更などがクラスター全体に伝播したことの確認にも DISPLAY CLUSQMGR を使う。",
+      "verify_steps": "$ runmqsc QMGR1\nDISPLAY CLUSQMGR(*) CLUSTER STATUS\n  AMQ8441I: Display Cluster Queue Manager details.\nDISPLAY QUEUE(SYSTEM.CLUSTER.TRANSMIT.* ) CURDEPTH\n  CURDEPTH(0)\nend",
+      "quiz": {
+        "q": "クラスター・キュー・マネージャの状態を確認する MQSC コマンドはどれか。",
+        "choices": [
+          "DISPLAY CLUSQMGR",
+          "DISPLAY QMGR PSMODE",
+          "DEFINE TOPIC",
+          "CLEAR QLOCAL"
+        ],
+        "answer": 0,
+        "explanation": "DISPLAY CLUSQMGR でクラスター・キュー・マネージャの状態を確認できる。伝送キュー深さは DISPLAY QUEUE ... CURDEPTH で照会する。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.312、セキュリティ p.493",
+      "rag_hit": "[mq93.monitor.pdf p.312] query the depth of all the cluster transmission queues returned by the DISPLAY CLUSMGR command ... DISPLAY QUEUE (qname *) CURDEPTH. [secure p.493] Use the DISPLAY CLUSQMGR command to ensure that the new security configuration has been propagated."
+    },
+    {
+      "row_id": 13558,
+      "title": "Planning for backup and recovery",
+      "naiyou_jp": "バックアップとリカバリーの計画では、オブジェクトのメディア・リカバリーに必要なログ情報であるメディア・イメージを考慮する。メディア・イメージはオブジェクトのイメージを含むログ・レコードのシーケンスで、これからオブジェクトを再作成できる。最新メディア・イメージの開始点をメディア・リカバリー・レコードと呼び、チェックポイント時に記録される。RCDMQMIMG コマンドで選択オブジェクトのイメージを手動取得できる。IBM MQ は始動時に破損オブジェクトをメディア・イメージから自動復元する場合がある。",
+      "verify_steps": "$ runmqsc QMGR1\nRCDMQMIMG(*) TYPE(ALL)        # (z/OS 以外) 全オブジェクトのメディア・イメージ記録\n  AMQ7467I: The oldest log file required ...\nDISPLAY QMSTATUS RECLOG MEDIALOG\nend",
+      "quiz": {
+        "q": "オブジェクトを再作成するために必要なログ・レコードのシーケンスを何と呼ぶか。",
+        "choices": [
+          "メディア・イメージ",
+          "伝送ヘッダー",
+          "サブスクリプション・ポイント",
+          "ストリーム・キュー"
+        ],
+        "answer": 0,
+        "explanation": "メディア・イメージはオブジェクトのイメージを含むログ・レコードのシーケンスで、これからオブジェクトを再作成できる。RCDMQMIMG で手動取得できる。"
+      },
+      "source": "MQ 9.3 計画ガイド (mq93.plan.pdf) p.185、構成 p.640、管理 p.412",
+      "rag_hit": "[mq93.configure.pdf p.640] media image ... a sequence of log records containing an image of an object from which the object itself can be re-created ... media recovery record ... recorded during a checkpoint. [administer p.412] RCDMQMIMG."
+    },
+    {
+      "row_id": 13368,
+      "title": "Configuring IBM MQ for use with blockchain",
+      "naiyou_jp": "ブロックチェーンと連携させる構成では、IBM MQ Bridge to blockchain の構成ファイルを作成し、IBM Blockchain ネットワークと IBM MQ ネットワークの両方に接続する。ブリッジは Hyperledger Fabric 1.4 アーキテクチャに基づくブロックチェーン・ネットワークへの接続をサポートする。利用にはブロックチェーン・ネットワークからの構成情報 (ネットワーク資格情報ファイル等) が必要となる。",
+      "verify_steps": "# ブロックチェーン・ネットワークの credentials ファイルを取得\n# IBM MQ Bridge to blockchain 構成ファイルを作成し起動\n$ runmqbcb -f bridge.cfg\n  AMQBCB ... bridge started, connected to MQ and blockchain network",
+      "quiz": {
+        "q": "IBM MQ Bridge to blockchain がサポートするブロックチェーン・アーキテクチャはどれか。",
+        "choices": [
+          "Hyperledger Fabric 1.4",
+          "Ethereum 2.0 のみ",
+          "Bitcoin Core",
+          "Corda のみ"
+        ],
+        "answer": 0,
+        "explanation": "IBM MQ Bridge to blockchain は Hyperledger Fabric 1.4 アーキテクチャに基づくブロックチェーン・ネットワークへの接続をサポートする。構成にはネットワーク資格情報が必要。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.855/857/859",
+      "rag_hit": "[mq93.configure.pdf p.857] connect to blockchain networks that are based on Hyperledger Fabric 1.4 architecture ... you need configuration information from your blockchain network."
+    },
+    {
+      "row_id": 13393,
+      "title": "Configuring the IBM MQ Bridge to Salesforce",
+      "naiyou_jp": "IBM MQ Bridge to Salesforce の構成では、ブリッジが Salesforce と IBM MQ の両方に接続し、Salesforce のプッシュ・トピックおよびプラットフォーム・イベントへのサブスクリプションを作成する。サブスクライブするプッシュ・トピック名やプラットフォーム・イベント名を構成ファイルに含める必要がある。プラットフォーム・イベントのイベント・メッセージを作成する構成も可能。構成ファイルに必須パラメータが揃わない場合はコマンドラインで指定する。",
+      "verify_steps": "# Salesforce のプッシュ・トピック/プラットフォーム・イベントを定義\n# ブリッジ構成ファイルを作成し起動:\n$ runmqsfb -f salesforce.cfg\n  ... bridge connected to Salesforce and IBM MQ\n  ... subscribed to push topics / platform events",
+      "quiz": {
+        "q": "IBM MQ Bridge to Salesforce が接続確立後に作成するものはどれか。",
+        "choices": [
+          "Salesforce のプッシュ・トピックとプラットフォーム・イベントへのサブスクリプション",
+          "新しいキュー・マネージャ",
+          "TLS 証明書",
+          "クラスター・フル・リポジトリ"
+        ],
+        "answer": 0,
+        "explanation": "ブリッジは Salesforce と IBM MQ の両方に接続し、Salesforce のプッシュ・トピックとプラットフォーム・イベントへのサブスクリプションを作成する。対象名は構成ファイルに含める。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.841/854",
+      "rag_hit": "[mq93.configure.pdf p.841/854] When the IBM MQ Bridge to Salesforce establishes connections to both Salesforce and IBM MQ, it creates subscriptions to Salesforce push topics and platform events."
+    },
+    {
+      "row_id": 13466,
+      "title": "Using IBM MQ with CICS",
+      "naiyou_jp": "IBM MQ を CICS と併用するには、IBM MQ CICS アダプターを構成し、必要に応じて IBM MQ CICS ブリッジ・コンポーネントを構成する。CICS と IBM MQ for z/OS を接続するコンポーネントは CICS Transaction Server に統合されており、CICS-IBM MQ アダプター・モジュールとエラー・メッセージは DFHMQ で始まる。構成詳細は CICS ドキュメントの「Configuring connections to MQ」セクションを参照する。",
+      "verify_steps": "// CICS 領域で CICS-MQ アダプターを有効化:\n//   CKQC コマンド (CICS-MQ コントロール・パネル) で接続を STARTUP\n//   CKQC START\n// 接続状態を確認: アダプター・メッセージ DFHMQxxxx",
+      "quiz": {
+        "q": "IBM MQ を CICS と併用する際に構成する必須コンポーネントはどれか。",
+        "choices": [
+          "IBM MQ CICS アダプター",
+          "MQIPT ルート",
+          "AMQP チャネル",
+          "Salesforce ブリッジ"
+        ],
+        "answer": 0,
+        "explanation": "IBM MQ を CICS と併用するには IBM MQ CICS アダプターを構成し、任意で CICS ブリッジ・コンポーネントを構成する。モジュール/メッセージは DFHMQ で始まる。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.993、トラブルシュート p.367",
+      "rag_hit": "[mq93.configure.pdf p.993] To use IBM MQ with CICS, you must configure the IBM MQ CICS adapter and, optionally, the IBM MQ CICS bridge components. [troubleshoot p.367] CICS-IBM MQ Adapter modules and error messages begin with DFHMQ."
+    },
+    {
+      "row_id": 13467,
+      "title": "Using IBM MQ with IMS",
+      "naiyou_jp": "IBM MQ を IMS と併用するには、IBM MQ - IMS アダプターと IBM MQ - IMS ブリッジの 2 つのコンポーネントを使用する (一般に IMS アダプター、IMS ブリッジと呼ばれる)。IMS アダプターは IBM MQ を IMS システムに接続し、操作/制御パネルは持たない。IMS トリガー・モニターの制御や、IMS 接続のセキュリティ (RACF PassTicket、接続セキュリティ・プロファイル等) も考慮する。",
+      "verify_steps": "// IMS 制御領域でアダプター/ブリッジを構成\n// IMS トリガー・モニターを起動 (CSQQTRMN)\n// 接続を確認:\n+CSQ1 DISPLAY CONN(*) TYPE(CONN)\n  ... IMS 接続が表示される",
+      "quiz": {
+        "q": "IBM MQ が IMS と連携するために提供する 2 つのコンポーネントはどれか。",
+        "choices": [
+          "IMS アダプターと IMS ブリッジ",
+          "CICS アダプターと AMQP チャネル",
+          "MQIPT と MQAI",
+          "調整キュー・マネージャとロガー"
+        ],
+        "answer": 0,
+        "explanation": "IBM MQ は IMS と連携するために IMS アダプターと IMS ブリッジの 2 コンポーネントを提供する。アダプターは MQ を IMS に接続し、操作/制御パネルを持たない。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.985/993、管理 p.555",
+      "rag_hit": "[mq93.administer.pdf p.555] IBM MQ provides two components to interface with IMS, the IBM MQ - IMS adapter, and the IBM MQ - IMS bridge ... The IMS adapter does not incorporate any operations and control panels."
+    },
+    {
+      "row_id": 13539,
+      "title": "The change log inventory utility (CSQJU003) on z/OS",
+      "naiyou_jp": "変更ログ・インベントリー・ユーティリティ (CSQJU003) は z/OS で BSDS (ブートストラップ・データセット) のログ・インベントリーを変更する。DELETE 機能で STOPPED とマークされたアクティブ・ログ・データセットを削除し、NEWLOG 機能でアクティブ・ログを BSDS インベントリーに追加し直す (各アクティブ・ログの開始・終了 RBA を NEWLOG ステートメントで指定する)。正しい RBA 値は印刷ログ・マップ・ユーティリティ (CSQJU004) で確認できる。",
+      "verify_steps": "// z/OS JCL:\n//SYSIN DD *\n  DELETE DSNAME=CSQ1.LOGCOPY1.DS01\n  NEWLOG DSNAME=CSQ1.LOGCOPY1.DS01,COPY1,STARTRBA=...,ENDRBA=...\n/*\n// CSQJU004 で BSDS インベントリーを確認",
+      "quiz": {
+        "q": "z/OS で BSDS のログ・インベントリーを変更 (アクティブ・ログの追加/削除) するユーティリティはどれか。",
+        "choices": [
+          "CSQJU003 (change log inventory)",
+          "CSQJU004 (print log map)",
+          "CSQUDLQH (dead-letter handler)",
+          "CSQ5PQSG (queue sharing group)"
+        ],
+        "answer": 0,
+        "explanation": "CSQJU003 は変更ログ・インベントリー・ユーティリティで、DELETE/NEWLOG 機能により BSDS インベントリー内のアクティブ・ログを削除・追加する。RBA 値は CSQJU004 で確認する。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.2784、トラブルシュート p.530",
+      "rag_hit": "[mq93.troubleshoot.pdf p.530] DELETE function of the change log inventory utility (CSQJU003) to delete the active log data sets that are marked as STOPPED ... NEWLOG function of CSQJU003 to add the active logs back into the BSDS inventory ... STARTRBA/ENDRBA."
+    },
+    {
+      "row_id": 13544,
+      "title": "The queue sharing group utility (CSQ5PQSG) on z/OS",
+      "naiyou_jp": "キュー共有グループ・ユーティリティ (CSQ5PQSG) は z/OS で、共通の Db2 データ共有グループ・テーブルに対してキュー共有グループ (QSG) やキュー・マネージャのエントリを追加・削除する。サンプルは thlqual.SCSQPROC(CSQ45RQS) に提供される。QSG を削除できるのは、その QSG からすべてのキュー・マネージャを削除した後のみである。既に別の QSG のメンバーであるキュー・マネージャを追加しようとすると失敗する (CSQU553E)。",
+      "verify_steps": "// z/OS JCL (CSQ45RQS をベースに):\n//SYSIN DD *\n  ADD QSG,QSG=QSG1,DSG=DSN1,DB2=DB2A\n  ADD QMGR,QMGRNAME=CSQ1,QSG=QSG1,...\n/*\n// 出力: CSQU5xxI QSG entry successfully added/removed",
+      "quiz": {
+        "q": "z/OS でキュー共有グループのエントリを Db2 テーブルに追加・削除するユーティリティはどれか。",
+        "choices": [
+          "CSQ5PQSG",
+          "CSQJU003",
+          "CSQUDLQH",
+          "CSQUTIL"
+        ],
+        "answer": 0,
+        "explanation": "CSQ5PQSG はキュー共有グループ・ユーティリティで、共通 Db2 データ共有グループ・テーブルに QSG やキュー・マネージャのエントリを追加・削除する。QSG 削除は全キュー・マネージャ削除後のみ可能。"
+      },
+      "source": "MQ 9.3 管理リファレンス (mq93.refadmin.pdf) p.2805、管理 p.527",
+      "rag_hit": "[mq93.administer.pdf p.527] The queue sharing group utility ... sample is provided in thlqual.SCSQPROC(CSQ45RQS) ... remove a queue sharing group ... after you have removed all the queue managers. [reference p.610] CSQU553E ... member of a different queue sharing group."
+    },
+    {
+      "row_id": 13488,
+      "title": "Tuning client and server connection channels",
+      "naiyou_jp": "クライアント/サーバー・コネクション・チャネルのチューニングでは、SHARECNV (共有会話数) 属性を調整する。SHARECNV(1)〜SHARECNV(999999999) を設定でき、共有会話が不要なら SHARECNV(1) を推奨する (受信スレッド競合を排除しパフォーマンスを向上)。既定の SHARECNV(10) は分散サーバーで平均約15%遅くなる場合がある。古いクライアント・アプリが SHARECNV>=1 で正しく動かない場合は SHARECNV(0) を設定する。",
+      "verify_steps": "$ runmqsc QMGR1\nALTER CHANNEL(MY.SVRCONN) CHLTYPE(SVRCONN) SHARECNV(1)\n  AMQ8016I: IBM MQ channel changed.\nDISPLAY CHANNEL(MY.SVRCONN) SHARECNV\n  SHARECNV(1)\nend",
+      "quiz": {
+        "q": "共有会話が不要な場合に推奨されるクライアント/サーバー・コネクション・チャネルの SHARECNV 値はどれか。",
+        "choices": [
+          "SHARECNV(1)",
+          "SHARECNV(10) (既定)",
+          "SHARECNV(999999999)",
+          "SHARECNV を設定しない"
+        ],
+        "answer": 0,
+        "explanation": "共有会話が不要なら SHARECNV(1) を推奨。受信スレッド競合を排除しパフォーマンスを向上させる。既定の SHARECNV(10) は分散サーバーで約15%遅くなる場合がある。"
+      },
+      "source": "MQ 9.3 監視・パフォーマンス (mq93.monitor.pdf) p.376/377",
+      "rag_hit": "[mq93.monitor.pdf p.376/377] Set a SHARECNV value of 1 ... eliminates contention to use the receiving thread ... default configuration of 10 shared conversations is on average 15% slower ... set SHARECNV to 0 for existing client applications."
+    },
+    {
+      "row_id": 13383,
+      "title": "Configuring multiple installations",
+      "naiyou_jp": "複数インストールの構成では、同一システム上に複数の IBM MQ インストールを並存させる。1 つだけをプライマリ・インストールに指定でき、setmqinst -i -p MQ_INSTALLATION_PATH で設定する。既にプライマリがある場合は、新たにプライマリを設定する前に既存のプライマリを解除する必要がある。各キュー・マネージャは setmqm で特定のインストールに関連付ける。",
+      "verify_steps": "$ /opt/mqm2/bin/setmqinst -i -p /opt/mqm2\n  ... '/opt/mqm2' set as primary installation.\n$ dspmqinst\n  InstName: Installation1  Primary: No\n  InstName: Installation2  Primary: Yes\n$ /opt/mqm2/bin/setmqm -m QM1 -n Installation2",
+      "quiz": {
+        "q": "同一システム上に複数 IBM MQ インストールがある場合、プライマリ・インストールは何個指定できるか。",
+        "choices": [
+          "1 個のみ",
+          "インストール数と同数",
+          "2 個まで",
+          "0 個 (プライマリは存在しない)"
+        ],
+        "answer": 0,
+        "explanation": "システム上にプライマリ・インストールは 1 個のみ指定できる。setmqinst -i -p で設定し、既存プライマリがあれば先に解除する。キュー・マネージャは setmqm で各インストールに関連付ける。"
+      },
+      "source": "MQ 9.3 構成ガイド (mq93.configure.pdf) p.443、インストール p.50/205",
+      "rag_hit": "[mq93.install.pdf p.50/205] setmqinst -i -p MQ_INSTALLATION_PATH ... You can have only one primary installation on a system. If there is already a primary installation ... you must unset it before you can set another."
+    }
+  ]
+}

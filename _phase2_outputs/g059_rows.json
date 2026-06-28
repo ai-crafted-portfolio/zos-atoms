@@ -1,0 +1,2402 @@
+[
+ {
+  "row_id": "11818",
+  "title": "4-site and 6-site Metro/Global Mirror with Incremental Resynchronization",
+  "type": "A",
+  "page": "29",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.29)",
+  "eng": ""
+ },
+ {
+  "row_id": "11819",
+  "title": "A 4-site scenario with Metro/Global Mirror and Global Copy",
+  "type": "A",
+  "page": "613",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.613)",
+  "eng": ""
+ },
+ {
+  "row_id": "11820",
+  "title": "Abbreviations and acronyms",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "11821",
+  "title": "Adding and removing a subordinate storage system",
+  "type": "A",
+  "page": "315",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.315)",
+  "eng": ""
+ },
+ {
+  "row_id": "11822",
+  "title": "Adding and removing an LSS to an existing Global Mirror environment",
+  "type": "A",
+  "page": "313",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.313)",
+  "eng": ""
+ },
+ {
+  "row_id": "11823",
+  "title": "Adding and removing volumes to the Global Mirror environment",
+  "type": "A",
+  "page": "311",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.311)",
+  "eng": ""
+ },
+ {
+  "row_id": "11824",
+  "title": "Adding copy sets (volumes) into the MT-PPRC session",
+  "type": "A",
+  "page": "406",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.406)",
+  "eng": ""
+ },
+ {
+  "row_id": "11825",
+  "title": "Adding or removing storage systems or LSSs",
+  "type": "A",
+  "page": "272",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.272)",
+  "eng": ""
+ },
+ {
+  "row_id": "11826",
+  "title": "Adding or removing volume pairs to or from a Global Mirror session",
+  "type": "A",
+  "page": "272",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.272)",
+  "eng": ""
+ },
+ {
+  "row_id": "11827",
+  "title": "Ansible Collection for IBM Copy Services Manager",
+  "type": "A",
+  "page": "373",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.373)",
+  "eng": ""
+ },
+ {
+  "row_id": "11828",
+  "title": "Application I/O and Global Mirror",
+  "type": "A",
+  "page": "261",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.261)",
+  "eng": ""
+ },
+ {
+  "row_id": "11829",
+  "title": "Asynchronous replication technique",
+  "type": "B",
+  "page": "259",
+  "naiyou": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.259、原文ママ)",
+  "eng": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead."
+ },
+ {
+  "row_id": "11830",
+  "title": "Automation and management",
+  "type": "B",
+  "page": "190",
+  "naiyou": "168 IBM DS8000 Copy Services. At the time that the first copy operation fails, the management software can react to that event within the ELB timeout. The CG aware management application (for example, IBM GDPS or IBM CSM) must ensure data consistency on the AUX storage system within the ELB timeout window by issuing a freeze to all volumes that belong to ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.190、原文ママ)",
+  "eng": "168 IBM DS8000 Copy Services. At the time that the first copy operation fails, the management software can react to that event within the ELB timeout. The CG aware management application (for example, IBM GDPS or IBM CSM) must ensure data consistency on the AUX storage system within the ELB timeout window by issuing a freeze to all volumes that belong to ..."
+ },
+ {
+  "row_id": "11831",
+  "title": "Autonomic behavior",
+  "type": "B",
+  "page": "282",
+  "naiyou": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.282、原文ママ)",
+  "eng": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf..."
+ },
+ {
+  "row_id": "11832",
+  "title": "Background copy performance",
+  "type": "B",
+  "page": "110",
+  "naiyou": "88 IBM DS8000 Copy Services. 11.1.2 Logical subsystem and logical control unit versus rank: Considerations. With the DS8000, it is more meaningful to describe volume location in terms of ranks and not in terms of a logical subsystems (LSSs) or logical control unit (LCU). The LSS or LCU in a DS8000 storage system is a logical construct that is not tied to ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.110、原文ママ)",
+  "eng": "88 IBM DS8000 Copy Services. 11.1.2 Logical subsystem and logical control unit versus rank: Considerations. With the DS8000, it is more meaningful to describe volume location in terms of ranks and not in terms of a logical subsystems (LSSs) or logical control unit (LCU). The LSS or LCU in a DS8000 storage system is a logical construct that is not tied to ..."
+ },
+ {
+  "row_id": "11833",
+  "title": "Bandwidth considerations",
+  "type": "B",
+  "page": "200",
+  "naiyou": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.200、原文ママ)",
+  "eng": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations."
+ },
+ {
+  "row_id": "11834",
+  "title": "Basic concepts",
+  "type": "B",
+  "page": "62",
+  "naiyou": "40 IBM DS8000 Copy Services. 6.3 Basic concepts. Issuing a FlashCopy Establish results in a relationship being created between the specified source volume or tracks and the specified target volume or tracks. This relationship is what is referred to as a FlashCopy relationship. As a result of the FlashCopy, all physical blocks (Fixed Block (FB)) or tracks ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.62、原文ママ)",
+  "eng": "40 IBM DS8000 Copy Services. 6.3 Basic concepts. Issuing a FlashCopy Establish results in a relationship being created between the specified source volume or tracks and the specified target volume or tracks. This relationship is what is referred to as a FlashCopy relationship. As a result of the FlashCopy, all physical blocks (Fixed Block (FB)) or tracks ..."
+ },
+ {
+  "row_id": "11835",
+  "title": "Basic Metro Mirror and Global Copy operation",
+  "type": "A",
+  "page": "176",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.176)",
+  "eng": ""
+ },
+ {
+  "row_id": "11836",
+  "title": "Benefits",
+  "type": "B",
+  "page": "351",
+  "naiyou": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.351、原文ママ)",
+  "eng": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is..."
+ },
+ {
+  "row_id": "11837",
+  "title": "Benefits of using the concurrent copy function",
+  "type": "A",
+  "page": "619",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.619)",
+  "eng": ""
+ },
+ {
+  "row_id": "11838",
+  "title": "Best practices for setting up Metro/Global Mirror",
+  "type": "A",
+  "page": "421",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.421)",
+  "eng": ""
+ },
+ {
+  "row_id": "11839",
+  "title": "Business-continuity functions",
+  "type": "B",
+  "page": "27",
+  "naiyou": "1.1.3 Cascading FlashCopy. Starting with DS8000 Release 8.3, a volume can be both a source in one FlashCopy relationship and a target in a second FlashCopy relationship. This configuration is referred to as a cascading FlashCopy. 1.2 Business-continuity functions. The DS8000 provides a set of flexible data mirroring techniques that allow replication betwe... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.27、原文ママ)",
+  "eng": "1.1.3 Cascading FlashCopy. Starting with DS8000 Release 8.3, a volume can be both a source in one FlashCopy relationship and a target in a second FlashCopy relationship. This configuration is referred to as a cascading FlashCopy. 1.2 Business-continuity functions. The DS8000 provides a set of flexible data mirroring techniques that allow replication betwe..."
+ },
+ {
+  "row_id": "11840",
+  "title": "Cache-based concurrent copy on the DS8000",
+  "type": "A",
+  "page": "622",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.622)",
+  "eng": ""
+ },
+ {
+  "row_id": "11841",
+  "title": "Cache-based concurrent copy sizing and requirements",
+  "type": "A",
+  "page": "623",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.623)",
+  "eng": ""
+ },
+ {
+  "row_id": "11842",
+  "title": "Cascaded FlashCopy",
+  "type": "B",
+  "page": "70",
+  "naiyou": "The Incremental FlashCopy function is meant to be used with background copy. In z/OS, TSO, ANTRQST, and ANTTREXX do not allow nocopy with the incremental option. DS8000 FlashCopy has two types of CR mechanisms for Incremental FlashCopy. Type 1 incremental is required in the Global Mirror (GM) environment and only one target from a source can be type 1 inc... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.70、原文ママ)",
+  "eng": "The Incremental FlashCopy function is meant to be used with background copy. In z/OS, TSO, ANTRQST, and ANTTREXX do not allow nocopy with the incremental option. DS8000 FlashCopy has two types of CR mechanisms for Incremental FlashCopy. Type 1 incremental is required in the Global Mirror (GM) environment and only one target from a source can be type 1 inc..."
+ },
+ {
+  "row_id": "11843",
+  "title": "Cascaded FlashCopy usage and examples",
+  "type": "A",
+  "page": "128",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.128)",
+  "eng": ""
+ },
+ {
+  "row_id": "11844",
+  "title": "Cascaded Metro Mirror and Global Mirror",
+  "type": "A",
+  "page": "506",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.506)",
+  "eng": ""
+ },
+ {
+  "row_id": "11845",
+  "title": "Cascaded Metro/Global Mirror topology",
+  "type": "B",
+  "page": "580",
+  "naiyou": "558 IBM DS8000 Copy Services. 41.1 Cascaded Metro/Global Mirror topology. MT-PPRC provides several benefits and simplifications in a cascaded MGM topology. Figure 41-1 shows a cascaded MGM topology where there is Metro Mirror (MM) H1:H2 and Global Mirror (GM) H2:H3. Similar to MT-PPRC with MM and GM, this topology provides both a local high availability (... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.580、原文ママ)",
+  "eng": "558 IBM DS8000 Copy Services. 41.1 Cascaded Metro/Global Mirror topology. MT-PPRC provides several benefits and simplifications in a cascaded MGM topology. Figure 41-1 shows a cascaded MGM topology where there is Metro Mirror (MM) H1:H2 and Global Mirror (GM) H2:H3. Similar to MT-PPRC with MM and GM, this topology provides both a local high availability (..."
+ },
+ {
+  "row_id": "11846",
+  "title": "Cascaded MGM and MT-PPRC MGM",
+  "type": "A",
+  "page": "587",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.587)",
+  "eng": ""
+ },
+ {
+  "row_id": "11847",
+  "title": "Cascaded PPRC after Multi-Target Peer-to-Peer Remote Copy failover",
+  "type": "B",
+  "page": "508",
+  "naiyou": "486 IBM DS8000 Copy Services. Migration. GC can be used to asynchronously copy data over a long distance without affecting the host response time. After the initial data copy completes, you can use various techniques to make the data consistent, such as converting the relationship to MM or using the MT-PPRC IR feature to establish a relationship between t... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.508、原文ママ)",
+  "eng": "486 IBM DS8000 Copy Services. Migration. GC can be used to asynchronously copy data over a long distance without affecting the host response time. After the initial data copy completes, you can use various techniques to make the data consistent, such as converting the relationship to MM or using the MT-PPRC IR feature to establish a relationship between t..."
+ },
+ {
+  "row_id": "11848",
+  "title": "Cascading dataset level FlashCopy",
+  "type": "B",
+  "page": "132",
+  "naiyou": "12.3.3 Simple forward cascading FlashCopy. This use case illustrates a pure forward cascading FlashCopy scenario. Figure 12-13 shows a combination of cascading FlashCopy configuration with multiple target FlashCopy volumes from the same source volume. In this use case, we created several FlashCopy target volumes from the same source volumes, as would be t... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.132、原文ママ)",
+  "eng": "12.3.3 Simple forward cascading FlashCopy. This use case illustrates a pure forward cascading FlashCopy scenario. Figure 12-13 shows a combination of cascading FlashCopy configuration with multiple target FlashCopy volumes from the same source volume. In this use case, we created several FlashCopy target volumes from the same source volumes, as would be t..."
+ },
+ {
+  "row_id": "11849",
+  "title": "Cascading FlashCopy",
+  "type": "B",
+  "page": "27",
+  "naiyou": "1.1.3 Cascading FlashCopy. Starting with DS8000 Release 8.3, a volume can be both a source in one FlashCopy relationship and a target in a second FlashCopy relationship. This configuration is referred to as a cascading FlashCopy. 1.2 Business-continuity functions. The DS8000 provides a set of flexible data mirroring techniques that allow replication betwe... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.27、原文ママ)",
+  "eng": "1.1.3 Cascading FlashCopy. Starting with DS8000 Release 8.3, a volume can be both a source in one FlashCopy relationship and a target in a second FlashCopy relationship. This configuration is referred to as a cascading FlashCopy. 1.2 Business-continuity functions. The DS8000 provides a set of flexible data mirroring techniques that allow replication betwe..."
+ },
+ {
+  "row_id": "11850",
+  "title": "Cascading FlashCopy and Fast Reverse Restore",
+  "type": "A",
+  "page": "86",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.86)",
+  "eng": ""
+ },
+ {
+  "row_id": "11851",
+  "title": "Cascading FlashCopy concept and design",
+  "type": "A",
+  "page": "83",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.83)",
+  "eng": ""
+ },
+ {
+  "row_id": "11852",
+  "title": "Cascading IBM FlashCopy",
+  "type": "B",
+  "page": "83",
+  "naiyou": "Chapter 9. Cascading IBM FlashCopy. 9.2 Cascading FlashCopy concept and design. Before DS8000 Release 8.3, a volume could not be both the source and a target in a FlashCopy relationship at the same time. The same restriction applied to datasets in data set-level FlashCopy. Release 8.3 lifts this restriction and allows a volume or track to be both a source... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.83、原文ママ)",
+  "eng": "Chapter 9. Cascading IBM FlashCopy. 9.2 Cascading FlashCopy concept and design. Before DS8000 Release 8.3, a volume could not be both the source and a target in a FlashCopy relationship at the same time. The same restriction applied to datasets in data set-level FlashCopy. Release 8.3 lifts this restriction and allows a volume or track to be both a source..."
+ },
+ {
+  "row_id": "11853",
+  "title": "Changing the copy mode from Global Copy to Metro Mirror",
+  "type": "A",
+  "page": "237",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.237)",
+  "eng": ""
+ },
+ {
+  "row_id": "11854",
+  "title": "Changing the copy mode from Metro Mirror to Global Copy",
+  "type": "A",
+  "page": "236",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.236)",
+  "eng": ""
+ },
+ {
+  "row_id": "11855",
+  "title": "Changing the Global Mirror tuning parameters",
+  "type": "A",
+  "page": "309",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.309)",
+  "eng": ""
+ },
+ {
+  "row_id": "11856",
+  "title": "Channel extender",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "11857",
+  "title": "Checking consistency at H3 volumes at site 3",
+  "type": "B",
+  "page": "428",
+  "naiyou": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.428、原文ママ)",
+  "eng": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each..."
+ },
+ {
+  "row_id": "11858",
+  "title": "Cleaning up the remaining components at H2",
+  "type": "A",
+  "page": "484",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.484)",
+  "eng": ""
+ },
+ {
+  "row_id": "11859",
+  "title": "Comparing Metro Mirror and Global Mirror",
+  "type": "A",
+  "page": "390",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.390)",
+  "eng": ""
+ },
+ {
+  "row_id": "11860",
+  "title": "Concurrent copy function characteristics and usage",
+  "type": "A",
+  "page": "618",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.618)",
+  "eng": ""
+ },
+ {
+  "row_id": "11861",
+  "title": "Concurrent copy function terminology",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "11862",
+  "title": "Concurrent copy operation",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "11863",
+  "title": "Connectivity: Ports, paths, and links",
+  "type": "A",
+  "page": "205",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205)",
+  "eng": ""
+ },
+ {
+  "row_id": "11864",
+  "title": "Considerations",
+  "type": "A",
+  "page": "98",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.98)",
+  "eng": ""
+ },
+ {
+  "row_id": "11865",
+  "title": "Considerations for FlashCopy onto Global Mirror",
+  "type": "A",
+  "page": "104",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.104)",
+  "eng": ""
+ },
+ {
+  "row_id": "11866",
+  "title": "Consistency group formation",
+  "type": "B",
+  "page": "338",
+  "naiyou": "22.7.12 Resuming Global Mirror. Now, you can resume GM by running resumegmir. You can verify the result by running showgmir. For a detailed description and considerations, see 22.4.1 Pausing and resuming Global Mirror consistency group formation on page 285. In our example, the first showgmir output shows Running in the Copy State field, but the CG format... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.338、原文ママ)",
+  "eng": "22.7.12 Resuming Global Mirror. Now, you can resume GM by running resumegmir. You can verify the result by running showgmir. For a detailed description and considerations, see 22.4.1 Pausing and resuming Global Mirror consistency group formation on page 285. In our example, the first showgmir output shows Running in the Copy State field, but the CG format..."
+ },
+ {
+  "row_id": "11867",
+  "title": "Consistency group function",
+  "type": "B",
+  "page": "188",
+  "naiyou": "166 IBM DS8000 Copy Services. Consistency group option. This option causes the storage system to hold I/O activity to a volume for a period by putting the primary volume into an ELB (for CKD devices) or queue full (for Open Systems volumes) condition when the DS8000 detects a situation where it cannot update the MM secondary volume. The default ELB timeou... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.188、原文ママ)",
+  "eng": "166 IBM DS8000 Copy Services. Consistency group option. This option causes the storage system to hold I/O activity to a volume for a period by putting the primary volume into an ELB (for CKD devices) or queue full (for Open Systems volumes) condition when the DS8000 detects a situation where it cannot update the MM secondary volume. The default ELB timeou..."
+ },
+ {
+  "row_id": "11868",
+  "title": "Consistency group function: How it works",
+  "type": "B",
+  "page": "188",
+  "naiyou": "166 IBM DS8000 Copy Services. Consistency group option. This option causes the storage system to hold I/O activity to a volume for a period by putting the primary volume into an ELB (for CKD devices) or queue full (for Open Systems volumes) condition when the DS8000 detects a situation where it cannot update the MM secondary volume. The default ELB timeou... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.188、原文ママ)",
+  "eng": "166 IBM DS8000 Copy Services. Consistency group option. This option causes the storage system to hold I/O activity to a volume for a period by putting the primary volume into an ELB (for CKD devices) or queue full (for Open Systems volumes) condition when the DS8000 detects a situation where it cannot update the MM secondary volume. The default ELB timeou..."
+ },
+ {
+  "row_id": "11869",
+  "title": "Consistency group parameters",
+  "type": "B",
+  "page": "259",
+  "naiyou": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.259、原文ママ)",
+  "eng": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead."
+ },
+ {
+  "row_id": "11870",
+  "title": "Consistent FlashCopy (FlashCopy consistency group)",
+  "type": "B",
+  "page": "162",
+  "naiyou": "142 IBM GDPS: An Introduction to Concepts and Capabilities. FlashCopy and the various options that are related to FlashCopy are discussed in 2.6 FlashCopy on page 32. GDPS Metro HyperSwap Manager supports taking a FlashCopy of the current secondary CKD disks. The COPY, NOCOPY, and NOCOPY2COPY options are supported. CONSISTENT FlashCopy is supported with C... (出典: GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.162、原文ママ)",
+  "eng": "142 IBM GDPS: An Introduction to Concepts and Capabilities. FlashCopy and the various options that are related to FlashCopy are discussed in 2.6 FlashCopy on page 32. GDPS Metro HyperSwap Manager supports taking a FlashCopy of the current secondary CKD disks. The COPY, NOCOPY, and NOCOPY2COPY options are supported. CONSISTENT FlashCopy is supported with C..."
+ },
+ {
+  "row_id": "11871",
+  "title": "Converting Global Mirror to Metro/Global Mirror",
+  "type": "A",
+  "page": "489",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.489)",
+  "eng": ""
+ },
+ {
+  "row_id": "11872",
+  "title": "Copy option",
+  "type": "B",
+  "page": "86",
+  "naiyou": "Cascading FlashCopy and Fast Reverse Restore. 9.4 Thin provisioning considerations. It is important to consider the implications of Cascading FlashCopy relationships when using extent space-efficient (ESE) volumes on the DS8000. Withdrawing the source relation in a cascading relationship that is created with the NOCOPY option results in a background copy ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.86、原文ママ)",
+  "eng": "Cascading FlashCopy and Fast Reverse Restore. 9.4 Thin provisioning considerations. It is important to consider the implications of Cascading FlashCopy relationships when using extent space-efficient (ESE) volumes on the DS8000. Withdrawing the source relation in a cascading relationship that is created with the NOCOPY option results in a background copy ..."
+ },
+ {
+  "row_id": "11873",
+  "title": "Copy Services capacity examples",
+  "type": "B",
+  "page": "35",
+  "naiyou": "participate in at least one Copy Services relationship. This license is based on the provisioned capacity of those volumes and not on the raw physical capacity of the system. If thin provisioning or overprovisioning is used on the DS8000, even when the logical volume sizes are larger than the actual physical capacity, the Copy Services license must cover ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.35、原文ママ)",
+  "eng": "participate in at least one Copy Services relationship. This license is based on the provisioned capacity of those volumes and not on the raw physical capacity of the system. If thin provisioning or overprovisioning is used on the DS8000, even when the logical volume sizes are larger than the actual physical capacity, the Copy Services license must cover ..."
+ },
+ {
+  "row_id": "11874",
+  "title": "Copy Services license functions and guidelines",
+  "type": "A",
+  "page": "35",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.35)",
+  "eng": ""
+ },
+ {
+  "row_id": "11875",
+  "title": "Copy Services license rules",
+  "type": "B",
+  "page": "35",
+  "naiyou": "participate in at least one Copy Services relationship. This license is based on the provisioned capacity of those volumes and not on the raw physical capacity of the system. If thin provisioning or overprovisioning is used on the DS8000, even when the logical volume sizes are larger than the actual physical capacity, the Copy Services license must cover ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.35、原文ママ)",
+  "eng": "participate in at least one Copy Services relationship. This license is based on the provisioned capacity of those volumes and not on the raw physical capacity of the system. If thin provisioning or overprovisioning is used on the DS8000, even when the logical volume sizes are larger than the actual physical capacity, the Copy Services license must cover ..."
+ },
+ {
+  "row_id": "11876",
+  "title": "Copy Services Manager",
+  "type": "B",
+  "page": "104",
+  "naiyou": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.104、原文ママ)",
+  "eng": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr..."
+ },
+ {
+  "row_id": "11877",
+  "title": "Copy Services Manager 6.3 advantages for multi-site replication and migration",
+  "type": "A",
+  "page": "615",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.615)",
+  "eng": ""
+ },
+ {
+  "row_id": "11878",
+  "title": "Copy Services Manager CLI",
+  "type": "B",
+  "page": "372",
+  "naiyou": "in the same fashion as the DS CLI for the DS8000 products. It provides the following different modes. Single-shot mode, Interactive mode, Script mode. CSM CLI uses a standard configuration file that is called repcli.properties that is in the same directory as the csmcli command itself. The file is mandatory. It contains the IP address or hostname and the ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.372、原文ママ)",
+  "eng": "in the same fashion as the DS CLI for the DS8000 products. It provides the following different modes. Single-shot mode, Interactive mode, Script mode. CSM CLI uses a standard configuration file that is called repcli.properties that is in the same directory as the csmcli command itself. The file is mandatory. It contains the IP address or hostname and the ..."
+ },
+ {
+  "row_id": "11879",
+  "title": "Copy Services Manager GUI",
+  "type": "B",
+  "page": "360",
+  "naiyou": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.360、原文ママ)",
+  "eng": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z."
+ },
+ {
+  "row_id": "11880",
+  "title": "Copy Services Manager interfaces",
+  "type": "B",
+  "page": "360",
+  "naiyou": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.360、原文ママ)",
+  "eng": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z."
+ },
+ {
+  "row_id": "11881",
+  "title": "Copy Services Manager overview",
+  "type": "B",
+  "page": "360",
+  "naiyou": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.360、原文ママ)",
+  "eng": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z."
+ },
+ {
+  "row_id": "11882",
+  "title": "Copy Services Manager Python Client",
+  "type": "B",
+  "page": "372",
+  "naiyou": "in the same fashion as the DS CLI for the DS8000 products. It provides the following different modes. Single-shot mode, Interactive mode, Script mode. CSM CLI uses a standard configuration file that is called repcli.properties that is in the same directory as the csmcli command itself. The file is mandatory. It contains the IP address or hostname and the ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.372、原文ママ)",
+  "eng": "in the same fashion as the DS CLI for the DS8000 products. It provides the following different modes. Single-shot mode, Interactive mode, Script mode. CSM CLI uses a standard configuration file that is called repcli.properties that is in the same directory as the csmcli command itself. The file is mandatory. It contains the IP address or hostname and the ..."
+ },
+ {
+  "row_id": "11883",
+  "title": "Copy Services Manager reliability, availability, and serviceability",
+  "type": "A",
+  "page": "362",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.362)",
+  "eng": ""
+ },
+ {
+  "row_id": "11884",
+  "title": "Copy Services Manager terminology",
+  "type": "B",
+  "page": "360",
+  "naiyou": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.360、原文ママ)",
+  "eng": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z."
+ },
+ {
+  "row_id": "11885",
+  "title": "Copy set",
+  "type": "B",
+  "page": "368",
+  "naiyou": "346 IBM DS8000 Copy Services. Intermediate volume. Intermediate (I) volumes are used in certain MM and GM sessions that support an extra volume on the recovery site to test (practice) the recovery procedures on the host volumes of the DR site while replication continues to the intermediate volumes. Another benefit of having Intermediate volumes is to have... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.368、原文ママ)",
+  "eng": "346 IBM DS8000 Copy Services. Intermediate volume. Intermediate (I) volumes are used in certain MM and GM sessions that support an extra volume on the recovery site to test (practice) the recovery procedures on the host volumes of the DR site while replication continues to the intermediate volumes. Another benefit of having Intermediate volumes is to have..."
+ },
+ {
+  "row_id": "11886",
+  "title": "Creating a backup",
+  "type": "A",
+  "page": "126",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.126)",
+  "eng": ""
+ },
+ {
+  "row_id": "11887",
+  "title": "Creating a FlashCopy for backup purposes without a volume copy",
+  "type": "A",
+  "page": "126",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.126)",
+  "eng": ""
+ },
+ {
+  "row_id": "11888",
+  "title": "Creating a Global Copy consistent copy",
+  "type": "A",
+  "page": "194",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.194)",
+  "eng": ""
+ },
+ {
+  "row_id": "11889",
+  "title": "Creating a Metro Mirror and Global Mirror topology",
+  "type": "A",
+  "page": "545",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.545)",
+  "eng": ""
+ },
+ {
+  "row_id": "11890",
+  "title": "Creating a Metro/Global Mirror session",
+  "type": "A",
+  "page": "404",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.404)",
+  "eng": ""
+ },
+ {
+  "row_id": "11891",
+  "title": "Creating a Multi-Target Global Mirror plus Global Mirror topology",
+  "type": "A",
+  "page": "565",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.565)",
+  "eng": ""
+ },
+ {
+  "row_id": "11892",
+  "title": "Creating a test system or integration system",
+  "type": "A",
+  "page": "120",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.120)",
+  "eng": ""
+ },
+ {
+  "row_id": "11893",
+  "title": "Creating a two Metro Mirror topology",
+  "type": "A",
+  "page": "524",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.524)",
+  "eng": ""
+ },
+ {
+  "row_id": "11894",
+  "title": "Creating and starting the Global Mirror session",
+  "type": "A",
+  "page": "547",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.547)",
+  "eng": ""
+ },
+ {
+  "row_id": "11895",
+  "title": "Creating consistent data on H2 volumes",
+  "type": "A",
+  "page": "334",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.334)",
+  "eng": ""
+ },
+ {
+  "row_id": "11896",
+  "title": "Creating FlashCopy H3:J3",
+  "type": "A",
+  "page": "547",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.547)",
+  "eng": ""
+ },
+ {
+  "row_id": "11897",
+  "title": "Creating FlashCopy relationships: H2 to J2 volumes",
+  "type": "A",
+  "page": "296",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.296)",
+  "eng": ""
+ },
+ {
+  "row_id": "11898",
+  "title": "Creating Global Copy from H2 to H3",
+  "type": "A",
+  "page": "441",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.441)",
+  "eng": ""
+ },
+ {
+  "row_id": "11899",
+  "title": "Creating Global Copy relationships: H1 to H2 volumes",
+  "type": "A",
+  "page": "294",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.294)",
+  "eng": ""
+ },
+ {
+  "row_id": "11900",
+  "title": "Creating H1-H2 Metro Mirror pairs",
+  "type": "A",
+  "page": "526",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.526)",
+  "eng": ""
+ },
+ {
+  "row_id": "11901",
+  "title": "Creating H1-H3 Global Copy pairs",
+  "type": "A",
+  "page": "546",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.546)",
+  "eng": ""
+ },
+ {
+  "row_id": "11902",
+  "title": "Creating H1:H2’ Metro Mirror pairs",
+  "type": "A",
+  "page": "592",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.592)",
+  "eng": ""
+ },
+ {
+  "row_id": "11903",
+  "title": "Creating Metro Mirror with Incremental Resynchronization at H1",
+  "type": "A",
+  "page": "488",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.488)",
+  "eng": ""
+ },
+ {
+  "row_id": "11904",
+  "title": "Creating paths from H1 to H2 if they do not exist",
+  "type": "A",
+  "page": "327",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.327)",
+  "eng": ""
+ },
+ {
+  "row_id": "11905",
+  "title": "Creating paths from H2 to H1",
+  "type": "A",
+  "page": "323",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.323)",
+  "eng": ""
+ },
+ {
+  "row_id": "11906",
+  "title": "Critical attribute (IBM Z only)",
+  "type": "B",
+  "page": "192",
+  "naiyou": "170 IBM DS8000 Copy Services. Freeze and unfreeze operations and ELB timeout considerations. The CG option by itself can keep data consistent at the remote site if all paths for all MM pairs (that you want to keep consistent) fail at the same time. To achieve this consistency, all logical paths must be defined by using the same physical paths, which might... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.192、原文ママ)",
+  "eng": "170 IBM DS8000 Copy Services. Freeze and unfreeze operations and ELB timeout considerations. The CG option by itself can keep data consistent at the remote site if all paths for all MM pairs (that you want to keep consistent) fail at the same time. To achieve this consistency, all logical paths must be defined by using the same physical paths, which might..."
+ },
+ {
+  "row_id": "11907",
+  "title": "Data consistency and dependent writes",
+  "type": "A",
+  "page": "186",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.186)",
+  "eng": ""
+ },
+ {
+  "row_id": "11908",
+  "title": "Data migration with double cascading",
+  "type": "A",
+  "page": "612",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612)",
+  "eng": ""
+ },
+ {
+  "row_id": "11909",
+  "title": "Defining and querying a Metro Mirror path",
+  "type": "A",
+  "page": "251",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.251)",
+  "eng": ""
+ },
+ {
+  "row_id": "11910",
+  "title": "Defining and starting Global Mirror",
+  "type": "A",
+  "page": "297",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.297)",
+  "eng": ""
+ },
+ {
+  "row_id": "11911",
+  "title": "Delayed creation of MTIR pairs",
+  "type": "A",
+  "page": "517",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.517)",
+  "eng": ""
+ },
+ {
+  "row_id": "11912",
+  "title": "Dense wavelength division multiplexing",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "11913",
+  "title": "Design limitations",
+  "type": "B",
+  "page": "83",
+  "naiyou": "Chapter 9. Cascading IBM FlashCopy. 9.2 Cascading FlashCopy concept and design. Before DS8000 Release 8.3, a volume could not be both the source and a target in a FlashCopy relationship at the same time. The same restriction applied to datasets in data set-level FlashCopy. Release 8.3 lifts this restriction and allows a volume or track to be both a source... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.83、原文ママ)",
+  "eng": "Chapter 9. Cascading IBM FlashCopy. 9.2 Cascading FlashCopy concept and design. Before DS8000 Release 8.3, a volume could not be both the source and a target in a FlashCopy relationship at the same time. The same restriction applied to datasets in data set-level FlashCopy. Release 8.3 lifts this restriction and allows a volume or track to be both a source..."
+ },
+ {
+  "row_id": "11914",
+  "title": "DFSMSdss copy commands with fast replication",
+  "type": "A",
+  "page": "53",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.53)",
+  "eng": ""
+ },
+ {
+  "row_id": "11915",
+  "title": "DFSMSdss dataset for FlashCopy",
+  "type": "B",
+  "page": "78",
+  "naiyou": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78、原文ママ)",
+  "eng": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ..."
+ },
+ {
+  "row_id": "11916",
+  "title": "DFSMSdss full volume FlashCopy",
+  "type": "B",
+  "page": "78",
+  "naiyou": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78、原文ママ)",
+  "eng": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ..."
+ },
+ {
+  "row_id": "11917",
+  "title": "DFSMShsm fast replication",
+  "type": "B",
+  "page": "128",
+  "naiyou": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.128、原文ママ)",
+  "eng": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash."
+ },
+ {
+  "row_id": "11918",
+  "title": "Disaster recovery test at the intermediate H2 site",
+  "type": "A",
+  "page": "454",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.454)",
+  "eng": ""
+ },
+ {
+  "row_id": "11919",
+  "title": "Disaster recovery test at the remote H3 site",
+  "type": "A",
+  "page": "462",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.462)",
+  "eng": ""
+ },
+ {
+  "row_id": "11920",
+  "title": "Displaying the Fibre Channel Connection Information Table",
+  "type": "A",
+  "page": "249",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.249)",
+  "eng": ""
+ },
+ {
+  "row_id": "11921",
+  "title": "Distance considerations",
+  "type": "B",
+  "page": "202",
+  "naiyou": "180 IBM DS8000 Copy Services. 18.2.3 Metro Mirror distance considerations. Distance is an important topic. The distance between the local and remote DS8000 systems affects the response time impact of the MM implementation. Unless a Request Price Quotation (RPQ) is approved, the maximum supported distance for MM is 300 km (186 mi). (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.202、原文ママ)",
+  "eng": "180 IBM DS8000 Copy Services. 18.2.3 Metro Mirror distance considerations. Distance is an important topic. The distance between the local and remote DS8000 systems affects the response time impact of the MM implementation. Unless a Request Price Quotation (RPQ) is approved, the maximum supported distance for MM is 300 km (186 mi)."
+ },
+ {
+  "row_id": "11922",
+  "title": "Distribution of the workload: Location of source and target volumes",
+  "type": "A",
+  "page": "108",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.108)",
+  "eng": ""
+ },
+ {
+  "row_id": "11923",
+  "title": "DS CLI command modes",
+  "type": "B",
+  "page": "45",
+  "naiyou": "Chapter 4. DS Command-line Interface. The DS Command-line Interface (DS CLI) provides a full-function command set that you can use to configure and manage the DS8000 storage system. The DS CLI communicates with the DS8000 storage system through the Hardware Management Console (HMC). You can use either the primary or the secondary HMC console. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.45、原文ママ)",
+  "eng": "Chapter 4. DS Command-line Interface. The DS Command-line Interface (DS CLI) provides a full-function command set that you can use to configure and manage the DS8000 storage system. The DS CLI communicates with the DS8000 storage system through the Hardware Management Console (HMC). You can use either the primary or the secondary HMC console."
+ },
+ {
+  "row_id": "11924",
+  "title": "DS CLI Copy Services command structure",
+  "type": "B",
+  "page": "45",
+  "naiyou": "Chapter 4. DS Command-line Interface. The DS Command-line Interface (DS CLI) provides a full-function command set that you can use to configure and manage the DS8000 storage system. The DS CLI communicates with the DS8000 storage system through the Hardware Management Console (HMC). You can use either the primary or the secondary HMC console. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.45、原文ママ)",
+  "eng": "Chapter 4. DS Command-line Interface. The DS Command-line Interface (DS CLI) provides a full-function command set that you can use to configure and manage the DS8000 storage system. The DS CLI communicates with the DS8000 storage system through the Hardware Management Console (HMC). You can use either the primary or the secondary HMC console."
+ },
+ {
+  "row_id": "11925",
+  "title": "DS CLI profile",
+  "type": "B",
+  "page": "46",
+  "naiyou": "4.2 User accounts. The DS CLI access is authenticated by using HMC user accounts. To manage Copy Services with the DS CLI, you need a user ID with the correct user role assigned. A user ID can be assigned to more than one user role. The following user roles are able to manage DS8000 Copy Services. admin (Administrator), op_storage (Physical Operator), op_... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.46、原文ママ)",
+  "eng": "4.2 User accounts. The DS CLI access is authenticated by using HMC user accounts. To manage Copy Services with the DS CLI, you need a user ID with the correct user role assigned. A user ID can be assigned to more than one user role. The following user roles are able to manage DS8000 Copy Services. admin (Administrator), op_storage (Physical Operator), op_..."
+ },
+ {
+  "row_id": "11926",
+  "title": "DS Command-line Interface",
+  "type": "B",
+  "page": "43",
+  "naiyou": "DS8000 Storage Management GUI is a web-based GUI that is installed on the Hardware Management Console (HMC). The DS8000 Storage Management GUI can be accessed from any network-attached system by using a supported web browser. DS Command-line Interface. The IBM DS Command-line Interface (DS CLI) provides a full-function set of commands to manage logical co... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.43、原文ママ)",
+  "eng": "DS8000 Storage Management GUI is a web-based GUI that is installed on the Hardware Management Console (HMC). The DS8000 Storage Management GUI can be accessed from any network-attached system by using a supported web browser. DS Command-line Interface. The IBM DS Command-line Interface (DS CLI) provides a full-function set of commands to manage logical co..."
+ },
+ {
+  "row_id": "11927",
+  "title": "DS8000 connectivity",
+  "type": "B",
+  "page": "368",
+  "naiyou": "346 IBM DS8000 Copy Services. Intermediate volume. Intermediate (I) volumes are used in certain MM and GM sessions that support an extra volume on the recovery site to test (practice) the recovery procedures on the host volumes of the DR site while replication continues to the intermediate volumes. Another benefit of having Intermediate volumes is to have... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.368、原文ママ)",
+  "eng": "346 IBM DS8000 Copy Services. Intermediate volume. Intermediate (I) volumes are used in certain MM and GM sessions that support an extra volume on the recovery site to test (practice) the recovery procedures on the host volumes of the DR site while replication continues to the intermediate volumes. Another benefit of having Intermediate volumes is to have..."
+ },
+ {
+  "row_id": "11928",
+  "title": "DS8000 specific information",
+  "type": "B",
+  "page": "368",
+  "naiyou": "346 IBM DS8000 Copy Services. Intermediate volume. Intermediate (I) volumes are used in certain MM and GM sessions that support an extra volume on the recovery site to test (practice) the recovery procedures on the host volumes of the DR site while replication continues to the intermediate volumes. Another benefit of having Intermediate volumes is to have... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.368、原文ママ)",
+  "eng": "346 IBM DS8000 Copy Services. Intermediate volume. Intermediate (I) volumes are used in certain MM and GM sessions that support an extra volume on the recovery site to test (practice) the recovery procedures on the host volumes of the DR site while replication continues to the intermediate volumes. Another benefit of having Intermediate volumes is to have..."
+ },
+ {
+  "row_id": "11929",
+  "title": "Effects of a failover on a path state",
+  "type": "A",
+  "page": "522",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.522)",
+  "eng": ""
+ },
+ {
+  "row_id": "11930",
+  "title": "Effects of a freeze on a path state",
+  "type": "A",
+  "page": "521",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.521)",
+  "eng": ""
+ },
+ {
+  "row_id": "11931",
+  "title": "Ending Global Mirror processing",
+  "type": "B",
+  "page": "306",
+  "naiyou": "22.3.4 Terminating FlashCopy pairs. Depending on your network environment, you can perform the FlashCopy commands to the local storage system through its in-band transmission to the remote storage system. In this case, run rmremoteflash. Alternatively, if you have connectivity to the remote system, then you can perform the rmflash command directly to the ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.306、原文ママ)",
+  "eng": "22.3.4 Terminating FlashCopy pairs. Depending on your network environment, you can perform the FlashCopy commands to the local storage system through its in-band transmission to the remote storage system. In this case, run rmremoteflash. Alternatively, if you have connectivity to the remote system, then you can perform the rmflash command directly to the ..."
+ },
+ {
+  "row_id": "11932",
+  "title": "Establishing a Global Mirror environment by using the DS CLI",
+  "type": "A",
+  "page": "294",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.294)",
+  "eng": ""
+ },
+ {
+  "row_id": "11933",
+  "title": "Establishing a PPRC pair",
+  "type": "B",
+  "page": "178",
+  "naiyou": "156 IBM DS8000 Copy Services. When establishing an MM or GC pair, the following options are available. No copy: This option causes the DS8000 to bypass the initial copy of data from the primary to the secondary. This option presumes that the volumes are already synchronized when the pair is established. Suspend after data synchronization (MM only): This o... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.178、原文ママ)",
+  "eng": "156 IBM DS8000 Copy Services. When establishing an MM or GC pair, the following options are available. No copy: This option causes the DS8000 to bypass the initial copy of data from the primary to the secondary. This option presumes that the volumes are already synchronized when the pair is established. Suspend after data synchronization (MM only): This o..."
+ },
+ {
+  "row_id": "11934",
+  "title": "Establishing a remote FlashCopy",
+  "type": "B",
+  "page": "128",
+  "naiyou": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.128、原文ママ)",
+  "eng": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash."
+ },
+ {
+  "row_id": "11935",
+  "title": "Establishing Global Copy from H3 to H2",
+  "type": "A",
+  "page": "437",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.437)",
+  "eng": ""
+ },
+ {
+  "row_id": "11936",
+  "title": "Establishing H1-H3 pairs",
+  "type": "B",
+  "page": "526",
+  "naiyou": "504 IBM DS8000 Copy Services. Example 37-1 shows an example of a DS CLI command that creates PPRC paths H1-H2 and then H1-H3. Similar commands are used to create the remaining PPRC paths. Example 37-1 Establishing PPRC paths H1-H2 and H1-H3. dscli> mkpprcpath -dev IBM.2107-75AAAAA -remotedev IBM.2107-75BBBBB -remotewwnn 50050BBBBBBBBBBB -srclss 50 -tgtlss... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.526、原文ママ)",
+  "eng": "504 IBM DS8000 Copy Services. Example 37-1 shows an example of a DS CLI command that creates PPRC paths H1-H2 and then H1-H3. Similar commands are used to create the remaining PPRC paths. Example 37-1 Establishing PPRC paths H1-H2 and H1-H3. dscli> mkpprcpath -dev IBM.2107-75AAAAA -remotedev IBM.2107-75BBBBB -remotewwnn 50050BBBBBBBBBBB -srclss 50 -tgtlss..."
+ },
+ {
+  "row_id": "11937",
+  "title": "Establishing logical PPRC paths",
+  "type": "B",
+  "page": "178",
+  "naiyou": "156 IBM DS8000 Copy Services. When establishing an MM or GC pair, the following options are available. No copy: This option causes the DS8000 to bypass the initial copy of data from the primary to the secondary. This option presumes that the volumes are already synchronized when the pair is established. Suspend after data synchronization (MM only): This o... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.178、原文ママ)",
+  "eng": "156 IBM DS8000 Copy Services. When establishing an MM or GC pair, the following options are available. No copy: This option causes the DS8000 to bypass the initial copy of data from the primary to the secondary. This option presumes that the volumes are already synchronized when the pair is established. Suspend after data synchronization (MM only): This o..."
+ },
+ {
+  "row_id": "11938",
+  "title": "Establishing PPRC paths",
+  "type": "B",
+  "page": "526",
+  "naiyou": "504 IBM DS8000 Copy Services. Example 37-1 shows an example of a DS CLI command that creates PPRC paths H1-H2 and then H1-H3. Similar commands are used to create the remaining PPRC paths. Example 37-1 Establishing PPRC paths H1-H2 and H1-H3. dscli> mkpprcpath -dev IBM.2107-75AAAAA -remotedev IBM.2107-75BBBBB -remotewwnn 50050BBBBBBBBBBB -srclss 50 -tgtlss... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.526、原文ママ)",
+  "eng": "504 IBM DS8000 Copy Services. Example 37-1 shows an example of a DS CLI command that creates PPRC paths H1-H2 and then H1-H3. Similar commands are used to create the remaining PPRC paths. Example 37-1 Establishing PPRC paths H1-H2 and H1-H3. dscli> mkpprcpath -dev IBM.2107-75AAAAA -remotedev IBM.2107-75BBBBB -remotewwnn 50050BBBBBBBBBBB -srclss 50 -tgtlss..."
+ },
+ {
+  "row_id": "11939",
+  "title": "Establishing Remote Pair FlashCopy",
+  "type": "B",
+  "page": "178",
+  "naiyou": "156 IBM DS8000 Copy Services. When establishing an MM or GC pair, the following options are available. No copy: This option causes the DS8000 to bypass the initial copy of data from the primary to the secondary. This option presumes that the volumes are already synchronized when the pair is established. Suspend after data synchronization (MM only): This o... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.178、原文ママ)",
+  "eng": "156 IBM DS8000 Copy Services. When establishing an MM or GC pair, the following options are available. No copy: This option causes the DS8000 to bypass the initial copy of data from the primary to the secondary. This option presumes that the volumes are already synchronized when the pair is established. Suspend after data synchronization (MM only): This o..."
+ },
+ {
+  "row_id": "11940",
+  "title": "Establishing the FlashCopy relationship",
+  "type": "B",
+  "page": "128",
+  "naiyou": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.128、原文ママ)",
+  "eng": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash."
+ },
+ {
+  "row_id": "11941",
+  "title": "Establishing the PPRC paths",
+  "type": "B",
+  "page": "170",
+  "naiyou": "148 IBM DS8000 Copy Services. 16.1 PPRC paths and links. Before a PPRC pair can be created, logical paths between the primary and secondary LSSs must be defined. A logical PPRC path is defined between a primary LSS and a secondary LSS that uses a physical link between the storage systems. Establishing the PPRC logical paths creates an LSS-to-LSS relations... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.170、原文ママ)",
+  "eng": "148 IBM DS8000 Copy Services. 16.1 PPRC paths and links. Before a PPRC pair can be created, logical paths between the primary and secondary LSSs must be defined. A logical PPRC path is defined between a primary LSS and a secondary LSS that uses a physical link between the storage systems. Establishing the PPRC logical paths creates an LSS-to-LSS relations..."
+ },
+ {
+  "row_id": "11942",
+  "title": "Examples of concurrent copy invocation",
+  "type": "A",
+  "page": "627",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.627)",
+  "eng": ""
+ },
+ {
+  "row_id": "11943",
+  "title": "Failing back Global Copy from the H3 to H2",
+  "type": "A",
+  "page": "485",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.485)",
+  "eng": ""
+ },
+ {
+  "row_id": "11944",
+  "title": "Failing back Metro Mirror from H1 to H2",
+  "type": "A",
+  "page": "440",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.440)",
+  "eng": ""
+ },
+ {
+  "row_id": "11945",
+  "title": "Failing back Metro Mirror from H2 to H1",
+  "type": "A",
+  "page": "439",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.439)",
+  "eng": ""
+ },
+ {
+  "row_id": "11946",
+  "title": "Failing over Metro Mirror to H2",
+  "type": "A",
+  "page": "436",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.436)",
+  "eng": ""
+ },
+ {
+  "row_id": "11947",
+  "title": "Failing over to H1",
+  "type": "B",
+  "page": "443",
+  "naiyou": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.443、原文ママ)",
+  "eng": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle..."
+ },
+ {
+  "row_id": "11948",
+  "title": "Failover or failback scenario",
+  "type": "B",
+  "page": "192",
+  "naiyou": "170 IBM DS8000 Copy Services. Freeze and unfreeze operations and ELB timeout considerations. The CG option by itself can keep data consistent at the remote site if all paths for all MM pairs (that you want to keep consistent) fail at the same time. To achieve this consistency, all logical paths must be defined by using the same physical paths, which might... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.192、原文ママ)",
+  "eng": "170 IBM DS8000 Copy Services. Freeze and unfreeze operations and ELB timeout considerations. The CG option by itself can keep data consistent at the remote site if all paths for all MM pairs (that you want to keep consistent) fail at the same time. To achieve this consistency, all logical paths must be defined by using the same physical paths, which might..."
+ },
+ {
+  "row_id": "11949",
+  "title": "Failure at remote H3 site",
+  "type": "B",
+  "page": "504",
+  "naiyou": "482 IBM DS8000 Copy Services. 35.1 Multi-Target Peer-to-Peer Remote Copy topologies. Figure 35-1 shows a typical diagram that is used for describing the different topologies and configurations throughout this book. In Figure 35-1, the different locations are identified by the labels H1, H2, and H3. Each of these labels refers to a site that typically has ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.504、原文ママ)",
+  "eng": "482 IBM DS8000 Copy Services. 35.1 Multi-Target Peer-to-Peer Remote Copy topologies. Figure 35-1 shows a typical diagram that is used for describing the different topologies and configurations throughout this book. In Figure 35-1, the different locations are identified by the labels H1, H2, and H3. Each of these labels refers to a site that typically has ..."
+ },
+ {
+  "row_id": "11950",
+  "title": "Failure at the intermediate H2 site",
+  "type": "A",
+  "page": "478",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.478)",
+  "eng": ""
+ },
+ {
+  "row_id": "11951",
+  "title": "Failure at the local H1 site",
+  "type": "A",
+  "page": "478",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.478)",
+  "eng": ""
+ },
+ {
+  "row_id": "11952",
+  "title": "Fast Reverse Restore",
+  "type": "B",
+  "page": "86",
+  "naiyou": "Cascading FlashCopy and Fast Reverse Restore. 9.4 Thin provisioning considerations. It is important to consider the implications of Cascading FlashCopy relationships when using extent space-efficient (ESE) volumes on the DS8000. Withdrawing the source relation in a cascading relationship that is created with the NOCOPY option results in a background copy ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.86、原文ママ)",
+  "eng": "Cascading FlashCopy and Fast Reverse Restore. 9.4 Thin provisioning considerations. It is important to consider the implications of Cascading FlashCopy relationships when using extent space-efficient (ESE) volumes on the DS8000. Withdrawing the source relation in a cascading relationship that is created with the NOCOPY option results in a background copy ..."
+ },
+ {
+  "row_id": "11953",
+  "title": "Features of Remote Pair FlashCopy",
+  "type": "A",
+  "page": "98",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.98)",
+  "eng": ""
+ },
+ {
+  "row_id": "11954",
+  "title": "Fibre Channel physical links and I/O port considerations",
+  "type": "A",
+  "page": "170",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.170)",
+  "eng": ""
+ },
+ {
+  "row_id": "11955",
+  "title": "Fibre Channel switches (FICON switches)",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "11956",
+  "title": "FlashCopy",
+  "type": "B",
+  "page": "27",
+  "naiyou": "1.1.3 Cascading FlashCopy. Starting with DS8000 Release 8.3, a volume can be both a source in one FlashCopy relationship and a target in a second FlashCopy relationship. This configuration is referred to as a cascading FlashCopy. 1.2 Business-continuity functions. The DS8000 provides a set of flexible data mirroring techniques that allow replication betwe... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.27、原文ママ)",
+  "eng": "1.1.3 Cascading FlashCopy. Starting with DS8000 Release 8.3, a volume can be both a source in one FlashCopy relationship and a target in a second FlashCopy relationship. This configuration is referred to as a cascading FlashCopy. 1.2 Business-continuity functions. The DS8000 provides a set of flexible data mirroring techniques that allow replication betwe..."
+ },
+ {
+  "row_id": "11957",
+  "title": "FlashCopy and Global Mirror",
+  "type": "B",
+  "page": "94",
+  "naiyou": "72 IBM DS8000 Copy Services: Updated for IBM DS8000 Release 10.1. FlashCopy to Metro Mirror and Global Copy without Preserve Mirror. Figure 10-3 displays the following sequence of events that occur during a FlashCopy to an MM (or GC) primary device. Step 1. Two MM pairs are FULL DUPLEX and there is data that is on Local A and Remote A (because they are id... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.94、原文ママ)",
+  "eng": "72 IBM DS8000 Copy Services: Updated for IBM DS8000 Release 10.1. FlashCopy to Metro Mirror and Global Copy without Preserve Mirror. Figure 10-3 displays the following sequence of events that occur during a FlashCopy to an MM (or GC) primary device. Step 1. Two MM pairs are FULL DUPLEX and there is data that is on Local A and Remote A (because they are id..."
+ },
+ {
+  "row_id": "11958",
+  "title": "FlashCopy before the cascading capability",
+  "type": "A",
+  "page": "82",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.82)",
+  "eng": ""
+ },
+ {
+  "row_id": "11959",
+  "title": "FlashCopy command interface reference",
+  "type": "B",
+  "page": "78",
+  "naiyou": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78、原文ママ)",
+  "eng": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ..."
+ },
+ {
+  "row_id": "11960",
+  "title": "FlashCopy considerations for Metro/Global Mirror and MT-PPRC",
+  "type": "A",
+  "page": "104",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.104)",
+  "eng": ""
+ },
+ {
+  "row_id": "11961",
+  "title": "FlashCopy control with the interfaces",
+  "type": "A",
+  "page": "78",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78)",
+  "eng": ""
+ },
+ {
+  "row_id": "11962",
+  "title": "FlashCopy establish performance",
+  "type": "B",
+  "page": "110",
+  "naiyou": "88 IBM DS8000 Copy Services. 11.1.2 Logical subsystem and logical control unit versus rank: Considerations. With the DS8000, it is more meaningful to describe volume location in terms of ranks and not in terms of a logical subsystems (LSSs) or logical control unit (LCU). The LSS or LCU in a DS8000 storage system is a logical construct that is not tied to ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.110、原文ママ)",
+  "eng": "88 IBM DS8000 Copy Services. 11.1.2 Logical subsystem and logical control unit versus rank: Considerations. With the DS8000, it is more meaningful to describe volume location in terms of ranks and not in terms of a logical subsystems (LSSs) or logical control unit (LCU). The LSS or LCU in a DS8000 storage system is a logical construct that is not tied to ..."
+ },
+ {
+  "row_id": "11963",
+  "title": "FlashCopy for z/OS datasets",
+  "type": "B",
+  "page": "70",
+  "naiyou": "The Incremental FlashCopy function is meant to be used with background copy. In z/OS, TSO, ANTRQST, and ANTTREXX do not allow nocopy with the incremental option. DS8000 FlashCopy has two types of CR mechanisms for Incremental FlashCopy. Type 1 incremental is required in the Global Mirror (GM) environment and only one target from a source can be type 1 inc... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.70、原文ママ)",
+  "eng": "The Incremental FlashCopy function is meant to be used with background copy. In z/OS, TSO, ANTRQST, and ANTTREXX do not allow nocopy with the incremental option. DS8000 FlashCopy has two types of CR mechanisms for Incremental FlashCopy. Type 1 incremental is required in the Global Mirror (GM) environment and only one target from a source can be type 1 inc..."
+ },
+ {
+  "row_id": "11964",
+  "title": "FlashCopy full copy",
+  "type": "B",
+  "page": "116",
+  "naiyou": "94 IBM DS8000 Copy Services. In general, nocopy is the preferred method, but you should also think about the following considerations when you choose either copy or nocopy. Using nocopy: The argument here is that the impact caused by the I/O resulting from the copy option is more significant than the impact of the nocopy option, where less I/O activity re... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.116、原文ママ)",
+  "eng": "94 IBM DS8000 Copy Services. In general, nocopy is the preferred method, but you should also think about the following considerations when you choose either copy or nocopy. Using nocopy: The argument here is that the impact caused by the I/O resulting from the copy option is more significant than the impact of the nocopy option, where less I/O activity re..."
+ },
+ {
+  "row_id": "11965",
+  "title": "FlashCopy impact on applications",
+  "type": "B",
+  "page": "108",
+  "naiyou": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.108、原文ママ)",
+  "eng": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ..."
+ },
+ {
+  "row_id": "11966",
+  "title": "FlashCopy in z/OS by using DFSMSdss",
+  "type": "A",
+  "page": "78",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78)",
+  "eng": ""
+ },
+ {
+  "row_id": "11967",
+  "title": "FlashCopy management interfaces: Overview",
+  "type": "B",
+  "page": "78",
+  "naiyou": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78、原文ママ)",
+  "eng": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ..."
+ },
+ {
+  "row_id": "11968",
+  "title": "FlashCopy nocopy",
+  "type": "B",
+  "page": "108",
+  "naiyou": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.108、原文ママ)",
+  "eng": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ..."
+ },
+ {
+  "row_id": "11969",
+  "title": "FlashCopy operational environments",
+  "type": "B",
+  "page": "62",
+  "naiyou": "40 IBM DS8000 Copy Services. 6.3 Basic concepts. Issuing a FlashCopy Establish results in a relationship being created between the specified source volume or tracks and the specified target volume or tracks. This relationship is what is referred to as a FlashCopy relationship. As a result of the FlashCopy, all physical blocks (Fixed Block (FB)) or tracks ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.62、原文ママ)",
+  "eng": "40 IBM DS8000 Copy Services. 6.3 Basic concepts. Issuing a FlashCopy Establish results in a relationship being created between the specified source volume or tracks and the specified target volume or tracks. This relationship is what is referred to as a FlashCopy relationship. As a result of the FlashCopy, all physical blocks (Fixed Block (FB)) or tracks ..."
+ },
+ {
+  "row_id": "11970",
+  "title": "FlashCopy performance overview",
+  "type": "B",
+  "page": "108",
+  "naiyou": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.108、原文ママ)",
+  "eng": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ..."
+ },
+ {
+  "row_id": "11971",
+  "title": "FlashCopy scenarios",
+  "type": "B",
+  "page": "116",
+  "naiyou": "94 IBM DS8000 Copy Services. In general, nocopy is the preferred method, but you should also think about the following considerations when you choose either copy or nocopy. Using nocopy: The argument here is that the impact caused by the I/O resulting from the copy option is more significant than the impact of the nocopy option, where less I/O activity re... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.116、原文ママ)",
+  "eng": "94 IBM DS8000 Copy Services. In general, nocopy is the preferred method, but you should also think about the following considerations when you choose either copy or nocopy. Using nocopy: The argument here is that the impact caused by the I/O resulting from the copy option is more significant than the impact of the nocopy option, where less I/O activity re..."
+ },
+ {
+  "row_id": "11972",
+  "title": "FlashCopy with Metro Mirror and Global Copy",
+  "type": "A",
+  "page": "92",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.92)",
+  "eng": ""
+ },
+ {
+  "row_id": "11973",
+  "title": "FlashCopy with other Copy Services",
+  "type": "A",
+  "page": "92",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.92)",
+  "eng": ""
+ },
+ {
+  "row_id": "11974",
+  "title": "FlashCopy Withdraw interface differences",
+  "type": "B",
+  "page": "104",
+  "naiyou": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.104、原文ママ)",
+  "eng": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr..."
+ },
+ {
+  "row_id": "11975",
+  "title": "Forcing FlashCopy Withdraw",
+  "type": "B",
+  "page": "104",
+  "naiyou": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.104、原文ママ)",
+  "eng": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr..."
+ },
+ {
+  "row_id": "11976",
+  "title": "Free Journal Space",
+  "type": "B",
+  "page": "428",
+  "naiyou": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.428、原文ママ)",
+  "eng": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each..."
+ },
+ {
+  "row_id": "11977",
+  "title": "Freeze",
+  "type": "B",
+  "page": "190",
+  "naiyou": "168 IBM DS8000 Copy Services. At the time that the first copy operation fails, the management software can react to that event within the ELB timeout. The CG aware management application (for example, IBM GDPS or IBM CSM) must ensure data consistency on the AUX storage system within the ELB timeout window by issuing a freeze to all volumes that belong to ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.190、原文ママ)",
+  "eng": "168 IBM DS8000 Copy Services. At the time that the first copy operation fails, the management software can react to that event within the ELB timeout. The CG aware management application (for example, IBM GDPS or IBM CSM) must ensure data consistency on the AUX storage system within the ELB timeout window by issuing a freeze to all volumes that belong to ..."
+ },
+ {
+  "row_id": "11978",
+  "title": "Full volume FlashCopy",
+  "type": "B",
+  "page": "68",
+  "naiyou": "46 IBM DS8000 Copy Services. 7.1 Full volume FlashCopy. A full volume FlashCopy can also be accomplished by specifying a source volume and a target volume and a range of tracks in z/OS that span all source volumes (00000000 - xxxxxxxx, where xxxxxxxx is the last address on the source volume). Again, if the target volume is the same size or larger than the... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.68、原文ママ)",
+  "eng": "46 IBM DS8000 Copy Services. 7.1 Full volume FlashCopy. A full volume FlashCopy can also be accomplished by specifying a source volume and a target volume and a range of tracks in z/OS that span all source volumes (00000000 - xxxxxxxx, where xxxxxxxx is the last address on the source volume). Again, if the target volume is the same size or larger than the..."
+ },
+ {
+  "row_id": "11979",
+  "title": "Functional description",
+  "type": "B",
+  "page": "504",
+  "naiyou": "482 IBM DS8000 Copy Services. 35.1 Multi-Target Peer-to-Peer Remote Copy topologies. Figure 35-1 shows a typical diagram that is used for describing the different topologies and configurations throughout this book. In Figure 35-1, the different locations are identified by the labels H1, H2, and H3. Each of these labels refers to a site that typically has ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.504、原文ママ)",
+  "eng": "482 IBM DS8000 Copy Services. 35.1 Multi-Target Peer-to-Peer Remote Copy topologies. Figure 35-1 shows a typical diagram that is used for describing the different topologies and configurations throughout this book. In Figure 35-1, the different locations are identified by the labels H1, H2, and H3. Each of these labels refers to a site that typically has ..."
+ },
+ {
+  "row_id": "11980",
+  "title": "GDPS 3-site solution overview",
+  "type": "B",
+  "page": "355",
+  "naiyou": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.355、原文ママ)",
+  "eng": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition."
+ },
+ {
+  "row_id": "11981",
+  "title": "GDPS 4-site solution overview",
+  "type": "B",
+  "page": "355",
+  "naiyou": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.355、原文ママ)",
+  "eng": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition."
+ },
+ {
+  "row_id": "11982",
+  "title": "GDPS 6-site solution overview",
+  "type": "B",
+  "page": "360",
+  "naiyou": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.360、原文ママ)",
+  "eng": "25.1 Copy Services Manager overview. This chapter provides an overview of the CSM functions and describes how it integrates with the DS8000 Copy Services. For more information, see IBM Documentation. The IBM CSM product family consists of the following products. CSM, Copy Services Manager for IBM Z, Copy Services Manager Basic Edition for IBM Z."
+ },
+ {
+  "row_id": "11983",
+  "title": "GDPS Global - GM overview",
+  "type": "B",
+  "page": "355",
+  "naiyou": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.355、原文ママ)",
+  "eng": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition."
+ },
+ {
+  "row_id": "11984",
+  "title": "GDPS Logical Corruption Protection Manager",
+  "type": "B",
+  "page": "356",
+  "naiyou": "GDPS Logical Corruption Protection offers enhanced security and protection for LCP copies compared to traditional copy methods. This enhancement is achieved by minimizing host access to the volumes and enforcing specific roles and rules for their management. The GDPS Logical Corruption Protection Manager is a separate product that is available for use wit... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.356、原文ママ)",
+  "eng": "GDPS Logical Corruption Protection offers enhanced security and protection for LCP copies compared to traditional copy methods. This enhancement is achieved by minimizing host access to the volumes and enforcing specific roles and rules for their management. The GDPS Logical Corruption Protection Manager is a separate product that is available for use wit..."
+ },
+ {
+  "row_id": "11985",
+  "title": "GDPS Metro and Metro HyperSwap",
+  "type": "A",
+  "page": "355",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.355)",
+  "eng": ""
+ },
+ {
+  "row_id": "11986",
+  "title": "GDPS Metro overview",
+  "type": "B",
+  "page": "355",
+  "naiyou": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.355、原文ママ)",
+  "eng": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition."
+ },
+ {
+  "row_id": "11987",
+  "title": "GDPS offerings",
+  "type": "B",
+  "page": "351",
+  "naiyou": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.351、原文ママ)",
+  "eng": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is..."
+ },
+ {
+  "row_id": "11988",
+  "title": "GDPS Virtual Appliance overview",
+  "type": "B",
+  "page": "355",
+  "naiyou": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.355、原文ママ)",
+  "eng": "24.1.4 GDPS Virtual Appliance overview. Not all customers run IBM Z platforms with z/OS. GDPS Virtual Appliance provides the required levels of automation for planned and unplanned outages for users that run only Linux on IBM Z or IBM z/VM. GDPS Virtual Appliance is a self-contained system that runs in a separate logical partition."
+ },
+ {
+  "row_id": "11989",
+  "title": "General considerations",
+  "type": "B",
+  "page": "589",
+  "naiyou": "Chapter 42. Using Multi-Target Peer-to-Peer Remote Copy for migration. This chapter demonstrates how to use Multi-Target Peer-to-Peer Remote Copy (MT-PPRC) for data migration between DS8000 storage systems within an existing Peer-to-Peer Remote Copy (PPRC) environment. It presents scenarios to give a detailed description for replacing a Metro Mirror (MM) ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.589、原文ママ)",
+  "eng": "Chapter 42. Using Multi-Target Peer-to-Peer Remote Copy for migration. This chapter demonstrates how to use Multi-Target Peer-to-Peer Remote Copy (MT-PPRC) for data migration between DS8000 storage systems within an existing Peer-to-Peer Remote Copy (PPRC) environment. It presents scenarios to give a detailed description for replacing a Metro Mirror (MM) ..."
+ },
+ {
+  "row_id": "11990",
+  "title": "General considerations for storage failover",
+  "type": "A",
+  "page": "424",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.424)",
+  "eng": ""
+ },
+ {
+  "row_id": "11991",
+  "title": "Global Copy",
+  "type": "B",
+  "page": "94",
+  "naiyou": "72 IBM DS8000 Copy Services: Updated for IBM DS8000 Release 10.1. FlashCopy to Metro Mirror and Global Copy without Preserve Mirror. Figure 10-3 displays the following sequence of events that occur during a FlashCopy to an MM (or GC) primary device. Step 1. Two MM pairs are FULL DUPLEX and there is data that is on Local A and Remote A (because they are id... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.94、原文ママ)",
+  "eng": "72 IBM DS8000 Copy Services: Updated for IBM DS8000 Release 10.1. FlashCopy to Metro Mirror and Global Copy without Preserve Mirror. Figure 10-3 displays the following sequence of events that occur during a FlashCopy to an MM (or GC) primary device. Step 1. Two MM pairs are FULL DUPLEX and there is data that is on Local A and Remote A (because they are id..."
+ },
+ {
+  "row_id": "11992",
+  "title": "Global Copy bandwidth considerations",
+  "type": "B",
+  "page": "200",
+  "naiyou": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.200、原文ママ)",
+  "eng": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations."
+ },
+ {
+  "row_id": "11993",
+  "title": "Global Copy overview",
+  "type": "B",
+  "page": "167",
+  "naiyou": "Chapter 15. Global Copy overview. All data that is written to the primary DS8000 is transferred to the secondary DS8000, but not necessarily in the same order that it was written to the primary. This means that data on the secondary is not time-consistent. Making use the data on the secondary volume requires using some technique to help ensure consistency. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.167、原文ママ)",
+  "eng": "Chapter 15. Global Copy overview. All data that is written to the primary DS8000 is transferred to the secondary DS8000, but not necessarily in the same order that it was written to the primary. This means that data on the secondary is not time-consistent. Making use the data on the secondary volume requires using some technique to help ensure consistency."
+ },
+ {
+  "row_id": "11994",
+  "title": "Global Copy plus Global Mirror",
+  "type": "B",
+  "page": "510",
+  "naiyou": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.510、原文ママ)",
+  "eng": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove..."
+ },
+ {
+  "row_id": "11995",
+  "title": "Global Copy point-in-time backup solution considerations",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "11996",
+  "title": "Global Copy positioning",
+  "type": "B",
+  "page": "167",
+  "naiyou": "Chapter 15. Global Copy overview. All data that is written to the primary DS8000 is transferred to the secondary DS8000, but not necessarily in the same order that it was written to the primary. This means that data on the secondary is not time-consistent. Making use the data on the secondary volume requires using some technique to help ensure consistency. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.167、原文ママ)",
+  "eng": "Chapter 15. Global Copy overview. All data that is written to the primary DS8000 is transferred to the secondary DS8000, but not necessarily in the same order that it was written to the primary. This means that data on the secondary is not time-consistent. Making use the data on the secondary volume requires using some technique to help ensure consistency."
+ },
+ {
+  "row_id": "11997",
+  "title": "Global Mirror",
+  "type": "B",
+  "page": "44",
+  "naiyou": "22 IBM DS8000 Copy Services. IBM CSM. IBM CSM controls Copy Services in storage environments. CSM provides both a GUI and CLI that you can use for configuring and managing Copy Services functions across storage units. Copy Services include the point-in-time (PiT) function (IBM FlashCopy and SGC, and the Remote Mirror And Copy (RMC) functions), MM, GM, and... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.44、原文ママ)",
+  "eng": "22 IBM DS8000 Copy Services. IBM CSM. IBM CSM controls Copy Services in storage environments. CSM provides both a GUI and CLI that you can use for configuring and managing Copy Services functions across storage units. Copy Services include the point-in-time (PiT) function (IBM FlashCopy and SGC, and the Remote Mirror And Copy (RMC) functions), MM, GM, and..."
+ },
+ {
+  "row_id": "11998",
+  "title": "Global Mirror Bandwidth Accelerator",
+  "type": "B",
+  "page": "346",
+  "naiyou": "324 IBM DS8000 Copy Services. 23.1 Global Mirror Bandwidth Accelerator. Many customers use DS8000 Copy Services over long distances, including transatlantic or other continent-spanning links. When optimizing replication throughput, the algorithms that run on DS8000 Fixed Block (FB) ports must accommodate a wide range of configurations, from systems meters... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.346、原文ママ)",
+  "eng": "324 IBM DS8000 Copy Services. 23.1 Global Mirror Bandwidth Accelerator. Many customers use DS8000 Copy Services over long distances, including transatlantic or other continent-spanning links. When optimizing replication throughput, the algorithms that run on DS8000 Fixed Block (FB) ports must accommodate a wide range of configurations, from systems meters..."
+ },
+ {
+  "row_id": "11999",
+  "title": "Global Mirror basic concepts",
+  "type": "B",
+  "page": "259",
+  "naiyou": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.259、原文ママ)",
+  "eng": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead."
+ },
+ {
+  "row_id": "12000",
+  "title": "Global Mirror command reference",
+  "type": "B",
+  "page": "296",
+  "naiyou": "round copy. Data is copied from the source volume to the target volume only if a track on the source volume is modified. -persist: Keeps the FlashCopy relationship until it is explicitly or implicitly terminated. Depending on your network environment, you can issue the FlashCopy command to the local DS8000#1 through its in-band transmission to the remote ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.296、原文ママ)",
+  "eng": "round copy. Data is copied from the source volume to the target volume only if a track on the source volume is modified. -persist: Keeps the FlashCopy relationship until it is explicitly or implicitly terminated. Depending on your network environment, you can issue the FlashCopy command to the local DS8000#1 through its in-band transmission to the remote ..."
+ },
+ {
+  "row_id": "12001",
+  "title": "Global Mirror configuration and multiple FlashCopy targets",
+  "type": "A",
+  "page": "131",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.131)",
+  "eng": ""
+ },
+ {
+  "row_id": "12002",
+  "title": "Global Mirror consistency group processing",
+  "type": "B",
+  "page": "338",
+  "naiyou": "22.7.12 Resuming Global Mirror. Now, you can resume GM by running resumegmir. You can verify the result by running showgmir. For a detailed description and considerations, see 22.4.1 Pausing and resuming Global Mirror consistency group formation on page 285. In our example, the first showgmir output shows Running in the Copy State field, but the CG format... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.338、原文ママ)",
+  "eng": "22.7.12 Resuming Global Mirror. Now, you can resume GM by running resumegmir. You can verify the result by running showgmir. For a detailed description and considerations, see 22.4.1 Pausing and resuming Global Mirror consistency group formation on page 285. In our example, the first showgmir output shows Running in the Copy State field, but the CG format..."
+ },
+ {
+  "row_id": "12003",
+  "title": "Global Mirror environment topology changes",
+  "type": "B",
+  "page": "282",
+  "naiyou": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.282、原文ママ)",
+  "eng": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf..."
+ },
+ {
+  "row_id": "12004",
+  "title": "Global Mirror interface overview",
+  "type": "B",
+  "page": "339",
+  "naiyou": "Chapter 22. Global Mirror interfaces and examples. 22.8 Querying Global Mirror session information with IBM Z TSO or ICKDSF interfaces. For z/OS, TSO and ICKDSF offer interfaces to control the GM environment. The TSO and ICKDSF commands communicate with the DS8000 through a device number or volume that is specified on the command. IP connectivity is not r... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.339、原文ママ)",
+  "eng": "Chapter 22. Global Mirror interfaces and examples. 22.8 Querying Global Mirror session information with IBM Z TSO or ICKDSF interfaces. For z/OS, TSO and ICKDSF offer interfaces to control the GM environment. The TSO and ICKDSF commands communicate with the DS8000 through a device number or volume that is specified on the command. IP connectivity is not r..."
+ },
+ {
+  "row_id": "12005",
+  "title": "Global Mirror interfaces and examples",
+  "type": "A",
+  "page": "289",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.289)",
+  "eng": ""
+ },
+ {
+  "row_id": "12006",
+  "title": "Global Mirror master subordinate relationship",
+  "type": "B",
+  "page": "259",
+  "naiyou": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.259、原文ママ)",
+  "eng": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead."
+ },
+ {
+  "row_id": "12007",
+  "title": "Global Mirror operations and recovery",
+  "type": "A",
+  "page": "271",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.271)",
+  "eng": ""
+ },
+ {
+  "row_id": "12008",
+  "title": "Global Mirror overview",
+  "type": "B",
+  "page": "259",
+  "naiyou": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.259、原文ママ)",
+  "eng": "z/OS Global Mirror (zGM): zGM is no longer supported in DS8000 environments starting with Release 9.x and later. Use GM for asynchronous replication instead."
+ },
+ {
+  "row_id": "12009",
+  "title": "Global Mirror recovery",
+  "type": "B",
+  "page": "282",
+  "naiyou": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.282、原文ママ)",
+  "eng": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf..."
+ },
+ {
+  "row_id": "12010",
+  "title": "Global Mirror with multiple storage systems",
+  "type": "A",
+  "page": "274",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.274)",
+  "eng": ""
+ },
+ {
+  "row_id": "12011",
+  "title": "GM general recovery scenario",
+  "type": "B",
+  "page": "282",
+  "naiyou": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.282、原文ママ)",
+  "eng": "260 IBM DS8000 Copy Services. Figure 21-10 illustrates the entire process. To take a consistent copy of data at the DR site, the GM session must be paused. There is an option on the GM pause function that helps ensure that, when the GM is paused, that it is on a CG boundary and the GC pairs are suspended so that the I2 volumes remain consistent while perf..."
+ },
+ {
+  "row_id": "12012",
+  "title": "H1 recovered",
+  "type": "B",
+  "page": "526",
+  "naiyou": "504 IBM DS8000 Copy Services. Example 37-1 shows an example of a DS CLI command that creates PPRC paths H1-H2 and then H1-H3. Similar commands are used to create the remaining PPRC paths. Example 37-1 Establishing PPRC paths H1-H2 and H1-H3. dscli> mkpprcpath -dev IBM.2107-75AAAAA -remotedev IBM.2107-75BBBBB -remotewwnn 50050BBBBBBBBBBB -srclss 50 -tgtlss... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.526、原文ママ)",
+  "eng": "504 IBM DS8000 Copy Services. Example 37-1 shows an example of a DS CLI command that creates PPRC paths H1-H2 and then H1-H3. Similar commands are used to create the remaining PPRC paths. Example 37-1 Establishing PPRC paths H1-H2 and H1-H3. dscli> mkpprcpath -dev IBM.2107-75AAAAA -remotedev IBM.2107-75BBBBB -remotewwnn 50050BBBBBBBBBBB -srclss 50 -tgtlss..."
+ },
+ {
+  "row_id": "12013",
+  "title": "H1 recovery and returning to original topology",
+  "type": "A",
+  "page": "577",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.577)",
+  "eng": ""
+ },
+ {
+  "row_id": "12014",
+  "title": "Hardware requirements",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "12015",
+  "title": "Help from IBM",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "12016",
+  "title": "Host connectivity at primary and secondary sites",
+  "type": "A",
+  "page": "279",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.279)",
+  "eng": ""
+ },
+ {
+  "row_id": "12017",
+  "title": "IBM Copy Services interfaces overview",
+  "type": "B",
+  "page": "40",
+  "naiyou": "18 IBM DS8000 Copy Services. 3.1 Operating system interfaces summary tables. Table 3-1 summarizes the command interfaces that are supported by various operating systems. Table 3-2 Copy Services command interfaces reference. DFSMSdss, TSO, ANTTREXX Command, ANTRQST API, ICKDSF, IBM z/VM CP Native. When operating as a guest under a virtual machine (VM). (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.40、原文ママ)",
+  "eng": "18 IBM DS8000 Copy Services. 3.1 Operating system interfaces summary tables. Table 3-1 summarizes the command interfaces that are supported by various operating systems. Table 3-2 Copy Services command interfaces reference. DFSMSdss, TSO, ANTTREXX Command, ANTRQST API, ICKDSF, IBM z/VM CP Native. When operating as a guest under a virtual machine (VM)."
+ },
+ {
+  "row_id": "12018",
+  "title": "IBM Copy Services Manager",
+  "type": "B",
+  "page": "104",
+  "naiyou": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.104、原文ママ)",
+  "eng": "the production environment. The GDPS FlashCopy support to reverse a FlashCopy onto the production environment today does not support FlashCopy onto GM. If other software products check the GM status before you run a FlashCopy, then these products might require changes. Considerations for FlashCopy onto Global Mirror. When planning for FlashCopy onto GM pr..."
+ },
+ {
+  "row_id": "12019",
+  "title": "IBM FlashCopy",
+  "type": "B",
+  "page": "44",
+  "naiyou": "22 IBM DS8000 Copy Services. IBM CSM. IBM CSM controls Copy Services in storage environments. CSM provides both a GUI and CLI that you can use for configuring and managing Copy Services functions across storage units. Copy Services include the point-in-time (PiT) function (IBM FlashCopy and SGC, and the Remote Mirror And Copy (RMC) functions), MM, GM, and... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.44、原文ママ)",
+  "eng": "22 IBM DS8000 Copy Services. IBM CSM. IBM CSM controls Copy Services in storage environments. CSM provides both a GUI and CLI that you can use for configuring and managing Copy Services functions across storage units. Copy Services include the point-in-time (PiT) function (IBM FlashCopy and SGC, and the Remote Mirror And Copy (RMC) functions), MM, GM, and..."
+ },
+ {
+  "row_id": "12020",
+  "title": "IBM FlashCopy examples",
+  "type": "B",
+  "page": "128",
+  "naiyou": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.128、原文ママ)",
+  "eng": "106 IBM DS8000 Copy Services. After the initial FlashCopy, the incremental copies can be done. Example 12-8 Creating an Incremental FlashCopy. #=== Part 2: Resynch FlashCopy relationship. resyncflash -record -persist -tgtinhibit -seqnum 01 6100:6101. lsflash -l 6100. The reverse of the FlashCopy is done by running reverseflash."
+ },
+ {
+  "row_id": "12021",
+  "title": "IBM FlashCopy interfaces",
+  "type": "B",
+  "page": "78",
+  "naiyou": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.78、原文ママ)",
+  "eng": "56 IBM DS8000 Copy Services. 8.3 FlashCopy control with the interfaces. Independently of the interface that is used, when you manage FlashCopy, the following basic sequence takes place. 1. FlashCopy is initiated through an interface. The initialization process of a FlashCopy relationship is fast. At the end of this process, FlashCopy is established based ..."
+ },
+ {
+  "row_id": "12022",
+  "title": "IBM FlashCopy options",
+  "type": "B",
+  "page": "68",
+  "naiyou": "46 IBM DS8000 Copy Services. 7.1 Full volume FlashCopy. A full volume FlashCopy can also be accomplished by specifying a source volume and a target volume and a range of tracks in z/OS that span all source volumes (00000000 - xxxxxxxx, where xxxxxxxx is the last address on the source volume). Again, if the target volume is the same size or larger than the... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.68、原文ママ)",
+  "eng": "46 IBM DS8000 Copy Services. 7.1 Full volume FlashCopy. A full volume FlashCopy can also be accomplished by specifying a source volume and a target volume and a range of tracks in z/OS that span all source volumes (00000000 - xxxxxxxx, where xxxxxxxx is the last address on the source volume). Again, if the target volume is the same size or larger than the..."
+ },
+ {
+  "row_id": "12023",
+  "title": "IBM FlashCopy overview",
+  "type": "B",
+  "page": "68",
+  "naiyou": "46 IBM DS8000 Copy Services. 7.1 Full volume FlashCopy. A full volume FlashCopy can also be accomplished by specifying a source volume and a target volume and a range of tracks in z/OS that span all source volumes (00000000 - xxxxxxxx, where xxxxxxxx is the last address on the source volume). Again, if the target volume is the same size or larger than the... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.68、原文ママ)",
+  "eng": "46 IBM DS8000 Copy Services. 7.1 Full volume FlashCopy. A full volume FlashCopy can also be accomplished by specifying a source volume and a target volume and a range of tracks in z/OS that span all source volumes (00000000 - xxxxxxxx, where xxxxxxxx is the last address on the source volume). Again, if the target volume is the same size or larger than the..."
+ },
+ {
+  "row_id": "12024",
+  "title": "IBM FlashCopy performance",
+  "type": "B",
+  "page": "108",
+  "naiyou": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.108、原文ママ)",
+  "eng": "11.1 FlashCopy performance overview. Many parameters can affect the performance of FlashCopy operations. It is important to review the data processing requirements and select the correct FlashCopy options. This chapter examines when to use copy versus nocopy mode and where to place the FlashCopy source and target volumes or LUNs. This chapter also describ..."
+ },
+ {
+  "row_id": "12025",
+  "title": "IBM FlashCopy usage with IBM z/OS products",
+  "type": "A",
+  "page": "153",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.153)",
+  "eng": ""
+ },
+ {
+  "row_id": "12026",
+  "title": "IBM Geographically Dispersed Parallel Sysplex",
+  "type": "B",
+  "page": "351",
+  "naiyou": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.351、原文ママ)",
+  "eng": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is..."
+ },
+ {
+  "row_id": "12027",
+  "title": "IBM Redbooks",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "12028",
+  "title": "IBM Z command alternatives",
+  "type": "B",
+  "page": "49",
+  "naiyou": "Chapter 5. IBM Z interfaces. Although the DS CLI can be used for devices that are attached to a IBM Z operating system, there are also operating system-specific interfaces available. This chapter describes the IBM Z interfaces available to manage DS8000 Copy Services functions. All of these interfaces have the advantage that you do not have to run their c... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.49、原文ママ)",
+  "eng": "Chapter 5. IBM Z interfaces. Although the DS CLI can be used for devices that are attached to a IBM Z operating system, there are also operating system-specific interfaces available. This chapter describes the IBM Z interfaces available to manage DS8000 Copy Services functions. All of these interfaces have the advantage that you do not have to run their c..."
+ },
+ {
+  "row_id": "12029",
+  "title": "IBM Z interfaces",
+  "type": "B",
+  "page": "49",
+  "naiyou": "Chapter 5. IBM Z interfaces. Although the DS CLI can be used for devices that are attached to a IBM Z operating system, there are also operating system-specific interfaces available. This chapter describes the IBM Z interfaces available to manage DS8000 Copy Services functions. All of these interfaces have the advantage that you do not have to run their c... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.49、原文ママ)",
+  "eng": "Chapter 5. IBM Z interfaces. Although the DS CLI can be used for devices that are attached to a IBM Z operating system, there are also operating system-specific interfaces available. This chapter describes the IBM Z interfaces available to manage DS8000 Copy Services functions. All of these interfaces have the advantage that you do not have to run their c..."
+ },
+ {
+  "row_id": "12030",
+  "title": "IBM z/OS concurrent copy function",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "12031",
+  "title": "IBM z/OS HyperSwap",
+  "type": "B",
+  "page": "381",
+  "naiyou": "Chapter 26. IBM z/OS HyperSwap. DS8000 Release 9.1 or later is required. A new hold-reserve timer value must be configured on the DS8000. IBM Remote Technical Support can customize this setting only through internal configuration options. All systems in all sharing sysplexes must have APAR OA57049 applied or be running z/OS 2.4 or later. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.381、原文ママ)",
+  "eng": "Chapter 26. IBM z/OS HyperSwap. DS8000 Release 9.1 or later is required. A new hold-reserve timer value must be configured on the DS8000. IBM Remote Technical Support can customize this setting only through internal configuration options. All systems in all sharing sysplexes must have APAR OA57049 applied or be running z/OS 2.4 or later."
+ },
+ {
+  "row_id": "12032",
+  "title": "ICKDSF commands for z/OS, z/VM, and VSEn",
+  "type": "A",
+  "page": "52",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.52)",
+  "eng": ""
+ },
+ {
+  "row_id": "12033",
+  "title": "ICKDSF query command for FlashCopy",
+  "type": "A",
+  "page": "150",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.150)",
+  "eng": ""
+ },
+ {
+  "row_id": "12034",
+  "title": "Implementing a Metro Mirror and Global Mirror topology",
+  "type": "A",
+  "page": "543",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.543)",
+  "eng": ""
+ },
+ {
+  "row_id": "12035",
+  "title": "Implementing a Metro/Global Mirror and Metro Mirror topology",
+  "type": "A",
+  "page": "573",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.573)",
+  "eng": ""
+ },
+ {
+  "row_id": "12036",
+  "title": "Implementing a MT Global Mirror and GM topology",
+  "type": "A",
+  "page": "563",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.563)",
+  "eng": ""
+ },
+ {
+  "row_id": "12037",
+  "title": "Implementing a two Metro Mirror topology",
+  "type": "A",
+  "page": "523",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.523)",
+  "eng": ""
+ },
+ {
+  "row_id": "12038",
+  "title": "Incremental FlashCopy",
+  "type": "B",
+  "page": "70",
+  "naiyou": "The Incremental FlashCopy function is meant to be used with background copy. In z/OS, TSO, ANTRQST, and ANTTREXX do not allow nocopy with the incremental option. DS8000 FlashCopy has two types of CR mechanisms for Incremental FlashCopy. Type 1 incremental is required in the Global Mirror (GM) environment and only one target from a source can be type 1 inc... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.70、原文ママ)",
+  "eng": "The Incremental FlashCopy function is meant to be used with background copy. In z/OS, TSO, ANTRQST, and ANTTREXX do not allow nocopy with the incremental option. DS8000 FlashCopy has two types of CR mechanisms for Incremental FlashCopy. Type 1 incremental is required in the Global Mirror (GM) environment and only one target from a source can be type 1 inc..."
+ },
+ {
+  "row_id": "12039",
+  "title": "Incremental FlashCopy for backup purposes",
+  "type": "A",
+  "page": "127",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.127)",
+  "eng": ""
+ },
+ {
+  "row_id": "12040",
+  "title": "Incremental Resynchronization recovery scenarios",
+  "type": "B",
+  "page": "443",
+  "naiyou": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.443、原文ママ)",
+  "eng": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle..."
+ },
+ {
+  "row_id": "12041",
+  "title": "Initial configuration",
+  "type": "B",
+  "page": "589",
+  "naiyou": "Chapter 42. Using Multi-Target Peer-to-Peer Remote Copy for migration. This chapter demonstrates how to use Multi-Target Peer-to-Peer Remote Copy (MT-PPRC) for data migration between DS8000 storage systems within an existing Peer-to-Peer Remote Copy (PPRC) environment. It presents scenarios to give a detailed description for replacing a Metro Mirror (MM) ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.589、原文ママ)",
+  "eng": "Chapter 42. Using Multi-Target Peer-to-Peer Remote Copy for migration. This chapter demonstrates how to use Multi-Target Peer-to-Peer Remote Copy (MT-PPRC) for data migration between DS8000 storage systems within an existing Peer-to-Peer Remote Copy (PPRC) environment. It presents scenarios to give a detailed description for replacing a Metro Mirror (MM) ..."
+ },
+ {
+  "row_id": "12042",
+  "title": "Initial synchronization",
+  "type": "B",
+  "page": "200",
+  "naiyou": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.200、原文ママ)",
+  "eng": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations."
+ },
+ {
+  "row_id": "12043",
+  "title": "Installing a new DS8000 at H1’",
+  "type": "A",
+  "page": "595",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.595)",
+  "eng": ""
+ },
+ {
+  "row_id": "12044",
+  "title": "Installing a new DS8000 at H2’",
+  "type": "A",
+  "page": "591",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.591)",
+  "eng": ""
+ },
+ {
+  "row_id": "12045",
+  "title": "Interfaces",
+  "type": "B",
+  "page": "40",
+  "naiyou": "18 IBM DS8000 Copy Services. 3.1 Operating system interfaces summary tables. Table 3-1 summarizes the command interfaces that are supported by various operating systems. Table 3-2 Copy Services command interfaces reference. DFSMSdss, TSO, ANTTREXX Command, ANTRQST API, ICKDSF, IBM z/VM CP Native. When operating as a guest under a virtual machine (VM). (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.40、原文ママ)",
+  "eng": "18 IBM DS8000 Copy Services. 3.1 Operating system interfaces summary tables. Table 3-1 summarizes the command interfaces that are supported by various operating systems. Table 3-2 Copy Services command interfaces reference. DFSMSdss, TSO, ANTTREXX Command, ANTRQST API, ICKDSF, IBM z/VM CP Native. When operating as a guest under a virtual machine (VM)."
+ },
+ {
+  "row_id": "12046",
+  "title": "Interoperability",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "12047",
+  "title": "Introduction",
+  "type": "A",
+  "page": "25",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.25)",
+  "eng": ""
+ },
+ {
+  "row_id": "12048",
+  "title": "License",
+  "type": "B",
+  "page": "205",
+  "naiyou": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.205、原文ママ)",
+  "eng": "Chapter 18. Metro Mirror and Global Copy implementation considerations. 18.5.3 Connectivity: Ports, paths, and links. The DS8000 employs up to 192 ports. Each port can be independently configured to support FC or FICON. For MM or GC paths, you must have at least one FICON between the two DS8000 systems for which you want to set up a relationship."
+ },
+ {
+  "row_id": "12049",
+  "title": "License scope",
+  "type": "B",
+  "page": "34",
+  "naiyou": "12 IBM DS8000 Copy Services. Table 2-1 shows the DS8000 license scope details. The initial enablement of any optional DS8000 licensed function is a concurrent activity if the appropriate level of microcode is installed on the system for the specific function. Deactivation of a DS8000 licensed function is nondisruptive, but it takes effect only after the n... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.34、原文ママ)",
+  "eng": "12 IBM DS8000 Copy Services. Table 2-1 shows the DS8000 license scope details. The initial enablement of any optional DS8000 licensed function is a concurrent activity if the appropriate level of microcode is installed on the system for the specific function. Deactivation of a DS8000 licensed function is nondisruptive, but it takes effect only after the n..."
+ },
+ {
+  "row_id": "12050",
+  "title": "Licensed functions",
+  "type": "B",
+  "page": "32",
+  "naiyou": "2.1 Licensed functions. Licensed functions include capabilities that are provided by the operating system and the storage system. These functions include both required features and optional features. The following licensed functions are available. Base Function. The Base Function license provides essential functions for the storage system. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.32、原文ママ)",
+  "eng": "2.1 Licensed functions. Licensed functions include capabilities that are provided by the operating system and the storage system. These functions include both required features and optional features. The following licensed functions are available. Base Function. The Base Function license provides essential functions for the storage system."
+ },
+ {
+  "row_id": "12051",
+  "title": "Licensing",
+  "type": "B",
+  "page": "30",
+  "naiyou": "1.3.1 Safeguarded Copy. SGC is a feature that was introduced with IBM DS8000, starting with the DS8880, and provides LCP for critical data. It creates multiple immutable backup copies that can be recovered in the event of malware, hacking, malicious deletion, or any action that compromises primary data integrity. These safeguarded copies are inaccessible ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.30、原文ママ)",
+  "eng": "1.3.1 Safeguarded Copy. SGC is a feature that was introduced with IBM DS8000, starting with the DS8880, and provides LCP for critical data. It creates multiple immutable backup copies that can be recovered in the event of malware, hacking, malicious deletion, or any action that compromises primary data integrity. These safeguarded copies are inaccessible ..."
+ },
+ {
+  "row_id": "12052",
+  "title": "Licensing requirements and restrictions",
+  "type": "B",
+  "page": "498",
+  "naiyou": "476 IBM DS8000 Copy Services. 34.1 Multi-Target Peer-to-Peer Remote Copy overview. MT-PPRC extends the basic Metro Mirror (MM), Global Copy (GC), Multi-Target Global Mirror (GM), and GM solutions by enabling two Peer-to-Peer Remote Copy (PPRC) relationships on a single primary volume. The primary volume can have more than one secondary, enabling data to b... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.498、原文ママ)",
+  "eng": "476 IBM DS8000 Copy Services. 34.1 Multi-Target Peer-to-Peer Remote Copy overview. MT-PPRC extends the basic Metro Mirror (MM), Global Copy (GC), Multi-Target Global Mirror (GM), and GM solutions by enabling two Peer-to-Peer Remote Copy (PPRC) relationships on a single primary volume. The primary volume can have more than one secondary, enabling data to b..."
+ },
+ {
+  "row_id": "12053",
+  "title": "Location",
+  "type": "B",
+  "page": "351",
+  "naiyou": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.351、原文ママ)",
+  "eng": "(DR) solution runs, in a pre-determined fashion, a set of tasks to restart the operating system, recover storage servers and networks, and restart applications on a different set of servers and storage in another location. This level of function is also defined as IT continuous availability (CA). IBM Geographically Dispersed Parallel Sysplex (IBM GDPS) is..."
+ },
+ {
+  "row_id": "12054",
+  "title": "Logical corruption protection functions",
+  "type": "B",
+  "page": "27",
+  "naiyou": "Remote Mirror and Copy functions are optional features of the DS8000. To use these functions, you must purchase the Copy Services bundle license. The DS8000 supports the mirroring functions described in this section. 1.2.1 Metro Mirror. MM is a synchronous replication solution between two DS8000s where write operations are completed on both the local and ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.27、原文ママ)",
+  "eng": "Remote Mirror and Copy functions are optional features of the DS8000. To use these functions, you must purchase the Copy Services bundle license. The DS8000 supports the mirroring functions described in this section. 1.2.1 Metro Mirror. MM is a synchronous replication solution between two DS8000s where write operations are completed on both the local and ..."
+ },
+ {
+  "row_id": "12055",
+  "title": "Logical paths",
+  "type": "B",
+  "page": "170",
+  "naiyou": "148 IBM DS8000 Copy Services. 16.1 PPRC paths and links. Before a PPRC pair can be created, logical paths between the primary and secondary LSSs must be defined. A logical PPRC path is defined between a primary LSS and a secondary LSS that uses a physical link between the storage systems. Establishing the PPRC logical paths creates an LSS-to-LSS relations... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.170、原文ママ)",
+  "eng": "148 IBM DS8000 Copy Services. 16.1 PPRC paths and links. Before a PPRC pair can be created, logical paths between the primary and secondary LSSs must be defined. A logical PPRC path is defined between a primary LSS and a secondary LSS that uses a physical link between the storage systems. Establishing the PPRC logical paths creates an LSS-to-LSS relations..."
+ },
+ {
+  "row_id": "12056",
+  "title": "Logical subsystem and logical control unit versus rank: Considerations",
+  "type": "A",
+  "page": "110",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.110)",
+  "eng": ""
+ },
+ {
+  "row_id": "12057",
+  "title": "LSS and consistency group considerations",
+  "type": "A",
+  "page": "206",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.206)",
+  "eng": ""
+ },
+ {
+  "row_id": "12058",
+  "title": "Maintaining multiple FlashCopy relationships",
+  "type": "A",
+  "page": "129",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.129)",
+  "eng": ""
+ },
+ {
+  "row_id": "12059",
+  "title": "Management interfaces with Copy Services functions",
+  "type": "A",
+  "page": "43",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.43)",
+  "eng": ""
+ },
+ {
+  "row_id": "12060",
+  "title": "Managing data migration with Global Copy",
+  "type": "A",
+  "page": "243",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.243)",
+  "eng": ""
+ },
+ {
+  "row_id": "12061",
+  "title": "Managing the Global Mirror environment with the DS CLI",
+  "type": "A",
+  "page": "307",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.307)",
+  "eng": ""
+ },
+ {
+  "row_id": "12062",
+  "title": "Managing the load",
+  "type": "A",
+  "page": "201",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.201)",
+  "eng": ""
+ },
+ {
+  "row_id": "12063",
+  "title": "Managing the usage of Copy Services licensed functions",
+  "type": "A",
+  "page": "36",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.36)",
+  "eng": ""
+ },
+ {
+  "row_id": "12064",
+  "title": "Method 1: Using IBM Copy Services Manager",
+  "type": "B",
+  "page": "576",
+  "naiyou": "554 IBM DS8000 Copy Services. 40.2.2 Method 2: Using DS CLI commands. This method uses the CLI and requires manual sequencing of the recovery steps. 1. Preserve CG integrity at H4. Run chrcconsistgrp -consistencyfreeze H2:H4, where H2 and H4 are replaced by the actual identifiers of the storage resources being managed. 2. Promote H3 to primary. Run chrcco... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.576、原文ママ)",
+  "eng": "554 IBM DS8000 Copy Services. 40.2.2 Method 2: Using DS CLI commands. This method uses the CLI and requires manual sequencing of the recovery steps. 1. Preserve CG integrity at H4. Run chrcconsistgrp -consistencyfreeze H2:H4, where H2 and H4 are replaced by the actual identifiers of the storage resources being managed. 2. Promote H3 to primary. Run chrcco..."
+ },
+ {
+  "row_id": "12065",
+  "title": "Method 2: Using DS CLI commands",
+  "type": "B",
+  "page": "576",
+  "naiyou": "554 IBM DS8000 Copy Services. 40.2.2 Method 2: Using DS CLI commands. This method uses the CLI and requires manual sequencing of the recovery steps. 1. Preserve CG integrity at H4. Run chrcconsistgrp -consistencyfreeze H2:H4, where H2 and H4 are replaced by the actual identifiers of the storage resources being managed. 2. Promote H3 to primary. Run chrcco... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.576、原文ママ)",
+  "eng": "554 IBM DS8000 Copy Services. 40.2.2 Method 2: Using DS CLI commands. This method uses the CLI and requires manual sequencing of the recovery steps. 1. Preserve CG integrity at H4. Run chrcconsistgrp -consistencyfreeze H2:H4, where H2 and H4 are replaced by the actual identifiers of the storage resources being managed. 2. Promote H3 to primary. Run chrcco..."
+ },
+ {
+  "row_id": "12066",
+  "title": "Metro Mirror",
+  "type": "B",
+  "page": "27",
+  "naiyou": "Remote Mirror and Copy functions are optional features of the DS8000. To use these functions, you must purchase the Copy Services bundle license. The DS8000 supports the mirroring functions described in this section. 1.2.1 Metro Mirror. MM is a synchronous replication solution between two DS8000s where write operations are completed on both the local and ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.27、原文ママ)",
+  "eng": "Remote Mirror and Copy functions are optional features of the DS8000. To use these functions, you must purchase the Copy Services bundle license. The DS8000 supports the mirroring functions described in this section. 1.2.1 Metro Mirror. MM is a synchronous replication solution between two DS8000s where write operations are completed on both the local and ..."
+ },
+ {
+  "row_id": "12067",
+  "title": "Metro Mirror and Global Copy",
+  "type": "A",
+  "page": "159",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.159)",
+  "eng": ""
+ },
+ {
+  "row_id": "12068",
+  "title": "Metro Mirror and Global Copy command reference",
+  "type": "A",
+  "page": "212",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.212)",
+  "eng": ""
+ },
+ {
+  "row_id": "12069",
+  "title": "Metro Mirror and Global Copy DS CLI examples",
+  "type": "A",
+  "page": "214",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.214)",
+  "eng": ""
+ },
+ {
+  "row_id": "12070",
+  "title": "Metro Mirror and Global Copy ICKDSF examples",
+  "type": "A",
+  "page": "249",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.249)",
+  "eng": ""
+ },
+ {
+  "row_id": "12071",
+  "title": "Metro Mirror and Global Copy implementation considerations",
+  "type": "A",
+  "page": "199",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.199)",
+  "eng": ""
+ },
+ {
+  "row_id": "12072",
+  "title": "Metro Mirror and Global Copy interfaces and examples",
+  "type": "A",
+  "page": "211",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.211)",
+  "eng": ""
+ },
+ {
+  "row_id": "12073",
+  "title": "Metro Mirror and Global Copy interfaces overview",
+  "type": "A",
+  "page": "212",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.212)",
+  "eng": ""
+ },
+ {
+  "row_id": "12074",
+  "title": "Metro Mirror and Global Copy operations",
+  "type": "A",
+  "page": "175",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.175)",
+  "eng": ""
+ },
+ {
+  "row_id": "12075",
+  "title": "Metro Mirror and Global Copy pair states",
+  "type": "A",
+  "page": "176",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.176)",
+  "eng": ""
+ },
+ {
+  "row_id": "12076",
+  "title": "Metro Mirror and Global Copy paths",
+  "type": "A",
+  "page": "169",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.169)",
+  "eng": ""
+ },
+ {
+  "row_id": "12077",
+  "title": "Metro Mirror and Global Copy TSO examples",
+  "type": "A",
+  "page": "246",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.246)",
+  "eng": ""
+ },
+ {
+  "row_id": "12078",
+  "title": "Metro Mirror and Global Mirror",
+  "type": "A",
+  "page": "505",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.505)",
+  "eng": ""
+ },
+ {
+  "row_id": "12079",
+  "title": "Metro Mirror bandwidth considerations",
+  "type": "B",
+  "page": "200",
+  "naiyou": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.200、原文ママ)",
+  "eng": "178 IBM DS8000 Copy Services. 18.1 Bandwidth considerations. For MM and GC, the bandwidth considerations are slightly different. For MM, it is important to know the peak write throughput, and for GC you need to know the amount of data that must be transferred to the remote site, and the available window. 18.1.1 Metro Mirror bandwidth considerations."
+ },
+ {
+  "row_id": "12080",
+  "title": "Metro Mirror data consistency",
+  "type": "B",
+  "page": "222",
+  "naiyou": "200 IBM DS8000 Copy Services. Managing the Metro Mirror environment with the DS CLI. This section shows how you can manage the MM environment, such as suspending and resuming MM pairs and changing logical paths. Suspending and resuming Metro Mirror data transfer. The pausepprc command stops MM from transferring data to the target volumes. After this comma... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.222、原文ママ)",
+  "eng": "200 IBM DS8000 Copy Services. Managing the Metro Mirror environment with the DS CLI. This section shows how you can manage the MM environment, such as suspending and resuming MM pairs and changing logical paths. Suspending and resuming Metro Mirror data transfer. The pausepprc command stops MM from transferring data to the target volumes. After this comma..."
+ },
+ {
+  "row_id": "12081",
+  "title": "Metro Mirror distance considerations",
+  "type": "B",
+  "page": "202",
+  "naiyou": "180 IBM DS8000 Copy Services. 18.2.3 Metro Mirror distance considerations. Distance is an important topic. The distance between the local and remote DS8000 systems affects the response time impact of the MM implementation. Unless a Request Price Quotation (RPQ) is approved, the maximum supported distance for MM is 300 km (186 mi). (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.202、原文ママ)",
+  "eng": "180 IBM DS8000 Copy Services. 18.2.3 Metro Mirror distance considerations. Distance is an important topic. The distance between the local and remote DS8000 systems affects the response time impact of the MM implementation. Unless a Request Price Quotation (RPQ) is approved, the maximum supported distance for MM is 300 km (186 mi)."
+ },
+ {
+  "row_id": "12082",
+  "title": "Metro Mirror freezepprc and unfreezepprc commands",
+  "type": "A",
+  "page": "233",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.233)",
+  "eng": ""
+ },
+ {
+  "row_id": "12083",
+  "title": "Metro Mirror overview",
+  "type": "B",
+  "page": "167",
+  "naiyou": "Chapter 15. Global Copy overview. All data that is written to the primary DS8000 is transferred to the secondary DS8000, but not necessarily in the same order that it was written to the primary. This means that data on the secondary is not time-consistent. Making use the data on the secondary volume requires using some technique to help ensure consistency. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.167、原文ママ)",
+  "eng": "Chapter 15. Global Copy overview. All data that is written to the primary DS8000 is transferred to the secondary DS8000, but not necessarily in the same order that it was written to the primary. This means that data on the secondary is not time-consistent. Making use the data on the secondary volume requires using some technique to help ensure consistency."
+ },
+ {
+  "row_id": "12084",
+  "title": "Metro Mirror positioning",
+  "type": "B",
+  "page": "206",
+  "naiyou": "Physical links are bidirectional and can be shared by other Remote Mirror And Copy (RMC) functions, such as GM. 18.5.4 LSS and consistency group considerations. The LSS and consistency group (CG) considerations applies to MM and GC. For more information, see 14.2 Metro Mirror positioning on page 141. The DS CLI freezepprc and unfreezepprc commands are use... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.206、原文ママ)",
+  "eng": "Physical links are bidirectional and can be shared by other Remote Mirror And Copy (RMC) functions, such as GM. 18.5.4 LSS and consistency group considerations. The LSS and consistency group (CG) considerations applies to MM and GC. For more information, see 14.2 Metro Mirror positioning on page 141. The DS CLI freezepprc and unfreezepprc commands are use..."
+ },
+ {
+  "row_id": "12085",
+  "title": "Metro/Global Mirror configuration",
+  "type": "B",
+  "page": "393",
+  "naiyou": "The scenarios, either planned or unplanned, are complex. Using individual commands to recover from a disaster or other problem is difficult and might be error prone. A problem can happen anytime. Sometimes the necessary human resources are not available to run the correct commands to recover from a problem. GDPS or CSM are interfaces that you use to perfo... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.393、原文ママ)",
+  "eng": "The scenarios, either planned or unplanned, are complex. Using individual commands to recover from a disaster or other problem is difficult and might be error prone. A problem can happen anytime. Sometimes the necessary human resources are not available to run the correct commands to recover from a problem. GDPS or CSM are interfaces that you use to perfo..."
+ },
+ {
+  "row_id": "12086",
+  "title": "Metro/Global Mirror configuration and setup",
+  "type": "A",
+  "page": "395",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.395)",
+  "eng": ""
+ },
+ {
+  "row_id": "12087",
+  "title": "Metro/Global Mirror design objectives",
+  "type": "B",
+  "page": "393",
+  "naiyou": "The scenarios, either planned or unplanned, are complex. Using individual commands to recover from a disaster or other problem is difficult and might be error prone. A problem can happen anytime. Sometimes the necessary human resources are not available to run the correct commands to recover from a problem. GDPS or CSM are interfaces that you use to perfo... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.393、原文ママ)",
+  "eng": "The scenarios, either planned or unplanned, are complex. Using individual commands to recover from a disaster or other problem is difficult and might be error prone. A problem can happen anytime. Sometimes the necessary human resources are not available to run the correct commands to recover from a problem. GDPS or CSM are interfaces that you use to perfo..."
+ },
+ {
+  "row_id": "12088",
+  "title": "Metro/Global Mirror disaster recovery test scenarios",
+  "type": "B",
+  "page": "443",
+  "naiyou": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.443、原文ママ)",
+  "eng": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle..."
+ },
+ {
+  "row_id": "12089",
+  "title": "Metro/Global Mirror Incremental Resynchronization",
+  "type": "B",
+  "page": "498",
+  "naiyou": "476 IBM DS8000 Copy Services. 34.1 Multi-Target Peer-to-Peer Remote Copy overview. MT-PPRC extends the basic Metro Mirror (MM), Global Copy (GC), Multi-Target Global Mirror (GM), and GM solutions by enabling two Peer-to-Peer Remote Copy (PPRC) relationships on a single primary volume. The primary volume can have more than one secondary, enabling data to b... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.498、原文ママ)",
+  "eng": "476 IBM DS8000 Copy Services. 34.1 Multi-Target Peer-to-Peer Remote Copy overview. MT-PPRC extends the basic Metro Mirror (MM), Global Copy (GC), Multi-Target Global Mirror (GM), and GM solutions by enabling two Peer-to-Peer Remote Copy (PPRC) relationships on a single primary volume. The primary volume can have more than one secondary, enabling data to b..."
+ },
+ {
+  "row_id": "12090",
+  "title": "Metro/Global Mirror operations",
+  "type": "B",
+  "page": "428",
+  "naiyou": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.428、原文ママ)",
+  "eng": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each..."
+ },
+ {
+  "row_id": "12091",
+  "title": "Metro/Global Mirror overview",
+  "type": "B",
+  "page": "381",
+  "naiyou": "Chapter 26. IBM z/OS HyperSwap. DS8000 Release 9.1 or later is required. A new hold-reserve timer value must be configured on the DS8000. IBM Remote Technical Support can customize this setting only through internal configuration options. All systems in all sharing sysplexes must have APAR OA57049 applied or be running z/OS 2.4 or later. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.381、原文ママ)",
+  "eng": "Chapter 26. IBM z/OS HyperSwap. DS8000 Release 9.1 or later is required. A new hold-reserve timer value must be configured on the DS8000. IBM Remote Technical Support can customize this setting only through internal configuration options. All systems in all sharing sysplexes must have APAR OA57049 applied or be running z/OS 2.4 or later."
+ },
+ {
+  "row_id": "12092",
+  "title": "Metro/Global Mirror plus Metro Mirror",
+  "type": "B",
+  "page": "510",
+  "naiyou": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.510、原文ママ)",
+  "eng": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove..."
+ },
+ {
+  "row_id": "12093",
+  "title": "Metro/Global Mirror processes",
+  "type": "B",
+  "page": "393",
+  "naiyou": "The scenarios, either planned or unplanned, are complex. Using individual commands to recover from a disaster or other problem is difficult and might be error prone. A problem can happen anytime. Sometimes the necessary human resources are not available to run the correct commands to recover from a problem. GDPS or CSM are interfaces that you use to perfo... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.393、原文ママ)",
+  "eng": "The scenarios, either planned or unplanned, are complex. Using individual commands to recover from a disaster or other problem is difficult and might be error prone. A problem can happen anytime. Sometimes the necessary human resources are not available to run the correct commands to recover from a problem. GDPS or CSM are interfaces that you use to perfo..."
+ },
+ {
+  "row_id": "12094",
+  "title": "Metro/Global Mirror recovery scenarios",
+  "type": "B",
+  "page": "443",
+  "naiyou": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.443、原文ママ)",
+  "eng": "Chapter 32. Metro/Global Mirror disaster recovery test scenarios. This chapter describes two disaster recovery (DR) test scenario options. For each scenario, this chapter includes examples and a detailed step-by-step approach with IBM Copy Services Manager (CSM). For more information about testing DR scenarios by using IBM Geographically Dispersed Paralle..."
+ },
+ {
+  "row_id": "12095",
+  "title": "Metro/Global Mirror session operational functions",
+  "type": "B",
+  "page": "428",
+  "naiyou": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.428、原文ママ)",
+  "eng": "30.4 Metro/Global Mirror session operational functions. This section describes some useful MGM session operational functions that are available with CSM. Refresh State, Reflash after recover, Release Journal Space. 30.4.1 Refresh States. CSM automatically refreshes the state of volumes and the associated Copy Services functions that it retrieves from each..."
+ },
+ {
+  "row_id": "12096",
+  "title": "Metro/Global Mirror with bidirectional Global Mirror leg",
+  "type": "A",
+  "page": "396",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.396)",
+  "eng": ""
+ },
+ {
+  "row_id": "12097",
+  "title": "Metro/Global Mirror with multiple storage systems",
+  "type": "A",
+  "page": "397",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.397)",
+  "eng": ""
+ },
+ {
+  "row_id": "12098",
+  "title": "Migrating from Metro Mirror to Metro/Global Mirror",
+  "type": "A",
+  "page": "419",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.419)",
+  "eng": ""
+ },
+ {
+  "row_id": "12099",
+  "title": "Modifying a Global Mirror session",
+  "type": "A",
+  "page": "272",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.272)",
+  "eng": ""
+ },
+ {
+  "row_id": "12100",
+  "title": "Modifying Global Mirror session parameters",
+  "type": "A",
+  "page": "273",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.273)",
+  "eng": ""
+ },
+ {
+  "row_id": "12101",
+  "title": "Monitoring for H1:H1’ FULL DUPLEX",
+  "type": "A",
+  "page": "598",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.598)",
+  "eng": ""
+ },
+ {
+  "row_id": "12102",
+  "title": "Monitoring for H1:H2’ FULL DUPLEX",
+  "type": "A",
+  "page": "593",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.593)",
+  "eng": ""
+ },
+ {
+  "row_id": "12103",
+  "title": "Monitoring out-of-sync tracks for H1’:H2 and H2:H1’",
+  "type": "A",
+  "page": "598",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.598)",
+  "eng": ""
+ },
+ {
+  "row_id": "12104",
+  "title": "Moving host systems to H1",
+  "type": "A",
+  "page": "535",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.535)",
+  "eng": ""
+ },
+ {
+  "row_id": "12105",
+  "title": "Moving production back to H1’",
+  "type": "A",
+  "page": "610",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.610)",
+  "eng": ""
+ },
+ {
+  "row_id": "12106",
+  "title": "Moving production to H1’",
+  "type": "B",
+  "page": "600",
+  "naiyou": "578 IBM DS8000 Copy Services. Unfreezing and running H1:H1' and H1:H2. When all freeze commands complete, the secondary H1' and H2 sites contain consistent copies of data. The unfreeze or run command (also known as a consistency group created command) removes the ELB or queue-full condition at the local H1 site. An unfreeze command is required for each LS... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.600、原文ママ)",
+  "eng": "578 IBM DS8000 Copy Services. Unfreezing and running H1:H1' and H1:H2. When all freeze commands complete, the secondary H1' and H2 sites contain consistent copies of data. The unfreeze or run command (also known as a consistency group created command) removes the ELB or queue-full condition at the local H1 site. An unfreeze command is required for each LS..."
+ },
+ {
+  "row_id": "12107",
+  "title": "Moving production to H2",
+  "type": "B",
+  "page": "600",
+  "naiyou": "578 IBM DS8000 Copy Services. Unfreezing and running H1:H1' and H1:H2. When all freeze commands complete, the secondary H1' and H2 sites contain consistent copies of data. The unfreeze or run command (also known as a consistency group created command) removes the ELB or queue-full condition at the local H1 site. An unfreeze command is required for each LS... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.600、原文ママ)",
+  "eng": "578 IBM DS8000 Copy Services. Unfreezing and running H1:H1' and H1:H2. When all freeze commands complete, the secondary H1' and H2 sites contain consistent copies of data. The unfreeze or run command (also known as a consistency group created command) removes the ELB or queue-full condition at the local H1 site. An unfreeze command is required for each LS..."
+ },
+ {
+  "row_id": "12108",
+  "title": "MT-PPRC with cascaded MGM",
+  "type": "B",
+  "page": "580",
+  "naiyou": "558 IBM DS8000 Copy Services. 41.1 Cascaded Metro/Global Mirror topology. MT-PPRC provides several benefits and simplifications in a cascaded MGM topology. Figure 41-1 shows a cascaded MGM topology where there is Metro Mirror (MM) H1:H2 and Global Mirror (GM) H2:H3. Similar to MT-PPRC with MM and GM, this topology provides both a local high availability (... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.580、原文ママ)",
+  "eng": "558 IBM DS8000 Copy Services. 41.1 Cascaded Metro/Global Mirror topology. MT-PPRC provides several benefits and simplifications in a cascaded MGM topology. Figure 41-1 shows a cascaded MGM topology where there is Metro Mirror (MM) H1:H2 and Global Mirror (GM) H2:H3. Similar to MT-PPRC with MM and GM, this topology provides both a local high availability (..."
+ },
+ {
+  "row_id": "12109",
+  "title": "MTIR change recording",
+  "type": "B",
+  "page": "510",
+  "naiyou": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.510、原文ママ)",
+  "eng": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove..."
+ },
+ {
+  "row_id": "12110",
+  "title": "MTIR enhancements in DS8000 10.1",
+  "type": "A",
+  "page": "587",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.587)",
+  "eng": ""
+ },
+ {
+  "row_id": "12111",
+  "title": "Multi-site replication scenario examples",
+  "type": "B",
+  "page": "612",
+  "naiyou": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible. (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.612、原文ママ)",
+  "eng": "590 IBM DS8000 Copy Services. 43.1 Data migration with double cascading. Combining the Copy Services functions Metro Mirror (MM) and Global Copy (GC) into a double cascading setup means that you can migrate data over long distances while you maintain local DR capabilities. Numerous configurations and methods are possible."
+ },
+ {
+  "row_id": "12112",
+  "title": "Multi-Target Incremental Resynchronization",
+  "type": "B",
+  "page": "510",
+  "naiyou": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.510、原文ママ)",
+  "eng": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove..."
+ },
+ {
+  "row_id": "12113",
+  "title": "Multi-Target Incremental Resynchronization pairs",
+  "type": "B",
+  "page": "510",
+  "naiyou": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.510、原文ママ)",
+  "eng": "488 IBM DS8000 Copy Services. Figure 35-7 illustrates this topology. In this configuration, the primary storage system (H1) asynchronously replicates data to two remote systems (H2 and H3) by using GM. Each remote system maintains a journal (J2 and J3) to preserve write order and consistency across volumes. GM provides a near-continuous copy with a recove..."
+ },
+ {
+  "row_id": "12114",
+  "title": "Multi-Target Peer-to-Peer Remote Copy",
+  "type": "B",
+  "page": "362",
+  "naiyou": "Metro Mirror Single Direction. Metro Mirror Failover/Failback. Metro Mirror Failover/Failback with Practice. GM Failover/Failback. GM Single Direction. GM Either Direction. GM Failover/Failback with Practice. GM Either Direction with Two-Site Practice. MGM. MGM with Practice. Multi-Target Peer-to-Peer Remote Copy (MT-PPRC): GM - GM, Metro Mirror - Metro M... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.362、原文ママ)",
+  "eng": "Metro Mirror Single Direction. Metro Mirror Failover/Failback. Metro Mirror Failover/Failback with Practice. GM Failover/Failback. GM Single Direction. GM Either Direction. GM Failover/Failback with Practice. GM Either Direction with Two-Site Practice. MGM. MGM with Practice. Multi-Target Peer-to-Peer Remote Copy (MT-PPRC): GM - GM, Metro Mirror - Metro M..."
+ },
+ {
+  "row_id": "12115",
+  "title": "Multi-Target Peer-to-Peer Remote Copy architecture and design",
+  "type": "A",
+  "page": "513",
+  "naiyou": "(GDPS_SG24-8367_DS8000_Copy_Services.pdf p.513)",
+  "eng": ""
+ },
+ {
+  "row_id": "12116",
+  "title": "Multi-Target Peer-to-Peer Remote Copy overview",
+  "type": "B",
+  "page": "498",
+  "naiyou": "476 IBM DS8000 Copy Services. 34.1 Multi-Target Peer-to-Peer Remote Copy overview. MT-PPRC extends the basic Metro Mirror (MM), Global Copy (GC), Multi-Target Global Mirror (GM), and GM solutions by enabling two Peer-to-Peer Remote Copy (PPRC) relationships on a single primary volume. The primary volume can have more than one secondary, enabling data to b... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.498、原文ママ)",
+  "eng": "476 IBM DS8000 Copy Services. 34.1 Multi-Target Peer-to-Peer Remote Copy overview. MT-PPRC extends the basic Metro Mirror (MM), Global Copy (GC), Multi-Target Global Mirror (GM), and GM solutions by enabling two Peer-to-Peer Remote Copy (PPRC) relationships on a single primary volume. The primary volume can have more than one secondary, enabling data to b..."
+ },
+ {
+  "row_id": "12117",
+  "title": "Multi-Target Peer-to-Peer Remote Copy pairs",
+  "type": "B",
+  "page": "504",
+  "naiyou": "482 IBM DS8000 Copy Services. 35.1 Multi-Target Peer-to-Peer Remote Copy topologies. Figure 35-1 shows a typical diagram that is used for describing the different topologies and configurations throughout this book. In Figure 35-1, the different locations are identified by the labels H1, H2, and H3. Each of these labels refers to a site that typically has ... (出典: GDPS_SG24-8367_DS8000_Copy_Services.pdf p.504、原文ママ)",
+  "eng": "482 IBM DS8000 Copy Services. 35.1 Multi-Target Peer-to-Peer Remote Copy topologies. Figure 35-1 shows a typical diagram that is used for describing the different topologies and configurations throughout this book. In Figure 35-1, the different locations are identified by the labels H1, H2, and H3. Each of these labels refers to a site that typically has ..."
+ }
+]

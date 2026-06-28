@@ -1,0 +1,902 @@
+[
+ {
+  "row_id": "6482",
+  "title": "About the Examples",
+  "desc": "'About the Examples' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.545)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6483",
+  "title": "Access and Control Function",
+  "desc": "'Access and Control Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.506)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.665 原文ママ) BLDVIEWS keywords: NetView operator ID of the task running BLDVIEWS is used as the RODM user ID. This user ID must have the appropriate SAF access to RODM. TEST=YES Results in BLDVIEWS only syntax checking the control statements. ECHO=YES Results in BLDVIEWS displaying the control statements one at",
+  "src": "NV"
+ },
+ {
+  "row_id": "6484",
+  "title": "Accessing and Changing GMFHS-Defined Fields",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.186)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6485",
+  "title": "Accessing publications online",
+  "desc": "'Accessing publications online' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.21)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6486",
+  "title": "Additional RODM Documentation",
+  "desc": "'Additional RODM Documentation' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.35)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6487",
+  "title": "Advantages of Using the Supplied Data Models for Automation",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.185)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6488",
+  "title": "Aggregation Concepts",
+  "desc": "'Aggregation Concepts' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.139)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6489",
+  "title": "Application Programming Reference",
+  "desc": "'Application Programming Reference' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.361)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6490",
+  "title": "Application Programming Using RODM",
+  "desc": "'Application Programming Using RODM' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.193)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6491",
+  "title": "Applying Policy to Views",
+  "desc": "'Applying Policy to Views' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.132)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6492",
+  "title": "Applying Span-of-Control to Set and Clear Operator Status",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.131)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6493",
+  "title": "Applying Span-of-Control to Views",
+  "desc": "'Applying Span-of-Control to Views' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.125)。 (出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.97 原文ママ) Configuring workstation network using Communications Server. SNA topology manager data model loading. Span of control resources views. Starting GMFHS, NetView Resource Manager, RODM. Status defaults displaying for NetView Resource Manager. Storing topology server databases. System authorization faci",
+  "src": "NV"
+ },
+ {
+  "row_id": "6494",
+  "title": "Asynchronous Error Notification",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.325)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6495",
+  "title": "BLDVIEWS",
+  "desc": "'BLDVIEWS' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6496",
+  "title": "BLDVIEWS Control Statement Examples",
+  "desc": "'BLDVIEWS Control Statement Examples' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.665)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 原文ママ) BLDVIEWS creates new views and aggregates or updates existing views and aggregates. BLDVIEWS supports RODM objects created by MultiSystem Manager and SNA topology manager. The control statements are passed to BLDVIEWS using one of the following methods: DSIPARM member, a fully qualified cataloged se",
+  "src": "NV"
+ },
+ {
+  "row_id": "6497",
+  "title": "BLDVIEWS Control Statements",
+  "desc": "'BLDVIEWS Control Statements' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.580)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579 原文ママ) BLDVIEWS creates new views and aggregates or updates existing views and aggregates. BLDVIEWS supports RODM objects created by MultiSystem Manager and SNA topology manager. The control statements are passed to BLDVIEWS using one of the following methods: DSIPARM member, a fully qualified cataloged se",
+  "src": "NV"
+ },
+ {
+  "row_id": "6498",
+  "title": "BLDVIEWS Processing",
+  "desc": "'BLDVIEWS Processing' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.579)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6499",
+  "title": "Building Views",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.105)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6500",
+  "title": "Bus Network Layout View Interface",
+  "desc": "'Bus Network Layout View Interface' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.679)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6501",
+  "title": "Change Field Function",
+  "desc": "'Change Field Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.525)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6502",
+  "title": "Changing Network Definitions When GMFHS Is Running",
+  "desc": "'Changing Network Definitions When GMFHS Is Running' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.75)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.196 原文ママ) When RODM is cold started, RODM initialization occurs and the class definitions are created. This data model provides the starting point for all RODM classes and objects. Both uppercase and lowercase alphabetic characters are permitted, and names are case-sensitive. Each class name in the RODM data",
+  "src": "NV"
+ },
+ {
+  "row_id": "6503",
+  "title": "Choosing a View Layout Type",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.675)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6504",
+  "title": "Coding Your RODM Method",
+  "desc": "'Coding Your RODM Method' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.353)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6505",
+  "title": "Communicating with Network Management Gateways",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.79)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6506",
+  "title": "Compound Query Function",
+  "desc": "'Compound Query Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.513)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6507",
+  "title": "Connecting to RODM",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.326)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6508",
+  "title": "Connectivity Tree Layout View",
+  "desc": "'Connectivity Tree Layout View' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.680)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6509",
+  "title": "Considerations When Designing a Data Model",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.239)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6510",
+  "title": "Correlation Concepts",
+  "desc": "'Correlation Concepts' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6511",
+  "title": "Create Actions Function",
+  "desc": "'Create Actions Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.530)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.35 原文ママ) RODM Load Function. The RODM load function provides an easy way to load the class structure and objects into the RODM data cache. You create input statements for each class and object which are processed by the load function.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6512",
+  "title": "Customizing GMFHS to Process and Receive Alerts and Resolutions",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.173)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6513",
+  "title": "Customizing the Correlation Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.334)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6514",
+  "title": "Customizing the RODM Unload Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.535)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6515",
+  "title": "Deciding Which Method Type to Use",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.348)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6516",
+  "title": "Defining Non-SNA Presentation Protocol",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.80)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6517",
+  "title": "Defining Non-SNA Resources to the NetView Program",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6518",
+  "title": "Defining Non-SNA Session Protocols",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.93)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6519",
+  "title": "Defining Non-SNA Transport Protocols",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.97)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6520",
+  "title": "Defining Resources to the NetView Program",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.37)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6521",
+  "title": "Defining Your Configuration to RODM",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.54)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6522",
+  "title": "Defining Your Network to GMFHS",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.39)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6523",
+  "title": "Delete Actions Function",
+  "desc": "'Delete Actions Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.531)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6524",
+  "title": "Deleting Views",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.668)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6525",
+  "title": "DELVIEWS",
+  "desc": "'DELVIEWS' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.669)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6526",
+  "title": "Disconnecting from RODM",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.327)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6527",
+  "title": "DUIFEDEF Alert Processing",
+  "desc": "'DUIFEDEF Alert Processing' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.177)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6528",
+  "title": "Elliptical Layout View",
+  "desc": "'Elliptical Layout View' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.680)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6529",
+  "title": "Enabling the Correlation Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6530",
+  "title": "Error Conditions in Transactions",
+  "desc": "'Error Conditions in Transactions' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.318)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.292 原文ママ) Error Conditions in Transactions: For more information about how RODM determines return and reason codes.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6531",
+  "title": "FLCARODM",
+  "desc": "'FLCARODM' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.538)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6532",
+  "title": "FLCARODM Command",
+  "desc": "'FLCARODM Command' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.545)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6533",
+  "title": "FLCARODM Functions",
+  "desc": "'FLCARODM Functions' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.550)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6534",
+  "title": "Function Parameter Descriptions",
+  "desc": "'Function Parameter Descriptions' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.442)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6535",
+  "title": "Function Reference",
+  "desc": "'Function Reference' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.364)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6536",
+  "title": "GMFHS Automation Example",
+  "desc": "'GMFHS Automation Example' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.189)。 (出典: NetView_6.4_Installation_Migration_Guide.pdf p.27 原文ママ) Update STEPLIB and JOBLIB DD statement concatenations: VTAM start procedure: CNMSJ008 (CNMNET); NetView start procedure: CNMSJ009 (CNMPROC); NetView subsystem interface (SSI) start procedure: CNMSJ010 (CNMPSSI); RODM start procedure: EKGXRODM; GMFHS start procedure: CNMSJH10 (CNMGMFHS); Event/Automa",
+  "src": "NV"
+ },
+ {
+  "row_id": "6537",
+  "title": "GMFHS Fields Used By the View Layout Facility",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.676)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6538",
+  "title": "GMFHS Initialization",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6539",
+  "title": "Grid Layout",
+  "desc": "'Grid Layout' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.681)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6540",
+  "title": "Grid Layout Notes",
+  "desc": "'Grid Layout Notes' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.682)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6541",
+  "title": "Hierarchical Graph Layout View",
+  "desc": "'Hierarchical Graph Layout View' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.679)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6542",
+  "title": "How GMFHS Uses RODM",
+  "desc": "'How GMFHS Uses RODM' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6543",
+  "title": "IBM Z NetView library",
+  "desc": "'IBM Z NetView library' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.19)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6544",
+  "title": "Identifying Network Elements to Define",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.43)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6545",
+  "title": "Introduction to the RODM Load Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.239)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6546",
+  "title": "Layout Type Descriptions",
+  "desc": "'Layout Type Descriptions' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.676)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6547",
+  "title": "Learning About RODM",
+  "desc": "'Learning About RODM' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.27)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6548",
+  "title": "Link/Unlink Function",
+  "desc": "'Link/Unlink Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.523)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6549",
+  "title": "Load Function Reference",
+  "desc": "'Load Function Reference' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.255)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6550",
+  "title": "Loading the Data Models and Network Definitions",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.75)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6551",
+  "title": "Loading the GMFHS Data Model",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.75)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6552",
+  "title": "Local Area Network Layout View",
+  "desc": "'Local Area Network Layout View' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.678)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6553",
+  "title": "Locate Objects Function",
+  "desc": "'Locate Objects Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.520)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.79 原文ママ) UniversalClass Description: The UniversalClass is the root of the RODM inheritance tree, and it contains the fields that are inherited by all classes and objects defined in RODM. The UniversalClass is created by RODM and is not part of the GMFHS data model.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6554",
+  "title": "Managing SNA Resources with the NetView Program",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6555",
+  "title": "Manual Network Definition Overview",
+  "desc": "'Manual Network Definition Overview' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.39)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6556",
+  "title": "Maximizing RODM Performance",
+  "desc": "'Maximizing RODM Performance' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.480)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6557",
+  "title": "Method Actions Function",
+  "desc": "'Method Actions Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.533)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.402 原文ママ) EKG_MessageTriggeredAction function runs asynchronously. Methods can also run asynchronously. The method that uses the EKG_MessageTriggeredAction function receives a return code and reason code that specifies whether the function request was accepted by RODM.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6558",
+  "title": "Method Anchor Service",
+  "desc": "'Method Anchor Service' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.353)。 (出典: NetView_6.4_Installation_Migration_Guide.pdf p.27 原文ママ) Update STEPLIB and JOBLIB DD statement concatenations: VTAM start procedure: CNMSJ008 (CNMNET); NetView start procedure: CNMSJ009 (CNMPROC); NetView subsystem interface (SSI) start procedure: CNMSJ010 (CNMPSSI); RODM start procedure: EKGXRODM; GMFHS start procedure: CNMSJH10 (CNMGMFHS); Event/Automa",
+  "src": "NV"
+ },
+ {
+  "row_id": "6559",
+  "title": "Monitoring Topology Managers",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.104)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6560",
+  "title": "Multivalued Fields and Links between Objects",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.214)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6561",
+  "title": "Navigating within RODMView",
+  "desc": "'Navigating within RODMView' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6562",
+  "title": "Notifying Your Application about Changes in GMFHS Fields",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.185)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6563",
+  "title": "Object and Class Locking in RODM",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.217)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6564",
+  "title": "Object Data Stream Detail",
+  "desc": "'Object Data Stream Detail' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.575)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6565",
+  "title": "Object Deletion Notification",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.325)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6566",
+  "title": "Ordering publications",
+  "desc": "'Ordering publications' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.21)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6567",
+  "title": "Overview",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.29)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6568",
+  "title": "Privacy policy considerations",
+  "desc": "'Privacy policy considerations' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.686)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6569",
+  "title": "Process for Loading the RODM Data Cache",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.243)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6570",
+  "title": "Programming Interfaces",
+  "desc": "'Programming Interfaces' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.686)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6571",
+  "title": "Putting It All Together",
+  "desc": "'Putting It All Together' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.562)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.79 原文ママ) UniversalClass Description: The UniversalClass is the root of the RODM inheritance tree, and it contains the fields that are inherited by all classes and objects defined in RODM. The UniversalClass is created by RODM and is not part of the GMFHS data model.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6572",
+  "title": "Radial Layout View by Cluster ID",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.677)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6573",
+  "title": "Radial Layout View by Link Type",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.677)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6574",
+  "title": "Receiving and Monitoring Alerts or Resolutions",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.173)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6575",
+  "title": "Result Stem",
+  "desc": "'Result Stem' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.568)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6576",
+  "title": "Return Codes",
+  "desc": "'Return Codes' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.572)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.292 原文ママ) Error Conditions in Transactions: For more information about how RODM determines return and reason codes.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6577",
+  "title": "RODM Abstract Data Types",
+  "desc": "'RODM Abstract Data Types' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.219)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6578",
+  "title": "RODM Automation Platform Services",
+  "desc": "'RODM Automation Platform Services' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.191)。 (出典: NetView_6.4_Installation_Migration_Guide.pdf p.27 原文ママ) Update STEPLIB and JOBLIB DD statement concatenations: VTAM start procedure: CNMSJ008 (CNMNET); NetView start procedure: CNMSJ009 (CNMPROC); NetView subsystem interface (SSI) start procedure: CNMSJ010 (CNMPSSI); RODM start procedure: EKGXRODM; GMFHS start procedure: CNMSJH10 (CNMGMFHS); Event/Automa",
+  "src": "NV"
+ },
+ {
+  "row_id": "6579",
+  "title": "RODM Classes",
+  "desc": "'RODM Classes' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.195)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6580",
+  "title": "RODM Collection Manager",
+  "desc": "'RODM Collection Manager' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.578)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.35_v2 原文ママ) Collection_Definition_Class Description: provides common fields for the Network_View_Collection_Class and the Aggregate_Collection_Class. Together, these 3 classes define the Collection Definition Objects, which are used by the RODM Collection Manager facility of GMFHS to create Network_View_Class a",
+  "src": "NV"
+ },
+ {
+  "row_id": "6581",
+  "title": "RODM Fields",
+  "desc": "'RODM Fields' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.209)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6582",
+  "title": "RODM in Network Automation",
+  "desc": "'RODM in Network Automation' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.31)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6583",
+  "title": "RODM Method Services",
+  "desc": "'RODM Method Services' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.357)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6584",
+  "title": "RODM Notification Process",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.319)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6585",
+  "title": "RODM Objects",
+  "desc": "'RODM Objects' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.207)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.79 原文ママ) UniversalClass Description: The UniversalClass is the root of the RODM inheritance tree, and it contains the fields that are inherited by all classes and objects defined in RODM. The UniversalClass is created by RODM and is not part of the GMFHS data model.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6586",
+  "title": "RODM Programming Tasks",
+  "desc": "'RODM Programming Tasks' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.33)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6587",
+  "title": "RODM Return and Reason Codes",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.449)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6588",
+  "title": "RODM Samples and Macros",
+  "desc": "'RODM Samples and Macros' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.36)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6589",
+  "title": "RODM Subfields",
+  "desc": "'RODM Subfields' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.211)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6590",
+  "title": "RODM Tools",
+  "desc": "'RODM Tools' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6591",
+  "title": "RODM Unload Function",
+  "desc": "'RODM Unload Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.535)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6592",
+  "title": "RODMView",
+  "desc": "'RODMView' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.503)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6593",
+  "title": "RODMView Restrictions",
+  "desc": "'RODMView Restrictions' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.504)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6594",
+  "title": "Running BLDVIEWS",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.663)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6595",
+  "title": "Running the RODM Unload Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.537)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6596",
+  "title": "Sample Automation Code",
+  "desc": "'Sample Automation Code' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.191)。 (出典: NetView_6.4_Installation_Migration_Guide.pdf p.27 原文ママ) Update STEPLIB and JOBLIB DD statement concatenations: VTAM start procedure: CNMSJ008 (CNMNET); NetView start procedure: CNMSJ009 (CNMPROC); NetView subsystem interface (SSI) start procedure: CNMSJ010 (CNMPSSI); RODM start procedure: EKGXRODM; GMFHS start procedure: CNMSJH10 (CNMGMFHS); Event/Automa",
+  "src": "NV"
+ },
+ {
+  "row_id": "6597",
+  "title": "Sample Network",
+  "desc": "'Sample Network' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.39)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6598",
+  "title": "Simple Query Function",
+  "desc": "'Simple Query Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.507)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6599",
+  "title": "Special Characters",
+  "desc": "'Special Characters' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.689)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.196 原文ママ) When RODM is cold started, RODM initialization occurs and the class definitions are created. This data model provides the starting point for all RODM classes and objects. Both uppercase and lowercase alphabetic characters are permitted, and names are case-sensitive. Each class name in the RODM data",
+  "src": "NV"
+ },
+ {
+  "row_id": "6600",
+  "title": "Starting RODMView",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.505)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6601",
+  "title": "Starting the RODM Unload Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.535)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6602",
+  "title": "Stem Building Subroutines",
+  "desc": "'Stem Building Subroutines' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.539)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.539 原文ママ) Use the stem building subroutines that are provided by NetView to create a REXX stem variable. These subroutines create the contents of a REXX stem variable that gets passed to FLCARODM using the FLCARODM command.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6603",
+  "title": "Subfield Actions Function",
+  "desc": "'Subfield Actions Function' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.528)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6604",
+  "title": "Summarizing RODM Functions",
+  "desc": "'Summarizing RODM Functions' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.361)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6605",
+  "title": "Supplied Methods",
+  "desc": "'Supplied Methods' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.481)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6606",
+  "title": "Tasks Best Performed with Methods",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6607",
+  "title": "Tasks Best Performed with User Applications",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.303)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6608",
+  "title": "Terminology in this Library",
+  "desc": "'Terminology in this Library' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.20)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6609",
+  "title": "Token-Ring Network Layout View Interface",
+  "desc": "'Token-Ring Network Layout View Interface' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.678)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6610",
+  "title": "Tools for RODM",
+  "desc": "'Tools for RODM' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.36)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6611",
+  "title": "Topology Object Correlation",
+  "desc": "'Topology Object Correlation' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.329)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.321 原文ママ) Chapter 6. Class and Field Cross-Reference. This chapter lists the GMFHS class names. Each class entry includes the RODM class name, the parent class, and a table of defined fields. Class Names: GMFHS classes do not use abstract syntax notation 1 (ASN.1) object identifiers.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6612",
+  "title": "Types of Methods",
+  "desc": "'Types of Methods' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.338)。 (出典: NetView_6.4_Data_Model_Reference.pdf p.68 原文ママ) For GMFHS, children of the Name_Space_Parent_Class contain resource types of the objects in the GMFHS configuration defined in RODM. Parent Class: Universal_Class. Child Classes: Display_Resource_Type_Class. Network_View_Collection_Class Description: is a Collection Definition Object.",
+  "src": "NV"
+ },
+ {
+  "row_id": "6613",
+  "title": "Understanding RODM Concepts",
+  "desc": "'Understanding RODM Concepts' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.195)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6614",
+  "title": "Using Control Blocks",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.306)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6615",
+  "title": "Using Correlation for Objects You Create",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.333)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6616",
+  "title": "Using GMFHS Methods",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.186)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6617",
+  "title": "Using IBM Z NetView online help",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.21)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6618",
+  "title": "Using Load Function Statements",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.241)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6619",
+  "title": "Using NetView Resource Manager",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.165)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6620",
+  "title": "Using RODM for Network Automation",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.183)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6621",
+  "title": "Using the Application Program Interfaces",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.218)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6622",
+  "title": "Using the Collection Definition Objects",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.151)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6623",
+  "title": "Using the Method API",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.349)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6624",
+  "title": "Using the RODM Automation Platform",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.191)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6625",
+  "title": "Using the RODM Load Function",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.239)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6626",
+  "title": "Using the User Application Program Interface",
+  "desc": "(NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.303)",
+  "src": "NV"
+ },
+ {
+  "row_id": "6627",
+  "title": "View Layout Examples",
+  "desc": "'View Layout Examples' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6628",
+  "title": "View Layout Facility",
+  "desc": "'View Layout Facility' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.671)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6629",
+  "title": "Writing Applications that Use RODM",
+  "desc": "'Writing Applications that Use RODM' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.303)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ },
+ {
+  "row_id": "6630",
+  "title": "Writing Automation Code",
+  "desc": "'Writing Automation Code' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.185)。 (出典: NetView_6.4_Installation_Migration_Guide.pdf p.27 原文ママ) Update STEPLIB and JOBLIB DD statement concatenations: VTAM start procedure: CNMSJ008 (CNMNET); NetView start procedure: CNMSJ009 (CNMPROC); NetView subsystem interface (SSI) start procedure: CNMSJ010 (CNMPSSI); RODM start procedure: EKGXRODM; GMFHS start procedure: CNMSJH10 (CNMGMFHS); Event/Automa",
+  "src": "NV"
+ },
+ {
+  "row_id": "6631",
+  "title": "Writing RODM Methods",
+  "desc": "'Writing RODM Methods' (Lv2: RODM / GMFHS) は IBM NetView 6.4 における RODM / GMFHS 領域の項目。概要: (NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.337)。 (出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103 原文ママ) Chapter 5. How GMFHS Uses RODM. The Graphic Monitor Facility host subsystem (GMFHS) works with RODM and a NetView management console to display graphic views of networks and issue commands to resources that you select from the view. The views contain both status and configuration information about n",
+  "src": "NV"
+ }
+]

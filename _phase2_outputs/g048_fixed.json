@@ -1,0 +1,3252 @@
+{
+ "page": "g048",
+ "product": "IBM NetView 6.4",
+ "total_rows": 300,
+ "target_rows": 141,
+ "fixed_count": 141,
+ "rows": [
+  {
+   "row_id": "9716",
+   "title": "10. PPT as the MVS or TAF OPCTL Operator",
+   "naiyou_jp": "PPT（プライマリ POI タスク）が MVS または TAF OPCTL のオペレーターとして動作する処理フローを示す。PPT 上で MVS コマンドが発行されたり、PPT で BGNSESS OPCTL コマンドが実行されると、MVS または TAF OPCTL セッションからの送信要求・非送信要求メッセージはすべて PPT のメッセージキューで受信される。発生タスクは PPT で、その後 PPT メッセージキュー処理へ引き継がれる。",
+   "verify_steps": [
+    "NetView コンソールで PPT 上の BGNSESS OPCTL セッションを開始する。",
+    "PPT から MVS コマンドを発行する。",
+    "応答メッセージが PPT のメッセージキューで受信され、PPT メッセージキュー処理へ渡されることを確認する。"
+   ],
+   "quiz": {
+    "q": "PPT が MVS または TAF OPCTL オペレーターとして動作する場合、OPCTL セッションからのメッセージはどのキューで受信されるか。",
+    "choices": [
+     "OST のメッセージキュー",
+     "PPT のメッセージキュー",
+     "SYSOP メッセージキュー",
+     "NNT のメッセージキュー"
+    ],
+    "answer": 1,
+    "explanation": "PPT 上で発行された MVS コマンドや BGNSESS OPCTL の応答は、すべて PPT のメッセージキューで受信され、PPT メッセージキュー処理に引き継がれる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.492",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.492 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9717",
+   "title": "11. OST or NNT as MVS or TAF OPCTL Operator",
+   "naiyou_jp": "OST または NNT が MVS または TAF OPCTL のオペレーターとして動作する処理フローを示す。OST／NNT から MVS コマンドが発行されたり、OST／NNT で BGNSESS OPCTL コマンドが実行されると、その送信要求・非送信要求メッセージはすべて当該 OST または NNT のメッセージキューで受信される。発生タスクは OST または NNT。",
+   "verify_steps": [
+    "OST にログオンし、BGNSESS OPCTL でセッションを開始する。",
+    "OST から MVS コマンドを発行する。",
+    "応答メッセージがその OST／NNT のメッセージキューで受信されることを確認する。"
+   ],
+   "quiz": {
+    "q": "OST／NNT が OPCTL オペレーターとして動作する際、メッセージの発生タスクはどれか。",
+    "choices": [
+     "PPT",
+     "SYSOP",
+     "その OST または NNT",
+     "DSIMQS"
+    ],
+    "answer": 2,
+    "explanation": "OST または NNT が発行したコマンドの応答は、その OST／NNT 自身のメッセージキューで受信される。発生タスクは当該 OST または NNT。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.492",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.492 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9720",
+   "title": "14. DSIPSS for PPT or NetView Authorized-Receiver Messages",
+   "naiyou_jp": "PPT または NetView 認可受信者向けメッセージの DSIPSS 処理フローを示す。NetView 内部での DSIMQS による認可受信者への配信、非送信要求 VTAMメッセージ、PPT が BGNSESS で開始した TAF OPCTL セッションからのメッセージなどが対象となる。ASSIGN PRI が指定されている場合は、ASSIGN コマンドで指定したオペレーターへメッセージが送られる。",
+   "verify_steps": [
+    "ASSIGN PRI でメッセージを特定オペレーターに割り当てる。",
+    "認可受信者向けメッセージを発生させる。",
+    "DSIPSS によりメッセージが ASSIGN 指定オペレーターへ送られることを確認する。"
+   ],
+   "quiz": {
+    "q": "DSIPSS 処理でメッセージに ASSIGN PRI が指定されていた場合、メッセージはどこへ送られるか。",
+    "choices": [
+     "常に PPT",
+     "ASSIGN コマンドで指定したオペレーター",
+     "SYSOP のみ",
+     "破棄される"
+    ],
+    "answer": 1,
+    "explanation": "ASSIGN PRI 指定がある場合、メッセージは ASSIGN コマンドで指定したオペレーターへルーティングされる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.493",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.493 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9721",
+   "title": "15. OST or NNT Message Queue Processing",
+   "naiyou_jp": "OST または NNT のメッセージキュー処理フローを示す。自動化テーブルで誘導されたメッセージ・コマンド、DSIMQS マクロによる汎用タスク間メッセージ、当該オペレーターが MVS オペレーターの場合の MVS メッセージ、TAF オペレーター制御（コンソール）からのメッセージが対象。HDRMTYPE が HDRTYPEI／HDRTYPET（内部機能要求）の場合は要求された機能が実行される。",
+   "verify_steps": [
+    "OST にログオンしてメッセージキューを生成する状況を作る。",
+    "自動化テーブルで OST へメッセージを誘導する。",
+    "内部機能要求（HDRMTYPE=HDRTYPEI）の処理経路を確認する。"
+   ],
+   "quiz": {
+    "q": "OST／NNT メッセージキュー処理で、メッセージが内部機能要求（HDRMTYPE=HDRTYPEI）の場合に行われる処理はどれか。",
+    "choices": [
+     "要求された機能が実行される",
+     "メッセージは破棄される",
+     "PPT に転送される",
+     "SYSLOG に記録される"
+    ],
+    "answer": 0,
+    "explanation": "HDRMTYPE=HDRTYPEI／HDRTYPET の内部機能要求では、要求された機能が実行される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.494",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.494 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9722",
+   "title": "16. NetView Console Output or SYSOP Message Queue Processing",
+   "naiyou_jp": "NetView コンソール出力または SYSOP メッセージキューの処理フローを示す。NetView コンソールへ表示される出力や、特定オペレーターに割り当てられていない権限受信者メッセージが SYSOP キューで処理される経路を扱う。OST／NNT メッセージキュー処理と並ぶ配信経路の一つ。",
+   "verify_steps": [
+    "権限受信者メッセージを発生させる。",
+    "オペレーター割り当てがない状態を作る。",
+    "SYSOP メッセージキュー経由で表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView コンソール出力／SYSOP メッセージキューが扱うのは主にどのようなメッセージか。",
+    "choices": [
+     "特定オペレーターに割り当てられていない権限受信者メッセージ",
+     "VTAM POI コマンド",
+     "TAF 全画面メッセージ",
+     "RODM メソッド出力"
+    ],
+    "answer": 0,
+    "explanation": "オペレーターに割り当てられていない権限受信者メッセージは、NetView コンソール出力／SYSOP メッセージキューで処理される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.494",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.494 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9723",
+   "title": "17. OST or NNT DSIPSS",
+   "naiyou_jp": "OST または NNT 向け DSIPSS の処理フローを示す。OST／NNT のメッセージキュー処理を経たメッセージが、最終的に DSIPSS（プレゼンテーションサービス）を通じてオペレーター端末へ提示される経路を扱う。全画面・行モードでの表示制御が関わる。",
+   "verify_steps": [
+    "OST にメッセージを誘導する。",
+    "DSIPSS を経由した端末提示の経路を確認する。",
+    "表示制御アクション（HOLD/BEEP 等）の効果を観察する。"
+   ],
+   "quiz": {
+    "q": "OST／NNT の DSIPSS 処理が担うのは何か。",
+    "choices": [
+     "メッセージをオペレーター端末へ提示する",
+     "MVS コマンド排他リストの評価",
+     "RODM データキャッシュの更新",
+     "タイマーコマンドの保存"
+    ],
+    "answer": 0,
+    "explanation": "DSIPSS（プレゼンテーションサービス）は、メッセージを OST／NNT のオペレーター端末へ提示する役割を担う。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.495",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.495 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9724",
+   "title": "2. Cross-Domain Commands (OST to NNT)",
+   "naiyou_jp": "OST から NNT へのクロスドメインコマンドの処理フローを示す。あるドメインの OST から別ドメインの NNT へコマンドを送る経路で、NetView 間の通信を介してコマンドが転送・実行される。クロスドメイン運用の基本フローの一つ。",
+   "verify_steps": [
+    "2 つの NetView ドメイン間でクロスドメインセッションを確立する。",
+    "OST からクロスドメインコマンドを発行する。",
+    "対向ドメインの NNT でコマンドが受信・実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "OST から NNT へのクロスドメインコマンドはどの方向の通信を表すか。",
+    "choices": [
+     "同一ドメイン内のタスク間",
+     "OST から別ドメインの NNT へ",
+     "PPT から SYSOP へ",
+     "RODM から VTAM へ"
+    ],
+    "answer": 1,
+    "explanation": "このフローは、ある NetView ドメインの OST から別ドメインの NNT へコマンドを送るクロスドメイン経路を表す。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.488",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.488 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9728",
+   "title": "6. Replies to NetView WTOR",
+   "naiyou_jp": "NetView WTOR への応答（リプライ）の処理フローを示す。NetView が発行した WTOR（応答要求付き Write To Operator）に対してオペレーターが応答を返した際の経路で、応答が該当する待機処理へ届けられる。",
+   "verify_steps": [
+    "NetView が WTOR を発行する状況を作る。",
+    "オペレーターが REPLY コマンドで応答する。",
+    "応答が対応する WTOR の待機処理へ届くことを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView WTOR への応答が処理される対象は何か。",
+    "choices": [
+     "NetView が発行した応答要求付きメッセージ",
+     "VTAM POI コマンド",
+     "TAF 全画面セッション",
+     "RODM メソッド"
+    ],
+    "answer": 0,
+    "explanation": "このフローは、NetView が発行した WTOR に対するオペレーター応答の経路を扱う。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.489",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.489 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9731",
+   "title": "9. Cross-Domain Messages and Commands (NNT to OST)",
+   "naiyou_jp": "NNT から OST へのクロスドメインメッセージおよびコマンドの処理フローを示す。別ドメインの NNT 側で発生したメッセージやコマンドが、NetView 間通信を介して当該 OST へ届けられる経路。OST→NNT の逆方向にあたる。",
+   "verify_steps": [
+    "クロスドメインセッションを確立する。",
+    "対向ドメイン側で NNT 経由のメッセージ／コマンドを発生させる。",
+    "OST 側でメッセージ・コマンドが受信されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NNT から OST へのクロスドメインフローが扱うのは何か。",
+    "choices": [
+     "別ドメインからの NNT 経由メッセージ・コマンドの OST 側受信",
+     "PPT メッセージキュー処理",
+     "MVS コマンド排他リスト",
+     "タイマー保存処理"
+    ],
+    "answer": 0,
+    "explanation": "このフローは、別ドメインの NNT 経由で届くメッセージ・コマンドを OST 側で受信する経路を表す。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.491",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.491 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9734",
+   "title": "Accessing RODM from the NetView Program",
+   "naiyou_jp": "NetView プログラムから RODMにアクセスする方法を説明する。RODM は高速ストレージ上に維持されるデータキャッシュで、ネットワークやシステム資源に関する構成・状態情報を保持する。NetView は RODM 内の資源情報を用いてネットワークおよびシステムの自動化を支援でき、メソッドや API を介して RODM の読み取り・更新を行う。",
+   "verify_steps": [
+    "RODM アドレス空間を起動する。",
+    "DSIQTSK タスク経由で対象 RODM を NetView から定義・管理する。",
+    "RODM 内オブジェクトの状態を NetView から参照・更新できることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView アドレス空間から RODM データキャッシュを管理する際に使う専用タスクはどれか。",
+    "choices": [
+     "DSIQTSK",
+     "BNJDSERV",
+     "PPT",
+     "DSIROVS"
+    ],
+    "answer": 0,
+    "explanation": "DSIQTSK は RODM アドレス空間との通信と指定 RODM データキャッシュの管理に専用化された NetView オプションタスクで、CNMSTYLE で定義し START TASK で起動する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.374",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.374 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9737",
+   "title": "Activating Autotasks",
+   "naiyou_jp": "オートタスクのアクティブ化について説明する。オートタスクは端末に関連付けられていない OST（オペレーターステーションタスク）で、AUTOTASK コマンドまたは CNMSTYLE の AUTOTASK ステートメントでアクティブ化する。状態監視や自動化処理の実行を無人で担う。",
+   "verify_steps": [
+    "AUTOTASK コマンドでオートタスクを起動する。",
+    "LIST コマンドでオートタスクがアクティブか確認する。",
+    "オートタスクが自動化処理を実行できることを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクをアクティブ化する手段として正しいものはどれか。",
+    "choices": [
+     "AUTOTASK コマンドまたは CNMSTYLE の AUTOTASK ステートメント",
+     "PURGE TIMER コマンド",
+     "REVISE MSG コマンド",
+     "BGNSESS コマンド"
+    ],
+    "answer": 0,
+    "explanation": "オートタスクは AUTOTASK コマンド、または CNMSTYLE メンバーの AUTOTASK ステートメントでアクティブ化する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.133",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.133 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9738",
+   "title": "Activating the MVS Command Exit",
+   "naiyou_jp": "MVS コマンド出口のアクティブ化について説明する。MVS コマンド管理を有効化すると、すべての MVS コマンドが NetView の MVS コマンド出口に渡される。多くの MVS コマンドは（明示的に除外・非包含でない限り）NetView へ送られ、DSIMCAOP オートタスクのもとで CNMEMCXY REXX コマンドリストが呼ばれて処理される。",
+   "verify_steps": [
+    "MPF メンバーに NetView コマンド出口を定義する。",
+    "MVS コマンド出口をアクティブ化する。",
+    "MVS コマンドが NetView 側で処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理を有効化すると、MVS コマンドはどこに渡されるか。",
+    "choices": [
+     "NetView の MVS コマンド出口",
+     "RODM",
+     "PPT メッセージキューのみ",
+     "VTAM POI"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理がアクティブになると、すべての MVS コマンドが NetView の MVS コマンド出口に渡され、除外されない限り NetView で処理される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.508",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.508 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9739",
+   "title": "Additional Command-List Capabilities for MVS",
+   "naiyou_jp": "MVS 向けコマンドリストの追加機能について説明する。NetView のコマンドリスト（REXX／NetView コマンドリスト言語）は、MVS 環境で MVS コマンドの発行や応答処理など追加機能を持つ。これらを用いて自動化処理から MVS を制御できる。",
+   "verify_steps": [
+    "MVS コマンドを発行するコマンドリストを作成する。",
+    "コマンドリストを実行する。",
+    "MVS コマンドが発行され応答が処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS 向けコマンドリストで実現できることはどれか。",
+    "choices": [
+     "MVS コマンドの発行と応答処理",
+     "RODM のコールドスタート",
+     "タイマーの無制限化",
+     "全画面の色変更のみ"
+    ],
+    "answer": 0,
+    "explanation": "NetView のコマンドリストは MVS 環境で MVS コマンドの発行や応答処理などの追加機能を持ち、自動化処理から MVS を制御できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.127",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.127 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9742",
+   "title": "Advantages of Using EMCS Consoles with the NetView Program",
+   "naiyou_jp": "NetView プログラムで EMCS コンソールを使う利点について説明する。EMCS（拡張複数コンソールサポート）コンソールは、MVS サブシステムインターフェースに比べて多くの利点がある。シスプレックスで MSCOPE 属性を設定すれば、自システム・全システム・選択したシステムからのメッセージを受信でき、柔軟なメッセージルーティングが可能。",
+   "verify_steps": [
+    "EMCS コンソールを NetView 自動化用に構成する。",
+    "MSCOPE 属性を設定する。",
+    "対象システムのメッセージが受信できることを確認する。"
+   ],
+   "quiz": {
+    "q": "EMCS コンソールでメッセージ受信範囲を制御する属性はどれか。",
+    "choices": [
+     "MSCOPE",
+     "FLASH",
+     "AUTODROP",
+     "FPCAT"
+    ],
+    "answer": 0,
+    "explanation": "EMCS コンソールでは MSCOPE 属性を設定して、自システム・全システム・選択システムからのメッセージ受信を制御できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.89",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.89 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9749",
+   "title": "Associating Autotasks with Multiple Console Support Consoles",
+   "naiyou_jp": "オートタスクを複数コンソールサポートコンソールに関連付ける方法を説明する。AUTOTASK コマンドまたは CNMSTYLE の AUTOTASK ステートメントで、オートタスクに MCS コンソールを関連付けられる。関連付けると、そのコンソールはオートタスクが受信する全メッセージを表示でき、NetView コマンドを受け付けてオートタスクへ転送できる。",
+   "verify_steps": [
+    "AUTOTASK コマンドで CONSOLE= に MCS コンソール名を指定する。",
+    "そのコンソールでオートタスク宛メッセージが表示されることを確認する。",
+    "コンソールから入力した NetView コマンドがオートタスクへ転送されることを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクに MCS コンソールを関連付けると得られる効果はどれか。",
+    "choices": [
+     "コンソールがオートタスク宛メッセージを表示しコマンドを転送できる",
+     "オートタスクが自動的に停止する",
+     "RODM が更新される",
+     "タイマーが保存される"
+    ],
+    "answer": 0,
+    "explanation": "MCS コンソールをオートタスクに関連付けると、コンソールはオートタスクが受信する全メッセージを表示し、入力された NetView コマンドをオートタスクへ転送できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.134",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.134 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9751",
+   "title": "Automating Close to the Source",
+   "naiyou_jp": "発生源に近い場所での自動化について説明する。問題の発生源に最も近いシステムでメッセージや MSU を自動化することで、応答が速くなり、ネットワーク間のトラフィックや遅延を抑えられる。各システムでローカルに自動化を行い、ローカルで処理できないものだけをフォーカルポイントへ転送する考え方。",
+   "verify_steps": [
+    "発生源システムでローカル自動化テーブルを構成する。",
+    "ローカルで処理可能なメッセージを自動化する。",
+    "未処理分のみフォーカルポイントへ転送されることを確認する。"
+   ],
+   "quiz": {
+    "q": "発生源に近い場所で自動化する利点はどれか。",
+    "choices": [
+     "応答が速くなりネットワーク負荷・遅延を抑えられる",
+     "RODM が不要になる",
+     "MVS コマンドが高速化する",
+     "タイマーが無制限になる"
+    ],
+    "answer": 0,
+    "explanation": "発生源に近い場所で自動化すると応答が速くなり、ネットワーク間トラフィックや遅延を抑えられる。ローカルで処理できないものだけをフォーカルポイントへ転送する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.341",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.341 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9752",
+   "title": "Automating Initialization, Monitoring, Recovery, and Shutdown",
+   "naiyou_jp": "初期化・監視・回復・シャットダウンの自動化について説明する。サブシステムやアプリケーションのライフサイクル全体（起動、稼働中の監視、障害時の回復、停止）を自動化テーブルやコマンドリストで自動化する。これにより運用負荷を減らし可用性を高める。",
+   "verify_steps": [
+    "対象サブシステムの起動・停止メッセージを特定する。",
+    "各フェーズに対応する自動化テーブル文を作成する。",
+    "初期化〜シャットダウンが自動化されることを確認する。"
+   ],
+   "quiz": {
+    "q": "このトピックが自動化対象とするライフサイクルに含まれないものはどれか。",
+    "choices": [
+     "RODM のコールドスタート",
+     "初期化",
+     "監視",
+     "回復"
+    ],
+    "answer": 0,
+    "explanation": "対象は初期化・監視・回復・シャットダウンのライフサイクル全体。RODM のコールドスタートはここでの主題ではない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.332",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.332 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9753",
+   "title": "Automating Messages and Management Services Units (MSUs)",
+   "naiyou_jp": "メッセージと管理サービスユニットの自動化について説明する。自動化テーブルを用いて、メッセージや MSU の特定フィールド値・発生源などを条件に判定し、表示・ログ・ルーティングの変更やコマンド・コマンドリストの呼び出しを行う。自動化を定義するには DSIPARM のメンバーに自動化文を記述し AUTOTBL コマンドを発行する。",
+   "verify_steps": [
+    "DSIPARM のメンバーに自動化テーブル文を記述する。",
+    "AUTOTBL コマンドでテーブルをロードする。",
+    "対象メッセージ／MSU が条件に従って処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルをロードするために使うコマンドはどれか。",
+    "choices": [
+     "AUTOTBL",
+     "REVISE MSG",
+     "PURGE TIMER",
+     "BGNSESS"
+    ],
+    "answer": 0,
+    "explanation": "自動化テーブルは DSIPARM のメンバーに自動化文を記述し、そのメンバー名を指定して AUTOTBL コマンドを発行することでロードする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.313",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.313 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9754",
+   "title": "Automating Other Data by Generating Messages",
+   "naiyou_jp": "メッセージ生成による他データの自動化について説明する。自動化テーブルで直接扱えないデータについて、メッセージを生成し、そのメッセージを自動化テーブルで評価することで自動化を行う手法。間接的に多様なデータを自動化対象にできる。",
+   "verify_steps": [
+    "自動化したいデータからメッセージを生成する手段を用意する。",
+    "生成メッセージを自動化テーブルで評価する。",
+    "対象データが自動化されることを確認する。"
+   ],
+   "quiz": {
+    "q": "メッセージ生成による自動化の狙いはどれか。",
+    "choices": [
+     "直接扱えないデータをメッセージ経由で自動化対象にする",
+     "RODM の容量削減",
+     "タイマー保存",
+     "全画面表示"
+    ],
+    "answer": 0,
+    "explanation": "メッセージを生成して自動化テーブルで評価することで、本来直接扱えないデータも間接的に自動化対象にできる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.327",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.327 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9755",
+   "title": "Automating Other Systems, Devices, and Networks",
+   "naiyou_jp": "他システム・デバイス・ネットワークの自動化について説明する。NetView は自ドメインだけでなく、他システム、ネットワークデバイス、他種ネットワークからのメッセージ・アラートを集約し、自動化テーブルで処理できる。フォーカルポイントや TAF、RMTCMD 等を介して対象範囲を広げる。",
+   "verify_steps": [
+    "他システム・デバイスからの情報経路を構成する。",
+    "受信したメッセージ・アラートを自動化テーブルで処理する。",
+    "他システムの自動化が機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "他システム・デバイス・ネットワークの自動化で利用される仕組みはどれか。",
+    "choices": [
+     "フォーカルポイントや TAF、RMTCMD など",
+     "RODM のコールドスタート",
+     "タイマーの保存のみ",
+     "全画面パネルのみ"
+    ],
+    "answer": 0,
+    "explanation": "他システム・デバイス・ネットワークの自動化では、フォーカルポイントや TAF、RMTCMD などを介してメッセージ・アラートを集約し自動化テーブルで処理する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.369",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.369 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9758",
+   "title": "Automation in an MVS Sysplex",
+   "naiyou_jp": "MVS シスプレックスにおける自動化について説明する。NetView は単一 MVS システムだけでなく、機能・プログラムを共有して 1 システムとして動作する複数 MVS から成るシスプレックスの自動化も提供できる。EMCS コンソールの MSCOPE で各システムのメッセージ受信を制御し、MVS ROUTE で自動化アクションを適切なシステムへ戻す。",
+   "verify_steps": [
+    "シスプレックス内の NetView で EMCS コンソールを構成する。",
+    "MSCOPE でメッセージ受信範囲を設定する。",
+    "MVS ROUTE で対象システムへアクションを戻すことを確認する。"
+   ],
+   "quiz": {
+    "q": "シスプレックスで自動化アクションを発生元システムへ戻すために使うコマンドはどれか。",
+    "choices": [
+     "MVS ROUTE",
+     "AUTOTBL",
+     "PURGE TIMER",
+     "BGNSESS"
+    ],
+    "answer": 0,
+    "explanation": "シスプレックスでは EMCS の MSCOPE で受信範囲を制御し、MVS ROUTE コマンドで自動化アクションを適切なシステムへ戻す。SYSID 条件で発生元を判定できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.95",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.95 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9764",
+   "title": "Automation Using the Terminal Access Facility",
+   "naiyou_jp": "ターミナルアクセス機能を用いた自動化について説明する。TAF は VTAM のリレー機能で、NetView オペレーターの端末を LU1／LU2 型端末として CICS や IMS 等のアプリケーションに見せる。これによりオペレーターやオートタスクが、それらアプリのコンソールであるかのようにメッセージ参照・コマンド発行を行える。",
+   "verify_steps": [
+    "VTAMLST に TAF の SRCLU 定義を追加する。",
+    "CICS／IMS 等に端末定義を追加する。",
+    "BGNSESS でセッションを開始し自動化できることを確認する。"
+   ],
+   "quiz": {
+    "q": "TAF が NetView の自動化にもたらす主な機能はどれか。",
+    "choices": [
+     "CICS／IMS 等のコンソールメッセージを参照しコマンドを発行できる",
+     "RODM の高速化",
+     "タイマーの保存",
+     "MVS コマンドの排他"
+    ],
+    "answer": 0,
+    "explanation": "TAF は VTAM リレー機能により、NetView オペレーター／オートタスクが CICS や IMS のコンソールのようにメッセージを参照しコマンドを発行できるようにする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.391",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.391 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9765",
+   "title": "Automation with the Resource Object Data Manager",
+   "naiyou_jp": "RODMを用いた自動化の概要を説明する。RODM は高速ストレージ上のオブジェクト指向データキャッシュで、ネットワーク・システム資源の状態やトポロジーを表すオブジェクトを保持する。NetView は RODM 内の資源情報を高速に取得・更新でき、これに基づいて自動化を行える。",
+   "verify_steps": [
+    "RODM をアクティブにする。",
+    "資源オブジェクトを RODM に登録する。",
+    "NetView から RODM の状態情報を取得して自動化に利用できることを確認する。"
+   ],
+   "quiz": {
+    "q": "RODM が自動化で果たす主な役割は何か。",
+    "choices": [
+     "資源の状態・トポロジー情報を高速に保持し自動化を支援する",
+     "MVS コマンドの排他制御",
+     "タイマーコマンドの保存",
+     "全画面パネルの表示"
+    ],
+    "answer": 0,
+    "explanation": "RODM は資源情報を高速ストレージに保持し、NetView がそれを高速に取得・更新してネットワーク・システム自動化に利用できるようにする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.99",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.99 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9774",
+   "title": "Benefits of NetView Command Facility Screens",
+   "naiyou_jp": "NetView コマンド機能画面の利点について説明する。NetView コマンド機能画面は、メッセージの色・強調表示や、保留・アクション・通常・即時クラスの表示制御などをカスタマイズでき、オペレーターが状況を把握しやすい運用インターフェースを提供する。",
+   "verify_steps": [
+    "コマンド機能画面のカスタマイズ設定を確認する。",
+    "メッセージクラスごとの色を設定する。",
+    "オペレーター画面で見やすく表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView コマンド機能画面でカスタマイズできるものはどれか。",
+    "choices": [
+     "メッセージの色やクラス別表示",
+     "RODM の容量",
+     "タイマーの件数",
+     "JES3 のロギングのみ"
+    ],
+    "answer": 0,
+    "explanation": "NetView コマンド機能画面では、メッセージの色・強調表示や保留・アクション・通常・即時クラスの表示などをカスタマイズできる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.309",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.309 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9776",
+   "title": "Changing Route Codes and Descriptor Codes",
+   "naiyou_jp": "ルートコードと記述コードの変更について説明する。メッセージ修正テーブルを用いると、MVS メッセージ（WTO・WTOR）がシステムログやコンソールに提示される前に、メッセージテキスト・色・ルートコード・記述コード・表示属性・ログ属性を変更できる。REVISE 文でこれらを指定する。",
+   "verify_steps": [
+    "MRT に REVISE 文を記述しルート／記述コードを変更する。",
+    "REVISE MSG コマンドで MRT をアクティブ化する。",
+    "対象メッセージのルート／記述コードが変わることを確認する。"
+   ],
+   "quiz": {
+    "q": "メッセージ修正テーブル（MRT）で変更できる属性に含まれないものはどれか。",
+    "choices": [
+     "RODM オブジェクトの構造",
+     "ルートコード",
+     "記述コード",
+     "メッセージの色"
+    ],
+    "answer": 0,
+    "explanation": "MRT はメッセージテキスト・色・ルートコード・記述コード・表示／ログ属性を変更できるが、RODM オブジェクトの構造は対象外。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.139",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.139 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9777",
+   "title": "Changing the Exclusion or Inclusion List",
+   "naiyou_jp": "排他リスト／包含リスト（Exclusion／Inclusion List）の変更について説明する。MVS コマンド管理では、CONSOLE／COMMAND／CMDTEXT の排他リストまたは包含リストにより、どのコマンドやコンソールを処理対象に含める／除外するかを制御する。これらのリストを変更して対象範囲を調整する。",
+   "verify_steps": [
+    "CNMCAUaa メンバーのリストを編集する。",
+    "排他／包含リストの変更を反映する。",
+    "対象コマンド・コンソールの処理可否が変わることを確認する。"
+   ],
+   "quiz": {
+    "q": "排他リスト／包含リストの変更で制御できるものはどれか。",
+    "choices": [
+     "どのコマンド・コンソールを処理対象に含める／除外するか",
+     "RODM の容量",
+     "タイマー件数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "排他／包含リストは、どのコマンドやコンソールを処理対象に含める／除外するかを制御する。リストを変更して対象範囲を調整する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.510",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.510 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9778",
+   "title": "Changing, Dropping, and Listing Focal Points",
+   "naiyou_jp": "フォーカルポイントの変更・削除・一覧表示について説明する。FOCALPT コマンドで、カテゴリーごとの現用・バックアップフォーカルポイントを変更したり削除したりできる。DROP が成功すると DWO051I などのメッセージが表示される。",
+   "verify_steps": [
+    "FOCALPT ACQUIRE で現用・バックアップ FP を変更する。",
+    "FOCALPT DROP でフォーカルポイントを削除する。",
+    "DWO051I 等のメッセージで結果を確認する。"
+   ],
+   "quiz": {
+    "q": "フォーカルポイントを削除するコマンドはどれか。",
+    "choices": [
+     "FOCALPT DROP",
+     "FOCALPT ACQUIRE のみ",
+     "AUTOTBL",
+     "REVISE MSG"
+    ],
+    "answer": 0,
+    "explanation": "FOCALPT DROP コマンドでカテゴリー単位にフォーカルポイントを削除でき、成功時には DWO051I などのメッセージが表示される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.364",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.364 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9779",
+   "title": "Choosing a Configuration",
+   "naiyou_jp": "構成の選択について説明する。分散自動化において、各ドメインのフォーカルポイント階層や転送経路をどう構成するかを選択する。FORWARD FOCALPT 制御ファイルエントリーで各ドメインの現用・バックアップフォーカルポイントを定義する。",
+   "verify_steps": [
+    "分散自動化の構成方針を決める。",
+    "FORWARD FOCALPT エントリーで FP 階層を定義する。",
+    "想定どおりの転送経路になることを確認する。"
+   ],
+   "quiz": {
+    "q": "フォーカルポイント階層を定義する制御ファイルエントリーはどれか。",
+    "choices": [
+     "FORWARD FOCALPT",
+     "REVISE MSG",
+     "AUTOTASK",
+     "PURGE TIMER"
+    ],
+    "answer": 0,
+    "explanation": "分散自動化では FORWARD FOCALPT 制御ファイルエントリーで各ドメインの現用・バックアップフォーカルポイントを定義し、構成を選択する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.363",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.363 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9780",
+   "title": "Choosing a Forwarding Method",
+   "naiyou_jp": "転送方式の選択について説明する。フォーカルポイントへデータを転送する方式を選択する。例えば RMTCMD コマンドと LU 6.2 セッションを用いる方式などがあり、ネットワーク構成や移行状況に応じて選定する。",
+   "verify_steps": [
+    "利用可能な転送方式を比較する。",
+    "RMTCMD／LU6.2 など方式を選定する。",
+    "選定方式でデータがフォーカルポイントへ転送されることを確認する。"
+   ],
+   "quiz": {
+    "q": "フォーカルポイントへの転送方式の例として正しいものはどれか。",
+    "choices": [
+     "RMTCMD コマンドと LU 6.2 セッション",
+     "REVISE MSG",
+     "PURGE TIMER",
+     "DISPLAY(NO)"
+    ],
+    "answer": 0,
+    "explanation": "転送方式には RMTCMD コマンドと LU 6.2 セッションを用いる方式などがあり、構成や移行状況に応じて選択する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.362",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.362 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9781",
+   "title": "Choosing a Task",
+   "naiyou_jp": "タスクの選択について説明する。タイマーコマンドやオートタスクを用いる際、どのタスク（OST／オートタスク／PPT 等）にコマンドや処理を割り当てるかを選択する。タスク選択は自動化の信頼性や順序制御に影響する。例えば MSU への EXEC アクションでは安定したオートタスクから実行するか ROUTE を使う。",
+   "verify_steps": [
+    "処理を割り当てるタスクを検討する。",
+    "適切なタスク（安定したオートタスク等）を選ぶ。",
+    "処理が意図したタスクで実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "タスク選択が影響するものはどれか。",
+    "choices": [
+     "自動化の信頼性や処理の順序制御",
+     "RODM の容量",
+     "全画面の色数",
+     "タイマーの最大値のみ"
+    ],
+    "answer": 0,
+    "explanation": "どのタスクに処理を割り当てるかは自動化の信頼性や順序制御に影響する。例えば MSU への EXEC では安定したオートタスクから実行するか ROUTE を使う。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.131",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.131 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9783",
+   "title": "CMDTEXT Exclusion List and CMDTEXT Inclusion List",
+   "naiyou_jp": "CMDTEXT 排他リストと CMDTEXT 包含リストについて説明する。一部のコマンドは標準的なコマンド形式に従わず（例えばキーワード区切りがカンマでなく空白）、COMMAND リストで扱えない。そうしたコマンドには CMDTEXT リストを用いる。CMDTEXT 排他／包含リストは相互排他で、同時に一方のみ定義できる。",
+   "verify_steps": [
+    "標準形式に従わないコマンドを特定する。",
+    "CMDTEXT 排他または包含リストに登録する。",
+    "コマンドテキスト一致で含め／除外されることを確認する。"
+   ],
+   "quiz": {
+    "q": "CMDTEXT リストが必要となるのはどのような場合か。",
+    "choices": [
+     "コマンドが標準のコマンド形式に従わない場合",
+     "RODM を更新する場合",
+     "タイマーを保存する場合",
+     "全画面パネルを表示する場合"
+    ],
+    "answer": 0,
+    "explanation": "CMDTEXT リストは、キーワード区切りが空白など標準のコマンド形式に従わないコマンドを含め／除外する場合に用いる。CMDTEXT 排他／包含は相互排他。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.507",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.507 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9784",
+   "title": "Coding a Command Revision Table",
+   "naiyou_jp": "コマンド修正テーブルのコーディングについて説明する。CRT は MVS コマンドがシステムログ・コンソールに提示される前に変更する条件・アクションの集合。REVISE 文でコマンドを条件指定して変更・拒否などを行い、REVISE CMD コマンドでアクティブ化する。",
+   "verify_steps": [
+    "DSIPARM に CRT メンバーを作成し REVISE 文を記述する。",
+    "REVISE CMD コマンドで CRT をアクティブ化する。",
+    "対象コマンドが意図どおり変更されることを確認する。"
+   ],
+   "quiz": {
+    "q": "コマンド修正テーブルをアクティブ化するコマンドはどれか。",
+    "choices": [
+     "REVISE CMD",
+     "AUTOTBL",
+     "REVISE MSG",
+     "FOCALPT DROP"
+    ],
+    "answer": 0,
+    "explanation": "CRT は REVISE 文で記述し、REVISE CMD コマンドでアクティブ化する。コマンドが提示される前に変更・拒否などを適用できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.146",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.146 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9785",
+   "title": "Coding a Message Revision Table",
+   "naiyou_jp": "メッセージ修正テーブルのコーディングについて説明する。MRT は MVS メッセージ（すべての WTO・WTOR）がシステムログやコンソールに提示される前に変更する条件・アクションの集合。WHEN／REVISE 文でメッセージを条件指定し、テキストや属性を変更する。REVISE MSG コマンドでアクティブ化する。",
+   "verify_steps": [
+    "DSIPARM に MRT メンバーを作成し WHEN／REVISE 文を記述する。",
+    "REVISE MSG コマンドで MRT をアクティブ化する。",
+    "対象メッセージが意図どおり変更されることを確認する。"
+   ],
+   "quiz": {
+    "q": "メッセージ修正テーブルをアクティブ化するコマンドはどれか。",
+    "choices": [
+     "REVISE MSG",
+     "AUTOTBL",
+     "PURGE TIMER",
+     "BGNSESS"
+    ],
+    "answer": 0,
+    "explanation": "MRT は WHEN／REVISE 文で記述し、REVISE MSG コマンドでアクティブ化する。WTO・WTOR が提示される前に変更を適用できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.138",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.138 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9787",
+   "title": "Command Exclusion List and Command Inclusion List",
+   "naiyou_jp": "コマンド排他リストとコマンド包含リスト（COMMAND Exclusion／Inclusion List）について説明する。コマンド名（およびワイルドカード）を基準に、どのコマンドを処理対象に含める／除外するかを指定する。例えば START * と記載すると、追加キーワードに関係なく START コマンド全般が対象となる。両者は相互排他。",
+   "verify_steps": [
+    "COMMAND 排他または包含リストにコマンドを指定する。",
+    "ワイルドカード（例 START *）の動作を確認する。",
+    "指定に従いコマンドが含め／除外されることを確認する。"
+   ],
+   "quiz": {
+    "q": "COMMAND 包含リストに「START *」と記載した場合の効果はどれか。",
+    "choices": [
+     "追加キーワードに関係なく START コマンド全般が対象になる",
+     "START コマンドが完全に無効化される",
+     "RODM が更新される",
+     "タイマーが保存される"
+    ],
+    "answer": 0,
+    "explanation": "COMMAND リストでは「START *」のようにワイルドカードを使うと、追加キーワードや値に関係なく START コマンド全般が含め／除外の対象になる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.506",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.506 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9789",
+   "title": "Command Lists and Command Processors",
+   "naiyou_jp": "コマンドリストとコマンドプロセッサについて説明する。コマンドリストは REXX または NetView コマンドリスト言語で記述され、コマンドプロセッサはユーザー作成のプログラム。いずれも自動化テーブルから呼び出され、メッセージや MSU の分析・処理を行う。",
+   "verify_steps": [
+    "REXX コマンドリストまたはコマンドプロセッサを用意する。",
+    "自動化テーブルから呼び出す。",
+    "メッセージ／MSU の分析・処理が行われることを確認する。"
+   ],
+   "quiz": {
+    "q": "コマンドリストを記述できる言語はどれか。",
+    "choices": [
+     "REXX または NetView コマンドリスト言語",
+     "JCL のみ",
+     "アセンブラーのみ",
+     "SQL"
+    ],
+    "answer": 0,
+    "explanation": "コマンドリストは REXX または NetView コマンドリスト言語で記述する。コマンドプロセッサはユーザー作成プログラムで、いずれも自動化テーブルから呼び出される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.123",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.123 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9794",
+   "title": "Commands Excluded by NetView Command Exit",
+   "naiyou_jp": "NetView コマンド出口によって除外されるコマンドについて説明する。一部の MVS コマンドは、CNMCAUaa メンバーの包含リストに記載されていても、MVS コマンド出口によって NetView へ送られない。これらは出口側で固定的に除外される。",
+   "verify_steps": [
+    "CNMCAUaa の包含リストに該当コマンドを記載する。",
+    "そのコマンドを発行する。",
+    "出口により NetView へ送られないことを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView コマンド出口によって除外されるコマンドの特徴はどれか。",
+    "choices": [
+     "包含リストに記載しても出口が NetView へ送らない",
+     "必ず NetView へ送られる",
+     "RODM に記録される",
+     "タイマーで保存される"
+    ],
+    "answer": 0,
+    "explanation": "一部コマンドは CNMCAUaa の包含リストに記載しても、MVS コマンド出口によって NetView へ送られない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.510",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.510 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9795",
+   "title": "Commands in a JES3 Environment",
+   "naiyou_jp": "JES3 環境でのコマンドについて説明する。JES3 コマンドはグローバルプロセッサ上の NetView から発行でき、JES3 識別子（例 *）が必要。ローカルプロセッサで発行できる JES3 コマンドは *CALL,DSI／*START,DSI／*CANCEL,DSI／*DUMP／*RETURN など限られたものだけで、それ以外はグローバルプロセッサへ送って応答を受け取る。",
+   "verify_steps": [
+    "グローバルプロセッサ上の NetView から JES3 コマンドを発行する。",
+    "ローカルで発行可能な限定コマンドを確認する。",
+    "応答メッセージが非送信要求として届くことを確認する。"
+   ],
+   "quiz": {
+    "q": "ローカルプロセッサの NetView から発行できる JES3 コマンドはどれか。",
+    "choices": [
+     "*CALL,DSI など限られたコマンドのみ",
+     "あらゆる JES3 コマンド",
+     "JES3 コマンドは一切発行不可",
+     "MVS コマンドのみ"
+    ],
+    "answer": 0,
+    "explanation": "ローカルプロセッサで発行できる JES3 コマンドは *CALL,DSI／*START,DSI／*CANCEL,DSI／*DUMP／*RETURN などに限られ、他はグローバルへ送る。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.441",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.441 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9796",
+   "title": "Commands Issued from a Console",
+   "naiyou_jp": "コンソールから発行されるコマンドについて説明する。MVS コンソールや NetView コンソールから発行されたコマンドは、サブシステムインターフェースや EMCS コンソール、VTAM POI などの経路を通じて処理される。発行元コンソールの種類により処理経路や応答の戻り方が異なる。",
+   "verify_steps": [
+    "各種コンソールからコマンドを発行する。",
+    "発行元に応じた処理経路を確認する。",
+    "応答が適切に戻ることを確認する。"
+   ],
+   "quiz": {
+    "q": "コンソールから発行されたコマンドの処理経路は何によって異なるか。",
+    "choices": [
+     "発行元コンソールの種類",
+     "RODM の容量",
+     "タイマーの件数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "コンソールから発行されたコマンドは、発行元コンソールの種類（MVS／NetView／VTAM POI 等）により処理経路や応答の戻り方が異なる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.469",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.469 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9798",
+   "title": "Console Exclusion List and Console Inclusion List",
+   "naiyou_jp": "コンソール排他リストとコンソール包含リスト（CONSOLE Exclusion／Inclusion List）について説明する。これらはコンソール名を基準に、どのコンソールから発行されたコマンドを処理対象に含める／除外するかを指定するリスト。両者は相互排他で、同時指定はできない。",
+   "verify_steps": [
+    "CONSOLE 排他または包含リストにコンソール名を指定する。",
+    "対象コンソールからコマンドを発行する。",
+    "コンソール名に応じて含め／除外されることを確認する。"
+   ],
+   "quiz": {
+    "q": "コンソール排他／包含リストの判定基準はどれか。",
+    "choices": [
+     "コンソール名",
+     "コマンドテキスト全文",
+     "RODM オブジェクト名",
+     "タイマー ID"
+    ],
+    "answer": 0,
+    "explanation": "CONSOLE 排他／包含リストはコンソール名を基準に、そのコンソールからのコマンドを含める／除外するかを判定する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.505",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.505 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9802",
+   "title": "Creating a Project Plan",
+   "naiyou_jp": "プロジェクト計画の作成について説明する。自動化プロジェクトの計画では、定義・設計・実装・本番の各フェーズの代表的なタスクを洗い出す。付録のサンプルプロジェクト計画をモデルとして利用できるが、実際の計画は環境に応じて大きく異なってよい。",
+   "verify_steps": [
+    "定義〜本番の各フェーズのタスクを洗い出す。",
+    "サンプルプロジェクト計画を参考にする。",
+    "自環境に合わせた計画を作成する。"
+   ],
+   "quiz": {
+    "q": "自動化プロジェクト計画が対象とするフェーズに含まれないものはどれか。",
+    "choices": [
+     "RODM コールドスタート",
+     "定義",
+     "設計",
+     "実装"
+    ],
+    "answer": 0,
+    "explanation": "プロジェクト計画は定義・設計・実装・本番の 4 フェーズを対象とする。RODM コールドスタートはフェーズではない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.70",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.70 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9803",
+   "title": "Creating Full-Screen Panels",
+   "naiyou_jp": "全画面パネルの作成について説明する。コマンドプロシージャから表示する全画面パネルを作成すると、状態情報や例外通知を色・強調表示付きで表示できる。パネルは ISPF などの標準エディターで作成し、VIEW コマンドで表示する。VIEW は入力フィールドの値をプロシージャへ返すこともできる。",
+   "verify_steps": [
+    "ISPF などでパネルを作成する。",
+    "コマンドプロシージャから VIEW で表示する。",
+    "色・強調表示や入力フィールドが機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "作成した全画面パネルを表示するコマンドはどれか。",
+    "choices": [
+     "VIEW",
+     "AUTOTBL",
+     "REVISE MSG",
+     "PURGE TIMER"
+    ],
+    "answer": 0,
+    "explanation": "全画面パネルは ISPF などで作成し、コマンドプロシージャから VIEW コマンドで表示する。VIEW は入力フィールドの値をプロシージャへ返せる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.337",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.337 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9804",
+   "title": "Cross-Reference Listing of Command Lists and Samples",
+   "naiyou_jp": "コマンドリストとサンプルの相互参照リストについて説明する。自動化用サンプルセットに含まれるすべてのサンプル（コマンドリスト、パネル、パラメーター等）の説明をまとめた相互参照リスト。各サンプルの名前と用途を確認できる。名前が示されないサンプルはリネーム JCL が新名を提供せず、出荷名のまま使う。",
+   "verify_steps": [
+    "相互参照リストでサンプル一覧を確認する。",
+    "各サンプルの名前・用途を把握する。",
+    "リネーム対象外サンプルを確認する。"
+   ],
+   "quiz": {
+    "q": "相互参照リストで確認できる情報はどれか。",
+    "choices": [
+     "各サンプルの名前と用途",
+     "RODM の容量",
+     "タイマーの残数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "相互参照リストは自動化用サンプルセットの全サンプルの説明をまとめたもので、各サンプルの名前と用途を確認できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.544",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.544 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9805",
+   "title": "Customizing the Advanced Automation Sample Set",
+   "naiyou_jp": "高度自動化サンプルセットのカスタマイズについて説明する。高度自動化サンプルセットを利用するには、コマンド定義（CNMS6404 を既存 CNMCMD に追加）や自動化テーブルエントリー（CNMS6405 を既存テーブルに追加）などを行う。AOPIVARSがそれらを DSITBL11 でアクティブ化する。",
+   "verify_steps": [
+    "CNMS6404 のコマンド定義を CNMCMD に追加する。",
+    "CNMS6405 の自動化テーブルエントリーを追加する。",
+    "AOPIVARS でアクティブ化されることを確認する。"
+   ],
+   "quiz": {
+    "q": "高度自動化サンプルセットのコマンド定義を追加する先はどれか。",
+    "choices": [
+     "既存の CNMCMD メンバー",
+     "VTAMLST",
+     "RODM",
+     "IEASYSxx"
+    ],
+    "answer": 0,
+    "explanation": "高度自動化サンプルセットでは、CNMS6404 のコマンド定義を既存の CNMCMD に、CNMS6405 の自動化テーブルエントリーを既存テーブルに追加する。AOPIVARS がアクティブ化する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.540",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.540 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9807",
+   "title": "Deactivating Autotasks",
+   "naiyou_jp": "オートタスクの非アクティブ化について説明する。AUTOTASK コマンドや関連コマンドを用いて、稼働中のオートタスクを停止・非アクティブ化できる。不要になった監視・自動化タスクを停止し、資源を解放するために用いる。",
+   "verify_steps": [
+    "稼働中のオートタスクを確認する。",
+    "AUTOTASK／STOP 系コマンドでオートタスクを非アクティブ化する。",
+    "オートタスクが停止したことを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクの非アクティブ化の目的として適切なものはどれか。",
+    "choices": [
+     "不要な監視・自動化タスクを停止し資源を解放する",
+     "RODM をコールドスタートする",
+     "MVS コマンド排他リストを開始する",
+     "全画面パネルを表示する"
+    ],
+    "answer": 0,
+    "explanation": "オートタスクの非アクティブ化は、不要になった監視・自動化タスクを停止し資源を解放するために行う。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.134",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.134 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9808",
+   "title": "Deactivating the MVS Command Exit",
+   "naiyou_jp": "MVS コマンド出口の非アクティブ化について説明する。MVS コマンド管理を停止する際、コマンド出口を非アクティブ化することで MVS コマンドが NetView へ渡されなくなる。出口の停止は MVS コマンド管理の停止手順の一部として行う。",
+   "verify_steps": [
+    "稼働中の MVS コマンド出口を確認する。",
+    "MVS コマンド出口を非アクティブ化する。",
+    "MVS コマンドが NetView へ渡されなくなることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド出口を非アクティブ化するとどうなるか。",
+    "choices": [
+     "MVS コマンドが NetView へ渡されなくなる",
+     "RODM がコールドスタートする",
+     "全オートタスクが停止する",
+     "タイマーが全削除される"
+    ],
+    "answer": 0,
+    "explanation": "コマンド出口を非アクティブ化すると、MVS コマンドが NetView の出口へ渡されなくなる。これは MVS コマンド管理停止手順の一部。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.509",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.509 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9809",
+   "title": "Deciding Which Messages and MSUs to Automate",
+   "naiyou_jp": "どのメッセージや MSU を自動化するか決めることについて説明する。手順書、問題管理レポート、ヘルプデスクログ、SLA、利用者の声などを参考に、自動化対象のメッセージ・MSU を選定する。なお DSIPSS マクロの TYPE=FLASH で発行されるメッセージなど自動化できないものもある。",
+   "verify_steps": [
+    "手順書やログから自動化候補のメッセージを洗い出す。",
+    "自動化できないメッセージ（例 TYPE=FLASH）を除外する。",
+    "対象メッセージ・MSU を確定する。"
+   ],
+   "quiz": {
+    "q": "自動化できないメッセージの例として正しいものはどれか。",
+    "choices": [
+     "DSIPSS マクロの TYPE=FLASH で発行されるメッセージ",
+     "WTO で発行される通常メッセージ",
+     "MVS コマンド応答",
+     "VTAM メッセージ"
+    ],
+    "answer": 0,
+    "explanation": "DSIPSS マクロで TYPE=FLASH を指定して発行されるメッセージは公開されず、自動化できない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.313",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.313 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9810",
+   "title": "Deciding Which Method to Use to Write Automation Table Statements",
+   "naiyou_jp": "自動化テーブル文の記述方法を決めることについて説明する。自動化対象のメッセージ・MSU を決めた後、それらを選択する自動化テーブル文をどの方法で記述するか（条件の指定方法、IF-THEN／ALWAYS の使い分け等）を決定する。",
+   "verify_steps": [
+    "自動化対象を確定する。",
+    "条件指定方法（MSGID、JOBNAME 等）を選ぶ。",
+    "自動化テーブル文を記述しテストする。"
+   ],
+   "quiz": {
+    "q": "このステップで決定するのは何か。",
+    "choices": [
+     "自動化テーブル文の記述方法",
+     "RODM の容量",
+     "タイマーの件数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "自動化対象を決めた後、それらを選択する自動化テーブル文をどの方法で記述するかを決定する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.313",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.313 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9811",
+   "title": "Defining an Automation Project",
+   "naiyou_jp": "自動化プロジェクトの定義について説明する。プロジェクト定義フェーズでは、計画チームの編成、自動化による運用改善の調査、目標・目的の設定を行う。定義・設計・実装・本番の 4 フェーズアプローチの最初のフェーズにあたる。",
+   "verify_steps": [
+    "計画チームを編成する。",
+    "プロジェクト計画と目標・目的を設定する。",
+    "定義フェーズの成果物を確認する。"
+   ],
+   "quiz": {
+    "q": "自動化プロジェクトの定義フェーズで行うことはどれか。",
+    "choices": [
+     "計画チームの編成と目標・目的の設定",
+     "RODM のコールドスタート",
+     "タイマーの保存",
+     "全画面の色設定"
+    ],
+    "answer": 0,
+    "explanation": "定義フェーズでは計画チームを編成し、自動化による改善を調査して目標・目的を設定する。これは 4 フェーズアプローチの最初のフェーズ。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.69",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.69 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9812",
+   "title": "Defining and Activating Autotasks",
+   "naiyou_jp": "オートタスクの定義とアクティブ化について説明する。オートタスクは CNMSTYLE メンバーの AUTOTASK ステートメントで定義し、AUTOTASK コマンドでアクティブ化できる。端末に関連付かない OST として、状態監視や自動化処理を無人で実行する。",
+   "verify_steps": [
+    "CNMSTYLE で AUTOTASK ステートメントを定義する。",
+    "AUTOTASK コマンドでアクティブ化する。",
+    "オートタスクが稼働していることを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクを定義するために使うメンバーはどれか。",
+    "choices": [
+     "CNMSTYLE",
+     "MPFLSTxx",
+     "VTAMLST",
+     "SYS1.PARMLIB の IEASYSxx"
+    ],
+    "answer": 0,
+    "explanation": "オートタスクは CNMSTYLE メンバーの AUTOTASK ステートメントで定義し、AUTOTASK コマンドでアクティブ化する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.299",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.299 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9813",
+   "title": "Defining Autotasks",
+   "naiyou_jp": "オートタスクの定義について説明する。オートタスクは端末を持たない OST であり、CNMSTYLE の AUTOTASK ステートメントで名前や関連コンソールを定義する。定義後、AUTOTASK コマンドや CNMSTYLE 処理でアクティブ化され、自動化処理を担う。",
+   "verify_steps": [
+    "CNMSTYLE に AUTOTASK ステートメントを追加する。",
+    "オートタスクのコンソール関連付けを指定する。",
+    "定義が反映されオートタスクが起動できることを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクの基本的な性質として正しいものはどれか。",
+    "choices": [
+     "端末に関連付かない OST である",
+     "VTAM の POI セッションである",
+     "RODM のオブジェクトである",
+     "MVS の常駐タスクである"
+    ],
+    "answer": 0,
+    "explanation": "オートタスクは端末に関連付けられていない OST で、CNMSTYLE の AUTOTASK ステートメントで定義する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.133",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.133 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9814",
+   "title": "Defining Autotasks Consistently",
+   "naiyou_jp": "オートタスクを一貫して定義することについて説明する。可搬性のある自動化を実現するため、各 NetView システムで同じオートタスク名・役割を一貫して定義することが推奨される。命名や責務を統一すると、自動化テーブルを複数システムへ移植しやすくなる。",
+   "verify_steps": [
+    "各システムで使用するオートタスク名と役割を一覧化する。",
+    "全システムで同一の AUTOTASK 定義を CNMSTYLE に反映する。",
+    "移植時にオートタスク名の不整合がないことを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクを一貫して定義する利点はどれか。",
+    "choices": [
+     "自動化テーブルを複数システムへ移植しやすくなる",
+     "RODM 容量が増える",
+     "MVS コマンドが高速化する",
+     "タイマー件数が無制限になる"
+    ],
+    "answer": 0,
+    "explanation": "オートタスク名・役割を全システムで一貫させると、自動化テーブルの可搬性が高まり、複数システムへの移植が容易になる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.341",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.341 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9815",
+   "title": "Defining Responsibilities",
+   "naiyou_jp": "責任の定義について説明する。自動化を一貫して運用するため、どのオートタスクやオペレーターがどの資源・どの自動化処理を担当するかという責任分担を明確に定義する。責任を明確化すると、メッセージのルーティングや回復処理の担当が一意に定まり、複数システムへの可搬性も高まる。",
+   "verify_steps": [
+    "自動化対象の資源・処理を洗い出す。",
+    "各オートタスク／オペレーターの担当範囲を定義する。",
+    "メッセージ・回復処理が定義した担当へ向かうことを確認する。"
+   ],
+   "quiz": {
+    "q": "責任の定義を明確化する利点はどれか。",
+    "choices": [
+     "処理の担当が一意に定まり可搬性も高まる",
+     "RODM が高速化する",
+     "タイマーが無制限になる",
+     "VTAM が不要になる"
+    ],
+    "answer": 0,
+    "explanation": "責任分担を明確に定義すると、どのオートタスク／オペレーターがどの資源・処理を担当するかが一意に定まり、複数システムへの可搬性も高まる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.341",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.341 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9818",
+   "title": "Design Guidelines for Automation Tables",
+   "naiyou_jp": "自動化テーブルの設計ガイドラインについて説明する。テーブルを読みやすく保守しやすくするため、各メンバー先頭にコメントを置き、各文がどのメッセージ・MSU に一致し何を行うかをコメントで説明し、IF-THEN や BEGIN/END のアクションをインデントすることが推奨される。",
+   "verify_steps": [
+    "自動化テーブルメンバーの先頭にコメントを追加する。",
+    "各文の一致条件とアクションをコメントで説明する。",
+    "IF-THEN／BEGIN-END をインデントして可読性を確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルの設計ガイドラインに含まれるものはどれか。",
+    "choices": [
+     "コメントの付与とインデントによる可読性向上",
+     "RODM のコールドスタート",
+     "タイマーの保存",
+     "全画面の色変更"
+    ],
+    "answer": 0,
+    "explanation": "設計ガイドラインでは、メンバー先頭や各文へのコメント付与、IF-THEN／BEGIN-END のインデントにより、テーブルの可読性と保守性を高めることを推奨している。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.238",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.238 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9820",
+   "title": "Detailed NetView Message and Command Flows",
+   "naiyou_jp": "詳細な NetView メッセージとコマンドのフローについて説明する。付録として、各種メッセージ・コマンドの詳細フロー図（送信要求／非送信要求システムメッセージ、NetView コマンド入力、VTAM POI 等）を示す。各フローは発生原因・発生タスク・処理手順を記述する。",
+   "verify_steps": [
+    "対象フロー（例 送信要求システムメッセージ）を選ぶ。",
+    "フロー図で発生原因・タスク・手順を確認する。",
+    "実際の動作がフローと一致することを確認する。"
+   ],
+   "quiz": {
+    "q": "詳細メッセージ・コマンドフローが記述する情報に含まれるものはどれか。",
+    "choices": [
+     "発生原因・発生タスク・処理手順",
+     "RODM の容量",
+     "タイマーの件数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "詳細フロー図は、各種メッセージ・コマンドについて発生原因・発生タスク・処理手順を記述している。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.479",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.479 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9821",
+   "title": "Developing a Portable Automation Table",
+   "naiyou_jp": "可搬性のある自動化テーブルの開発について説明する。複数の NetView システムへ展開できるよう、システム固有の値を避け、オートタスク名や役割を一貫させた自動化テーブルを作成する。可搬性を高めることで、配布前のインストール・テストを経て複数システムへ展開しやすくなる。",
+   "verify_steps": [
+    "システム固有値を変数化・共通化する。",
+    "オートタスク名・役割を一貫させる。",
+    "別システムへ移植して動作することを確認する。"
+   ],
+   "quiz": {
+    "q": "可搬性のある自動化テーブルを開発する目的はどれか。",
+    "choices": [
+     "複数 NetView システムへ展開しやすくする",
+     "RODM を高速化する",
+     "MVS コマンドを増やす",
+     "タイマーを保存する"
+    ],
+    "answer": 0,
+    "explanation": "可搬性のある自動化テーブルは、システム固有値を避け命名・役割を統一することで、複数システムへ展開しやすくする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.342",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.342 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9823",
+   "title": "Developing Goals and Objectives for Automation",
+   "naiyou_jp": "自動化の目標と目的の策定について説明する。業務・データ処理要件と運用上の問題領域の知識をもとに、適切な長期自動化目標を策定する。さらに各長期目標に対し 1 つ以上の具体的な測定指標（測定可能な目的）を定め、進捗を測れるようにする。",
+   "verify_steps": [
+    "業務・運用上の問題領域を整理する。",
+    "長期目標を策定する。",
+    "各目標に測定可能な目的を設定する。"
+   ],
+   "quiz": {
+    "q": "測定可能な目的を設定する目的はどれか。",
+    "choices": [
+     "自動化目標への進捗を測定するため",
+     "RODM 容量を増やすため",
+     "タイマーを保存するため",
+     "全画面を表示するため"
+    ],
+    "answer": 0,
+    "explanation": "測定可能な目的は、各長期自動化目標に対する進捗を測定するために、具体的な測定指標として設定する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.73",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.73 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9824",
+   "title": "Differences between NetView and Multiple Console Support Consoles",
+   "naiyou_jp": "NetView コンソールと複数コンソールサポートコンソールの違いについて説明する。HOLD(Y) や BEEP(Y) などの自動化テーブルの表示制御アクションは、オートタスクに関連付けられた MCS コンソールには効果がない。INPUT／RETRIEVE などの画面制御コマンドも EMCS コンソールには効果がなく、BROWSE 等の全画面アプリも利用できない。",
+   "verify_steps": [
+    "MCS コンソールをオートタスクに関連付ける。",
+    "HOLD(Y)／BEEP(Y) 等の効果を確認する。",
+    "これらが MCS コンソールに効かないことを確認する。"
+   ],
+   "quiz": {
+    "q": "オートタスクに関連付けた MCS コンソールに効果がないものはどれか。",
+    "choices": [
+     "HOLD(Y) や BEEP(Y) などの表示制御アクション",
+     "AUTOTBL のロード",
+     "RODM の更新",
+     "MVS コマンドの発行"
+    ],
+    "answer": 0,
+    "explanation": "HOLD(Y)／BEEP(Y) などの表示制御アクションや INPUT／RETRIEVE 画面制御コマンドは、オートタスクに関連付けられた MCS／EMCS コンソールには効果がない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.307",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.307 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9827",
+   "title": "Displaying the MVS Command Management Setting",
+   "naiyou_jp": "MVS コマンド管理の設定状況の表示について説明する。コマンド管理が有効か無効か、コマンド出口がアクティブかどうかなどの現在の設定を確認する操作で、運用状態の把握やトラブルシュートに用いる。",
+   "verify_steps": [
+    "MVS コマンド管理の表示コマンドを実行する。",
+    "出口のアクティブ／非アクティブ状態を確認する。",
+    "設定が想定どおりか検証する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理設定の表示で得られる情報はどれか。",
+    "choices": [
+     "コマンド管理の有効／無効や出口の状態",
+     "RODM のオブジェクト数",
+     "タイマーの残数",
+     "全画面パネルの色"
+    ],
+    "answer": 0,
+    "explanation": "設定表示では MVS コマンド管理の有効／無効や、コマンド出口がアクティブかどうかなどの現在の状態を確認できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.508",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.508 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9830",
+   "title": "Enabling MVS Command Management in the NetView Environment",
+   "naiyou_jp": "NetView 環境での MVS コマンド管理の有効化について説明する。MVS コマンド管理を有効にすると、ほとんどの MVS コマンドを検査・変更・拒否できる。コマンドは NetView の MVS コマンド出口に渡され、DSIMCAOP オートタスクのもとで CNMEMCXY REXX コマンドリストが呼ばれる。出口は MPF メンバーで定義する。",
+   "verify_steps": [
+    "MPF メンバーに NetView コマンド出口を定義する。",
+    "NetView 側でオートタスクとオプションタスクを定義する。",
+    "MVS コマンド管理を有効化し、コマンドが検査されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理を有効化すると何ができるようになるか。",
+    "choices": [
+     "ほとんどの MVS コマンドを検査・変更・拒否できる",
+     "RODM を高速化できる",
+     "タイマーを無制限にできる",
+     "VTAM を不要にできる"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理を有効化すると、ほとんどの MVS コマンドを検査・変更・拒否でき、コマンドは NetView 出口経由で CNMEMCXY により処理される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.501",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.501 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9831",
+   "title": "Enabling the MVS Command Exit on MVS",
+   "naiyou_jp": "MVS 上での MVS コマンド出口の有効化について説明する。NetView の MVS コマンド出口を MPF メンバーで定義し、MVS 側で有効化することで、MVS コマンドが NetView に渡されるようになる。これは MVS コマンド管理を機能させる前提手順。",
+   "verify_steps": [
+    "MPF メンバーに DSIMCAEX を定義する。",
+    "MVS 側でコマンド出口を有効化する。",
+    "MVS コマンドが NetView へ渡ることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS 上で MVS コマンド出口を有効化する目的はどれか。",
+    "choices": [
+     "MVS コマンドを NetView に渡せるようにする",
+     "RODM を更新する",
+     "タイマーを保存する",
+     "全画面パネルを表示する"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド出口を MPF で定義し MVS 側で有効化することで、MVS コマンドが NetView へ渡されるようになる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.502",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.502 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9834",
+   "title": "Establishing Communication between the NetView System and the Operating System",
+   "naiyou_jp": "NetView システムとオペレーティングシステム間の通信確立について説明する。MVS コマンドやメッセージを NetView で扱うには、サブシステムインターフェースや EMCS コンソール、コマンド出口などを通じて NetView と MVS の間に通信経路を確立する必要がある。これにより双方向のコマンド・メッセージ授受が可能になる。",
+   "verify_steps": [
+    "サブシステムインターフェースまたは EMCS コンソールを構成する。",
+    "NetView と MVS 間の通信経路を有効化する。",
+    "MVS メッセージが NetView で受信できることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView と MVS 間の通信確立に用いられる仕組みとして適切なものはどれか。",
+    "choices": [
+     "サブシステムインターフェースや EMCS コンソール",
+     "RODM のオブジェクト",
+     "タイマーコマンド",
+     "全画面パネル"
+    ],
+    "answer": 0,
+    "explanation": "NetView と MVS の通信は、サブシステムインターフェースや EMCS コンソール、コマンド出口などを通じて確立される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.293",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.293 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9837",
+   "title": "Example of a Message Revision Table",
+   "naiyou_jp": "メッセージ修正テーブルの例を示す。UPON 条件（例 FLOOD=NOAUTO や MSGID 指定）と REVISE 文を用いて、特定メッセージにルートコードや色を追加するなどの変更を行う例。AUTO／NOAUTO は MRT 内でそれぞれ最大 1 回まで指定できる。",
+   "verify_steps": [
+    "UPON 条件付きの REVISE 文を MRT に記述する。",
+    "REVISE MSG で MRT をロードする。",
+    "条件に一致したメッセージが変更されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MRT 内で AUTO／NOAUTO の値はそれぞれ何回まで指定できるか。",
+    "choices": [
+     "最大 1 回",
+     "無制限",
+     "最大 10 回",
+     "指定できない"
+    ],
+    "answer": 0,
+    "explanation": "MRT では AUTO と NOAUTO の値をそれぞれ最大 1 回まで指定できる。UPON 条件と REVISE 文でメッセージを変更する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.142",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.142 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9838",
+   "title": "Example of an Automation-Table Listing",
+   "naiyou_jp": "自動化テーブルリストの例を示す。自動化テーブルをロードすると、その内容や統計を含むリストが生成される。リストはテーブルの構造確認や使用状況の把握、デバッグに利用できる。",
+   "verify_steps": [
+    "自動化テーブルをロードする。",
+    "テーブルリスト出力を取得する。",
+    "リストでテーブル構造・統計を確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルリストの主な用途はどれか。",
+    "choices": [
+     "テーブル構造の確認や使用状況の把握・デバッグ",
+     "RODM の更新",
+     "タイマーの保存",
+     "VTAM の起動"
+    ],
+    "answer": 0,
+    "explanation": "自動化テーブルリストは、テーブルの構造確認や使用状況の把握、デバッグに利用できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.243",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.243 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9839",
+   "title": "Example of SNMP trap automation",
+   "naiyou_jp": "SNMP トラップ自動化の例を示す。完全な SNMP トラップ自動化 CP-MSU を示す例で、トラップが受信されると SNMP トラップ自動化タスクが CP-MSU を構築し、その中の GDS 変数にトラップ由来のデータが格納されて NetView 自動化へ渡される。",
+   "verify_steps": [
+    "SNMP トラップ自動化タスクを構成する。",
+    "SNMP トラップを送信する。",
+    "CP-MSU が構築され NetView 自動化へ渡ることを確認する。"
+   ],
+   "quiz": {
+    "q": "SNMP トラップ自動化タスクがトラップ受信時に構築するものは何か。",
+    "choices": [
+     "CP-MSU（GDS 変数にトラップデータを含む）",
+     "RODM オブジェクト",
+     "タイマーレコード",
+     "MRT エントリー"
+    ],
+    "answer": 0,
+    "explanation": "SNMP トラップ受信時、SNMP トラップ自動化タスクは CP-MSU を構築し、その中の GDS 変数にトラップデータを格納して NetView 自動化へ渡す。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.452",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.452 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9840",
+   "title": "Examples of Using NetView Program Interfaces",
+   "naiyou_jp": "NetView プログラムインターフェースの使用例を示す。NetView は SNMP トラップのアラート変換やハードウェアモニターへの転送など、各種プログラムインターフェースを通じて他システム・他ネットワークと連携する。例えば SNMP エージェントからのトラップを SNA アラートに変換してハードウェアモニターへ転送できる。",
+   "verify_steps": [
+    "連携対象のプログラムインターフェースを選ぶ。",
+    "例（SNMP トラップ→SNA アラート変換）を構成する。",
+    "アラートがハードウェアモニターへ転送されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView プログラムインターフェースの使用例に含まれるものはどれか。",
+    "choices": [
+     "SNMP トラップを SNA アラートに変換してハードウェアモニターへ転送",
+     "RODM のコールドスタート",
+     "タイマーの保存",
+     "全画面の色変更"
+    ],
+    "answer": 0,
+    "explanation": "NetView プログラムインターフェースの例として、SNMP エージェントからのトラップを SNA アラートに変換してハードウェアモニターへ転送する処理などがある。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.64",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.64 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9846",
+   "title": "Focal Point Support Unique to the NetView Program",
+   "naiyou_jp": "NetView プログラム固有のフォーカルポイントサポートについて説明する。NetView は MDS-MU／CP-MSU といった管理サービス単位を用いたフォーカルポイント機能を提供する。各 MDS-MU は 1 つ以上のアラート主要ベクトルを含む CP-MSU を内包し、フォーカルポイントへ転送される。",
+   "verify_steps": [
+    "フォーカルポイントを構成する。",
+    "MDS-MU／CP-MSU 経由でアラートを転送する。",
+    "フォーカルポイントで集約されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 固有のフォーカルポイントサポートで用いられる単位はどれか。",
+    "choices": [
+     "MDS-MU／CP-MSU",
+     "タイマーレコード",
+     "RODM ビュー",
+     "全画面パネル"
+    ],
+    "answer": 0,
+    "explanation": "NetView 固有のフォーカルポイントサポートでは、MDS-MU が 1 つ以上のアラート主要ベクトルを含む CP-MSU を内包してフォーカルポイントへ転送される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.359",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.359 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9847",
+   "title": "Full-Screen Functions and the Terminal Access Facility",
+   "naiyou_jp": "全画面機能とターミナルアクセス機能について説明する。TAF の全画面セッションは LU2 セッションで、CICS／IMS／HCF などの全画面アプリへログオンし全画面モードで操作できる。物理端末のように扱えないため自動化には使えないが、自動化が未対応の制御をオペレーターが手動で行う場合に有用。",
+   "verify_steps": [
+    "TAF 全画面セッションを開始する。",
+    "対象アプリへ全画面でログオンする。",
+    "手動操作が行えることを確認する（自動化対象外）。"
+   ],
+   "quiz": {
+    "q": "TAF 全画面セッションの特徴として正しいものはどれか。",
+    "choices": [
+     "自動化には使えないが手動全画面操作に有用",
+     "自動化専用である",
+     "RODM 専用である",
+     "MVS コマンド排他に使う"
+    ],
+    "answer": 0,
+    "explanation": "TAF 全画面セッションは LU2 で全画面アプリを操作できるが自動化には使えず、自動化が未対応の制御をオペレーターが手動で行う場合に有用。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.362",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.362 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9848",
+   "title": "General Processing of CONSOLE and COMMAND Inclusion and Exclusion Lists",
+   "naiyou_jp": "CONSOLE／COMMAND 包含・排他リストの一般的な処理について説明する。COMMAND 包含リストで非一致のコマンドは無視され、一致したコマンドは NetView へ送られる。排他リストではこの関係が逆になる。リストの種別により一致・非一致時の挙動が決まる。",
+   "verify_steps": [
+    "COMMAND 包含リストを定義する。",
+    "リストに無いコマンドを発行する。",
+    "非一致コマンドが無視されることを確認する。"
+   ],
+   "quiz": {
+    "q": "COMMAND 包含リストで非一致のコマンドはどうなるか。",
+    "choices": [
+     "無視（IGNORED）される",
+     "必ず NetView へ送られる",
+     "RODM に記録される",
+     "タイマーで再実行される"
+    ],
+    "answer": 0,
+    "explanation": "COMMAND 包含リストでは、リストに一致しないコマンドは無視され、一致したコマンドだけが NetView へ送られる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.510",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.510 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9852",
+   "title": "How to Consolidate Consoles",
+   "naiyou_jp": "コンソールの統合方法について説明する。NetView と TAF などを用いて、複数のサブシステムコンソールを統合し、少数の端末から多数のシステム・アプリを運用できるようにする。TAF 全画面セッションは、自動化が未対応の制御をオペレーターが手動で行う際にも有用。",
+   "verify_steps": [
+    "統合対象のコンソール・サブシステムを洗い出す。",
+    "TAF などで統合する構成を作る。",
+    "少数端末から複数システムを運用できることを確認する。"
+   ],
+   "quiz": {
+    "q": "コンソール統合に利用される NetView の機能はどれか。",
+    "choices": [
+     "TAF（ターミナルアクセス機能）",
+     "RODM のコールドスタート",
+     "PURGE TIMER",
+     "REVISE MSG のみ"
+    ],
+    "answer": 0,
+    "explanation": "コンソール統合では TAF などを用いて複数のサブシステムコンソールを統合し、少数の端末から多数のシステム・アプリを運用できるようにする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.307",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.307 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9855",
+   "title": "Identifying Events with the Automation Table",
+   "naiyou_jp": "自動化テーブルによるイベントの識別について説明する。自動化テーブルは、メッセージや MSU の特定フィールド値・発生源などを条件に評価し、自動化対象のイベントを識別する。識別したイベントに対して表示・ログ・ルーティングの変更やコマンド呼び出しを行う。",
+   "verify_steps": [
+    "識別したいイベントのメッセージ／MSU 条件を定義する。",
+    "自動化テーブルで条件評価させる。",
+    "対象イベントが識別され処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルがイベントを識別する際の判定材料に含まれるものはどれか。",
+    "choices": [
+     "メッセージ／MSU のフィールド値や発生源",
+     "RODM の容量",
+     "タイマーの残数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "自動化テーブルはメッセージや MSU の特定フィールド値・発生源などを条件に評価して、自動化対象のイベントを識別する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.476",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.476 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9856",
+   "title": "Identifying the Goals of Your Organization",
+   "naiyou_jp": "組織の目標の識別について説明する。計画チームの重要なタスクの一つが自動化目標の明確化である。明確な目標はプロジェクトの焦点を定め、成果を測定可能にする。長期目標と測定可能な目的を設定する。",
+   "verify_steps": [
+    "組織の自動化目標を洗い出す。",
+    "長期目標と測定可能な目的を設定する。",
+    "目標に沿って成果を測定できることを確認する。"
+   ],
+   "quiz": {
+    "q": "明確な自動化目標を設定する利点はどれか。",
+    "choices": [
+     "プロジェクトの焦点を定め成果を測定可能にする",
+     "RODM が高速化する",
+     "タイマーが増える",
+     "MVS コマンドが不要になる"
+    ],
+    "answer": 0,
+    "explanation": "明確な目標はプロジェクトの焦点を定め、成果を測定可能にする。計画チームは長期目標と測定可能な目的を設定する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.70",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.70 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9859",
+   "title": "Implementation",
+   "naiyou_jp": "実装について説明する。自動化プロジェクトの実装フェーズでは、設計フェーズで策定した計画に基づき、自動化テーブル・コマンドリスト・オートタスクなどを実際に構築し、テストシステムで動作を検証する。問題がなければ本番フェーズへ移行する。段階的に導入することが推奨される。",
+   "verify_steps": [
+    "設計に基づき自動化定義を構築する。",
+    "テストシステムで動作を検証する。",
+    "問題がなければ本番へ移行する。"
+   ],
+   "quiz": {
+    "q": "実装フェーズで行う主な作業はどれか。",
+    "choices": [
+     "自動化定義の構築とテストシステムでの検証",
+     "RODM のコールドスタート",
+     "タイマーの全削除",
+     "VTAM の停止"
+    ],
+    "answer": 0,
+    "explanation": "実装フェーズでは、設計に基づき自動化テーブル・コマンドリスト・オートタスクを構築し、テストシステムで検証してから本番へ移行する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.458",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.458 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9861",
+   "title": "Implementing an Automation Project",
+   "naiyou_jp": "自動化プロジェクトの実装について説明する。実装・本番フェーズのタスクを扱う。大規模なプロジェクトは段階（ステージ）に分割し、各ステージごとに実装フェーズと本番フェーズを持たせて、当該タスクを繰り返す。",
+   "verify_steps": [
+    "プロジェクトをステージに分割する。",
+    "各ステージで実装・本番タスクを実行する。",
+    "段階的に自動化が稼働することを確認する。"
+   ],
+   "quiz": {
+    "q": "大規模な自動化プロジェクトの実装方法として推奨されるものはどれか。",
+    "choices": [
+     "ステージに分割し各ステージで実装・本番を繰り返す",
+     "一度に全機能を本番投入する",
+     "RODM をコールドスタートする",
+     "タイマーを全削除する"
+    ],
+    "answer": 0,
+    "explanation": "大規模プロジェクトはステージに分割し、各ステージごとに実装・本番フェーズを設けてタスクを繰り返すのが推奨される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.85",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.85 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9862",
+   "title": "Implementing Automation Incrementally",
+   "naiyou_jp": "段階的な自動化の実装について説明する。自動化を一度に完成させるのではなく、段階的に導入・拡張する。最初は詳細なメッセージ出力を残し、自動化レベルが上がるにつれて、問題のデバッグに必要な情報だけを残すよう出力を絞り込む。",
+   "verify_steps": [
+    "自動化を段階的に導入する。",
+    "各段階で出力レベルを調整する。",
+    "最終的に必要な情報だけが残ることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化を段階的に実装する際の出力レベルの扱い方はどれか。",
+    "choices": [
+     "レベル向上に伴いデバッグに必要な情報だけを残す",
+     "常に全メッセージを出力し続ける",
+     "出力を最初から完全に抑止する",
+     "RODM へ出力する"
+    ],
+    "answer": 0,
+    "explanation": "段階的な実装では、自動化レベルが上がるにつれ、問題のデバッグに必要な情報だけを残すよう出力を絞り込む。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.427",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.427 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9866",
+   "title": "Installation Exit XITCI for BNJDSERV",
+   "naiyou_jp": "BNJDSERV 用インストール出口 XITCIについて説明する。BNJDSERV タスクは MSU 受信後に XITCI 出口を呼び出し、MSU が自動化テーブルやハードウェアモニターログへ渡る前に変更・置換・削除できる。DSICRTR の出口と異なり、ALERT-NETOP からの MSU も処理できる利点がある。性能上アセンブラーでの記述が推奨される。",
+   "verify_steps": [
+    "XITCI 出口を実装する。",
+    "BNJDSERV が MSU 受信時に XITCI を呼ぶことを確認する。",
+    "MSU が出口で変更・削除できることを確認する。"
+   ],
+   "quiz": {
+    "q": "XITCI 出口を DSICRTR の出口に対して使う利点はどれか。",
+    "choices": [
+     "ALERT-NETOP からの MSU も処理できる",
+     "RODM が高速化する",
+     "タイマーが無制限になる",
+     "全画面が増える"
+    ],
+    "answer": 0,
+    "explanation": "BNJDSERV の XITCI 出口は DSICRTR からの MSU に加え ALERT-NETOP からの MSU も処理できる。性能上アセンブラーでの記述が推奨される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.289",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.289 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9868",
+   "title": "Installation Exits DSIEX16 and DSIEX16B",
+   "naiyou_jp": "インストール出口 DSIEX16 と DSIEX16Bについて説明する。DSIEX16B は MSU が自動化の対象として検討された後に呼び出され、MSU の変更・置換・削除を行える。これらの出口を用いて MSU 自動化の前後で MSU を加工できる。",
+   "verify_steps": [
+    "DSIEX16/DSIEX16B 出口を実装する。",
+    "MSU 自動化の前後で出口が呼ばれることを確認する。",
+    "MSU の変更・削除が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DSIEX16B が呼び出されるタイミングはどれか。",
+    "choices": [
+     "MSU が自動化の対象として検討された後",
+     "RODM 起動時",
+     "タイマー保存時",
+     "全画面表示時"
+    ],
+    "answer": 0,
+    "explanation": "DSIEX16B は MSU が自動化の対象として検討された後に呼び出され、MSU の変更・置換・削除を行える。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.289",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.289 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9869",
+   "title": "Installing and Testing Before Distribution",
+   "naiyou_jp": "配布前のインストールとテストについて説明する。自動化テーブルやサンプルを複数の NetView システムへ配布する前に、まず 1 つのシステムでインストール・テストして正しく動作することを確認する。これにより配布後の障害を防ぐ。",
+   "verify_steps": [
+    "テスト用システムに自動化定義をインストールする。",
+    "動作をテストし問題がないか確認する。",
+    "問題がなければ他システムへ配布する。"
+   ],
+   "quiz": {
+    "q": "配布前にインストール・テストを行う目的はどれか。",
+    "choices": [
+     "配布後の障害を防ぐため動作を事前確認する",
+     "RODM を更新するため",
+     "タイマーを保存するため",
+     "全画面を表示するため"
+    ],
+    "answer": 0,
+    "explanation": "配布前に 1 システムでインストール・テストし正しく動作することを確認することで、配布後の障害を防げる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.342",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.342 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9870",
+   "title": "Installing Multiple NetView Programs",
+   "naiyou_jp": "複数の NetView プログラムのインストールについて説明する。1 システム上に複数の NetView を導入し、機能を分割する。たとえば一方をシステム運用・自動化、他方をネットワーク運用・自動化・問題判別に充てる。NetView リリース移行時にも、片方を本番、片方をテストに使える。",
+   "verify_steps": [
+    "複数 NetView 用のデータセット・定義を準備する。",
+    "2 つ目の NetView を導入・起動する。",
+    "機能分割が機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "複数 NetView をインストールする用途として適切なものはどれか。",
+    "choices": [
+     "システム運用とネットワーク運用を別 NetView に分割する",
+     "RODM を冗長化する",
+     "タイマーを保存する",
+     "全画面パネルを増やす"
+    ],
+    "answer": 0,
+    "explanation": "複数 NetView の導入により、システム運用・自動化とネットワーク運用・自動化・問題判別を分離でき、リリース移行時の本番・テスト併用にも使える。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.407",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.407 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9873",
+   "title": "Introducing the Resource Object Data Manager",
+   "naiyou_jp": "RODMの概要を紹介する。RODM は高速ストレージに維持されるデータキャッシュで、ネットワーク・システム資源に関する多種の情報を保持する。高速ストレージに置かれるため、NetView は他のストレージに置く場合より高速に情報を取得・更新でき、自動化を支援する。",
+   "verify_steps": [
+    "RODM アドレス空間を起動する。",
+    "RODM へ資源情報をロードする。",
+    "NetView から高速に情報取得・更新できることを確認する。"
+   ],
+   "quiz": {
+    "q": "RODM が情報を高速ストレージに保持する利点は何か。",
+    "choices": [
+     "情報の取得・更新が高速化される",
+     "ディスク容量を節約できる",
+     "VTAM が不要になる",
+     "コマンド排他が自動化される"
+    ],
+    "answer": 0,
+    "explanation": "RODM は情報を高速ストレージに保持するため、NetView は他のストレージよりも高速に情報を取得・更新でき、自動化処理を効率化できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.99",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.99 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9874",
+   "title": "Issuing an MVS Command from a NetView Operator ID",
+   "naiyou_jp": "NetView オペレーター ID からの MVS コマンド発行について説明する。NetView オペレーター（OST／オートタスク等）が MVS オペレーターである場合、NetView から MVS コマンドを発行できる。発行されたコマンドの応答は送信要求メッセージとして NetView へ戻る。EMCS コンソールやサブシステムインターフェースを経由する。",
+   "verify_steps": [
+    "NetView オペレーターを MVS オペレーターとして構成する。",
+    "NetView から MVS コマンドを発行する。",
+    "応答が送信要求メッセージとして戻ることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView オペレーター ID から MVS コマンドを発行した際、応答はどう戻るか。",
+    "choices": [
+     "送信要求メッセージとして NetView へ戻る",
+     "RODM に保存される",
+     "破棄される",
+     "タイマーで再実行される"
+    ],
+    "answer": 0,
+    "explanation": "NetView オペレーターが MVS オペレーターの場合、NetView から MVS コマンドを発行でき、その応答は送信要求メッセージとして NetView へ戻る。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.474",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.474 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9875",
+   "title": "Issuing Commands from RODM Methods",
+   "naiyou_jp": "RODM メソッドからコマンドを発行する方法を説明する。RODM のオブジェクトに関連付けられたメソッドは、資源の状態変化などに応じて NetView コマンドや自動化処理を起動できる。これにより RODM のデータ更新を契機とした自動化が実現される。",
+   "verify_steps": [
+    "コマンドを発行する RODM メソッドを用意する。",
+    "対象オブジェクトの状態を変化させてメソッドを起動する。",
+    "メソッドから NetView コマンドが発行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "RODM メソッドからコマンドを発行する目的は何か。",
+    "choices": [
+     "RODM のデータ更新を契機に自動化処理を起動する",
+     "MVS コマンド排他リストを更新する",
+     "タイマーを保存する",
+     "全画面パネルを表示する"
+    ],
+    "answer": 0,
+    "explanation": "RODM メソッドは資源の状態変化などに応じて NetView コマンドを発行でき、RODM のデータ更新を契機とした自動化を可能にする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.373",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.373 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9877",
+   "title": "LIST TIMER and PURGE TIMER",
+   "naiyou_jp": "LIST TIMER と PURGE TIMER について説明する。LIST TIMER は現在スケジュールされているタイマーコマンドを一覧表示し、PURGE TIMER はスケジュール済みタイマーをキャンセルする。PURGE TIMER=ID,OP=オペレーター で特定タイマーを、PURGE TIMER=ALL で全タイマーをキャンセルできる（全削除は慎重に）。",
+   "verify_steps": [
+    "AT／EVERY／AFTER 等でタイマーを設定する。",
+    "LIST TIMER でスケジュールを一覧表示する。",
+    "PURGE TIMER で特定または全タイマーをキャンセルする。"
+   ],
+   "quiz": {
+    "q": "特定オペレーターの全タイマーをキャンセルするコマンドはどれか。",
+    "choices": [
+     "PURGE TIMER=ALL,OP=オペレーター",
+     "LIST TIMER",
+     "RESTORE TIMER",
+     "AUTOTBL"
+    ],
+    "answer": 0,
+    "explanation": "PURGE TIMER はスケジュール済みタイマーをキャンセルする。PURGE TIMER=ALL,OP=オペレーター で当該オペレーターの全タイマーをキャンセルできる（慎重に使用）。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.132",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.132 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9878",
+   "title": "Loading Command Lists into Storage",
+   "naiyou_jp": "コマンドリストのストレージへのロードについて説明する。頻繁に使うコマンドリストをストレージにプリロードすると、実行時の読み込み負荷を減らせる。AUTODROP をタイマーで実行して使用頻度の低いコマンドリストを除去するなど、ロード／ドロップを組み合わせて最適化する。",
+   "verify_steps": [
+    "頻用コマンドリストをプリロードする。",
+    "AUTODROP をタイマーで実行する。",
+    "実行性能が改善することを確認する。"
+   ],
+   "quiz": {
+    "q": "コマンドリストをストレージにプリロードする利点はどれか。",
+    "choices": [
+     "実行時の読み込み負荷を減らせる",
+     "RODM が高速化する",
+     "タイマー件数が増える",
+     "全画面の色が増える"
+    ],
+    "answer": 0,
+    "explanation": "頻繁に使うコマンドリストをストレージにプリロードすると、実行時の読み込み負荷を減らせる。AUTODROP で低頻度のものを除去できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.127",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.127 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9879",
+   "title": "Locating and Renaming the Sample Set for Automation",
+   "naiyou_jp": "自動化用サンプルセットの配置と名前変更について説明する。自動化用サンプルセットは CNMS62／CNMS64／CNME62／CNME64 で始まる名前を持つ。サンプルは相互に新しい名前で参照し合うため、実行前に名前変更 JCLでリネームする必要がある。",
+   "verify_steps": [
+    "CNMS62J1 の PROC とシンボリック・OUTDD を確認する。",
+    "CNMS62J1 を実行してサンプルをリネームする。",
+    "リネーム後のサンプルが相互参照できることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化用サンプルをリネームするために使う JCL はどれか。",
+    "choices": [
+     "CNMS62J1",
+     "CNMTRAPI",
+     "EKGCUST",
+     "CNMSTYLE"
+    ],
+    "answer": 0,
+    "explanation": "自動化用サンプルは相互に新名で参照し合うため、実行前に名前変更 JCLでリネームする必要がある。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.515",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.515 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9886",
+   "title": "Managing Multiple Automation Tables",
+   "naiyou_jp": "複数の自動化テーブルの管理について説明する。NetView では複数の自動化テーブルをロード・切り替えて管理できる。AUTOTBL コマンドで個々のテーブルをロードし、用途や環境に応じてテーブルを使い分ける。テーブルの一覧表示や置き換えも可能。",
+   "verify_steps": [
+    "複数の自動化テーブルメンバーを用意する。",
+    "AUTOTBL コマンドで個別にロードする。",
+    "テーブルの切り替え・一覧が機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "複数の自動化テーブルを管理する際に使うコマンドはどれか。",
+    "choices": [
+     "AUTOTBL",
+     "REVISE CMD",
+     "PURGE TIMER",
+     "FOCALPT DROP"
+    ],
+    "answer": 0,
+    "explanation": "複数の自動化テーブルは AUTOTBL コマンドで個別にロード・切り替えて管理する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.254",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.254 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9887",
+   "title": "Managing Multiple RODM Data Caches",
+   "naiyou_jp": "複数の RODM データキャッシュの管理について説明する。NetView アドレス空間から複数の RODM を管理する場合、各 RODM を DSIQTSK タスクに定義する必要がある。DSIQTSK は RODM アドレス空間との通信と指定 RODM の管理に専用化されたオプションタスクで、CNMSTYLE で定義し START TASK で起動する。",
+   "verify_steps": [
+    "複数の RODM を CNMSTYLE で DSIQTSK に定義する。",
+    "START TASK で DSIQTSK を起動する。",
+    "各 RODM データキャッシュが NetView から管理できることを確認する。"
+   ],
+   "quiz": {
+    "q": "複数の RODM データキャッシュを NetView から管理する前提条件はどれか。",
+    "choices": [
+     "各 RODM を DSIQTSK タスクに定義する",
+     "各 RODM を PPT に登録する",
+     "RODM ごとに別 NetView を起動する",
+     "MVS コマンド排他リストへ登録する"
+    ],
+    "answer": 0,
+    "explanation": "NetView アドレス空間から管理したい各 RODM は DSIQTSK タスクに定義する必要がある。DSIQTSK は RODM 通信・管理専用の OPT タスク。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.371",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.371 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9888",
+   "title": "Message and Command Flow in VTAM",
+   "naiyou_jp": "VTAM におけるメッセージとコマンドのフローについて説明する。NetView は VTAM の POIを通じて VTAM コマンドを発行し、VTAM メッセージを受信する。送信要求 VTAMメッセージはコマンド応答として、非送信要求メッセージは DSIEX11 を経て処理される。",
+   "verify_steps": [
+    "NetView から VTAM コマンドを発行する。",
+    "送信要求 POI メッセージが応答として戻ることを確認する。",
+    "非送信要求メッセージが DSIEX11 を経ることを確認する。"
+   ],
+   "quiz": {
+    "q": "VTAM の非送信要求（POI）メッセージを処理する出口はどれか。",
+    "choices": [
+     "DSIEX11",
+     "XITCI",
+     "DSIMCAEX",
+     "DSIQTSK"
+    ],
+    "answer": 0,
+    "explanation": "NetView は VTAM の POI 経由でコマンドを発行・メッセージを受信する。非送信要求 VTAMメッセージは DSIEX11 出口を経て処理される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.475",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.475 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9890",
+   "title": "Message Flow in a JES3 Complex",
+   "naiyou_jp": "JES3 複合システムでのメッセージフローについて説明する。グローバルプロセッサがフォーカルポイントとなり、複合システム内の全プロセッサのメッセージがグローバルのサブシステムインターフェースに現れる。そのためグローバルにのみ NetView を導入して JES3 複合システムを自動化することが可能。",
+   "verify_steps": [
+    "グローバルプロセッサに NetView を導入する。",
+    "各プロセッサのメッセージがグローバルの SSI に現れることを確認する。",
+    "グローバルから全プロセッサへコマンドを送れることを確認する。"
+   ],
+   "quiz": {
+    "q": "JES3 複合システムで全プロセッサのメッセージが集まるのはどこか。",
+    "choices": [
+     "グローバルプロセッサのサブシステムインターフェース",
+     "各ローカルプロセッサ",
+     "RODM",
+     "TAF セッション"
+    ],
+    "answer": 0,
+    "explanation": "JES3 複合システムでは全プロセッサのメッセージがグローバルプロセッサのサブシステムインターフェースに現れるため、グローバルにのみ NetView を導入して自動化できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.439",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.439 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9897",
+   "title": "Messages and Commands through VTAM Interfaces",
+   "naiyou_jp": "VTAM インターフェースを介したメッセージとコマンドについて説明する。NetView は VTAM の POI インターフェースを介して、VTAM コマンドの発行と VTAM メッセージ（送信要求・非送信要求）の受信を行う。これにより VTAM 資源の状態を自動化テーブルで処理できる。",
+   "verify_steps": [
+    "VTAM POI 経由でコマンド・メッセージを授受する構成を確認する。",
+    "VTAM コマンドを発行する。",
+    "VTAM メッセージが自動化テーブルで処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView が VTAM コマンド・メッセージを授受するインターフェースはどれか。",
+    "choices": [
+     "VTAM の POI（Program Operator Interface）",
+     "RODM API",
+     "TAF 全画面",
+     "MVS コマンド出口"
+    ],
+    "answer": 0,
+    "explanation": "NetView は VTAM の POIを介して VTAM コマンドを発行し、VTAM メッセージを受信して自動化に利用する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.471",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.471 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9898",
+   "title": "Messages Issued as WTOs to Be Displayed or Processed by the NetView Program",
+   "naiyou_jp": "WTO として発行され NetView が表示・処理するメッセージについて説明する。MVS の WTO として発行されたメッセージは、サブシステムインターフェースや EMCS コンソールを経て NetView に届き、表示や自動化テーブルでの処理の対象になる。MPF の AUTO(YES) 指定で自動化用コピーが作られる。",
+   "verify_steps": [
+    "MPFLSTxx で AUTO(YES) を指定する。",
+    "WTO メッセージを発生させる。",
+    "NetView で表示・自動化処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "WTO メッセージを NetView の自動化対象にするための MPF 指定はどれか。",
+    "choices": [
+     "AUTO(YES)",
+     "DISPLAY(NO)",
+     "MSCOPE",
+     "FPCAT"
+    ],
+    "answer": 0,
+    "explanation": "WTO として発行されたメッセージは、MPF で AUTO(YES) を指定すると自動化用コピーが作られ、NetView の表示・自動化処理の対象になる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.470",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.470 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9899",
+   "title": "Modifying Command Procedures",
+   "naiyou_jp": "コマンドプロシージャの変更について説明する。自動化を段階的に高度化する過程で、既存のコマンドリストやユーザー作成コマンドプロセッサを修正し、自動化のロジックや出力レベルを調整する。最終的にはデバッグに必要な情報だけを残すよう絞り込む。",
+   "verify_steps": [
+    "既存コマンドプロシージャを確認する。",
+    "自動化レベルに合わせてロジックを修正する。",
+    "修正後の動作と出力レベルを確認する。"
+   ],
+   "quiz": {
+    "q": "コマンドプロシージャを変更する目的として適切なものはどれか。",
+    "choices": [
+     "自動化のロジックや出力レベルを調整する",
+     "RODM をコールドスタートする",
+     "VTAM を停止する",
+     "タイマーを無制限化する"
+    ],
+    "answer": 0,
+    "explanation": "自動化を高度化する過程で、コマンドプロシージャを修正してロジックや出力レベルを調整し、最終的に必要な情報だけを残す。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.312",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.312 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9900",
+   "title": "Monitoring Alerts with the Hardware Monitor",
+   "naiyou_jp": "ハードウェアモニターによるアラート監視について説明する。ハードウェアモニターは資源の障害・問題に伴うアラートを収集・記録し、オペレーターはアラート履歴等で確認できる。記録フィルター（ESREC／AREC／OPER）で記録・通知の範囲を制御する。",
+   "verify_steps": [
+    "ハードウェアモニターでアラートを監視する。",
+    "SRFILTER で記録フィルターを設定する。",
+    "アラート履歴で資源の問題を確認する。"
+   ],
+   "quiz": {
+    "q": "ハードウェアモニターのアラート記録範囲を制御するフィルターに含まれるものはどれか。",
+    "choices": [
+     "ESREC／AREC／OPER フィルター",
+     "RODM ビュー",
+     "タイマー保存設定",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "ハードウェアモニターでは ESREC／AREC／OPER などの記録フィルターで、どの記録をアラートとして記録・通知するかを制御する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.336",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.336 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9901",
+   "title": "Monitoring Alerts with the NetView Management Console",
+   "naiyou_jp": "NetView 管理コンソールによるアラート監視について説明する。NetView 管理コンソールを使うオペレーターは、AON が生成したアラートの履歴を参照できる。AON は「Automation in Progress」状態を設定し、回復を試行中であることを可視化する。回復できない資源は Operator Intervention Viewに表示される。",
+   "verify_steps": [
+    "NMC からアラート履歴を表示する。",
+    "AON が Automation in Progress 状態を設定するのを確認する。",
+    "回復不能資源が OIV に表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が回復を試行中であることを示すために設定する状態はどれか。",
+    "choices": [
+     "Automation in Progress",
+     "Cold Start",
+     "Purge Timer",
+     "Full Screen"
+    ],
+    "answer": 0,
+    "explanation": "AON は回復試行中に「Automation in Progress」状態を設定し、NMC で可視化する。回復できない資源は Operator Intervention Viewに表示される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.337",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.337 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9903",
+   "title": "Multiple Console Support Operator Use of Command Lists",
+   "naiyou_jp": "複数コンソールサポートオペレーターによるコマンドリストの使用について説明する。MCS コンソールから発行されたオペレーターコマンドは、複数コンソールサポートとサブシステムインターフェースを介してサブシステムへ流れる。オートタスクに関連付けた MCS コンソールから NetView コマンドリストを実行できる。",
+   "verify_steps": [
+    "MCS コンソールをオートタスクに関連付ける。",
+    "MCS コンソールから NetView コマンドリストを実行する。",
+    "コマンドリストが実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MCS コンソールから発行されたコマンドはどの経路でサブシステムへ流れるか。",
+    "choices": [
+     "複数コンソールサポートとサブシステムインターフェース経由",
+     "RODM 経由",
+     "TAF 全画面経由",
+     "タイマー経由"
+    ],
+    "answer": 0,
+    "explanation": "MCS コンソールから発行されたコマンドは、複数コンソールサポートとサブシステムインターフェースを介してサブシステムへ流れる。各サブシステムは割り当て文字が付いたコマンドだけを処理する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.473",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.473 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9906",
+   "title": "MVS Command Management Processing on the NetView Program",
+   "naiyou_jp": "NetView プログラム上での MVS コマンド管理処理について説明する。MVS コマンド管理がアクティブになると、すべての MVS コマンドが NetView の MVS コマンド出口に渡され、DSIMCAOP オートタスクのもとで CNMEMCXY REXX コマンドリストが呼ばれて検査・変更・拒否などの処理が行われる。",
+   "verify_steps": [
+    "MVS コマンド管理をアクティブ化する。",
+    "MVS コマンドを発行する。",
+    "DSIMCAOP のもとで CNMEMCXY が処理することを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理処理でコマンドを処理する REXX コマンドリストはどれか。",
+    "choices": [
+     "CNMEMCXY",
+     "CNMTRAPI",
+     "DSIQTSK",
+     "EKGCUST"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理では、コマンドが NetView 出口へ渡され DSIMCAOP オートタスクのもとで CNMEMCXY REXX コマンドリストが呼ばれて処理される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.512",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.512 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9907",
+   "title": "MVS Commands Issued by the NetView Program",
+   "naiyou_jp": "NetView プログラムが発行する MVS コマンドについて説明する。NetView は自動化処理やオペレーターの操作に応じて MVS コマンドを発行できる。発行経路は EMCS コンソールやサブシステムインターフェースで、応答は送信要求メッセージとして NetView に戻る。",
+   "verify_steps": [
+    "NetView から MVS コマンドを発行する手段を確認する。",
+    "MVS コマンドを発行する。",
+    "応答が NetView へ戻ることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView が発行した MVS コマンドの応答はどう扱われるか。",
+    "choices": [
+     "送信要求メッセージとして NetView へ戻る",
+     "RODM に保存される",
+     "破棄される",
+     "全画面に固定表示される"
+    ],
+    "answer": 0,
+    "explanation": "NetView は自動化やオペレーター操作に応じて MVS コマンドを発行でき、その応答は送信要求メッセージとして NetView へ戻る。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.470",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.470 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9908",
+   "title": "MVS Message and Command Processing",
+   "naiyou_jp": "MVS のメッセージとコマンドの処理について説明する。NetView は MVS のメッセージ（WTO・WTOR）を受信し、MVS コマンドを発行する。メッセージはサブシステムインターフェースや EMCS コンソールを経て届き、自動化テーブルで処理される。コマンドは同経路で MVS へ送られる。",
+   "verify_steps": [
+    "MVS メッセージの受信経路を構成する。",
+    "MVS メッセージを発生させ自動化テーブルで処理する。",
+    "NetView から MVS コマンドを発行する。"
+   ],
+   "quiz": {
+    "q": "MVS メッセージが NetView に届く経路に含まれるものはどれか。",
+    "choices": [
+     "サブシステムインターフェースや EMCS コンソール",
+     "RODM API",
+     "TAF 全画面のみ",
+     "タイマー"
+    ],
+    "answer": 0,
+    "explanation": "MVS のメッセージはサブシステムインターフェースや EMCS コンソールを経て NetView に届き、自動化テーブルで処理される。コマンドは同経路で MVS へ送られる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.467",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.467 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9911",
+   "title": "MVS System Log and NetView Network Log Records",
+   "naiyou_jp": "MVS システムログと NetView ネットワークログのレコードについて説明する。NetView は自動化したメッセージを MVS システムログや NetView ネットワークログへ記録できる。自動化テーブルの SYSLOG／NETLOG アクションでログ先を制御し、監査や問題判別に利用する。",
+   "verify_steps": [
+    "自動化テーブルで SYSLOG／NETLOG アクションを指定する。",
+    "対象メッセージを発生させる。",
+    "各ログにレコードが記録されることを確認する。"
+   ],
+   "quiz": {
+    "q": "メッセージを NetView ネットワークログへ記録する自動化テーブルアクションはどれか。",
+    "choices": [
+     "NETLOG",
+     "DISPLAY(NO)",
+     "MSCOPE",
+     "FPCAT"
+    ],
+    "answer": 0,
+    "explanation": "自動化テーブルの SYSLOG／NETLOG アクションで、メッセージを MVS システムログや NetView ネットワークログへ記録するかを制御できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.437",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.437 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9913",
+   "title": "NetView Commands Issued as Subsystem Commands from an MVS Console",
+   "naiyou_jp": "MVS コンソールからサブシステムコマンドとして発行される NetView コマンドについて説明する。MVS コンソールから、NetView に割り当てられたサブシステム文字を付けてコマンドを入力すると、それがサブシステムインターフェースを経て NetView へ渡り実行される。",
+   "verify_steps": [
+    "NetView のサブシステム文字を確認する。",
+    "MVS コンソールでその文字を付けて NetView コマンドを入力する。",
+    "NetView でコマンドが実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コンソールから NetView コマンドをサブシステムコマンドとして発行する方法はどれか。",
+    "choices": [
+     "NetView に割り当てられたサブシステム文字を前置する",
+     "MSCOPE を設定する",
+     "RODM に登録する",
+     "タイマーで実行する"
+    ],
+    "answer": 0,
+    "explanation": "MVS コンソールから NetView に割り当てられたサブシステム文字を前置してコマンドを入力すると、サブシステムインターフェース経由で NetView へ渡り実行される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.471",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.471 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9914",
+   "title": "NetView Commands Issued with MODIFY (F) Command from an MVS Console",
+   "naiyou_jp": "MVS コンソールから MODIFYコマンドで発行される NetView コマンドについて説明する。MVS コンソールで MODIFYコマンドを用い、NetView のジョブ名／開始タスク名を指定して NetView コマンドを渡すことができる。例: F procname,NetViewコマンド。",
+   "verify_steps": [
+    "NetView の手続き名（procname）を確認する。",
+    "MVS コンソールで F procname,コマンド を入力する。",
+    "NetView でコマンドが実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コンソールから MODIFY（F）で NetView コマンドを発行する形式はどれか。",
+    "choices": [
+     "F procname,NetViewコマンド",
+     "MSCOPE=ALL",
+     "AUTOTBL コマンド",
+     "PURGE TIMER"
+    ],
+    "answer": 0,
+    "explanation": "MVS コンソールで MODIFYコマンドに NetView の手続き名を指定して NetView コマンドを渡せる（例 F procname,コマンド）。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.471",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.471 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9915",
+   "title": "NetView Commands Used for TAF",
+   "naiyou_jp": "TAF で使用される NetView コマンドについて説明する。TAF セッションの開始・終了やセッション切り替えには、BGNSESS（セッション開始）などの NetView コマンドを用いる。これらにより OPCTL／全画面セッションを制御する。",
+   "verify_steps": [
+    "BGNSESS で TAF セッションを開始する。",
+    "セッション切り替え・終了コマンドを実行する。",
+    "TAF セッションが制御できることを確認する。"
+   ],
+   "quiz": {
+    "q": "TAF セッションを開始する NetView コマンドはどれか。",
+    "choices": [
+     "BGNSESS",
+     "AUTOTBL",
+     "REVISE MSG",
+     "PURGE TIMER"
+    ],
+    "answer": 0,
+    "explanation": "TAF セッションの開始には BGNSESS コマンドを用いる。これらの NetView コマンドで OPCTL／全画面セッションを制御する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.394",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.394 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9922",
+   "title": "NetView Program Hardware-Monitor Data and MSU Routing",
+   "naiyou_jp": "NetView プログラムのハードウェアモニターデータと MSU ルーティングについて説明する。ハードウェアモニターが扱う問題レコードや MSU は、自動化テーブルへルーティングされ評価される。BNJDSERV の XITCI 出口や DSIEX16/DSIEX16B により、自動化テーブルやハードウェアモニターログへ渡る前に MSU を変更・置換・削除できる。",
+   "verify_steps": [
+    "ハードウェアモニターで MSU を受信する。",
+    "XITCI／DSIEX16 出口の処理を確認する。",
+    "MSU が自動化テーブルへルーティングされることを確認する。"
+   ],
+   "quiz": {
+    "q": "MSU が自動化テーブルへ渡る前に変更・削除できる出口はどれか。",
+    "choices": [
+     "BNJDSERV の XITCI や DSIEX16/DSIEX16B",
+     "AUTOTBL コマンド",
+     "REVISE MSG",
+     "PURGE TIMER"
+    ],
+    "answer": 0,
+    "explanation": "BNJDSERV の XITCI 出口や DSIEX16/DSIEX16B により、MSU が自動化テーブルやハードウェアモニターログへ渡る前に変更・置換・削除できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.114",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.114 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9923",
+   "title": "NetView Program Information Routing for Automation",
+   "naiyou_jp": "自動化のための NetView 情報ルーティングについて説明する。NetView は EMCS コンソール、サブシステムインターフェース、TAF、ハードウェアモニター（MS トランスポート等）など複数の経路から情報を集め、自動化テーブルへルーティングして処理する。これにより多様な情報源を自動化対象にできる。",
+   "verify_steps": [
+    "利用する情報源（EMCS／SSI／TAF 等）を構成する。",
+    "情報が自動化テーブルへルーティングされることを確認する。",
+    "自動化処理が行われることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化のための情報ルーティング経路に含まれるものはどれか。",
+    "choices": [
+     "EMCS コンソールやサブシステムインターフェース、TAF",
+     "RODM のコールドスタートのみ",
+     "タイマー保存のみ",
+     "全画面パネルのみ"
+    ],
+    "answer": 0,
+    "explanation": "NetView は EMCS コンソール、サブシステムインターフェース、TAF、ハードウェアモニターなど複数経路から情報を集め、自動化テーブルへルーティングする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.101",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.101 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9930",
+   "title": "Operating-System Automation Facilities and Interactions with the NetView Program",
+   "naiyou_jp": "オペレーティングシステムの自動化機能と NetView との連携について説明する。MVS は MPFやサブシステムインターフェース、EMCS コンソールなどの自動化関連機能を提供し、NetView はこれらと連携してメッセージ・コマンドを授受し自動化を行う。",
+   "verify_steps": [
+    "MPF や SSI、EMCS など OS 側の機能を確認する。",
+    "NetView との連携経路を構成する。",
+    "メッセージ・コマンドが授受されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView と連携する OS 側の自動化機能に含まれるものはどれか。",
+    "choices": [
+     "MPF やサブシステムインターフェース、EMCS コンソール",
+     "RODM のビュー",
+     "タイマーレコード",
+     "全画面パネル"
+    ],
+    "answer": 0,
+    "explanation": "MVS は MPF やサブシステムインターフェース、EMCS コンソールなどの機能を提供し、NetView はこれらと連携してメッセージ・コマンドを授受し自動化する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.58",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.58 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9934",
+   "title": "Overview",
+   "naiyou_jp": "TAF の概要を説明する。TAF には 2 つの動作モードがある。オペレーター制御セッションは LU1 セッションで SNA 3767 端末をエミュレートし、自動化に利用できる。もう一方の全画面セッションは LU2 で、全画面操作に用いるが自動化には利用できない。",
+   "verify_steps": [
+    "TAF のモード（OPCTL／全画面）を確認する。",
+    "OPCTL セッションを BGNSESS で開始する。",
+    "OPCTL セッションで自動化が可能なことを確認する。"
+   ],
+   "quiz": {
+    "q": "TAF のうち自動化に利用できるモードはどれか。",
+    "choices": [
+     "オペレーター制御（OPCTL）セッション",
+     "全画面セッション",
+     "どちらも不可",
+     "RODM セッション"
+    ],
+    "answer": 0,
+    "explanation": "TAF のオペレーター制御セッションは LU1 で SNA 3767 をエミュレートし自動化に利用できる。全画面セッションは自動化には使えない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.391",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.391 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9935",
+   "title": "Overview of Automation Products",
+   "naiyou_jp": "自動化製品の概要について説明する。NetView は自動化テーブル、状態モニター、RODM、AON など複数のコンポーネントによる自動化機能を提供する。これらを組み合わせてメッセージ・MSU の自動化、資源の監視・回復などを実現する。",
+   "verify_steps": [
+    "利用可能な自動化コンポーネントを確認する。",
+    "用途に応じて組み合わせる。",
+    "メッセージ・資源の自動化が機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView の自動化を構成するコンポーネントに含まれるものはどれか。",
+    "choices": [
+     "自動化テーブル・状態モニター・RODM・AON",
+     "JCL のみ",
+     "VTAMLST のみ",
+     "IEASYSxx のみ"
+    ],
+    "answer": 0,
+    "explanation": "NetView の自動化は、自動化テーブル・状態モニター・RODM・AON などのコンポーネントから構成される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.53",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.53 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9936",
+   "title": "Overview of Timer Commands",
+   "naiyou_jp": "タイマーコマンドの概要について説明する。タイマーは指定時刻・間隔でコマンドやコマンドリストを発行する。種類は EVERY・AT・AFTER・CHRON があり、特定日時、ある日時以降、一定間隔などでスケジュールできる。LIST／PURGE／SAVE／RESTORE で管理する。",
+   "verify_steps": [
+    "AT／AFTER／EVERY／CHRON のいずれかでタイマーを設定する。",
+    "LIST TIMER でスケジュールを確認する。",
+    "指定時刻にコマンドが実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView のタイマーの種類に含まれないものはどれか。",
+    "choices": [
+     "FLASH",
+     "EVERY",
+     "AT",
+     "CHRON"
+    ],
+    "answer": 0,
+    "explanation": "NetView のタイマーは EVERY・AT・AFTER・CHRON の 4 種類。FLASH はタイマー種別ではない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.129",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.129 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9937",
+   "title": "Planning Charts",
+   "naiyou_jp": "計画図表について説明する。自動化プロジェクトの計画に用いる図表で、各フェーズ（定義・設計・実装・本番）の活動やメッセージ・MSU 自動化の計画項目を整理する。サンプルプロジェクト計画と併せてプロジェクト管理に利用する。",
+   "verify_steps": [
+    "計画図表で各フェーズの活動を整理する。",
+    "メッセージ・MSU 自動化の計画項目を洗い出す。",
+    "プロジェクト管理に活用する。"
+   ],
+   "quiz": {
+    "q": "計画図表が整理するものはどれか。",
+    "choices": [
+     "各フェーズの活動や自動化の計画項目",
+     "RODM の容量",
+     "タイマーの残数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "計画図表は自動化プロジェクトの各フェーズの活動や、メッセージ・MSU 自動化の計画項目を整理するために用いる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.460",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.460 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9938",
+   "title": "Planning for Automation in a Sysplex",
+   "naiyou_jp": "シスプレックスでの自動化計画について説明する。シスプレックス自動化の計画は段階的に進める。第 1 段階では EMCS コンソールとその属性がシスプレックスでのメッセージルーティングにどう影響するかを理解する。コンソール名や MSCOPE などを慎重に検討する。",
+   "verify_steps": [
+    "EMCS コンソールの属性とメッセージルーティングを理解する。",
+    "コンソール名・MSCOPE の方針を決める。",
+    "計画に沿って構成できることを確認する。"
+   ],
+   "quiz": {
+    "q": "シスプレックス自動化計画の第 1 段階で理解すべきことはどれか。",
+    "choices": [
+     "EMCS コンソールの属性とメッセージルーティングへの影響",
+     "RODM の容量計算",
+     "タイマーの保存方法",
+     "全画面の色設定"
+    ],
+    "answer": 0,
+    "explanation": "シスプレックス自動化計画の第 1 段階では、EMCS コンソールとその属性がシスプレックスのメッセージルーティングにどう影響するかを理解する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.95",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.95 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9939",
+   "title": "Planning for Automation in Selected Environments",
+   "naiyou_jp": "選択した環境での自動化計画について説明する。シスプレックス、JES3、TAF を用いる環境など、特定の運用環境ごとに自動化の計画上の考慮点が異なる。各環境の特性（メッセージルーティング、コンソール構成等）を踏まえて計画する。",
+   "verify_steps": [
+    "対象環境（シスプレックス／JES3 等）を特定する。",
+    "各環境の考慮点を洗い出す。",
+    "環境に合わせた自動化計画を作成する。"
+   ],
+   "quiz": {
+    "q": "選択した環境での自動化計画で考慮すべき例はどれか。",
+    "choices": [
+     "シスプレックスや JES3 環境の特性",
+     "RODM の色設定",
+     "タイマーの保存件数のみ",
+     "全画面の文字数"
+    ],
+    "answer": 0,
+    "explanation": "シスプレックスや JES3、TAF 環境など、特定環境ごとにメッセージルーティングやコンソール構成などの考慮点が異なるため、それぞれに応じて計画する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.87",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.87 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9940",
+   "title": "Planning for Extended Multiple Console Support Consoles",
+   "naiyou_jp": "拡張複数コンソールサポートコンソールの計画について説明する。EMCS を NetView 自動化に用いる際の利点・含意・計画上の考慮点を扱う。MVS サブシステムインターフェースの代わりに EMCS を使う利点を考慮し、コンソール名や MSCOPE などを計画する。",
+   "verify_steps": [
+    "EMCS の利点と含意を確認する。",
+    "コンソール名・MSCOPE などを計画する。",
+    "EMCS が自動化に利用できることを確認する。"
+   ],
+   "quiz": {
+    "q": "EMCS コンソール計画で考慮する事項に含まれるものはどれか。",
+    "choices": [
+     "コンソール名や MSCOPE などの属性",
+     "RODM のビュー定義",
+     "タイマーの保存件数",
+     "全画面の色数"
+    ],
+    "answer": 0,
+    "explanation": "EMCS コンソール計画では、サブシステムインターフェースの代わりに EMCS を使う利点を考慮し、コンソール名や MSCOPE などの属性を計画する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.90",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.90 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9941",
+   "title": "Planning for Using RODM in Automation",
+   "naiyou_jp": "自動化での RODM 利用に向けた計画について説明する。RODM を自動化に組み込むには、どの資源を RODM オブジェクトとして表現するか、状態変化をどのメソッドで処理するか、DSIQTSK による RODM 管理をどう構成するかなどを事前に検討する。これにより資源状態に基づく自動化を効率的に設計できる。",
+   "verify_steps": [
+    "自動化対象の資源を洗い出し RODM オブジェクト化を検討する。",
+    "状態変化処理のメソッド方針を決める。",
+    "DSIQTSK による RODM 管理構成を計画に反映する。"
+   ],
+   "quiz": {
+    "q": "自動化での RODM 利用計画で検討すべき事項として適切なものはどれか。",
+    "choices": [
+     "どの資源を RODM オブジェクトとして表現するか",
+     "MVS コマンド排他リストの行数",
+     "タイマーの保存件数のみ",
+     "全画面パネルの色設定のみ"
+    ],
+    "answer": 0,
+    "explanation": "RODM を自動化に使う計画では、どの資源を RODM オブジェクトとして表現し、状態変化をどう処理するかなどを事前に検討する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.100",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.100 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9942",
+   "title": "Policy File Management",
+   "naiyou_jp": "ポリシーファイル管理について説明する。AON などでは、自動化ポリシーを制御ファイル（ポリシーファイル）に定義する。ポリシーファイルには自動化環境を記述する自動化エントリーや、ロード処理での特別な扱いを定義する処理エントリー（%INCLUDE 等）が含まれる。",
+   "verify_steps": [
+    "ポリシーファイルに自動化エントリーを定義する。",
+    "%INCLUDE 等の処理エントリーを記述する。",
+    "ポリシーがロードされ反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "ポリシーファイルに含まれるエントリーの種類はどれか。",
+    "choices": [
+     "自動化エントリーと処理エントリー（%INCLUDE 等）",
+     "RODM ビューのみ",
+     "タイマーレコードのみ",
+     "全画面パネルのみ"
+    ],
+    "answer": 0,
+    "explanation": "ポリシーファイルには、自動化環境を記述する自動化エントリーと、ロード処理での特別な扱いを定義する処理エントリー（%INCLUDE 等）が含まれる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.270",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.270 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9945",
+   "title": "Preparing to Use the Advanced Automation Sample Set",
+   "naiyou_jp": "高度自動化サンプルセットの利用準備について説明する。高度自動化サンプルセットを使う前に、サンプルのリネーム、コマンド定義の CNMCMD への追加、自動化テーブルエントリーの追加などの準備を行う。準備後に AOPIVARS でアクティブ化する。",
+   "verify_steps": [
+    "サンプルをリネームする。",
+    "CNMS6404／CNMS6405 を追加する。",
+    "AOPIVARS でアクティブ化できることを確認する。"
+   ],
+   "quiz": {
+    "q": "高度自動化サンプルセットの利用準備に含まれる作業はどれか。",
+    "choices": [
+     "サンプルのリネームと CNMCMD・自動化テーブルへの追加",
+     "RODM のコールドスタート",
+     "タイマーの全削除",
+     "VTAM の停止"
+    ],
+    "answer": 0,
+    "explanation": "利用準備では、サンプルのリネーム、CNMS6404 の CNMCMD への追加、CNMS6405 の自動化テーブルへの追加などを行う。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.536",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.536 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9954",
+   "title": "Propagating Automation to Other NetView Systems",
+   "naiyou_jp": "他 NetView システムへの自動化の伝播について説明する。可搬性のある自動化テーブルやオートタスク定義を、配布前にインストール・テストしたうえで他の NetView システムへ展開する。命名・役割を一貫させることで、複数システムへ効率的に自動化を伝播できる。",
+   "verify_steps": [
+    "可搬性のある自動化定義を準備する。",
+    "配布前にインストール・テストする。",
+    "他 NetView システムへ展開し動作を確認する。"
+   ],
+   "quiz": {
+    "q": "自動化を他システムへ伝播する際の前提として適切なものはどれか。",
+    "choices": [
+     "命名・役割を一貫させ配布前にテストする",
+     "RODM を冗長化する",
+     "タイマーを全削除する",
+     "VTAM を停止する"
+    ],
+    "answer": 0,
+    "explanation": "自動化の伝播では、可搬性のある定義を命名・役割を一貫させて作成し、配布前にインストール・テストしてから他システムへ展開する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.341",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.341 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9958",
+   "title": "Resource Controls, Task Priorities, and Multitasking",
+   "naiyou_jp": "資源制御・タスク優先度・マルチタスキングについて説明する。NetView は多数のサブタスクで構成され、各タスクがストレージと CPU を奪い合う。サブタスク間の相対優先度が処理順に影響するため、システムへの NetView 定義方法が性能を左右する。資源制御により処理順の制御やバックログ削減が可能。",
+   "verify_steps": [
+    "NetView サブタスクの優先度設定を確認する。",
+    "自動化用 NetView の優先度を適切に設定する。",
+    "処理順とバックログが改善することを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView サブタスクの相対優先度は何に影響するか。",
+    "choices": [
+     "処理が行われる順序と性能",
+     "RODM の容量",
+     "タイマーの最大件数",
+     "全画面の色数"
+    ],
+    "answer": 0,
+    "explanation": "NetView は多数のサブタスクで構成され、サブタスク間の相対優先度が処理順に影響する。定義方法が NetView 全体の性能を左右する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.417",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.417 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9960",
+   "title": "Restrictions",
+   "naiyou_jp": "MVS コマンド管理に関する制限事項について説明する。MVS コマンド管理（非推奨機能）には、扱えるコマンドの種類や形式、リスト指定の相互排他性などの制限がある。これらの制限を理解したうえで設定する必要がある。",
+   "verify_steps": [
+    "MVS コマンド管理の制限事項を確認する。",
+    "制限に抵触しない設定を行う。",
+    "想定どおり機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理の制限事項として正しいものはどれか。",
+    "choices": [
+     "排他リストと包含リストは相互排他で同時指定できない",
+     "あらゆるコマンドを無制限に処理できる",
+     "RODM が必須である",
+     "全画面パネルが必須である"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理には、排他／包含リストの相互排他性など複数の制限があり、これらを理解して設定する必要がある。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.511",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.511 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9962",
+   "title": "Running Multiple NetView Programs Per System",
+   "naiyou_jp": "1 システムあたり複数の NetView プログラムの稼働について説明する。1 つのシステム上で複数の NetView を稼働させ、システム自動化とネットワーク自動化・問題判別を分離できる。自動化用 NetView のディスパッチング優先度を VTAM や自動化対象アプリより高く設定することが推奨される。",
+   "verify_steps": [
+    "2 つ目の NetView を同一システムに導入する。",
+    "システム自動化用の優先度を VTAM より高く設定する。",
+    "両 NetView が役割分担して稼働することを確認する。"
+   ],
+   "quiz": {
+    "q": "1 システムで複数 NetView を稼働させる利点はどれか。",
+    "choices": [
+     "システム自動化とネットワーク自動化・問題判別を分離できる",
+     "RODM が不要になる",
+     "MVS コマンドが不要になる",
+     "タイマーが無制限になる"
+    ],
+    "answer": 0,
+    "explanation": "複数 NetView を稼働させると、システムサポートとネットワークサポート、または自動化と問題判別を分離できる。自動化用 NetView は優先度を高めに設定する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.407",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.407 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9965",
+   "title": "Saving and Restoring Timer Commands",
+   "naiyou_jp": "タイマーコマンドの保存と復元について説明する。CHRON／AT／EVERY／AFTER コマンドの SAVE パラメーターでタイマーを Save/Restore データベースに保存でき、RESTORE TIMER コマンドで復元できる。RESTORE は NetView 起動時にのみ使用し、複数回実行すると重複タイマーが発生する点に注意する。",
+   "verify_steps": [
+    "タイマー設定時に SAVE を指定する。",
+    "NetView 起動時に RESTORE TIMER を実行する。",
+    "保存したタイマーが復元されることを確認する。"
+   ],
+   "quiz": {
+    "q": "RESTORE TIMER コマンドの使用上の注意として正しいものはどれか。",
+    "choices": [
+     "NetView 起動時のみ使用し複数回実行すると重複タイマーが発生する",
+     "いつでも何度でも実行してよい",
+     "RODM を初期化する",
+     "全画面を表示する"
+    ],
+    "answer": 0,
+    "explanation": "RESTORE は Save/Restore データベースからタイマーを復元するが、NetView 起動時のみ使用すべきで、複数回実行すると重複タイマーが発生する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.131",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.131 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9969",
+   "title": "Sending Email or Alphanumeric Pages",
+   "naiyou_jp": "電子メールまたは英数字ページの送信について説明する。AON の通知ポリシーでは、メッセージの発行、ハードウェアモニターへのアラート生成、DDF 更新、イベントサーバーへのイベント送信に加え、電子メール送信やビーパー（ページ）要求の生成といった通知を行える。これにより担当者へ自動的に通知できる。",
+   "verify_steps": [
+    "AON 通知ポリシーでメール／ページ通知を設定する。",
+    "資源障害を発生させる。",
+    "担当者へメール／ページが送信されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON の通知ポリシーで行える通知に含まれるものはどれか。",
+    "choices": [
+     "電子メール送信やビーパー（ページ）要求",
+     "RODM のコールドスタート",
+     "タイマーの保存",
+     "全画面の色変更"
+    ],
+    "answer": 0,
+    "explanation": "AON の通知ポリシーは、メッセージ発行・アラート生成・DDF 更新・イベント送信に加え、電子メール送信やビーパー（ページ）要求の生成による通知が行える。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.338",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.338 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9970",
+   "title": "Setting Up Communication between the NetView Program and MVS",
+   "naiyou_jp": "NetView と MVS 間の通信のセットアップについて説明する。サンプル自動化セットを利用する場合などに、NetView と MVS の間で MVS コマンド・メッセージを授受するための定義（コマンド出口、オートタスク、サブシステムインターフェース等）を整える。",
+   "verify_steps": [
+    "必要なコマンド出口・オートタスクを定義する。",
+    "サブシステムインターフェース経由の通信を構成する。",
+    "MVS との双方向通信が機能することを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView と MVS 間の通信セットアップで整える必要があるものはどれか。",
+    "choices": [
+     "コマンド出口やオートタスク、サブシステムインターフェース定義",
+     "RODM のビュー",
+     "全画面パネルの色定義",
+     "タイマーの保存件数"
+    ],
+    "answer": 0,
+    "explanation": "NetView と MVS 間の通信を機能させるには、コマンド出口・オートタスク・サブシステムインターフェースなどの定義を整える必要がある。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.517",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.517 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9971",
+   "title": "Setting Up TAF",
+   "naiyou_jp": "TAF のセットアップについて説明する。TAF を自動化に使うには、VTAMLST に TAF 用ソース LUの定義を追加し、CICS や IMS など対象アプリに同じソース LU の端末定義を追加する。NetView サンプルネットワークには OPCTL／全画面両方のサンプル定義が含まれる。",
+   "verify_steps": [
+    "VTAMLST に TAF SRCLU 定義を追加する。",
+    "CICS／IMS に対応する端末定義を追加する。",
+    "TAF セッションが確立できることを確認する。"
+   ],
+   "quiz": {
+    "q": "TAF のセットアップで VTAMLST に追加するのは何か。",
+    "choices": [
+     "TAF 用ソース LU（SRCLU）の定義",
+     "RODM オブジェクト",
+     "タイマーレコード",
+     "自動化テーブル文"
+    ],
+    "answer": 0,
+    "explanation": "TAF のセットアップでは、VTAMLST に TAF 用ソース LUの定義を追加し、対象アプリ側にも同じソース LU の端末定義を追加する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.392",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.392 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9976",
+   "title": "Solicited and Unsolicited System MVS Extended Console Messages for an OST, NNT, or Autotask",
+   "naiyou_jp": "OST／NNT／オートタスク向けの送信要求・非送信要求システム MVS 拡張コンソールメッセージについて説明する。EMCS コンソールを取得した OST／NNT／オートタスクには、送信要求（コマンド応答）と非送信要求の両方の MVS システムメッセージが配信される。MSCOPE 設定により受信範囲を制御する。",
+   "verify_steps": [
+    "OST／オートタスクで EMCS コンソールを取得する。",
+    "MSCOPE で受信範囲を設定する。",
+    "送信要求・非送信要求メッセージが配信されることを確認する。"
+   ],
+   "quiz": {
+    "q": "EMCS コンソールを取得した OST／オートタスクが受信するメッセージはどれか。",
+    "choices": [
+     "送信要求・非送信要求の両方の MVS システムメッセージ",
+     "VTAM POI コマンドのみ",
+     "RODM メソッド出力のみ",
+     "タイマー通知のみ"
+    ],
+    "answer": 0,
+    "explanation": "EMCS コンソールを取得した OST／NNT／オートタスクには、送信要求（コマンド応答）と非送信要求の両方の MVS システムメッセージが配信され、MSCOPE で受信範囲を制御する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.496",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.496 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9977",
+   "title": "Solicited and Unsolicited System MVS Extended Console Messages for the PPT",
+   "naiyou_jp": "PPT 向けの送信要求・非送信要求システム MVS 拡張コンソールメッセージについて説明する。PPT（プライマリ POI タスク）が使用する EMCS コンソールに対しても、送信要求・非送信要求の MVS システムメッセージが配信される。PPT のメッセージキューで受信・処理される。",
+   "verify_steps": [
+    "PPT 用 EMCS コンソールを構成する。",
+    "MVS システムメッセージを発生させる。",
+    "PPT のメッセージキューで受信されることを確認する。"
+   ],
+   "quiz": {
+    "q": "PPT 向けの送信要求・非送信要求 MVS 拡張コンソールメッセージはどこで受信されるか。",
+    "choices": [
+     "PPT のメッセージキュー",
+     "OST のメッセージキュー",
+     "RODM",
+     "TAF 全画面セッション"
+    ],
+    "answer": 0,
+    "explanation": "PPT が使用する EMCS コンソール向けの送信要求・非送信要求 MVS システムメッセージは、PPT のメッセージキューで受信・処理される。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.496",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.496 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9980",
+   "title": "Starting MVS Command Management",
+   "naiyou_jp": "MVS コマンド管理の開始について説明する。MPF メンバーに NetView コマンド出口を定義し、NetView オートタスクとオプションタスクを定義した後、(1) MVS コマンド出口のアクティブ化、(2) MVS コマンド処理の開始の順で MVS コマンド管理を起動する。",
+   "verify_steps": [
+    "MPF にコマンド出口を定義する。",
+    "MVS コマンド出口をアクティブ化する。",
+    "MVS コマンド処理を開始する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理を開始する手順の一部として正しいものはどれか。",
+    "choices": [
+     "MVS コマンド出口をアクティブ化し MVS コマンド処理を開始する",
+     "RODM をコールドスタートする",
+     "全タイマーを削除する",
+     "VTAM を停止する"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理は、出口を MPF に定義しタスクを定義したうえで、コマンド出口のアクティブ化と MVS コマンド処理の開始により起動する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.508",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.508 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9981",
+   "title": "Starting MVS Command Processing",
+   "naiyou_jp": "MVS コマンド処理の開始について説明する。MVS コマンド出口をアクティブ化したうえで MVS コマンド処理を開始すると、MVS コマンドが NetView へ渡され、コマンド管理（検査・変更・拒否）の対象となる。MVS コマンド管理開始手順の一部。",
+   "verify_steps": [
+    "コマンド出口をアクティブ化する。",
+    "MVS コマンド処理を開始する。",
+    "MVS コマンドが NetView で処理されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド処理を開始するとどうなるか。",
+    "choices": [
+     "MVS コマンドが NetView へ渡されコマンド管理の対象になる",
+     "RODM が更新される",
+     "タイマーが保存される",
+     "全画面が表示される"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド処理を開始すると、MVS コマンドが NetView へ渡され、コマンド管理（検査・変更・拒否）の対象になる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.508",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.508 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9982",
+   "title": "Starting the Exclusion or Inclusion List",
+   "naiyou_jp": "排他リストまたは包含リストの開始について説明する。MVS コマンド管理で、CONSOLE／COMMAND／CMDTEXT のいずれかの排他リストまたは包含リストをアクティブにして、コマンド処理にフィルタリングを適用し始める。排他リストと包含リストは相互排他で、同時に両方を指定することはできない。",
+   "verify_steps": [
+    "使用するリスト種別（排他または包含）を決める。",
+    "リストを開始（アクティブ化）する。",
+    "リストに従ってコマンドが含め／除外されることを確認する。"
+   ],
+   "quiz": {
+    "q": "排他リストと包含リストの関係として正しいものはどれか。",
+    "choices": [
+     "相互排他であり同時に両方は指定できない",
+     "常に両方を指定する必要がある",
+     "包含リストは廃止された",
+     "排他リストのみ存在する"
+    ],
+    "answer": 0,
+    "explanation": "CONSOLE／COMMAND／CMDTEXT の各リストで、排他リストと包含リストは相互排他であり、同時に両方を指定することはできない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.510",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.510 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9983",
+   "title": "Stopping MVS Command Management",
+   "naiyou_jp": "MVS コマンド管理の停止について説明する。コマンド出口の非アクティブ化などにより、MVS コマンドが NetView へ渡されないようにして MVS コマンド管理を停止する。停止後は MVS コマンドが NetView で検査・変更されなくなる。",
+   "verify_steps": [
+    "MVS コマンド管理の停止操作を行う。",
+    "コマンド出口を非アクティブ化する。",
+    "MVS コマンドが NetView へ渡らないことを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理を停止するとどうなるか。",
+    "choices": [
+     "MVS コマンドが NetView で検査・変更されなくなる",
+     "RODM がコールドスタートする",
+     "タイマーが全削除される",
+     "VTAM が停止する"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理を停止すると、コマンド出口経由のコマンド受け渡しが止まり、MVS コマンドが NetView で検査・変更されなくなる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.509",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.509 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9984",
+   "title": "Stopping MVS Command Management and Deleting the CNMCAUaa Member",
+   "naiyou_jp": "MVS コマンド管理を停止し CNMCAUaa メンバーを削除する手順について説明する。MVS コマンド管理を停止する際、排他／包含リストを格納する CNMCAUaa メンバーを削除する場合の操作。リストを完全に除去したいときに用いる。",
+   "verify_steps": [
+    "MVS コマンド管理を停止する。",
+    "CNMCAUaa メンバーを削除する操作を行う。",
+    "リストが除去されたことを確認する。"
+   ],
+   "quiz": {
+    "q": "この手順で停止に加えて行う操作はどれか。",
+    "choices": [
+     "CNMCAUaa メンバーを削除する",
+     "RODM を再ロードする",
+     "タイマーを保存する",
+     "全画面パネルを更新する"
+    ],
+    "answer": 0,
+    "explanation": "この手順では MVS コマンド管理を停止し、排他／包含リストを保持する CNMCAUaa メンバーを削除する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.509",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.509 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9985",
+   "title": "Stopping MVS Command Management and Keeping the CNMCAUaa Member",
+   "naiyou_jp": "MVS コマンド管理を停止し CNMCAUaa メンバーを保持する手順について説明する。MVS コマンド管理を停止する一方で、排他／包含リストを格納する CNMCAUaa メンバーは削除せず残す場合の操作。後で再開する際にリスト定義を再利用できる。",
+   "verify_steps": [
+    "MVS コマンド管理を停止する。",
+    "CNMCAUaa メンバーを保持したままにする。",
+    "再開時にリスト定義が残っていることを確認する。"
+   ],
+   "quiz": {
+    "q": "この手順で CNMCAUaa メンバーをどう扱うか。",
+    "choices": [
+     "削除せずに保持する",
+     "必ず削除する",
+     "RODM へ移動する",
+     "暗号化する"
+    ],
+    "answer": 0,
+    "explanation": "この手順では MVS コマンド管理を停止しつつ、CNMCAUaa メンバーを削除せず保持し、再開時にリスト定義を再利用できるようにする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.509",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.509 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9986",
+   "title": "Stopping the MVS Command Exit from Being Invoked",
+   "naiyou_jp": "MVS コマンド出口が呼び出されないようにする手順について説明する。コマンド出口を非アクティブ化することで、MVS コマンドが NetView の出口へ渡らなくなり、出口が呼び出されなくなる。MVS コマンド管理の停止に関連する操作。",
+   "verify_steps": [
+    "コマンド出口を非アクティブ化する。",
+    "MVS コマンドを発行する。",
+    "出口が呼び出されないことを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド出口が呼び出されないようにする方法はどれか。",
+    "choices": [
+     "コマンド出口を非アクティブ化する",
+     "RODM をコールドスタートする",
+     "タイマーを保存する",
+     "VTAM を再起動する"
+    ],
+    "answer": 0,
+    "explanation": "コマンド出口を非アクティブ化すると、MVS コマンドが出口へ渡らなくなり、出口は呼び出されなくなる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.509",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.509 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9988",
+   "title": "Suppressing additional command echoes and IEE295I messages",
+   "naiyou_jp": "追加のコマンドエコーおよび IEE295I メッセージの抑止について説明する。MVS コマンド管理環境では、NetView が処理したコマンドに伴う余分なコマンドエコーや IEE295I メッセージを抑止することで、表示やログのノイズを削減できる。",
+   "verify_steps": [
+    "MVS コマンドを NetView 経由で処理させる。",
+    "コマンドエコーや IEE295I の発生状況を確認する。",
+    "抑止設定によりこれらが出力されないことを確認する。"
+   ],
+   "quiz": {
+    "q": "この機能で抑止できるものはどれか。",
+    "choices": [
+     "追加のコマンドエコーや IEE295I メッセージ",
+     "RODM の更新",
+     "タイマーの実行",
+     "全画面パネルの表示"
+    ],
+    "answer": 0,
+    "explanation": "MVS コマンド管理環境では、余分なコマンドエコーや IEE295I メッセージを抑止して表示・ログのノイズを減らせる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.503",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.503 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9989",
+   "title": "Suppressing Messages and Filtering Alerts",
+   "naiyou_jp": "メッセージの抑止とアラートのフィルタリングについて説明する。メッセージを識別した後、DISPLAY(NO) アクションで表示を抑止でき、HCYLOG／NETLOG／SYSLOG アクションでログ要否を指定できる。アラートには記録フィルター（ESREC／AREC／OPER 等）を SRFILTER コマンドで設定して管理する。",
+   "verify_steps": [
+    "自動化テーブルで対象メッセージを識別する。",
+    "DISPLAY(NO) や *LOG アクションで表示・ログを制御する。",
+    "SRFILTER でアラート記録フィルターを設定する。"
+   ],
+   "quiz": {
+    "q": "メッセージを表示しないようにするための自動化テーブルアクションはどれか。",
+    "choices": [
+     "DISPLAY(NO)",
+     "AUTOTBL",
+     "BGNSESS",
+     "FOCALPT ACQUIRE"
+    ],
+    "answer": 0,
+    "explanation": "メッセージ識別後、DISPLAY(NO) アクションで表示を抑止でき、HCYLOG／NETLOG／SYSLOG でログ要否を指定できる。アラートは SRFILTER でフィルタリングする。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.301",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.301 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9995",
+   "title": "Testing MVS Command Management",
+   "naiyou_jp": "MVS コマンド管理のテストについて説明する。排他／包含リストやコマンド出口の設定が意図どおり機能するかを、実際にコマンドを発行して検証する。テストにより、対象コマンドが正しく含め／除外されるかを確認できる。",
+   "verify_steps": [
+    "MVS コマンド管理を有効化する。",
+    "テスト用 MVS コマンドを発行する。",
+    "リスト設定に従って含め／除外されることを確認する。"
+   ],
+   "quiz": {
+    "q": "MVS コマンド管理のテストで確認する主な点はどれか。",
+    "choices": [
+     "対象コマンドが正しく含め／除外されるか",
+     "RODM の容量",
+     "タイマーの残数",
+     "全画面の色"
+    ],
+    "answer": 0,
+    "explanation": "テストでは実際にコマンドを発行し、排他／包含リストの設定に従って対象コマンドが正しく含め／除外されるかを確認する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.510",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.510 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9996",
+   "title": "The NetView Program in a JES3 Environment",
+   "naiyou_jp": "JES3 環境における NetView プログラムについて説明する。JES3 環境で NetView 自動化を行う際の考慮点を扱う。サブシステムインターフェース上のメッセージに対し、NetView メッセージ修正は JES3 のロギングや MCS コンソールへのルーティング・表示、ハードコピーロギングを変更できる。AUTO(YES) 指定で自動化用コピーが作られる。",
+   "verify_steps": [
+    "MPFLSTxx で AUTO(YES) を指定する。",
+    "JES3 メッセージの自動化コピーが作られることを確認する。",
+    "メッセージ修正でロギング・ルーティングを調整する。"
+   ],
+   "quiz": {
+    "q": "JES3 環境で NetView メッセージ修正が変更できるものはどれか。",
+    "choices": [
+     "JES3 のロギングや MCS コンソールへの表示・ルーティング",
+     "RODM の容量",
+     "タイマーの件数",
+     "全画面の色のみ"
+    ],
+    "answer": 0,
+    "explanation": "JES3 環境では、NetView メッセージ修正がサブシステムインターフェース上のメッセージの JES3 ロギングや MCS コンソールへのルーティング・表示、ハードコピーロギングを変更できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.442",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.442 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9997",
+   "title": "The Sample Set for Automation",
+   "naiyou_jp": "自動化用サンプルセットについて説明する。自動化用サンプルセットは、自動化された運用の例として利用できるコマンドリストやパネル、パラメーター等の集合で、名前が CNMS62／CNMS64／CNME62／CNME64 で始まる。使用するにはすべてリネームしてから利用する。",
+   "verify_steps": [
+    "サンプルセットのメンバーを確認する。",
+    "CNMS62J1 で全サンプルをリネームする。",
+    "サンプルを自動化運用の例として利用する。"
+   ],
+   "quiz": {
+    "q": "自動化用サンプルセットを利用する際の最初のステップはどれか。",
+    "choices": [
+     "すべてのサンプルをリネームする",
+     "RODM をコールドスタートする",
+     "タイマーを保存する",
+     "全画面パネルを作成する"
+    ],
+    "answer": 0,
+    "explanation": "自動化用サンプルセットを使うには、まずすべてのサンプルをリネームしてから利用する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.515",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.515 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "9998",
+   "title": "The SNMP trap automation task",
+   "naiyou_jp": "SNMP トラップ自動化タスクについて説明する。これは SNMP トラップの受信・自動化に用いる NetView データサービスタスク。TCP クライアント向けの並行サーバー、UDP トラップ向けのデータグラム受信、またはその両方として構成でき、SNMPv1／v2c／v3 を IPv4／IPv6 で受信・自動化できる。複数タスクで負荷分散も可能。",
+   "verify_steps": [
+    "CNMTRAPI を用いて SNMP トラップ自動化タスクを構成する。",
+    "TCP／UDP 受信モードを設定する。",
+    "トラップが受信・自動化されることを確認する。"
+   ],
+   "quiz": {
+    "q": "SNMP トラップ自動化タスクの実体はどれか。",
+    "choices": [
+     "NetView データサービスタスク（DST）",
+     "オートタスク（OST）",
+     "RODM メソッド",
+     "MVS コマンド出口"
+    ],
+    "answer": 0,
+    "explanation": "SNMP トラップ自動化タスクは、トラップ受信・自動化に用いる NetView データサービスタスクで、並行サーバー／データグラム受信として構成できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.445",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.445 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "10003",
+   "title": "Understanding AON Automation and Recovery",
+   "naiyou_jp": "AON 自動化と回復の理解について説明する。AONは NetView 自動化機能を用いて TCP/IP・SNA ネットワーク資源の監視と回復を自動化する。メッセージやアラートを監視し回復アクションを自動実行し、自動ヘルプデスクやレポートも提供する。資源・グループ・グローバルレベルで回復基準やしきい値を設定できる。",
+   "verify_steps": [
+    "AON を有効化する。",
+    "資源の回復基準・しきい値を設定する。",
+    "障害発生時に AON が回復を試みることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が自動化するのは主に何か。",
+    "choices": [
+     "TCP/IP・SNA ネットワーク資源の監視と回復",
+     "RODM のコールドスタート",
+     "タイマーの保存",
+     "全画面パネルの色変更"
+    ],
+    "answer": 0,
+    "explanation": "AON は NetView 自動化機能を用いて TCP/IP・SNA ネットワーク資源の監視と回復を自動化し、自動ヘルプデスクやレポートも提供する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.397",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.397 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "10005",
+   "title": "Understanding Automation Notification Logging in the Hardware Monitor",
+   "naiyou_jp": "ハードウェアモニターでの自動化通知ロギングの理解について説明する。AON はハードウェアモニターのデータベースへ自動化通知（アラート・解決）を記録し、問題判別やイベント相関に利用する。Alerts Dynamic／Most Recent Events 機能により、AON の自動化活動をグラフィカル表示に反映できる。",
+   "verify_steps": [
+    "AON 通知ポリシーでハードウェアモニターへの記録を有効化する。",
+    "資源障害を発生させる。",
+    "アラート履歴に自動化活動が記録されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が自動化通知をハードウェアモニターへ記録する目的はどれか。",
+    "choices": [
+     "問題判別やイベント相関に利用するため",
+     "RODM 容量を増やすため",
+     "タイマーを保存するため",
+     "MVS コマンドを高速化するため"
+    ],
+    "answer": 0,
+    "explanation": "AON はハードウェアモニターのデータベースへ自動化通知を記録し、問題判別やイベント相関、グラフィカル表示への反映に利用する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.399",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.399 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "10011",
+   "title": "Usage Reports for Command Revision Tables",
+   "naiyou_jp": "コマンド修正テーブルの使用状況レポートについて説明する。REVISE CMD REPORT コマンドで、アクティブな CRT の統計・使用状況情報を収集できる。成功すると CNM014I メッセージが発行される。MEMBER オペランドを併用すると、置き換えられたテーブルとその置換時刻の情報が表示される。",
+   "verify_steps": [
+    "REVISE CMD REPORT コマンドを発行する。",
+    "CNM014I メッセージで統計が表示されることを確認する。",
+    "MEMBER 指定時に置換情報が出ることを確認する。"
+   ],
+   "quiz": {
+    "q": "REVISE CMD REPORT コマンドが成功すると発行されるメッセージはどれか。",
+    "choices": [
+     "CNM014I",
+     "CNM012I",
+     "BNJ030I",
+     "DWO051I"
+    ],
+    "answer": 0,
+    "explanation": "REVISE CMD REPORT は CRT の統計・使用状況を収集し、成功すると CNM014I メッセージを発行する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.156",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.156 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  },
+  {
+   "row_id": "10012",
+   "title": "Usage Reports for Message Revision Tables",
+   "naiyou_jp": "メッセージ修正テーブルの使用状況レポートについて説明する。REVISE MSG REPORT コマンドで、アクティブな MRT の統計・使用状況情報を収集できる。成功すると BNHRVaaaI メッセージが発行される。MEMBER オペランドを併用すると、置き換えられたテーブルと置換時刻の情報が表示される。",
+   "verify_steps": [
+    "REVISE MSG REPORT コマンドを発行する。",
+    "BNHRVaaaI メッセージで統計が表示されることを確認する。",
+    "MEMBER 指定時に置換情報が出ることを確認する。"
+   ],
+   "quiz": {
+    "q": "REVISE MSG REPORT コマンドが成功すると発行されるメッセージはどれか。",
+    "choices": [
+     "BNHRVaaaI",
+     "CNM014I",
+     "DWO051I",
+     "IEE295I"
+    ],
+    "answer": 0,
+    "explanation": "REVISE MSG REPORT は MRT の統計・使用状況を収集し、成功すると BNHRVaaaI メッセージを発行する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.143",
+   "rag_hit": "IBM NetView 6.4 / NetView_6.4_Automation_Guide.pdf p.143 付近（IBM NetView 6.4 自動化ガイド該当章）"
+  }
+ ]
+}

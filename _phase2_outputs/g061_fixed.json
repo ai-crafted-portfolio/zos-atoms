@@ -1,0 +1,522 @@
+{
+  "page": "g061",
+  "product": "IBM GDPS 4.7",
+  "total_rows": 77,
+  "target_rows": 27,
+  "fixed_count": 27,
+  "rows": [
+    {
+      "row_id": "12343",
+      "title": "Configuration guidelines for primary and secondary",
+      "naiyou_jp": "Global Mirror ソリューションの設計段階で適用すべき、プライマリ／セカンダリ両ディスクシステムの汎用構成ガイドラインです。可能な限りプライマリと対応するセカンダリを同等の内部リソース（キャッシュ・ランク・アダプター等）で構成し、両者のリソースをソリューション要件に合わせてバランスさせることが推奨されます。これにより必要な RPO の達成だけでなく、リカバリーサイト稼働時に期待する性能レベルを維持できます。セカンダリは FlashCopy 処理の負荷が加わるため、プライマリと同等以上の性能を確保することが基本方針となります。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション（HMC 接続済）／GDPS NetView コンソール\n[手順1] プライマリ DS8000 とセカンダリ DS8000 の構成を `lsarray`／`lsrank`／`lsckdvol` などで取得し、ランク数・キャッシュ容量・エクステントプール構成を両系で比較する。\n[手順2] セカンダリがプライマリと同等以上のリソース（特にキャッシュとランク数）を備えているか確認する。FlashCopy ジャーナル分の余裕を見込む。\n[手順3] GDPS の構成定義（GEOPARM）で H1/H2 のディスクペア定義を確認し、対称的にバランスされているか突合する。\n[手順4] 差分があればセカンダリ側のリソース追加・再配置を計画する。\n[記録] 両系のランク／キャッシュ構成一覧、想定 RPO、性能見積もり、実行時刻、z/OS・DS8000 firmware・GDPS リリース。",
+      "quiz": {
+        "q": "Global Mirror のプライマリ／セカンダリ構成ガイドラインとして正しいものはどれか？",
+        "choices": [
+          "セカンダリはプライマリより低性能・小容量で構成してコストを抑えるのが基本である",
+          "可能な限りプライマリとセカンダリを同等の内部リソースで構成し、FlashCopy 処理の追加負荷を見込んでセカンダリを同等以上の性能にする",
+          "セカンダリには FlashCopy を構成しないためプライマリより少ないリソースで足りる",
+          "プライマリとセカンダリのキャッシュ容量は性能に影響しないため考慮不要である"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.35〜38）は、プライマリとセカンダリを同等リソースで構成しバランスさせること、Global Mirror はセカンダリ側に FlashCopy 処理負荷が加わるためセカンダリを同等以上の性能で構成することを推奨している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.35-38（IBM Redpaper REDP-5246「DS8000 Global Mirror Best Practices」2.3 章）",
+      "rag_hit": "GDPS_REDP5246 p.38: \"ensure that a Global Mirror secondary disk system can provide the same or better performance than its counterpart disk system at the primary site.\" / p.35: \"2.3 Configuration guidelines for primary and secondary ... Balance primary and secondary resources ... configure primary disk systems and their respective secondaries with equivalent internal resources.\""
+    },
+    {
+      "row_id": "12344",
+      "title": "Configuring the FCIP gateway",
+      "naiyou_jp": "サイト間を IP 網で接続する際に用いる FCIP（Fibre Channel over IP）ゲートウェイの構成に関する項目です。DS8000 とゲートウェイの間に Fibre Channel スイッチを挟む場合、結果として生じる ISL（inter-switch link）の総帯域がレプリケーションに使う DS8000 側リンク本数と同等以上になるよう注意が必要です。ゲートウェイベンダーによっては複数 IP リンクのトランキングが可能で、帯域の最適利用とリンク冗長性の管理が行えます。IP 網ではパケット損失を避けるためトラフィック制御アルゴリズムにより最大／最小帯域が制御される点も考慮します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション／FCIP ゲートウェイ管理コンソール\n[手順1] サイト間接続構成（DS8000 → FC スイッチ → FCIP ゲートウェイ → IP 網）の物理経路を確認する。\n[手順2] レプリケーションに使う DS8000 リンク本数を数え、ISL の本数・速度が同等以上であることを確認する。\n[手順3] FCIP ゲートウェイ側で IP リンクのトランキング設定、最大／最小帯域設定を確認する。\n[手順4] 冗長性確保のため各サイトで偶数本（2/4/6/8 本）の FC 接続が構成されているか確認する。\n[記録] 経路図、ISL 本数・速度、ゲートウェイのトランキング／帯域設定、ベンダー型番、実行時刻。",
+      "quiz": {
+        "q": "FCIP ゲートウェイ構成時に DS8000 とゲートウェイ間に FC スイッチを挟む場合、特に注意すべき点はどれか？",
+        "choices": [
+          "ISL の本数や帯域は DS8000 側リンクと無関係に最小限でよい",
+          "ISL の総帯域がレプリケーションに使う DS8000 側リンク本数・速度と同等以上になるよう構成する",
+          "FC スイッチを挟むと FCIP は使用できなくなる",
+          "IP 網ではパケット損失が起きないため帯域制御は不要である"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.51, 3.4.1/3.4.2）は、DS8000 とゲートウェイ間に FC スイッチを挟む場合、ISL の総帯域が十分でなければならず、DS8000 で 4 リンク使うなら ISL も同速度 4 リンクで構成すべきと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.51-52（3.4.2 Configuring the FCIP gateway / 3.4.1 Fibre Channel flow control）",
+      "rag_hit": "GDPS_REDP5246 p.51: \"additional Fibre Channel switches might be needed between the DS8000 and the FCIP gateway ... the total bandwidth of the ISLs must be sufficient. For example, if there are four links from the DS8000 in use for the replication, the ISLs should consist also of four links of the same sp[eed]\" / p.52: トランキングと max/min bandwidth の記述。"
+    },
+    {
+      "row_id": "12347",
+      "title": "Creating a Global Copy relationship",
+      "naiyou_jp": "Global Mirror セッションを構築する一連の手順のうち、サイト間に PPRC パスを確立した後にプライマリ（H1）とセカンダリ（H2）の間で Global Copy 関係を作成するステップです。Global Copy は非同期のデータ複製で、まず全データをセカンダリへ初期コピーし、その後は更新分を継続的に送信します。これにより Global Mirror の基盤となる H1→H2 の非同期レプリケーションが成立します。Global Copy 関係はセッションへ追加する候補ボリュームの前提となります。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション（master LSS 接続済）\n[手順1] 既に H1-H2 間に PPRC パスが確立済みであることを `lspprcpath` で確認する。\n[手順2] `mkpprc -type gcp <H1vol>:<H2vol>` で Global Copy 関係を作成する。\n[手順3] `lspprc` で関係が Copy Pending（Global Copy）状態であり初期コピーが進行していることを確認する。\n[手順4] Out-of-sync トラック数が減少し、初期同期が完了に向かっていることを確認する。\n[記録] 発行コマンド全文、`lspprc` 出力、out-of-sync トラック推移、CMUC メッセージ ID、実行時刻。",
+      "quiz": {
+        "q": "Global Copy 関係を作成する際の前提と特性として正しいものはどれか？",
+        "choices": [
+          "Global Copy は同期複製であり、書き込みごとにセカンダリ完了を待つ",
+          "PPRC パス確立後に H1→H2 の非同期な Global Copy 関係を作成し、更新分を継続送信する",
+          "Global Copy 関係は PPRC パスがなくても作成できる",
+          "Global Copy はコンシステンシーグループを自前で形成する"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.18, 1.2.3）は、PPRC パスを確立した上で Global Copy 関係を作成する手順を示す。Global Copy は非同期複製で、コンシステンシーグループ形成は Global Mirror 側の役割である。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.18（1.2.3 Creating a Global Copy relationship）",
+      "rag_hit": "GDPS_REDP5246 p.18: \"1.2.2 Establishing connectivity to a secondary site (PPRC paths) ... Global Copy paths are logical connections ... 1.2.3 Creating a Global Copy relationship. Next, ...\""
+    },
+    {
+      "row_id": "12349",
+      "title": "Defining a Global Mirror session",
+      "naiyou_jp": "Global Mirror セッションを LSS レベルで定義するステップです。セッション番号は LSS 単位で定義し、セッションに参加するボリュームを持つ各 LSS には対応するセッション定義が必要です。1 台のプライマリ DS8000 内で最大 32 個の Global Mirror ハードウェアセッションをサポートできます。ここでいうセッションは DS8000 内のハードウェア／ファームウェアベースのセッションを指し、DS8000 が自律的に管理します。dscli では `mksession` コマンドで関与する全 LSS にセッションを定義します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] セッションに参加させる LSS を特定する。\n[手順2] `mksession -lss <lss> <session_id>` を関与する各 LSS について発行する（master・subordinate 両方）。\n[手順3] `lssession <lss range>` でセッションが定義され Normal 状態であることを確認する。\n[手順4] 同一プライマリ DS8000 内のセッション数が 32 を超えていないことを確認する。\n[記録] 発行した mksession コマンド全文、lssession 出力、セッション ID と LSS 対応表、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror セッションの定義に関する記述として正しいものはどれか？",
+        "choices": [
+          "セッションはボリューム単位で定義し、LSS には定義不要である",
+          "セッション番号は LSS レベルで定義し、参加ボリュームを持つ各 LSS に対応セッションが必要で、1 プライマリ DS8000 内で最大 32 セッションをサポートする",
+          "1 台の DS8000 では Global Mirror セッションは 1 個しか定義できない",
+          "セッションはホスト側ソフトウェアが管理し DS8000 は関与しない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.20）は、セッション番号が LSS レベルで定義され、各 LSS に対応セッションが必要で、同一プライマリ DS8000 内で最大 32 個のハードウェアセッションをサポートし、DS8000 が自律管理すると述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.20（1.2.5 Defining a Global Mirror session）",
+      "rag_hit": "GDPS_REDP5246 p.20: \"This session number is defined at the LSS level. Each LSS that has volumes that are part of the session needs a corresponding session defined. Up to 32 Global Mirror hardware sessions can be supported within the same primary DS8000.\""
+    },
+    {
+      "row_id": "12352",
+      "title": "Environments with very low bandwidth",
+      "naiyou_jp": "非常に低い帯域の環境向けの Global Mirror チューニングに関する項目です（性能チューニング章 4.4.5 節）。Global Mirror は通常チューニング不要で 3〜5 秒の RPO を達成しますが、長距離・低帯域などの特殊ケースでは調整が必要になります。短時間の書き込みピークがあり、かつ許容できる RPO であれば、相対的に低帯域の環境やネットワークコストを RPO より優先する環境でも Global Mirror を導入できます。低帯域時は外部化パラメータ（最大コーディネーション時間・最大ドレイン時間等）の調整で輻輳を緩和します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション／GDPS コンソール\n[手順1] サイト間リンクの実効帯域とピーク書き込み量を RMF / Spectrum Control 等で計測する。\n[手順2] 現状の RPO を `showgmir` の CG Time から確認する。\n[手順3] 低帯域による RPO 悪化が見られる場合、外部化パラメータ（Max coordination time / Max CG drain time）を環境特性に合わせて調整する。\n[手順4] 調整後に RPO が許容範囲に収まるか再計測する。\n[記録] 帯域計測値、ピーク書き込み量、調整前後の RPO、変更したパラメータ値、実行時刻。",
+      "quiz": {
+        "q": "非常に低帯域な環境での Global Mirror 適用について正しいものはどれか？",
+        "choices": [
+          "低帯域環境では Global Mirror は一切使用できない",
+          "短時間の書き込みピークがあり許容できる RPO であれば、低帯域やネットワークコスト優先の環境でも Global Mirror を導入できる",
+          "低帯域でも RPO は常に 3〜5 秒に保たれ調整は不要である",
+          "低帯域環境では同期複製の Metro Mirror に切り替える必要がある"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.55-56, 4.4 章）は、Global Mirror が通常チューニング不要であること、低帯域では特殊なチューニングが必要なこと、書き込みピークが短時間で RPO が許容できれば低帯域／コスト優先環境でも適用可能であることを述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.61（4.4.5 Environments with very low bandwidth / 4.4 Global Mirror tuning, p.55-56）",
+      "rag_hit": "GDPS_REDP5246 p.56: \"If there are write peaks during short periods of time and the RPO values are acceptable, Global Mirror can be implemented in environments with relatively low bandwidth or when network cost takes priority over lower RPO requirements.\" / p.55: Chapter 4 Performance tuning intro."
+    },
+    {
+      "row_id": "12353",
+      "title": "Establishing connectivity to a secondary site (PPRC paths)",
+      "naiyou_jp": "遠隔のセカンダリサイト（ストレージシステム B）を追加し、両サイトを相互接続して PPRC パスを確立するステップです。Global Copy パスは、両サイトを結ぶ物理リンク上に定義される論理接続です。コンシステンシーグループを複数ディスクシステム間で形成するには各ディスクシステムが通信できる必要があり、その通信経路は本番アプリケーションへの影響を最小化するため、回復力が高く高性能でなければなりません。この経路には FCP プロトコルを用いる Fibre Channel リンクが使われ、直結または SAN 経由で構成されます。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション（プライマリ master）\n[手順1] プライマリとセカンダリ間の物理 FC リンク（直結または SAN 経由）の接続を確認する。\n[手順2] `mkpprcpath -dev <primary> -remotedev <secondary> -remotewwnn <wwnn> -srclss <ls> -tgtlss <ls> <port pairs>` で PPRC パスを確立する。\n[手順3] `lspprcpath -dev <primary> <lss>` でパスが Success 状態であることを確認する。\n[手順4] 冗長性のため複数パスが定義されているか確認する。\n[記録] mkpprcpath コマンド全文、lspprcpath 出力、WWNN・LSS・ポート対応、実行時刻。",
+      "quiz": {
+        "q": "セカンダリサイトへの PPRC パス確立に関する記述として正しいものはどれか？",
+        "choices": [
+          "Global Copy パスは物理リンクそのものであり論理定義は不要である",
+          "Global Copy パスは両サイトを結ぶ物理リンク上に定義される論理接続で、FCP プロトコルの FC リンクを直結または SAN 経由で用いる",
+          "コンシステンシーグループ形成にはディスクシステム間の通信は不要である",
+          "サイト間通信には FICON 専用線のみが使用できる"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.18, 1.2.2 と p.17）は、Global Copy パスが物理リンク上に定義される論理接続であること、CG 形成にはディスクシステム間通信が必要で、FCP の FC リンクを直結または SAN 経由で用いることを述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.18（1.2.2 Establishing connectivity to a secondary site (PPRC paths)）",
+      "rag_hit": "GDPS_REDP5246 p.18: \"1.2.2 Establishing connectivity to a secondary site (PPRC paths) ... Global Copy paths are logical connections that are defined over the physical links that interconnect both sites.\" / p.17: \"Fibre Channel links that use FCP protocol are used, which can be direct connections or more typically over a SAN.\""
+    },
+    {
+      "row_id": "12356",
+      "title": "Fibre Channel to IP conversion",
+      "naiyou_jp": "Global Mirror のサイト間接続を IP 網経由で実現するための Fibre Channel から IP への変換に関する項目です。DS8000 を設置する各データセンターに FC/IP ゲートウェイを配置し、DS8000 の FC 接続を直接または FC スイッチ経由でゲートウェイに接続します。サイト間通信の冗長性を確保するため、各サイトで FC/IP ゲートウェイへ少なくとも 2 本の FC 接続を設けることが推奨されます。帯域確保のため接続本数を増やす場合は偶数本（一般に 2/4/6/8 本）を選択します。",
+      "verify_steps": "[セッション環境] FC/IP ゲートウェイ管理コンソール／DS8000 dscli\n[手順1] 各データセンターに FC/IP ゲートウェイが配置され、DS8000 の FC ポートが直結または FC スイッチ経由で接続されていることを確認する。\n[手順2] 各サイトで FC/IP ゲートウェイへの FC 接続が最低 2 本、かつ偶数本構成であることを確認する。\n[手順3] FCIP トンネルが確立し、両端で FC ポートが提示されていることを確認する。\n[手順4] 帯域・冗長性が要件を満たすかをゲートウェイ統計で確認する。\n[記録] 接続本数・経路、FCIP トンネル状態、ゲートウェイ統計、実行時刻。",
+      "quiz": {
+        "q": "Fibre Channel to IP 変換でサイト間冗長性を確保する際の推奨はどれか？",
+        "choices": [
+          "各サイトで FC/IP ゲートウェイへの FC 接続は 1 本で十分である",
+          "各サイトで FC/IP ゲートウェイへ最低 2 本、冗長性確保のため偶数本（2/4/6/8 本）の FC 接続を設ける",
+          "FC/IP 変換ではゲートウェイを 1 サイトにのみ設置すればよい",
+          "IP 変換時は FC スイッチを必ず使用しなければならない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.46）は、各データセンターに FC/IP ゲートウェイを置き、冗長性確保のため最低 2 本、偶数本の FC 接続を推奨している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.46（3.2 Fibre Channel to IP conversion）",
+      "rag_hit": "GDPS_REDP5246 p.46: \"o IP must be implemented in each data center that hosts a DS8000 ... To provide sufficient redundancy for the inter-site communication, at least two Fibre Channel connections should be provided ... To meet the redundancy requirement, select an even number of connections. The most common environments use two, four, six, or eight Fibre Channel connections at each site.\""
+    },
+    {
+      "row_id": "12364",
+      "title": "Global Mirror management and disaster recovery solutions",
+      "naiyou_jp": "Global Mirror 環境を構成・管理・制御するためのインターフェースと、IBM の災害復旧／レプリケーション管理ソリューションをまとめた章（第 7 章）です。各インターフェースは独自の管理・制御・自動化ソリューションを構築できるコマンド群と、問題診断機能を提供します。ただし要件に合致する場合は、独自コードを書く必要のないサポート済みの IBM ソリューション（Copy Services Manager、GDPS/GM、System i PowerHA for i 等）を使うことが推奨されます。これらは状況に応じた異なる機能を提供します。",
+      "verify_steps": "[セッション環境] GDPS NetView コンソール／Copy Services Manager（CSM）GUI\n[手順1] 現環境で使用している管理インターフェース（dscli／CSM／GDPS/GM）を棚卸しする。\n[手順2] 自動化要件（リカバリー自動化・問題診断・スクリプティング）を整理する。\n[手順3] 要件が IBM の管理ソリューション（CSM, GDPS/GM, PowerHA for i）でカバーできるか突合する。\n[手順4] 独自スクリプト運用とサポート済みソリューションの適用範囲を比較し、推奨に沿って選定する。\n[記録] 使用中インターフェース一覧、自動化要件、候補ソリューションの機能対応表、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror の管理・災害復旧ソリューション選定に関する記述として正しいものはどれか？",
+        "choices": [
+          "Global Mirror は dscli の手動運用のみが推奨され、管理ソリューションは存在しない",
+          "要件に合致する場合は、独自コードが不要なサポート済み IBM 管理ソリューション（CSM・GDPS/GM 等）を使うのが推奨される",
+          "管理インターフェースは問題診断機能を提供しない",
+          "IBM の災害復旧ソリューションは Global Mirror をサポートしていない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.81）は、各インターフェースが管理・自動化・問題診断を可能にする一方、要件に合致すれば独自コード不要のサポート済み IBM 管理ソリューションを使うことが多くの場合好ましいと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.81（第 7 章 Global Mirror management and disaster recovery solutions）",
+      "rag_hit": "GDPS_REDP5246 p.81: \"Chapter 7. Global Mirror management and disaster recovery solutions. Different interface options are available to configure, manage, and control Global Mirror ... the IBM disaster recovery and replication management solution offerings also have been extended ... these would be the preferred option as it provides a supported management solution without requiring code to be written specifically for each environment.\""
+    },
+    {
+      "row_id": "12366",
+      "title": "Global Mirror overview and architecture",
+      "naiyou_jp": "DS8000 Global Mirror 機能の概要、アーキテクチャ、複製プロセスの詳細を扱う第 1 章です。Global Mirror は、同期複製（Metro Mirror）が実用的でない無制限距離においてもデータ整合性を提供する非同期複製ソリューションです。本章は「Global Mirror overview」「Setting up a Global Mirror session」「Forming consistency groups」の各節で構成され、Global Copy による非同期転送・FlashCopy によるジャーナル・コンシステンシーグループ形成という基本構成要素を解説します。",
+      "verify_steps": "[セッション環境] 出典マニュアル参照（GDPS_REDP5246 第 1 章）／DS8000 dscli\n[手順1] 出典 p.13 で Global Mirror のアーキテクチャ概要（Global Copy + FlashCopy + CG 形成）を確認する。\n[手順2] dscli で `lspprc`／`lssession`／`showgmir` を実行し、実環境の構成要素（Global Copy ペア・セッション・ジャーナルボリューム）が章の説明と対応するか突合する。\n[手順3] 非同期複製による無制限距離対応とデータ整合性の仕組みを理解する。\n[記録] 出典該当節抜粋、dscli 出力、構成要素の対応関係、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror のアーキテクチャの基本的な位置づけとして正しいものはどれか？",
+        "choices": [
+          "Global Mirror は同期複製であり距離に厳しい制限がある",
+          "Global Mirror は非同期複製で、Metro Mirror が実用的でない無制限距離でもデータ整合性を提供し、Global Copy・FlashCopy・CG 形成で構成される",
+          "Global Mirror は FlashCopy を一切使用しない",
+          "Global Mirror はコンシステンシーグループを形成しない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.13、第 1 章）は、Global Mirror がアーキテクチャと複製プロセスを持ち、Global Copy・FlashCopy・コンシステンシーグループ形成で構成される非同期・無制限距離の整合性ソリューションであることを示している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.13（第 1 章 Global Mirror overview and architecture）",
+      "rag_hit": "GDPS_REDP5246 p.13: \"Chapter 1. Global Mirror overview and architecture. This chapter provides a general overview of the DS8000 Global Mirror function, its architecture, and details of the replication process. ... Global Mirror overview / Setting up a Global Mirror session / Forming consistency groups.\""
+    },
+    {
+      "row_id": "12376",
+      "title": "IBM System i PowerHA for i",
+      "naiyou_jp": "IBM System i PowerHA for i（旧称 HASM）を Global Mirror と組み合わせて使う IBM の高可用性／災害復旧ソリューションに関する項目です。GDPS 制御下で z/OS と分散クラスター（System i 含む）のデータを 1 つのポイントから制御でき、クロスプラットフォームのデータ整合性が必要な場合は z/OS データと分散データを同一コンシステンシーグループ（Global Mirror セッション）で管理できます。逆に、z/OS データと分散データを別セッションに分け、GDPS 制御下でそれぞれ独立に回復させることも可能です。",
+      "verify_steps": "[セッション環境] GDPS NetView コンソール／System i 管理コンソール\n[手順1] System i PowerHA for i が Global Mirror を利用する構成か確認する。\n[手順2] クロスプラットフォーム整合性要件の有無を確認し、z/OS と分散データを同一 Global Mirror セッションにするか別セッションにするかを決定する。\n[手順3] GDPS の制御範囲（z/OS + 分散クラスター）と各セッションの回復単位を確認する。\n[手順4] 個別回復が必要な場合、セッション分離が正しく構成されているか突合する。\n[記録] PowerHA 構成、セッション割当（同一／分離）、GDPS 制御範囲、実行時刻。",
+      "quiz": {
+        "q": "GDPS 制御下で System i PowerHA for i と z/OS データを扱う場合の説明として正しいものはどれか？",
+        "choices": [
+          "z/OS データと分散データは必ず別々のセッションにしなければならない",
+          "クロスプラットフォーム整合性が必要なら同一 Global Mirror セッションで、不要なら別セッションに分けて独立に回復でき、いずれも GDPS 制御下で 1 ポイントから管理できる",
+          "PowerHA for i は GDPS と連携できない",
+          "z/OS と分散データを同一コンシステンシーグループに入れることはできない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.85, 7.3）は、GDPS 制御下で z/OS と分散データを 1 ポイントから制御でき、整合性要件に応じて同一 CG（同一セッション）に入れることも別セッションで独立回復することも可能と述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.85（7.3 IBM System i PowerHA for i）",
+      "rag_hit": "GDPS_REDP5246 p.85: \"z/OS and distributed cluster data can be controlled from one point. Distributed data and z/OS data can be managed in the same consistency group (Global Mirror session) if cross-platform data consistency is required. Equally, z/OS and distributed data can be in different sessions ... 7.3 IBM System i PowerHA for i.\""
+    },
+    {
+      "row_id": "12377",
+      "title": "Impact of the consistency formation process",
+      "naiyou_jp": "コンシステンシーグループ（CG）形成プロセスが本番アプリケーションへ与える影響に関する項目です。Global Mirror の主要設計目標の一つは本番アプリケーションに影響を与えないことで、CG 形成では複数デバイス・複数ディスクシステム間で依存書き込み整合性を作るために本番の書き込みを一時的に保持します。この保持はアプリケーションに感知されないほど高速でなければならず、CG 形成自体は 1〜3 ミリ秒で設計されています。CG を 1〜3 秒ごとに形成する場合、影響を受ける本番書き込みの割合と影響度はごく小さくなります。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション／RMF\n[手順1] `showgmir` で CG Interval Time と Coordination Time を確認する。\n[手順2] RMF で本番書き込み応答時間を計測し、CG 形成タイミングで顕著な遅延がないか確認する。\n[手順3] CG 形成が 1〜3 ミリ秒、CG 間隔が 1〜3 秒程度に収まり、影響が小さいことを確認する。\n[手順4] 影響が大きい場合は外部化パラメータ（最大コーディネーション時間）を見直す。\n[記録] showgmir 出力、書き込み応答時間、CG 形成所要時間・間隔、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror のコンシステンシーグループ形成が本番に与える影響について正しいものはどれか？",
+        "choices": [
+          "CG 形成中は本番書き込みを数秒間停止するため大きな性能影響が出る",
+          "CG 形成は 1〜3 ミリ秒で設計され、1〜3 秒ごとに形成すれば影響を受ける本番書き込みの割合と影響度はごく小さい",
+          "CG 形成では書き込みの保持は一切行われない",
+          "CG 形成はセカンダリ側のみで行われ本番には全く触れない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.26, 1.3.2）は、CG 形成が依存書き込み整合性のため一時的に本番書き込みを保持するが、その処理は 1〜3 ミリ秒で設計され、1〜3 秒間隔なら影響はごく小さいと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.26（1.3.2 Impact of the consistency formation process）",
+      "rag_hit": "GDPS_REDP5246 p.26: \"1.3.2 Impact of the consistency formation process ... The consistency group formation process involves the holding of production write activity ... the process of forming a consistency group is designed to take 1 - 3 milliseconds. If you form consistency groups every 1 - 3 seconds, then the percentage of production writes impacted and the degree of impact is very small.\""
+    },
+    {
+      "row_id": "12381",
+      "title": "Managing peak activity",
+      "naiyou_jp": "書き込みピーク時の Global Mirror の挙動と管理に関する項目です。Global Mirror は大半の実装でチューニングなしに RPO 要件を満たしますが、RPO 値は距離と利用可能帯域に依存します。短時間の書き込みピーク中に残留データ（residual）が増えても、ピーク後にプライマリの性能に影響を与えず追いつくことができます。短時間ピークで RPO が許容範囲なら、相対的に低帯域の環境でも Global Mirror を導入できます。ピーク時はランダムで小さな書き込み更新が同一論理トラック内に集中する前提で帯域が見積もられます。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション／RMF・Spectrum Control\n[手順1] 業務のピーク時間帯の書き込み量（MB/s・IO/s）を計測する。\n[手順2] ピーク中・ピーク後の RPO 推移を `showgmir` の CG Time で確認する。\n[手順3] ピーク後に residual が解消し RPO が正常値へ自動回復することを確認する。\n[手順4] ピーク時 RPO が許容範囲を超える場合は帯域増強やパラメータ調整を計画する。\n[記録] ピーク書き込み量、RPO 推移、residual 解消時間、実行時刻。",
+      "quiz": {
+        "q": "書き込みピーク時の Global Mirror の挙動として正しいものはどれか？",
+        "choices": [
+          "ピーク時は本番性能を犠牲にしてでも RPO を 0 に維持する",
+          "短時間ピークで residual が増えても、ピーク後にプライマリ性能へ影響を与えず追いつくことができ、RPO が許容範囲なら低帯域環境でも導入可能",
+          "ピークが発生すると Global Mirror は自動停止する",
+          "RPO 値は距離や帯域に依存しない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.56-58, 4.4 Global Mirror tuning）は、RPO が距離・帯域に依存すること、短時間ピーク後にプライマリ性能へ影響なく追いつけること、RPO が許容範囲なら低帯域環境でも導入可能であることを述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.56（4.x Managing peak activity / Global Mirror tuning）",
+      "rag_hit": "GDPS_REDP5246 p.56: \"without causing any performance impact at the primary site. If there are write peaks during short periods of time and the RPO values are acceptable, Global Mirror can be implemented in environments with relatively low bandwidth ...\" / p.58: residual / catch up の記述。"
+    },
+    {
+      "row_id": "12383",
+      "title": "Multiple Target PPRC with Global Mirror",
+      "naiyou_jp": "3 サイト／4 サイト構成で利用できるトポロジーの一つ Multiple Target PPRC（MT PPRC）と Global Mirror の組み合わせに関する項目です。MT PPRC は単一のプライマリボリュームが複数のターゲット（例: 同期の Metro Mirror と非同期の Global Mirror）と同時に連続コピー関係を持てる機能で、3〜4 サイトの複数サイトコピーサービストポロジーを構成できます。これにより 1 つの H1 ボリュームから MM（H2）と GM（H3）へ同時に複製する高可用性＋災害復旧構成が実現します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] H1 から H2（Metro Mirror）と H3（Global Mirror）への MT PPRC 構成を計画する。\n[手順2] H1-H2、H1-H3 双方の PPRC パスを `mkpprcpath` で確立する。\n[手順3] `mkpprc -type mmir H1:H2` と Global Mirror 用 `mkpprc -type gcp H1:H3` を作成し、単一 H1 から複数ターゲットへの関係を構成する。\n[手順4] `lspprc` で H1 が複数のコピー関係を同時に保持していることを確認する。\n[記録] MT PPRC 構成図、各 mkpprc/mkpprcpath コマンド、lspprc 出力、実行時刻。",
+      "quiz": {
+        "q": "Multiple Target PPRC（MT PPRC）with Global Mirror の特徴として正しいものはどれか？",
+        "choices": [
+          "1 つのプライマリボリュームは 1 つのターゲットとしか関係を持てない",
+          "単一のプライマリボリュームが複数ターゲットと同時に連続コピー関係を持て、3〜4 サイト構成のトポロジーを実現できる",
+          "MT PPRC は Global Mirror と併用できない",
+          "MT PPRC は 2 サイト構成専用である"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.73, 6.3 章）は、MT PPRC が単一プライマリボリュームに複数の連続コピーサービス関係を持たせ、3〜4 サイト構成の複数サイトコピーサービストポロジーを可能にすると述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.73（6.3 Multiple Target PPRC with Global Mirror）",
+      "rag_hit": "GDPS_REDP5246 p.73 (6.3): \"Multiple Target Peer-to-Peer Remote Copy (MT PPRC) ... It allows you to have a single primary volume in a continuous copy service [relationship with multiple targets] ... topology options ... three or four site configurations.\""
+    },
+    {
+      "row_id": "12385",
+      "title": "Overview of a Metro Mirror and Global Mirror topology",
+      "naiyou_jp": "Metro Mirror と Global Mirror を MT PPRC で組み合わせたトポロジーの概要に関する項目です（6.3.1 節）。単一プライマリ H1 から、メトロ距離の同期セカンダリ H2 へ Metro Mirror を、リージョン外の遠隔サイト H3 へ Global Mirror を同時に複製します。これにより近距離での高可用性（同期）と長距離での災害復旧（非同期）を 1 構成で両立できます。MT-PPRC 構成では H1-H2、H1-H3 のパスを定義し、各プライマリボリュームに 1 つの MM と 1 つの GM 関係を持たせます。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] H1=本番、H2=Metro Mirror（同期）セカンダリ、H3=Global Mirror（非同期）セカンダリの役割を定義する。\n[手順2] H1-H2 と H1-H3 の PPRC パスを確立する。\n[手順3] H1 から H2 へ `mkpprc -type mmir`、H1 から H3 へ Global Mirror 用 Global Copy を作成し、各 H1 ボリュームに MM 1 件と GM 1 件を構成する。\n[手順4] `lspprc` で H1 が MM と GM の両関係を保持していることを確認する。\n[記録] トポロジー図、各 mkpprc コマンド、lspprc 出力、実行時刻。",
+      "quiz": {
+        "q": "Metro Mirror と Global Mirror を組み合わせたトポロジーの目的として正しいものはどれか？",
+        "choices": [
+          "近距離・遠距離の両方を同期複製で構成し RPO を 0 にする",
+          "近距離は同期（Metro Mirror）で高可用性、遠距離は非同期（Global Mirror）で災害復旧を 1 構成で両立する",
+          "Metro Mirror と Global Mirror は同一構成では併用できない",
+          "このトポロジーは単一サイト内のみで使用する"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.73 6.3.1、GDPS_SG24-8367 p.543 第 38 章）は、単一プライマリに MM（同期・近距離 HA）と GM（非同期・遠距離 DR）を MT-PPRC で同時構成するトポロジーを示している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.73（6.3.1 Overview of a Metro Mirror and Global Mirror topology）",
+      "rag_hit": "GDPS_SG24-8367 p.543: \"Chapter 38. Implementing a Metro Mirror and Global Mirror topology ... creation of a Multi-Target Peer-to-Peer Remote Copy (MT-PPRC) topology with Metro Mirror (MM) and Global Mirror (GM). 38.1 Overview of a Metro Mirror and Global Mirror topology.\" / GDPS_REDP5246 p.6 目次 6.3.1。"
+    },
+    {
+      "row_id": "12386",
+      "title": "Path and port configuration for optimal data transmission.",
+      "naiyou_jp": "最適なデータ転送のためのパス・ポート構成に関する性能チューニング項目です（4.4.4 節）。Global Mirror ではサイト間接続が複製性能の要となるため、データ連結（通常はサードパーティ提供の高速 WAN／IP ベースリンク）を適切なパス本数とポート割当で構成し、レプリケーションに使う DS8000 リンクと ISL の帯域を整合させます。冗長性のため偶数本のパスを用い、ポートを分散配置してアダプター単一障害の影響を抑えることで、長距離環境でも最適なスループットを確保します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] レプリケーションに割り当てた FC ポートとパス本数を `lspprcpath` で確認する。\n[手順2] パスが複数のホストアダプターに分散され、単一アダプター障害で全パスが落ちない構成か確認する。\n[手順3] サイト間 WAN/IP リンクの帯域とパス本数が整合しているか確認する。\n[手順4] ポート割当を見直し最適なスループットが得られるよう調整する。\n[記録] パス／ポート割当一覧、アダプター分散状況、帯域整合、実行時刻。",
+      "quiz": {
+        "q": "最適なデータ転送のためのパス・ポート構成として適切なものはどれか？",
+        "choices": [
+          "全パスを単一のホストアダプターに集約してポートを節約する",
+          "冗長性のため偶数本のパスを用い、複数アダプターに分散配置してリンク／ISL の帯域を整合させる",
+          "パス本数は性能に影響しないため 1 本で十分である",
+          "ポート割当は WAN 帯域と無関係に決めてよい"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.46, 60 付近 3.x/4.4.4）は、サイト間接続が複製性能の鍵であり、冗長性確保のため偶数本・複数アダプター分散でパスを構成し、リンクと ISL の帯域を整合させることを推奨している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.60（4.4.4 Path and port configuration for optimal data transmission）",
+      "rag_hit": "GDPS_REDP5246 p.46: \"3.1 Inter-site connectivity ... The data connection between both sites is usually implemented with high-speed WAN connections ... IP-based links with dedicated bandwidth.\" / p.6 目次 4.4.4 Path and port configuration for optimal data transmission."
+    },
+    {
+      "row_id": "12390",
+      "title": "Planning and implementation",
+      "naiyou_jp": "Global Mirror 導入を計画する際の考慮事項と推奨事項を扱う第 2 章です。サイジングツール、プライマリ／セカンダリディスクシステムの物理・論理構成、長距離レプリケーション、ボリューム配置、EasyTier などのトピックを含みます。主要な構成節は「Sizing tools for Global Mirror」「Global Mirror implementation planning」「Configuration guidelines for primary and secondary」です。Global Mirror の主目的は、十分な帯域とリソースの下で本番アプリケーションに影響を与えずに 3〜5 秒の RPO を達成することにあります。",
+      "verify_steps": "[セッション環境] サイジングツール（IBM 内部）／DS8000 dscli\n[手順1] 出典 p.29 で計画対象トピック（サイジング・構成・距離・ボリューム配置・EasyTier）を確認する。\n[手順2] ピーク書き込み量と目標 RPO からサイジングツールで必要帯域・リソースを見積もる。\n[手順3] プライマリ／セカンダリの物理・論理構成（ランク・キャッシュ・エクステントプール）を計画する。\n[手順4] 長距離・ボリューム配置・EasyTier の推奨に沿って構成案を確定する。\n[記録] サイジング結果、構成案、目標 RPO、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror の計画・実装で扱う主なトピックと目的として正しいものはどれか？",
+        "choices": [
+          "計画段階ではサイジングや構成は不要で、導入後に調整すればよい",
+          "サイジングツール・プライマリ/セカンダリ構成・長距離・ボリューム配置・EasyTier を計画し、本番に影響を与えず 3〜5 秒 RPO の達成を目指す",
+          "Global Mirror の RPO 目標は分単位であり帯域は関係ない",
+          "計画では EasyTier やボリューム配置は考慮しない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.29, 第 2 章）は、計画・実装でサイジングツール・構成・距離・ボリューム配置・EasyTier を扱い、十分な帯域・リソース下で本番影響なく 3〜5 秒 RPO を達成することが主目的だと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.29（第 2 章 Planning and implementation）",
+      "rag_hit": "GDPS_REDP5246 p.29: \"Chapter 2. Planning and implementation ... considerations and recommendations when planning for Global Mirror implementation. Topics involving sizing tools, primary and secondary disk system physical and logical configurations, replication at longer distances, volume placement, and EasyTier ...\" / p.30: \"achieve a recovery point objective (RPO) of 3 to 5 seconds with sufficient network bandwidth and resources.\""
+    },
+    {
+      "row_id": "12392",
+      "title": "Populating a Global Mirror session with volumes",
+      "naiyou_jp": "Global Mirror セッションにボリュームを登録するステップです。プライマリサイトに焦点を当て、Global Copy のプライマリボリュームのみがセッションメンバーの候補になります。この処理はセッションのボリュームリストにプライマリボリュームを追加するだけで、セッション未開始のためコンシステンシーグループ形成はまだ行いません。追加されたボリュームは初期コピーを終えるまで Join Pending 状態に置かれ、初期コピー完了後、次の CG 形成時にセッションへ参加します。ディスクシステムを追加する場合は同様の手順に加え、CG 形成プロセスの短い一時停止／再開が必要です。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] セッションに追加する候補が Global Copy プライマリボリュームであることを確認する。\n[手順2] `chsession -lss <lss> -action add -volume <vol> <session_id>` でボリュームをセッションに追加する。\n[手順3] `lssession <lss>` で追加ボリュームが Join Pending 状態であることを確認する。\n[手順4] 初期コピー完了後、次の CG 形成でボリュームがセッションに参加することを確認する。\n[記録] chsession コマンド、lssession 出力（Join Pending→Active 推移）、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror セッションへのボリューム登録に関する記述として正しいものはどれか？",
+        "choices": [
+          "任意のボリュームをそのままセッションに追加でき、追加直後に CG 形成が行われる",
+          "Global Copy プライマリボリュームのみが候補で、追加後は初期コピー完了まで Join Pending 状態になり、次の CG 形成時にセッションへ参加する",
+          "ボリューム追加にはセッションの完全停止が必須である",
+          "ボリュームを削除すると Global Mirror 環境に大きな影響が出る"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.21, 1.2.6）は、Global Copy プライマリのみが候補で、追加ボリュームは初期コピー完了まで Join Pending に置かれ、完了後に次の CG 形成でセッションへ参加すると述べている（削除は環境に影響しない、p.35）。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.21（1.2.6 Populating a Global Mirror session with volumes）",
+      "rag_hit": "GDPS_REDP5246 p.21: \"1.2.6 Populating a Global Mirror session with volumes ... Only Global Copy primary volumes are meaningful candidates ... they are initially placed in a Join Pending state until they have performed their initial copy. After this process has completed, they join the session when the next consistency group is formed.\""
+    },
+    {
+      "row_id": "12396",
+      "title": "Replacement of Global Mirror primary DS8870 system",
+      "naiyou_jp": "Global Mirror セッションのプライマリ DS8870 を新しい DS8880 へ置き換える移行シナリオです。MT PPRC を用いて、新しいターゲット DS8880（H1'）ボリュームがローカルのプライマリサイトにあるため、既存 H1 と新 H1' の間を同期の Metro Mirror セッションで構成できます。先にセカンダリ DS8870 の置換が完了している前提で、Global Mirror セッションは旧 H1 と新 H2' の間でアクティブな状態を保ったまま、プライマリ側を MM で移行します。これにより本番複製を継続しながらプライマリディスクを更改できます。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] セカンダリ置換（H2→H2'）が完了し、GM が旧 H1 と新 H2' 間でアクティブであることを確認する。\n[手順2] 新 H1' を導入し、H1-H1' 間の PPRC パスを確立する。\n[手順3] `mkpprc -type mmir H1:H1'` で同期 Metro Mirror を構成し、Full Duplex まで同期させる。\n[手順4] MM 同期完了後、HyperSwap/フェイルオーバーで本番を H1' に切替え、GM 構成を H1'→H2' に再確立する。\n[手順5] 全 DS8870 が MT PPRC サポートと正しいライセンスを持つことを確認する。\n[記録] 移行手順、各 mkpprc/lspprc 出力、MM 同期状態、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror プライマリ DS8870 を DS8880 へ置き換える際の手法として正しいものはどれか？",
+        "choices": [
+          "セッションを完全に削除してから新規にゼロから再構築するしかない",
+          "MT PPRC を用い、新プライマリ H1' をローカルに置いて H1-H1' 間を同期 Metro Mirror で構成し、GM を継続したまま移行する",
+          "プライマリ更改中は Global Mirror による保護を完全に停止する必要がある",
+          "新旧プライマリ間は非同期 Global Copy でしか接続できない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.78, 6.6.2）は、新 H1' がローカル・プライマリサイトにあるため H1-H1' 間を同期 Metro Mirror で構成でき、セカンダリ置換済みの GM（旧 H1-新 H2'）をアクティブに保ったまま MT PPRC でプライマリを移行すると述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.78（6.6.2 Replacement of Global Mirror primary DS8870 system）",
+      "rag_hit": "GDPS_REDP5246 p.78: \"MT PPRC can be used to replace the primary Global Mirror DS8870 system. Because the new target DS8880 H1' volumes are in the local, primary site, the H1' volumes can be defined in a synchronous Metro Mirror session between H1 and H1' ... the Global Mirror session is active between old H1 and new H2' volumes.\""
+    },
+    {
+      "row_id": "12397",
+      "title": "Replacement of Global Mirror secondary DS8870 system",
+      "naiyou_jp": "Global Mirror セッションのセカンダリ DS8870 を新しいシステムへ置き換える移行シナリオです（6.6.1 節）。一般的な手法は MT PPRC 機能を用い、既存の H1 プライマリサイトから新しい H2' セカンダリサイトへ Global Copy を開始することです。Global Copy は非同期データ複製で、コンシステンシーグループ作成にジャーナルボリュームを使わないため、主にデータ移行に用いられます。ただし新 DS8880 のセカンダリ側には、最終移行ステップで使うジャーナルボリューム用のプロビジョニング済み領域が必要です。全 DS8870 は MT PPRC サポートと正しいライセンス機能を備える必要があります。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] 全 DS8870 が MT PPRC サポートと正しいライセンスを持つことを確認する。\n[手順2] 新 H2' を導入し、H1-H2' 間の PPRC パスを確立する。\n[手順3] `mkpprc -type gcp H1:H2'` で H1→H2' の Global Copy を開始し、データ移行を行う。\n[手順4] 新 DS8880 セカンダリにジャーナル（FlashCopy）ボリューム用領域が確保されていることを確認する。\n[手順5] 移行完了後、GM セッションを H1→H2' へ最終切替えする。\n[記録] mkpprc/lspprc 出力、移行進捗、ジャーナル領域確認、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror セカンダリ DS8870 を置き換える一般的手法として正しいものはどれか？",
+        "choices": [
+          "セカンダリ置換にはプライマリの停止が必須である",
+          "MT PPRC で H1 から新 H2' へ Global Copy を開始してデータ移行し、新セカンダリにはジャーナルボリューム用領域を確保する",
+          "Global Copy はコンシステンシーグループ用ジャーナルを使うため移行には不向きである",
+          "DS8870 は MT PPRC をサポートしないため置換できない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.77, 6.6.1）は、MT PPRC で既存 H1 から新 H2' へ Global Copy を開始する手法を示し、Global Copy はジャーナル不要の非同期複製で主に移行に使われるが、新 DS8880 セカンダリには最終ステップ用のジャーナル領域が必要だと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.77（6.6.1 Replacement of Global Mirror secondary DS8870 system）",
+      "rag_hit": "GDPS_REDP5246 p.77: \"6.6.1 Replacement of Global Mirror secondary DS8870 system. The general method of this migration is to use the MT PPRC capability to start Global Copy from the existing H1 primary site to the new H2' secondary site ... Global Copy ... does not use journal volumes ... mainly used for data migration. However, the new DS8880 at the secondary site requires provisioned space for journal volumes ... All DS8870 storage systems must have Multiple Target PPRC support and the correct license features.\""
+    },
+    {
+      "row_id": "12398",
+      "title": "Return to primary site with asymmetrical Global Mirror configuration",
+      "naiyou_jp": "非対称（asymmetrical）Global Mirror 構成において、本番をリカバリーサイトへ移した後にプライマリサイトへ戻すシナリオです（6.1.1 節）。非対称構成では Global Mirror はプライマリから DR サイトへの一方向のみで、各 H1 ボリュームが対応するセカンダリと複製関係を持ちます。本番をリカバリーサイトへ移した後にプライマリへ戻すには Global Copy を使います。逆方向には災害復旧能力が提供されないため、可用性に強いられない限り、この構成で本番をセカンダリ側に長期間稼働させることは通常ありません。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] 非対称構成で本番がリカバリーサイト（旧セカンダリ）で稼働していることを確認する。\n[手順2] リカバリーサイトからプライマリサイトへ Global Copy（`mkpprc -type gcp`）を確立し、データを戻す。\n[手順3] 逆方向には DR 能力がないため、戻し中の保護不在を認識し短期で完了させる計画にする。\n[手順4] データ同期後、本番をプライマリへ戻し、本来方向の Global Mirror を再確立する。\n[記録] 戻し手順、Global Copy out-of-sync 推移、本番切替え記録、実行時刻。",
+      "quiz": {
+        "q": "非対称 Global Mirror 構成でリカバリーサイトからプライマリへ戻す際の特徴として正しいものはどれか？",
+        "choices": [
+          "非対称構成では逆方向にも完全な災害復旧能力が提供される",
+          "戻しには Global Copy を使い、逆方向には DR 能力がないため、強いられない限り本番をセカンダリで長期稼働させない",
+          "プライマリへの戻しには Metro Mirror（同期）しか使えない",
+          "非対称構成では本番をセカンダリ側で恒久的に稼働させるのが標準である"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.71, 6.1.1 と p.70 6.1）は、非対称構成が一方向のみであり、プライマリへ戻すには Global Copy を使い、逆方向には DR 能力がないため、可用性に強いられない限りセカンダリでの長期稼働は通常行わないと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.71（6.1.1 Return to primary site with asymmetrical Global Mirror configuration）",
+      "rag_hit": "GDPS_REDP5246 p.71: \"6.1.1 Return to primary site with asymmetrical Global Mirror configuration. After production workloads are moved to the recovery site, Global Copy must be used to return back to the primary site ... No disaster recovery capability is provided in the reverse direction. Therefore, it is unlikely that this type of configuration production would run for extended periods ... at the secondary location, unless forced to by unavailab[ility].\""
+    },
+    {
+      "row_id": "12401",
+      "title": "Setting up a Global Mirror session",
+      "naiyou_jp": "Global Mirror 環境（Global Mirror セッション）を作成・開始する一連の手順を段階的に解説する節です。動作原理を理解できるよう、ホストが単一のアプリケーションボリューム（A）へ書き込む単純な構成から始め、PPRC パス確立、Global Copy 関係作成、FlashCopy 導入、セッション定義、ボリューム登録、セッション開始へと進みます。この段階的アプローチにより、Global Mirror の運用面（コンシステンシーグループ形成や復旧手順）を体系的に理解できます。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] 単純構成（H1→H2）から開始し、PPRC パスを確立する（mkpprcpath）。\n[手順2] Global Copy 関係を作成する（mkpprc -type gcp）。\n[手順3] FlashCopy（H2→J2、nocopy）を導入する（mkflash -nocp）。\n[手順4] セッションを定義し（mksession）、ボリュームを登録する（chsession add）。\n[手順5] セッションを開始する（mkgmir）。各段階で lspprc/lssession/showgmir により状態を確認する。\n[記録] 各段階のコマンドと出力、状態遷移、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror セッションのセットアップ手順の説明として正しいものはどれか？",
+        "choices": [
+          "セッションは 1 コマンドで一括構築され、段階的手順は存在しない",
+          "単純構成から始め、PPRC パス確立→Global Copy 作成→FlashCopy 導入→セッション定義→ボリューム登録→セッション開始の段階的手順で構築する",
+          "Global Mirror では FlashCopy の導入は不要である",
+          "セッション開始（mkgmir）を最初に実行してからパスを作成する"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.17, 1.2）は、Global Mirror セッションの作成・開始を、単純構成から始めパス確立・Global Copy・FlashCopy・セッション定義・ボリューム登録・開始へと進む段階的アプローチで説明している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.17（1.2 Setting up a Global Mirror session）",
+      "rag_hit": "GDPS_REDP5246 p.17: \"1.2 Setting up a Global Mirror session. To understand how Global Mirror works, this section explains how a Global Mirror environment (a Global Mirror session) is created and started. This approach is a step-by-step one ... 1.2.1 A simple configuration ... a host makes write I/Os to a single application volume (A).\""
+    },
+    {
+      "row_id": "12402",
+      "title": "Sizing tools for Global Mirror",
+      "naiyou_jp": "Global Mirror のサイジングツールに関する節です（2.1 節）。Global Mirror の主要目的の一つは、十分なネットワーク帯域とリソースの下で 3〜5 秒の RPO を本番アプリケーションに影響を与えずに達成することです。サイジングではプライマリ／セカンダリ構成、必要帯域、キャッシュ容量を見積もります。セカンダリは FlashCopy 関係数・内部制御用領域・ジャーナリングワークロードなどモデリングツールで直接表現できない要素があるため、追加のキャッシュガイドラインに従い、ツール値と比較して大きい方を選びます。Global Mirror Bandwidth/RPO 推定ツールや Disk Magic 等が用いられます。",
+      "verify_steps": "[セッション環境] サイジングツール（Global Mirror Bandwidth/RPO 推定ツール、Disk Magic 等）\n[手順1] 本番のピーク書き込み量・IO 特性を RMF / Spectrum Control で採取する。\n[手順2] 目標 RPO を設定し、Bandwidth/RPO 推定ツールで必要リンク数・帯域を算出する。\n[手順3] セカンダリのキャッシュ容量を、プライマリボリューム数に基づくガイドライン値とモデリングツール値で比較し大きい方を採用する。\n[手順4] FlashCopy 関係数・ジャーナリング負荷を考慮してセカンダリリソースを上積みする。\n[記録] 採取統計、目標 RPO、算出帯域・キャッシュ、採用値、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror のサイジングにおけるセカンダリキャッシュの決め方として正しいものはどれか？",
+        "choices": [
+          "モデリングツールの値をそのまま採用すれば十分である",
+          "プライマリボリューム数に基づくガイドライン値とモデリングツール値を比較し、大きい方を採用する",
+          "セカンダリのキャッシュは FlashCopy やジャーナリングと無関係に決めてよい",
+          "セカンダリのキャッシュはプライマリより常に小さくしてよい"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.30, 41, 2.1）は、FlashCopy 関係数やジャーナリング負荷がモデリングツールで直接表現できないため、プライマリボリューム数ベースのガイドライン値とツール値を比較し大きい方をセカンダリキャッシュとして選ぶよう述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.30（2.1 Sizing tools for Global Mirror）",
+      "rag_hit": "GDPS_REDP5246 p.30: \"2.1 Sizing tools for Global Mirror ... achieve a recovery point objective (RPO) of 3 to 5 seconds with sufficient network bandwidth and resources.\" / p.41: \"the number of FlashCopy relationships ... and the journaling workload cannot be directly modeled by sizing tools. Therefore, more cache size guidelines are required ... select the higher value as the seco[ndary cache].\""
+    },
+    {
+      "row_id": "12403",
+      "title": "Starting a Global Mirror session",
+      "naiyou_jp": "Global Mirror セッションを開始するステップです。Global Mirror はセカンダリサイトでコンシステンシーグループを形成しますが、開始時の焦点はプライマリサイトにあり、start コマンドはプライマリストレージシステムの LSS に対して発行されます。この start コマンドでマスターストレージシステムとマスター LSS が設定され、以降のセッション関連コマンドはこのマスター LSS を経由しなければなりません。dscli では `mkgmir` コマンドでセッションを開始し、CG 形成プロセスが起動して RPO の維持が始まります。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション（プライマリ）\n[手順1] セッション定義・ボリューム登録・Global Copy 初期同期が完了していることを確認する。\n[手順2] `mkgmir -dev <primary> -lss <master_lss> -session <id> <master:subordinate vol>` で start コマンドを発行し、マスター LSS を設定する。\n[手順3] `showgmir -dev <primary> -session <id> <master_lss>` で Copy State=Running、Fatal Reason=Not Fatal を確認する。\n[手順4] CG Time が更新され RPO が維持されていることを確認する。\n[記録] mkgmir コマンド全文、CMUC00162I メッセージ、showgmir 出力、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror セッションの開始（start）に関する記述として正しいものはどれか？",
+        "choices": [
+          "start コマンドはセカンダリの LSS に発行し、以降はセカンダリ経由で操作する",
+          "start コマンドはプライマリの LSS に発行してマスターストレージシステム／マスター LSS を設定し、以降のセッション関連コマンドはマスター LSS を経由する",
+          "start コマンドはコンシステンシーグループ形成を停止させる",
+          "セッション開始にマスター LSS の概念は存在しない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.22, 1.2.7）は、start コマンドがプライマリの LSS に発行され、マスターストレージシステムとマスター LSS を設定し、以降のセッション関連コマンドはマスター LSS を経由すると述べている（dscli では mkgmir、CMUC00162I）。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.22（1.2.7 Starting a Global Mirror session）",
+      "rag_hit": "GDPS_REDP5246 p.22: \"1.2.7 Starting a Global Mirror session ... the start command issued to an LSS in the primary storage system. With this start command, you set the master storage system and the master LSS. From now on, session-related commands must go through this master LSS.\" / GDPS_SG24-8367 p.303: \"mkgmir ... CMUC00162I mkgmir: Global Mirror for session 02 successfully started.\""
+    },
+    {
+      "row_id": "12405",
+      "title": "Taking advantage of Easy Tier",
+      "naiyou_jp": "Global Mirror 実装で DS8000 Easy Tier を活用することに関する節です。Easy Tier はワークロードのアクセスパターンを学習し、論理ボリュームのデータを物理ストレージの各ティア（フラッシュ等）間で自動的かつアプリケーション透過的に再配置してアプリケーション性能を最適化します。Easy Tier は同種・異種（ハイブリッド）いずれのエクステントプールでもデータアクセスパターン管理に好適で、ほぼ全てのワークロードに推奨されるため Global Mirror 実装でも推奨されます。フラッシュ技術と Easy Tier の組合せはバックエンド制約を緩和し、長距離環境での性能維持に寄与します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション／Storage Management GUI\n[手順1] プライマリ／セカンダリの各エクステントプールで Easy Tier が有効か `showrank`／`lsextpool` 等で確認する。\n[手順2] Easy Tier がワークロードを学習し、ホットなデータをフラッシュ等の上位ティアへ自動再配置しているか統計で確認する。\n[手順3] 同種・ハイブリッド両プールで Easy Tier が適用されていることを確認する。\n[手順4] 性能（応答時間・スループット）が改善しているか RMF で確認する。\n[記録] Easy Tier 有効状態、ティア間移動統計、性能改善、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror 実装における Easy Tier の活用について正しいものはどれか？",
+        "choices": [
+          "Easy Tier は同種エクステントプールでのみ有効で Global Mirror では非推奨である",
+          "Easy Tier はアクセスパターンを学習しデータを各ティアへ自動・透過的に再配置し、同種・ハイブリッド両プールで推奨されるため Global Mirror 実装でも推奨される",
+          "Easy Tier はデータを手動でのみ移動でき自動再配置はしない",
+          "Easy Tier は本番性能に悪影響を与えるため無効化すべきである"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.39-40）は、Easy Tier がアクセスパターンを学習しデータを各ティアへ動的・透過的に再配置すること、同種・ハイブリッド両プールで好適でほぼ全ワークロードに推奨されるため Global Mirror 実装でも推奨されると述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.43（2.x Taking advantage of Easy Tier）",
+      "rag_hit": "GDPS_REDP5246 p.39: \"EasyTier is preferred for almost all kinds of workload and therefore it is preferred for Global Mirror implementations too.\" / GDPS_SG24-6374 p.125: \"IBM DS8000 Easy Tier optimizes data of logical volumes across the various physical tiers ... placement decisions are based on learning the data access patterns and can be changed dynamically and transparently to the applications.\""
+    },
+    {
+      "row_id": "12406",
+      "title": "Taking an additional copy for Disaster Recovery testing",
+      "naiyou_jp": "本番データを DR サイトへ複製し続けたまま、リモートサイトで災害復旧テストを実施するために追加のコピーを取得する手法に関する節です。Global Mirror では、リモートサイトで追加の FlashCopy を取得することでこれを実現します。この追加（practice）コピー上でリカバリーシステムを起動して DR 手順をスタンドアロンでテストでき、その間も本番データは Global Mirror で保護され続けます。企業はデータマイニングや障害時の安全（gold/insurance）コピーなど、複数の追加コピーをセカンダリサイトに持つことも一般的です。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション／Copy Services Manager\n[手順1] セカンダリサイトで Global Mirror ターゲット（H2）と別に practice FlashCopy ターゲットを用意する。\n[手順2] `mkflash` でリモートサイトに追加 FlashCopy を作成する（本番複製は継続）。\n[手順3] 追加コピー上で DR テスト用システムを起動し、復旧手順をスタンドアロンで検証する。\n[手順4] テスト中も Global Mirror が本番データを保護し続けていることを `showgmir` で確認する。\n[記録] mkflash コマンド、DR テスト結果、テスト中の GM 保護状態、実行時刻。",
+      "quiz": {
+        "q": "本番複製を止めずに DR テストを行うための Global Mirror の手法として正しいものはどれか？",
+        "choices": [
+          "DR テストのため Global Mirror セッションを一時停止する必要がある",
+          "リモートサイトで追加の FlashCopy（practice コピー）を取得し、その上でテストを行うことで本番複製を継続したまま DR テストができる",
+          "DR テストは本番ボリュームを直接使って行うしかない",
+          "セカンダリサイトに追加コピーを複数持つことはできない"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.64、GDPS_SG24-8367 p.281, 21.5）は、リモートサイトで追加 FlashCopy を取得することで本番複製を継続したまま DR テストができ、複数の追加コピー保持も一般的だと述べている。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.64（5.x Taking an additional copy for Disaster Recovery testing）",
+      "rag_hit": "GDPS_SG24-8367 p.281: \"21.5 Taking an extra copy for disaster recovery testing ... practice DR testing at the remote site while production data is still being replicated ... it is accomplished by taking an extra FlashCopy at the remote site ... multiple 'extra' copies ... for other purposes, such as data mining, or a safety copy.\""
+    },
+    {
+      "row_id": "12407",
+      "title": "The different phases of consistency formation",
+      "naiyou_jp": "コンシステンシーグループ（CG）形成の各フェーズに関する節です（1.3.1 節）。Global Mirror の CG 形成は、ストレージシステム内およびシステム間でのコーディネーション、セカンダリ（H2）へのデータドレイン、FlashCopy によるジャーナル（J2）への保存という一連のフェーズで構成される自動・透過的な処理です。各フェーズでデータ整合性が維持され、コーディネーション時間中や H2 へのドレイン中に障害が発生しても整合性が保たれます。step 1 の前と step 3 の後では Global Copy が継続的にボリュームをスキャンして更新分を転送します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] 出典 Figure 1-10 の CG 形成フェーズ（コーディネーション→H2 ドレイン→J2 への FlashCopy）を確認する。\n[手順2] `showgmir` で Coord. Time、Max CG Drain Time、CG Interval Time を確認する。\n[手順3] CG 形成中に障害を模擬し、各フェーズで H2/J2 のデータ整合性が保たれることを確認する。\n[手順4] CG 形成の前後で Global Copy がスキャン・転送を継続していることを確認する。\n[記録] showgmir 出力（各時間パラメータ）、フェーズ別整合性確認結果、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror のコンシステンシーグループ形成の各フェーズに関する記述として正しいものはどれか？",
+        "choices": [
+          "CG 形成はコーディネーションのみの単一フェーズで、ドレインやジャーナルは行わない",
+          "CG 形成はコーディネーション、H2 へのデータドレイン、J2 への FlashCopy という複数フェーズから成り、各フェーズで整合性が維持される自動処理である",
+          "CG 形成は管理者が各フェーズを手動で進める必要がある",
+          "CG 形成中に障害が起きると整合性は失われる"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.23 1.3.1、GDPS_SG24-8367 p.285）は、CG 形成がコーディネーション・H2 ドレイン・J2 への FlashCopy の複数フェーズから成る自動・透過的処理で、各フェーズで整合性が維持されることを示している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.23（1.3.1 The different phases of consistency formation）",
+      "rag_hit": "GDPS_REDP5246 p.23: \"1.3.1 The different phases of consistency formation ... the sequence of the events that are involved in the creation of a consistency group ... before step 1 and after step 3, Global Copy constantly scans through the [volumes].\" / GDPS_SG24-8367 p.285: \"Phases of consistency group formation ... When the failure occurs during the coordination time or the draining of the data to H2, consistency is [preserved].\""
+    },
+    {
+      "row_id": "12411",
+      "title": "Volume placement on secondary disk system",
+      "naiyou_jp": "Global Mirror セカンダリディスクシステムでのボリューム配置に関する節です（2.3.4 節）。性能と管理性のための一般則として、DS8000 サーバ（CEC）あたり単一エクステントプールの場合、各エクステントプールに Global Mirror ターゲット（H2）と対応する Global Mirror ジャーナル（J2）の両方を保持させることが推奨されます。エクステントサイズの異なるエクステントを 1 プールに混在させることはできません。practice ボリュームを使う場合は、Global Mirror ターゲット・ジャーナル・practice の各ボリュームを同一エクステントプールに配置します。",
+      "verify_steps": "[セッション環境] DS8000 dscli セッション\n[手順1] セカンダリの `lsextpool`／`lsckdvol` でエクステントプール構成とボリューム配置を確認する。\n[手順2] 各エクステントプールに H2 ターゲットと対応 J2 ジャーナルが同居しているか確認する。\n[手順3] 1 プール内でエクステントサイズが混在していないことを確認する。\n[手順4] practice ボリュームがある場合、H2・J2・practice が同一プールに配置されているか確認する。\n[記録] エクステントプール構成、H2/J2/practice の配置、エクステントサイズ整合、実行時刻。",
+      "quiz": {
+        "q": "Global Mirror セカンダリディスクシステムのボリューム配置の一般則として正しいものはどれか？",
+        "choices": [
+          "ターゲット（H2）とジャーナル（J2）は必ず別々のエクステントプールに分離する",
+          "各エクステントプールに Global Mirror ターゲット（H2）と対応するジャーナル（J2）の両方を保持させ、practice 利用時は H2・J2・practice を同一プールに配置する",
+          "1 つのエクステントプールにエクステントサイズの異なるエクステントを自由に混在できる",
+          "セカンダリのボリューム配置は性能に影響しないため任意でよい"
+        ],
+        "answer": 1,
+        "explanation": "出典（GDPS_REDP5246 p.39-40, 2.3.4）は、CEC あたり単一エクステントプールでは各プールに H2 ターゲットと対応 J2 ジャーナルを同居させること、エクステントサイズ混在は不可、practice 利用時は H2・J2・practice を同一プールに配置することを推奨している。"
+      },
+      "source": "GDPS_REDP5246_DS8000_Global_Mirror_Best_Practices.pdf p.39（2.3.4 Volume placement on secondary disk system）",
+      "rag_hit": "GDPS_REDP5246 p.39: \"2.3.4 Volume placement on secondary disk system ... with a single extent pool per DS8000 server (CEC), it is preferred to have each extent pool holding both Global Mirror target volumes (H2) and their correspondent Global Mirror Journal volumes (J2). Mixing extents with different extent sizes in one extent pool is not allowed.\" / p.40: practice volumes (H2/J2 同一プール)。"
+    }
+  ]
+}

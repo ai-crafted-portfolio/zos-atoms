@@ -1,0 +1,4310 @@
+{
+ "page": "g042",
+ "product": "IBM NetView 6.4",
+ "total_rows": 300,
+ "target_rows": 187,
+ "fixed_count": 187,
+ "rows": [
+  {
+   "row_id": "8418",
+   "title": "About NetView",
+   "naiyou_jp": "NetView 管理コンソール（NetView management console）は、対話的なグラフィックスを用いてネットワークやシステムの状態を「ビュー」として表示する機能である。GMFHS（Graphic Monitor Facility host subsystem）が RODM および管理コンソールと連携し、ネットワーク資源のグラフィック表示と、ビューから選択した資源へのコマンド発行を実現する。ビューには資源の状態情報と構成情報の両方が含まれ、資源の状態変化はビュー上にグラフィカルに反映される。",
+   "verify_steps": [
+    "NetView コンソールにログオンする。",
+    "トポロジー・コンソールを起動し、トポロジー・サーバーとの会話が確立されていることを確認する。",
+    "RODM ベースのビューを開き、ネットワーク資源がグラフィック表示され、状態変化が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのグラフィック表示で RODM と連携してビューを生成する host サブシステムはどれか。",
+    "choices": [
+     "GMFHS",
+     "DSICRTR",
+     "BNJDSERV",
+     "CNMCSSIR"
+    ],
+    "answer": 0,
+    "explanation": "GMFHS（Graphic Monitor Facility host subsystem）が RODM および管理コンソールと連携し、ネットワークのグラフィック・ビューを表示する。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8419",
+   "title": "Accessing publications online",
+   "naiyou_jp": "IBM は本製品およびその他の製品の資料を、利用可能になり次第また更新の都度、IBM Documentation（https://www.ibm.com/docs/en）に公開している。IBM Z NetView の資料は IBM Z NetView Documentation から参照できる。レター・サイズ以外の用紙に PDF を印刷する場合は、Adobe Reader の印刷オプションでローカル用紙へのレター・サイズ印刷を有効にする。",
+   "verify_steps": [
+    "ブラウザーで https://www.ibm.com/docs/en にアクセスする。",
+    "IBM Z NetView Documentation を開き、対象バージョン（6.4）の資料一覧を表示する。",
+    "必要な PDF をダウンロードし、印刷時はレター・サイズ印刷オプションを設定する。"
+   ],
+   "quiz": {
+    "q": "IBM Z NetView のオンライン資料はどこで参照できるか。",
+    "choices": [
+     "IBM Documentation（ibm.com/docs）",
+     "製品 CD のみ",
+     "NetView コンソールの HELP コマンドのみ",
+     "RODM データ・キャッシュ"
+    ],
+    "answer": 0,
+    "explanation": "資料は IBM Documentation に公開され、更新の都度反映される。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.14",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8420",
+   "title": "Accessing the NetView Program from Service Management Unite",
+   "naiyou_jp": "Service Management Unite（SMU）から NetView プログラムへアクセスする方法を説明する項目。SMU は Web ベースのダッシュボードを提供し、3270 セッションを開かずに NetView の監視・操作機能を利用できるようにする。NetView の各種コンソール機能へ統合的にアクセスする入口の一つである。",
+   "verify_steps": [
+    "Service Management Unite のダッシュボードにログオンする。",
+    "NetView ドメインに対応するウィジェットまたはタスクを選択する。",
+    "NetView の機能（コマンド発行、状態表示など）が SMU 経由で利用できることを確認する。"
+   ],
+   "quiz": {
+    "q": "Service Management Unite から NetView へアクセスする利点は何か。",
+    "choices": [
+     "Web ベースのダッシュボードから 3270 を介さず操作できる",
+     "RODM を不要にする",
+     "GMFHS を置き換える",
+     "自動化テーブルを無効化する"
+    ],
+    "answer": 0,
+    "explanation": "SMU は Web ベースのダッシュボードで NetView 機能への統合アクセスを提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.63",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8421",
+   "title": "Accessing the NetView Program from the NetView Management Console",
+   "naiyou_jp": "NetView 管理コンソール（トポロジー・コンソール）から NetView プログラムへアクセスする方法を説明する項目。トポロジー・コンソールは RODM ベースのビューを表示し、ビュー内の資源を選択してコマンドを発行することで NetView ホストの機能を利用できる。コンソールとホスト間の会話（conversation）が確立されている必要がある。",
+   "verify_steps": [
+    "NetView 管理コンソール（トポロジー・コンソール）を起動しログオンする。",
+    "トポロジー・サーバーと NetView ホスト間の会話が確立されていることを確認する。",
+    "ビュー内の資源を選択し、コンテキスト・メニューから NetView コマンドを発行できることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールから NetView 機能を利用するために必要な前提は何か。",
+    "choices": [
+     "トポロジー・サーバーとホスト間の会話の確立",
+     "RODM の削除",
+     "3270 端末の物理接続",
+     "GENALERT の発行"
+    ],
+    "answer": 0,
+    "explanation": "RODM ベースのビューはサーバーとホスト間の会話が確立されている場合にのみ利用できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8422",
+   "title": "Accessing the NetView Program from the Tivoli Enterprise Portal",
+   "naiyou_jp": "Tivoli Enterprise Portal（TEP）から NetView プログラムへアクセスする方法を説明する項目。NetView Enterprise Management Agent を通じて TEP 上のワークスペースに NetView の監視データ（TCP/IP スタック、DVIPA、Telnet サーバーなど）が表示され、そこからアクション・コマンドを実行できる。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal にログオンする。",
+    "ナビゲーターで z/OS Systems > system > NetView Agent と展開する。",
+    "NetView ワークスペースを表示し、監視データの確認とアクション・コマンドの実行ができることを確認する。"
+   ],
+   "quiz": {
+    "q": "Tivoli Enterprise Portal で NetView データを表示するのに利用されるコンポーネントはどれか。",
+    "choices": [
+     "NetView Enterprise Management Agent",
+     "GMFHS",
+     "DSICRTR",
+     "EZLTDDF"
+    ],
+    "answer": 0,
+    "explanation": "Enterprise Management Agent が TEP ワークスペースに NetView 監視データを提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.33",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8423",
+   "title": "Accessing the Operator Interface",
+   "naiyou_jp": "AON のオペレーター・インターフェースには、NetView 内の任意のコマンド行から AON コマンドを入力してアクセスできる。AON オペレーター・インターフェースの主パネルは「AON: Operator Commands Main Menu」であり、コマンド行に AON と入力して Enter を押すと表示される。各パネルではファンクション・キー（F1=Help、F2=Main Menu など）で操作を行う。",
+   "verify_steps": [
+    "NetView の任意のコマンド行に AON と入力する。",
+    "Enter を押し、AON: Operator Commands Main Menu パネルが表示されることを確認する。",
+    "ファンクション・キー（F1=Help、F2=Main Menu など）で各機能パネルへ遷移できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON オペレーター・インターフェースの主メニューを表示するコマンドはどれか。",
+    "choices": [
+     "AON",
+     "SNAHD",
+     "DDF",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "コマンド行に AON と入力すると AON: Operator Commands Main Menu が表示される。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.31",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8424",
+   "title": "action ELEMENT",
+   "naiyou_jp": "'action ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'action ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'action ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'action ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8425",
+   "title": "Activating an Automation Table",
+   "naiyou_jp": "自動化テーブルを活動化する前に、AUTOTBL コマンドに TEST キーワードを付けて構文の正しさを検証でき、LISTING キーワードで詳細なデバッグ情報を取得できる。テーブルの活動化には AUTOTBL MEMBER=member コマンドを使用する。既にリストに存在するメンバーを指定するとコマンドは無視される。活動化時に AUTOCNT が使用するカウンターはゼロに初期化される。",
+   "verify_steps": [
+    "AUTOTBL MEMBER=ATABLE1,TEST,LISTING=LIST1 を発行し構文を検証する。",
+    "エラーがないことを確認後、AUTOTBL MEMBER=ATABLE1 を発行してテーブルを活動化する。",
+    "LIST 出力で当該テーブルが活動中の自動化テーブル・リストに含まれることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルの構文を活動化前に検証するキーワードはどれか。",
+    "choices": [
+     "AUTOTBL の TEST キーワード",
+     "SETAUTO OFF",
+     "RESET",
+     "DISABLE"
+    ],
+    "answer": 0,
+    "explanation": "AUTOTBL コマンドに TEST を付けると構文検証が行われ、LISTING で詳細を取得できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.329",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8426",
+   "title": "Activating resources",
+   "naiyou_jp": "AON では共通ルーチン EZLEVACT を発行することで VTAM 資源を活動化できる。EZLEVACT は指定された資源に対し VARY ACT コマンドを発行し、戻りコード 0 は成功、8 は WAIT エラーまたは資源不明、9 はセキュリティー障害、100 は WAIT タイムアウトを示す。任意の NetView プログラムまたはコマンド・プロセッサーから呼び出せる。",
+   "verify_steps": [
+    "NetView コマンド行から EZLEVACT 資源名（例: EZLEVACT TA1P523A）を発行する。",
+    "戻りコードを確認し、0 であれば VARY ACT が成功したことを確認する。",
+    "DISPLAY コマンド等で当該資源が活動状態になったことを確認する。"
+   ],
+   "quiz": {
+    "q": "AON で VTAM 資源を活動化する共通ルーチンはどれか。",
+    "choices": [
+     "EZLEVACT",
+     "EZLEVINA",
+     "EZLECAUT",
+     "EZLENFRM"
+    ],
+    "answer": 0,
+    "explanation": "EZLEVACT は VARY ACT を発行して VTAM 資源を活動化する。EZLEVINA は非活動化用。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.343",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8427",
+   "title": "Activating VTAM Resources (EZLEVACT)",
+   "naiyou_jp": "EZLEVACT は指定された VTAM 資源に対し VARY ACT を発行して活動化する REXX ルーチンである。パラメーターには活動化する VTAM 資源名を指定する。戻りコードは 0=成功、8=WAIT エラーまたは資源不明、9=セキュリティー障害、100=WAIT タイムアウト。任意の NetView プログラムまたはコマンド・プロセッサーから呼び出し可能である。",
+   "verify_steps": [
+    "EZLEVACT TA1P523A のように資源名を指定して発行する。",
+    "戻りコード 0（成功）が返ることを確認する。",
+    "資源の状態が活動化されたことを VTAM DISPLAY で確認する。"
+   ],
+   "quiz": {
+    "q": "EZLEVACT の戻りコード 9 は何を示すか。",
+    "choices": [
+     "セキュリティー障害",
+     "成功",
+     "WAIT タイムアウト",
+     "資源不明"
+    ],
+    "answer": 0,
+    "explanation": "戻りコード 9 はセキュリティー障害を示す。0=成功、100=WAIT タイムアウト。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.343",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8428",
+   "title": "Active Connections Protection Summary Attributes",
+   "naiyou_jp": "アクティブ接続保護のサマリー属性を表示するための属性群。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Active Connections Protection Summary Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Active Connections Protection Summary Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8429",
+   "title": "Active DVIPA Connection Count Attributes",
+   "naiyou_jp": "アクティブな DVIPA（動的仮想 IP アドレス）接続数を表示するための属性群。Total Active DVIPA Connections はアクティブな DVIPA 接続の総数を示す。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Active DVIPA Connection Count Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Active DVIPA Connection Count Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8430",
+   "title": "Active Session Count Attributes",
+   "naiyou_jp": "アクティブなセッション数を表示するための属性群。Collection Time はデータ・サンプリングの日時、Origin Node は親ノードを示す。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Active Session Count Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Active Session Count Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8431",
+   "title": "Active TCPIP Connection Count Attributes",
+   "naiyou_jp": "アクティブな TCP/IP 接続数を表示するための属性群。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Active TCPIP Connection Count Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Active TCPIP Connection Count Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8432",
+   "title": "Active/Query Workloads Workspace",
+   "naiyou_jp": "アクティブおよび照会ワークロードを表示するワークスペース。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Active/Query Workloads Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Active/Query Workloads Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8433",
+   "title": "Adding AON/TCP and SNA to the main DDF panel",
+   "naiyou_jp": "Dynamic Display Facility（DDF）の主パネルに AON/TCP および AON/SNA の状態コンポーネントを追加する手順を説明する項目。DDF はネットワーク状態をパネル階層でグラフィカルに表示し、主パネル（EZLPNLST）から各プロトコルの状態を展開できる。AON/SNA インストール時は DDF FKVPNSNA で SNA 用パネルを表示できる。",
+   "verify_steps": [
+    "DDF と入力して主 DDF パネル（EZLPNLST）を表示する。",
+    "AON/TCP・AON/SNA のコンポーネント定義を DDF パネル定義に追加する。",
+    "DDF FKVPNSNA 等でプロトコル別の状態パネルが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON/SNA インストール時に SNA 用 DDF パネルを表示するコマンド例はどれか。",
+    "choices": [
+     "DDF FKVPNSNA",
+     "DDFADD",
+     "DDFCLEAR",
+     "SNAVIEW"
+    ],
+    "answer": 0,
+    "explanation": "DDF にパネル名を指定（DDF FKVPNSNA）すると当該パネルが表示される。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.276",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8434",
+   "title": "Adding status descriptors (DDFADD)",
+   "naiyou_jp": "DDFADD コマンドは EZLTDDF タスクに要求を発行し、呼び出し元プログラム・コマンド・リスト・NetView から提供されるデータを用いて状態コンポーネントに状態記述子（status descriptor）を追加する。AON ルーチンはこのコマンドを使って DDF の状態情報を内部から更新する。",
+   "verify_steps": [
+    "AON ルーチンまたはコマンド行から DDFADD を発行し、状態記述子を追加する。",
+    "DDF パネルを表示し、追加した状態記述子が反映されていることを確認する。",
+    "DDFQRY で当該状態記述子の状態を照会する。"
+   ],
+   "quiz": {
+    "q": "DDF に状態記述子を追加するコマンドはどれか。",
+    "choices": [
+     "DDFADD",
+     "DDFDEL",
+     "DDFCLEAR",
+     "DDFQRY"
+    ],
+    "answer": 0,
+    "explanation": "DDFADD は状態コンポーネントに状態記述子を追加する。DDFDEL は削除、DDFCLEAR はクリア。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.276",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8435",
+   "title": "admin ELEMENT",
+   "naiyou_jp": "'admin ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'admin ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'admin ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'admin ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8436",
+   "title": "Advanced Topology Console Customization",
+   "naiyou_jp": "NetView 管理コンソールのトポロジー・コンソールに対する高度なカスタマイズについて説明する項目。アイコン、背景、ヘルプ機能などの基本要素に加え、コンソールの外観・操作感・機能を変更する高度なカスタマイズが可能である。これらは Customizing the NetView Management Console Topology Console の章で扱われる。",
+   "verify_steps": [
+    "トポロジー・コンソールのカスタマイズ設定（アイコン、背景、ヘルプ等）を開く。",
+    "必要なカスタマイズ項目を変更する。",
+    "コンソールを再起動し、変更が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソールのカスタマイズ対象に含まれないものはどれか。",
+    "choices": [
+     "RODM チェックポイント・データ・セット",
+     "コンソール・アイコン",
+     "コンソール背景",
+     "コンソール・ヘルプ機能"
+    ],
+    "answer": 0,
+    "explanation": "カスタマイズ対象はアイコン・背景・ヘルプ等。RODM チェックポイントはコンソール・カスタマイズの対象外。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.33",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8437",
+   "title": "aggPri ELEMENT",
+   "naiyou_jp": "'aggPri ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'aggPri ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'aggPri ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'aggPri ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8438",
+   "title": "aggregation ELEMENT",
+   "naiyou_jp": "'aggregation ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'aggregation ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'aggregation ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'aggregation ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8439",
+   "title": "Alert Forwarding",
+   "naiyou_jp": "NetView の Event/Automation Service（E/AS）は、アラートを SNMPv1 トラップに変換してトラップ・マネージャーへ送信したり、Event Integration Facility（EIF）イベントに変換して転送したりできる。トラップ・マネージャーの過負荷を避けるため、人手による介入が必要なアラートに限ってこの変換を行うことが推奨される。アラート・アダプター・サービスは NetView アラートを EIF イベントに変換する。",
+   "verify_steps": [
+    "E/AS（Event/Automation Service）が起動していることを確認する。",
+    "アラート転送のためのアダプター・サービス（Alert to Trap、Alert Adapter 等）を構成する。",
+    "テスト・アラートを発生させ、トラップ・マネージャーまたは EIF 受信側に転送されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView アラートを SNMPv1 トラップや EIF イベントに変換するサービスはどれか。",
+    "choices": [
+     "Event/Automation Service（E/AS）",
+     "GMFHS",
+     "RODM",
+     "DSICRTR"
+    ],
+    "answer": 0,
+    "explanation": "E/AS がアラートを SNMP トラップや EIF イベントへ変換し転送する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.33",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8440",
+   "title": "Analyzing Automation Table Usage",
+   "naiyou_jp": "自動化テーブルの使用状況は AUTOCNT コマンドが使用するカウンターで分析する。使用状況レポートを自動化テーブルのステートメントと正しく対応付けるには、ソース・メンバーの変更を特定の時間に限定しバックアップを保存すること、および新しいテーブルを活動化する際にリスティングを生成することが推奨される。テーブル活動化時にカウンターはゼロに初期化される。",
+   "verify_steps": [
+    "自動化テーブル活動化時に AUTOTBL の LISTING でリスティングを生成する。",
+    "運用後 AUTOCNT コマンドで各ステートメントのヒット・カウンターを表示する。",
+    "カウンターとリスティングを突き合わせ、未到達ステートメント等を分析する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルの使用状況カウンターを表示するコマンドはどれか。",
+    "choices": [
+     "AUTOCNT",
+     "AUTOTBL",
+     "SETAUTO",
+     "TASKUTIL"
+    ],
+    "answer": 0,
+    "explanation": "AUTOCNT が自動化テーブル・ステートメントのヒット・カウンターを提供する。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.254",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8441",
+   "title": "Analyzing System Performance Using TASKUTIL (Command Facility)",
+   "naiyou_jp": "TASKUTIL コマンドを用いて NetView 各タスクの CPU 使用率やストレージ使用状況などを表示し、システム性能を分析する機能である。コマンド・ファシリティーから発行し、過度の CPU を消費しているタスクやループ・ハング状態のタスクの特定に役立つ。",
+   "verify_steps": [
+    "NetView コマンド・ファシリティーの行に TASKUTIL と入力する。",
+    "各タスクの CPU 使用率・ストレージ使用状況を確認する。",
+    "異常に高い使用率のタスクを特定し、必要に応じて対処する。"
+   ],
+   "quiz": {
+    "q": "NetView の各タスクの CPU/ストレージ使用状況を表示し性能分析に用いるコマンドはどれか。",
+    "choices": [
+     "TASKUTIL",
+     "AUTOCNT",
+     "DDFADD",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "TASKUTIL はタスク単位の資源使用状況を表示し、性能分析やハング/ループ検出に用いる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.237",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8442",
+   "title": "AON command synonyms",
+   "naiyou_jp": "AON コマンド・シノニム（command synonym）を使うと、AON: Operator Commands Main Menu から最大 3 階層離れたパネルに直接到達できる。たとえば AONINIT と入力すると AON: Reinitialize Automation パネルが、AONINFO と入力すると AON チュートリアルが表示される。シノニムにより、オペレーター・インターフェースを介さずに自動化機能を利用できる。",
+   "verify_steps": [
+    "任意の NetView コマンド行に AON コマンド・シノニム（例: AONINIT）を入力する。",
+    "Enter を押し、対応するパネルが直接表示されることを確認する。",
+    "シノニムにより主メニューから 3 階層先のパネルへ到達できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON コマンド・シノニムで AON: Reinitialize Automation パネルを表示する例はどれか。",
+    "choices": [
+     "AONINIT",
+     "DDFADD",
+     "SNAHD",
+     "ACTMON"
+    ],
+    "answer": 0,
+    "explanation": "AONINIT はシノニムとして Reinitialize Automation パネルを直接表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.38",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8443",
+   "title": "AON Customization",
+   "naiyou_jp": "Automated Operations Network（AON）はネットワーク自動化を提供するためにカスタマイズ・拡張可能なプログラム群を提供する。AON/SNA（SNA 自動化）と AON/TCP（TCP/IP 自動化）の各コンポーネントが複数のネットワーク・プロトコルにわたり一貫した自動化を提供する。AON はアラートやメッセージを傍受して障害資源の回復・監視を行う。",
+   "verify_steps": [
+    "AON コンポーネント（AON/SNA、AON/TCP）の制御ファイルを開く。",
+    "ポリシー定義（しきい値、再活動化スケジュール、通知等）をカスタマイズする。",
+    "定義を再ロードし、自動化動作が変更どおりになることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が一貫した自動化を提供するコンポーネントの組み合わせはどれか。",
+    "choices": [
+     "AON/SNA と AON/TCP",
+     "GMFHS と RODM",
+     "E/AS と DSICRTR",
+     "DDF と RODMView"
+    ],
+    "answer": 0,
+    "explanation": "AON/SNA と AON/TCP が複数プロトコルにわたる一貫した自動化を提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8444",
+   "title": "AON focal point compatibility",
+   "naiyou_jp": "AON のフォーカル・ポイント互換性に関する項目。状態フォーカル・ポイント機能では CNMTAMEL タスクが状態情報を集約し、AMELINIT ステートメント（サンプル・メンバー DUIISFP）と状態フォーカル・ポイント初期化メンバー DUIFPMEM により初期化オペランドを指定する。複数ドメイン間で状態を集約するフォーカル・ポイント構成と AON を整合させる。",
+   "verify_steps": [
+    "状態フォーカル・ポイントの初期化メンバー（DUIFPMEM）と AMELINIT 定義を確認する。",
+    "CNMTAMEL タスクが活動していることを確認する。",
+    "フォーカル・ポイントに集約された状態が AON 環境と整合していることを確認する。"
+   ],
+   "quiz": {
+    "q": "状態フォーカル・ポイントの初期化オペランドを保持するメンバーはどれか。",
+    "choices": [
+     "DUIFPMEM",
+     "EZLINIT",
+     "DSIOPF",
+     "CNMSTYLE"
+    ],
+    "answer": 0,
+    "explanation": "AMELINIT の FPPARMS=DUIFPMEM が状態フォーカル・ポイント初期化メンバーを指定する。"
+   },
+   "source": "NetView_6.4_Administration_Reference.pdf p.300",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8445",
+   "title": "AON option definition tables",
+   "naiyou_jp": "AON のオプション定義テーブルは NetView DSIPARM データ・セットに保持され、自動化中の高速アクセスのために値が NetView 共通グローバル変数に格納される。資源タイプ値の共通グローバル変数形式は EZLRT.resource_type.keyword、オプション値の形式は EZLOPT.option.keyword である。AON Loader Tables パネルから参照・再ロードできる。",
+   "verify_steps": [
+    "AON Loader Tables パネルを表示する。",
+    "対象のオプション定義テーブルを参照または再ロードする。",
+    "共通グローバル変数（EZLOPT.* / EZLRT.*）に値が反映されたことを確認する。"
+   ],
+   "quiz": {
+    "q": "AON のオプション定義テーブルが保持されるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.PARMLIB"
+    ],
+    "answer": 0,
+    "explanation": "オプション定義テーブルは NetView DSIPARM データ・セットに保持される。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.389",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8446",
+   "title": "AON user exits",
+   "naiyou_jp": "AON ユーザー出口（user exit）は、共通ルーチンの処理過程で呼び出されるユーザー作成の出口ルーチンである。各共通ルーチンは特定の出口（例: EZLEAGRN→EXIT05、EZLEATHR→EXIT06、EZLECAUT→EXIT07）を呼び出し、制御ファイルやポリシー・エントリーで指定する。出口は資源データの変更やタスク・グローバル変数の設定に利用でき、ゼロ以外の戻りコードが返るまで定義順に呼び出される。",
+   "verify_steps": [
+    "制御ファイルで ENVIRON EXIT,EXIT05=(...) のように出口を定義する。",
+    "対応する共通ルーチン（EZLEAGRN 等）を起動する。",
+    "出口が定義順に呼び出され、ゼロ以外の戻りコードで停止することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON ユーザー出口が複数定義されている場合、呼び出しが停止するのはどの条件か。",
+    "choices": [
+     "ある出口がゼロ以外の戻りコードを返したとき",
+     "最初の出口の実行後",
+     "制御ファイルが空のとき",
+     "RODM が停止したとき"
+    ],
+    "answer": 0,
+    "explanation": "全出口は定義順に呼び出され、ゼロ以外の戻りコードを返した時点で停止する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.371",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8447",
+   "title": "Application messages",
+   "naiyou_jp": "AON のアプリケーション・メッセージに関する項目。AON は状態通知に EZL 接頭部のメッセージを使用し、AON メッセージング機構（EXIT08、EZLCONVERT、EZLMSGTXT）を通じてメッセージを発行する。これらのメッセージは自動化処理の状態をオペレーターやログに通知する。",
+   "verify_steps": [
+    "AON 自動化処理を発生させ、EZL 接頭部のメッセージが発行されることを確認する。",
+    "EZLMSGTXT/EZLCONVERT を通じたメッセージ生成経路を確認する。",
+    "通知先オペレーターやログにメッセージが届くことを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が状態通知に使用するメッセージ接頭部はどれか。",
+    "choices": [
+     "EZL",
+     "DSI",
+     "BNJ",
+     "EKG"
+    ],
+    "answer": 0,
+    "explanation": "AON は状態通知に EZL 接頭部のメッセージを使用する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.366",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8448",
+   "title": "Application-Instance DVIPA Workspace",
+   "naiyou_jp": "アプリケーション・インスタンス DVIPA を表示するワークスペース。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Application-Instance DVIPA Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Application-Instance DVIPA Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8449",
+   "title": "Assigning a problem to an operator in DDF (MARK)",
+   "naiyou_jp": "DDF において、オペレーター MARK パネルを使用して問題を特定のオペレーターに割り当てる機能である。MARK により、ある資源・状態記述子が特定のオペレーターによって処理中であることを示せる。DDF の実装サンプルにはオペレーター MARK パネルの使用例が含まれる。",
+   "verify_steps": [
+    "DDF パネルを表示し、対象の状態記述子を選択する。",
+    "MARK 機能でその問題を担当オペレーターに割り当てる。",
+    "DDF 上で当該記述子が割り当て済み（処理中）として表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF で問題をオペレーターに割り当て、処理中であることを示す機能はどれか。",
+    "choices": [
+     "MARK",
+     "DDFCLEAR",
+     "GENALERT",
+     "AUTOCNT"
+    ],
+    "answer": 0,
+    "explanation": "DDF の MARK 機能により問題を特定オペレーターに割り当て、処理中であることを示す。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.251",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8450",
+   "title": "Assigning Operators to Groups",
+   "naiyou_jp": "NetView の ASSIGN コマンドを使用して、オペレーターをグループに割り当てることができる。ASSIGN は要請・非要請メッセージのルーティングや、オペレーターのグループ化に用いられる。ASSIGN 発行時にグループ内のオペレーターが未定義の場合、その割り当てはオペレーターが定義されログオンした後に有効になる。",
+   "verify_steps": [
+    "NetView コマンド行で ASSIGN GROUP=... のようにオペレーターをグループへ割り当てる。",
+    "LIST コマンドで割り当て状況を確認する。",
+    "対象オペレーターがログオン後にグループ割り当てが有効になることを確認する。"
+   ],
+   "quiz": {
+    "q": "オペレーターをグループに割り当てるために使用する NetView コマンドはどれか。",
+    "choices": [
+     "ASSIGN",
+     "DEFINE",
+     "ACTMON",
+     "DDFADD"
+    ],
+    "answer": 0,
+    "explanation": "ASSIGN コマンドでオペレーターのグループ割り当てとメッセージ・ルーティングを行う。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.199",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8451",
+   "title": "Attribute Overview",
+   "naiyou_jp": "RODM（Resource Object Data Manager）はネットワーク内の資源を記述するデータ・モデルを保持する。データ・モデルには 2 種類のオブジェクトがある。すなわち、管理オブジェクト（managed object に対し操作を行うプログラム）と、被管理オブジェクト（ネットワーク資源）である。各オブジェクトは属性（フィールド）を持ち、これらが資源の状態・構成を表す。",
+   "verify_steps": [
+    "RODMVIEW コマンドで RODM データ・モデルにアクセスする。",
+    "対象クラス／オブジェクトの属性（フィールド）一覧を表示する。",
+    "属性値が資源の状態・構成を表していることを確認する。"
+   ],
+   "quiz": {
+    "q": "RODM のデータ・モデルが保持する 2 種類のオブジェクトはどれか。",
+    "choices": [
+     "管理オブジェクトと被管理オブジェクト",
+     "物理ノードと論理ノード",
+     "送信側と受信側",
+     "主ノードと副ノード"
+    ],
+    "answer": 0,
+    "explanation": "RODM のデータ・モデルは managing object と managed object の 2 種類を保持する。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8452",
+   "title": "Attributes",
+   "naiyou_jp": "NetView ではメッセージの色および強調表示属性（前景色、背景色、輝度、強調表示）を定義できる。背景色はほとんどの 3270 装置やエミュレーターでサポートされないため、その場合は背景に黒が用いられる。これらの属性はメッセージの可読性向上やオペレーターの注意喚起に利用される。",
+   "verify_steps": [
+    "カスタマイズ・メンバーでメッセージの色・強調表示属性を定義する。",
+    "NetView コンソールに対象メッセージを表示させる。",
+    "前景色・輝度・強調表示が定義どおりに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView のメッセージ属性のうち、ほとんどの 3270 装置でサポートされず黒が用いられるものはどれか。",
+    "choices": [
+     "背景色",
+     "前景色",
+     "輝度",
+     "強調表示"
+    ],
+    "answer": 0,
+    "explanation": "背景色は多くの 3270 装置・エミュレーターで非サポートで、その場合は黒が用いられる。"
+   },
+   "source": "NetView_6.4_Customization_Guide.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8453",
+   "title": "Audit Entry Actions",
+   "naiyou_jp": "監査エントリー・アクションに関する項目。NetView 管理コンソールのトポロジー・サーバーは監査ログ（ihsaudit.xml により制御）を保持し、各種アクションが監査エントリーとして記録される。GMFHS のクラス／フィールドは RODM クラス名で表され、Data Model Reference のクラス／フィールド相互参照に従って定義される。",
+   "verify_steps": [
+    "トポロジー・サーバーの監査機能（server.properties / ihsaudit.xml）を確認する。",
+    "コンソールで操作を行い、監査エントリーが記録されることを確認する。",
+    "監査ログ内のエントリー・アクション内容を確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールの監査ログを制御するファイルはどれか。",
+    "choices": [
+     "ihsaudit.xml",
+     "DSIOPF",
+     "EZLINIT",
+     "CNMSTYLE"
+    ],
+    "answer": 0,
+    "explanation": "監査機能は server.properties および ihsaudit.xml により制御される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.321",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8454",
+   "title": "auditEntry ELEMENT",
+   "naiyou_jp": "'auditEntry ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'auditEntry ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'auditEntry ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'auditEntry ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8455",
+   "title": "Auditing and the ihsaudit.xml File",
+   "naiyou_jp": "NetView 管理コンソールのトポロジー・サーバーは ihsaudit.xml ファイルにより監査機能を構成する。監査ログのデフォルトは server.properties ファイルでも設定でき、ihsaudit.xml は監査対象や出力形式などの詳細を定義する。これによりコンソール操作の監査証跡を取得できる。",
+   "verify_steps": [
+    "トポロジー・サーバーの ihsaudit.xml を開く。",
+    "監査対象アクションと出力設定を確認・編集する。",
+    "サーバーを再起動し、操作が監査ログに記録されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールの監査機能を構成するファイルはどれか。",
+    "choices": [
+     "ihsaudit.xml",
+     "DSIPARM",
+     "VTAMLST",
+     "DUIGINIT"
+    ],
+    "answer": 0,
+    "explanation": "ihsaudit.xml がトポロジー・サーバーの監査機能を構成する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8456",
+   "title": "Auditing Functions and the Server.Properties File",
+   "naiyou_jp": "NetView 管理コンソールのトポロジー・サーバーは server.properties ファイルを変更することでカスタマイズできる。カスタマイズの一例として、監査ログのデフォルト設定がある。server.properties はサーバーに付属し、監査機能を含む各種サーバー動作のデフォルトを定義する。",
+   "verify_steps": [
+    "トポロジー・サーバーの server.properties ファイルを開く。",
+    "監査ログのデフォルト設定を変更する。",
+    "サーバーを再起動し、設定が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・サーバーの監査ログのデフォルトを設定するファイルはどれか。",
+    "choices": [
+     "server.properties",
+     "ihsaudit.xml のみ",
+     "DSIOPF",
+     "EZLTREE"
+    ],
+    "answer": 0,
+    "explanation": "server.properties ファイルでトポロジー・サーバーの監査ログ等のデフォルトを設定する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8457",
+   "title": "auditLog ELEMENT",
+   "naiyou_jp": "'auditLog ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'auditLog ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'auditLog ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'auditLog ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8458",
+   "title": "Automated recovery",
+   "naiyou_jp": "AON の自動回復（automated recovery）機能では、障害を示すアラートやメッセージを傍受し、障害資源の回復を試み、回復するまで資源を監視する。自動化を定義するには自動化テーブルの更新、MVS メッセージの改訂、MVS コマンド改訂の有効化などを行う。AON は再活動化スケジュールやしきい値分析に従って回復処理を行う。",
+   "verify_steps": [
+    "AON 制御ファイルで再活動化スケジュール・しきい値を定義する。",
+    "対象資源に障害を発生させ、AON が回復を試みることを確認する。",
+    "回復成功まで資源が監視され、通知が行われることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON の自動回復で障害資源に対して行われる処理はどれか。",
+    "choices": [
+     "回復を試み、回復するまで資源を監視する",
+     "RODM を再起動する",
+     "DDF を消去する",
+     "監査ログを削除する"
+    ],
+    "answer": 0,
+    "explanation": "AON はアラート/メッセージを傍受し、障害資源の回復を試みつつ回復まで監視する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8459",
+   "title": "Automatic File Download at Console Log On",
+   "naiyou_jp": "NetView 管理コンソールのコンソール・ログオン時に、必要なファイルを自動的にダウンロードする機能である。トポロジー・コンソールがログオンする際、サーバーから定義されたファイル（カスタマイズ、ビュー定義等）を取得することで、各コンソールの構成を統一できる。",
+   "verify_steps": [
+    "トポロジー・サーバーで自動ダウンロード対象ファイルを構成する。",
+    "トポロジー・コンソールでログオンする。",
+    "ログオン時に定義済みファイルが自動的にダウンロードされることを確認する。"
+   ],
+   "quiz": {
+    "q": "コンソール・ログオン時の自動ファイル・ダウンロードの目的は何か。",
+    "choices": [
+     "各コンソールの構成（カスタマイズ/ビュー定義）を統一する",
+     "RODM をチェックポイントする",
+     "アラートを生成する",
+     "VTAM 資源を活動化する"
+    ],
+    "answer": 0,
+    "explanation": "ログオン時にサーバーから定義ファイルを取得し、コンソール構成を統一する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8460",
+   "title": "Automating the Network or System",
+   "naiyou_jp": "NetView を用いてネットワークまたはシステムを自動化する方法の概説。自動化テーブルにより、メッセージやアラートに応じて自動的にコマンドを実行する。自動化の目的は、オペレーターが確認すべきイベント通知の数を削減することにある。GENALERT、program-to-program interface、MS transport などでアラートをハードウェア・モニターに送れる。",
+   "verify_steps": [
+    "自動化テーブルにメッセージ／アラートに対する IF-THEN 規則を定義する。",
+    "AUTOTBL でテーブルを活動化する。",
+    "対象メッセージを発生させ、自動化アクションが実行されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 自動化の主な目的はどれか。",
+    "choices": [
+     "オペレーターが確認すべきイベント通知数の削減",
+     "RODM の削除",
+     "3270 端末の追加",
+     "ビューの暗号化"
+    ],
+    "answer": 0,
+    "explanation": "自動化の狙いはオペレーターが見るべきイベント通知の数を減らすことにある。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.187",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8461",
+   "title": "Automation Table and Alerts",
+   "naiyou_jp": "自動化テーブルはアラートにも適用される。NetView Event/Automation Service（E/AS）はアラートを SNMPv1 トラップに変換してトラップ・マネージャーへ送信でき、過負荷を避けるため人手介入が必要なアラートに限定することが推奨される。アラートとメッセージは自動化テーブルの IF-THEN 規則により処理され、EIF イベントへの変換も可能である。",
+   "verify_steps": [
+    "自動化テーブルにアラートに対する IF-THEN 規則を定義する。",
+    "テスト・アラートを発生させる。",
+    "自動化テーブルがアラートを処理し、必要に応じて E/AS がトラップ/EIF に変換することを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルが処理できるのはメッセージのほかに何か。",
+    "choices": [
+     "アラート",
+     "RODM チェックポイント",
+     "監査ログ",
+     "端末バッファー"
+    ],
+    "answer": 0,
+    "explanation": "自動化テーブルはメッセージに加えアラートも IF-THEN 規則で処理できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.33",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8462",
+   "title": "Blocked Virtual Route (VTAM)",
+   "naiyou_jp": "ブロックされた仮想ルート（Blocked Virtual Route）は VTAM のセッション関連の状態である。NetView のセッション・モニターやハードウェア・モニターで、仮想ルートがブロックされた状態を検出・表示できる。GMFHS と RODM、NetView 管理コンソールが連携し、こうした資源の状態をグラフィック・ビューに反映する。",
+   "verify_steps": [
+    "セッション・モニターで対象セッションの仮想ルート状態を表示する。",
+    "仮想ルートがブロック状態であることを確認する。",
+    "必要に応じて VTAM コマンドで状態を解析・是正する。"
+   ],
+   "quiz": {
+    "q": "ブロックされた仮想ルートはどのモニター機能で検出されるか。",
+    "choices": [
+     "セッション・モニター/ハードウェア・モニター",
+     "RODMView のみ",
+     "DDFCLEAR",
+     "TASKUTIL"
+    ],
+    "answer": 0,
+    "explanation": "VTAM のセッション関連状態はセッション・モニター/ハードウェア・モニターで検出・表示される。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.253",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8463",
+   "title": "Broken Session (Session Monitor)",
+   "naiyou_jp": "切断セッション（Broken Session）はセッション・モニターで検出されるセッション状態である。GMFHS は RODM および NetView 管理コンソールと連携し、ネットワーク資源の状態・構成情報を含むビューを表示する。セッション・モニターは切断されたセッションを検出し、状態をビューやパネルに反映する。",
+   "verify_steps": [
+    "セッション・モニターを開き、対象セッションの状態を確認する。",
+    "セッションが切断（Broken）状態であることを確認する。",
+    "状態が管理コンソールのビューに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "切断セッション（Broken Session）を検出する NetView 機能はどれか。",
+    "choices": [
+     "セッション・モニター",
+     "RODM チェックポイント",
+     "DDFADD",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "セッション・モニターが切断セッションを検出し状態を表示する。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8464",
+   "title": "Browsing the Automation Tables",
+   "naiyou_jp": "活動中の自動化テーブルを参照（ブラウズ）する機能。Automation Table Management パネルから、選択したテーブルに対する各種操作（参照、テスト、無効化等）を行える。テーブルがロードされた日時やロード元タスクなどの情報も確認できる。",
+   "verify_steps": [
+    "Automation Table Management パネルを表示する。",
+    "活動中の自動化テーブル一覧から対象を選択する。",
+    "テーブル内容（ステートメント、ロード日時等）を参照する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルの参照・操作を行うパネルはどれか。",
+    "choices": [
+     "Automation Table Management パネル",
+     "RODMView 主メニュー",
+     "DDF 主パネル",
+     "AutoView パネル"
+    ],
+    "answer": 0,
+    "explanation": "Automation Table Management パネルで自動化テーブルの参照・操作を行う。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.256",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8465",
+   "title": "Calculating Time (EZLEATDF)",
+   "naiyou_jp": "EZLEATDF は時刻計算を行う AON 共通ルーチンである。タイマー処理や間隔計算で時刻差を求めるために使用される。 EZLEATDF は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLEATDF を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLEATDF はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLEATDF は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8466",
+   "title": "Capturing Live Views from your NetView Management Console System",
+   "naiyou_jp": "ライブの NetView 管理コンソール・システムからビューを取り込む（capture）機能である。-saveViewsLocally コマンド行引数を指定すると、ビュー・カスタマイズの保存コードがトポロジー・サーバーのデータベースではなく、installRoot/bin/generic_unix/TDS/client/views ディレクトリのローカル・ファイルにビューを保存する。取り込んだビューはデモンストレーションに統合できる。",
+   "verify_steps": [
+    "コンソールを -saveViewsLocally 引数付きで起動する。",
+    "対象のライブ・ビューを表示し、保存する。",
+    "ローカルの views ディレクトリにビュー・ファイルが保存されたことを確認する。"
+   ],
+   "quiz": {
+    "q": "ライブ・ビューをローカルに保存する際に指定するコマンド行引数はどれか。",
+    "choices": [
+     "-saveViewsLocally",
+     "-chkpt",
+     "-traceon",
+     "-localhost"
+    ],
+    "answer": 0,
+    "explanation": "-saveViewsLocally 引数によりビューがローカル views ディレクトリに保存される。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.125",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8467",
+   "title": "CDRM VTAM messages",
+   "naiyou_jp": "CDRM（Cross-Domain Resource Manager）に関連する VTAM メッセージの項目。AON/SNA は VTAM のメッセージやアラートを傍受し、NCP・LINE・PU・LU・CDRM・CDRSC・APPL などの SNA 資源に対する自動化を行う。CDRM 関連メッセージはクロスドメイン・セッション管理の状態を示し、自動化の契機となる。",
+   "verify_steps": [
+    "AON/SNA が CDRM 関連 VTAM メッセージを受信する状況を発生させる。",
+    "自動化テーブル/AON が当該メッセージを処理することを確認する。",
+    "必要な回復・通知アクションが行われることを確認する。"
+   ],
+   "quiz": {
+    "q": "CDRM 資源の自動化を担う AON コンポーネントはどれか。",
+    "choices": [
+     "AON/SNA",
+     "AON/TCP",
+     "GMFHS",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "AON/SNA が CDRM を含む SNA 資源の自動化を行う。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.394",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8468",
+   "title": "Centralized access to information",
+   "naiyou_jp": "情報への集中アクセス（centralized access）に関する項目。NetView は複数ドメインやコンポーネントの情報を集約し、オペレーターが単一のインターフェースから監視・操作できるようにする。フォーカル・ポイント構成や管理コンソールにより、分散したネットワーク資源の状態へ統合的にアクセスできる。",
+   "verify_steps": [
+    "フォーカル・ポイントまたは管理コンソールから複数ドメインの情報を表示する。",
+    "各ドメインの資源状態が集約して表示されることを確認する。",
+    "単一インターフェースから各資源の操作が可能なことを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView が分散した資源情報への統合アクセスを提供する仕組みはどれか。",
+    "choices": [
+     "フォーカル・ポイント/管理コンソールによる集約",
+     "RODM の削除",
+     "端末ごとの個別ログ",
+     "SMF レコードのみ"
+    ],
+    "answer": 0,
+    "explanation": "フォーカル・ポイント構成や管理コンソールにより情報への集中アクセスを実現する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8469",
+   "title": "Certificate Details Workspace",
+   "naiyou_jp": "証明書の詳細情報を表示するワークスペース。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Certificate Details Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Certificate Details Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8470",
+   "title": "Changing Active Monitor settings",
+   "naiyou_jp": "AON の Active Monitor Settings パネルで能動監視（active monitoring）の設定を変更する。AON: Automation Settings パネルから当該パネルを表示でき、ACTMON コマンドまたは AON 1.4.5 でも直接表示できる。能動監視は資源タイプごとに監視間隔やタイマー ID を指定する。",
+   "verify_steps": [
+    "AON: Automation Settings パネルを表示する。",
+    "能動監視設定（または ACTMON コマンド）で対象の資源タイプを選択する。",
+    "監視間隔・タイマー ID を変更し、設定が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "能動監視設定パネルを直接表示するコマンドはどれか。",
+    "choices": [
+     "ACTMON",
+     "DDFADD",
+     "SNAHD",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "ACTMON（または AON 1.4.5）で Active Monitor Settings パネルを直接表示できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.62",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8471",
+   "title": "Changing Monitor Intervals",
+   "naiyou_jp": "Monitor Intervals パネルで監視間隔の追加・表示・変更・削除を行う。監視間隔は AON が障害資源の再活動化を試みる頻度と、その間に通知オペレーターへメッセージを送るかどうかを決定する。値は MONIT 制御ファイル・エントリーから取得され、制御ファイルには DEFAULTS エントリーが必要である。間隔は hh:mm（00:00〜24:00）で指定する。",
+   "verify_steps": [
+    "AON: Automation Settings パネルで 4 を入力し Monitor Intervals パネルを表示する。",
+    "対象の監視間隔（hh:mm）と Notify 設定を変更する。",
+    "変更が MONIT 制御ファイルに反映され、再活動化頻度が変わることを確認する。"
+   ],
+   "quiz": {
+    "q": "監視間隔が決定するものは何か。",
+    "choices": [
+     "再活動化を試みる頻度と通知送出の有無",
+     "RODM のサイズ",
+     "端末の色",
+     "監査ログの保存期間"
+    ],
+    "answer": 0,
+    "explanation": "監視間隔は障害資源の再活動化頻度と、その際の通知オペレーターへのメッセージ送出有無を決める。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.60",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8472",
+   "title": "Changing the Value of a RODM Object Attribute Using RODMView",
+   "naiyou_jp": "NetView の RODMView コマンドを使うと、RODM メソッドの起動や、RODM のクラス・オブジェクト・フィールドの値の追加・変更・削除ができる。RODM メソッドはオブジェクト独立（object-independent）またはオブジェクト固有（named）として起動できる。コマンド・ファシリティーの行に rodmview と入力すると RODMView 主メニューが表示される。",
+   "verify_steps": [
+    "コマンド・ファシリティーの行に rodmview と入力し Enter を押す。",
+    "RODMView 主メニューから対象クラス／オブジェクト／フィールドを選択する。",
+    "属性値を変更し、RODM 上で値が更新されたことを確認する。"
+   ],
+   "quiz": {
+    "q": "RODM のオブジェクト属性値を変更するために使う NetView コマンドはどれか。",
+    "choices": [
+     "RODMVIEW",
+     "DDFADD",
+     "ACTMON",
+     "AUTOCNT"
+    ],
+    "answer": 0,
+    "explanation": "RODMView コマンドで RODM のクラス・オブジェクト・フィールドの値を追加・変更・削除できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.151",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8473",
+   "title": "Checking Automation (EZLECAUT)",
+   "naiyou_jp": "EZLECAUT は自動化が有効かどうかを検査する AON 共通ルーチンである。RECOVERY エントリーに対応し、EXIT07（ENVIRON EXIT）を呼び出す。 EZLECAUT は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLECAUT を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLECAUT はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLECAUT は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8474",
+   "title": "Checking Connection Status (IPSTAT)",
+   "naiyou_jp": "IPSTAT コマンドにより TCP/IP 接続の状況を確認する AON/TCP の機能である。接続の状態やスタックの状況を照会し、AON/TCP の監視・自動化に利用する。AON/TCP は TCP/IP 資源の監視と回復を担う。",
+   "verify_steps": [
+    "AON/TCP の操作インターフェースまたはコマンド行から IPSTAT を発行する。",
+    "対象接続／スタックの状況が表示されることを確認する。",
+    "異常状態が検出された場合に AON/TCP が自動化処理を行うことを確認する。"
+   ],
+   "quiz": {
+    "q": "TCP/IP 接続の状況を確認する AON/TCP のコマンドはどれか。",
+    "choices": [
+     "IPSTAT",
+     "EZLEVACT",
+     "DDFCLEAR",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "IPSTAT は AON/TCP で TCP/IP 接続の状況を確認するコマンドである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.275",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8475",
+   "title": "Checking notification status",
+   "naiyou_jp": "通知（notification）の状況を確認する機能。AON は通知ポリシー（EZLENTFY/EZLENFRM）に従い、障害や状態変化を通知オペレーターやインフォーム・インターフェースへ送る。通知状況を確認することで、意図した宛先へ通知が行われているかを検証できる。",
+   "verify_steps": [
+    "AON の通知ポリシー設定を確認する。",
+    "状態変化を発生させ、通知が送出されることを確認する。",
+    "通知オペレーターまたはインフォーム・インターフェースで受信状況を確認する。"
+   ],
+   "quiz": {
+    "q": "AON の通知を駆動するルーチンの組み合わせはどれか。",
+    "choices": [
+     "EZLENTFY / EZLENFRM",
+     "EZLEVACT / EZLEVINA",
+     "DDFADD / DDFDEL",
+     "GENALERT のみ"
+    ],
+    "answer": 0,
+    "explanation": "通知は Notify ポリシー（EZLENTFY）と Inform ポリシー駆動（EZLENFRM）により行われる。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.302",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8476",
+   "title": "Checking Session Monitor and Hardware Monitor Database Status (Command Facility)",
+   "naiyou_jp": "コマンド・ファシリティーから、セッション・モニターおよびハードウェア・モニターのデータベース状況を確認する機能である。LIST STATUS などのコマンドで各モニター・データベースの活動状態を確認できる。これにより監視データの記録状況やデータベースの健全性を把握できる。",
+   "verify_steps": [
+    "コマンド・ファシリティーの行から状態照会コマンドを発行する。",
+    "セッション・モニター／ハードウェア・モニターのデータベース状況を確認する。",
+    "データベースが活動中で記録が行われていることを確認する。"
+   ],
+   "quiz": {
+    "q": "セッション・モニター/ハードウェア・モニターのデータベース状況を確認する場所はどこか。",
+    "choices": [
+     "コマンド・ファシリティー",
+     "RODMView",
+     "DDF パネルのみ",
+     "Tivoli Enterprise Portal のみ"
+    ],
+    "answer": 0,
+    "explanation": "コマンド・ファシリティーから各モニター・データベースの状況を確認できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.237",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8477",
+   "title": "Checking the Timer (EZLEACKT)",
+   "naiyou_jp": "EZLEACKT はタイマーの状態を検査する AON 共通ルーチンである。再活動化や監視のためのタイマーが設定済みかを確認する。 EZLEACKT は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLEACKT を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLEACKT はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLEACKT は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8478",
+   "title": "Checking Thresholds (EZLEATHR)",
+   "naiyou_jp": "EZLEATHR はしきい値分析を行う AON 共通ルーチンである。資源名・タイプを渡すとしきい値分析を実行し、その後 EXIT06（ENVIRON EXIT）を呼び出す。 EZLEATHR は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLEATHR を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLEATHR はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLEATHR は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8479",
+   "title": "Clearing DDF (DDFCLEAR)",
+   "naiyou_jp": "DDFCLEAR コマンドは DDF の状態表示を消去する。AON ルーチンは DDF コマンド群（DDF、DDFADD、DDFCLEAR、DDFDEL、DDFPANEL、DDFQRY など）を用いて DDF 状態情報を更新する。DDFCLEAR は状態記述子をまとめてクリアし、表示を初期化する。",
+   "verify_steps": [
+    "AON ルーチンまたはコマンド行から DDFCLEAR を発行する。",
+    "DDF パネルを表示し、状態表示がクリアされたことを確認する。",
+    "必要に応じて DDFADD で新たな状態記述子を追加する。"
+   ],
+   "quiz": {
+    "q": "DDF の状態表示を消去するコマンドはどれか。",
+    "choices": [
+     "DDFCLEAR",
+     "DDFADD",
+     "DDFPANEL",
+     "DDFQRY"
+    ],
+    "answer": 0,
+    "explanation": "DDFCLEAR は DDF をクリアする。DDFADD は追加、DDFDEL は削除、DDFQRY は照会。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.275",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8480",
+   "title": "cmd ELEMENT",
+   "naiyou_jp": "'cmd ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'cmd ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'cmd ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'cmd ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8481",
+   "title": "cmdResp ELEMENT",
+   "naiyou_jp": "'cmdResp ELEMENT' は IBM Z NetView 管理コンソール関連の定義（GUI 定義またはデータ・モデル）で用いられる要素である。NetView 管理コンソールは構成情報を XML/RODM ベースの定義として保持し、'cmdResp ELEMENT' はその定義階層内の構成要素として参照される。実際の値や属性はトポロジー・サーバーまたは RODM のデータ・モデルに従って解釈される。",
+   "verify_steps": [
+    "トポロジー・サーバーの定義ファイル（XML）または RODM データ・モデルを参照する。",
+    "'cmdResp ELEMENT' 要素が定義階層内のどの位置に現れるかを確認する。",
+    "対応するビューまたはコンソール機能で、その要素が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "'cmdResp ELEMENT' のような NetView 管理コンソールの定義要素はどこで解釈されるか。",
+    "choices": [
+     "トポロジー・サーバー定義または RODM データ・モデル",
+     "ハードウェア・モニター・データベース",
+     "VTAM 主ノード",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールの構成要素は XML 定義または RODM データ・モデルに従って解釈される。"
+   },
+   "source": "NetView_6.4_Data_Model_Reference.pdf p.5",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8482",
+   "title": "Coding common routines",
+   "naiyou_jp": "AON の共通ルーチン（common routine）をコーディングする方法を説明する章。共通ルーチンは資源の活動化／非活動化、監視開始、メッセージのログ記録と通知、しきい値検査、ファイル・マネージャーとの連携などを行う。ユーザー・コードでは問い合わせの発行と回答検査、CGLOBAL/TGLOBAL の設定、タイマー遅延の設定などを記述できる。",
+   "verify_steps": [
+    "対象の AON 共通ルーチン（EZLEVACT、EZLEATHR 等）を呼び出すユーザー・コードを記述する。",
+    "CGLOBAL/TGLOBAL の設定やタイマー遅延を構成する。",
+    "ルーチンを実行し、自動化処理が期待どおり動作することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON 共通ルーチンが行う処理に含まれないものはどれか。",
+    "choices": [
+     "RODM の物理フォーマット",
+     "資源の活動化／非活動化",
+     "しきい値検査",
+     "メッセージのログ記録と通知"
+    ],
+    "answer": 0,
+    "explanation": "共通ルーチンは資源活動化・しきい値検査・通知等を行う。RODM の物理フォーマットは対象外。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.289",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8487",
+   "title": "Configuring Property Files for Locally Launched Applications",
+   "naiyou_jp": "ローカルで起動されるアプリケーション（locally launched applications）のためのプロパティー・ファイルを構成する手順を説明する項目。NetView 管理コンソールから他アプリケーションを起動する際、プロパティー・ファイルで起動方法やパラメーターを定義する。これによりコンソールのコンテキスト・メニューから外部アプリケーションを呼び出せる。",
+   "verify_steps": [
+    "ローカル起動アプリケーション用のプロパティー・ファイルを編集する。",
+    "起動コマンドとパラメーターを定義する。",
+    "コンソールのコンテキスト・メニューから対象アプリケーションが起動できることを確認する。"
+   ],
+   "quiz": {
+    "q": "ローカル起動アプリケーションの起動方法を定義する仕組みはどれか。",
+    "choices": [
+     "プロパティー・ファイル",
+     "RODM フィールド",
+     "自動化テーブル",
+     "DSIOPF"
+    ],
+    "answer": 0,
+    "explanation": "プロパティー・ファイルでローカル起動アプリケーションの起動方法・パラメーターを定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8492",
+   "title": "Controlling Message Routing Using the ASSIGN Command",
+   "naiyou_jp": "NetView の ASSIGN コマンドを使用して、要請メッセージと非要請メッセージのルーティングを制御し、オペレーターをグループに割り当てる。ASSIGN は自動化テーブルへメッセージを早く届けるための autotask への事前ルーティングに有用である。より限定的な ASSIGN は、より一般的な ASSIGN を上書きする（例: MSG=XYZ123I は MSG=XYZ* より優先）。",
+   "verify_steps": [
+    "ASSIGN コマンドでメッセージのルーティング規則を定義する。",
+    "対象メッセージを発生させる。",
+    "限定的な指定が一般的な指定を上書きし、意図した宛先に届くことを LIST で確認する。"
+   ],
+   "quiz": {
+    "q": "ASSIGN コマンドのルーティングで優先されるのはどちらか。",
+    "choices": [
+     "より限定的な指定（MSG=XYZ123I）",
+     "より一般的な指定（MSG=XYZ*）",
+     "常に最初に発行した指定",
+     "常に最後に発行した指定"
+    ],
+    "answer": 0,
+    "explanation": "限定的な ASSIGN（MSG=XYZ123I）が一般的な ASSIGN（MSG=XYZ*）を上書きする。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.199",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8493",
+   "title": "Controlling NetView Operation",
+   "naiyou_jp": "NetView の運用を制御する方法に関する概説。コマンド・ファシリティー、自動化テーブル、ASSIGN によるメッセージ・ルーティング、コンソールのカスタマイズなどを通じて、NetView の動作とオペレーター環境を制御する。これにより監視・自動化・操作のワークフローを構成できる。",
+   "verify_steps": [
+    "コマンド・ファシリティーから NetView の各種制御コマンドを発行する。",
+    "自動化テーブルや ASSIGN でメッセージ処理・ルーティングを構成する。",
+    "運用が意図どおりに制御されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView の運用制御に用いられないものはどれか。",
+    "choices": [
+     "RODM の物理デフラグ",
+     "自動化テーブル",
+     "ASSIGN コマンド",
+     "コンソール・カスタマイズ"
+    ],
+    "answer": 0,
+    "explanation": "運用制御は自動化テーブル・ASSIGN・コンソール・カスタマイズ等で行う。RODM 物理デフラグは該当しない。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.187",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8499",
+   "title": "Controlling the NetView Screen Contents and Format",
+   "naiyou_jp": "NetView のコマンド・ファシリティー画面の内容と形式を制御する方法に関する項目。メッセージの色付けやメッセージ接頭部の変更などのコンソール・カスタマイズにより、画面の表示内容と書式を制御できる。一部の機能はオペレーティング・システムのコンソール機能に依存する。",
+   "verify_steps": [
+    "コンソール・カスタマイズ・メンバーで画面の表示内容・書式を定義する。",
+    "メッセージの色・接頭部などを設定する。",
+    "NetView コンソールで表示が定義どおりになることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 画面のカスタマイズ例に含まれるものはどれか。",
+    "choices": [
+     "メッセージの色付けと接頭部の変更",
+     "RODM チェックポイント",
+     "VTAM 主ノード定義",
+     "SMF 収集"
+    ],
+    "answer": 0,
+    "explanation": "画面カスタマイズの例にはメッセージの色付けやメッセージ接頭部の変更が含まれる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.42",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8500",
+   "title": "Controlling the Processing of Problem Management Data",
+   "naiyou_jp": "問題管理データ（problem management data）の処理を制御する項目。NetView は Information/Management（Info/Man）と連携して問題管理データを扱うことができ、その構成によりインシデント・問題レコードの作成や更新を制御する。Info/Man との連携には所定の構成が必要である。",
+   "verify_steps": [
+    "Information/Management と NetView の連携構成を確認する。",
+    "問題を発生させ、問題管理データが処理されることを確認する。",
+    "Info/Man にインシデント／問題レコードが作成・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView が問題管理データの処理で連携する製品はどれか。",
+    "choices": [
+     "Information/Management",
+     "RODM",
+     "GMFHS",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "NetView は Information/Management と連携して問題管理データを処理する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.130",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8501",
+   "title": "Copying the Contents of RODM to a Checkpoint Data Set",
+   "naiyou_jp": "RODM データ・キャッシュの内容を、定期的にまたはキャッシュ内データに重要な更新を行ったときにチェックポイント・データ・セットへコピーできる。NetView コンソールから mvs f ekgxrodm,chkpt コマンドを発行すると、RODM は次の利用可能なチェックポイント・データ・セットへチェックポイントを行う。EKGXRODM は RODM 始動プロシージャーで、完了時にメッセージ EKG1303I が表示される。",
+   "verify_steps": [
+    "NetView コンソールで mvs f ekgxrodm,chkpt を発行する。",
+    "RODM が次の利用可能なチェックポイント・データ・セットへコピーすることを確認する。",
+    "完了メッセージ EKG1303I が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "RODM をチェックポイント・データ・セットへコピーするコマンドはどれか。",
+    "choices": [
+     "mvs f ekgxrodm,chkpt",
+     "RODMVIEW",
+     "DDFADD",
+     "AUTOTBL TEST"
+    ],
+    "answer": 0,
+    "explanation": "mvs f ekgxrodm,chkpt で RODM が次のチェックポイント・データ・セットへコピーされる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.186",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8505",
+   "title": "Creating a Demonstration",
+   "naiyou_jp": "独自の NetView 管理コンソール・デモンストレーションを作成できる。デモンストレーション機能は NetView Management Console Productivity Kit の一部として（Windows プラットフォームのみ）インストールされ、ライブ・ビューを取り込んで実環境に近い外観・操作感のデモを作成できる。オペレーター訓練や顧客向け説明などに利用される。",
+   "verify_steps": [
+    "NetView Management Console Productivity Kit を Windows にカスタム・インストールする。",
+    "ライブ・ビューを -saveViewsLocally で取り込む。",
+    "取り込んだビューを統合してデモンストレーションを作成し、再生できることを確認する。"
+   ],
+   "quiz": {
+    "q": "デモンストレーション機能はどのプラットフォームでインストールされるか。",
+    "choices": [
+     "Windows のみ",
+     "z/OS のみ",
+     "Linux のみ",
+     "全プラットフォーム"
+    ],
+    "answer": 0,
+    "explanation": "デモンストレーション機能は Productivity Kit の一部として Windows プラットフォームのみでインストールされる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.125",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8506",
+   "title": "Creating and Displaying NetView Trace Data",
+   "naiyou_jp": "NetView のトレース・データを作成・表示する方法。TRACE コマンドでトレースを制御し、トレース・レコードがトレース・ログに書き込まれる。MONOPER キーワードを指定すると、指定オペレーター・タスクにトレース項目をリアルタイム表示できるが、これは NetView サービスから指示された場合のみ使用する。REXX トレースは RXTRACE で Set Trace パネルを表示して制御する。",
+   "verify_steps": [
+    "TRACE コマンドでトレースを開始する。",
+    "トレース・レコードがトレース・ログに書き込まれることを確認する。",
+    "必要に応じて RXTRACE で REXX トレースの Set Trace パネルを表示し制御する。"
+   ],
+   "quiz": {
+    "q": "REXX トレースの Set Trace パネルを表示するコマンドはどれか。",
+    "choices": [
+     "RXTRACE",
+     "TASKUTIL",
+     "DDFADD",
+     "ACTMON"
+    ],
+    "answer": 0,
+    "explanation": "RXTRACE で Set Trace パネルを表示して REXX トレースを制御する。"
+   },
+   "source": "NetView_6.4_Command_Reference_Vol2_O-Z.pdf p.203",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8507",
+   "title": "Creating customized procedures",
+   "naiyou_jp": "カスタマイズされたプロシージャー（コマンド・リストや REXX/CLIST ルーチン）を作成する方法に関する項目。NetView では REXX や NetView コマンド・リスト言語でコマンド・プロシージャーを作成し、自動化や操作を拡張できる。フルスクリーン・パネルとの対話や、グローバル変数の参照・設定も可能である。",
+   "verify_steps": [
+    "REXX または CLIST でカスタム・プロシージャーを作成する。",
+    "自動化テーブルやコマンド行から呼び出す。",
+    "プロシージャーが期待どおりに動作することを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView のカスタム・プロシージャー作成に使用できる言語はどれか。",
+    "choices": [
+     "REXX / NetView コマンド・リスト言語",
+     "COBOL のみ",
+     "Java のみ",
+     "SQL のみ"
+    ],
+    "answer": 0,
+    "explanation": "プロシージャーは REXX や NetView コマンド・リスト言語（CLIST）で作成できる。"
+   },
+   "source": "NetView_6.4_Customization_Guide.pdf p.29",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8510",
+   "title": "Customizing the NetView Management Console Topology Console",
+   "naiyou_jp": "NetView 管理コンソールのトポロジー・コンソールをカスタマイズする章。トポロジー・コンソールのアイコン、背景、ヘルプ機能などを追加・変更する基本カスタマイズと、外観・操作感・機能を変更する高度なカスタマイズを行える。",
+   "verify_steps": [
+    "トポロジー・コンソールのカスタマイズ項目（アイコン・背景・ヘルプ等）を選択する。",
+    "必要な変更を加える。",
+    "コンソールを再起動し、変更が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソールでカスタマイズできる項目はどれか。",
+    "choices": [
+     "アイコン・背景・ヘルプ機能",
+     "RODM クラス定義",
+     "VTAM 始動オプション",
+     "SMF レコード形式"
+    ],
+    "answer": 0,
+    "explanation": "トポロジー・コンソールはアイコン・背景・ヘルプ機能などをカスタマイズできる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.33",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8511",
+   "title": "Customizing the NetView Management Console Topology Server",
+   "naiyou_jp": "NetView 管理コンソールのトポロジー・サーバーを特定の機能のためにカスタマイズする章。server.properties ファイルを変更することでサーバーをカスタマイズでき、その一例として監査ログのデフォルト設定がある。サーバーは RODM から情報を取得してコンソールにトポロジーと状態を提供する。",
+   "verify_steps": [
+    "トポロジー・サーバーの server.properties ファイルを編集する。",
+    "必要な機能（監査ログ等）のデフォルトを設定する。",
+    "サーバーを再起動し、設定が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・サーバーのカスタマイズに用いるファイルはどれか。",
+    "choices": [
+     "server.properties",
+     "EZLINIT",
+     "DSIOPF",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "server.properties ファイルの変更でトポロジー・サーバーをカスタマイズする。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8512",
+   "title": "Customizing the SNMP Group Definition File (FKXSNMP)",
+   "naiyou_jp": "SNMP グループ定義ファイル（FKXSNMP）をカスタマイズする項目。AON/TCP の SNMP 監視で、監視対象の SNMP グループや MIB 関連定義を FKXSNMP メンバーで指定する。これにより SNMP エージェントの監視範囲やパラメーターを構成できる。",
+   "verify_steps": [
+    "FKXSNMP メンバーを開き、SNMP グループ定義を編集する。",
+    "監視対象グループ／パラメーターを指定する。",
+    "AON/TCP の SNMP 監視が定義どおりに動作することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON/TCP の SNMP グループ定義を保持するメンバーはどれか。",
+    "choices": [
+     "FKXSNMP",
+     "EZLINIT",
+     "DSIOPF",
+     "DUIGINIT"
+    ],
+    "answer": 0,
+    "explanation": "SNMP グループ定義は FKXSNMP メンバーでカスタマイズする。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8513",
+   "title": "Customizing Topology Console Functions",
+   "naiyou_jp": "NetView 管理コンソールのトポロジー・コンソールの機能をカスタマイズする項目。トポロジー・コンソールのアイコン、背景、ヘルプ機能などの項目を追加・変更することで、コンソールの機能をカスタマイズできる。",
+   "verify_steps": [
+    "カスタマイズ対象（アイコン・背景・ヘルプ等）を選ぶ。",
+    "項目を追加または変更する。",
+    "コンソールで機能変更が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソール機能のカスタマイズ対象に含まれるものはどれか。",
+    "choices": [
+     "トポロジー・コンソールのアイコン",
+     "RODM チェックポイント",
+     "VTAM APPL 主ノード",
+     "SMF バッファー"
+    ],
+    "answer": 0,
+    "explanation": "カスタマイズ対象はアイコン・背景・ヘルプ機能などである。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.33",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8514",
+   "title": "Data Collection",
+   "naiyou_jp": "Enterprise Management Agent によるデータ収集に関する項目。サンプリングまたは RODM を用いて監視データを収集する。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Data Collection）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Data Collection を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8516",
+   "title": "DB2 Replication Apply Server Attributes",
+   "naiyou_jp": "DB2 レプリケーションの Apply サーバーに関する監視属性群。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（DB2 Replication Apply Server Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DB2 Replication Apply Server Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8517",
+   "title": "DB2 Replication Apply Workload Attributes",
+   "naiyou_jp": "DB2 レプリケーションの Apply ワークロードに関する監視属性群。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（DB2 Replication Apply Workload Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DB2 Replication Apply Workload Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8520",
+   "title": "DB2 Replication Details for Workload Workspace",
+   "naiyou_jp": "DB2 レプリケーションのワークロード詳細を表示するワークスペース。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（DB2 Replication Details for Workload Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DB2 Replication Details for Workload Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8523",
+   "title": "Deactivating resources",
+   "naiyou_jp": "AON 共通ルーチン EZLEVINA を発行することで VTAM 資源を非活動化できる。EZLEVINA は指定資源に対し VARY NET,INACT,F を発行する。 EZLEVINA は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLEVINA を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLEVINA はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLEVINA は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8524",
+   "title": "Deactivating VTAM Resources (EZLEVINA)",
+   "naiyou_jp": "EZLEVINA は指定された VTAM 資源に対し VARY NET,INACT,F コマンドを発行して非活動化する REXX ルーチンである。戻りコードは 0=成功、8=WAIT エラーまたは資源不明、9=セキュリティー障害、100=WAIT タイムアウト。 EZLEVINA は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLEVINA を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLEVINA はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLEVINA は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8526",
+   "title": "Defining a Demonstration View",
+   "naiyou_jp": "デモンストレーション用のビューを定義する。ライブ環境のビューを取り込み、デモ用に統合する。 NetView 管理コンソールのビューは RODM 内のビュー・オブジェクトとして定義されるか、RODM の定義に基づいて動的に構築される。GMFHS が RODM と連携してこれらのビューを管理コンソールに表示する。",
+   "verify_steps": [
+    "RODM のビュー・オブジェクトまたは動的ビュー定義を編集する。",
+    "GMFHS/管理コンソールでビューを表示する。",
+    "定義した資源・リンク・ノードがビューに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのビューはどこで定義・構築されるか。",
+    "choices": [
+     "RODM のビュー・オブジェクトまたは RODM 定義に基づく動的構築",
+     "DSIOPF",
+     "VTAMLST",
+     "SMF"
+    ],
+    "answer": 0,
+    "explanation": "ビューは RODM のビュー・オブジェクトとして定義されるか、RODM 定義から動的に構築される。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.30",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8527",
+   "title": "Defining a Link Resource in a View",
+   "naiyou_jp": "ビュー内のリンク資源（link resource）を定義する。被管理オブジェクト間のリンクとして表現される。 NetView 管理コンソールのビューは RODM 内のビュー・オブジェクトとして定義されるか、RODM の定義に基づいて動的に構築される。GMFHS が RODM と連携してこれらのビューを管理コンソールに表示する。",
+   "verify_steps": [
+    "RODM のビュー・オブジェクトまたは動的ビュー定義を編集する。",
+    "GMFHS/管理コンソールでビューを表示する。",
+    "定義した資源・リンク・ノードがビューに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのビューはどこで定義・構築されるか。",
+    "choices": [
+     "RODM のビュー・オブジェクトまたは RODM 定義に基づく動的構築",
+     "DSIOPF",
+     "VTAMLST",
+     "SMF"
+    ],
+    "answer": 0,
+    "explanation": "ビューは RODM のビュー・オブジェクトとして定義されるか、RODM 定義から動的に構築される。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.30",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8528",
+   "title": "Defining a MessageView display",
+   "naiyou_jp": "MessageView 表示を定義する。MessageView は DDF パネル上にメッセージ・ベースの状態表示を提供する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8529",
+   "title": "Defining a NetView Command",
+   "naiyou_jp": "NetView 管理コンソールで、トポロジー・コンソールのコンテキスト・メニューに表示する NetView コマンドを定義する項目。コマンド・プロファイルにより、選択した資源に対して発行可能なコマンドを定義する。オペレーターの責任範囲や権限に応じてコマンドをカスタマイズできる。",
+   "verify_steps": [
+    "コマンド・プロファイルに資源に対する NetView コマンドを定義する。",
+    "トポロジー・コンソールで対象資源を選択する。",
+    "コンテキスト・メニューに定義したコマンドが表示され発行できることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソールで資源選択時に表示されるコマンドを定義するものはどれか。",
+    "choices": [
+     "コマンド・プロファイル",
+     "RODM チェックポイント",
+     "DSIOPF",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "コマンド・プロファイルにより、選択資源のコンテキスト・メニューに表示するコマンドを定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.95",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8530",
+   "title": "Defining a Node Resource in a View",
+   "naiyou_jp": "ビュー内のノード資源（node resource）を定義する。ネットワーク資源を表すノードとして配置する。 NetView 管理コンソールのビューは RODM 内のビュー・オブジェクトとして定義されるか、RODM の定義に基づいて動的に構築される。GMFHS が RODM と連携してこれらのビューを管理コンソールに表示する。",
+   "verify_steps": [
+    "RODM のビュー・オブジェクトまたは動的ビュー定義を編集する。",
+    "GMFHS/管理コンソールでビューを表示する。",
+    "定義した資源・リンク・ノードがビューに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのビューはどこで定義・構築されるか。",
+    "choices": [
+     "RODM のビュー・オブジェクトまたは RODM 定義に基づく動的構築",
+     "DSIOPF",
+     "VTAMLST",
+     "SMF"
+    ],
+    "answer": 0,
+    "explanation": "ビューは RODM のビュー・オブジェクトとして定義されるか、RODM 定義から動的に構築される。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.30",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8531",
+   "title": "Defining and Deleting NetView Operators",
+   "naiyou_jp": "NetView オペレーターは DSIOPF メンバーで定義し、オペレーター・タスク名と使用するプロファイル名を指定する。プロファイルは DSIPRF データ・セットに定義され、OPCLASS や PASSWORD 等を含む。DSIOPF を使用している場合、REFRESH OPERS コマンドで NetView 稼働中に動的にオペレーターを追加・削除できる。",
+   "verify_steps": [
+    "DSIOPF メンバーにオペレーター名・プロファイル・PASSWORD を定義する。",
+    "REFRESH OPERS コマンドを発行して定義を動的に反映する。",
+    "対象オペレーターがログオンでき、または削除されたことを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView オペレーターを稼働中に動的に追加・削除するコマンドはどれか。",
+    "choices": [
+     "REFRESH OPERS",
+     "RODMVIEW",
+     "DDFADD",
+     "ACTMON"
+    ],
+    "answer": 0,
+    "explanation": "DSIOPF 使用時は REFRESH OPERS で稼働中にオペレーターを動的に追加・削除できる。"
+   },
+   "source": "NetView_6.4_Security_Reference.pdf p.38",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8532",
+   "title": "Defining dependencies",
+   "naiyou_jp": "資源間の依存関係（dependencies）を定義する。ある資源の状態が他の資源に影響する関係を表現する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8533",
+   "title": "Defining Dynamic Display Facility (DDF) statements",
+   "naiyou_jp": "DDF のステートメントを定義する。パネル階層（EZLTREE）、初期化（EZLINIT）、パネル・ステートメント（EZLPNLS）を定義する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8534",
+   "title": "Defining initialization statements (EZLINIT)",
+   "naiyou_jp": "DSIPARM の EZLINIT メンバーは、すべての DDF パネルに共通のパラメーターと基本的な初期化指定を定義する。指定項目には画面サイズ（SCREENSZ）、DDF セッション開始時の初期画面、最大オペレーター・ログオン数、一時エラー限度値、デフォルトのファンクション・キー定義などが含まれる。",
+   "verify_steps": [
+    "DSIPARM の EZLINIT メンバーを編集する。",
+    "画面サイズ・初期画面・最大ログオン数等を指定する。",
+    "DDF を再ロードし、初期化パラメーターが反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLINIT で定義される項目に含まれるものはどれか。",
+    "choices": [
+     "画面サイズや初期画面などの共通初期化パラメーター",
+     "RODM クラス定義",
+     "VTAM 始動オプション",
+     "SMF レコード形式"
+    ],
+    "answer": 0,
+    "explanation": "EZLINIT は画面サイズ・初期画面・最大ログオン数など DDF 共通の初期化パラメーターを定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.204",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8535",
+   "title": "Defining multiple systems",
+   "naiyou_jp": "複数システムを定義する。複数ドメイン／システムの資源を DDF や自動化の対象として構成する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8536",
+   "title": "Defining New Resource Types in Saved Views",
+   "naiyou_jp": "保存済みビュー（saved views）で新しい資源タイプを定義する。 NetView 管理コンソールのビューは RODM 内のビュー・オブジェクトとして定義されるか、RODM の定義に基づいて動的に構築される。GMFHS が RODM と連携してこれらのビューを管理コンソールに表示する。",
+   "verify_steps": [
+    "RODM のビュー・オブジェクトまたは動的ビュー定義を編集する。",
+    "GMFHS/管理コンソールでビューを表示する。",
+    "定義した資源・リンク・ノードがビューに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのビューはどこで定義・構築されるか。",
+    "choices": [
+     "RODM のビュー・オブジェクトまたは RODM 定義に基づく動的構築",
+     "DSIOPF",
+     "VTAMLST",
+     "SMF"
+    ],
+    "answer": 0,
+    "explanation": "ビューは RODM のビュー・オブジェクトとして定義されるか、RODM 定義から動的に構築される。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.30",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8537",
+   "title": "Defining Resources in the Network",
+   "naiyou_jp": "ネットワーク内の資源を定義する。監視・自動化の対象となる資源を制御ファイルや定義メンバーに登録する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8538",
+   "title": "Defining status panels",
+   "naiyou_jp": "状態パネル（status panel）を定義する。資源の状態を色とともに表示するパネルを構成する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8539",
+   "title": "Defining the contents of DDF",
+   "naiyou_jp": "DDF の表示内容を定義する。どの資源・状態をどのパネルに表示するかを構成する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8540",
+   "title": "Defining the IBM Z NetView User ID and Password on the Topology Server",
+   "naiyou_jp": "トポロジー・サーバー上で、IBM Z NetView のユーザー ID とパスワードを定義する項目。トポロジー・サーバーが NetView ホストと会話を確立する際に使用する資格情報を構成する。これにより RODM ベースのビュー取得や状態更新のための認証が行われる。",
+   "verify_steps": [
+    "トポロジー・サーバーの構成で NetView ユーザー ID／パスワードを定義する。",
+    "サーバーを再起動し、ホストとの会話が確立されることを確認する。",
+    "RODM ベースのビューが取得できることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・サーバーで NetView ユーザー ID／パスワードを定義する目的は何か。",
+    "choices": [
+     "NetView ホストとの会話確立のための認証",
+     "RODM のフォーマット",
+     "DDF のクリア",
+     "SMF 収集"
+    ],
+    "answer": 0,
+    "explanation": "資格情報はトポロジー・サーバーが NetView ホストと会話を確立する認証に用いる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8541",
+   "title": "Defining the panel hierarchy (EZLTREE)",
+   "naiyou_jp": "DSIPARM の EZLTREE メンバーで状態色変化の階層（ツリー構造）を定義する。コンポーネントの状態が変化すると、その色変化が階層に沿って伝搬する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8542",
+   "title": "Defining the panel statements (EZLPNLS)",
+   "naiyou_jp": "DSIPARM の EZLPNLS メンバーでパネル・ステートメントを定義し、各 DDF パネルのレイアウトを構成する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8543",
+   "title": "Defining the Pop-up Menu Items",
+   "naiyou_jp": "トポロジー・コンソールのポップアップ（コンテキスト）メニュー項目を定義する項目。資源を選択した際に表示されるポップアップ・メニューに、発行可能なコマンドをコマンド・プロファイルで定義する。オペレーターの権限や役割に応じて項目をカスタマイズできる。",
+   "verify_steps": [
+    "コマンド・プロファイルでポップアップ・メニュー項目（コマンド）を定義する。",
+    "トポロジー・コンソールで資源を右クリックまたは選択する。",
+    "定義したポップアップ・メニュー項目が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソールのポップアップ・メニュー項目はどこで定義するか。",
+    "choices": [
+     "コマンド・プロファイル",
+     "EZLINIT",
+     "DSIOPF",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "ポップアップ・メニュー項目はコマンド・プロファイルで定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.95",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8544",
+   "title": "Defining the priority and color of the resources",
+   "naiyou_jp": "資源の優先順位と色を定義する。状態に応じた色付けと優先度を構成し、注意すべき資源を強調する。 DDF（Dynamic Display Facility）の実装では、これらの定義メンバー（EZLTREE、EZLINIT、EZLPNLS、EZLCFG01 など）を DSIPARM データ・セットに記述し、ネットワーク状態のパネル表示を構成する。",
+   "verify_steps": [
+    "DSIPARM の該当定義メンバーを編集する。",
+    "DDF を再ロードまたは DDFPANEL でパネルをロードする。",
+    "DDF パネルに定義が反映され、状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の定義メンバーが置かれるデータ・セットはどれか。",
+    "choices": [
+     "DSIPARM",
+     "DSIMSG",
+     "VTAMLST",
+     "SYS1.LINKLIB"
+    ],
+    "answer": 0,
+    "explanation": "DDF の定義メンバー（EZLTREE/EZLINIT/EZLPNLS 等）は DSIPARM データ・セットに置く。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.219",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8545",
+   "title": "Defining the Properties File",
+   "naiyou_jp": "NetView 管理コンソールのプロパティー・ファイル（properties file）を定義する項目。トポロジー・サーバーやコンソールの動作、ローカル起動アプリケーションの起動方法などをプロパティー・ファイルで定義する。server.properties はサーバーのカスタマイズに用いられる代表的なプロパティー・ファイルである。",
+   "verify_steps": [
+    "対象のプロパティー・ファイル（server.properties 等）を編集する。",
+    "必要なプロパティーを定義する。",
+    "コンポーネントを再起動し、設定が反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・サーバーのカスタマイズに用いる代表的なプロパティー・ファイルはどれか。",
+    "choices": [
+     "server.properties",
+     "EZLTREE",
+     "DSIOPF",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "server.properties がトポロジー・サーバーのカスタマイズに用いられる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8546",
+   "title": "Defining View Information",
+   "naiyou_jp": "ビュー情報（view information）を定義する。表示する資源や表示方法をビュー・オブジェクトに記述する。 NetView 管理コンソールのビューは RODM 内のビュー・オブジェクトとして定義されるか、RODM の定義に基づいて動的に構築される。GMFHS が RODM と連携してこれらのビューを管理コンソールに表示する。",
+   "verify_steps": [
+    "RODM のビュー・オブジェクトまたは動的ビュー定義を編集する。",
+    "GMFHS/管理コンソールでビューを表示する。",
+    "定義した資源・リンク・ノードがビューに反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのビューはどこで定義・構築されるか。",
+    "choices": [
+     "RODM のビュー・オブジェクトまたは RODM 定義に基づく動的構築",
+     "DSIOPF",
+     "VTAMLST",
+     "SMF"
+    ],
+    "answer": 0,
+    "explanation": "ビューは RODM のビュー・オブジェクトとして定義されるか、RODM 定義から動的に構築される。"
+   },
+   "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.30",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8547",
+   "title": "Deleting status descriptors (DDFDEL)",
+   "naiyou_jp": "DDFDEL コマンドは DDF から状態記述子（status descriptor）を削除する。AON ルーチンは DDF コマンド群（DDFADD で追加、DDFDEL で削除、DDFCLEAR でクリア、DDFQRY で照会）を用いて DDF の状態情報を更新する。DDFDEL は不要になった状態記述子を個別に削除する。",
+   "verify_steps": [
+    "AON ルーチンまたはコマンド行から DDFDEL を発行する。",
+    "DDF パネルを表示し、対象状態記述子が削除されたことを確認する。",
+    "DDFQRY で残存状態記述子を照会する。"
+   ],
+   "quiz": {
+    "q": "DDF から状態記述子を削除するコマンドはどれか。",
+    "choices": [
+     "DDFDEL",
+     "DDFADD",
+     "DDFCLEAR",
+     "DDFPANEL"
+    ],
+    "answer": 0,
+    "explanation": "DDFDEL は DDF から状態記述子を削除する。DDFADD は追加、DDFCLEAR はクリア。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.275",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8548",
+   "title": "Describing the correlation between INOP messages and NPSI alerts",
+   "naiyou_jp": "AON/SNA X.25 では、仮想回線（virtual circuit）資源に対してアラートが送られるとき、ステーション（PU）がアラート送出時に所有されておらず、NPSI アラートの利用が難しい。発呼拒否アラートでは、AON/SNA X.25 NPSI が SSCP–PU（NCP PU）セッション上でまずステーションのアドレスに対する INOP type 1 を送り、続いて RECFMS を送る。AON/SNA はこの相関を用いてアラートに詳細と助言を付加する。",
+   "verify_steps": [
+    "AON/SNA X.25 環境で仮想回線資源にアラートを発生させる。",
+    "SSCP–PU セッション上の INOP type 1 と後続の NPSI アラートを確認する。",
+    "AON/SNA がアラートの相関付けにより詳細・助言を付加することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON/SNA X.25 で発呼拒否時にステーション・アドレスに対し最初に送られるものはどれか。",
+    "choices": [
+     "INOP type 1",
+     "RECFMS type 99",
+     "GENALERT",
+     "DDFADD"
+    ],
+    "answer": 0,
+    "explanation": "AON/SNA X.25 NPSI は SSCP–PU セッション上でまず INOP type 1 を送り、続いて RECFMS を送る。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.403",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8549",
+   "title": "Determining Why a Command List Does Not Complete",
+   "naiyou_jp": "コマンド・リストが完了しない理由を判別する。コマンド・プロシージャーがエラーなく実行されたか、待機や戻りコードに問題がないかを確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8550",
+   "title": "Determining Why a Message Is Not Automated by the Automation Table",
+   "naiyou_jp": "メッセージが自動化テーブルで自動化されない理由を判別する。まずメッセージ・タイプ（ログのみメッセージかなど）を確認し、BEGIN-END や ALWAYS による未到達、MRT エントリーの有無を調べる。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8551",
+   "title": "Determining Why a Message Is Routed to the Wrong Operator",
+   "naiyou_jp": "メッセージが誤ったオペレーターにルーティングされる理由を判別する。ASSIGN の限定/一般指定の優先関係や EXEC(ROUTE)/MSGROUTE の設定を確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8552",
+   "title": "Determining Why a Pipe Command Does Not Process Correctly",
+   "naiyou_jp": "パイプ・コマンドが正しく処理されない理由を判別する。パイプのステージや入出力の流れを確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8553",
+   "title": "Determining Why a Timed Command Does Not Run",
+   "naiyou_jp": "タイマー指定コマンドが実行されない理由を判別する。タイマーの設定・状態や対象タスクを確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8554",
+   "title": "Determining Why an Alert Is Not Automated",
+   "naiyou_jp": "アラートが自動化されない理由を判別する。自動化テーブルのアラート向けステートメントやフィルター設定を確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8555",
+   "title": "Determining Why an Alert Is Not Displayed in the Tivoli Netcool/OMNIbus Event List",
+   "naiyou_jp": "アラートが Tivoli Netcool/OMNIbus のイベント・リストに表示されない理由を判別する。E/AS のアラート変換・転送設定を確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8556",
+   "title": "Determining Why an Event Integration Facility Event Is Not Forwarded to the NetView Program",
+   "naiyou_jp": "EIF イベントが NetView へ転送されない理由を判別する。E/AS のイベント受信サービスや構成を確認する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8557",
+   "title": "Determining Why Automation Is Taking Too Much Processing Time",
+   "naiyou_jp": "自動化の処理時間が過大な理由を判別する。TASKUTIL でタスクの CPU 使用率を確認し、ループ/ハングや高頻度処理を特定する。 本項目は自動化が設計どおりに動作しなかった場合の問題判別シナリオの一つであり、問題判別手順と可能な解決策を示す。自動化テーブルやメッセージ・ルーティング、コマンド・プロシージャーの構成を順に確認する。",
+   "verify_steps": [
+    "問題が再現する操作・メッセージを発生させる。",
+    "自動化テーブルのリスティングや TRACE で処理経路を確認する。",
+    "BEGIN-END/ALWAYS の到達性やルーティング設定など、該当する原因を切り分ける。"
+   ],
+   "quiz": {
+    "q": "自動化に関する問題判別で最初に確認するとよいものはどれか。",
+    "choices": [
+     "メッセージ・タイプや自動化テーブルの到達性",
+     "RODM の物理サイズ",
+     "端末の色設定",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "問題判別ではメッセージ・タイプや自動化テーブルのステートメント到達性などを確認する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.223",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8560",
+   "title": "Displaying Data Sets Used by the NetView Program",
+   "naiyou_jp": "NetView プログラムが使用するデータ・セットを表示する機能。NetView の各種データ・セット（DSIPARM、DSIMSG 等）の割り振り状況を表示し、構成や問題判別に役立てる。これによりどのメンバーがどのデータ・セットから読み込まれているかを把握できる。",
+   "verify_steps": [
+    "NetView コマンド行から使用データ・セット表示コマンドを発行する。",
+    "NetView が使用するデータ・セット一覧を確認する。",
+    "対象メンバーが正しいデータ・セットから読み込まれていることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 使用データ・セット表示の用途はどれか。",
+    "choices": [
+     "構成確認や問題判別",
+     "RODM フォーマット",
+     "アラート生成",
+     "ビュー暗号化"
+    ],
+    "answer": 0,
+    "explanation": "使用データ・セット表示は構成確認や問題判別に役立つ。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.187",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8563",
+   "title": "Displaying Network Status on a single panel",
+   "naiyou_jp": "単一パネルにネットワーク状態を表示する DDF サンプル構成。 DDF（Dynamic Display Facility）はネットワーク状態をパネル階層で表示し、主 DDF パネル（EZLPNLST）から各コンポーネントを展開できる。状態色変化は EZLTREE の階層に沿って伝搬する。",
+   "verify_steps": [
+    "DDF と入力して主 DDF パネルを表示する。",
+    "対象パネル／コンポーネントを展開してネットワーク状態を表示する。",
+    "資源の状態色が正しく表示・伝搬することを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の主パネルのパネル名はどれか。",
+    "choices": [
+     "EZLPNLST",
+     "EZLINIT",
+     "EZLTREE",
+     "FKVPNSNA"
+    ],
+    "answer": 0,
+    "explanation": "主 DDF パネルのパネル名は EZLPNLST。FKVPNSNA は AON/SNA 用パネル。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.251",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8564",
+   "title": "Displaying Network Status on multiple panels",
+   "naiyou_jp": "複数パネルにネットワーク状態を表示する DDF サンプル構成。Data Center Network パネルを起点に、F8 で下位の Network Status パネルへ展開する。 DDF（Dynamic Display Facility）はネットワーク状態をパネル階層で表示し、主 DDF パネル（EZLPNLST）から各コンポーネントを展開できる。状態色変化は EZLTREE の階層に沿って伝搬する。",
+   "verify_steps": [
+    "DDF と入力して主 DDF パネルを表示する。",
+    "対象パネル／コンポーネントを展開してネットワーク状態を表示する。",
+    "資源の状態色が正しく表示・伝搬することを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の主パネルのパネル名はどれか。",
+    "choices": [
+     "EZLPNLST",
+     "EZLINIT",
+     "EZLTREE",
+     "FKVPNSNA"
+    ],
+    "answer": 0,
+    "explanation": "主 DDF パネルのパネル名は EZLPNLST。FKVPNSNA は AON/SNA 用パネル。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.251",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8565",
+   "title": "Displaying or replacing a definition",
+   "naiyou_jp": "AON のオプション定義テーブルの値は高速アクセスのため NetView 共通グローバル変数に置かれる。資源タイプ値の形式は EZLRT.resource_type.keyword、オプション値の形式は EZLOPT.option.keyword。AON Common Global Editor パネルでこれらの共通グローバル変数を表示でき、定義を表示または置き換えできる。",
+   "verify_steps": [
+    "AON Common Global Editor パネルを表示する。",
+    "対象の共通グローバル変数（EZLOPT.* / EZLRT.*）を表示する。",
+    "定義を置き換え、共通グローバル変数に反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON オプション値の共通グローバル変数の形式はどれか。",
+    "choices": [
+     "EZLOPT.option.keyword",
+     "DSIOPF.operator",
+     "RODM.field",
+     "VTAM.appl"
+    ],
+    "answer": 0,
+    "explanation": "オプション値は EZLOPT.option.keyword、資源タイプ値は EZLRT.resource_type.keyword の形式で格納される。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.389",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8566",
+   "title": "Displaying or replacing an option definition table",
+   "naiyou_jp": "AON のオプション定義テーブルは NetView DSIPARM データ・セットに保持される。AON Loader Tables パネルから、これらのテーブルの一つを参照（browse）したり、AON プログラムが使用する共通グローバル変数へ再ロードしたりできる。一時変更ではなく恒久的な変更が必要な場合は、定義を更新して置き換える。",
+   "verify_steps": [
+    "AON Loader Tables パネルを表示する。",
+    "対象のオプション定義テーブルを参照または再ロードする。",
+    "共通グローバル変数に値が反映されたことを確認する。"
+   ],
+   "quiz": {
+    "q": "AON のオプション定義テーブルを参照・再ロードするパネルはどれか。",
+    "choices": [
+     "AON Loader Tables パネル",
+     "RODMView 主メニュー",
+     "DDF 主パネル",
+     "AutoView パネル"
+    ],
+    "answer": 0,
+    "explanation": "AON Loader Tables パネルでオプション定義テーブルを参照・再ロードする。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.391",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8568",
+   "title": "Displaying resource information with AutoView",
+   "naiyou_jp": "AON の AutoView 機能は、単一の資源についての情報を要約表示し、その資源に対する詳細情報の取得や自動化設定の変更のためのコマンド一覧を提供する。AON: AutoView パネルは Base Functions パネルから 2 を入力して表示でき、資源名・資源タイプ（LU、PU、NCP、APPL）を指定して情報を表示する。",
+   "verify_steps": [
+    "Base Functions パネルから 2 を入力し AON: AutoView パネルを表示する。",
+    "資源名（例: TA1P523A）と資源タイプを入力する。",
+    "当該資源の要約情報と発行可能コマンドが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON: AutoView パネルで指定できる資源タイプに含まれるものはどれか。",
+    "choices": [
+     "LU / PU / NCP / APPL",
+     "VSAM / QSAM",
+     "TSO / ISPF",
+     "SMF / RMF"
+    ],
+    "answer": 0,
+    "explanation": "AutoView では資源タイプとして LU、PU、NCP、APPL を指定できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.45",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8570",
+   "title": "Displaying SNA resource information with AutoView",
+   "naiyou_jp": "AutoView 機能は単一資源の情報要約を表示し、詳細取得や自動化設定変更のためのコマンド一覧を提供する。SNA 資源情報を表示するには、任意のパネルのコマンド行に SNAVIEW と入力する。AutoView を使うには対象資源の名前を知っている必要がある。",
+   "verify_steps": [
+    "任意のパネルのコマンド行に SNAVIEW と入力する。",
+    "Enter を押し AutoView 選択パネルを表示する。",
+    "SNA 資源名を入力し、要約情報と発行可能コマンドが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "SNA 資源情報を AutoView で表示するコマンドはどれか。",
+    "choices": [
+     "SNAVIEW",
+     "IPSTAT",
+     "DDFADD",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "SNAVIEW で AutoView の SNA 資源情報選択パネルを表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.137",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8572",
+   "title": "Displaying the AON Base Functions Panel",
+   "naiyou_jp": "AON の Base Functions パネルを表示する。基本的な自動化機能（AutoView など）への入口となるパネルである。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8573",
+   "title": "Displaying the AON Help Desk",
+   "naiyou_jp": "AON のヘルプ・デスク・パネルを表示する。資源に対する問題判別コマンドの発行などを行える。 コマンド行に SNAHD と入力しても直接表示できる。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。（または SNAHD を入力）",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8574",
+   "title": "Displaying the AON: Automation Settings Panel",
+   "naiyou_jp": "AON: Automation Settings パネルを表示する。監視間隔や能動監視などの自動化設定を行う入口となる。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8575",
+   "title": "Displaying the AON: AutoView panel",
+   "naiyou_jp": "AON: AutoView パネルを表示する。Base Functions パネルから 2 を入力して表示し、単一資源の情報要約とコマンド一覧を提供する。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8576",
+   "title": "Displaying the AON: Operator Commands Main Menu",
+   "naiyou_jp": "AON: Operator Commands Main Menu を表示する。AON 操作インターフェースの主パネルであり、コマンド行に AON と入力して表示する。 コマンド行に AON と入力しても直接表示できる。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。（または AON を入力）",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8577",
+   "title": "Displaying the AON: Task and Log Maintenance panel",
+   "naiyou_jp": "AON: Task and Log Maintenance パネルを表示する。タスクとログの保守機能への入口となる。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8578",
+   "title": "Displaying the Cross-Domain Functions panel",
+   "naiyou_jp": "クロスドメイン機能（Cross-Domain Functions）パネルを表示する。複数ドメインにまたがる自動化機能を扱う。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8579",
+   "title": "Displaying the Support Functions panel",
+   "naiyou_jp": "サポート機能（Support Functions）パネルを表示する。AON の保守・診断系機能への入口となる。 AON のパネルはファンクション・キー（F1=Help、F2=Main Menu、F3=Return、F4=Commands、F5=Refresh、F6=Roll など）で操作する。",
+   "verify_steps": [
+    "AON: Operator Commands Main Menu または上位パネルから対象パネルへ遷移する。",
+    "パネルが表示されることを確認する。",
+    "ファンクション・キーで各機能を操作できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで前のパネルに戻るファンクション・キーはどれか。",
+    "choices": [
+     "F3",
+     "F1",
+     "F5",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help、F3=Return（前パネル）、F5=Refresh、F6=Roll。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8580",
+   "title": "Displaying Views in a Web Browser",
+   "naiyou_jp": "NetView 管理コンソールのビューを Web ブラウザーで表示する機能。トポロジー・サーバーが提供するビューを、Java ベースの専用トポロジー・コンソールに加え Web ブラウザーからも表示できる。これによりクライアントへの専用ソフトウェア導入なしにネットワーク状態を参照できる。",
+   "verify_steps": [
+    "トポロジー・サーバーで Web 表示機能を構成する。",
+    "Web ブラウザーからトポロジー・サーバーへアクセスする。",
+    "RODM ベースのビューがブラウザーに表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのビューを専用コンソール以外で表示できる手段はどれか。",
+    "choices": [
+     "Web ブラウザー",
+     "3270 端末",
+     "SMF ビューアー",
+     "RODMView"
+    ],
+    "answer": 0,
+    "explanation": "ビューは Java ベースのトポロジー・コンソールに加え Web ブラウザーでも表示できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8581",
+   "title": "Distributed Database Retrieval",
+   "naiyou_jp": "分散データベース検索（Distributed Database Retrieval）に関する項目。NetView はフォーカル・ポイント／分散ドメイン構成において、複数ドメインに分散したデータベース情報を取得できる。これによりセッション・モニターやハードウェア・モニターの情報を集中して参照できる。",
+   "verify_steps": [
+    "フォーカル・ポイント／分散ドメイン構成を確認する。",
+    "分散ドメインのデータベース情報を取得する操作を行う。",
+    "複数ドメインの情報が集約して参照できることを確認する。"
+   ],
+   "quiz": {
+    "q": "分散データベース検索が役立つ構成はどれか。",
+    "choices": [
+     "フォーカル・ポイント／分散ドメイン構成",
+     "単一端末構成",
+     "RODM 無効構成",
+     "SMF のみ構成"
+    ],
+    "answer": 0,
+    "explanation": "分散データベース検索はフォーカル・ポイント／分散ドメイン構成で複数ドメインの情報取得を可能にする。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.247",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8590",
+   "title": "Driving the Inform Policy (EZLENFRM)",
+   "naiyou_jp": "EZLENFRM は通知（INFORM）ポリシーが必要なときに AON 通知ポリシーから呼び出される REXX ルーチンである。インフォーム・ポリシーを評価して通知アクションを駆動し、EXIT11/EXIT12 を呼び出す。 EZLENFRM は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLENFRM を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLENFRM はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLENFRM は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8591",
+   "title": "During Initial Sign On",
+   "naiyou_jp": "初回サインオン（initial sign on）時の処理。初回ログオン時に自動ファイル・ダウンロードなどが行われる。 NetView 管理コンソール（トポロジー・コンソール）のサインオン処理に関する項目であり、コンソールがトポロジー・サーバーへ接続し、RODM ベースのビューを取得するための会話を確立する過程を扱う。",
+   "verify_steps": [
+    "トポロジー・コンソールでサインオンを開始する。",
+    "トポロジー・サーバーとの会話が確立されることを確認する。",
+    "ビューおよびカスタマイズが取得されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソールのサインオンで確立されるものは何か。",
+    "choices": [
+     "トポロジー・サーバーとの会話",
+     "RODM チェックポイント",
+     "VTAM セッション定義",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "サインオンによりコンソールとサーバー間の会話が確立され、RODM ベースのビューが利用可能になる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8593",
+   "title": "During Subsequent Sign On",
+   "naiyou_jp": "2 回目以降のサインオン（subsequent sign on）時の処理。前回取得済みのカスタマイズを踏まえて会話を確立する。 NetView 管理コンソール（トポロジー・コンソール）のサインオン処理に関する項目であり、コンソールがトポロジー・サーバーへ接続し、RODM ベースのビューを取得するための会話を確立する過程を扱う。",
+   "verify_steps": [
+    "トポロジー・コンソールでサインオンを開始する。",
+    "トポロジー・サーバーとの会話が確立されることを確認する。",
+    "ビューおよびカスタマイズが取得されることを確認する。"
+   ],
+   "quiz": {
+    "q": "トポロジー・コンソールのサインオンで確立されるものは何か。",
+    "choices": [
+     "トポロジー・サーバーとの会話",
+     "RODM チェックポイント",
+     "VTAM セッション定義",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "サインオンによりコンソールとサーバー間の会話が確立され、RODM ベースのビューが利用可能になる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8596",
+   "title": "DVIPA Definition and Status Attributes",
+   "naiyou_jp": "DVIPA（動的仮想 IP アドレス）の定義と状況を表示するための属性群。マスター NetView を表すドメイン・ノードではシスプレックス全体のデータを含むことがある。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（DVIPA Definition and Status Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DVIPA Definition and Status Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8597",
+   "title": "DVIPA Definition and Status Workspace",
+   "naiyou_jp": "DVIPA の定義と状況を表示するワークスペース。マスター NetView を表すノードではシスプレックス全体のデータを含むことがある。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（DVIPA Definition and Status Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DVIPA Definition and Status Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8604",
+   "title": "Editing EZLPNLS",
+   "naiyou_jp": "DSIPARM の EZLPNLS メンバーを編集する項目。EZLPNLS は DDF のパネル・ステートメントを定義し、各 DDF パネルのレイアウトや表示要素を構成する。編集後は DDF を再ロードして変更を反映する。",
+   "verify_steps": [
+    "DSIPARM の EZLPNLS メンバーを編集する。",
+    "パネル・ステートメント（レイアウト・表示要素）を変更する。",
+    "DDF を再ロードし、パネル表示が変更どおりになることを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLPNLS メンバーが定義するものは何か。",
+    "choices": [
+     "DDF のパネル・ステートメント",
+     "RODM クラス",
+     "VTAM 始動オプション",
+     "オペレーター・プロファイル"
+    ],
+    "answer": 0,
+    "explanation": "EZLPNLS は DDF のパネル・ステートメント（パネル・レイアウト）を定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.213",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8605",
+   "title": "Elements in the ihsaudit.xml file",
+   "naiyou_jp": "ihsaudit.xml ファイル内の要素（elements）に関する項目。トポロジー・サーバーの監査機能を構成する ihsaudit.xml では、監査対象や出力形式を定義する各種要素を記述する。これらの要素により、どの操作を監査ログに記録するかを制御する。",
+   "verify_steps": [
+    "ihsaudit.xml ファイルを開く。",
+    "監査対象・出力形式を定義する各要素を確認・編集する。",
+    "サーバーを再起動し、監査エントリーが定義どおりに記録されることを確認する。"
+   ],
+   "quiz": {
+    "q": "ihsaudit.xml ファイルの要素が制御するものは何か。",
+    "choices": [
+     "監査対象操作や出力形式",
+     "RODM フィールド値",
+     "VTAM セッション",
+     "DDF パネル色"
+    ],
+    "answer": 0,
+    "explanation": "ihsaudit.xml の要素は監査対象操作や出力形式を制御する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8606",
+   "title": "Enabling and disabling automation",
+   "naiyou_jp": "自動化を有効化・無効化する方法。AON や自動化テーブルでは、資源やセクション単位で自動化を有効／無効にできる。自動化テーブルのセクションは BEGIN-END で区切り、特定セクションを有効化／無効化できる。これにより運用状況に応じて自動化の適用範囲を制御する。",
+   "verify_steps": [
+    "自動化を有効/無効にする対象（資源またはテーブル・セクション）を特定する。",
+    "該当コマンドまたはパネルで自動化を有効化／無効化する。",
+    "対象メッセージを発生させ、自動化が適用または抑止されることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルのセクションを区切り、有効/無効化の単位とする構文はどれか。",
+    "choices": [
+     "BEGIN-END",
+     "IF-ONLY",
+     "START-STOP",
+     "OPEN-CLOSE"
+    ],
+    "answer": 0,
+    "explanation": "自動化テーブルのセクションは BEGIN-END で区切られ、セクション単位で有効/無効化できる。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.329",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8607",
+   "title": "Enabling and Disabling Sections of an Automation Table",
+   "naiyou_jp": "自動化テーブルのセクションを有効化・無効化する機能。自動化テーブルでは BEGIN-END 対や ALWAYS により処理経路が構成され、特定セクションを有効／無効にして適用範囲を制御できる。誤った位置の BEGIN-END や ALWAYS は意図したステートメントの未到達を招くため、リスティングで到達性を確認する。",
+   "verify_steps": [
+    "対象の自動化テーブル・セクション（BEGIN-END）を特定する。",
+    "セクションを有効化または無効化する。",
+    "リスティングでセクションの到達性を確認し、意図どおり適用/抑止されることを確認する。"
+   ],
+   "quiz": {
+    "q": "自動化テーブルで意図したステートメントが未到達になる原因になりうるものはどれか。",
+    "choices": [
+     "誤った位置の BEGIN-END や ALWAYS",
+     "RODM チェックポイント",
+     "端末の色設定",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "誤った位置の BEGIN-END 対や ALWAYS は意図したステートメントの未到達を招く。"
+   },
+   "source": "NetView_6.4_Troubleshooting_Guide.pdf p.85",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8608",
+   "title": "Enabling the Examples",
+   "naiyou_jp": "サンプル（examples）を有効化する。AON のサンプル定義を有効にして利用可能にする。 AON にはサンプル（examples）が用意されており、有効化（enable）またはインストールして自動化の構成例として利用できる。サンプルは制御ファイルや定義メンバーの記述方法を示す。",
+   "verify_steps": [
+    "AON のサンプル（examples）を有効化またはインストールする。",
+    "サンプルに従って制御ファイル／定義を構成する。",
+    "サンプル構成で自動化が動作することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON のサンプル（examples）の用途はどれか。",
+    "choices": [
+     "自動化構成の例として利用する",
+     "RODM の物理初期化",
+     "端末の暗号化",
+     "SMF の収集"
+    ],
+    "answer": 0,
+    "explanation": "サンプルは自動化の構成例として有効化・インストールして利用する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8611",
+   "title": "EXIT05 processing (EZLEAGRN)",
+   "naiyou_jp": "EXIT05 は EZLEAGRN の処理で呼び出され、AON が使用する資源データの変更や追加のタスク・グローバル変数設定に使用できる。タスク・グローバル変数 EZLEAGRNRC で戻りコードを変更できる。 EZLEAGRN の処理過程で呼び出される AON ユーザー出口であり、制御ファイルの ENVIRON EXIT,EXIT05=(...) で指定する。出口は資源データの変更やタスク・グローバル変数の設定に利用でき、ゼロ以外の戻りコードが返るまで定義順に呼び出される。",
+   "verify_steps": [
+    "制御ファイルで ENVIRON EXIT,EXIT05=(...) を定義する。",
+    "対応する共通ルーチン EZLEAGRN を起動する。",
+    "出口が呼び出され、戻りコードに応じて処理が制御されることを確認する。"
+   ],
+   "quiz": {
+    "q": "EXIT05 はどの共通ルーチンから呼び出されるか。",
+    "choices": [
+     "EZLEAGRN",
+     "EZLEVACT",
+     "GENALERT",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "EXIT05 は EZLEAGRN の処理過程で呼び出されるユーザー出口である。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.371",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8612",
+   "title": "EXIT06 processing (EZLEATHR)",
+   "naiyou_jp": "EXIT06 は EZLEATHR がしきい値分析を行った後、オペレーター通知が発行される前に呼び出される。資源名・タイプを EZLEATHR に渡す必要があり、EZLEATHRRC で戻りコードを変更できる。 EZLEATHR の処理過程で呼び出される AON ユーザー出口であり、制御ファイルの ENVIRON EXIT,EXIT06=(...) で指定する。出口は資源データの変更やタスク・グローバル変数の設定に利用でき、ゼロ以外の戻りコードが返るまで定義順に呼び出される。",
+   "verify_steps": [
+    "制御ファイルで ENVIRON EXIT,EXIT06=(...) を定義する。",
+    "対応する共通ルーチン EZLEATHR を起動する。",
+    "出口が呼び出され、戻りコードに応じて処理が制御されることを確認する。"
+   ],
+   "quiz": {
+    "q": "EXIT06 はどの共通ルーチンから呼び出されるか。",
+    "choices": [
+     "EZLEATHR",
+     "EZLEVACT",
+     "GENALERT",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "EXIT06 は EZLEATHR の処理過程で呼び出されるユーザー出口である。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.371",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8613",
+   "title": "EXIT07 Processing (EZLECAUT)",
+   "naiyou_jp": "EXIT07 は EZLECAUT（自動化検査）の処理で呼び出され、RECOVERY エントリーに対応する。自動化の有効性検査の過程でユーザー処理を挿入できる。 EZLECAUT の処理過程で呼び出される AON ユーザー出口であり、制御ファイルの ENVIRON EXIT,EXIT07=(...) で指定する。出口は資源データの変更やタスク・グローバル変数の設定に利用でき、ゼロ以外の戻りコードが返るまで定義順に呼び出される。",
+   "verify_steps": [
+    "制御ファイルで ENVIRON EXIT,EXIT07=(...) を定義する。",
+    "対応する共通ルーチン EZLECAUT を起動する。",
+    "出口が呼び出され、戻りコードに応じて処理が制御されることを確認する。"
+   ],
+   "quiz": {
+    "q": "EXIT07 はどの共通ルーチンから呼び出されるか。",
+    "choices": [
+     "EZLECAUT",
+     "EZLEVACT",
+     "GENALERT",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "EXIT07 は EZLECAUT の処理過程で呼び出されるユーザー出口である。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.371",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8617",
+   "title": "EXIT11 and EXIT12 Inform Policy processing",
+   "naiyou_jp": "EXIT11/EXIT12 はインフォーム（INFORM）ポリシー処理で呼び出される。EXIT11 は前処理、EXIT12 はインターフェース呼び出し前の後処理出口で、インフォーム・アクションのキャンセルや変更ができる。 EZLENFRM の処理過程で呼び出される AON ユーザー出口であり、制御ファイルの ENVIRON EXIT,EXIT11/EXIT12=(...) で指定する。出口は資源データの変更やタスク・グローバル変数の設定に利用でき、ゼロ以外の戻りコードが返るまで定義順に呼び出される。",
+   "verify_steps": [
+    "制御ファイルで ENVIRON EXIT,EXIT11/EXIT12=(...) を定義する。",
+    "対応する共通ルーチン EZLENFRM を起動する。",
+    "出口が呼び出され、戻りコードに応じて処理が制御されることを確認する。"
+   ],
+   "quiz": {
+    "q": "EXIT11/EXIT12 はどの共通ルーチンから呼び出されるか。",
+    "choices": [
+     "EZLENFRM",
+     "EZLEVACT",
+     "GENALERT",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "EXIT11/EXIT12 は EZLENFRM の処理過程で呼び出されるユーザー出口である。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.371",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8618",
+   "title": "EXIT13 Socket Monitoring",
+   "naiyou_jp": "EXIT13 はソケットに対する STOP および ACTIVATE コマンドの発行を防止したり、それらを上書きしたりするために使用できるユーザー出口である。EXIT13 は STOP 処理と ACTIVATE 処理の両方で呼び出され、IPPORT 形式で Socket_Name、SP=stack_name、PORT=Port_Num などのパラメーターを受け取る。AON/TCP のソケット監視で利用される。",
+   "verify_steps": [
+    "制御ファイルで EXIT13（ソケット監視出口）を定義する。",
+    "ソケットに対する STOP/ACTIVATE 処理を発生させる。",
+    "EXIT13 が呼び出され、コマンドの抑止または上書きが行われることを確認する。"
+   ],
+   "quiz": {
+    "q": "EXIT13 が呼び出されるのはどの処理か。",
+    "choices": [
+     "ソケットの STOP 処理と ACTIVATE 処理の両方",
+     "RODM チェックポイント",
+     "ビュー再描画",
+     "自動化テーブル・ロード"
+    ],
+    "answer": 0,
+    "explanation": "EXIT13 はソケットの STOP と ACTIVATE の両処理で呼び出され、コマンドの抑止/上書きが可能。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.382",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8626",
+   "title": "Filtered DVIPA Definition and Status Workspace",
+   "naiyou_jp": "フィルター済みの DVIPA 定義・状況ワークスペース。リンク・アイコンから絞り込んだ DVIPA を表示する。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Filtered DVIPA Definition and Status Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Filtered DVIPA Definition and Status Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8632",
+   "title": "Filtered Telnet Server Configuration and Status Workspace",
+   "naiyou_jp": "フィルター済みの Telnet サーバー構成・状況ワークスペース。Telnet Server Configuration and Status ワークスペースと同じビューおよびしきい値を提供する。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Filtered Telnet Server Configuration and Status Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Filtered Telnet Server Configuration and Status Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8641",
+   "title": "Format for option definition table entries",
+   "naiyou_jp": "オプション定義テーブル・エントリーの構文は table_name entry,kw1=val1,kw2=val2,...,kwn=valn の形式である。table_name はオプション定義テーブルの名前で、EZLOPT はオプションまたはサブオプション全体の自動化定義を含む。該当するキーワードのみを定義する。最上位オプションは O（オプション）値を持たない。",
+   "verify_steps": [
+    "オプション定義テーブル・エントリーを table_name entry,kw=val 形式で記述する。",
+    "該当するキーワードのみを定義する。",
+    "テーブルを再ロードし、値が共通グローバル変数に反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "オプション定義テーブル・エントリーの構文形式はどれか。",
+    "choices": [
+     "table_name entry,kw1=val1,...",
+     "DEFINE OPERATOR ...",
+     "IF MSGID ... THEN ...",
+     "ASSIGN GROUP=..."
+    ],
+    "answer": 0,
+    "explanation": "エントリーは table_name entry,kw1=val1,kw2=val2,... の形式で記述する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.393",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8643",
+   "title": "Forwarding User Messages (EZLE1UFW)",
+   "naiyou_jp": "EZLE1UFW はユーザー・メッセージを転送する AON 共通ルーチンである。AON のメッセージング機構の一部として、ユーザー定義メッセージを通知オペレーターや他のドメインへ転送する処理を行う。任意の NetView プログラムから呼び出せる。",
+   "verify_steps": [
+    "AON 処理またはコマンド行から EZLE1UFW を発行する。",
+    "ユーザー・メッセージが転送されることを確認する。",
+    "通知オペレーターまたは対象ドメインでメッセージ受信を確認する。"
+   ],
+   "quiz": {
+    "q": "EZLE1UFW の役割はどれか。",
+    "choices": [
+     "ユーザー・メッセージの転送",
+     "VTAM 資源の活動化",
+     "RODM チェックポイント",
+     "ビューの保存"
+    ],
+    "answer": 0,
+    "explanation": "EZLE1UFW はユーザー・メッセージを転送する AON 共通ルーチンである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8651",
+   "title": "Getting help",
+   "naiyou_jp": "AON ではヘルプ（help）を利用できる。各パネルで F1=Help を押すと、現在表示中のパネルに必要な指示が文脈ヘルプとして表示される。AON 全体、AON ベース、各専門自動化コンポーネントの詳細ヘルプも提供される。HELP コマンドや HELP ABEND などのオンライン・ヘルプも利用できる。",
+   "verify_steps": [
+    "AON パネルで F1（Help）を押す。",
+    "現在のパネルに対する文脈ヘルプが表示されることを確認する。",
+    "必要に応じて HELP コマンドでオンライン・ヘルプを参照する。"
+   ],
+   "quiz": {
+    "q": "AON パネルで文脈ヘルプを表示するファンクション・キーはどれか。",
+    "choices": [
+     "F1",
+     "F2",
+     "F3",
+     "F6"
+    ],
+    "answer": 0,
+    "explanation": "F1=Help が現在のパネルに対する文脈ヘルプを表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.35",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8653",
+   "title": "Getting started",
+   "naiyou_jp": "AON の利用を開始する（getting started）ための導入項目。AON: Operator Commands Main Menu からチュートリアル（オプション 0）やヘルプ・デスク、AutoView などの機能にアクセスする。AON はコマンド行に AON と入力して操作インターフェースを開始する。",
+   "verify_steps": [
+    "コマンド行に AON と入力し主メニューを表示する。",
+    "オプション 0 を選択してチュートリアルを表示する。",
+    "各機能（ヘルプ・デスク、AutoView 等）へアクセスできることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON 主メニューでチュートリアルを表示する選択肢はどれか。",
+    "choices": [
+     "0",
+     "4",
+     "9",
+     "F12"
+    ],
+    "answer": 0,
+    "explanation": "AON: Operator Commands Main Menu でオプション 0 を選ぶとチュートリアルが表示される。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.36",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8654",
+   "title": "Getting started with AON/SNA",
+   "naiyou_jp": "AON/SNA の利用を開始する項目。AONSNA と入力すると SNA Automation: Menu パネルが表示され、Help Desk（オプション 1）などの機能にアクセスできる。SNA Automation: Help Desk パネルは AON 2.1 または SNAHD コマンドでも表示できる。",
+   "verify_steps": [
+    "コマンド行に AONSNA と入力し SNA Automation: Menu を表示する。",
+    "オプション 1（Help Desk）を選択するか SNAHD を入力する。",
+    "SNA Automation: Help Desk パネルが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON/SNA の操作インターフェース（SNA Automation: Menu）を表示するコマンドはどれか。",
+    "choices": [
+     "AONSNA",
+     "IPSTAT",
+     "DDFADD",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "AONSNA で SNA Automation: Menu パネルが表示される。SNAHD は Help Desk を直接表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.104",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8656",
+   "title": "Guidelines for option definition table entries",
+   "naiyou_jp": "オプション定義テーブル・エントリーの指針（guidelines）に関する項目。AON のオプション定義テーブルは DSIPARM に保持され、値は共通グローバル変数（EZLOPT.*、EZLRT.*）に格納される。エントリー作成時は該当キーワードのみを定義し、構文 table_name entry,kw=val に従う。恒久変更時は定義を更新して置き換える。",
+   "verify_steps": [
+    "オプション定義テーブル・エントリーの指針に従い、該当キーワードのみを定義する。",
+    "table_name entry,kw=val 形式で記述する。",
+    "テーブルを再ロードし、共通グローバル変数に反映されることを確認する。"
+   ],
+   "quiz": {
+    "q": "オプション定義テーブル・エントリー作成の指針として正しいものはどれか。",
+    "choices": [
+     "該当するキーワードのみを定義する",
+     "常に全キーワードを定義する",
+     "RODM フィールドを直接編集する",
+     "DSIOPF に記述する"
+    ],
+    "answer": 0,
+    "explanation": "エントリーには該当するキーワードのみを定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.389",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8657",
+   "title": "Health Situations",
+   "naiyou_jp": "ヘルス状況（health situations）を表示・評価するための定義。しきい値に基づき資源の健全性を判定する。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Health Situations）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Health Situations を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8658",
+   "title": "HiperSockets Configuration and Status Attributes",
+   "naiyou_jp": "HiperSockets の構成・状況情報を表示するための属性群。データ収集には RODM が必要である。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（HiperSockets Configuration and Status Attributes）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "HiperSockets Configuration and Status Attributes を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8659",
+   "title": "HiperSockets Configuration and Status Workspace",
+   "naiyou_jp": "HiperSockets の構成・状況情報を表示するワークスペース。データ収集には RODM が必要であり、マスター NetView ノードではシスプレックス全体のデータを含むことがある。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（HiperSockets Configuration and Status Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "HiperSockets Configuration and Status Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8660",
+   "title": "Host VTAM messages",
+   "naiyou_jp": "ホスト VTAM メッセージに関する項目。AON/SNA はホスト VTAM が発行するメッセージ（IST 接頭部等）やアラートを傍受し、SNA 資源（NCP、LINE、PU、LU、CDRM、CDRSC、APPL 等）の自動化の契機とする。これらのメッセージは資源の状態変化を示し、回復や通知の自動化に利用される。",
+   "verify_steps": [
+    "AON/SNA がホスト VTAM メッセージを受信する状況を発生させる。",
+    "自動化テーブル/AON が当該メッセージを処理することを確認する。",
+    "必要な回復・通知アクションが行われることを確認する。"
+   ],
+   "quiz": {
+    "q": "ホスト VTAM メッセージを傍受して SNA 資源の自動化を行う AON コンポーネントはどれか。",
+    "choices": [
+     "AON/SNA",
+     "AON/TCP",
+     "GMFHS",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "AON/SNA がホスト VTAM のメッセージ・アラートを傍受して SNA 資源を自動化する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.394",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8665",
+   "title": "How Commands and Responses Flow",
+   "naiyou_jp": "NetView 管理コンソールにおけるコマンドと応答のフローに関する項目。トポロジー・コンソールから資源を選択してコマンドを発行すると、トポロジー・サーバーを経由して NetView ホスト（GMFHS/RODM）へ渡され、応答がコンソール・ログ・ウィンドウに挿入される。応答はリポジトリーに保持され、コンソール・ログ・ウィンドウを開いたときに参照できる。",
+   "verify_steps": [
+    "トポロジー・コンソールで資源を選択しコマンドを発行する。",
+    "コマンドがサーバー経由でホストに渡されることを確認する。",
+    "コンソール・ログ・ウィンドウで応答を確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのコマンド応答はどこで参照できるか。",
+    "choices": [
+     "コンソール・ログ・ウィンドウ",
+     "RODM チェックポイント",
+     "DDF 主パネル",
+     "SMF レコード"
+    ],
+    "answer": 0,
+    "explanation": "コマンド応答はリポジトリーに保持され、コンソール・ログ・ウィンドウで参照できる。"
+   },
+   "source": "NetView_6.4_Troubleshooting_Guide.pdf p.233",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8666",
+   "title": "How Data Is Sent to the Z NetView Program",
+   "naiyou_jp": "データが IBM Z NetView プログラムへ送られる仕組みに関する項目。NetView 管理コンソールのトポロジー・サーバーは RODM から情報を取得し、トポロジー・コンソールへトポロジーと状態を提供する。ホストとサーバー間の会話を通じてデータが流れ、RODM ベースのビューが構築される。",
+   "verify_steps": [
+    "トポロジー・サーバーと NetView ホスト間の会話を確認する。",
+    "RODM から情報が取得されることを確認する。",
+    "コンソールに RODM ベースのビューとしてデータが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールへ提供されるトポロジー・状態情報の取得元はどれか。",
+    "choices": [
+     "RODM",
+     "DSIOPF",
+     "SMF",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "トポロジー・サーバーは RODM から情報を取得してコンソールに提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8667",
+   "title": "How Events, Statistics, and Alerts Flow",
+   "naiyou_jp": "イベント・統計・アラートのフローに関する項目。NetView はハードウェア・モニターやセッション・モニターでイベントや統計を収集し、アラートはハードウェア・モニター・データベースに記録される。アラートは program-to-program interface、GENALERT、MS transport を通じてハードウェア・モニターへ送られ、E/AS により SNMP トラップや EIF イベントへ変換され得る。",
+   "verify_steps": [
+    "イベント／アラートを発生させる。",
+    "ハードウェア・モニター・データベースへの記録を確認する。",
+    "必要に応じて E/AS による SNMP/EIF への変換・転送を確認する。"
+   ],
+   "quiz": {
+    "q": "アラートをハードウェア・モニターへ送る手段に含まれないものはどれか。",
+    "choices": [
+     "RODMVIEW コマンド",
+     "program-to-program interface",
+     "GENALERT コマンド",
+     "MS transport"
+    ],
+    "answer": 0,
+    "explanation": "アラート送出手段は PPI、GENALERT、MS transport。RODMView は該当しない。"
+   },
+   "source": "NetView_6.4_Automation_Guide.pdf p.336",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8668",
+   "title": "How Messages Flow",
+   "naiyou_jp": "メッセージのフローに関する項目。NetView では、メッセージが ASSIGN による事前ルーティングを経て autotask に渡され、自動化テーブルで処理される。自動化テーブルの IF-THEN ステートメントにより、メッセージのルーティング（EXEC ROUTE）や抑止・応答が行われ、オペレーターやログへ送られる。",
+   "verify_steps": [
+    "メッセージを発生させる。",
+    "ASSIGN/自動化テーブルによる処理経路を確認する。",
+    "メッセージが意図したオペレーター／ログへ送られることを確認する。"
+   ],
+   "quiz": {
+    "q": "メッセージを自動化テーブルへ早く届けるための事前ルーティングに使うコマンドはどれか。",
+    "choices": [
+     "ASSIGN",
+     "RODMVIEW",
+     "DDFADD",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "ASSIGN は autotask へのメッセージ事前ルーティングに用いられ、自動化テーブルへ早く届ける。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.199",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8670",
+   "title": "How the NetView Management Console Works",
+   "naiyou_jp": "NetView 管理コンソールは、サーバーと Java ベースのコンソール（それぞれトポロジー・サーバー、トポロジー・コンソールと呼ばれる）から構成される。トポロジー・コンソールは IBM Z NetView が提供するシステム・ネットワーク情報を RODM ベースのビューとしてグラフィカルに表示する。これはサーバーとホスト間に会話が設定されている場合にのみ利用できる。",
+   "verify_steps": [
+    "トポロジー・サーバーとトポロジー・コンソールを起動する。",
+    "サーバーとホスト間の会話が設定されていることを確認する。",
+    "RODM ベースのビューがコンソールに表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールを構成する 2 つの要素はどれか。",
+    "choices": [
+     "トポロジー・サーバーとトポロジー・コンソール",
+     "RODM と GMFHS",
+     "DSICRTR と BNJDSERV",
+     "E/AS と PPI"
+    ],
+    "answer": 0,
+    "explanation": "管理コンソールはトポロジー・サーバーと Java ベースのトポロジー・コンソールから構成される。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8671",
+   "title": "Hung or Looping NetView Tasks (Command Facility)",
+   "naiyou_jp": "ハングまたはループ状態の NetView タスクをコマンド・ファシリティーから検出・対処する項目。TASKUTIL コマンドで各タスクの CPU 使用率を表示し、異常に高い使用率や応答のないタスクを特定する。特定したタスクに対しては適切な回復処理を行う。",
+   "verify_steps": [
+    "コマンド・ファシリティーで TASKUTIL を発行する。",
+    "CPU 使用率が異常に高い、または応答のないタスクを特定する。",
+    "必要に応じてタスクの回復処理を行う。"
+   ],
+   "quiz": {
+    "q": "ハング/ループ・タスクの特定に有用な NetView コマンドはどれか。",
+    "choices": [
+     "TASKUTIL",
+     "DDFADD",
+     "RODMVIEW",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "TASKUTIL はタスク単位の CPU 使用率を表示し、ハング/ループ・タスクの特定に役立つ。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.237",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8679",
+   "title": "IhsRunning Servlet",
+   "naiyou_jp": "IhsRunning サーブレットに関する項目。NetView 管理コンソールのトポロジー・サーバー（Web コンポーネント）の稼働状態を確認するためのサーブレットであり、サーバーが応答可能かどうかを返す。サーバーの可用性監視やヘルス・チェックに利用される。",
+   "verify_steps": [
+    "トポロジー・サーバーの Web コンポーネントが起動していることを確認する。",
+    "IhsRunning サーブレットにアクセスする。",
+    "サーバーが稼働中である応答が返ることを確認する。"
+   ],
+   "quiz": {
+    "q": "IhsRunning サーブレットの用途はどれか。",
+    "choices": [
+     "トポロジー・サーバーの稼働状態確認",
+     "RODM のフォーマット",
+     "VTAM 資源の活動化",
+     "SMF 収集"
+    ],
+    "answer": 0,
+    "explanation": "IhsRunning サーブレットはトポロジー・サーバーの稼働状態（ヘルス）確認に用いる。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.27",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8683",
+   "title": "Implementing an alert through GENALERT",
+   "naiyou_jp": "GENALERT コマンドを使ってアラートを実装（生成）する方法。GENALERT は汎用 NMVT を生成してハードウェア・モニター・データベースに記録できる。例: GENALERT G TYPE=PERM ALID=... DESC=... TEXT='APPLICATION ABENDED' HIER=... のように指定する。GENALERT で生成したアラートは設計済みアラートと一部異なる場合がある。",
+   "verify_steps": [
+    "GENALERT コマンドをパラメーター（TYPE、ALID、DESC、TEXT、HIER 等）付きで発行する。",
+    "ハードウェア・モニター・データベースにアラートが記録されることを確認する。",
+    "ハードウェア・モニターでアラートが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "GENALERT コマンドで生成できるものはどれか。",
+    "choices": [
+     "ハードウェア・モニターに記録される汎用 NMVT アラート",
+     "RODM チェックポイント",
+     "DDF パネル",
+     "オペレーター・プロファイル"
+    ],
+    "answer": 0,
+    "explanation": "GENALERT は汎用 NMVT を生成してハードウェア・モニター・データベースに記録する。"
+   },
+   "source": "NetView_6.4_Command_Reference_Vol1_A-N.pdf p.450",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8684",
+   "title": "Implementing DDF",
+   "naiyou_jp": "DDF を実装する。サンプルを用いて環境に合わせた状態表示を構成する。 DDF（Dynamic Display Facility）の実装に関する項目であり、サンプルを用いて環境に合わせた DDF 表示をカスタマイズする。実装では複数/単一パネルへの状態表示、MessageView 表示の定義、フォーカル・ポイント環境での DDF などを扱う。",
+   "verify_steps": [
+    "DDF 実装サンプルを参照する。",
+    "環境に合わせて DDF 定義（EZLTREE/EZLINIT/EZLPNLS）をカスタマイズする。",
+    "DDF を起動し、ネットワーク状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の実装で用いられる定義メンバーの組み合わせはどれか。",
+    "choices": [
+     "EZLTREE / EZLINIT / EZLPNLS",
+     "DSIOPF / DSIPRF",
+     "VTAMLST のみ",
+     "SMF / RMF"
+    ],
+    "answer": 0,
+    "explanation": "DDF 実装では EZLTREE（階層）、EZLINIT（初期化）、EZLPNLS（パネル）を定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.251",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8685",
+   "title": "Implementing DDF in a focal point environment",
+   "naiyou_jp": "フォーカル・ポイント環境で DDF を実装する。複数ドメインの状態を集約して表示する。 DDF（Dynamic Display Facility）の実装に関する項目であり、サンプルを用いて環境に合わせた DDF 表示をカスタマイズする。実装では複数/単一パネルへの状態表示、MessageView 表示の定義、フォーカル・ポイント環境での DDF などを扱う。",
+   "verify_steps": [
+    "DDF 実装サンプルを参照する。",
+    "環境に合わせて DDF 定義（EZLTREE/EZLINIT/EZLPNLS）をカスタマイズする。",
+    "DDF を起動し、ネットワーク状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の実装で用いられる定義メンバーの組み合わせはどれか。",
+    "choices": [
+     "EZLTREE / EZLINIT / EZLPNLS",
+     "DSIOPF / DSIPRF",
+     "VTAMLST のみ",
+     "SMF / RMF"
+    ],
+    "answer": 0,
+    "explanation": "DDF 実装では EZLTREE（階層）、EZLINIT（初期化）、EZLPNLS（パネル）を定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.251",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8686",
+   "title": "Implementing Dynamic Display Facility (DDF)",
+   "naiyou_jp": "Dynamic Display Facility（DDF）を実装する。EZLTREE/EZLINIT/EZLPNLS を定義してネットワーク状態のパネル表示を構成する。 DDF（Dynamic Display Facility）の実装に関する項目であり、サンプルを用いて環境に合わせた DDF 表示をカスタマイズする。実装では複数/単一パネルへの状態表示、MessageView 表示の定義、フォーカル・ポイント環境での DDF などを扱う。",
+   "verify_steps": [
+    "DDF 実装サンプルを参照する。",
+    "環境に合わせて DDF 定義（EZLTREE/EZLINIT/EZLPNLS）をカスタマイズする。",
+    "DDF を起動し、ネットワーク状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "DDF の実装で用いられる定義メンバーの組み合わせはどれか。",
+    "choices": [
+     "EZLTREE / EZLINIT / EZLPNLS",
+     "DSIOPF / DSIPRF",
+     "VTAMLST のみ",
+     "SMF / RMF"
+    ],
+    "answer": 0,
+    "explanation": "DDF 実装では EZLTREE（階層）、EZLINIT（初期化）、EZLPNLS（パネル）を定義する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.251",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8687",
+   "title": "Implementing X.25 Monitoring Support",
+   "naiyou_jp": "X.25 監視サポートを実装する項目。AON/SNA X.25 では NPSI が基本アラート（RECFMS type 00）を送り、ユーザー・コード・ポイント（X'EE00'〜X'EEFF'）を用いて IBM 提供のコードを補完し、アラートに詳細・助言を付加する。FKVXITAN ユーザー出口が NPSI アラートを捕捉し、診断・クリア・原因コードを変換する。",
+   "verify_steps": [
+    "AON/SNA X.25 監視サポートを構成し、FKVXITAN 出口を有効にする。",
+    "X.25/NPSI のアラートを発生させる。",
+    "FKVXITAN がアラートを変換し、詳細・助言が付加されることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON/SNA X.25 で NPSI アラートを捕捉し診断・原因コードを変換するユーザー出口はどれか。",
+    "choices": [
+     "FKVXITAN",
+     "EZLEVACT",
+     "DDFADD",
+     "RODMVIEW"
+    ],
+    "answer": 0,
+    "explanation": "FKVXITAN ユーザー出口が NPSI アラートを捕捉し、診断・クリア・原因コードを変換する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.401",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8697",
+   "title": "Installing and Customizing the NetView Management Console",
+   "naiyou_jp": "NetView 管理コンソールをインストールしカスタマイズする。トポロジー・サーバーとコンソールを導入し、必要な機能を構成する。 NetView 管理コンソールはトポロジー・サーバーとトポロジー・コンソールから構成され、相互に通信する。インストール手順はインストール README ファイルに従い、トポロジー・サーバーまたはトポロジー・コンソールのどちらをインストールするかに応じて適切な README を選択する。",
+   "verify_steps": [
+    "インストール対象（サーバーまたはコンソール）に応じた README を選ぶ。",
+    "README に従って NetView 管理コンソールをインストール・構成する。",
+    "サーバーとコンソールが相互に通信できることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのインストール手順はどこに記載されているか。",
+    "choices": [
+     "インストール README ファイル",
+     "DSIOPF",
+     "RODM データ・モデル",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "インストール手順はインストール README ファイルに記載され、対象に応じて選択する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.25",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8698",
+   "title": "Installing the Examples",
+   "naiyou_jp": "サンプル（examples）をインストールする。AON のサンプル・メンバーを導入する。 AON にはサンプル（examples）が用意されており、有効化（enable）またはインストールして自動化の構成例として利用できる。サンプルは制御ファイルや定義メンバーの記述方法を示す。",
+   "verify_steps": [
+    "AON のサンプル（examples）を有効化またはインストールする。",
+    "サンプルに従って制御ファイル／定義を構成する。",
+    "サンプル構成で自動化が動作することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON のサンプル（examples）の用途はどれか。",
+    "choices": [
+     "自動化構成の例として利用する",
+     "RODM の物理初期化",
+     "端末の暗号化",
+     "SMF の収集"
+    ],
+    "answer": 0,
+    "explanation": "サンプルは自動化の構成例として有効化・インストールして利用する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8699",
+   "title": "Installing the NetView Management Console",
+   "naiyou_jp": "NetView 管理コンソールをインストールする。対象に応じた README に従いサーバー／コンソールを導入する。 NetView 管理コンソールはトポロジー・サーバーとトポロジー・コンソールから構成され、相互に通信する。インストール手順はインストール README ファイルに従い、トポロジー・サーバーまたはトポロジー・コンソールのどちらをインストールするかに応じて適切な README を選択する。",
+   "verify_steps": [
+    "インストール対象（サーバーまたはコンソール）に応じた README を選ぶ。",
+    "README に従って NetView 管理コンソールをインストール・構成する。",
+    "サーバーとコンソールが相互に通信できることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールのインストール手順はどこに記載されているか。",
+    "choices": [
+     "インストール README ファイル",
+     "DSIOPF",
+     "RODM データ・モデル",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "インストール手順はインストール README ファイルに記載され、対象に応じて選択する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.25",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8700",
+   "title": "Integrating Captured Views into the Demonstration",
+   "naiyou_jp": "取り込んだ（captured）ビューをデモンストレーションに統合する項目。-saveViewsLocally で保存したライブ・ビューを、NetView 管理コンソールのデモンストレーションに組み込むことで、実環境に近い外観・操作感のデモを作成できる。デモ機能は Productivity Kit（Windows）の一部である。",
+   "verify_steps": [
+    "-saveViewsLocally で保存したビューを用意する。",
+    "デモンストレーションにビューを統合する。",
+    "デモを再生し、取り込んだビューが表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "デモンストレーションに統合するビューはどのように取り込むか。",
+    "choices": [
+     "-saveViewsLocally でローカル保存する",
+     "RODMView で複製する",
+     "SMF で記録する",
+     "DDFADD で追加する"
+    ],
+    "answer": 0,
+    "explanation": "ライブ・ビューは -saveViewsLocally でローカル保存し、デモに統合する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.125",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8701",
+   "title": "Interpreting Session Data",
+   "naiyou_jp": "セッション・データ（session data）を解釈する項目。NetView のセッション・モニターは SNA セッションのデータ（経路、状態、カウント等）を収集し、オペレーターはこれを解釈してセッションの健全性や問題を判断する。切断セッションやブロックされた仮想ルートなどの状態もここから把握できる。",
+   "verify_steps": [
+    "セッション・モニターで対象セッションのデータを表示する。",
+    "経路・状態・カウント等を解釈する。",
+    "セッションの健全性や問題（切断・ブロック等）を判断する。"
+   ],
+   "quiz": {
+    "q": "セッション・データを収集する NetView の機能はどれか。",
+    "choices": [
+     "セッション・モニター",
+     "RODMView",
+     "DDF",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "セッション・モニターが SNA セッションのデータを収集し、解釈の対象を提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView.pdf p.247",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8704",
+   "title": "Introducing Automated Operations Network",
+   "naiyou_jp": "Automated Operations Network（AON）は、カスタマイズ・拡張可能なポリシー・ベースのプログラム群でネットワーク自動化を提供する。AON/SNA（SNA 自動化）と AON/TCP（TCP/IP 自動化）の各コンポーネントが複数のネットワーク・プロトコルにわたり一貫した自動化を提供し、いずれか一方または両方を選んで運用できる。AON はアラート・メッセージを傍受して障害資源の回復・監視を行う。",
+   "verify_steps": [
+    "AON のコンポーネント（AON/SNA、AON/TCP）の導入状況を確認する。",
+    "制御ファイルでポリシーを定義する。",
+    "資源に障害を発生させ、AON が回復・監視を行うことを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が提供する自動化の特徴はどれか。",
+    "choices": [
+     "ポリシー・ベースで複数プロトコルにわたる一貫した自動化",
+     "RODM の物理管理",
+     "SMF レコードの整形",
+     "端末エミュレーション"
+    ],
+    "answer": 0,
+    "explanation": "AON はポリシー・ベースで AON/SNA・AON/TCP により複数プロトコルにわたる一貫した自動化を提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8705",
+   "title": "Introducing the AON/TCP Operator Interface",
+   "naiyou_jp": "AON/TCP のオペレーター・インターフェースを紹介する項目。AON/TCP は TCP/IP 資源の自動化を担い、専用の操作パネル群を通じて TCP/IP の監視・問題判別・自動化設定を行える。AON の操作インターフェース（コマンド行に AON）から TCP コンポーネントの機能にアクセスする。",
+   "verify_steps": [
+    "AON または AON/TCP の操作インターフェースを開く。",
+    "TCP/IP 資源に関する監視／問題判別パネルを表示する。",
+    "IPSTAT 等のコマンドで TCP/IP の状況を確認できることを確認する。"
+   ],
+   "quiz": {
+    "q": "AON/TCP オペレーター・インターフェースが扱う資源はどれか。",
+    "choices": [
+     "TCP/IP 資源",
+     "VTAM 主ノードのみ",
+     "RODM クラスのみ",
+     "SMF レコードのみ"
+    ],
+    "answer": 0,
+    "explanation": "AON/TCP は TCP/IP 資源の監視・自動化を担い、その操作インターフェースを提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8706",
+   "title": "Introduction",
+   "naiyou_jp": "本章の導入（introduction）項目。NetView の自動化・監視機能、AON コンポーネント、管理コンソールなどの概要を示し、後続の詳細説明への前置きとなる。NetView は z/OS 環境でネットワークおよびシステムの監視・制御・自動化を提供する。",
+   "verify_steps": [
+    "対象章の導入で扱う機能範囲を確認する。",
+    "関連するコンポーネント（AON、管理コンソール等）の概要を把握する。",
+    "後続の詳細手順へ進む準備ができていることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView が z/OS 環境で提供する主な機能はどれか。",
+    "choices": [
+     "ネットワーク・システムの監視・制御・自動化",
+     "データベース・トランザクション処理",
+     "コンパイラー機能",
+     "ファイル圧縮"
+    ],
+    "answer": 0,
+    "explanation": "NetView は z/OS でネットワーク/システムの監視・制御・自動化を提供する。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.201",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8707",
+   "title": "Introduction to the NetView Management Console",
+   "naiyou_jp": "NetView 管理コンソールの導入項目。管理コンソールは対話的なグラフィックスでネットワークの状態をビューとして表示し、例外監視（資源が注意を要するときのみ表示）や、資源のマーク（例: 保守中であることの表示）などの機能を提供する。ライブ・ビューからデモンストレーションを作成する機能もある。",
+   "verify_steps": [
+    "NetView 管理コンソールを起動する。",
+    "例外監視やマーク機能などの基本機能を確認する。",
+    "RODM ベースのビューでネットワーク状態が表示されることを確認する。"
+   ],
+   "quiz": {
+    "q": "NetView 管理コンソールの例外監視（monitor by exception）の動作はどれか。",
+    "choices": [
+     "資源が注意を要するときのみ画面に表示する",
+     "常に全資源を表示する",
+     "資源を一切表示しない",
+     "SMF レコードのみ表示する"
+    ],
+    "answer": 0,
+    "explanation": "例外監視は、資源が注意を要するときのみ画面に表示する機能である。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8709",
+   "title": "Issuing Commands",
+   "naiyou_jp": "NetView でコマンドを発行する方法に関する項目。コマンド・ファシリティーのコマンド行や AON パネル、トポロジー・コンソールのコンテキスト・メニューなどからコマンドを発行できる。AON 機能の多くは操作インターフェースを介さず、コマンド（およびシノニム）を直接発行して利用できる。",
+   "verify_steps": [
+    "コマンド・ファシリティーまたは AON パネルのコマンド行にコマンドを入力する。",
+    "Enter を押してコマンドを発行する。",
+    "応答や状態変化を確認する。"
+   ],
+   "quiz": {
+    "q": "AON 機能の多くを操作インターフェースを介さずに利用する方法はどれか。",
+    "choices": [
+     "コマンド（およびシノニム）を直接発行する",
+     "RODM を直接編集する",
+     "SMF レコードを書く",
+     "端末を再起動する"
+    ],
+    "answer": 0,
+    "explanation": "AON 機能の多くはコマンドやコマンド・シノニムを直接発行して利用できる。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.38",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8710",
+   "title": "Issuing Dynamic Display Facility (DDF) commands",
+   "naiyou_jp": "AON ルーチンは DDF コマンド群を用いて DDF 内から状態情報を更新する。コマンドには DDF（DDF/特定パネルの表示）、DDFADD（状態記述子の追加）、DDFCLEAR（クリア）、DDFDEL（削除）、DDFPANEL（パネル・メンバーのロード）、DDFQRY（特定状態記述子の照会）などがある。",
+   "verify_steps": [
+    "AON ルーチンまたはコマンド行から DDF コマンド（DDFADD 等）を発行する。",
+    "DDF パネルで状態情報が更新されることを確認する。",
+    "DDFQRY で状態記述子の状態を照会する。"
+   ],
+   "quiz": {
+    "q": "DDF パネル・メンバーをロードするコマンドはどれか。",
+    "choices": [
+     "DDFPANEL",
+     "DDFADD",
+     "DDFCLEAR",
+     "DDFQRY"
+    ],
+    "answer": 0,
+    "explanation": "DDFPANEL はパネル・メンバーをロードする。DDFADD は追加、DDFCLEAR はクリア、DDFQRY は照会。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.275",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8711",
+   "title": "Issuing Resource State Reminders (EZLESRMD)",
+   "naiyou_jp": "EZLESRMD は資源状態のリマインダー（state reminder）を発行する AON 共通ルーチンである。資源が一定状態に留まっている場合に通知を再発行する。 EZLESRMD は AON の共通ルーチンであり、任意の NetView プログラムまたはコマンド・プロセッサーから呼び出して自動化処理を構成する。",
+   "verify_steps": [
+    "AON コマンド行または自動化処理から EZLESRMD を発行する。",
+    "戻りコードを確認し、処理結果を判定する。",
+    "対象資源・タイマー・通知等の状態が期待どおりに変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "EZLESRMD はどのコンポーネントの共通ルーチンか。",
+    "choices": [
+     "AON（Automated Operations Network）",
+     "GMFHS",
+     "RODM",
+     "E/AS"
+    ],
+    "answer": 0,
+    "explanation": "EZLESRMD は AON の共通ルーチンの一つである。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.305",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8712",
+   "title": "Issuing VTAM commands",
+   "naiyou_jp": "NetView から VTAM コマンドを発行する方法に関する項目。AON や AON/SNA は VARY ACT/INACT などの VTAM コマンドを共通ルーチン（EZLEVACT、EZLEVINA）を通じて発行し、SNA 資源の活動化・非活動化を行う。オペレーターは AutoView パネルや Help Desk のポップアップ・コマンドからも VTAM コマンドを発行できる。",
+   "verify_steps": [
+    "AutoView または Help Desk パネルで対象 SNA 資源を選択する。",
+    "F4 でポップアップ・コマンド・ウィンドウを表示し VTAM コマンドを選択する。",
+    "VTAM コマンドが発行され、資源状態が変化することを確認する。"
+   ],
+   "quiz": {
+    "q": "AON が VTAM 資源を活動化する際に発行する VTAM コマンドはどれか。",
+    "choices": [
+     "VARY ACT",
+     "DISPLAY NET",
+     "START NET",
+     "HALT NET"
+    ],
+    "answer": 0,
+    "explanation": "EZLEVACT は VARY ACT を発行して VTAM 資源を活動化する（非活動化は VARY INACT）。"
+   },
+   "source": "NetView_6.4_Users_Guide_Automated_Operations_Network.pdf p.343",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8715",
+   "title": "Launching and Using the NetView Management Console from Other Applications",
+   "naiyou_jp": "他のアプリケーションから NetView 管理コンソールを起動・利用する方法に関する項目。プロパティー・ファイルで起動方法を定義することで、外部アプリケーションのコンテキストから管理コンソールやそのビューを呼び出せる。これにより統合運用環境の中で管理コンソール機能を利用できる。",
+   "verify_steps": [
+    "ローカル起動アプリケーション用プロパティー・ファイルで起動定義を構成する。",
+    "他アプリケーションから管理コンソールを起動する。",
+    "管理コンソールのビュー／機能が利用できることを確認する。"
+   ],
+   "quiz": {
+    "q": "他アプリケーションから NetView 管理コンソールを起動する際に起動方法を定義するものはどれか。",
+    "choices": [
+     "プロパティー・ファイル",
+     "DSIOPF",
+     "RODM フィールド",
+     "VTAMLST"
+    ],
+    "answer": 0,
+    "explanation": "プロパティー・ファイルで起動方法を定義し、他アプリケーションから管理コンソールを起動する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Management_Console.pdf p.21",
+   "rag_hit": true
+  },
+  {
+   "row_id": "8717",
+   "title": "Linux on z Systems Workload Server Details Workspace",
+   "naiyou_jp": "Linux on z Systems のワークロード・サーバー詳細を表示するワークスペース。 このワークスペース／属性は NetView Enterprise Management Agent が Tivoli Enterprise Portal に提供する監視データの一部である。ナビゲーターで z/OS Systems > system > NetView Agent > subagent > NetView > domain と展開して表示する。データ収集はサンプリング、または RODM を用いて更新される。",
+   "verify_steps": [
+    "Tivoli Enterprise Portal で z/OS Systems > system > NetView Agent と展開する。",
+    "対象のワークスペース（Linux on z Systems Workload Server Details Workspace）を選択して開く。",
+    "属性値（収集時刻、起点ノード、カウント等）が表示・更新されることを確認する。"
+   ],
+   "quiz": {
+    "q": "Linux on z Systems Workload Server Details Workspace を表示する Enterprise Management Agent のナビゲーター経路の起点はどれか。",
+    "choices": [
+     "z/OS Systems > system > NetView Agent",
+     "Hardware Monitor",
+     "RODMVIEW",
+     "DDF パネル"
+    ],
+    "answer": 0,
+    "explanation": "EMA ワークスペースは z/OS Systems > system > NetView Agent から展開して表示する。"
+   },
+   "source": "NetView_6.4_Users_Guide_NetView_Enterprise_Management_Agent.pdf p.121",
+   "rag_hit": true
+  }
+ ]
+}

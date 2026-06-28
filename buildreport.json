@@ -1,0 +1,76 @@
+{
+ "products": [
+  {
+   "key": "zos-sysprog",
+   "total": 1804,
+   "declared": 1804,
+   "pages": 14
+  },
+  {
+   "key": "z16",
+   "total": 1249,
+   "declared": 1249,
+   "pages": 12
+  },
+  {
+   "key": "tape",
+   "total": 1045,
+   "declared": 1045,
+   "pages": 3
+  },
+  {
+   "key": "aix-ksh",
+   "total": 2681,
+   "declared": 2681,
+   "pages": 11
+  },
+  {
+   "key": "python",
+   "total": 1774,
+   "declared": 1774,
+   "pages": 14
+  },
+  {
+   "key": "vscode",
+   "total": 2042,
+   "declared": 2042,
+   "pages": 14
+  }
+ ],
+ "zos_v3_with_verify": {
+  "total": 13762,
+  "pages": 67,
+  "verify_quiz": 10420
+ },
+ "verify": {
+  "items": 50,
+  "procs": 19
+ },
+ "legend_codes": [
+  "(一次資料 突合予定)",
+  "AIX1",
+  "AIX2",
+  "AIX73",
+  "AS1",
+  "AS2",
+  "BAS",
+  "GDPS",
+  "KORN",
+  "MF",
+  "MQ",
+  "NV",
+  "PHA7",
+  "PYDOC",
+  "TS2280DOC",
+  "TS4300DOC",
+  "TS7770DOC",
+  "TSA",
+  "VSCAPI",
+  "VSCCOP",
+  "VSCDOCS",
+  "VSCKB",
+  "VSCREM",
+  "VSCSET",
+  "ZOS31"
+ ]
+}

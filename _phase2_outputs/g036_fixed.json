@@ -1,0 +1,1282 @@
+{
+  "page": "g036",
+  "product": "IBM NetView 6.4",
+  "total_rows": 67,
+  "target_rows": 67,
+  "fixed_count": 67,
+  "rows": [
+    {
+      "row_id": "7386",
+      "title": "System Symbols in Parameter Files",
+      "naiyou_jp": "CNMSTYLE メンバー処理では、RODM 名・NetView ドメイン・TCP/IP スタック名・ネットワーク ID などをパラメーターファイル内で表現するためにシステムシンボルが使用される。これらの値は SYS1.PARMLIB の IEASYMxx メンバーで MVS システムシンボル (&CNMRODM、&CNMTCPN、&CNMNETID) として初期設定でき、CNMSTYLE 内でその値を参照できる。CNMSTYLE 処理中に同名の NetView シンボルが生成され、シンボル値が許される箇所で後続利用できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'System Symbols in Parameter Files' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: D NET,APPLS  および CNMSTYLE 内 &CNMRODM 等の参照\n[出力] IEASYMxx で定義した MVS システムシンボルが CNMSTYLE 値として解決され、初期化時にパラメーターファイルへ反映される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で、パラメーターファイル内のシステムシンボル (&CNMRODM 等) を初期設定する MVS メンバーはどれか?",
+        "choices": [
+          "SYS1.PARMLIB の IEASYMxx メンバー",
+          "DSIPARM の DSITBL01 メンバー",
+          "DSIPARM の CNMSTUSR メンバー",
+          "VTAMLST の A01APPLS メンバー"
+        ],
+        "answer": 0,
+        "explanation": "RODM 名・TCP 名・ネットワーク ID 等の MVS システムシンボルは IEASYMxx で初期設定し、CNMSTYLE で参照する。他は自動化テーブル・ユーザー定義・VTAM 定義であり初期シンボル設定の場ではない。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Migration_Guide.pdf p.78)",
+      "rag_hit": "Getting Started p.64 / Migration Guide p.116: &CNMRODM &CNMTCPN &CNMNETID を IEASYMxx で設定し CNMSTYLE で利用。"
+    },
+    {
+      "row_id": "7387",
+      "title": "TCP/IP Considerations",
+      "naiyou_jp": "TCP/IP に関する考慮事項として、DSITCPCF は DSITCPIP タスクの初期化値を定義する (Data REXX 版は変更不可)。DSITCPRF は TCP/IP オペレーターのセキュリティープロファイルを定義する。なお HTTP サーバーセッションの暗号鍵を定義していた WEB_SERVER ステートメントは削除されている。",
+      "verify_steps": "検証目的: NetView 6.4 における 'TCP/IP Considerations' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: LIST DSITCPIP  /  BROWSE DSITCPCF\n[出力] DSITCPIP タスクの初期化値と TCP/IP オペレーターセキュリティープロファイルが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で DSITCPIP タスクの初期化値を定義するメンバーはどれか?",
+        "choices": [
+          "DSITCPCF",
+          "DSITCPRF",
+          "DSITBL01",
+          "CNMSTYLE"
+        ],
+        "answer": 0,
+        "explanation": "DSITCPCF が DSITCPIP タスクの初期化値を定義する。DSITCPRF はオペレーターのセキュリティープロファイル、DSITBL01 は自動化テーブル、CNMSTYLE は初期化スタイル定義。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Migration_Guide.pdf p.69)",
+      "rag_hit": "Migration Guide p.69: DSITCPCF/DSITCPRF の役割、WEB_SERVER 削除。"
+    },
+    {
+      "row_id": "7388",
+      "title": "Terminal Access Facility",
+      "naiyou_jp": "Terminal Access Facility (TAF) は、NetView オペレーターが NetView セッション内から他のホストアプリケーション (TSO、CICS、IMS 等) のセッションを確立・操作できるようにする機能である。これにより端末オペレーターは NetView を介して複数アプリケーションへアクセスできる。関連メッセージは DWO 接頭辞メッセージとして NetView 端末オペレーターまたは認可されたメッセージ受信者へ送られる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Terminal Access Facility' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TAF  (Terminal Access Facility パネル起動)\n[出力] TAF セッション選択パネルが表示され、定義済みアプリケーションセッションを確立できる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の Terminal Access Facility (TAF) の主な役割はどれか?",
+        "choices": [
+          "NetView から他ホストアプリケーションのセッションを確立・操作する",
+          "RODM のデータキャッシュを管理する",
+          "ハードウェアモニターのアラートを収集する",
+          "CNMSTYLE のシンボルを解決する"
+        ],
+        "answer": 0,
+        "explanation": "TAF は NetView 内から TSO/CICS/IMS 等の他アプリケーションセッションへアクセスする機能。RODM 管理・ハードウェアモニター・シンボル解決は別機能。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.20)",
+      "rag_hit": "Messages and Codes Vol2 p.157 周辺: DWO 接頭辞メッセージは端末オペレーターへ送られる。TAF は端末アクセス機能。"
+    },
+    {
+      "row_id": "7389",
+      "title": "Terminology in this Library",
+      "naiyou_jp": "NetView 6.4 のライブラリーで使用される用語 (Terminology in this Library) の説明節であり、マニュアル群を読むうえで前提となる用語・略語を定義する。例えば RODM (Resource Object Data Manager) の診断ツールや、システム ABEND のガイドライン、EKGWAIT から戻らない User API などのトラブルシューティング用語が含まれる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Terminology in this Library' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: HELP CONTENTS  (オンラインヘルプの用語節参照)\n[出力] ライブラリーで用いる用語・略語の定義が表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 マニュアルの「Terminology in this Library」節の目的はどれか?",
+        "choices": [
+          "ライブラリーで使用する用語・略語を定義する",
+          "VTAM メジャーノードを定義する",
+          "RODM ビューを構築する",
+          "自動化テーブルを更新する"
+        ],
+        "answer": 0,
+        "explanation": "当該節はマニュアル群で使う用語・略語を定義する導入節。VTAM 定義・RODM ビュー・自動化テーブルは別作業。"
+      },
+      "source": "(出典: NetView_6.4_Troubleshooting_Guide.pdf p.270)",
+      "rag_hit": "Troubleshooting Guide p.270 周辺: RODM 診断ツール・ABEND ガイドライン等の用語説明。"
+    },
+    {
+      "row_id": "7390",
+      "title": "Testing AON Automation",
+      "naiyou_jp": "AON (Automated Operations Network) 自動化の動作確認を行う手順で、NetView 自動化機能 (自動化テーブルの更新、MVS メッセージのリバイズ、MVS コマンドリビジョンの有効化、ワークロード管理の有効化) を設定したうえで、AON コンポーネントが対象リソースを正しく監視・回復しているかを検証する。AON の基盤自動化が期待どおり動作することを確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing AON Automation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: STATMON ALL  (AON 監視状況表示)\n[出力] AON コンポーネントの状態と監視対象リソース一覧が表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の「Testing AON Automation」が属する設定作業はどれか?",
+        "choices": [
+          "自動化 (Automation) の定義",
+          "VTAM スタートオプションの定義",
+          "RODM のインストール検証",
+          "REST サーバーの構成"
+        ],
+        "answer": 0,
+        "explanation": "当該項目は第10章 Defining Automation (自動化定義) の一部で、自動化テーブル更新・MVS メッセージリバイズ等を含む。他は別領域。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.201)",
+      "rag_hit": "Configuring Additional Components p.201: Chapter 10 Defining Automation の各サブトピック。"
+    },
+    {
+      "row_id": "7391",
+      "title": "Testing AON/SNA",
+      "naiyou_jp": "AON (Automated Operations Network) 自動化の動作確認を行う手順で、NetView 自動化機能 (自動化テーブルの更新、MVS メッセージのリバイズ、MVS コマンドリビジョンの有効化、ワークロード管理の有効化) を設定したうえで、AON コンポーネントが対象リソースを正しく監視・回復しているかを検証する。AON/SNA は SNA リソース (アプリケーション・LU 等) の監視と自動回復を確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing AON/SNA' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: STATMON ALL  (AON 監視状況表示)\n[出力] AON コンポーネントの状態と監視対象リソース一覧が表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の「Testing AON/SNA」が属する設定作業はどれか?",
+        "choices": [
+          "自動化 (Automation) の定義",
+          "VTAM スタートオプションの定義",
+          "RODM のインストール検証",
+          "REST サーバーの構成"
+        ],
+        "answer": 0,
+        "explanation": "当該項目は第10章 Defining Automation (自動化定義) の一部で、自動化テーブル更新・MVS メッセージリバイズ等を含む。他は別領域。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.201)",
+      "rag_hit": "Configuring Additional Components p.201: Chapter 10 Defining Automation の各サブトピック。"
+    },
+    {
+      "row_id": "7392",
+      "title": "Testing Basic IP Management Functions",
+      "naiyou_jp": "基本的な IP 管理機能 (Testing Basic IP Management Functions) の検証手順で、IP リソースの探索・状態表示・接続データ収集などが正しく動作するかを確認する。前提として既定の自動化テーブル DSITBL01 (DSIPARM 内) が活動化されている必要があり、DSITBL01 はメッセージや MSU に応答する基本自動化ステートメントを提供する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing Basic IP Management Functions' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TCPCONN START  /  LIST STATUS=DVIPA\n[出力] TCP/IP 接続データ収集が開始され、DVIPA 等の IP リソース状態が表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で IP 管理機能の前提となる既定の自動化テーブルはどれか?",
+        "choices": [
+          "DSITBL01",
+          "DSITCPCF",
+          "A01APPLS",
+          "CNMSTUSR"
+        ],
+        "answer": 0,
+        "explanation": "DSITBL01 は DSIPARM 内の既定自動化テーブルで、メッセージ・MSU 応答の基本自動化を提供する。他は TCP 構成・VTAM 定義・ユーザー定義。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.62)",
+      "rag_hit": "Getting Started p.62: DSITBL01 は NetView 既定の自動化テーブル、メッセージ/MSU に応答。"
+    },
+    {
+      "row_id": "7393",
+      "title": "Testing the Command Facility",
+      "naiyou_jp": "コマンド機能 (Command Facility) の動作確認手順で、NetView 起動後に LOGON APPLID(CNM01) でオペレーターがログオンし、コマンドを順番どおり発行してコマンド機能が正しく応答するかを検証する。インストール検証 (第7章) の一部であり、表示形式は端末種別に依存する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing the Command Facility' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: LOGON APPLID(CNM01)  続けて各検証コマンド\n[出力] NetView ログオンパネルが表示され、以降のコマンドが期待どおりに応答する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のコマンド機能テストを開始するコマンドはどれか?",
+        "choices": [
+          "LOGON APPLID(CNM01)",
+          "TCPCONN START",
+          "STATMON ALL",
+          "RESTYLE DVIPA"
+        ],
+        "answer": 0,
+        "explanation": "コマンド機能テストは LOGON APPLID(CNM01) で開始する。他は IP 収集・AON 監視・DVIPA 再読込。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.201)",
+      "rag_hit": "Getting Started p.89: Testing the Command Facility は LOGON APPLID(CNM01) で開始。"
+    },
+    {
+      "row_id": "7394",
+      "title": "Testing the Hardware Monitor",
+      "naiyou_jp": "ハードウェアモニターの動作確認手順で、ハードウェアモニターがアラートを正しく受信・記録しているかを検証する。Automation Service の alert-to-trap サービスは既定で無効であり、NetView アラートをトラップ経由でルーティングするには、ハードウェアモニターの TRAPROUTE および AREC フィルターを PASS に設定する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing the Hardware Monitor' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: NPDA  (ハードウェアモニター起動)  /  HELP NPDA\n[出力] ハードウェアモニターパネルが表示され、記録されたアラート (アラート履歴) が確認できる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で NetView アラートを alert-to-trap サービスへ送るために PASS に設定するフィルターはどれか?",
+        "choices": [
+          "TRAPROUTE と AREC",
+          "DSITBL01 と CNMSTYLE",
+          "APPL と USS",
+          "RODM と GMFHS"
+        ],
+        "answer": 0,
+        "explanation": "alert-to-trap は既定で無効。TRAPROUTE と AREC フィルターを PASS にするとアラートがトラップサービスへルーティングされる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.220)",
+      "rag_hit": "Configuring Additional Components p.220: alert-to-trap は既定無効、TRAPROUTE/AREC を PASS に。"
+    },
+    {
+      "row_id": "7395",
+      "title": "Testing the Session Monitor",
+      "naiyou_jp": "セッションモニターの動作確認手順で、セッションモニター (NLDM) が SNA セッションのトレースデータを正しく収集・表示しているかを検証する。NetView アラートのトラップ連携を行う場合は、ハードウェアモニターの TRAPROUTE/AREC フィルターを PASS に設定する点も関連する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing the Session Monitor' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: NLDM  (セッションモニター起動)\n[出力] セッションモニターパネルが表示され、活動セッションとトレースデータが確認できる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のセッションモニターを起動するコマンドはどれか?",
+        "choices": [
+          "NLDM",
+          "NPDA",
+          "STATMON",
+          "TCPCONN"
+        ],
+        "answer": 0,
+        "explanation": "セッションモニターは NLDM で起動する。NPDA はハードウェアモニター、STATMON は状況モニター、TCPCONN は IP 接続収集。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.220)",
+      "rag_hit": "Configuring Additional Components p.220 周辺 / Getting Started p.100: セッションモニター検証。"
+    },
+    {
+      "row_id": "7396",
+      "title": "Testing the Status Monitor",
+      "naiyou_jp": "状況モニター (Status Monitor) の動作確認手順で、リソースの状態がグラフィカルに正しく反映されるかを検証する。状況情報は GMFHS が RODM と NetView 管理コンソールと連携して表示し、ビューにはネットワークリソースの状態情報と構成情報の両方が含まれる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Testing the Status Monitor' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: STATMON  (状況モニター起動)\n[出力] リソースの状態 (活動/非活動等) がツリー表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で状況情報をグラフィカルに表示する際に RODM と連携するコンポーネントはどれか?",
+        "choices": [
+          "GMFHS",
+          "DSITCPIP",
+          "TAF",
+          "SMP/E"
+        ],
+        "answer": 0,
+        "explanation": "GMFHS が RODM と NetView 管理コンソールと連携し、状態・構成情報を含むグラフィックビューを表示する。"
+      },
+      "source": "(出典: NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.103)",
+      "rag_hit": "RODM and GMFHS Programmers Guide p.103: GMFHS が RODM と NMC でグラフィックビューを表示。"
+    },
+    {
+      "row_id": "7397",
+      "title": "Tivoli Business Service Manager",
+      "naiyou_jp": "Tivoli Business Service Manager (TBSM) との連携項目で、ディスカバリーマネージャーが収集したデータを 3270 セッション・NetView 管理コンソール・Tivoli Enterprise Portal で表示できる。Z NetView Enterprise Management Agent を用いることで、ビジネスサービスの可用性監視に NetView のリソースデータを供給できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tivoli Business Service Manager' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: DM  (ディスカバリーマネージャー操作)\n[出力] ディスカバリーマネージャーが収集したリソースデータが各コンソールで表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のディスカバリーマネージャーデータを表示できる経路として正しいものはどれか?",
+        "choices": [
+          "3270 セッション・NMC・Tivoli Enterprise Portal",
+          "IEASYMxx のみ",
+          "VTAMLST のみ",
+          "DSITBL01 のみ"
+        ],
+        "answer": 0,
+        "explanation": "ディスカバリーマネージャーデータは 3270・NMC・TEP で表示でき、TBSM 連携に利用される。他はパラメーター/定義メンバー。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.148)",
+      "rag_hit": "Configuring Additional Components p.148: ディスカバリーマネージャーデータは 3270/NMC/TEP で表示。"
+    },
+    {
+      "row_id": "7398",
+      "title": "Tivoli Netcool/OMNIbus",
+      "naiyou_jp": "Tivoli Netcool/OMNIbus との連携項目で、NetView アラートをイベント管理基盤へ転送し統合監視を行う。NetView は zERT データ収集 (TCP/IP 接続セキュリティーデータの収集) を行い、Tivoli Enterprise Portal や 3270 コンソールで表示できる。マスター NetView がシスプレックス全体のビューを保持する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tivoli Netcool/OMNIbus' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TEP ワークスペース表示  /  zERT データ収集確認\n[出力] zERT (TCP/IP 接続セキュリティー) データが TEP ワークスペースまたは 3270 コンソールで表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で TCP/IP 接続セキュリティーデータを収集し TEP に表示する機能はどれか?",
+        "choices": [
+          "zERT データ収集",
+          "RESTYLE",
+          "APF 認可",
+          "USS テーブル"
+        ],
+        "answer": 0,
+        "explanation": "zERT データ収集が TCP/IP 接続セキュリティーデータを収集し、TEP や 3270 で表示する。Netcool/OMNIbus・OMEGAMON XE 連携の文脈で扱われる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.110)",
+      "rag_hit": "Getting Started p.110: zERT データ収集、マスター NetView がシスプレックス全体ビューを保持。"
+    },
+    {
+      "row_id": "7399",
+      "title": "Tivoli OMEGAMON XE Products",
+      "naiyou_jp": "Tivoli OMEGAMON XE 製品群との連携項目で、OMEGAMON XE と NetView エージェント間のリンクを通じてパフォーマンス・可用性監視を統合する。NetView は zERT データ収集を行い、Tivoli Enterprise Portal または 3270 コンソールで表示できる。マスター NetView がシスプレックス全体のビューを保持する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tivoli OMEGAMON XE Products' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TEP ワークスペース表示  /  zERT データ収集確認\n[出力] zERT (TCP/IP 接続セキュリティー) データが TEP ワークスペースまたは 3270 コンソールで表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で TCP/IP 接続セキュリティーデータを収集し TEP に表示する機能はどれか?",
+        "choices": [
+          "zERT データ収集",
+          "RESTYLE",
+          "APF 認可",
+          "USS テーブル"
+        ],
+        "answer": 0,
+        "explanation": "zERT データ収集が TCP/IP 接続セキュリティーデータを収集し、TEP や 3270 で表示する。Netcool/OMNIbus・OMEGAMON XE 連携の文脈で扱われる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.110)",
+      "rag_hit": "Getting Started p.110: zERT データ収集、マスター NetView がシスプレックス全体ビューを保持。"
+    },
+    {
+      "row_id": "7400",
+      "title": "Token-Ring LAN-Attached NetView Management Console Servers",
+      "naiyou_jp": "Token-Ring LAN で接続される NetView 管理コンソール (NMC) サーバーの構成項目。NMC のインストール検証では、トポロジーサーバーを起動してからトポロジーコンソールを起動する。トポロジーサーバーは手動で、または UNIX 系システムではデーモンとして起動できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Token-Ring LAN-Attached NetView Management Console Servers' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: トポロジーサーバー起動  →  トポロジーコンソール起動\n[出力] トポロジーサーバーが起動し、トポロジーコンソールが接続してビューを表示する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の NMC インストール検証で正しい起動順序はどれか?",
+        "choices": [
+          "トポロジーサーバー → トポロジーコンソール",
+          "トポロジーコンソール → トポロジーサーバー",
+          "RODM → VTAM",
+          "GMFHS → IEASYMxx"
+        ],
+        "answer": 0,
+        "explanation": "NMC 検証はトポロジーサーバーを先に起動し、その後トポロジーコンソールを起動する。サーバーはデーモン起動も可能。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.51)",
+      "rag_hit": "Configuring Graphical Components p.51: トポロジーサーバー起動後にトポロジーコンソールを起動。"
+    },
+    {
+      "row_id": "7401",
+      "title": "Tools for Managing Views",
+      "naiyou_jp": "ビュー管理ツール (Tools for Managing Views) の項目で、BLDVIEWS は主要な MultiSystem Manager リソースに対し既定のコマンドセットを汎用コマンドへマッピングする手段を提供する。DELVIEWS を使うと、ネットワークビュー・構成ピアビュー・構成バックボーンビュー・例外ビューといったカスタマイズ済みビューを RODM から削除できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tools for Managing Views' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: BLDVIEWS  /  DELVIEWS\n[出力] BLDVIEWS でビューが生成され、DELVIEWS でカスタムビューが RODM から削除される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で RODM からカスタマイズ済みビューを削除するツールはどれか?",
+        "choices": [
+          "DELVIEWS",
+          "BLDVIEWS",
+          "RESTYLE",
+          "TCPCONN"
+        ],
+        "answer": 0,
+        "explanation": "DELVIEWS は RODM からネットワーク/構成/例外ビュー等を削除する。BLDVIEWS はビューのコマンドマッピングを行う。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.66)",
+      "rag_hit": "Configuring Graphical Components p.66: BLDVIEWS のマッピング、DELVIEWS の削除対象ビュー。"
+    },
+    {
+      "row_id": "7402",
+      "title": "Tuning components",
+      "naiyou_jp": "コンポーネントのチューニング項目で、NetView 管理コンソール/RODM 関連コンポーネントの性能調整を扱う。RODM の起動は START EKGXRODM コマンド (例: RODM.RODM,TYPE=C,NAME=rodmname) で行い、構成パラメーターを調整してスループットや応答性を最適化する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tuning components' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: START EKGXRODM  (RODM 起動・チューニング確認)\n[出力] RODM が指定名で起動し、チューニングパラメーターが反映される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で RODM を起動するコマンドはどれか?",
+        "choices": [
+          "START EKGXRODM",
+          "START DSITCPIP",
+          "LOGON APPLID",
+          "BLDVIEWS"
+        ],
+        "answer": 0,
+        "explanation": "RODM の起動は START EKGXRODM (NAME=rodmname) で行う。チューニング対象コンポーネントの一つ。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.34)",
+      "rag_hit": "Configuring Graphical Components p.34: START EKGXRODM の構文、RODM.RODM,TYPE=C,NAME=rodmname。"
+    },
+    {
+      "row_id": "7403",
+      "title": "Tuning ITMS:Engine values",
+      "naiyou_jp": "ITMS:Engine 値のチューニング項目で、NetView Enterprise Management Agent (EMA) 関連の ITMS:Engine パラメーターを調整して性能を最適化する。CNMSTYLE ステートメントがタワー名で括られている場合、そのタワーが活動状態のとき初期化時に組み込まれ、非活動なら無視される。括弧内では変数や置換を使用してはならない。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tuning ITMS:Engine values' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: RESTYLE  (CNMSTYLE 再読込でタワー設定反映)\n[出力] タワーが活動状態の CNMSTYLE ステートメントのみが組み込まれる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で CNMSTYLE ステートメントがタワー名で括られている場合の挙動はどれか?",
+        "choices": [
+          "タワーが活動なら組み込まれ、非活動なら無視される",
+          "常に無視される",
+          "常に組み込まれる",
+          "構文エラーになる"
+        ],
+        "answer": 0,
+        "explanation": "タワー名で括られたステートメントは、そのタワーが活動のとき初期化時に組み込まれ、非活動なら無視される。括弧内に変数は使用不可。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.75)",
+      "rag_hit": "Getting Started p.75: タワー名括弧付き CNMSTYLE の条件付き組み込み。"
+    },
+    {
+      "row_id": "7404",
+      "title": "Tuning the Tivoli Data Warehouse",
+      "naiyou_jp": "Tivoli Data Warehouse のチューニング項目で、NetView Enterprise Management Agent が収集した履歴データを Tivoli Data Warehouse へ集約する際の保管・集約・プルーニング設定を最適化する。データ収集量と保持期間に応じてウェアハウスプロキシエージェントやサマライゼーション/プルーニングエージェントを調整する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Tuning the Tivoli Data Warehouse' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: Manage Tivoli Enterprise Monitoring Services (履歴収集構成)\n[出力] 履歴データ収集・集約・プルーニング設定が反映され、TDW にデータが格納される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の Tivoli Data Warehouse チューニングが対象とするデータはどれか?",
+        "choices": [
+          "エージェントが収集した履歴データ",
+          "VTAM スタートオプション",
+          "APF 認可リスト",
+          "USS テーブル"
+        ],
+        "answer": 0,
+        "explanation": "TDW チューニングは EMA が収集した履歴データの保管・集約・プルーニングを対象とする。他は VTAM/認可/端末定義。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_NetView_Enterprise_Management_Agent.pdf p.64)",
+      "rag_hit": "Configuring EMA p.64 周辺 / EMA 構成: 履歴データを TDW へ集約。"
+    },
+    {
+      "row_id": "7405",
+      "title": "Types of libraries created",
+      "naiyou_jp": "NetView エージェント (EMA) 構成時に作成されるライブラリーの種類 (Types of libraries created) を説明する項目。ランタイム環境 (RTE) を作成すると、構成・実行用の各種データセット (ランタイムライブラリー) が生成される。トポロジー相関により、異なる種類のトポロジーエージェントが管理するリソースが自動的に関連付けられる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Types of libraries created' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: PARMGEN / RTE 作成後のデータセット一覧確認\n[出力] RTE 作成により構成・実行用ライブラリーが生成される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 EMA 構成で RTE 作成時に生成されるものはどれか?",
+        "choices": [
+          "ランタイムライブラリー (データセット群)",
+          "VTAM メジャーノード",
+          "DSITBL01 自動化テーブル",
+          "IEASYMxx シンボル"
+        ],
+        "answer": 0,
+        "explanation": "RTE 作成で構成・実行用のランタイムライブラリーが生成される。VTAM/自動化/シンボルは別作業。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.63)",
+      "rag_hit": "Configuring EMA p.17 周辺: RTE と作成ライブラリーの種類。"
+    },
+    {
+      "row_id": "7406",
+      "title": "Types of reports",
+      "naiyou_jp": "NetView エージェントおよびレポート機能で生成できるレポートの種類 (Types of reports) を説明する項目。Tivoli Common Reporting (BIRT 形式) などを通じてリソース監視データのレポートを出力できる。トポロジー相関により異種エージェント管理リソースが関連付けられ、レポート対象が整理される。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Types of reports' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: レポート生成構成 / Tivoli Common Reporting 確認\n[出力] 定義済みのレポート種別に従って監視データのレポートが出力される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のレポートで使用されるレポート基盤の例はどれか?",
+        "choices": [
+          "Tivoli Common Reporting (BIRT)",
+          "DSITCPCF",
+          "A01APPLS",
+          "EKGXRODM"
+        ],
+        "answer": 0,
+        "explanation": "レポートは Tivoli Common Reporting (BIRT 形式) 等で出力する。他は TCP 構成・VTAM 定義・RODM 起動。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.63)",
+      "rag_hit": "Migration Guide p.161: Tivoli Common Reporting (BIRT formatted reports)。"
+    },
+    {
+      "row_id": "7407",
+      "title": "Types of runtime environments",
+      "naiyou_jp": "NetView エージェント (EMA) のランタイム環境 (RTE) の種類 (Types of runtime environments) を説明する項目。完全 (full) RTE や共有 (sharing) RTE などの構成形態があり、PARMGEN を用いて作成・変換する。既存の構成ツール RTE を PARMGEN へ変換して更新するシナリオもある。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Types of runtime environments' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: PARMGEN  (RTE 種別の選択・構成)\n[出力] 選択した RTE 種別 (full/sharing 等) に従って構成が生成される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 EMA でランタイム環境 (RTE) の作成・変換に用いるツールはどれか?",
+        "choices": [
+          "PARMGEN",
+          "BLDVIEWS",
+          "NLDM",
+          "TAF"
+        ],
+        "answer": 0,
+        "explanation": "EMA の RTE は PARMGEN で作成・変換する。BLDVIEWS はビュー、NLDM はセッションモニター、TAF は端末アクセス。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.63)",
+      "rag_hit": "Configuring EMA p.18 / p.31: RTE 種別と PARMGEN への変換シナリオ。"
+    },
+    {
+      "row_id": "7408",
+      "title": "Types of Views",
+      "naiyou_jp": "NetView 管理コンソールで利用できるビューの種類 (Types of Views) を説明する項目。RODM ベースのビューには、ネットワークビュー・例外ビュー・構成ビュー・詳細ビュー・障害リソース特定ビューなどがある。トポロジー相関により異種トポロジーエージェントのリソースが自動的に関連付けられる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Types of Views' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: NMC トポロジーコンソールでのビュー選択\n[出力] ネットワーク/例外/構成ビュー等の RODM ベースビューが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の NMC で表示できる RODM ベースビューに含まれないものはどれか?",
+        "choices": [
+          "DSITBL01 自動化テーブルビュー",
+          "ネットワークビュー",
+          "例外ビュー",
+          "構成ビュー"
+        ],
+        "answer": 0,
+        "explanation": "RODM ベースビューはネットワーク/例外/構成/詳細/障害リソース特定ビュー等。自動化テーブルはビューではない。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.63)",
+      "rag_hit": "Users Guide NMC p.83: RODM ベースビューの種類 (Network/Exception/Configuration 等)。"
+    },
+    {
+      "row_id": "7409",
+      "title": "Understanding the NetView Installation",
+      "naiyou_jp": "NetView のインストール作業全体を理解するための導入章 (Understanding the NetView Installation)。本書のインストール・構成・検証手順を始める前に、NetView プログラムディレクトリーに従って SMP/E インストールを実施しておく必要がある。本書は初回インストールを前提に、最小限の時間でインストール・構成・検証を進められるよう構成されている。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Understanding the NetView Installation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: HELP CONTENTS  (インストール概要参照)\n[出力] インストール作業の全体像と前提 (SMP/E 済) が確認できる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のインストール・構成手順を始める前に完了しておくべき作業はどれか?",
+        "choices": [
+          "SMP/E による製品インストール",
+          "RODM ビューの作成",
+          "NMC コンソールの起動",
+          "zERT データ収集"
+        ],
+        "answer": 0,
+        "explanation": "本書の手順前提として、プログラムディレクトリーに従った SMP/E インストールを完了しておく必要がある。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.51)",
+      "rag_hit": "Getting Started p.17: 手順開始前に SMP/E インストールを実施。"
+    },
+    {
+      "row_id": "7410",
+      "title": "UNIX System Services",
+      "naiyou_jp": "UNIX System Services (USS / z/OS UNIX) に関する項目で、NetView の一部コンポーネント (REST サーバー、NMC トポロジーサーバー、各種スクリプト等) は z/OS UNIX 環境で動作する。NMC のインストール検証ではトポロジーサーバーを起動し、UNIX 系システムではデーモンとして起動できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'UNIX System Services' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: OMVS / z/OS UNIX シェルでの NetView コンポーネント確認\n[出力] z/OS UNIX 上で NetView コンポーネント (トポロジーサーバー等) が動作する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で z/OS UNIX (USS) 上で動作するコンポーネントの例はどれか?",
+        "choices": [
+          "NMC トポロジーサーバー",
+          "DSITBL01 自動化テーブル",
+          "VTAM メジャーノード",
+          "IEASYMxx シンボル"
+        ],
+        "answer": 0,
+        "explanation": "トポロジーサーバーや REST サーバー等は z/OS UNIX 上で動作し、UNIX 系ではデーモン起動も可能。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.51)",
+      "rag_hit": "Configuring Graphical Components p.51: トポロジーサーバーは UNIX 系でデーモン起動可。"
+    },
+    {
+      "row_id": "7411",
+      "title": "Updating NetView initialization statements",
+      "naiyou_jp": "NetView 初期化ステートメントの更新項目 (Updating NetView initialization statements)。EMA 構成等に伴い、CNMSTYLE をはじめとする初期化ステートメントを更新して NetView の動作を環境へ適合させる。変更は CNMSTUSR または CxxSTGEN メンバーで行い、活動中は RESTYLE で反映できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating NetView initialization statements' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: CNMSTUSR 編集  →  RESTYLE\n[出力] 更新した初期化ステートメントが RESTYLE により反映される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で初期化ステートメントの変更を活動中に反映するコマンドはどれか?",
+        "choices": [
+          "RESTYLE",
+          "TCPCONN",
+          "NLDM",
+          "BLDVIEWS"
+        ],
+        "answer": 0,
+        "explanation": "初期化ステートメントは CNMSTUSR/CxxSTGEN で変更し、活動中は RESTYLE で反映する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_NetView_Enterprise_Management_Agent.pdf p.42)",
+      "rag_hit": "Administration Reference p.110: CNMSTUSR 変更後に RESTYLE で反映。"
+    },
+    {
+      "row_id": "7412",
+      "title": "Updating SYS1.PARMLIB Members",
+      "naiyou_jp": "SYS1.PARMLIB メンバーの更新項目 (Updating SYS1.PARMLIB Members)。NetView を MVS に定義するため、サブシステム定義 (IEFSSNxx)、APF 認可 (PROGxx / IEAAPFxx)、システムシンボル (IEASYMxx)、プログラムプロパティーテーブル等の PARMLIB メンバーを更新する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating SYS1.PARMLIB Members' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: D PROG,APF  /  D SYMBOLS  (PARMLIB 反映確認)\n[出力] NetView 用の APF 認可・サブシステム定義・システムシンボルが反映される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でシステムシンボルを設定する SYS1.PARMLIB メンバーはどれか?",
+        "choices": [
+          "IEASYMxx",
+          "IEFSSNxx",
+          "PROGxx",
+          "DSITBL01"
+        ],
+        "answer": 0,
+        "explanation": "システムシンボルは IEASYMxx で設定。IEFSSNxx はサブシステム、PROGxx は APF、DSITBL01 は自動化テーブル。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.26)",
+      "rag_hit": "Getting Started p.26 / p.64: PARMLIB 更新、IEASYMxx でシンボル設定。"
+    },
+    {
+      "row_id": "7413",
+      "title": "Updating the Automation Table",
+      "naiyou_jp": "自動化テーブルの更新項目 (Updating the Automation Table)。ユーザー独自の自動化テーブルは CNMSTUSR/CxxSTGEN メンバーの AUTOCMD ステートメントで追加する。ユーザーテーブルを DSITBL01 の前に置き、ローカルカスタマイズには CONTINUE(YES) をコーディングして、メッセージが DSITBL01 自動化テーブルへ流れるようにする。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating the Automation Table' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: AUTOTBL  /  LIST AUTOTBL  (自動化テーブル状態確認)\n[出力] ユーザー自動化テーブルが DSITBL01 の前にロードされ、CONTINUE(YES) でメッセージが伝播する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でユーザー自動化テーブルを DSITBL01 の前に置く際にコーディングすべきものはどれか?",
+        "choices": [
+          "CONTINUE(YES)",
+          "INIT=N",
+          "TYPE=C",
+          "STATUS=DVIPA"
+        ],
+        "answer": 0,
+        "explanation": "ユーザーテーブルを先に置き CONTINUE(YES) を指定すると、メッセージが DSITBL01 自動化テーブルへ流れる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.201)",
+      "rag_hit": "Migration Guide p.89 / Getting Started p.62: AUTOCMD でユーザーテーブル追加、CONTINUE(YES)。"
+    },
+    {
+      "row_id": "7414",
+      "title": "Updating the CNMSTYLE Member",
+      "naiyou_jp": "CNMSTYLE メンバーの更新項目 (Updating the CNMSTYLE Member)。DSIPARM データセット内の CNMSTYLE メンバーは NetView 初期化時に読み込まれる。ユーザー変更は CNMSTUSR または CxxSTGEN メンバーで行い、CNMSTYLE 本体は直接変更しないのが推奨される。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating the CNMSTYLE Member' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: CNMSTUSR 編集  →  RESTYLE\n[出力] CNMSTYLE 関連の変更が初期化または RESTYLE で反映される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で CNMSTYLE のユーザー変更を記述するメンバーはどれか?",
+        "choices": [
+          "CNMSTUSR または CxxSTGEN",
+          "DSITBL01",
+          "IEASYMxx",
+          "A01APPLS"
+        ],
+        "answer": 0,
+        "explanation": "CNMSTYLE のユーザー変更は CNMSTUSR/CxxSTGEN で行う。DSITBL01 は自動化、IEASYMxx はシンボル、A01APPLS は VTAM 定義。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.62)",
+      "rag_hit": "Getting Started p.62: CNMSTYLE は初期化時に読込、変更は CNMSTUSR/CxxSTGEN。"
+    },
+    {
+      "row_id": "7415",
+      "title": "Updating the DSITBL01 member",
+      "naiyou_jp": "DSITBL01 メンバーの更新項目 (Updating the DSITBL01 member)。DSITBL01 は DSIPARM 内の既定自動化テーブルで NetView に必須であり、メッセージや MSU に応答する基本自動化ステートメントを提供する。DSITBL01 を変更した場合は V6R4 の DSITBL01 とマージし、自動化テーブルを再採番する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating the DSITBL01 member' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: AUTOTBL DISPLAY  (DSITBL01 状態確認)\n[出力] DSITBL01 自動化テーブルがロードされ、必須の基本自動化が有効になる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で既定かつ必須の自動化テーブルメンバーはどれか?",
+        "choices": [
+          "DSITBL01",
+          "CNMSTYLE",
+          "DSITCPCF",
+          "A01APPLS"
+        ],
+        "answer": 0,
+        "explanation": "DSITBL01 は必須の既定自動化テーブル。変更時は V6R4 版とマージし再採番する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.62)",
+      "rag_hit": "Getting Started p.62 / Migration Guide p.67: DSITBL01 は必須、変更時マージ・再採番。"
+    },
+    {
+      "row_id": "7416",
+      "title": "Updating the GMFHS Start Procedure",
+      "naiyou_jp": "GMFHS スタートプロシージャーの更新項目 (Updating the GMFHS Start Procedure)。GMFHS (Graphic Monitor Facility host subsystem) を環境に合わせて起動できるよう、スタートプロシージャー (DD ステートメント・パラメーター等) を更新する。GMFHS は RODM と NMC と連携してグラフィックビューを表示する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating the GMFHS Start Procedure' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: S GMFHS  (GMFHS 起動)  /  プロシージャー確認\n[出力] GMFHS が起動し、RODM ベースビューの表示が可能になる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で GMFHS が連携してビューを表示する相手はどれか?",
+        "choices": [
+          "RODM と NMC",
+          "DSITBL01 と CNMSTYLE",
+          "VTAM と USS",
+          "APF と LPA"
+        ],
+        "answer": 0,
+        "explanation": "GMFHS は RODM と NMC (NetView 管理コンソール) と連携しグラフィックビューを表示する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.32)",
+      "rag_hit": "RODM and GMFHS Programmers Guide p.103: GMFHS は RODM と NMC で連携。"
+    },
+    {
+      "row_id": "7417",
+      "title": "Updating the RODM Start Procedure",
+      "naiyou_jp": "RODM スタートプロシージャーの更新項目 (Updating the RODM Start Procedure)。RODM (Resource Object Data Manager) は構成データとリソース状態情報を保持するインストレージデータキャッシュで、START EKGXRODM コマンド (RODM.RODM,TYPE=C,NAME=rodmname) で起動する。スタートプロシージャーを環境に合わせて更新する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating the RODM Start Procedure' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: START EKGXRODM  /  RODM プロシージャー確認\n[出力] RODM が指定名で起動し、データキャッシュが利用可能になる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の RODM の役割として正しいものはどれか?",
+        "choices": [
+          "構成データとリソース状態を保持するインストレージデータキャッシュ",
+          "SNA セッショントレースの収集",
+          "端末アクセス機能の提供",
+          "APF 認可の管理"
+        ],
+        "answer": 0,
+        "explanation": "RODM は構成データ・リソース状態を保持するインストレージデータキャッシュ。START EKGXRODM で起動する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.29)",
+      "rag_hit": "Automation Guide p.371 / Configuring Graphical Components p.34: RODM はインストレージデータキャッシュ、START EKGXRODM。"
+    },
+    {
+      "row_id": "7418",
+      "title": "Updating UNIX System Services Environment Variables",
+      "naiyou_jp": "UNIX System Services 環境変数の更新項目 (Updating UNIX System Services Environment Variables)。REST サーバー等の z/OS UNIX コンポーネントを動作させるため、_BPXK_AUTOCVT=ON や NVRESTCONFIG (REST サーバー構成ディレクトリー) などの環境変数を設定する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Updating UNIX System Services Environment Variables' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: z/OS UNIX シェルで export / env 確認\n[出力] _BPXK_AUTOCVT や NVRESTCONFIG 等の環境変数が設定される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 REST サーバーで設定する環境変数はどれか?",
+        "choices": [
+          "_BPXK_AUTOCVT=ON と NVRESTCONFIG",
+          "INIT=N と TYPE=C",
+          "TRAPROUTE と AREC",
+          "&CNMRODM と &CNMTCPN"
+        ],
+        "answer": 0,
+        "explanation": "REST サーバー等の USS コンポーネント用に _BPXK_AUTOCVT=ON、NVRESTCONFIG 等を設定する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.212)",
+      "rag_hit": "Configuring Additional Components p.242: _BPXK_AUTOCVT=ON、NVRESTCONFIG の設定。"
+    },
+    {
+      "row_id": "7419",
+      "title": "Using %INCLUDE Members",
+      "naiyou_jp": "%INCLUDE メンバーの使用項目 (Using %INCLUDE Members)。CNMSTYLE メンバー内で %INCLUDE ステートメントを使うと、任意の他メンバーを取り込んで初期化定義をモジュール化できる。これにより環境別・機能別に定義を分割管理できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using %INCLUDE Members' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: BROWSE CNMSTYLE  (%INCLUDE 解決確認)  →  RESTYLE\n[出力] %INCLUDE で指定したメンバーが CNMSTYLE 処理時に取り込まれる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の CNMSTYLE で他メンバーを取り込むステートメントはどれか?",
+        "choices": [
+          "%INCLUDE",
+          "AUTOCMD",
+          "TRAPROUTE",
+          "STYLEVAR"
+        ],
+        "answer": 0,
+        "explanation": "%INCLUDE は CNMSTYLE で他メンバーを取り込む。AUTOCMD は自動化テーブル追加、STYLEVAR は変数定義。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.63)",
+      "rag_hit": "Getting Started p.63/p.64: CNMSTYLE の %INCLUDE で他メンバーを取り込む。"
+    },
+    {
+      "row_id": "7420",
+      "title": "Using a TSO Command Server",
+      "naiyou_jp": "TSO コマンドサーバーの使用項目 (Using a TSO Command Server)。NetView から TSO コマンドや TSO 環境を必要とする処理を実行するために、TSO コマンドサーバーを構成・使用する。これにより NetView オペレーターやオートメーションから TSO 機能を呼び出せる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using a TSO Command Server' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TSO コマンドサーバー起動  /  該当タスク確認\n[出力] NetView から TSO コマンドが実行できるようサーバーが活動する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の TSO コマンドサーバーの目的はどれか?",
+        "choices": [
+          "NetView から TSO コマンド/環境を実行する",
+          "RODM ビューを構築する",
+          "VTAM を起動する",
+          "zERT データを収集する"
+        ],
+        "answer": 0,
+        "explanation": "TSO コマンドサーバーは NetView から TSO コマンド・環境を実行可能にする。他は別機能。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.127)",
+      "rag_hit": "Configuring Additional Components p.127: TSO コマンドサーバーの構成・使用。"
+    },
+    {
+      "row_id": "7421",
+      "title": "Using EMCS Consoles within the NetView Program",
+      "naiyou_jp": "NetView 内での EMCS コンソールの使用項目 (Using EMCS Consoles within the NetView Program)。NetView は EMCS (Extended MCS) コンソールを取得して MVS メッセージの受信やコマンド発行を行う。EMCS コンソール属性は NetView 既定値が使用され、CNMSTUSR/CxxSTGEN の MVSPARM 定義で一部を変更できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using EMCS Consoles within the NetView Program' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: GETCONID / D C,A  (EMCS コンソール状態確認)\n[出力] NetView が EMCS コンソールを取得し、MVS メッセージ受信・コマンド発行が可能になる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で EMCS コンソール属性の一部を変更する定義はどれか?",
+        "choices": [
+          "CNMSTUSR/CxxSTGEN の MVSPARM",
+          "DSITBL01 の AUTOCMD",
+          "A01APPLS の APPL",
+          "IEASYMxx のシンボル"
+        ],
+        "answer": 0,
+        "explanation": "EMCS コンソール属性は NetView 既定値が使われ、MVSPARM 定義 (CNMSTUSR/CxxSTGEN) で一部変更できる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.34)",
+      "rag_hit": "Security Reference p.42-43: EMCS コンソール属性と MVSPARM 定義。"
+    },
+    {
+      "row_id": "7422",
+      "title": "Using High-Level Languages with the NetView Program",
+      "naiyou_jp": "高水準言語の使用項目 (Using High-Level Languages with the NetView Program)。NetView では REXX に加え、PL/I・C・アセンブラーなどの高水準言語でコマンドプロセッサーや exit を作成できる。これにより複雑なオートメーションロジックを実装できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using High-Level Languages with the NetView Program' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: HLL コマンドプロセッサーのロード/実行確認\n[出力] 高水準言語で作成したコマンドプロセッサーが NetView で実行される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でコマンドプロセッサー作成に使用できる高水準言語に含まれないものはどれか?",
+        "choices": [
+          "SQL",
+          "PL/I",
+          "C",
+          "アセンブラー"
+        ],
+        "answer": 0,
+        "explanation": "NetView は REXX/PL/I/C/アセンブラー等でコマンドプロセッサーを作成できる。SQL はコマンドプロセッサー言語ではない。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.112)",
+      "rag_hit": "Configuring Additional Components p.112: 高水準言語 (PL/I, C, アセンブラー) の使用。"
+    },
+    {
+      "row_id": "7423",
+      "title": "Using IBM Z NetView online help",
+      "naiyou_jp": "IBM Z NetView オンラインヘルプの使用項目 (Using IBM Z NetView online help)。NetView コンソールから HELP コマンドでコマンド・メッセージ・パネルのオンラインヘルプを参照できる。ヘルプはマニュアル内容と連動し、操作中の調査を支援する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using IBM Z NetView online help' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: HELP  /  HELP コマンド名\n[出力] 指定したコマンド・トピックのオンラインヘルプが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でオンラインヘルプを表示するコマンドはどれか?",
+        "choices": [
+          "HELP",
+          "RESTYLE",
+          "NLDM",
+          "BLDVIEWS"
+        ],
+        "answer": 0,
+        "explanation": "オンラインヘルプは HELP コマンドで表示する。他は再読込・セッションモニター・ビュー生成。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.13)",
+      "rag_hit": "Configuring Additional Components p.13: IBM Z NetView オンラインヘルプの使用。"
+    },
+    {
+      "row_id": "7424",
+      "title": "Using Language Processor (REXX) Environments in the NetView Environment",
+      "naiyou_jp": "NetView 環境での言語プロセッサー (REXX) 環境の使用項目 (Using Language Processor (REXX) Environments)。NetView は REXX を実行するための言語プロセッサー環境を提供し、コマンドリストや exit を REXX で記述できる。環境の数やパラメーターは構成で調整できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using Language Processor (REXX) Environments in the NetView Environment' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: REXX コマンドリスト実行  /  TRACE 確認\n[出力] REXX 言語プロセッサー環境でコマンドリストが実行される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の言語プロセッサー環境が実行する主な言語はどれか?",
+        "choices": [
+          "REXX",
+          "SQL",
+          "COBOL",
+          "Java"
+        ],
+        "answer": 0,
+        "explanation": "言語プロセッサー環境は REXX を実行する。コマンドリストや exit を REXX で記述できる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.109)",
+      "rag_hit": "Configuring Additional Components p.109: 言語プロセッサー (REXX) 環境の使用。"
+    },
+    {
+      "row_id": "7425",
+      "title": "Using situations",
+      "naiyou_jp": "シチュエーションの使用項目 (Using situations)。NetView Enterprise Management Agent では、Tivoli Enterprise Portal でシチュエーション (しきい値や条件に基づくモニタリング定義) を用いてリソースを監視し、条件が満たされるとイベントを発生させる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using situations' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TEP でシチュエーションの分散/状態確認\n[出力] シチュエーションが分散され、条件成立時にイベント (アラート) が発生する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 EMA のシチュエーションの役割はどれか?",
+        "choices": [
+          "しきい値/条件に基づきリソースを監視しイベントを発生させる",
+          "RODM ビューを削除する",
+          "VTAM を起動する",
+          "EMCS コンソールを取得する"
+        ],
+        "answer": 0,
+        "explanation": "シチュエーションは TEP でしきい値/条件に基づきリソースを監視し、成立時にイベントを発生させる監視定義。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_NetView_Enterprise_Management_Agent.pdf p.60)",
+      "rag_hit": "Configuring EMA p.60 周辺 / Users Guide EMA: シチュエーションによる監視。"
+    },
+    {
+      "row_id": "7426",
+      "title": "Using SMP/E to Load the Libraries",
+      "naiyou_jp": "SMP/E を用いたライブラリーのロード項目 (Using SMP/E to Load the Libraries)。NetView の配布ライブラリーやターゲットライブラリーは SMP/E (RECEIVE/APPLY) によってロードされる。プログラムディレクトリーに従って SMP/E インストールを行い、後続の構成・検証へ進む。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using SMP/E to Load the Libraries' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: SMP/E APPLY 後のターゲットライブラリー確認\n[出力] SMP/E により配布/ターゲットライブラリーがロードされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でライブラリーをロードするために使用するツールはどれか?",
+        "choices": [
+          "SMP/E",
+          "PARMGEN",
+          "BLDVIEWS",
+          "RESTYLE"
+        ],
+        "answer": 0,
+        "explanation": "NetView ライブラリーは SMP/E (RECEIVE/APPLY) でロードする。PARMGEN は EMA 構成、他は別機能。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.25)",
+      "rag_hit": "Getting Started p.25 / p.17: SMP/E でライブラリーをロード。"
+    },
+    {
+      "row_id": "7427",
+      "title": "Using STYLEVAR",
+      "naiyou_jp": "STYLEVAR の使用項目 (Using STYLEVAR)。STYLEVAR は CNMSTYLE メンバー内 (コマンドフェーズを除く) で使用できる変数を定義し、反復的なデータ入力を簡略化する。システムシンボル名は STYLEVAR 変数名として使用できず、STYLEVAR 変数値に別の STYLEVAR 変数を含めることはできない。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using STYLEVAR' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: BROWSE CNMSTYLE  (STYLEVAR 定義確認)  →  RESTYLE\n[出力] STYLEVAR で定義した変数が CNMSTYLE 処理中に置換される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の STYLEVAR 変数に関する制約として正しいものはどれか?",
+        "choices": [
+          "値に別の STYLEVAR 変数を含められない",
+          "コマンドフェーズで使用する",
+          "システムシンボル名を変数名にできる",
+          "255 文字以上の値が必須"
+        ],
+        "answer": 0,
+        "explanation": "STYLEVAR 値に別 STYLEVAR を含めることはできず、システムシンボル名も変数名に使えない。コマンドフェーズでは使用不可。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Migration_Guide.pdf p.116)",
+      "rag_hit": "Migration Guide p.116 / Administration Reference p.259: STYLEVAR の定義と制約。"
+    },
+    {
+      "row_id": "7428",
+      "title": "Using System Symbols",
+      "naiyou_jp": "システムシンボルの使用項目 (Using System Symbols)。NetView は RODM 名・TCP/IP スタック名・ネットワーク ID などを MVS システムシンボル (&CNMRODM、&CNMTCPN、&CNMNETID) として SYS1.PARMLIB の IEASYMxx に設定し、CNMSTYLE で参照できる。ネットワーク ID にシステムシンボルを使う場合、VTAM が ACB オープン時に返す値と一致させる必要がある。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using System Symbols' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: D SYMBOLS  /  BROWSE CNMSTYLE\n[出力] IEASYMxx のシステムシンボルが CNMSTYLE 値として解決される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でネットワーク ID にシステムシンボルを使う際の条件はどれか?",
+        "choices": [
+          "VTAM が ACB オープン時に返す値と一致させる",
+          "常に TCPIP と一致させる",
+          "DSITBL01 と一致させる",
+          "GMFHS と一致させる"
+        ],
+        "answer": 0,
+        "explanation": "ネットワーク ID のシステムシンボルは VTAM が ACB オープン時に返す値と一致させる必要がある。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.64)",
+      "rag_hit": "Migration Guide p.116 / Getting Started p.64: システムシンボルとネットワーク ID の一致条件。"
+    },
+    {
+      "row_id": "7429",
+      "title": "Using the IBM Z NetView REST Server with Apache Tomcat",
+      "naiyou_jp": "Apache Tomcat を用いた IBM Z NetView REST サーバーの使用項目 (Using the IBM Z NetView REST Server with Apache Tomcat)。NetViewServer の WAR ファイルを Tomcat の webapps にコピーし、ejnnvcmd のシンボリックリンクを作成し、_BPXK_AUTOCVT=ON や NVRESTCONFIG などの環境変数を設定して REST サーバーを稼働させる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using the IBM Z NetView REST Server with Apache Tomcat' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: Tomcat 起動  /  REST API エンドポイント確認\n[出力] REST サーバーが Tomcat 上で稼働し、/ibm/netview/v1/ 系 API が応答する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 REST サーバーを Apache Tomcat で稼働させる手順に含まれるものはどれか?",
+        "choices": [
+          "WAR を webapps にコピーし環境変数を設定",
+          "DSITBL01 を再採番",
+          "VTAM メジャーノードを変更",
+          "RODM ビューを削除"
+        ],
+        "answer": 0,
+        "explanation": "WAR を Tomcat の webapps にコピー、ejnnvcmd のリンク作成、環境変数設定で REST サーバーを稼働させる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.241)",
+      "rag_hit": "Configuring Additional Components p.241-242: WAR コピー、ejnnvcmd リンク、環境変数。"
+    },
+    {
+      "row_id": "7430",
+      "title": "Using the Installation JCL Samples Library",
+      "naiyou_jp": "インストール JCL サンプルライブラリーの使用項目 (Using the Installation JCL Samples Library)。NetView は CNMSJxxx 等の各種インストール JCL サンプルを提供し、ジョブ CNMSJBUP で JCL サンプルライブラリー (NETVIEW.V6R4USER.INSTALL) を作成する。これらのサンプルを編集・サブミットして各種インストールタスクを実行する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using the Installation JCL Samples Library' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: NETVIEW.V6R4USER.INSTALL のサンプル一覧確認\n[出力] CNMSJxxx 等のインストール JCL サンプルが利用可能になる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でインストール JCL サンプルライブラリーを作成するジョブはどれか?",
+        "choices": [
+          "CNMSJBUP",
+          "CNMSJ006",
+          "RESTYLE",
+          "EKGXRODM"
+        ],
+        "answer": 0,
+        "explanation": "CNMSJBUP がインストール JCL サンプルライブラリー (V6R4USER.INSTALL) を作成する。CNMSJ006 は VTAM テーブルアセンブル。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.37)",
+      "rag_hit": "Getting Started p.37 / p.31: CNMSJBUP で JCL サンプルライブラリー作成。"
+    },
+    {
+      "row_id": "7431",
+      "title": "Using the Report Generator",
+      "naiyou_jp": "レポートジェネレーターの使用項目 (Using the Report Generator)。ハードウェアモニターのレポート生成機能で、REPORTS ON / REPORTS XLO コマンドでレポート生成 (順次ロギング) を有効化し、REPORTS OFF で無効化する。これにより障害・アラートデータのレポートを生成できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using the Report Generator' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: REPORTS ON  /  REPORTS OFF\n[出力] BNJ1540I (レポート生成有効) / BNJ1541I (無効) が表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でレポート生成を有効化するコマンドはどれか?",
+        "choices": [
+          "REPORTS ON",
+          "REPORTS OFF",
+          "TCPCONN START",
+          "STATMON ALL"
+        ],
+        "answer": 0,
+        "explanation": "REPORTS ON / XLO でレポート生成 (順次ロギング) を有効化し、REPORTS OFF で無効化する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.76)",
+      "rag_hit": "Messages and Codes Vol1 p.470/p.388: BNJ1540I/BNJ1541I、REPORTS ON/OFF/XLO。"
+    },
+    {
+      "row_id": "7432",
+      "title": "Using the Subsystem Router in a Sysplex Environment",
+      "naiyou_jp": "シスプレックス環境でのサブシステムルーターの使用項目 (Using the Subsystem Router in a Sysplex Environment)。NetView のサブシステムルーター (SSI) は、シスプレックス内の複数システム間でコマンドやメッセージをルーティングする。マスター NetView がシスプレックス全体のビューを保持し、システム間連携を可能にする。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Using the Subsystem Router in a Sysplex Environment' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: LIST STATUS=XCFGRPS  (シスプレックス連携確認)\n[出力] シスプレックス内のサブシステムルーター経由でコマンド/メッセージがルーティングされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のサブシステムルーターのシスプレックスでの役割はどれか?",
+        "choices": [
+          "システム間でコマンド/メッセージをルーティングする",
+          "RODM ビューを表示する",
+          "VTAM テーブルをアセンブルする",
+          "REST API を提供する"
+        ],
+        "answer": 0,
+        "explanation": "サブシステムルーター (SSI) はシスプレックス内システム間でコマンド/メッセージをルーティングする。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.253)",
+      "rag_hit": "Configuring Additional Components p.253: シスプレックスでのサブシステムルーター。"
+    },
+    {
+      "row_id": "7433",
+      "title": "USS Table",
+      "naiyou_jp": "USS テーブル (USS Table) はアンフォーマット システムサービス テーブルで、VTAM のログオン処理で使用される。NetView を VTAM に定義する際、モードテーブルや USS テーブルの変更を確認する。VTAM に同梱される既定 USS テーブルは z/OS Communications Server ライブラリーに記載がある。",
+      "verify_steps": "検証目的: NetView 6.4 における 'USS Table' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: CNMSJ006 で USS テーブルアセンブル  /  D NET,TABLE\n[出力] USS・ログオンモード・クラスオブサービステーブルがアセンブル・リンクされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で USS テーブルをアセンブル・リンクするサンプルジョブはどれか?",
+        "choices": [
+          "CNMSJ006",
+          "CNMSJBUP",
+          "CNMSJ000",
+          "DSITBL01"
+        ],
+        "answer": 0,
+        "explanation": "CNMSJ006 が USS・ログオンモード・クラスオブサービステーブルをアセンブル・リンクする。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.45)",
+      "rag_hit": "Getting Started p.45/p.133: USS テーブルは VTAM 用、CNMSJ006 でアセンブル。"
+    },
+    {
+      "row_id": "7434",
+      "title": "Verifying IP Management Capability",
+      "naiyou_jp": "IP 管理機能の検証項目 (Verifying IP Management Capability)。NetView の IP 管理機能 (探索・接続状態・DVIPA 等) が正しく動作するかを検証する。TCPCONN や LIST STATUS=DVIPA 等で IP リソースの状態を確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying IP Management Capability' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TCPCONN START  /  LIST STATUS=DVIPA\n[出力] TCP/IP 接続データが収集され、IP リソースの状態が表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で IP 管理機能の検証に使用するコマンドはどれか?",
+        "choices": [
+          "LIST STATUS=DVIPA",
+          "S GMFHS",
+          "BLDVIEWS",
+          "REPORTS ON"
+        ],
+        "answer": 0,
+        "explanation": "IP 管理機能の検証は TCPCONN / LIST STATUS=DVIPA 等で行う。他は GMFHS 起動・ビュー生成・レポート。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.138)",
+      "rag_hit": "Configuring Additional Components p.138: IP 管理機能の検証。"
+    },
+    {
+      "row_id": "7435",
+      "title": "Verifying self-describing agent enablement",
+      "naiyou_jp": "自己記述エージェント有効化の検証項目 (Verifying self-describing agent enablement)。NetView エージェント (EMA) の自己記述エージェント (SDA) 機能が有効で、Tivoli Enterprise Monitoring Server がエージェント定義を自動取得できているかを検証する。SDA により手動でのモニタリングサーバー更新が不要になる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying self-describing agent enablement' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TEMS でエージェント定義の自動取得確認\n[出力] 自己記述エージェント定義が TEMS に取り込まれ、エージェントが認識される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の自己記述エージェント (SDA) の利点はどれか?",
+        "choices": [
+          "TEMS のエージェント定義手動更新が不要になる",
+          "VTAM テーブルが不要になる",
+          "RODM が不要になる",
+          "APF 認可が不要になる"
+        ],
+        "answer": 0,
+        "explanation": "SDA により TEMS が定義を自動取得でき、従来必要だった手動更新が不要になる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_NetView_Enterprise_Management_Agent.pdf p.51)",
+      "rag_hit": "Migration Guide p.106/p.111: 自己記述エージェントで手動の TEMS 更新が不要に。"
+    },
+    {
+      "row_id": "7436",
+      "title": "Verifying the configuration",
+      "naiyou_jp": "構成の検証項目 (Verifying the configuration)。NetView エージェント構成の検証章で、Tivoli Enterprise Monitoring Server と NetView が起動済みの前提で、エージェント起動・接続開始・Tivoli Enterprise Portal Server / Portal 起動・エージェント動作確認の各手順を実施する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the configuration' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: NetView エージェント起動  →  TEP 接続  →  動作確認\n[出力] エージェントが TEMS に接続し、TEP でエージェントのデータが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の構成検証で前提とされる起動済みコンポーネントはどれか?",
+        "choices": [
+          "Tivoli Enterprise Monitoring Server と NetView",
+          "RODM と GMFHS",
+          "VTAM と USS",
+          "Tomcat と REST サーバー"
+        ],
+        "answer": 0,
+        "explanation": "構成検証は TEMS と NetView が起動済みの前提で、エージェント起動・TEP 接続・動作確認を行う。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_NetView_Enterprise_Management_Agent.pdf p.49)",
+      "rag_hit": "Configuring EMA p.49: Chapter 4 Verifying the configuration (TEMS/NetView 起動前提)。"
+    },
+    {
+      "row_id": "7437",
+      "title": "Verifying the GMFHS Installation",
+      "naiyou_jp": "GMFHS インストールの検証項目 (Verifying the GMFHS Installation)。GMFHS を起動し、RODM ベースビューが NetView 管理コンソールへ正しく表示されるかを検証する。RODM ビュー定義がリターンコード 0 でロードされ、NMC セッションと GMFHS が活動していることを確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the GMFHS Installation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: S GMFHS  /  RODM ビュー定義ロード確認\n[出力] GMFHS が起動し、RODM ビューがリターンコード 0 でロードされ NMC に表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で GMFHS 検証時に確認すべき RODM ビュー定義のロード結果はどれか?",
+        "choices": [
+          "リターンコード 0 でロード",
+          "リターンコード 8",
+          "ロード不要",
+          "INIT=N"
+        ],
+        "answer": 0,
+        "explanation": "GMFHS 検証では RODM ビュー定義がリターンコード 0 でロードされていることを確認する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.41)",
+      "rag_hit": "Troubleshooting Guide p.220: RODM ビュー定義は RC 0 でロード、GMFHS/NMC 活動確認。"
+    },
+    {
+      "row_id": "7438",
+      "title": "Verifying the Installation",
+      "naiyou_jp": "インストールの検証項目 (Verifying the Installation)。NetView 起動後、第7章の手順に従い一連のコマンドを正確な順序で発行して NetView プログラムをテストする。順序を誤るとログ内容やテスト結果が例の通りにならない。テストを開始できない場合はインストール手順を再確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the Installation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: LOGON APPLID(CNM01)  続けて第7章の検証コマンド\n[出力] 各検証コマンドが期待どおり応答し、インストールの正常性が確認される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 のインストール検証でコマンドを発行する際の注意点はどれか?",
+        "choices": [
+          "提示された正確な順序で発行する",
+          "順序は任意でよい",
+          "一度に全部発行する",
+          "検証は不要"
+        ],
+        "answer": 0,
+        "explanation": "インストール検証はコマンドを提示された順序どおりに発行する必要がある。順序を誤ると結果が例と異なる。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.89)",
+      "rag_hit": "Getting Started p.89: Chapter 7 Verifying the Installation、順序厳守。"
+    },
+    {
+      "row_id": "7439",
+      "title": "Verifying the Migration",
+      "naiyou_jp": "移行の検証項目 (Verifying the Migration)。旧バージョンから V6R4 への移行後、CNMSTYLE ステートメント・DSITBL01・DSICTMOD 等のマージや更新が正しく行われ、NetView が正常に初期化・動作するかを検証する。CNMSTNXT メンバーで新規/変更/削除ステートメントを確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the Migration' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: RESTYLE  /  CNMSJCRG で CNMSTYLE レポート生成\n[出力] 移行後の初期化ステートメントが正しく反映され、NetView が正常稼働する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 移行検証で新規/変更/削除された CNMSTYLE ステートメントを確認するメンバーはどれか?",
+        "choices": [
+          "CNMSTNXT",
+          "DSITBL01",
+          "A01APPLS",
+          "IEASYMxx"
+        ],
+        "answer": 0,
+        "explanation": "CNMSTNXT で新規/変更/削除の CNMSTYLE ステートメントを確認し CNMSTUSR/CxxSTGEN を更新する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Migration_Guide.pdf p.137)",
+      "rag_hit": "Migration Guide p.137/p.97: CNMSTNXT で CNMSTYLE 変更点を確認、移行検証。"
+    },
+    {
+      "row_id": "7440",
+      "title": "Verifying the NetView Management Console Installation",
+      "naiyou_jp": "NetView 管理コンソール (NMC) インストールの検証項目 (Verifying the NetView Management Console Installation)。トポロジーサーバーを起動してからトポロジーコンソールを起動し、ホストとの会話 (conversation) が確立されて RODM ベースビューが表示されるかを検証する。サーバーは手動または UNIX 系でデーモンとして起動できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the NetView Management Console Installation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: トポロジーサーバー起動  →  トポロジーコンソール起動\n[出力] トポロジーサーバーとコンソール間に会話が確立し、RODM ビューが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で NMC のビュー表示に必要な、サーバーとホスト間の確立対象はどれか?",
+        "choices": [
+          "会話 (conversation)",
+          "APF 認可",
+          "USS テーブル",
+          "シチュエーション"
+        ],
+        "answer": 0,
+        "explanation": "NMC のビュー表示にはトポロジーサーバーとホスト間の会話確立が必要。サーバー→コンソールの順で起動する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.51)",
+      "rag_hit": "Configuring Graphical Components p.51 / Users Guide NMC p.21: トポロジーサーバーとホストの会話。"
+    },
+    {
+      "row_id": "7441",
+      "title": "Verifying the NetView Resource Manager Installation",
+      "naiyou_jp": "NetView Resource Manager (NRM) インストールの検証項目 (Verifying the NetView Resource Manager Installation)。NRM が NetView リソース (タスク・ストレージ等) の使用状況を正しく監視・管理できているかを検証する。NRM データは TEP 等で表示できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the NetView Resource Manager Installation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: NRM 関連タスク/ワークスペース確認\n[出力] NRM がリソース使用状況を収集し、データが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の NetView Resource Manager (NRM) が監視する対象はどれか?",
+        "choices": [
+          "NetView リソース (タスク/ストレージ等) の使用状況",
+          "VTAM スタートオプション",
+          "USS テーブル",
+          "APF リスト"
+        ],
+        "answer": 0,
+        "explanation": "NRM は NetView リソース (タスク・ストレージ等) の使用状況を監視・管理する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.56)",
+      "rag_hit": "Configuring Graphical Components p.56: NetView Resource Manager のインストール検証。"
+    },
+    {
+      "row_id": "7442",
+      "title": "Verifying the operation of the agent",
+      "naiyou_jp": "エージェント動作の検証項目 (Verifying the operation of the agent)。NetView エージェント (EMA) が起動し TEMS に接続したうえで、Tivoli Enterprise Portal でエージェントのワークスペースにデータが表示されるかを検証する。前提として TEMS と NetView が起動済みであること。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the operation of the agent' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: TEP でエージェントワークスペース表示確認\n[出力] エージェントワークスペースに監視対象リソースのデータが表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 でエージェント動作確認はどこで監視データを表示して行うか?",
+        "choices": [
+          "Tivoli Enterprise Portal",
+          "3270 ハードウェアモニター",
+          "VTAM コンソール",
+          "SMP/E ダイアログ"
+        ],
+        "answer": 0,
+        "explanation": "エージェント動作確認は Tivoli Enterprise Portal でワークスペースのデータ表示を確認して行う。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_NetView_Enterprise_Management_Agent.pdf p.51)",
+      "rag_hit": "Configuring EMA p.51/p.49: エージェント動作確認は TEP ワークスペースで実施。"
+    },
+    {
+      "row_id": "7443",
+      "title": "Verifying the RODM Installation",
+      "naiyou_jp": "RODM インストールの検証項目 (Verifying the RODM Installation)。RODM を START EKGXRODM で起動し、データキャッシュが正しく初期化・ロードされ、ビュー定義がリターンコード 0 でロードされるかを検証する。RODM は GMFHS/NMC のビュー表示の基盤となる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the RODM Installation' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: START EKGXRODM  /  RODM ログでロード結果確認\n[出力] RODM が起動し、ビュー定義がリターンコード 0 でロードされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で RODM 検証時に確認するロード結果はどれか?",
+        "choices": [
+          "ビュー定義がリターンコード 0 でロード",
+          "INIT=N で停止",
+          "CONTINUE(YES) で伝播",
+          "REPORTS ON で有効"
+        ],
+        "answer": 0,
+        "explanation": "RODM 検証ではビュー定義がリターンコード 0 でロードされていることを確認する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.37)",
+      "rag_hit": "Configuring Graphical Components p.37 / Troubleshooting Guide p.220: RODM/ビュー定義 RC 0。"
+    },
+    {
+      "row_id": "7444",
+      "title": "Verifying the SMF 30 processing",
+      "naiyou_jp": "SMF 30 処理の検証項目 (Verifying the SMF 30 processing)。NetView が SMF タイプ 30 レコードを正しく処理し、ジョブ/アドレススペースのアカウンティング情報を収集できるかを検証する。これはワークロード管理 (WLM) 連携や使用状況分析に利用される。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying the SMF 30 processing' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: SMF レコード収集確認  /  該当タスク状態\n[出力] SMF 30 レコードが処理され、アカウンティング情報が収集される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の SMF 30 処理が扱うレコードの内容はどれか?",
+        "choices": [
+          "ジョブ/アドレススペースのアカウンティング情報",
+          "SNA セッショントレース",
+          "RODM ビュー定義",
+          "VTAM モードテーブル"
+        ],
+        "answer": 0,
+        "explanation": "SMF タイプ 30 はジョブ/アドレススペースのアカウンティング情報。NetView はこれを処理し WLM 連携等に利用する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.207)",
+      "rag_hit": "Configuring Additional Components p.207: SMF 30 処理の検証。"
+    },
+    {
+      "row_id": "7445",
+      "title": "Verifying WLM Support",
+      "naiyou_jp": "WLM サポートの検証項目 (Verifying WLM Support)。NetView がワークロード管理 (WLM) を有効化し、NetView プログラムを WLM で管理できているかを検証する。これは第10章の自動化定義で扱う「ワークロード管理を有効にして NetView を管理する」設定の検証にあたる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Verifying WLM Support' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: WLM 設定確認  /  該当 CNMSTYLE ステートメント確認\n[出力] WLM サポートが有効化され、NetView が WLM で管理される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の WLM サポートの目的はどれか?",
+        "choices": [
+          "ワークロード管理で NetView を管理する",
+          "RODM ビューを表示する",
+          "USS テーブルをアセンブルする",
+          "REST API を提供する"
+        ],
+        "answer": 0,
+        "explanation": "WLM サポートはワークロード管理で NetView プログラムを管理できるようにする (自動化定義の一部)。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Additional_Components.pdf p.205)",
+      "rag_hit": "Configuring Additional Components p.205/p.201: Enabling Workload Management to Manage the NetView Program。"
+    },
+    {
+      "row_id": "7446",
+      "title": "VTAM Address Space",
+      "naiyou_jp": "VTAM アドレススペースに関する項目で、NetView は VTAM アプリケーションプログラム (APPL) として VTAM アドレススペースを介して SNA ネットワークと通信する。また RODM (Resource Object Data Manager) は構成データとリソース状態を保持するインストレージデータキャッシュで、NetView アドレススペースから DSIQTSK タスクで管理できる。",
+      "verify_steps": "検証目的: NetView 6.4 における 'VTAM Address Space' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: D NET,APPLS  /  VTAM アドレススペース状態確認\n[出力] VTAM アドレススペースが活動し、NetView の APPL がアクティブと表示される\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 で RODM データキャッシュを NetView アドレススペースから管理するタスクはどれか?",
+        "choices": [
+          "DSIQTSK",
+          "DSITCPIP",
+          "EKGXRODM",
+          "DSITBL01"
+        ],
+        "answer": 0,
+        "explanation": "RODM データキャッシュは NetView アドレススペースの DSIQTSK タスクから管理できる。RODM はインストレージデータキャッシュ。"
+      },
+      "source": "(出典: NetView_6.4_Automation_Guide.pdf p.371)",
+      "rag_hit": "Migration Guide p.51 / Automation Guide p.371: VTAM アドレススペース、RODM は DSIQTSK で管理。"
+    },
+    {
+      "row_id": "7447",
+      "title": "VTAM Definition Statements",
+      "naiyou_jp": "VTAM 定義ステートメントの項目で、NetView を VTAM へ定義するには APPL メジャーノードの変更、モードテーブル/USS テーブルの確認、VTAM スタートオプションの確認が必要。NetView タスクの APPL ステートメントは A01APPLS (CNMS0013) メンバーにある。",
+      "verify_steps": "検証目的: NetView 6.4 における 'VTAM Definition Statements' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: A01APPLS 確認  /  CNMSJ006 でテーブルアセンブル  /  D NET,APPLS\n[出力] NetView の APPL メジャーノードが活動し、VTAM テーブルがアセンブル・リンクされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の APPL ステートメントが格納されるメンバーはどれか?",
+        "choices": [
+          "A01APPLS (CNMS0013)",
+          "DSITBL01",
+          "IEASYMxx",
+          "CNMSTUSR"
+        ],
+        "answer": 0,
+        "explanation": "NetView タスクの APPL ステートメントは A01APPLS (CNMS0013) メンバーに格納される。VTAM 定義作業は APPL メジャーノード変更・テーブル確認・スタートオプション確認を含む。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.45)",
+      "rag_hit": "Getting Started p.45/p.51: Preparing VTAM、A01APPLS (CNMS0013)、CNMSJ006 でテーブルアセンブル。"
+    },
+    {
+      "row_id": "7448",
+      "title": "VTAM Definitions",
+      "naiyou_jp": "VTAM 定義全般の項目で、NetView を VTAM へ定義する作業 (APPL メジャーノード変更、モード/USS テーブル確認、スタートオプション確認) をまとめたもの。NetView の APPL 定義は A01APPLS (CNMS0013) メンバーに格納される。",
+      "verify_steps": "検証目的: NetView 6.4 における 'VTAM Definitions' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: A01APPLS 確認  /  CNMSJ006 でテーブルアセンブル  /  D NET,APPLS\n[出力] NetView の APPL メジャーノードが活動し、VTAM テーブルがアセンブル・リンクされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の APPL ステートメントが格納されるメンバーはどれか?",
+        "choices": [
+          "A01APPLS (CNMS0013)",
+          "DSITBL01",
+          "IEASYMxx",
+          "CNMSTUSR"
+        ],
+        "answer": 0,
+        "explanation": "NetView タスクの APPL ステートメントは A01APPLS (CNMS0013) メンバーに格納される。VTAM 定義作業は APPL メジャーノード変更・テーブル確認・スタートオプション確認を含む。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.45)",
+      "rag_hit": "Getting Started p.45/p.51: Preparing VTAM、A01APPLS (CNMS0013)、CNMSJ006 でテーブルアセンブル。"
+    },
+    {
+      "row_id": "7449",
+      "title": "VTAM Major Node Names",
+      "naiyou_jp": "VTAM メジャーノード名の項目で、NetView アプリケーションを定義する APPL メジャーノード (A01APPLS / CNMS0013) の名前付けを扱う。CNMSJ000 ジョブで命名規則に合わせた置換を行える。",
+      "verify_steps": "検証目的: NetView 6.4 における 'VTAM Major Node Names' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: A01APPLS 確認  /  CNMSJ006 でテーブルアセンブル  /  D NET,APPLS\n[出力] NetView の APPL メジャーノードが活動し、VTAM テーブルがアセンブル・リンクされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の APPL ステートメントが格納されるメンバーはどれか?",
+        "choices": [
+          "A01APPLS (CNMS0013)",
+          "DSITBL01",
+          "IEASYMxx",
+          "CNMSTUSR"
+        ],
+        "answer": 0,
+        "explanation": "NetView タスクの APPL ステートメントは A01APPLS (CNMS0013) メンバーに格納される。VTAM 定義作業は APPL メジャーノード変更・テーブル確認・スタートオプション確認を含む。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.45)",
+      "rag_hit": "Getting Started p.45/p.51: Preparing VTAM、A01APPLS (CNMS0013)、CNMSJ006 でテーブルアセンブル。"
+    },
+    {
+      "row_id": "7450",
+      "title": "VTAM Start Options",
+      "naiyou_jp": "VTAM スタートオプションの項目で、NetView を VTAM へ定義する際にレビューすべき VTAM スタートオプションを扱う。APPL メジャーノードやテーブル変更と合わせて確認する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'VTAM Start Options' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: A01APPLS 確認  /  CNMSJ006 でテーブルアセンブル  /  D NET,APPLS\n[出力] NetView の APPL メジャーノードが活動し、VTAM テーブルがアセンブル・リンクされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の APPL ステートメントが格納されるメンバーはどれか?",
+        "choices": [
+          "A01APPLS (CNMS0013)",
+          "DSITBL01",
+          "IEASYMxx",
+          "CNMSTUSR"
+        ],
+        "answer": 0,
+        "explanation": "NetView タスクの APPL ステートメントは A01APPLS (CNMS0013) メンバーに格納される。VTAM 定義作業は APPL メジャーノード変更・テーブル確認・スタートオプション確認を含む。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.45)",
+      "rag_hit": "Getting Started p.45/p.51: Preparing VTAM、A01APPLS (CNMS0013)、CNMSJ006 でテーブルアセンブル。"
+    },
+    {
+      "row_id": "7451",
+      "title": "VTAM Tables",
+      "naiyou_jp": "VTAM テーブルの項目で、モードテーブル・USS テーブル・クラスオブサービステーブルなどを指す。CNMSJ006 サンプルで USS・ログオンモード・クラスオブサービステーブルをアセンブル・リンクする。",
+      "verify_steps": "検証目的: NetView 6.4 における 'VTAM Tables' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: A01APPLS 確認  /  CNMSJ006 でテーブルアセンブル  /  D NET,APPLS\n[出力] NetView の APPL メジャーノードが活動し、VTAM テーブルがアセンブル・リンクされる\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の APPL ステートメントが格納されるメンバーはどれか?",
+        "choices": [
+          "A01APPLS (CNMS0013)",
+          "DSITBL01",
+          "IEASYMxx",
+          "CNMSTUSR"
+        ],
+        "answer": 0,
+        "explanation": "NetView タスクの APPL ステートメントは A01APPLS (CNMS0013) メンバーに格納される。VTAM 定義作業は APPL メジャーノード変更・テーブル確認・スタートオプション確認を含む。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Getting_Started.pdf p.45)",
+      "rag_hit": "Getting Started p.45/p.51: Preparing VTAM、A01APPLS (CNMS0013)、CNMSJ006 でテーブルアセンブル。"
+    },
+    {
+      "row_id": "7452",
+      "title": "Workstation Setup for the NetView Management Console",
+      "naiyou_jp": "NetView 管理コンソール (NMC) 用のワークステーションセットアップ項目 (Workstation Setup for the NetView Management Console)。NMC のトポロジーコンソール (Java ベース) を実行するワークステーションをセットアップし、トポロジーサーバーへ接続できるよう構成する。サーバー起動後にコンソールを起動して会話を確立する。",
+      "verify_steps": "検証目的: NetView 6.4 における 'Workstation Setup for the NetView Management Console' の意味・配置・操作方法を関連マニュアル記述に従って実機確認する。\n\n[セッション環境] NetView 6.4 オペレーターコンソール (NCCF)\n[コマンド] NetView コンソール: ワークステーションでトポロジーコンソール起動  →  サーバー接続\n[出力] ワークステーションのトポロジーコンソールがサーバーへ接続しビューを表示する\n\n前提条件: NetView 6.4 起動済 (CNMPSSI/CNMPROC active)、オペレーター logon 済、NETVIEW.V6R4M0.* / V6R4USER.* データセット配備済、CNMSTYLE 編集権限、APF/LPA 権限\n\n記録項目: ① 該当マニュアル章節のページ番号 ② コンソール出力のキャプチャ ③ 動作確認結果 (期待出力との比較) ④ CNMSTYLE/DSIPARM 該当ステートメントの編集前後比較 ⑤ NetView 再起動後の RESTYLE 実行結果",
+      "quiz": {
+        "q": "NetView 6.4 の NMC ワークステーションで実行するコンソールの実装はどれか?",
+        "choices": [
+          "Java ベースのトポロジーコンソール",
+          "3270 エミュレーター",
+          "REXX コマンドリスト",
+          "VTAM USS テーブル"
+        ],
+        "answer": 0,
+        "explanation": "NMC のトポロジーコンソールは Java ベースで、ワークステーションにセットアップしサーバーへ接続する。"
+      },
+      "source": "(出典: NetView_6.4_Installation_Configuring_Graphical_Components.pdf p.46)",
+      "rag_hit": "Configuring Graphical Components p.46 / Users Guide NMC p.21: Java ベースのトポロジーコンソール。"
+    }
+  ]
+}

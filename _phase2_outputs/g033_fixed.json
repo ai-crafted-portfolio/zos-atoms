@@ -1,0 +1,2764 @@
+{
+ "page": "g033",
+ "product": "IBM NetView 6.4",
+ "total_rows": 145,
+ "target_rows": 145,
+ "fixed_count": 145,
+ "rows": [
+  {
+   "row_id": "6632",
+   "title": "Accepting an MDS-MU",
+   "naiyou_jp": "MDS-MU（multiple-domain support message unit）は、LU 6.2 会話上で要求と応答を運ぶデータの封筒であり、エージェント作業単位相関子（agent-unit-of-work correlator）と、トランザクション内でのデータの目的を示すフラグビットを含む。受信側アプリケーションは「応答を期待する要求」「応答を期待しない要求」などの種別に応じて受け取った MDS-MU を処理する。NetView 高性能トランスポート API は MS トランスポート API と異なり、送信した MDS-MU ごとの確認応答を行わない。",
+   "verify_steps": "NetView コンソールで NCCFIC にログオンし、`LIST STATUS=TASKS` で DSI6DST など MS トランスポート関連タスクが ACTIVE であることを確認する。受信側アプリを登録した後、`DISPLU` や受信者状況照会で MDS-MU を受信したことをログ（NETLOG）で確認する。",
+   "quiz": {
+    "q": "MDS-MU に含まれ、トランザクションを一意に識別するものはどれか。",
+    "choices": [
+     "エージェント作業単位相関子（X'1549'）",
+     "RACF ユーザー ID",
+     "VTAM ログモード名",
+     "SMF レコード番号"
+    ],
+    "answer": 0,
+    "explanation": "MDS-MU はエージェント作業単位相関子とフラグビットを含み、相関子がトランザクションを一意に識別する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (Accepting an MDS-MU)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.58 / p.55"
+  },
+  {
+   "row_id": "6633",
+   "title": "Accessing publications online",
+   "naiyou_jp": "NetView の刊行物はオンラインで参照でき、コンソールから HELP コマンドでオンラインヘルプ機能を利用できる。問題判別時には、たとえば異常終了（ABEND）に対して `HELP ABEND` と入力することで該当する説明を表示できる。アプリケーションプログラマーは、SNA Formats や Management Services の関連刊行物を併せて参照する必要がある。",
+   "verify_steps": "NCCF コンソールで `HELP ABEND` と入力し、異常終了コードに関するオンラインヘルプが表示されることを確認する。続けて `HELP` のみを入力して NetView ヘルプメニューが開くことを確認する。",
+   "quiz": {
+    "q": "NetView のオンラインヘルプ機能を呼び出すコマンドはどれか。",
+    "choices": [
+     "HELP",
+     "BROWSE",
+     "VPDCMD",
+     "SEQUENT"
+    ],
+    "answer": 0,
+    "explanation": "オンラインヘルプ機能は HELP コマンドで呼び出し、`HELP ABEND` のように引数を付けて特定トピックを表示できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.12 (Accessing publications online)",
+   "rag_hit": "NetView_6.4_Troubleshooting_Guide.pdf p.64"
+  },
+  {
+   "row_id": "6634",
+   "title": "Additional Product Set Attributes (Subvector X'86')",
+   "naiyou_jp": "Additional Product Set Attributes（追加製品セット属性、サブベクター X'86'）は、VPDCMD コマンドで収集される製品識別データの一部で、製品セット ID サブベクターに付随する追加属性を運ぶ SNA サブベクターである。製品セット ID（PSID）は 2〜9 文字の英数字で、アラート送出時には PSID キーワードで指定される。これらのサブベクターはネットワーク資産管理での製品情報の解釈に用いられる。",
+   "verify_steps": "NCCF で `VPDCMD` をサービスポイント宛てに発行し、返ってくる製品データに製品セット ID 関連サブベクターが含まれることをログで確認する。GENALERT 系コマンドで PSID キーワードを付けてアラートを生成し、サブベクター構造を確認する。",
+   "quiz": {
+    "q": "サブベクター X'86'（Additional Product Set Attributes）が属するデータはどれか。",
+    "choices": [
+     "製品識別／ネットワーク資産管理の VPD",
+     "RACF 監査レコード",
+     "REXX 変数プール",
+     "GTF トレースバッファ"
+    ],
+    "answer": 0,
+    "explanation": "X'86' は製品セット ID に付随する追加製品属性を運ぶサブベクターで、VPD（vital product data）として収集される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.119 (Additional Product Set Attributes Subvector X'86')",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.6 / Command_Reference_Vol1 p.452"
+  },
+  {
+   "row_id": "6635",
+   "title": "Agent Unit of Work Correlator (X'1549') GDS Variable",
+   "naiyou_jp": "エージェント作業単位相関子（X'1549'）GDS 変数は MDS ヘッダーに含まれ、作業単位（unit of work）を一意に識別する。発信元ノード名（NETID と LU 名）、発信元 MS アプリケーション名、および作業単位を一意化する日時付きシーケンス番号で構成される。MDS 応答やエラーメッセージは、元の要求と同じ相関子を返さなければならない。",
+   "verify_steps": "MS トランスポートを使うアプリ間でトランザクションを発生させ、NETLOG で送信 MDS-MU と応答 MDS-MU の相関子が一致することを確認する。構文エラー時には MDS エラーメッセージとソフトウェアアラートがハードウェアモニターへ生成されることを確認する。",
+   "quiz": {
+    "q": "X'1549' GDS 変数（エージェント作業単位相関子）の役割はどれか。",
+    "choices": [
+     "作業単位を一意に識別する",
+     "バッファキュー上限を設定する",
+     "RACF アクセスを許可する",
+     "GTF へトレースを書き出す"
+    ],
+    "answer": 0,
+    "explanation": "X'1549' は発信元名・MS アプリ名・日時付きシーケンス番号からなり、作業単位（トランザクション）を一意に識別する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.105 (Agent Unit of Work Correlator X'1549' GDS Variable)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.106 (Table 14)"
+  },
+  {
+   "row_id": "6636",
+   "title": "Answering Node Configuration Data",
+   "naiyou_jp": "Answering Node Configuration Data（応答ノード構成データ）は、VPDCMD コマンドで返される vital product data（VPD）の一種で、応答（answering）側ノードの構成情報を表す。ネットワーク資産管理では、この種の VPD をシリアル番号・機種・モデル番号などのインベントリ情報として収集する。NetView はデバイスから返されたデータの正当性検証は行わない。",
+   "verify_steps": "NCCF で `VPDCMD` を発行し、応答ノードの構成データが返ることを NETLOG で確認する。サンプルのネットワーク資産管理コマンドリストを実行し、外部ファイルに VPD レコードが記録されることを確認する。",
+   "quiz": {
+    "q": "Answering Node Configuration Data はどのコマンドで収集される VPD か。",
+    "choices": [
+     "VPDCMD",
+     "TRACEPPI",
+     "SEQUENT",
+     "REGISTER"
+    ],
+    "answer": 0,
+    "explanation": "応答ノード構成データは VPDCMD コマンドが返す VPD の一種で、ネットワーク資産管理で収集される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Answering Node Configuration Data)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Vital Product Data Descriptions)"
+  },
+  {
+   "row_id": "6637",
+   "title": "Application Program-Level Error Reporting",
+   "naiyou_jp": "Application Program-Level Error Reporting（アプリケーションプログラムレベルのエラー報告）は、MDS エラーメッセージ以外の方法でアプリケーション検出のエラーを報告する仕組みである。コマンド拒否、構文例外、機能未サポートなどのエラーは、応答メジャーベクターなどアプリ独自の手法で報告される。状況によっては MS アプリケーションが、未処理の MDS トランザクションを無条件に終了させる必要がある。",
+   "verify_steps": "MS アプリケーションでタイマーを起動し、応答が来ないトランザクションをアプリ側で打ち切る挙動を再現する。NETLOG で MDS エラーメッセージまたはアプリ定義のエラー応答が記録されることを確認する。",
+   "quiz": {
+    "q": "MDS エラーメッセージ以外で報告されるアプリケーションレベルのエラーはどれか。",
+    "choices": [
+     "コマンド拒否・構文例外・機能未サポート",
+     "GTF バッファ不足",
+     "RACF パスワード期限切れ",
+     "VTAM セッション確立"
+    ],
+    "answer": 0,
+    "explanation": "これらのエラーは応答メジャーベクターなどアプリ定義の手法で報告され、MDS エラーメッセージとは別経路である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.112 (Application Program-Level Error Reporting)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.112"
+  },
+  {
+   "row_id": "6638",
+   "title": "Assembler Programs",
+   "naiyou_jp": "Assembler Programs（アセンブラープログラム）の章では、高水準言語およびアセンブラーを用いて NetView へ要求を送る方法を扱う。MVS でインターフェースを有効化するには、NMVT または CP-MSU 形式のアラートを受信できるよう PPI を初期化し、NetView サブシステムアドレス空間を起動する必要がある。アセンブラーでは DSIxxx 系マクロを使って要求パラメーターブロックを構築する。",
+   "verify_steps": "NetView サブシステムアドレス空間を起動し、`DISPPI` などで PPI が ACTIVE であることを確認する。アセンブラーサンプル（例: CNMS4287）をアセンブル・リンクして実行し、アラートがハードウェアモニターに到達することを確認する。",
+   "quiz": {
+    "q": "MVS でアラート受信用インターフェースを有効化するために必要な前提はどれか。",
+    "choices": [
+     "NetView サブシステムアドレス空間の初期化（PPI 有効化）",
+     "GTF の停止",
+     "RACF クラス APPL の削除",
+     "SEQUENT 排他制御の取得"
+    ],
+    "answer": 0,
+    "explanation": "NMVT/CP-MSU アラートを受信するには PPI を有効化し、NetView サブシステムアドレス空間を初期化する必要がある。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.22 (Assembler Programs)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27 (Enabling the Interface for MVS)"
+  },
+  {
+   "row_id": "6639",
+   "title": "Attached Device Configuration Data (Subvector X'82')",
+   "naiyou_jp": "Attached Device Configuration Data（接続デバイス構成データ、サブベクター X'82'）は、VPDCMD コマンドで返される VPD の一種で、ノードに接続されたデバイスの構成情報を表す SNA サブベクターである。ネットワーク資産管理のコマンドリストがこのサブベクターを解釈し、インベントリレコードとして外部ファイルに記録する。",
+   "verify_steps": "NCCF で `VPDCMD` をサービスポイント宛てに発行し、接続デバイス構成データ（X'82'）が返ることを NETLOG で確認する。サンプルコマンドリストで該当レコードタイプが外部ファイルに出力されることを確認する。",
+   "quiz": {
+    "q": "サブベクター X'82' が表す VPD はどれか。",
+    "choices": [
+     "接続デバイス構成データ",
+     "コマンド統計",
+     "RACF 監査",
+     "セッション稼働率"
+    ],
+    "answer": 0,
+    "explanation": "X'82' は接続デバイス構成データ（Attached Device Configuration Data）を表すサブベクターで VPD の一部である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.118 (Attached Device Configuration Data Subvector X'82')",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.6 (Subvector list)"
+  },
+  {
+   "row_id": "6640",
+   "title": "Avoiding Interlock",
+   "naiyou_jp": "Avoiding Interlock（インターロック回避）は、長時間実行コマンドや WAIT を含むプログラムでデッドロックを避けるための技法を扱う。長時間実行コマンドはアセンブラーマクロ DSIPUSH を用いて待機し、その間もメッセージ自動化など必須の NetView 機能を継続させる。コマンドリストでは &WAIT による待機やネスト時の制約に注意し、メッセージキューの肥大化を避ける必要がある。",
+   "verify_steps": "REXX コマンドリストで長時間実行コマンドを発行し、待機中も他コマンドが低優先度キューで処理されることを `LIST` 系コマンドで確認する。WAIT 応答が無くプロセッサ使用も増えない状態を再現し、Troubleshooting Guide の WAIT キーワードに沿って切り分ける。",
+   "quiz": {
+    "q": "長時間実行コマンドが待機中に必須機能を継続させるために使うアセンブラーマクロはどれか。",
+    "choices": [
+     "DSIPUSH",
+     "DSIGET",
+     "DSIMQS",
+     "DSIPRS"
+    ],
+    "answer": 0,
+    "explanation": "長時間実行コマンドは DSIPUSH を使って待機し、低優先度キュー上の他コマンドやメッセージ自動化の継続を可能にする。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.64 (Avoiding Interlock)",
+   "rag_hit": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.25"
+  },
+  {
+   "row_id": "6641",
+   "title": "Buffering Replies",
+   "naiyou_jp": "Buffering Replies（応答のバッファリング）は、データ要求に対する応答をすぐに転送するか、バッファに溜めるかを選択する技法である。PL/I・C のプログラムでは、応答待ちの間にプログラムを中断するか継続するかを選べ、継続させる場合は応答をバッファリングするか即時受信するかを指定できる。複数の応答を最大 31K まで 1 回の送信にブロック化することもでき、その場合受信側は処理前にブロックを分解する。",
+   "verify_steps": "PL/I/C アプリで応答待ちをバッファリング指定にして起動し、応答が即時転送されずキューに溜まることを確認する。複数応答をブロック化送信し、受信側で 1 送信に複数応答が含まれていることを NETLOG で確認する。",
+   "quiz": {
+    "q": "ブロック化した応答の 1 回のデータ送信で許容される最大サイズはどれか。",
+    "choices": [
+     "31K",
+     "1024 バイト",
+     "208 バイト",
+     "4096 バイト"
+    ],
+    "answer": 0,
+    "explanation": "NetView は最大 31K のデータ送信をサポートし、複数応答をまとめて 1 回の送信でブロック化できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.73 (Buffering Replies)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.57 / p.59"
+  },
+  {
+   "row_id": "6642",
+   "title": "Building the Request Buffer",
+   "naiyou_jp": "Building the Request Buffer（要求バッファの構築）は、PPI へ要求を送るための要求パラメーターバッファ（RPB）を組み立てる作業を指す。RPB は固定長（96 バイト）の構造で、要求種別（TYPE）、受信者 ID、ワークエリアアドレス、バッファキュー上限などのフィールドを持つ。各要求ごとに RPB を構築し、PPI は同じ RPB を使って結果（戻りコード等）をプログラムへ返す。",
+   "verify_steps": "アセンブラー／HLL サンプルで RPB を初期化し、TYPE フィールドに要求種別をセットして PPI を呼び出す。戻りコードが RPB に格納されることを確認し、`DISPPI` で PPI 状況を照会する。",
+   "quiz": {
+    "q": "PPI が要求結果（戻りコード）を返すために使う構造はどれか。",
+    "choices": [
+     "同じ要求パラメーターバッファ（RPB）",
+     "SMF レコード",
+     "GTF トレーステーブル",
+     "RACF プロファイル"
+    ],
+    "answer": 0,
+    "explanation": "プログラムは RPB で要求を送り、PPI は同じ RPB を使ってデータと戻りコードをプログラムに返す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.29 (Building the Request Buffer)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Processing Requests)"
+  },
+  {
+   "row_id": "6643",
+   "title": "Character Tables",
+   "naiyou_jp": "Character Tables（文字テーブル）は、正規表現や自動化テーブルでの文字クラス照合に用いられるテーブルである。NetView の自動化では、メッセージ ID やテキスト内の文字パターンを照合し、条件に応じてコマンドを実行する。文字テーブルは正規表現処理（PIPE の LOCATE/NLOCATE、REXX の MATCH、自動化テーブル関数 DSIAMMCH）で使われる文字集合の定義を支える。",
+   "verify_steps": "自動化テーブルに正規表現を含むメッセージ照合条件を定義し、テスト用メッセージを投入して該当アクションが起動することを `MSG` 系コマンドや NETLOG で確認する。`PIPE ... | LOCATE /pattern/` で文字パターン照合を検証する。",
+   "quiz": {
+    "q": "文字テーブルが関与する正規表現の利用箇所として正しいものはどれか。",
+    "choices": [
+     "PIPE の LOCATE/NLOCATE と REXX の MATCH",
+     "GTF 外部トレース",
+     "RACF パスワード検証",
+     "VPDCMD のサブベクター"
+    ],
+    "answer": 0,
+    "explanation": "正規表現は PIPE の LOCATE/NLOCATE、REXX の MATCH、自動化テーブル関数 DSIAMMCH で利用される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.85 (Character Tables)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.81 (Regular expressions)"
+  },
+  {
+   "row_id": "6644",
+   "title": "Choosing the Request Type",
+   "naiyou_jp": "Choosing the Request Type（要求種別の選択）では、PPI 要求の構成要素となる要求種別を選ぶ。各プログラムは、まず要求ごとに要求パラメーターバッファ（RPB）を構築し、適切な要求種別（例: 1=PPI 状況照会、4=受信者の定義と初期化、12=アラート送信、14=同期データ送信、22=データ受信など）を設定する。要求種別はプログラムの構築ブロックとして機能する。",
+   "verify_steps": "サンプルプログラムで RPB に TYPE=1（PPI 状況照会）をセットし戻りコード 10（PPI 利用可能）を確認する。続けて TYPE=4 で受信者を定義し、`DISPPI` で受信者が ACTIVE になることを確認する。",
+   "quiz": {
+    "q": "PPI の各プログラムが要求ごとに最初に行うことはどれか。",
+    "choices": [
+     "要求パラメーターバッファ（RPB）の構築",
+     "GTF の起動",
+     "RACF への ADDUSER",
+     "VTAM メジャーノードの活性化"
+    ],
+    "answer": 0,
+    "explanation": "各要求では、まず RPB を構築し、選択した要求種別を設定する。要求種別はプログラムの構築ブロックである。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.34 (Choosing the Request Type)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.34 (Table 2) / p.18"
+  },
+  {
+   "row_id": "6645",
+   "title": "Common Operations Services Commands",
+   "naiyou_jp": "Common Operations Services Commands（共通操作サービスコマンド、COS）は、サービスポイントアプリケーション宛てに RUNCMD などのコマンドを流す仕組みである。DSIGDS タスクが MS トランスポートに SPCS（COS_NETOP）として登録し、COS コマンドが MS API 上を流れる。コマンドが MS API を流れるとき、メジャーベクターは MDS-MU の CP-MSU 内の X'1212' GDS 変数に格納され、RUNCMD の SP パラメーターが宛先 LU 名、EP_COS が宛先となる。",
+   "verify_steps": "NCCF で `RUNCMD SP=spname,EP_COS,...` を発行し、COS コマンドがサービスポイントへ流れ応答が返ることを NETLOG で確認する。`LIST STATUS=TASKS` で DSIGDS タスクが ACTIVE であることを確認する。",
+   "quiz": {
+    "q": "COS コマンドが MS API を流れるとき、メジャーベクターが格納される GDS 変数はどれか。",
+    "choices": [
+     "X'1212'（CP-MSU 内）",
+     "X'1549'",
+     "X'1311'",
+     "X'86'"
+    ],
+    "answer": 0,
+    "explanation": "COS コマンドの MS API 経由では、メジャーベクターは MDS-MU の CP-MSU 内の X'1212' GDS 変数に置かれる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (Common Operations Services Commands)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (DSIGDS / COS_NETOP)"
+  },
+  {
+   "row_id": "6646",
+   "title": "Considerations for Applications",
+   "naiyou_jp": "Considerations for Applications（アプリケーションでの考慮事項）は、どのトランスポート API を使うかを決める際の指針を補足する。事前構築済みの MDS-MU を使うとアプリは単純化されるが、インターフェース利用のための準備作業が増える場合がある。PL/I・C のプログラムでは、応答待ちでプログラムを中断するか継続するか、応答をバッファリングするか即時受信するかを選べる。",
+   "verify_steps": "PL/I/C サンプルで事前構築済み MDS-MU を用いる方式と、サービスルーチンにヘッダー構築を任せる方式の双方を実行し、挙動の差を NETLOG で比較する。応答待ちの中断／継続オプションを切り替えて確認する。",
+   "quiz": {
+    "q": "事前構築済みの MDS-MU を使う利点はどれか。",
+    "choices": [
+     "アプリケーションが単純化される",
+     "RACF 認可が不要になる",
+     "GTF が自動起動する",
+     "バッファ上限が無制限になる"
+    ],
+    "answer": 0,
+    "explanation": "事前構築済み MDS-MU はアプリを単純化するが、インターフェース利用のための準備作業が増える場合がある。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.57 (Considerations for Applications)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.57"
+  },
+  {
+   "row_id": "6647",
+   "title": "Controlling overuse of SEQUENT Names",
+   "naiyou_jp": "Controlling overuse of SEQUENT Names（SEQUENT 名の過剰使用の抑制）は、SEQUENT コマンドで資源を直列化する際に、SEQUENT 名を使いすぎないよう管理する技法である。SEQUENT は OBTAINEX（排他制御）または OBTAINSH（共有制御）で資源を獲得し、RELEASE で解放する。排他制御中は他のプログラムは待機させられるため、名前の粒度設計が並行性に影響する。",
+   "verify_steps": "複数タスクで同一 SEQUENT 名に対し OBTAINEX を発行し、後続タスクが先行タスクの RELEASE まで待機することを再現する。OBTAINSH に変えると共有アクセスが並行することを確認する。",
+   "quiz": {
+    "q": "SEQUENT で排他制御を獲得するキーワードはどれか。",
+    "choices": [
+     "OBTAINEX",
+     "OBTAINSH",
+     "RELEASE",
+     "REGISTER"
+    ],
+    "answer": 0,
+    "explanation": "OBTAINEX は排他制御、OBTAINSH は共有制御を獲得し、RELEASE で解放する。排他中は他プログラムが待機する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.62 (Controlling overuse of SEQUENT Names)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.61-62 (SEQUENT)"
+  },
+  {
+   "row_id": "6648",
+   "title": "Controlling the Trace Facility",
+   "naiyou_jp": "Controlling the Trace Facility（トレース機能の制御）は、コマンド機能トレースで、ディスパッチ・バッファのキューイング・プレゼンテーションサービス・モジュール入出口・記憶域取得解放・出口呼び出しなどを記録する制御を扱う。DSITRACE タスクを起動し、TRACE コマンドの OPTION や MODE（INT/EXT）でトレース対象を指定する。内部トレース（MODE=INT）が既定で、外部出力（MODE=EXT）は DSITRACE データセットを用いる。",
+   "verify_steps": "NCCF で `START TASK=DSITRACE` を実行し、`TRACE` コマンドで OPTION=(DISP,PSS,QUE,STOR,UEXIT) を指定する。トレースが内部（INT）に記録され、`TRACE` 照会で状態を確認する。",
+   "quiz": {
+    "q": "コマンド機能トレースを外部データセットへ書き出すモードはどれか。",
+    "choices": [
+     "MODE=EXT",
+     "MODE=INT",
+     "MODE=GTF のみ",
+     "MODE=RACF"
+    ],
+    "answer": 0,
+    "explanation": "MODE=EXT は DSITRACE データセットへ外部出力する。既定は MODE=INT（内部・仮想記憶）である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.101 (Controlling the Trace Facility)",
+   "rag_hit": "NetView_6.4_Users_Guide_NetView.pdf p.180 / Troubleshooting_Guide p.118"
+  },
+  {
+   "row_id": "6650",
+   "title": "CP-MSU Format",
+   "naiyou_jp": "CP-MSU Format（CP-MSU 形式）は、制御点管理サービス単位（control point management services unit）の形式で、MS トランスポートとそのアプリケーション（ハードウェアモニター含む）が用いるデータ型の一つである。MDS-MU 内では X'1212' GDS 変数として CP-MSU が運ばれる。NMVT・CP-MSU 形式のアラートを NetView へ送る要求種別 12 では、これらの形式が用いられる。",
+   "verify_steps": "アセンブラー／HLL サンプルで要求種別 12 を使い CP-MSU 形式アラートを送出し、ハードウェアモニターのフィルター（AREC/ESREC）を PASS にしてアラートが表示されることを確認する。NETLOG で CP-MSU が到達したことを確認する。",
+   "quiz": {
+    "q": "CP-MSU が MDS-MU 内で格納される GDS 変数はどれか。",
+    "choices": [
+     "X'1212'",
+     "X'1549'",
+     "X'82'",
+     "X'7D'"
+    ],
+    "answer": 0,
+    "explanation": "COS/MS 経由ではメジャーベクター（CP-MSU 含む）は MDS-MU の X'1212' GDS 変数に置かれる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.107 (CP-MSU Format)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.107 (MS data types)"
+  },
+  {
+   "row_id": "6651",
+   "title": "Creating Buffer Queues",
+   "naiyou_jp": "Creating Buffer Queues（バッファキューの作成）は、HLL サービスルーチンが扱うデータ・メッセージキューを準備する処理である。受信者を定義する要求種別 4 でバッファキュー上限（BUFFQ-L）を設定でき、SETBQL コマンドでも上限を後から調整できる。NetView サブシステムアドレス空間は、受信者数と平均バッファサイズ・キュー上限から必要な記憶域を確保する必要がある。",
+   "verify_steps": "要求種別 4 で受信者を定義し BUFFQ-L を設定する。`SETBQL receiverid qlimit` でバッファキュー上限を変更し、`DISPPI` で反映を確認する。",
+   "quiz": {
+    "q": "受信者のバッファキュー上限を後から調整するコマンドはどれか。",
+    "choices": [
+     "SETBQL",
+     "TRACEPPI",
+     "RUNCMD",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "SETBQL コマンドで受信者のバッファキュー上限（0〜4294967295）を調整できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.19 (Creating Buffer Queues)",
+   "rag_hit": "NetView_6.4_Command_Reference_Vol2_O-Z.pdf p.243 (SETBQL)"
+  },
+  {
+   "row_id": "6652",
+   "title": "Data Formats for LU 6.2 Conversations",
+   "naiyou_jp": "Data Formats for LU 6.2 Conversations（LU 6.2 会話のデータ形式）は、MDS-MU の形式を規定する付録である。MDS-MU は MDS ヘッダーとアプリケーションプログラム GDS 変数から成り、全体は 32767（X'7FFF'）バイト未満、MDS ヘッダーは 1024（X'400'）バイトでなければならない。アプリケーションプログラム GDS 変数の最大は 31743（X'7BFF'）バイトである。",
+   "verify_steps": "MS トランスポートでアプリ間データを送信し、MDS-MU 全体長が 32767 バイト未満かつ MDS ヘッダーが 1024 バイトであることを、構文エラー時の MDS エラーメッセージ（先頭 100 バイトを含む）で確認する。",
+   "quiz": {
+    "q": "MDS ヘッダーの長さとして正しいものはどれか。",
+    "choices": [
+     "1024（X'400'）バイト",
+     "208 バイト",
+     "31743 バイト",
+     "4096 バイト"
+    ],
+    "answer": 0,
+    "explanation": "MDS ヘッダーは 1024（X'400'）バイト、アプリ GDS 変数の最大は 31743 バイト、MDS-MU 全体は 32767 バイト未満。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.103 (Data Formats for LU 6.2 Conversations)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.103"
+  },
+  {
+   "row_id": "6653",
+   "title": "DCE Data",
+   "naiyou_jp": "DCE Data（DCE データ）は、VPDCMD コマンドで返される VPD の一種だが、NetView for z/OS V5R4 以降は非推奨（deprecated）である。歴史的には分散コンピューティング環境（DCE）に関する製品情報を運んだ。現在のネットワーク資産管理では、製品データやリンク構成データなど他の VPD 種別が用いられる。",
+   "verify_steps": "`VPDCMD` を発行し、返る VPD 種別の中で DCE データが非推奨である旨を文書で確認する。サンプルコマンドリスト（VPDDCE 等）の挙動を確認し、現行構成では他の VPD 種別を使うことを確認する。",
+   "quiz": {
+    "q": "DCE Data（VPD の一種）の現在の扱いはどれか。",
+    "choices": [
+     "NetView for z/OS V5R4 以降は非推奨",
+     "唯一の必須 VPD",
+     "RACF 専用データ",
+     "GTF トレース形式"
+    ],
+    "answer": 0,
+    "explanation": "DCE データは VPD の一種だが V5R4 以降は deprecated（非推奨）である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.118 (DCE Data)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Vital Product Data Descriptions)"
+  },
+  {
+   "row_id": "6654",
+   "title": "Deciding Which Transport API to Use",
+   "naiyou_jp": "Deciding Which Transport API to Use（使用するトランスポート API の決定）では、アプリケーションが NetView MS トランスポート API と高性能トランスポート API のどちらを使うかを選ぶ指針を示す。MS トランスポートは遠隔操作やアーキテクチャ準拠の管理サービスに適し、高性能トランスポートは性能重視のアプリや RU サイズ等のセッションパラメーター指定が必要な場合に適する。高性能トランスポートは MDS-MU ごとの確認応答を行わず会話を持続させる分、一般的なエラー通知のみとなる。",
+   "verify_steps": "同一トランザクションを MS トランスポートと高性能トランスポートで実行し、確認応答の有無やネットワークトラフィック量の差を NETLOG・性能指標で比較する。`LIST STATUS=TASKS` で各トランスポートタスクの状態を確認する。",
+   "quiz": {
+    "q": "高性能トランスポート API の特徴として正しいものはどれか。",
+    "choices": [
+     "MDS-MU ごとの確認応答を行わず会話を持続させる",
+     "全 MDS-MU を確認応答する",
+     "LU 6.2 を使わない",
+     "アラート送信専用である"
+    ],
+    "answer": 0,
+    "explanation": "高性能トランスポートは MDS-MU ごとの確認応答を省き LU 6.2 会話を持続させるため高速だが、エラー通知は一般的なものになる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.56 (Deciding Which Transport API to Use)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.56 / Tuning_Guide p.115"
+  },
+  {
+   "row_id": "6655",
+   "title": "Description of Available APIs",
+   "naiyou_jp": "Description of Available APIs（利用可能な API の説明）は、NetView が提供する LU 6.2 系トランスポート API（MS トランスポート API と高性能トランスポート API）の概要を説明する。両者の外部機能の多くは共通だが、高性能トランスポートは異なる LU 6.2 プロトコルを使って性能を高め、会話を持続させる。アプリは用途に応じて適切な API を選択する。",
+   "verify_steps": "文書で両 API の機能差（確認応答・会話持続・エラー通知粒度）を確認し、サンプルアプリで MS／高性能の両方を起動して挙動を比較する。",
+   "quiz": {
+    "q": "NetView が提供する 2 つの LU 6.2 系トランスポート API はどれか。",
+    "choices": [
+     "MS トランスポート API と高性能トランスポート API",
+     "RACF API と SAF API",
+     "GTF API と SMF API",
+     "REST API と SNMP API"
+    ],
+    "answer": 0,
+    "explanation": "NetView は MS トランスポート API と高性能トランスポート API の 2 つの LU 6.2 系 API を提供する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Description of Available APIs)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.55"
+  },
+  {
+   "row_id": "6656",
+   "title": "Destination Name",
+   "naiyou_jp": "Destination Name（宛先名）は、MS アプリケーション宛てに送るデータの送り先を特定する名前で、宛先ロケーションの NETID・修飾なし LU 名・MS アプリケーションプログラム名から成るロケーション名 MS サブベクターで構成される。名前は A〜Z・0〜9・$・#・@ を使い、英字は大文字かつ先頭は非数字とする。$・#・@ は移行目的のみで新規利用は避ける。",
+   "verify_steps": "MS アプリで宛先名（NETID・LU 名・アプリ名）を指定して送信し、宛先で受信されることを NETLOG で確認する。不正文字を含む名前で送信し、拒否されることを確認する。",
+   "quiz": {
+    "q": "宛先名（ロケーション名 MS サブベクター）に含まれないものはどれか。",
+    "choices": [
+     "RACF パスワード",
+     "NETID",
+     "修飾なし LU 名",
+     "MS アプリケーションプログラム名"
+    ],
+    "answer": 0,
+    "explanation": "宛先名は宛先の NETID・修飾なし LU 名・MS アプリ名から成る。RACF パスワードは含まれない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.68 (Destination Name)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.104"
+  },
+  {
+   "row_id": "6657",
+   "title": "Differences between Transports",
+   "naiyou_jp": "Differences between Transports（トランスポート間の差異）は、MS トランスポート API と高性能トランスポート API の違いを説明する。高性能トランスポートは MDS-MU ごとの確認応答を行わず、LU 6.2 会話をアイドル時も持続させるため、会話の停止・再開のオーバーヘッドを排除する。高性能トランスポートは user-written アプリ向けの汎用 LU 6.2 API で、性能を高める異なる LU 6.2 プロトコルを使う。",
+   "verify_steps": "MS と高性能の各トランスポートでアイドル時の会話状態を観測し、高性能では会話が持続することを `DISPLU` 等で確認する。確認応答の頻度差を NETLOG で比較する。",
+   "quiz": {
+    "q": "MS トランスポートと比べた高性能トランスポートの違いはどれか。",
+    "choices": [
+     "アイドル時も LU 6.2 会話を持続させる",
+     "LU 6.2 を使わない",
+     "確認応答を増やす",
+     "アラート専用である"
+    ],
+    "answer": 0,
+    "explanation": "高性能トランスポートは確認応答を省き、アイドル時も会話を持続させて停止・再開のオーバーヘッドを排除する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.55 (Differences between Transports)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.55 / p.77"
+  },
+  {
+   "row_id": "6658",
+   "title": "Disconnecting a Receiver",
+   "naiyou_jp": "Disconnecting a Receiver（受信者の切断）は、PPI 受信者をインターフェースから切り離す操作である。受信者は要求種別 9（無効化）や要求種別 10（削除）で状態を変更でき、REXX では DSIPHONE の CLOSE で受信者を削除できる。切断後はその受信者宛てのデータは受け付けられない。",
+   "verify_steps": "要求種別 9 で受信者を無効化し、`DISPPI` で状態が INACTIVE になることを確認する。続けて要求種別 10 または DSIPHONE 'CLOSE' で受信者を削除し、状態が undefined になることを確認する。",
+   "quiz": {
+    "q": "REXX（DSIPHONE）で PPI 受信者を削除するキーワードはどれか。",
+    "choices": [
+     "CLOSE",
+     "OPENRECV",
+     "SEND",
+     "AUTHRECV"
+    ],
+    "answer": 0,
+    "explanation": "DSIPHONE の CLOSE は指定した PPI 受信者を削除する。OPENRECV は受信者を定義する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.90 (Disconnecting a Receiver)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (DSIPHONE CLOSE)"
+  },
+  {
+   "row_id": "6662",
+   "title": "Enabling the Interface for MVS",
+   "naiyou_jp": "Enabling the Interface for MVS（MVS でのインターフェース有効化）は、NetView が NMVT または CP-MSU 形式のアラートを受信できるようにする手順である。まず NetView サブシステムアドレス空間を初期化して PPI を有効化し、受信者がキューに溜めるデータを保持できる十分なリージョンサイズを確保する。必要記憶域は受信者数・平均バッファサイズ・バッファキュー上限から見積もる。",
+   "verify_steps": "NetView サブシステムアドレス空間を起動し、`DISPPI` で PPI が ACTIVE であることを確認する。要求種別 12 でアラートを送り、受信されることを NETLOG で確認する。",
+   "quiz": {
+    "q": "MVS でアラート受信を有効化する最初のステップはどれか。",
+    "choices": [
+     "NetView サブシステムアドレス空間の初期化（PPI 有効化）",
+     "GTF の停止",
+     "RACF の削除",
+     "SEQUENT の取得"
+    ],
+    "answer": 0,
+    "explanation": "NMVT/CP-MSU アラート受信のため、まず NetView サブシステムアドレス空間を初期化して PPI を有効化する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.27 (Enabling the Interface for MVS)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27"
+  },
+  {
+   "row_id": "6663",
+   "title": "Examples",
+   "naiyou_jp": "Examples（例）の節は、PPI やトランスポート API を用いるプログラムのコーディング例を示す。NetView 配布テープには NMVT/CP-MSU アラート送信例（アセンブラー CNMS4287、C CNMS4257、PL/I CNMS4227）などのサンプルが含まれる。これらの例を参照して受信者の定義・データ送受信・アラート送信の実装方法を学べる。",
+   "verify_steps": "配布データセットからサンプル（例: CNMS4257）を取り出してコンパイル・リンクし、実行してアラートがハードウェアモニターに到達することを確認する。NETLOG で結果を確認する。",
+   "quiz": {
+    "q": "NMVT/CP-MSU アラート送信の PL/I サンプルはどれか。",
+    "choices": [
+     "CNMS4227",
+     "CNMS4287",
+     "CNMS4257",
+     "DSIPHONE"
+    ],
+    "answer": 0,
+    "explanation": "アセンブラーは CNMS4287、C は CNMS4257、PL/I は CNMS4227 がアラート送信サンプルである。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.87 (Examples)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.19 (sample CNMS42xx)"
+  },
+  {
+   "row_id": "6664",
+   "title": "External Log Record Formats",
+   "naiyou_jp": "External Log Record Formats（外部ログレコード形式）は、SMF ログやユーザー作成ログへ書き出される各種 NetView ログレコードの形式を規定する付録である。レコードは外部ログレコードヘッダーに続くデータセクションで構成される。代表例として、ハードウェアモニターが書く type 37、コマンド監査・統計の type 38、セッションモニター系の type 39 がある。",
+   "verify_steps": "SMF へのログ出力を有効化し（例: CMDMON.INIT.LOGSMF を CNMSTYLE で指定）、コマンド監視を起動して SMF に type 38 レコードが書かれることを確認する。`RECORD` コマンドで type 39 を生成し SMF を確認する。",
+   "quiz": {
+    "q": "NetView の外部ログレコードが書き出される先として正しいものはどれか。",
+    "choices": [
+     "SMF ログまたはユーザー作成ログ",
+     "RACF データベース",
+     "GTF トレースのみ",
+     "VTAM ログモードテーブル"
+    ],
+    "answer": 0,
+    "explanation": "外部ログレコードは SMF ログまたはユーザー作成ログへ書き出される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.127 (External Log Record Formats)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.127"
+  },
+  {
+   "row_id": "6665",
+   "title": "External Log Record Type 37",
+   "naiyou_jp": "External Log Record Type 37（外部ログレコード type 37）は、ハードウェアモニターが書き出すレコードで、type 37・サブタイプ 4 として外部ログに記録される。各レコードは外部ログレコードヘッダーに続くデータセクションで構成される。SMF などの外部ログを解析して、ハードウェアモニターが捕捉したイベント情報を取得できる。",
+   "verify_steps": "ハードウェアモニターのアラート捕捉を有効化し、テストアラートを送出して SMF に type 37 サブタイプ 4 レコードが書かれることを SMF ダンプで確認する。",
+   "quiz": {
+    "q": "type 37 レコードを書き出す NetView コンポーネントはどれか。",
+    "choices": [
+     "ハードウェアモニター",
+     "セッションモニター",
+     "コマンド監査機能",
+     "REST サーバー"
+    ],
+    "answer": 0,
+    "explanation": "type 37・サブタイプ 4 はハードウェアモニターが外部ログへ書き出すレコードである。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.127 (External Log Record Type 37)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.127"
+  },
+  {
+   "row_id": "6666",
+   "title": "External Log Record Type 38",
+   "naiyou_jp": "External Log Record Type 38（外部ログレコード type 38）は、コマンド監査・コマンド統計に関するレコードである。サブタイプ 1 はコマンド認可テーブルの監査で生成され、DEFAULTS CATAUDIT や PERMIT/EXEMPT の AUDIT キーワードで制御される。サブタイプ 4 はコマンド統計機能が一定間隔で監視対象 NetView コマンドについて生成し、CMDMON.INIT.LOGSMF（CNMSTYLE）または CMDMON コマンドで SMF 出力を指定する。",
+   "verify_steps": "`DEFAULTS CATAUDIT=YES` を設定し認可違反を発生させ、SMF に type 38 サブタイプ 1 が書かれることを確認する。CMDMON を起動して一定間隔でサブタイプ 4 が書かれることを確認する。",
+   "quiz": {
+    "q": "type 38 サブタイプ 1 が生成される契機はどれか。",
+    "choices": [
+     "コマンド認可テーブルの監査",
+     "セッション開始",
+     "アラート捕捉",
+     "GTF トレース"
+    ],
+    "answer": 0,
+    "explanation": "type 38 サブタイプ 1 はコマンド認可テーブルの監査で生成され、CATAUDIT や AUDIT キーワードで制御される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.133 (External Log Record Type 38)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.134"
+  },
+  {
+   "row_id": "6667",
+   "title": "External Log Record Type 39",
+   "naiyou_jp": "External Log Record Type 39（外部ログレコード type 39）は、セッションモニター系のカウンターレコードである。RECORD コマンドの STRGDATA でカウンターレコード（サブタイプ X'0008'）が書かれ、ネットワーク会計・可用性測定が活動中はセッション開始・終了や SESSTATS で type 39（X'27'）が書かれる。応答時間データ機能が活動中も type 39 が書かれる。",
+   "verify_steps": "セッションモニターを起動し `RECORD SESSTATS` を発行して、SMF に type 39（X'27'）レコードが書かれることを確認する。`RECORD STRGDATA` でストレージ／イベントカウンターレコードが書かれることを確認する。",
+   "quiz": {
+    "q": "RECORD コマンドの SESSTATS で書き出される外部ログレコードはどれか。",
+    "choices": [
+     "type 39（X'27'）",
+     "type 37",
+     "type 38 サブタイプ 1",
+     "type 80"
+    ],
+    "answer": 0,
+    "explanation": "ネットワーク会計・可用性測定が活動中、SESSTATS や セッション開始終了で type 39（X'27'）が書かれる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.149 (External Log Record Type 39)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.149 / p.151"
+  },
+  {
+   "row_id": "6668",
+   "title": "Fields in the RPB",
+   "naiyou_jp": "Fields in the RPB（RPB のフィールド）は、要求パラメーターブロック（96 バイト）の各フィールドを説明する。RPB-LEN（長さ）、TYPE（要求種別）、RECEIVER-ID（受信者 ID）、WORK-ADR（ワークエリアアドレス）、BUFFQ-L（バッファキュー上限）、TCB-TOKEN（送信側タスクトークン、PPI が受信時に設定）などがあり、各要求種別ごとに設定／返却されるフィールドが決まる。",
+   "verify_steps": "アセンブラーサンプルで RPB の各フィールド（TYPE、RECEIVER-ID 等）を設定して要求種別 4 を発行し、PPI が返すフィールド（TCB-TOKEN 等）を確認する。`DISPPI` で受信者状態を確認する。",
+   "quiz": {
+    "q": "RPB の TCB-TOKEN フィールドはどのように設定されるか。",
+    "choices": [
+     "PPI が受信要求時に送信側タスクトークンを設定",
+     "RACF が認可時に設定",
+     "VTAM が活性化時に設定",
+     "GTF が常に上書き"
+    ],
+    "answer": 0,
+    "explanation": "TCB-TOKEN は受信要求で PPI が送信側のタスクトークンを設定する（受信前にユーザーが設定することも可）。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.29 (Fields in the RPB)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.34 (Table 2)"
+  },
+  {
+   "row_id": "6669",
+   "title": "Get Data Facility",
+   "naiyou_jp": "Get Data Facility（データ取得機能）は、NetView のデータ・メッセージキューから情報を取得する機能で、HLL では CNMGETD 関数（GETDATA）を用いてキュー上のデータを操作する。取得したデータを加工してネットワーク管理を強化できる。データ／メッセージ管理用に複数のキューが定義され、関数で内容を取り出す。",
+   "verify_steps": "HLL アプリで CNMGETD（GETDATA）を呼び出してメッセージキューからデータを取得し、返却データを変数に格納できることを確認する。NETLOG で取得処理の結果を確認する。",
+   "quiz": {
+    "q": "HLL でデータ・メッセージキューから情報を取得する関数はどれか。",
+    "choices": [
+     "CNMGETD",
+     "DSIPUSH",
+     "SETBQL",
+     "VPDCMD"
+    ],
+    "answer": 0,
+    "explanation": "CNMGETD（GETDATA）関数で NetView のデータ・メッセージキューから情報を取得・操作する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.78 (Get Data Facility)",
+   "rag_hit": "NetView_6.4_Programming_PL_I_and_C.pdf p.76 / p.142"
+  },
+  {
+   "row_id": "6670",
+   "title": "High Performance Transport Restrictions",
+   "naiyou_jp": "High Performance Transport Restrictions（高性能トランスポートの制約）は、高性能トランスポート API を使えないケースや制限を示す。一部のアプリケーション（アーキテクチャ上 MDS が必須のもの等）は高性能トランスポートを使用できない。高性能トランスポートは MDS-MU ごとの確認を行わないため、データに関する具体的なエラー通知ではなく一般的なエラー通知のみを提供する。",
+   "verify_steps": "MDS が必須のアプリで高性能トランスポート登録を試み、利用できないことを文書・戻りコードで確認する。高性能トランスポート使用時にエラーを発生させ、通知が一般的なものになることを NETLOG で確認する。",
+   "quiz": {
+    "q": "高性能トランスポートのエラー通知の特徴はどれか。",
+    "choices": [
+     "データ固有でなく一般的なエラー通知のみ",
+     "全データに対し詳細通知",
+     "エラー通知を行わない",
+     "RACF 経由でのみ通知"
+    ],
+    "answer": 0,
+    "explanation": "確認応答を省くため、高性能トランスポートはデータ固有ではなく一般的なエラー通知を提供する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.56 (High Performance Transport Restrictions)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.56 / Tuning_Guide p.115"
+  },
+  {
+   "row_id": "6671",
+   "title": "High-Level Language and Assembler Programming Examples",
+   "naiyou_jp": "High-Level Language and Assembler Programming Examples（高水準言語・アセンブラーのプログラム例）は、HLL（PL/I・C）とアセンブラーで PPI 要求を送る実装例を示す。MVS でインターフェースを有効化したうえで、要求パラメーターブロックを構築し、受信者定義・データ送受信・アラート送信などを行う。配布テープのサンプル（CNMS42xx 系）を参照できる。",
+   "verify_steps": "PL/I・C・アセンブラーの各サンプルを取り出してコンパイル・リンクし、PPI への要求送信が成功することを NETLOG と戻りコードで確認する。",
+   "quiz": {
+    "q": "HLL/アセンブラー例の前提として正しいものはどれか。",
+    "choices": [
+     "MVS でインターフェース（PPI）を有効化しておく",
+     "GTF を停止する",
+     "RACF を無効化する",
+     "VTAM を停止する"
+    ],
+    "answer": 0,
+    "explanation": "HLL/アセンブラーで要求を送るには、まず MVS でインターフェース（PPI）を有効化する必要がある。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.112 (HLL and Assembler Programming Examples)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27 / p.19"
+  },
+  {
+   "row_id": "6672",
+   "title": "High-Level Language Programs",
+   "naiyou_jp": "High-Level Language Programs（高水準言語プログラム）は、PL/I や C を用いて NetView へ要求を送るプログラムを扱う。HLL ではサービスルーチン（CNMxxx 関数）を介して PPI やトランスポート API を呼び出す。応答待ちの中断／継続や、応答のバッファリング／即時受信を選択できる。",
+   "verify_steps": "PL/I/C サンプルで CNMxxx サービスルーチンを呼び出して受信者を定義し、データ送受信が成功することを確認する。応答待ちの中断オプションを切り替えて挙動を比較する。",
+   "quiz": {
+    "q": "HLL プログラムが PPI/トランスポートを呼び出す手段はどれか。",
+    "choices": [
+     "CNMxxx サービスルーチン",
+     "RACF マクロ",
+     "GTF コマンド",
+     "VTAM API のみ"
+    ],
+    "answer": 0,
+    "explanation": "PL/I・C などの HLL は CNMxxx 系サービスルーチンを介して PPI やトランスポート API を利用する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (High-Level Language Programs)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.57 / PL_I_and_C p.76"
+  },
+  {
+   "row_id": "6673",
+   "title": "How the Interface Works",
+   "naiyou_jp": "How the Interface Works（インターフェースの仕組み）は、PPI（プログラム間インターフェース）の基本動作を説明する。PPI は要求と呼ばれる基本タスクを実行し、各要求に対し状況を示す戻りコードを生成する。プログラムは要求パラメーターブロック（RPB）で要求を送り、PPI は同じ RPB を使ってデータを返す。NMVT/CP-MSU の構築自体はこの章では扱わない。",
+   "verify_steps": "サンプルで RPB に要求種別をセットして PPI を呼び出し、戻りコードが RPB に返ることを確認する。`DISPPI` で PPI 状況を照会し基本動作を確認する。",
+   "quiz": {
+    "q": "PPI が各要求に対して生成するものはどれか。",
+    "choices": [
+     "要求の状況を示す戻りコード",
+     "RACF プロファイル",
+     "SMF レコードのみ",
+     "VTAM メジャーノード"
+    ],
+    "answer": 0,
+    "explanation": "PPI は要求ごとに状況を示す戻りコードを生成し、同じ RPB を使ってプログラムへ返す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.17 (How the Interface Works)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 / p.18"
+  },
+  {
+   "row_id": "6674",
+   "title": "How the Interface Works with Applications",
+   "naiyou_jp": "How the Interface Works with Applications（アプリケーションとのインターフェースの仕組み）は、PPI を介したアプリケーション間のデータ授受の流れを示す。例として、プログラム A が NMVT/CP-MSU アラートを NetView へ送り、別のプログラムがバッファキューからデータバッファを受信する。送信側と受信側は受信者名で結び付けられる。",
+   "verify_steps": "送信プログラムと受信プログラムを起動し、送信側がデータバッファを受信者キューへ送り、受信側が要求種別 22 で取り出すことを NETLOG で確認する。",
+   "quiz": {
+    "q": "PPI で送信側と受信側を結び付けるものはどれか。",
+    "choices": [
+     "受信者名（receiver name）",
+     "RACF グループ",
+     "GTF トレース ID",
+     "VTAM PU 名"
+    ],
+    "answer": 0,
+    "explanation": "PPI では受信者名でデータの送り先（受信者キュー）を特定し、送信側と受信側を結び付ける。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.17 (How the Interface Works with Applications)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17"
+  },
+  {
+   "row_id": "6675",
+   "title": "IBM Z NetView library",
+   "naiyou_jp": "IBM Z NetView library（IBM Z NetView ライブラリ）は、NetView 関連の刊行物群を指す。アプリケーションプログラマーは、Application Programmer's Guide のほか、SNA Formats や SNA/Management Services Alert Implementation Guide などの SNA 関連刊行物に精通する必要がある。刊行物はオンラインで参照でき、HELP コマンドでオンラインヘルプを利用できる。",
+   "verify_steps": "NCCF で `HELP` を入力してオンラインヘルプメニューを表示し、ライブラリ内の該当トピックを参照できることを確認する。",
+   "quiz": {
+    "q": "アプリケーションプログラマーが併せて精通すべき刊行物はどれか。",
+    "choices": [
+     "SNA Formats 等の SNA 関連刊行物",
+     "RACF Security Administrator's Guide のみ",
+     "GTF ユーザーズガイドのみ",
+     "VTAM Diagnosis のみ"
+    ],
+    "answer": 0,
+    "explanation": "アプリプログラマーは SNA Formats や SNA/Management Services Alert Implementation Guide に精通する必要がある。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (IBM Z NetView library)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 (Reference publications)"
+  },
+  {
+   "row_id": "6676",
+   "title": "Implementing High Performance Transport API Applications",
+   "naiyou_jp": "Implementing High Performance Transport API Applications（高性能トランスポート API アプリの実装）は、高性能トランスポートを使う user-written アプリの作り方を扱う。アプリは CNMHREGIST で高性能アプリとして登録し、CNMHSMU 等のサービスで MDS-MU を送受信する。会話は LU 6.2 上で確立・監視され、アイドル時も持続する。",
+   "verify_steps": "高性能アプリを CNMHREGIST で登録し、`DISPLU` 等で LU 6.2 会話が確立・持続することを確認する。CNMHSMU で MDS-MU を送信し受信されることを確認する。",
+   "quiz": {
+    "q": "高性能トランスポートにアプリを登録するサービスルーチンはどれか。",
+    "choices": [
+     "CNMHREGIST",
+     "CNMGETD",
+     "SETBQL",
+     "VPDCMD"
+    ],
+    "answer": 0,
+    "explanation": "高性能アプリは CNMHREGIST（CNMHregist）で登録し、CNMHSMU 等で MDS-MU を送受信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Implementing High Performance Transport API Applications)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.77 / Command_Reference_Vol2 p.140"
+  },
+  {
+   "row_id": "6677",
+   "title": "Implementing the Application",
+   "naiyou_jp": "Implementing the Application（アプリケーションの実装）は、トランスポート API を用いるアプリを実装する一般的手順を示す。アプリは適切なトランスポートに登録し、宛先名を指定して MDS-MU を送り、応答を受信する。事前構築済み MDS-MU を使うか、サービスルーチンにヘッダー構築を任せるかを選べる。",
+   "verify_steps": "サンプルアプリを登録・起動し、宛先名を指定して MDS-MU を送信、応答を受信する一連の流れを NETLOG で確認する。",
+   "quiz": {
+    "q": "アプリ実装で MDS-MU ヘッダーを用意する 2 つの方法はどれか。",
+    "choices": [
+     "事前構築済み MDS-MU を渡す／サービスルーチンに構築させる",
+     "RACF と SAF",
+     "GTF と SMF",
+     "INT と EXT"
+    ],
+    "answer": 0,
+    "explanation": "アプリは事前構築済み MDS-MU を渡すか、サービスルーチンにヘッダー構築を任せるかを選べる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Implementing the Application)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.57 / Programming_Assembler p.263"
+  },
+  {
+   "row_id": "6678",
+   "title": "Initializing a Receiver",
+   "naiyou_jp": "Initializing a Receiver（受信者の初期化）は、要求種別 4 でプログラムを受信者として定義し状態を active にする操作である。この要求種別はバッファキュー上限のリセットにも使う。RPB には受信者 ID、ワークエリアアドレス、バッファキュー上限（BUFFQ-L）などを設定する。",
+   "verify_steps": "要求種別 4 を発行して受信者を定義し、`DISPPI` で受信者が ACTIVE になることを確認する。BUFFQ-L を設定してキュー上限が反映されることを確認する。",
+   "quiz": {
+    "q": "受信者を定義し状態を active にする要求種別はどれか。",
+    "choices": [
+     "要求種別 4",
+     "要求種別 1",
+     "要求種別 12",
+     "要求種別 22"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 4 はプログラムを受信者として定義し active にする。バッファキュー上限のリセットにも使う。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.37 (Initializing a Receiver / Request Type 4)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.37 (Request Type 4)"
+  },
+  {
+   "row_id": "6679",
+   "title": "Introduction to a Regular Expression",
+   "naiyou_jp": "Introduction to a Regular Expression（正規表現の導入）は、文字列の望ましい形式を抽象的に記述するパターンである正規表現の概要を示す。正規表現は部分文字列より強力で、多様な要素を記述できる。NetView では PIPE の LOCATE/NLOCATE ステージ、REXX 組込関数 MATCH、自動化テーブル関数 DSIAMMCH で利用できる。",
+   "verify_steps": "NCCF で `PIPE NETVIEW LOG | LOCATE /pattern/ | CONSOLE` を実行し、正規表現に一致する行のみ抽出されることを確認する。REXX の MATCH 関数でパターン照合を確認する。",
+   "quiz": {
+    "q": "NetView で正規表現が利用できる箇所はどれか。",
+    "choices": [
+     "PIPE の LOCATE/NLOCATE、REXX の MATCH、DSIAMMCH",
+     "RACF プロファイル定義",
+     "VTAM ログモード",
+     "GTF オプション"
+    ],
+    "answer": 0,
+    "explanation": "正規表現は PIPE の LOCATE/NLOCATE、REXX の MATCH、自動化テーブル関数 DSIAMMCH で利用できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.81 (Introduction to a Regular Expression)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.81"
+  },
+  {
+   "row_id": "6680",
+   "title": "Link Configuration Data (Subvector X'52')",
+   "naiyou_jp": "Link Configuration Data（リンク構成データ、サブベクター X'52'）は、VPDCMD コマンドで返される VPD の一種で、ノード間リンクの構成情報を表す SNA サブベクターである。ネットワーク資産管理のコマンドリストがこれを解釈し、インベントリレコードとして外部ファイルに記録する。",
+   "verify_steps": "`VPDCMD` を発行し、リンク構成データ（X'52'）が返ることを NETLOG で確認する。サンプルコマンドリストで該当レコードが外部ファイルに記録されることを確認する。",
+   "quiz": {
+    "q": "サブベクター X'52' が表す VPD はどれか。",
+    "choices": [
+     "リンク構成データ",
+     "応答ノード構成データ",
+     "コマンド統計",
+     "セッション稼働率"
+    ],
+    "answer": 0,
+    "explanation": "X'52' はリンク構成データ（Link Configuration Data）を表すサブベクターで VPD の一部である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.118 (Link Configuration Data Subvector X'52')",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (VPD Descriptions)"
+  },
+  {
+   "row_id": "6681",
+   "title": "Maintaining Data Integrity",
+   "naiyou_jp": "Maintaining Data Integrity（データ整合性の維持）は、複数プログラムが直列再利用資源を更新する際にデータの整合性を保つ技法を扱う。SEQUENT コマンドで資源を排他（OBTAINEX）または共有（OBTAINSH）で獲得し、更新時は排他制御を要求することで同時更新による破壊を防ぐ。更新後は RELEASE で解放する。",
+   "verify_steps": "2 つのタスクで同一資源を SEQUENT OBTAINEX で更新しようとし、一方が待機させられて同時更新が起きないことを再現する。RELEASE 後にもう一方が処理を進めることを確認する。",
+   "quiz": {
+    "q": "資源を更新するプログラムが要求すべき制御はどれか。",
+    "choices": [
+     "排他制御（OBTAINEX）",
+     "共有制御（OBTAINSH）",
+     "制御なし",
+     "RACF READ"
+    ],
+    "answer": 0,
+    "explanation": "資源の内容を変更するプログラムは、同時更新による破壊を防ぐため排他制御（OBTAINEX）を要求すべきである。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.61 (Maintaining Data Integrity)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.61-62 (SEQUENT)"
+  },
+  {
+   "row_id": "6682",
+   "title": "Management Services Applications",
+   "naiyou_jp": "Management Services Applications（管理サービスアプリケーション）は、MS トランスポートを使い MDS-MU でアーキテクチャ準拠の管理サービスをやり取りするアプリである。MS アプリは CNMREGIST（REGISTER）で MS アプリケーションとして登録し、操作管理サービス対象アプリやフォーカルポイントアプリとして振る舞える。データ型には CP-MSU・SNACR・ルーティングレポート・NMVT・R&TI などがある。",
+   "verify_steps": "MS アプリを REGISTER で登録し、`LIST` 系で登録状態を確認する。MS トランスポートで MDS-MU を送受信し、NETLOG で到達を確認する。",
+   "quiz": {
+    "q": "MS アプリケーションを登録するコマンド／サービスはどれか。",
+    "choices": [
+     "REGISTER（CNMREGIST）",
+     "VPDCMD",
+     "SETBQL",
+     "TRACEPPI"
+    ],
+    "answer": 0,
+    "explanation": "MS アプリは REGISTER コマンド（CNMREGIST/CNMRGS サービスルーチン）で登録する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.55 (Management Services Applications)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.107 / Command_Reference_Vol2 p.140"
+  },
+  {
+   "row_id": "6683",
+   "title": "MDS Data Types",
+   "naiyou_jp": "MDS Data Types（MDS データ型）は、MS トランスポートとそのアプリが用いるデータ型を示す。代表的には CP-MSU（制御点管理サービス単位）、SNA 条件報告（SNACR）、ルーティングレポート、NMVT、ルーティング・ターゲティング指示（R&TI）がある。各メジャーベクターは GDS 変数であり、操作管理対象アプリがアーキテクチャ準拠コマンドを遠隔送受信するために用いる。",
+   "verify_steps": "MS トランスポートで各データ型（CP-MSU、NMVT 等）を含む MDS-MU を送受信し、種別ごとの挙動を NETLOG で確認する。",
+   "quiz": {
+    "q": "MS トランスポートのデータ型に含まれないものはどれか。",
+    "choices": [
+     "RACF パスフレーズ",
+     "CP-MSU",
+     "SNA 条件報告（SNACR）",
+     "R&TI"
+    ],
+    "answer": 0,
+    "explanation": "MDS データ型は CP-MSU・SNACR・ルーティングレポート・NMVT・R&TI などで、RACF パスフレーズは含まれない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.107 (MDS Data Types)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.107"
+  },
+  {
+   "row_id": "6684",
+   "title": "MDS Error Message Example",
+   "naiyou_jp": "MDS Error Message Example（MDS エラーメッセージ例）は、MDS エラーメッセージの具体例とその構成を示す。MDS エラーメッセージは MDS-MU の一種で、メッセージ種別が MDS error message であり、アプリケーションプログラム GDS 変数として常に SNA 条件報告（X'1532'）を含む。MDS ヘッダー内の X'1549' 相関子が、配送できなかった MDS-MU または失敗トランザクションを特定する。",
+   "verify_steps": "MS トランスポートで宛先不達のトランザクションを発生させ、MDS エラーメッセージが生成されることを NETLOG で確認する。エラーメッセージに SNA 条件報告（X'1532'）が含まれることを確認する。",
+   "quiz": {
+    "q": "MDS エラーメッセージが常に含むアプリ GDS 変数はどれか。",
+    "choices": [
+     "SNA 条件報告（X'1532'）",
+     "製品セット ID（X'10'）",
+     "リンク構成（X'52'）",
+     "CP-MSU（X'1212'）"
+    ],
+    "answer": 0,
+    "explanation": "MDS エラーメッセージは MDS-MU の一種で、常に SNA 条件報告（X'1532'）をアプリ GDS 変数として含む。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.93 (MDS Error Message Example)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.109-110"
+  },
+  {
+   "row_id": "6685",
+   "title": "MDS Error Message Format",
+   "naiyou_jp": "MDS Error Message Format（MDS エラーメッセージ形式）は、MDS エラーメッセージの形式を規定する。MDS エラーメッセージは、エラーを検出したノードの MDS ルーターまたは通信中の MS アプリから送られ、MDS ヘッダー内の X'1549' 相関子で失敗トランザクションを特定する。NetView は受信した MDS-MU ヘッダーの構文を検査し、エラー時はソフトウェアアラートをハードウェアモニターへ生成し、失敗 MDS-MU の先頭 100 バイトを含む MDS エラーメッセージをシステムログに書く。",
+   "verify_steps": "不正な MDS-MU ヘッダーを送信し、ソフトウェアアラートがハードウェアモニターに上がり、システムログに先頭 100 バイトを含む MDS エラーメッセージが記録されることを確認する。",
+   "quiz": {
+    "q": "MDS ヘッダー構文エラー時に NetView が行うことはどれか。",
+    "choices": [
+     "ソフトウェアアラート生成と先頭 100 バイトのログ記録",
+     "RACF へ通報",
+     "GTF を停止",
+     "VTAM を再起動"
+    ],
+    "answer": 0,
+    "explanation": "構文エラー時はソフトウェアアラートを生成し、失敗 MDS-MU の先頭 100 バイトを含む MDS エラーメッセージをログに書く。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.93 (MDS Error Message Format)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.87 / p.110"
+  },
+  {
+   "row_id": "6687",
+   "title": "MDS Header Structure",
+   "naiyou_jp": "MDS Header Structure（MDS ヘッダー構造）は、MDS-MU 内の MDS ヘッダーの構造を示す。MDS ヘッダーは 1024（X'400'）バイトで、MDS ルーティング情報（X'1311'）GDS 変数とエージェント作業単位相関子（X'1549'）GDS 変数を含む。NetView は受信した MDS ヘッダーの構文を検査する。",
+   "verify_steps": "MS トランスポートで MDS-MU を送信し、MDS ヘッダーが 1024 バイトで X'1311' と X'1549' を含むことを、構文エラー時の MDS エラーメッセージから確認する。",
+   "quiz": {
+    "q": "MDS ヘッダーに含まれる GDS 変数はどれか。",
+    "choices": [
+     "X'1311'（ルーティング情報）と X'1549'（作業単位相関子）",
+     "X'10' と X'11'",
+     "X'52' と X'82'",
+     "X'7D' と X'86'"
+    ],
+    "answer": 0,
+    "explanation": "MDS ヘッダー（1024 バイト）は X'1311' ルーティング情報と X'1549' 作業単位相関子の GDS 変数を含む。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.107 (MDS Header Structure)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.103 (Figure 9)"
+  },
+  {
+   "row_id": "6688",
+   "title": "MDS Routing Information (X'1311') GDS Variable",
+   "naiyou_jp": "MDS Routing Information（MDS ルーティング情報、X'1311'）GDS 変数は、MDS ヘッダーに含まれ、MDS-MU をどのノード・アプリへ送るかのルーティング情報を運ぶ。X'1549' 作業単位相関子と並んで MDS ヘッダーの主要構成要素であり、NetView は受信時にその構文を検査する。",
+   "verify_steps": "MS トランスポートで宛先を指定して MDS-MU を送信し、X'1311' ルーティング情報に基づき正しい宛先へ配送されることを NETLOG で確認する。",
+   "quiz": {
+    "q": "X'1311' GDS 変数の役割はどれか。",
+    "choices": [
+     "MDS-MU のルーティング情報を運ぶ",
+     "作業単位を一意化する",
+     "製品セット ID を運ぶ",
+     "RACF 認可を行う"
+    ],
+    "answer": 0,
+    "explanation": "X'1311' は MDS ルーティング情報の GDS 変数で、MDS-MU の送り先情報を運ぶ。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.105 (MDS Routing Information X'1311' GDS Variable)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.103"
+  },
+  {
+   "row_id": "6689",
+   "title": "MDS Transactions",
+   "naiyou_jp": "MDS Transactions（MDS トランザクション）は、MDS-MU を用いた要求・応答のやり取りである。種別には「応答を期待する要求」（トランザクション開始）、「応答を期待しない要求」、各種応答がある。応答を期待する要求は、エージェント作業単位相関子で一意に識別されるトランザクションを開始し、関連データを含む MDS-MU の受信を期待する。",
+   "verify_steps": "MS アプリで「応答を期待する要求」を送り、相関子で対応付けられた応答 MDS-MU が返ることを NETLOG で確認する。応答を期待しない要求の挙動も比較する。",
+   "quiz": {
+    "q": "「応答を期待する要求」が開始するものはどれか。",
+    "choices": [
+     "相関子で一意化されるトランザクション",
+     "RACF セッション",
+     "GTF トレース",
+     "VTAM LU-LU セッション"
+    ],
+    "answer": 0,
+    "explanation": "応答を期待する要求は、エージェント作業単位相関子で一意に識別されるトランザクションを開始する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (MDS Transactions)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.58"
+  },
+  {
+   "row_id": "6690",
+   "title": "MDS-MU Example",
+   "naiyou_jp": "MDS-MU Example（MDS-MU 例）は、MDS-MU の具体的な構成例を示す。MDS-MU は MDS ヘッダー（1024 バイト）とアプリケーションプログラム GDS 変数から成り、全体は 32767 バイト未満である。例を通じて、ヘッダー内の X'1311'・X'1549' とアプリデータの配置を理解できる。",
+   "verify_steps": "MS トランスポートで MDS-MU を送受信し、構文エラー時の MDS エラーメッセージ（先頭 100 バイト）から MDS ヘッダーとアプリ GDS 変数の構成を確認する。",
+   "quiz": {
+    "q": "MDS-MU の全体長の上限はどれか。",
+    "choices": [
+     "32767（X'7FFF'）バイト未満",
+     "1024 バイト",
+     "208 バイト",
+     "31K 固定"
+    ],
+    "answer": 0,
+    "explanation": "MDS-MU 全体は 32767 バイト未満、ヘッダーは 1024 バイト、アプリ GDS 変数最大は 31743 バイト。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (MDS-MU Example)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.103"
+  },
+  {
+   "row_id": "6691",
+   "title": "Message to Operator",
+   "naiyou_jp": "Message to Operator（オペレーターへのメッセージ）は、アプリやコマンドリストからオペレーターへメッセージを送る仕組みである。NetView ではメッセージはオペレーターステーションタスク（OST）の端末に表示され、メッセージ自動化テーブルで処理・抑止・自動化できる。MLWTO 形式の複数行メッセージにも対応する。",
+   "verify_steps": "コマンドリストからオペレーター宛てメッセージを発行し、OST 端末に表示されることを確認する。自動化テーブルでそのメッセージを抑止・自動化できることを確認する。",
+   "quiz": {
+    "q": "NetView でオペレーター宛てメッセージが表示される対象はどれか。",
+    "choices": [
+     "オペレーターステーションタスク（OST）の端末",
+     "GTF データセット",
+     "RACF コンソール",
+     "VTAM バッファ"
+    ],
+    "answer": 0,
+    "explanation": "オペレーター宛てメッセージは OST の端末に表示され、自動化テーブルで処理できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (Message to Operator)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18 / Automation_Guide"
+  },
+  {
+   "row_id": "6692",
+   "title": "MLWTO Attributes Support",
+   "naiyou_jp": "MLWTO Attributes Support（MLWTO 属性サポート）は、複数行 WTO（multiline write-to-operator）メッセージの属性を扱うサポートである。NetView はメッセージの行種別（制御行・ラベル行・データ行・終了行）などの MLWTO 属性を認識し、自動化テーブルでこれらの属性に基づく条件照合を行える。",
+   "verify_steps": "複数行メッセージを生成し、自動化テーブルで MLWTO の行種別属性に基づく照合・アクションが動作することを NETLOG で確認する。",
+   "quiz": {
+    "q": "MLWTO が指す対象はどれか。",
+    "choices": [
+     "複数行 WTO メッセージ",
+     "単一行コマンド",
+     "GTF レコード",
+     "RACF プロファイル"
+    ],
+    "answer": 0,
+    "explanation": "MLWTO は multiline write-to-operator（複数行 WTO）メッセージで、NetView はその属性をサポートする。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (MLWTO Attributes Support)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf (MLWTO) / Automation_Guide"
+  },
+  {
+   "row_id": "6693",
+   "title": "Monitoring the Trace Facility",
+   "naiyou_jp": "Monitoring the Trace Facility（トレース機能の監視）は、コマンド機能トレースや PPI トレースの状態を監視する操作を扱う。TRACE コマンドや TRACEPPI コマンドで現在のトレース状態（ON/OFF、オプション、MODE）を照会できる。内部トレースは常時有効にしておくことが診断上重要とされる。",
+   "verify_steps": "NCCF で `TRACE` を引数なしで発行して現在のトレース状態を照会し、`TRACEPPI` で PPI トレース状態を確認する。OPTIONS や MODE が想定どおりか確認する。",
+   "quiz": {
+    "q": "PPI トレースの状態を照会・制御するコマンドはどれか。",
+    "choices": [
+     "TRACEPPI",
+     "VPDCMD",
+     "SETBQL",
+     "RUNCMD"
+    ],
+    "answer": 0,
+    "explanation": "PPI トレースは TRACEPPI コマンドで状態照会・制御する。コマンド機能トレースは TRACE コマンド。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.101 (Monitoring the Trace Facility)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.101 / Command_Reference_Vol2 p.456"
+  },
+  {
+   "row_id": "6694",
+   "title": "MS Transport Restrictions",
+   "naiyou_jp": "MS Transport Restrictions（MS トランスポートの制約）は、MS トランスポート API 使用時の制約を示す。MS トランスポートは送信した MDS-MU ごとに確認応答を行い、高性能トランスポートより多くのネットワークトラフィックを生む。アーキテクチャ準拠の管理サービスや遠隔操作には適するが、性能重視のアプリでは高性能トランスポートが推奨される。",
+   "verify_steps": "MS トランスポートでアプリ間通信を行い、各 MDS-MU に確認応答が伴うことと、トラフィック量が高性能トランスポートより多いことを NETLOG・性能指標で確認する。",
+   "quiz": {
+    "q": "MS トランスポートの特徴はどれか。",
+    "choices": [
+     "MDS-MU ごとに確認応答を行う",
+     "確認応答を省く",
+     "LU 6.2 を使わない",
+     "アラート専用"
+    ],
+    "answer": 0,
+    "explanation": "MS トランスポートは MDS-MU ごとに確認応答を行い、その分トラフィックが増えるが管理サービスに適する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.55 (MS Transport Restrictions)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.55 / Tuning_Guide p.115"
+  },
+  {
+   "row_id": "6695",
+   "title": "Naming the Resource",
+   "naiyou_jp": "Naming the Resource（資源の命名）は、SEQUENT コマンドで直列化する資源に付ける SEQUENT 名の付け方を扱う。同じ SEQUENT 名に対する OBTAINEX/OBTAINSH 要求どうしが直列化の対象となるため、名前の粒度が並行性を左右する。名前を細かくすれば並行性は上がるが、名前の過剰使用に注意する。",
+   "verify_steps": "異なる SEQUENT 名で OBTAINEX を発行したタスクどうしが互いに待機しないこと、同一名では直列化されることを再現して確認する。",
+   "quiz": {
+    "q": "SEQUENT で直列化の対象となる単位はどれか。",
+    "choices": [
+     "同一の SEQUENT 名",
+     "同一の RACF ユーザー",
+     "同一の LU 名",
+     "同一の GTF レコード"
+    ],
+    "answer": 0,
+    "explanation": "同じ SEQUENT 名に対する OBTAINEX/OBTAINSH 要求どうしが直列化される。名前の粒度が並行性を決める。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.62 (Naming the Resource)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.61-63 (SEQUENT)"
+  },
+  {
+   "row_id": "6696",
+   "title": "NetView Command Authorization Table External Log Record",
+   "naiyou_jp": "NetView Command Authorization Table External Log Record（コマンド認可テーブル外部ログレコード）は、外部ログレコード type 38・サブタイプ 1 として書かれる監査レコードである。コマンド認可テーブルの監査により生成され、DEFAULTS CATAUDIT コマンドで全体を、PERMIT/EXEMPT 文の AUDIT キーワードで個別に制御する。",
+   "verify_steps": "`DEFAULTS CATAUDIT=YES` を設定し、認可違反となるコマンドを発行して SMF に type 38 サブタイプ 1 が記録されることを確認する。",
+   "quiz": {
+    "q": "コマンド認可テーブル監査レコードを制御するコマンドはどれか。",
+    "choices": [
+     "DEFAULTS CATAUDIT",
+     "SETBQL",
+     "VPDCMD",
+     "TRACEPPI"
+    ],
+    "answer": 0,
+    "explanation": "type 38 サブタイプ 1 はコマンド認可テーブル監査で生成され、DEFAULTS CATAUDIT や AUDIT キーワードで制御する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.133 (NetView Command Authorization Table External Log Record)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.133"
+  },
+  {
+   "row_id": "6697",
+   "title": "NetView Command Statistics External Log Record",
+   "naiyou_jp": "NetView Command Statistics External Log Record（コマンド統計外部ログレコード）は、外部ログレコード type 38・サブタイプ 4 として書かれる。コマンド統計機能が、監視対象 NetView コマンドについて一定間隔でレコードを生成し、CMDMON.INIT.LOGSMF（CNMSTYLE）または CMDMON コマンドで SMF 出力を指定する。レコードは共通ヘッダー・製品セクション・データ記述子セクション・コマンドデータセクションから成る。",
+   "verify_steps": "CMDMON を起動し CMDMON.INIT.LOGSMF を有効化して、一定間隔で SMF に type 38 サブタイプ 4 のコマンド統計レコードが書かれることを確認する。",
+   "quiz": {
+    "q": "コマンド統計外部ログレコードのサブタイプはどれか。",
+    "choices": [
+     "type 38 サブタイプ 4",
+     "type 37 サブタイプ 4",
+     "type 39 サブタイプ 8",
+     "type 80"
+    ],
+    "answer": 0,
+    "explanation": "コマンド統計は type 38 サブタイプ 4 として一定間隔で生成され、CMDMON/CMDMON.INIT.LOGSMF で制御する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.118 (NetView Command Statistics External Log Record)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.134"
+  },
+  {
+   "row_id": "6698",
+   "title": "NetView High Performance Transport API",
+   "naiyou_jp": "NetView High Performance Transport API（高性能トランスポート API）は、汎用 LU 6.2 API で、MS トランスポート API と似た外部機能を持つが、性能を高める異なる LU 6.2 プロトコルを使う。アプリケーションと VTAM の間のインターフェースとして LU 6.2 会話を確立・監視し、会話はアイドル時も持続する。通信は MDS-MU 形式で行われる。",
+   "verify_steps": "高性能アプリを CNMHREGIST で登録し、`DISPLU` で LU 6.2 会話が確立・持続することを確認する。MDS-MU を送受信し NETLOG で到達を確認する。",
+   "quiz": {
+    "q": "高性能トランスポート API がインターフェースする相手はどれか。",
+    "choices": [
+     "アプリケーションと VTAM の間",
+     "RACF と SAF の間",
+     "GTF と SMF の間",
+     "TSO と ISPF の間"
+    ],
+    "answer": 0,
+    "explanation": "高性能トランスポート API はアプリと VTAM の間のインターフェースとして LU 6.2 会話を確立・監視する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (NetView High Performance Transport API)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.55 / p.77"
+  },
+  {
+   "row_id": "6699",
+   "title": "NetView MS Transport API",
+   "naiyou_jp": "NetView MS Transport API（MS トランスポート API）は、MDS-SEND/MDS-RECEIVE トランザクションプログラムを介して MDS-MU をやり取りする LU 6.2 API である。LU 6.2 会話プロトコルを用い、送信プロセスやタイムアウトメッセージなどの基準に従う。アーキテクチャ準拠の管理サービスや遠隔操作に適し、MDS-MU ごとに確認応答を行う。",
+   "verify_steps": "MS アプリを REGISTER で登録し、MDS-SEND/MDS-RECEIVE 相当のやり取りで MDS-MU を送受信して NETLOG で到達を確認する。タイムアウト時の挙動も確認する。",
+   "quiz": {
+    "q": "MS トランスポート API が用いるトランザクションプログラムはどれか。",
+    "choices": [
+     "MDS-SEND/MDS-RECEIVE",
+     "RUNCMD のみ",
+     "VPDCMD のみ",
+     "TRACEPPI のみ"
+    ],
+    "answer": 0,
+    "explanation": "MS トランスポート API は MDS-SEND/MDS-RECEIVE トランザクションプログラムで MDS-MU をやり取りする。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (NetView MS Transport API)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.70"
+  },
+  {
+   "row_id": "6700",
+   "title": "NetView Operator",
+   "naiyou_jp": "NetView Operator（NetView オペレーター）は、コンソールから NetView を操作する利用者で、オペレーターステーションタスク（OST）を介してコマンド発行やメッセージ受信を行う。アプリケーションプログラミングの文脈では、オペレーター宛てメッセージの送信先や、コマンド認可（SAF/RACF）の対象として扱われる。",
+   "verify_steps": "NCCF にオペレーター ID でログオンし OST が起動することを確認する。アプリからオペレーター宛てメッセージを送り、当該 OST 端末に表示されることを確認する。",
+   "quiz": {
+    "q": "NetView オペレーターが介して操作を行うタスクはどれか。",
+    "choices": [
+     "オペレーターステーションタスク（OST）",
+     "DSITRACE タスク",
+     "DSIGDS タスク",
+     "REST サーバータスク"
+    ],
+    "answer": 0,
+    "explanation": "オペレーターは OST（operator station task）を介してコマンド発行・メッセージ受信を行う。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (NetView Operator)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (OST) / Users_Guide"
+  },
+  {
+   "row_id": "6701",
+   "title": "NetView REST Server APIs Used for Service Management Unite",
+   "naiyou_jp": "NetView REST Server APIs Used for Service Management Unite（SMU が使う NetView REST サーバー API）は、Service Management Unite（SMU）ダッシュボードが利用する RESTful API の一覧を扱う。例として、ドメイン一覧に NetView Configuration API（/ibm/netview/v1/enterprise/members、LIST STATUS=XCFGRPS）、タスク稼働率に Task API（/ibm/netview/v1/tasks/utilization、TASKUTIL）、汎用コマンドに /ibm/netview/v1/command がマップされる。",
+   "verify_steps": "NetView REST サーバーを起動し、`/ibm/netview/v1/enterprise/members` を呼び出して LIST STATUS=XCFGRPS 相当の結果が返ることを確認する。`/ibm/netview/v1/tasks/utilization` で TASKUTIL 相当の結果を確認する。",
+   "quiz": {
+    "q": "SMU の NetView ドメイン一覧に対応する REST API/コマンドはどれか。",
+    "choices": [
+     "/ibm/netview/v1/enterprise/members（LIST STATUS=XCFGRPS）",
+     "/ibm/netview/v1/command（VPDCMD）",
+     "TRACEPPI",
+     "SETBQL"
+    ],
+    "answer": 0,
+    "explanation": "ドメイン一覧は /ibm/netview/v1/enterprise/members（LIST STATUS=XCFGRPS）にマップされる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.99 (NetView REST Server APIs Used for Service Management Unite)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.99 (Table 9)"
+  },
+  {
+   "row_id": "6702",
+   "title": "NetView Span Authorization Table External Log Record",
+   "naiyou_jp": "NetView Span Authorization Table External Log Record（スパン認可テーブル外部ログレコード）は、外部ログレコード type 38 系として書かれる監査レコードである。スパン認可（span of control）に関する認可・監査を記録し、SAF（RACF）と連携してオペレーターのスパンへのアクセスを制御する文脈で用いられる。",
+   "verify_steps": "スパン認可を設定し、認可・違反となるアクセスを発生させて、対応する監査レコードが SMF に書かれることを確認する。",
+   "quiz": {
+    "q": "スパン認可テーブル外部ログレコードが記録する対象はどれか。",
+    "choices": [
+     "スパン（span of control）に関する認可・監査",
+     "セッション稼働率",
+     "アラート捕捉",
+     "VPD 収集"
+    ],
+    "answer": 0,
+    "explanation": "スパン認可テーブル外部ログレコードはスパン（span of control）認可の監査を記録する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.133 (NetView Span Authorization Table External Log Record)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.133 / Security_Reference"
+  },
+  {
+   "row_id": "6703",
+   "title": "NetView System Programmer",
+   "naiyou_jp": "NetView System Programmer（NetView システムプログラマー）は、NetView の導入・構成・チューニング・トレース・問題判別を担う利用者である。アプリケーションプログラミングの文脈では、PPI の有効化やサブシステムアドレス空間のリージョンサイズ確保、トレース設定など、アプリ実行基盤の整備を担当する。",
+   "verify_steps": "システムプログラマー権限で NetView を起動し、PPI 有効化やリージョンサイズ確保が適切であることを `DISPPI` 等で確認する。",
+   "quiz": {
+    "q": "NetView システムプログラマーの役割に含まれるものはどれか。",
+    "choices": [
+     "PPI 有効化やサブシステム記憶域の確保",
+     "オペレーターメッセージへの応答のみ",
+     "VPD の手動入力のみ",
+     "RACF パスワード変更のみ"
+    ],
+    "answer": 0,
+    "explanation": "システムプログラマーは PPI 有効化やサブシステムアドレス空間のリージョンサイズ確保などアプリ基盤を整備する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (NetView System Programmer)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27 (subsystem region size)"
+  },
+  {
+   "row_id": "6704",
+   "title": "NetView Task Resource-Utilization-Data External Log Record",
+   "naiyou_jp": "NetView Task Resource-Utilization-Data External Log Record（タスク資源使用データ外部ログレコード）は、NetView タスクの資源使用状況（CPU・記憶域等）を記録する外部ログレコードである。TASKUTIL コマンドや REST API（/ibm/netview/v1/tasks/utilization）でタスク稼働率を取得でき、これらのデータは外部ログにも記録される。",
+   "verify_steps": "`TASKUTIL` を発行してタスク資源使用状況を表示し、外部ログ出力を有効にしていれば SMF に該当レコードが記録されることを確認する。",
+   "quiz": {
+    "q": "NetView タスクの資源使用状況を表示するコマンドはどれか。",
+    "choices": [
+     "TASKUTIL",
+     "VPDCMD",
+     "SEQUENT",
+     "GENALERT"
+    ],
+    "answer": 0,
+    "explanation": "TASKUTIL でタスクの資源使用状況（稼働率）を取得でき、外部ログにも記録できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.99 (NetView Task Resource-Utilization-Data External Log Record)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.99 (Task APIs / TASKUTIL)"
+  },
+  {
+   "row_id": "6705",
+   "title": "Network Asset Management",
+   "naiyou_jp": "Network Asset Management（ネットワーク資産管理）は、VPDCMD コマンドで返される vital product data（VPD）を解釈し、シリアル番号・機種・モデル番号などのインベントリ情報を自動収集する付録機能である。応答ノード構成データ・製品データ・リンク構成データ等の VPD を扱う。NetView はデバイスから返されたデータの正当性検証は行わない。",
+   "verify_steps": "サンプルのネットワーク資産管理コマンドリストを実行して `VPDCMD` を発行し、VPD が外部ファイルに記録されることを確認する。",
+   "quiz": {
+    "q": "ネットワーク資産管理が収集する情報はどれか。",
+    "choices": [
+     "シリアル番号・機種・モデル番号等の VPD",
+     "RACF パスワード",
+     "GTF トレース",
+     "VTAM ログモード"
+    ],
+    "answer": 0,
+    "explanation": "ネットワーク資産管理は VPDCMD で返る VPD（シリアル番号・機種・モデル等）を収集する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Network Asset Management)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.115 / Customization_Guide p.111"
+  },
+  {
+   "row_id": "6706",
+   "title": "Network Asset Management Command Lists",
+   "naiyou_jp": "Network Asset Management Command Lists（ネットワーク資産管理コマンドリスト）は、基本的な VPD 収集を行うサンプルコマンドリスト群である。サンプルはそのまま利用するか、要件に応じて変更・自作できる。各サンプルは外部ファイルに記録する VPD レコードにレコードタイプ番号を割り当て、その値は共通グローバル変数に設定される。",
+   "verify_steps": "サンプルコマンドリスト（VPDACT、VPDPU 等）を実行し、VPD レコードがレコードタイプ番号付きで外部ファイルに記録されることを確認する。",
+   "quiz": {
+    "q": "ネットワーク資産管理サンプルコマンドリストがレコードに割り当てるものはどれか。",
+    "choices": [
+     "レコードタイプ番号（共通グローバル変数に設定）",
+     "RACF プロファイル名",
+     "VTAM PU 名",
+     "GTF バッファサイズ"
+    ],
+    "answer": 0,
+    "explanation": "サンプルは VPD レコードにレコードタイプ番号を割り当て、その値を共通グローバル変数に設定する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Network Asset Management Command Lists)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.120"
+  },
+  {
+   "row_id": "6707",
+   "title": "Network Asset Management Record Formats",
+   "naiyou_jp": "Network Asset Management Record Formats（ネットワーク資産管理レコード形式）は、サンプルネットワーク資産管理コマンドリストが用いるレコード形式を規定する。VPDCMD から返るメッセージの解釈や、サンプルの変更・自作の際の参照に用いる。応答ノード構成データ・製品データ・リンク構成データなどの VPD 種別ごとにレコード形式が定義される。",
+   "verify_steps": "サンプルを実行して外部ファイルに記録された VPD レコードを取り出し、付録のレコード形式定義どおりにフィールドが並んでいることを確認する。",
+   "quiz": {
+    "q": "ネットワーク資産管理レコード形式の参照用途はどれか。",
+    "choices": [
+     "VPDCMD 応答の解釈やサンプル変更時の参照",
+     "RACF 認可の定義",
+     "GTF トレースの解析",
+     "VTAM 定義の生成"
+    ],
+    "answer": 0,
+    "explanation": "レコード形式は VPDCMD 応答の解釈やサンプルコマンドリストの変更・自作時の参照に用いる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Network Asset Management Record Formats)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.115"
+  },
+  {
+   "row_id": "6708",
+   "title": "NMVT Format",
+   "naiyou_jp": "NMVT Format（NMVT 形式）は、ネットワーク管理ベクター転送（network management vector transport）の形式で、ジェネリックアラートを通じてハードウェアモニターへエラーを報告する。NMVT のメジャーベクター X'0000' にはアラートを含む多くの SNA メジャーベクターが含まれる。user-written プログラムは要求種別 12 で NMVT/CP-MSU 形式アラートを NetView へ送れる。",
+   "verify_steps": "要求種別 12 で NMVT 形式のジェネリックアラートを送り、ハードウェアモニターのフィルター（AREC/ESREC）を PASS にしてアラートが表示されることを確認する。",
+   "quiz": {
+    "q": "NMVT のメジャーベクター X'0000' に含まれるものはどれか。",
+    "choices": [
+     "アラートを含む SNA メジャーベクター",
+     "RACF プロファイル",
+     "REST API 定義",
+     "GTF レコード"
+    ],
+    "answer": 0,
+    "explanation": "NMVT のメジャーベクター X'0000' にはアラートを含む多くの SNA メジャーベクターが含まれる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.107 (NMVT Format)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 / Customization_Guide p.97"
+  },
+  {
+   "row_id": "6709",
+   "title": "Operations Management Routing Considerations",
+   "naiyou_jp": "Operations Management Routing Considerations（操作管理ルーティングの考慮事項）は、操作管理サービス対象アプリ間でデータを送る際のルーティングと R&TI（ルーティング・ターゲティング指示）の扱いを示す。R&TI 内の発信元アプリ名は宛先アプリ名と異なる必要があり、サービス対象アプリは送信データに R&TI GDS 変数を含める。発信元アプリは操作管理でなければならない。",
+   "verify_steps": "操作管理サービス対象アプリ間で R&TI を含む MDS-MU を送り、ルーティングレポートが問題報告に使われることを NETLOG で確認する。発信元と宛先のアプリ名が異なることを確認する。",
+   "quiz": {
+    "q": "R&TI における発信元アプリ名の制約はどれか。",
+    "choices": [
+     "宛先アプリ名と異なる必要がある",
+     "宛先アプリ名と同一でなければならない",
+     "RACF ユーザー名と一致させる",
+     "常に空でなければならない"
+    ],
+    "answer": 0,
+    "explanation": "R&TI 内の発信元アプリ名は宛先アプリ名と異なる必要がある。発信元は操作管理でなければならない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Operations Management Routing Considerations)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.75"
+  },
+  {
+   "row_id": "6710",
+   "title": "Operations Management Served Applications",
+   "naiyou_jp": "Operations Management Served Applications（操作管理サービス対象アプリケーション）は、操作管理を発信元として、アーキテクチャ準拠の操作管理コマンドを遠隔システムへ送受信するアプリである。これらは MS トランスポートを介し、R&TI GDS 変数を含むデータをやり取りする。COS（共通操作サービス）もこの枠組みで RUNCMD をサービスポイントへ流す。",
+   "verify_steps": "サービス対象アプリを登録し、操作管理を発信元として遠隔システムへコマンドを送り応答が返ることを NETLOG で確認する。`RUNCMD SP=...,EP_COS` で COS 経路を確認する。",
+   "quiz": {
+    "q": "操作管理サービス対象アプリが送受信するものはどれか。",
+    "choices": [
+     "アーキテクチャ準拠の操作管理コマンド",
+     "RACF 監査レコード",
+     "GTF トレース",
+     "VTAM ログモード"
+    ],
+    "answer": 0,
+    "explanation": "サービス対象アプリは操作管理を発信元としてアーキテクチャ準拠の操作管理コマンドを遠隔送受信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Operations Management Served Applications)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.75 / p.107"
+  },
+  {
+   "row_id": "6711",
+   "title": "Ordering publications",
+   "naiyou_jp": "Ordering publications（刊行物の注文）は、NetView 関連の刊行物を入手する方法を案内する節である。刊行物はオンラインで参照でき、必要に応じて注文できる。アプリケーションプログラマーは Application Programmer's Guide や SNA 関連刊行物を参照する。",
+   "verify_steps": "オンラインで NetView ライブラリを参照し、必要な刊行物が入手可能であることを確認する。NCCF で `HELP` を使い該当トピックを参照する。",
+   "quiz": {
+    "q": "NetView 刊行物の入手方法として案内されるものはどれか。",
+    "choices": [
+     "オンライン参照・注文",
+     "RACF 経由のみ",
+     "GTF 経由のみ",
+     "VTAM 定義経由のみ"
+    ],
+    "answer": 0,
+    "explanation": "刊行物はオンラインで参照でき、必要に応じて注文できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Ordering publications)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf (Accessing publications online)"
+  },
+  {
+   "row_id": "6712",
+   "title": "Other System Programmer",
+   "naiyou_jp": "Other System Programmer（その他のシステムプログラマー）は、NetView 以外のサブシステム（VTAM・SAF/RACF・SMF 等）を担当するシステムプログラマーとの連携を指す。アプリ実行基盤の整備では、VTAM のメジャーノード定義、RACF のオペレーター認可、SMF ログ設定などで他領域の担当者と協調が必要になる。",
+   "verify_steps": "VTAM・RACF・SMF の各担当と連携し、NetView アプリ実行に必要なメジャーノード活性化・認可・ログ設定が整っていることを確認する。",
+   "quiz": {
+    "q": "NetView アプリ基盤整備で連携が必要な他領域はどれか。",
+    "choices": [
+     "VTAM・RACF・SMF などの担当",
+     "Web デザイナー",
+     "DBA のみ",
+     "ネットワーク配線業者のみ"
+    ],
+    "answer": 0,
+    "explanation": "VTAM 定義・RACF 認可・SMF ログ設定など、他のシステムプログラマーとの連携が必要になる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Other System Programmer)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27 / Installation_Getting_Started p.48"
+  },
+  {
+   "row_id": "6714",
+   "title": "Privacy policy considerations",
+   "naiyou_jp": "Privacy policy considerations（プライバシーポリシーの考慮事項）は、製品がクッキー等を用いて情報を収集する場合のプライバシーに関する一般的な注意を示す定型節である。アプリケーションプログラミングの技術内容ではなく、製品ドキュメントに共通して含まれる法的・運用上の注意である。",
+   "verify_steps": "製品ドキュメントのプライバシーポリシーに関する記述を確認し、収集情報の取り扱い方針を把握する（技術的検証手順は伴わない）。",
+   "quiz": {
+    "q": "プライバシーポリシーの考慮事項が扱う内容はどれか。",
+    "choices": [
+     "情報収集に関するプライバシー上の注意",
+     "PPI 要求種別の一覧",
+     "MDS-MU の最大長",
+     "SEQUENT の排他制御"
+    ],
+    "answer": 0,
+    "explanation": "プライバシーポリシーの考慮事項は、クッキー等による情報収集に関する一般的注意を示す定型節である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Privacy policy considerations)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf (front matter / notices)"
+  },
+  {
+   "row_id": "6715",
+   "title": "Processing Requests",
+   "naiyou_jp": "Processing Requests（要求の処理）は、PPI が「要求」と呼ばれる基本タスクを処理する流れを示す。各プログラムは一連の要求を含み、PPI は各要求を処理して状況を示す戻りコードを生成する。プログラムは RPB で要求を送り、PPI は同じ RPB を使ってデータを返す。",
+   "verify_steps": "サンプルで複数要求（種別 1→4→14 等）を順に発行し、各要求ごとに戻りコードが RPB に返ることを確認する。`DISPPI` で状態を照会する。",
+   "quiz": {
+    "q": "PPI が各要求の処理結果を示すために生成するものはどれか。",
+    "choices": [
+     "戻りコード",
+     "RACF プロファイル",
+     "SMF type 80",
+     "VTAM PU 定義"
+    ],
+    "answer": 0,
+    "explanation": "PPI は各要求を処理して状況を示す戻りコードを生成し、同じ RPB でプログラムに返す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Processing Requests)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18"
+  },
+  {
+   "row_id": "6716",
+   "title": "Processing the Requests",
+   "naiyou_jp": "Processing the Requests（要求の処理（受信側））は、受信側プログラムがバッファキューに届いた要求／データを処理する流れを示す。受信者は要求種別 22 でデータバッファを受信し、必要に応じて要求種別 24 で受信／接続 ECB を待つ。処理後はバッファを解放する。",
+   "verify_steps": "受信側で要求種別 22 を発行してバッファを受信し、データが無ければ戻りコード 30（バッファ無し）を確認する。要求種別 24 で ECB 待ちにし、データ到着で起こされることを確認する。",
+   "quiz": {
+    "q": "受信側がデータバッファを受信する要求種別はどれか。",
+    "choices": [
+     "要求種別 22",
+     "要求種別 12",
+     "要求種別 4",
+     "要求種別 1"
+    ],
+    "answer": 0,
+    "explanation": "受信側は要求種別 22 でデータバッファを受信する。要求種別 24 で受信/接続 ECB を待つ。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Processing the Requests)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.89 (RETCODE 30)"
+  },
+  {
+   "row_id": "6717",
+   "title": "Product Data (Subvectors X'10' and X'11')",
+   "naiyou_jp": "Product Data（製品データ、サブベクター X'10' と X'11'）は、VPDCMD で返る VPD の一種で、製品セット ID サブベクター（X'10'）と、それに続く埋め込み製品 ID サブベクター（X'11'）から成る。各埋め込み製品 ID サブベクターは製品セット ID サブベクターの直後に別構造として置かれる。SNA 準拠のため 2 つ目の製品セット ID サブベクターが含まれる場合がある。",
+   "verify_steps": "`VPDCMD` を発行し、返る製品データに製品セット ID（X'10'）と埋め込み製品 ID（X'11'）サブベクターが含まれることを確認する。",
+   "quiz": {
+    "q": "製品データを構成するサブベクターの組はどれか。",
+    "choices": [
+     "X'10'（製品セット ID）と X'11'（製品 ID）",
+     "X'52' と X'82'",
+     "X'7D' と X'86'",
+     "X'1311' と X'1549'"
+    ],
+    "answer": 0,
+    "explanation": "製品データは製品セット ID サブベクター X'10' と埋め込み製品 ID サブベクター X'11' から成る。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Product Data Subvectors X'10' and X'11')",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf RODM_GMFHS p.179 / p.96"
+  },
+  {
+   "row_id": "6718",
+   "title": "Product Set Attributes (Subvector X'84')",
+   "naiyou_jp": "Product Set Attributes（製品セット属性、サブベクター X'84'）は、VPDCMD で返る VPD の一種で、製品セットの属性情報を運ぶ SNA サブベクターである。Additional Product Set Attributes（X'86'）と並び、ネットワーク資産管理での製品情報解釈に用いられる。",
+   "verify_steps": "`VPDCMD` を発行し、製品セット属性（X'84'）サブベクターが返ることを確認する。サンプルコマンドリストで該当レコードが記録されることを確認する。",
+   "quiz": {
+    "q": "サブベクター X'84' が表すものはどれか。",
+    "choices": [
+     "製品セット属性",
+     "リンク構成",
+     "応答ノード構成",
+     "作業単位相関子"
+    ],
+    "answer": 0,
+    "explanation": "X'84' は製品セット属性（Product Set Attributes）を表すサブベクターで VPD の一部である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.103 (Product Set Attributes Subvector X'84')",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.6 (Subvector list)"
+  },
+  {
+   "row_id": "6719",
+   "title": "Program Placement",
+   "naiyou_jp": "Program Placement（プログラム配置）は、アプリケーションを NetView アドレス空間内に置くか、別アドレス空間（例: NetView サブシステムアドレス空間や独立アドレス空間）に置くかの配置設計を扱う。配置は PPI の利用形態（同一空間内か空間間か）や記憶域・性能に影響する。受信者数に応じてサブシステム空間のリージョンサイズを確保する。",
+   "verify_steps": "アプリを NetView 空間内／外で起動し、それぞれ PPI で受信者定義・データ送受信が成立することを確認する。サブシステム空間のリージョンサイズが十分か確認する。",
+   "quiz": {
+    "q": "プログラム配置が影響する主な要素はどれか。",
+    "choices": [
+     "PPI 利用形態・記憶域・性能",
+     "RACF パスワード長",
+     "GTF レコード長",
+     "VTAM ログモード名"
+    ],
+    "answer": 0,
+    "explanation": "配置は PPI の利用形態（同一空間/空間間）や記憶域・性能に影響する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Program Placement)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27 (subsystem region size)"
+  },
+  {
+   "row_id": "6720",
+   "title": "Program-to-Program Interface Return Codes",
+   "naiyou_jp": "Program-to-Program Interface Return Codes（PPI 戻りコード）は、PPI が各要求種別に対して生成する戻りコードとその 16 進値を一覧化した付録である。例として戻りコード 10（PPI 利用可能）、24（PPI 非活動）、28/X'1C'（サブシステム空間はあるが PPI 空間が非活動）、30/X'1E'（受信者バッファキューにデータ無し）、31/X'1F'（受信バッファが小さい）、32/X'20'（NetView 記憶域無し）がある。",
+   "verify_steps": "要求種別 1 を発行して戻りコード 10（利用可能）または 24（非活動）を確認する。データが無い受信で 30、バッファ不足で 31 が返ることを再現して確認する。",
+   "quiz": {
+    "q": "PPI が利用可能であることを示す要求種別 1 の戻りコードはどれか。",
+    "choices": [
+     "10",
+     "24",
+     "30",
+     "90"
+    ],
+    "answer": 0,
+    "explanation": "戻りコード 10 は PPI が利用可能、24 は PPI 非活動、30 は受信バッファキューにデータ無しを示す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.113 (Program-to-Program Interface Return Codes)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.113-114 (Table 17) / p.35"
+  },
+  {
+   "row_id": "6721",
+   "title": "Programming Interfaces",
+   "naiyou_jp": "Programming Interfaces（プログラミングインターフェース）は、NetView が提供する一般利用プログラミングインターフェース（GUPI）と関連参照情報を指す。外部ログレコード形式やネットワーク資産管理のレコード形式などは GUPI として文書化され、user-written プログラムからの利用が想定される。",
+   "verify_steps": "外部ログレコードやネットワーク資産管理のレコードを user-written プログラムで解析し、文書化されたインターフェースどおりに扱えることを確認する。",
+   "quiz": {
+    "q": "NetView の一般利用プログラミングインターフェース（GUPI）に含まれるものはどれか。",
+    "choices": [
+     "外部ログレコード形式やネットワーク資産管理レコード形式",
+     "RACF 内部制御ブロック",
+     "VTAM 内部バッファ",
+     "GTF 内部テーブル"
+    ],
+    "answer": 0,
+    "explanation": "外部ログレコード形式やネットワーク資産管理レコード形式は GUPI として文書化される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Programming Interfaces)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.127 (General-use programming interface)"
+  },
+  {
+   "row_id": "6722",
+   "title": "Programming Techniques",
+   "naiyou_jp": "Programming Techniques（プログラミング技法）は、PPI やトランスポートを用いるプログラムを書く際の技法をまとめた章で、PPI 利用前に読むべき内容を含む。長時間実行コマンドの扱い、応答のバッファリング、資源の直列化（SEQUENT）、相関子の保存と再利用などが含まれる。",
+   "verify_steps": "サンプルで長時間実行コマンドや応答バッファリング、SEQUENT による直列化を組み合わせて実装し、想定どおり動作することを NETLOG で確認する。",
+   "quiz": {
+    "q": "PPI を使う前に参照すべき章はどれか。",
+    "choices": [
+     "Programming Techniques",
+     "Ordering publications",
+     "Privacy policy considerations",
+     "Terminology in this Library"
+    ],
+    "answer": 0,
+    "explanation": "PPI を使う前に Programming Techniques 章を参照するよう案内されている。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.65 (Programming Techniques)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 (see Chapter 9)"
+  },
+  {
+   "row_id": "6724",
+   "title": "Receive Macro",
+   "naiyou_jp": "Receive Macro（受信マクロ）は、アセンブラーで受信側処理を行うためのマクロ／要求である。受信者は要求種別 22 でデータバッファを受信し、入力バッファ長が不明なら BUFFQ-L を 0 に設定する。受信前に RPB の必須フィールドを埋める。",
+   "verify_steps": "アセンブラーで受信マクロ（要求種別 22）を発行し、データ受信に成功、または戻りコード 30（データ無し）／31（バッファ不足）を確認する。",
+   "quiz": {
+    "q": "入力バッファ長が不明なときの BUFFQ-L 設定はどれか。",
+    "choices": [
+     "0 に設定する",
+     "最大値に設定する",
+     "208 に固定する",
+     "設定不要"
+    ],
+    "answer": 0,
+    "explanation": "受信時に入力バッファ長が不明なら BUFFQ-L を 0 に設定する（要求種別 22）。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Receive Macro)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.89 (Request Type 22 example)"
+  },
+  {
+   "row_id": "6725",
+   "title": "Receiving a Buffer",
+   "naiyou_jp": "Receiving a Buffer（バッファの受信）は、受信者がバッファキューからデータバッファを取り出す処理である。要求種別 22 でデータバッファを受信し、データが無ければ戻りコード 30、受信バッファが小さければ 31 が返る。受信後はバッファを解放する。",
+   "verify_steps": "受信側で要求種別 22 を発行し、データ受信成功または戻りコード 30/31 を確認する。`DISPPI` で受信者キューの状態を確認する。",
+   "quiz": {
+    "q": "受信バッファが小さく受信できないときの戻りコードはどれか。",
+    "choices": [
+     "31（X'1F'）",
+     "30（X'1E'）",
+     "10",
+     "24"
+    ],
+    "answer": 0,
+    "explanation": "戻りコード 31 は受信バッファが小さい、30 はデータ無しを示す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Receiving a Buffer)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.113-114 (Table 17)"
+  },
+  {
+   "row_id": "6726",
+   "title": "Receiving a Data Buffer Synchronously",
+   "naiyou_jp": "Receiving a Data Buffer Synchronously（データバッファの同期受信）は、受信側が要求種別 22 でデータバッファを同期的に受け取る処理を示す。プログラムは受信ループでバッファが取れるまで繰り返し、要求種別 24 で受信／接続 ECB を待つことで効率化できる。",
+   "verify_steps": "受信側で要求種別 24 により ECB 待ちにし、データ到着で起こされた後に要求種別 22 でバッファを受信するループを確認する。",
+   "quiz": {
+    "q": "受信／接続 ECB を待つ要求種別はどれか。",
+    "choices": [
+     "要求種別 24",
+     "要求種別 22",
+     "要求種別 12",
+     "要求種別 4"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 24 で受信／接続 ECB を待ち、データ到着後に要求種別 22 で受信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Receiving a Data Buffer Synchronously)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.89"
+  },
+  {
+   "row_id": "6727",
+   "title": "Receiving Alerts",
+   "naiyou_jp": "Receiving Alerts（アラートの受信）は、user-written プログラムやハードウェアモニターがアラートを受信する仕組みを示す。プログラム間インターフェースを介してアラートを送受信でき、フィルター（AREC/ESREC）を PASS にすればハードウェアモニターのアラートとしてオペレーターに表示される。REXX では PIPE PPI ステージでアラートをハードウェアモニターへ送れる。",
+   "verify_steps": "要求種別 12 でアラートを送り、ハードウェアモニターの AREC/ESREC フィルターを PASS にして、オペレーターにアラートが表示されることを確認する。",
+   "quiz": {
+    "q": "送ったアラートがハードウェアモニターのアラートになる条件はどれか。",
+    "choices": [
+     "AREC/ESREC フィルターが PASS であること",
+     "RACF READ 権限",
+     "GTF が起動中であること",
+     "VTAM が停止中であること"
+    ],
+    "answer": 0,
+    "explanation": "アラートが適切なハードウェアモニターフィルター（AREC/ESREC）を通過すれば、オペレーターに表示される。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.17 (Receiving Alerts)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 / Automation_Guide p.337 / Troubleshooting_Guide p.379"
+  },
+  {
+   "row_id": "6728",
+   "title": "Record Header and Section Formats",
+   "naiyou_jp": "Record Header and Section Formats（レコードヘッダーとセクション形式）は、外部ログレコード（特に type 38）の共通ヘッダーと製品情報セクションの形式を規定する。type 38 ヘッダーは S38LENG（レコード長、2 バイト、2 進）などのフィールドを持ち、共通ヘッダー・共通製品セクション・データ記述子セクション・データセクションで構成される。",
+   "verify_steps": "SMF に書かれた type 38 レコードをダンプし、先頭にレコード長 S38LENG を含む共通ヘッダーが、付録のテーブル定義どおりに並ぶことを確認する。",
+   "quiz": {
+    "q": "type 38 ヘッダーの先頭フィールド S38LENG が表すものはどれか。",
+    "choices": [
+     "レコード長",
+     "製品 ID",
+     "セッション稼働率",
+     "RACF ユーザー"
+    ],
+    "answer": 0,
+    "explanation": "S38LENG（2 バイト、2 進）はレコード長を表す type 38 ヘッダーの先頭フィールドである。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.118 (Record Header and Section Formats)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.134 (Table 39)"
+  },
+  {
+   "row_id": "6729",
+   "title": "Record Section Formats",
+   "naiyou_jp": "Record Section Formats（レコードセクション形式）は、外部ログレコードを構成する各データセクションの形式を規定する。NetView は、ヘッダーとデータ記述子セクションに、製品 ID セクション・セッション経路データ・セッション構成データ・応答時間データ・会計可用性データ・各種カウンターデータ・ストレージデータなどを組み合わせてレコードを構築する。",
+   "verify_steps": "type 39 レコードを生成し、SMF ダンプで製品 ID・セッション経路・カウンター等のセクションが付録定義どおりに含まれることを確認する。",
+   "quiz": {
+    "q": "外部ログレコードのセクションに含まれないものはどれか。",
+    "choices": [
+     "RACF パスワードセクション",
+     "製品 ID セクション",
+     "セッション経路データセクション",
+     "ストレージデータセクション"
+    ],
+    "answer": 0,
+    "explanation": "セクションは製品 ID・セッション経路・応答時間・カウンター・ストレージ等で、RACF パスワードは含まれない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.133 (Record Section Formats)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.151"
+  },
+  {
+   "row_id": "6730",
+   "title": "Record Subtypes",
+   "naiyou_jp": "Record Subtypes（レコードサブタイプ）は、外部ログレコード（特に type 39）のサブタイプを規定する。例として、ストレージ・イベントカウンターレコードはサブタイプ X'0008' で、RECORD STRGDATA 発行時に書かれ、製品 ID・イベントカウンター・セッションアウェアネスカウンター・資源カウンター・ストレージの 5 セクションを持つ。",
+   "verify_steps": "`RECORD STRGDATA` を発行し、SMF に type 39 サブタイプ X'0008' のカウンターレコードが 5 セクション構成で書かれることを確認する。",
+   "quiz": {
+    "q": "RECORD STRGDATA で書かれる type 39 のサブタイプはどれか。",
+    "choices": [
+     "X'0008'",
+     "X'0001'",
+     "X'0004'",
+     "X'0027'"
+    ],
+    "answer": 0,
+    "explanation": "RECORD STRGDATA はストレージ・イベントカウンターレコード（サブタイプ X'0008'）を書く。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.133 (Record Subtypes)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.151"
+  },
+  {
+   "row_id": "6732",
+   "title": "Register Conventions",
+   "naiyou_jp": "Register Conventions（レジスター規約）は、アセンブラーで NetView サービスルーチンやマクロを呼び出す際のレジスターの使用規約を示す。一般に標準リンケージ規約に従い、レジスター 1 にパラメーターリストアドレス、13 に保存域、14 に戻りアドレス、15 にエントリーポイント／戻りコードを置く。NetView マクロはこの規約に沿ってレジスターを使う。",
+   "verify_steps": "アセンブラーアプリで標準リンケージ規約に従ってレジスターを設定し NetView マクロを呼び出し、戻りコード（R15）が想定どおりに返ることを確認する。",
+   "quiz": {
+    "q": "アセンブラーで戻りコードが返される標準レジスターはどれか。",
+    "choices": [
+     "レジスター 15",
+     "レジスター 1",
+     "レジスター 13",
+     "レジスター 14"
+    ],
+    "answer": 0,
+    "explanation": "標準リンケージ規約ではレジスター 15 に戻りコード／エントリーポイントアドレスを置く。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Register Conventions)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf Programming_Assembler (linkage)"
+  },
+  {
+   "row_id": "6733",
+   "title": "Registration Service",
+   "naiyou_jp": "Registration Service（登録サービス）は、user-written アプリを MS アプリ・操作管理サービス対象アプリ・高性能アプリとして登録するサービスである。CNMREGIST（CNMRGS）や CNMHREGIST サービスルーチン、REGISTER コマンドで登録する。登録時には受信したデータを処理するコマンド名と、コマンドが実行されるタスクを指定する。",
+   "verify_steps": "REGISTER コマンドまたは CNMREGIST でアプリを登録し、`LIST` で登録状態を確認する。受信データ処理用コマンドが指定タスクで起動することを確認する。",
+   "quiz": {
+    "q": "user-written アプリを登録するサービスルーチンはどれか。",
+    "choices": [
+     "CNMREGIST / CNMHREGIST",
+     "CNMGETD",
+     "SETBQL",
+     "VPDCMD"
+    ],
+    "answer": 0,
+    "explanation": "CNMREGIST（CNMRGS）や CNMHREGIST、REGISTER コマンドでアプリを登録する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Registration Service)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf Command_Reference_Vol2 p.140 / Programming_Assembler p.260"
+  },
+  {
+   "row_id": "6734",
+   "title": "Registration Services",
+   "naiyou_jp": "Registration Services（登録サービス（複数）） は、登録サービスの各種オプションを扱う。登録は MS アプリ・操作管理サービス対象アプリ・高性能アプリの種別ごとに独立で、一方の登録は他方に影響しない。REPLACE=YES（既定）は同一アプリの既存登録を置き換え、コマンド名や受信タスク名を変更できる。フォーカルポイント指定（FP=YES）は MS アプリ登録でのみ有効。",
+   "verify_steps": "同一アプリを REPLACE=YES で再登録し、コマンド名／受信タスクが置き換わることを確認する。MS アプリで FP=YES を指定し、操作管理サービス対象では指定できないことを確認する。",
+   "quiz": {
+    "q": "登録の REPLACE=YES（既定）の効果はどれか。",
+    "choices": [
+     "同一アプリの既存登録を置き換える",
+     "登録を拒否する",
+     "RACF を再認可する",
+     "GTF を起動する"
+    ],
+    "answer": 0,
+    "explanation": "REPLACE=YES（既定）は同一アプリの既存登録を置き換え、コマンド名や受信タスク名を変更できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Registration Services)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf Programming_Assembler p.260-261"
+  },
+  {
+   "row_id": "6735",
+   "title": "Releasing the Resource",
+   "naiyou_jp": "Releasing the Resource（資源の解放）は、SEQUENT で獲得した資源を RELEASE キーワードで解放する操作である。排他制御（OBTAINEX）中は他のプログラムが待機するため、更新完了後は速やかに RELEASE して待機中のプログラムに制御を渡す。共有制御の場合は全共有利用者が RELEASE するまで排他要求は待たされる。",
+   "verify_steps": "OBTAINEX で資源を獲得した後 RELEASE を発行し、待機していた別タスクが処理を進めることを再現して確認する。",
+   "quiz": {
+    "q": "SEQUENT で獲得した資源を解放するキーワードはどれか。",
+    "choices": [
+     "RELEASE",
+     "OBTAINEX",
+     "OBTAINSH",
+     "REGISTER"
+    ],
+    "answer": 0,
+    "explanation": "RELEASE で資源を解放する。排他中の待機者は RELEASE 後に制御を得る。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.62 (Releasing the Resource)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.62 (SEQUENT RELEASE)"
+  },
+  {
+   "row_id": "6736",
+   "title": "Request Type 10: Delete a Receiver",
+   "naiyou_jp": "Request Type 10: Delete a Receiver（要求種別 10: 受信者の削除）は、定義済みの受信者を削除する要求である。削除すると受信者は undefined 状態になり、その受信者宛てのデータは受け付けられなくなる。先に要求種別 9 で無効化してから削除するのが一般的である。",
+   "verify_steps": "要求種別 9 で受信者を無効化後、要求種別 10 で削除し、`DISPPI` で受信者が undefined になることを確認する。",
+   "quiz": {
+    "q": "要求種別 10 の機能はどれか。",
+    "choices": [
+     "受信者の削除",
+     "受信者の定義",
+     "アラート送信",
+     "PPI 状況照会"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 10 は受信者を削除する。削除後は undefined 状態になる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 10: Delete a Receiver)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18 / p.113"
+  },
+  {
+   "row_id": "6737",
+   "title": "Request Type 12: Send an NMVT or CP-MSU Formatted Alert to the NetView Program",
+   "naiyou_jp": "Request Type 12: Send an NMVT or CP-MSU Formatted Alert（要求種別 12: NMVT/CP-MSU 形式アラートの送信）は、user-written プログラムが NMVT または CP-MSU 形式のアラートを NetView へ送る要求である。バッファが PPI にコピーされると即座に制御が戻り、バッファ記憶域の解放はプログラム側の責任となる。NetView アラート受信者のバッファキュー上限は 1000 で、超過時や戻りコード 22 以上ではバッファは送られない。",
+   "verify_steps": "要求種別 12 でアラートを送り、戻りコード 0 を確認、ハードウェアモニターに表示されることを確認する。連続送信でキュー上限 1000 を超えると拒否されることを確認する。",
+   "quiz": {
+    "q": "要求種別 12 で送る NetView アラート受信者のバッファキュー上限はどれか。",
+    "choices": [
+     "1000",
+     "100",
+     "31",
+     "4294967295"
+    ],
+    "answer": 0,
+    "explanation": "NetView アラート受信者のバッファキュー上限は 1000 件で、超過するとバッファは受け付けられない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.41 (Request Type 12)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.41 / p.19"
+  },
+  {
+   "row_id": "6738",
+   "title": "Request Type 14: Send a Data Buffer to a Receiver Synchronously",
+   "naiyou_jp": "Request Type 14: Send a Data Buffer to a Receiver Synchronously（要求種別 14: 受信者へのデータバッファ同期送信）は、送信側が受信者のバッファキューへデータバッファを同期送信する要求である。送信側は受信者 ID を指定し、PPI が受信者キューへバッファを置く。受信側は要求種別 22 でそのバッファを取り出す。",
+   "verify_steps": "送信側で要求種別 14 を発行して受信者へバッファを送り、受信側が要求種別 22 で取り出せることを NETLOG で確認する。",
+   "quiz": {
+    "q": "要求種別 14 の機能はどれか。",
+    "choices": [
+     "受信者へデータバッファを同期送信",
+     "受信者を削除",
+     "PPI 状況照会",
+     "アラート送信"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 14 は受信者のバッファキューへデータバッファを同期送信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 14)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.4 (Figure 3) / p.18"
+  },
+  {
+   "row_id": "6739",
+   "title": "Request Type 1: Query the PPI Status",
+   "naiyou_jp": "Request Type 1: Query the PPI Status（要求種別 1: PPI 状況の照会）は、PPI が利用可能かを照会する任意の要求である。戻りコード 10 は PPI 利用可能、24 は PPI 非活動、28 はサブシステム空間はあるが PPI 空間が非活動、90 は処理エラーを示す。",
+   "verify_steps": "送信前に要求種別 1 を発行し、戻りコード 10（利用可能）を確認してから後続要求を行う。PPI 停止時に 24 が返ることを確認する。",
+   "quiz": {
+    "q": "要求種別 1 の戻りコード 24 が示すものはどれか。",
+    "choices": [
+     "PPI が非活動",
+     "PPI が利用可能",
+     "処理エラー",
+     "受信バッファ不足"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 1 では 10=利用可能、24=非活動、28=PPI 空間非活動、90=処理エラー。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 1: Query the PPI Status)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.35"
+  },
+  {
+   "row_id": "6740",
+   "title": "Request Type 22: Receive a Data Buffer",
+   "naiyou_jp": "Request Type 22: Receive a Data Buffer（要求種別 22: データバッファの受信）は、受信者がバッファキューからデータバッファを取り出す要求である。データが無ければ戻りコード 30、受信バッファが小さければ 31 が返る。入力バッファ長が不明なら BUFFQ-L を 0 に設定し、要求種別 4 と同じワークエリアを使う。",
+   "verify_steps": "受信側で要求種別 22 を発行し、データ受信成功または戻りコード 30/31 を確認する。BUFFQ-L=0 での受信を確認する。",
+   "quiz": {
+    "q": "要求種別 22 でデータが無いときの戻りコードはどれか。",
+    "choices": [
+     "30（X'1E'）",
+     "31（X'1F'）",
+     "10",
+     "24"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 22 では 30=データ無し、31=受信バッファ不足。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 22: Receive a Data Buffer)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.89"
+  },
+  {
+   "row_id": "6741",
+   "title": "Request Type 23: Purge a Data Buffer",
+   "naiyou_jp": "Request Type 23: Purge a Data Buffer（要求種別 23: データバッファのパージ）は、受信者のバッファキューに溜まったデータバッファを破棄する要求である。不要になったバッファを一括で除去してキューを整理し、記憶域を解放するのに用いる。",
+   "verify_steps": "受信者キューにバッファを溜めた後、要求種別 23 を発行してキューがパージされることを `DISPPI` のキュー深さで確認する。",
+   "quiz": {
+    "q": "要求種別 23 の機能はどれか。",
+    "choices": [
+     "受信者キューのデータバッファをパージ",
+     "受信者を定義",
+     "アラート送信",
+     "PPI 状況照会"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 23 は受信者のバッファキューに溜まったデータバッファを破棄（パージ）する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 23: Purge a Data Buffer)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.113-114 (Table 17)"
+  },
+  {
+   "row_id": "6742",
+   "title": "Request Type 24: Wait for the Receive or Connect ECB",
+   "naiyou_jp": "Request Type 24: Wait for the Receive or Connect ECB（要求種別 24: 受信／接続 ECB の待機）は、受信側がデータ到着または接続を ECB（event control block）で待つ要求である。ポーリングを避け、データ到着時に起こされてから要求種別 22 で受信することで効率化する。",
+   "verify_steps": "受信側で要求種別 24 を発行して ECB 待ちにし、送信側がデータを送ると起こされ、続けて要求種別 22 で受信できることを確認する。",
+   "quiz": {
+    "q": "要求種別 24 が待機する対象はどれか。",
+    "choices": [
+     "受信／接続 ECB",
+     "RACF 認可",
+     "GTF バッファ",
+     "VTAM セッション"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 24 は受信／接続 ECB を待ち、データ到着で起こされる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 24: Wait for the Receive or Connect ECB)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.113-114 (Table 17)"
+  },
+  {
+   "row_id": "6743",
+   "title": "Request Type 2: Query a Receiver's Status",
+   "naiyou_jp": "Request Type 2: Query a Receiver's Status（要求種別 2: 受信者状況の照会）は、送信側・受信側双方で使える要求で、RPB に指定した受信者の状況（active・inactive・undefined）を判定する。送信前に宛先受信者が active かを確認するのに用いる。",
+   "verify_steps": "要求種別 2 で対象受信者を照会し、active/inactive/undefined のいずれかが返ることを確認する。未定義受信者で undefined が返ることを確認する。",
+   "quiz": {
+    "q": "要求種別 2 が返す受信者状況に含まれないものはどれか。",
+    "choices": [
+     "pending",
+     "active",
+     "inactive",
+     "undefined"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 2 は受信者状況として active・inactive・undefined を返す。pending は無い。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 2: Query a Receiver's Status)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.35"
+  },
+  {
+   "row_id": "6744",
+   "title": "Request Type 3: Obtain the ASCB and TCB Addresses",
+   "naiyou_jp": "Request Type 3: Obtain the ASCB and TCB Addresses（要求種別 3: ASCB・TCB アドレスの取得）は、受信者に関連付けられたアドレス空間制御ブロック（ASCB）とタスク制御ブロック（TCB）のアドレスを取得する要求である。取得したアドレスは、後続のデータ送受信や記憶域の所有関係の管理に用いる。",
+   "verify_steps": "要求種別 3 を発行して受信者の ASCB／TCB アドレスを取得し、RPB の該当フィールドに値が返ることを確認する。",
+   "quiz": {
+    "q": "要求種別 3 が取得するものはどれか。",
+    "choices": [
+     "ASCB と TCB のアドレス",
+     "RACF プロファイル",
+     "VPD サブベクター",
+     "GTF レコード"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 3 は受信者に関連する ASCB と TCB のアドレスを取得する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 3: Obtain the ASCB and TCB Addresses)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.37 (RPB fields)"
+  },
+  {
+   "row_id": "6745",
+   "title": "Request Type 4: Define and Initialize a Receiver",
+   "naiyou_jp": "Request Type 4: Define and Initialize a Receiver（要求種別 4: 受信者の定義と初期化）は、プログラムを受信者として定義し状態を active にする要求である。バッファキュー上限のリセットにも使う。RPB には受信者 ID（RECEIVER-ID）、ワークエリアアドレス（WORK-ADR）、ASCB アドレス、バッファキュー上限（BUFFQ-L）などを設定する。",
+   "verify_steps": "要求種別 4 で受信者を定義し、`DISPPI` で active になることを確認する。BUFFQ-L を設定してキュー上限が反映されることを確認する。",
+   "quiz": {
+    "q": "要求種別 4 で設定するフィールドに含まれるものはどれか。",
+    "choices": [
+     "受信者 ID・バッファキュー上限",
+     "RACF パスワード",
+     "GTF オプション",
+     "VTAM ログモード"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 4 では RECEIVER-ID・WORK-ADR・ASCB-ADR・BUFFQ-L 等を設定して受信者を定義する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.37 (Request Type 4: Define and Initialize a Receiver)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.37"
+  },
+  {
+   "row_id": "6746",
+   "title": "Request Type 9: Deactivate a Receiver",
+   "naiyou_jp": "Request Type 9: Deactivate a Receiver（要求種別 9: 受信者の無効化）は、受信者の状態を active から inactive にする要求である。無効化された受信者は新規データを受け付けないが、定義自体は残るため要求種別 4 で再度 active にできる。完全に除去するには要求種別 10 で削除する。",
+   "verify_steps": "要求種別 9 で受信者を無効化し `DISPPI` で inactive を確認する。要求種別 4 で再度 active にできることを確認する。",
+   "quiz": {
+    "q": "要求種別 9 で無効化した受信者を再び active にする要求種別はどれか。",
+    "choices": [
+     "要求種別 4",
+     "要求種別 10",
+     "要求種別 12",
+     "要求種別 22"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 9 で無効化した受信者は要求種別 4 で再び active にできる（定義は残る）。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Request Type 9: Deactivate a Receiver)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18 / p.37"
+  },
+  {
+   "row_id": "6747",
+   "title": "Requesting Exclusive or Shared Control",
+   "naiyou_jp": "Requesting Exclusive or Shared Control（排他制御または共有制御の要求）は、SEQUENT で資源を OBTAINEX（排他）または OBTAINSH（共有）で獲得する選択を扱う。排他制御中は獲得プログラムのみが資源を使え、他は RELEASE まで待機する。共有制御では他の共有利用者と並行アクセスできるが、排他要求が先にあると待たされる。",
+   "verify_steps": "あるタスクで OBTAINSH 後、別タスクが OBTAINEX を要求して全共有利用者の RELEASE まで待機することを再現して確認する。",
+   "quiz": {
+    "q": "資源を変更するプログラムが要求すべき制御はどれか。",
+    "choices": [
+     "排他制御（OBTAINEX）",
+     "共有制御（OBTAINSH）",
+     "制御なし",
+     "RACF UPDATE"
+    ],
+    "answer": 0,
+    "explanation": "資源を変更するプログラムは排他制御（OBTAINEX）を要求すべき。共有は読み取り並行向け。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.62 (Requesting Exclusive or Shared Control)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.62"
+  },
+  {
+   "row_id": "6748",
+   "title": "Restrictions",
+   "naiyou_jp": "Restrictions（制約事項）は、PPI やトランスポート、正規表現、SEQUENT などの利用上の制約をまとめた節である。例として、MDS が必須のアプリは高性能トランスポートを使えない、WAIT は Data REXX ファイルでは使えない、SETBQL は同一先頭 4 文字の手続きにのみ使える、などの制約がある。",
+   "verify_steps": "制約に該当する操作（例: Data REXX 内 WAIT、MDS 必須アプリの高性能登録）を試み、文書どおりに拒否・制限されることを確認する。",
+   "quiz": {
+    "q": "次のうち制約事項の例として正しいものはどれか。",
+    "choices": [
+     "MDS 必須アプリは高性能トランスポートを使えない",
+     "全アプリが高性能トランスポートを使える",
+     "WAIT は Data REXX で常に使える",
+     "SETBQL は任意の手続きに使える"
+    ],
+    "answer": 0,
+    "explanation": "MDS が必須のアプリは高性能トランスポートを使えないなど、各機能に制約がある。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Restrictions)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.56 / REXX p.46"
+  },
+  {
+   "row_id": "6749",
+   "title": "REXX Example",
+   "naiyou_jp": "REXX Example（REXX 例）は、DSIPHONE を使って NetView PPI 経由でデータを送受信する REXX のコーディング例を示す。例ではクライアントが OPENRECV で受信者を開き SEND で送信、CLOSE で受信者を削除する。サーバーは OPENRECV 後、RECEIVE でデータと送信者名を受け取るループを回す。",
+   "verify_steps": "REXX で `call DSIPHONE 'OPENRECV','CLIENT'` を実行し受信者を開き、`SEND`/`RECEIVE` でデータをやり取り、`CLOSE` で削除する一連を NETLOG で確認する。",
+   "quiz": {
+    "q": "REXX 例で受信者を開くために呼ぶ DSIPHONE のキーワードはどれか。",
+    "choices": [
+     "OPENRECV",
+     "CLOSE",
+     "AUTHRECV",
+     "VERSION"
+    ],
+    "answer": 0,
+    "explanation": "DSIPHONE 'OPENRECV','name' で PPI 受信者を開く。CLOSE は削除。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.49 (REXX Example)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (DSIPHONE server/client)"
+  },
+  {
+   "row_id": "6750",
+   "title": "REXX Programming Examples",
+   "naiyou_jp": "REXX Programming Examples（REXX プログラミング例）は、DSIPHONE を用いたサーバー・クライアントアプリの定義例を含む。サーバーは OPENRECV で受信者 SERVER を定義し、do forever でデータ到着を待って受信、クライアントは CLIENT 受信者を開いて SERVER へ送信し応答を受け取る。任意の z/OS REXX アプリが PPI 受信者を開閉・送受信できる。",
+   "verify_steps": "サーバー REXX を起動して SERVER 受信者を待機させ、クライアント REXX から SEND して、サーバーが受信・応答する往復を NETLOG で確認する。",
+   "quiz": {
+    "q": "DSIPHONE が PPI 機能を提供する対象はどれか。",
+    "choices": [
+     "REXX が動作する任意の z/OS アプリ",
+     "RACF サブシステムのみ",
+     "VTAM のみ",
+     "GTF のみ"
+    ],
+    "answer": 0,
+    "explanation": "DSIPHONE は REXX を実行できる任意の z/OS アプリが PPI 受信者を開閉・送受信できるようにする。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (REXX Programming Examples)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.49 / p.91"
+  },
+  {
+   "row_id": "6751",
+   "title": "Routing Alerts to Multiple Receivers",
+   "naiyou_jp": "Routing Alerts to Multiple Receivers（複数受信者へのアラートルーティング）は、1 つのアラートを複数の PPI 受信者へ振り分ける仕組みを扱う。フィルター設定や受信者登録により、ハードウェアモニターや user-written アプリなど複数の宛先へアラートを配送できる。",
+   "verify_steps": "複数の受信者を登録し、要求種別 12 でアラートを送って各受信者およびハードウェアモニターに配送されることを NETLOG で確認する。",
+   "quiz": {
+    "q": "複数受信者へのアラート配送を制御する要素はどれか。",
+    "choices": [
+     "フィルター設定と受信者登録",
+     "RACF パスワード長",
+     "GTF バッファサイズ",
+     "VTAM ログモード"
+    ],
+    "answer": 0,
+    "explanation": "フィルター設定と受信者登録により、1 アラートを複数受信者へルーティングできる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.17 (Routing Alerts to Multiple Receivers)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 / Troubleshooting_Guide p.379"
+  },
+  {
+   "row_id": "6753",
+   "title": "Send Macro",
+   "naiyou_jp": "Send Macro（送信マクロ）は、アセンブラーで送信側処理を行うマクロ／要求である。送信側は要求種別 14 で受信者へデータバッファを同期送信、または要求種別 12 でアラートを送る。送信前に RPB の必須フィールド（受信者 ID 等）を埋める。",
+   "verify_steps": "アセンブラーで送信マクロ（要求種別 14）を発行して受信者へバッファを送り、受信側が要求種別 22 で取り出せることを確認する。",
+   "quiz": {
+    "q": "送信マクロでデータバッファを受信者へ同期送信する要求種別はどれか。",
+    "choices": [
+     "要求種別 14",
+     "要求種別 22",
+     "要求種別 24",
+     "要求種別 9"
+    ],
+    "answer": 0,
+    "explanation": "送信側は要求種別 14 で受信者へデータバッファを同期送信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Send Macro)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.18 / p.4"
+  },
+  {
+   "row_id": "6754",
+   "title": "Send Service",
+   "naiyou_jp": "Send Service（送信サービス）は、高性能トランスポートでアプリが MDS-MU を送るための CNMHSMU（CNMHsmu）サービスである。アプリはこのサービスで MDS-MU を送信し、登録時に指定したコマンド／タスクで応答を受け取る。会話はアイドル時も持続する。",
+   "verify_steps": "高性能アプリを登録後、CNMHSMU で MDS-MU を送信し、宛先で受信されることを NETLOG で確認する。",
+   "quiz": {
+    "q": "高性能トランスポートで MDS-MU を送る送信サービスはどれか。",
+    "choices": [
+     "CNMHSMU",
+     "CNMGETD",
+     "VPDCMD",
+     "SETBQL"
+    ],
+    "answer": 0,
+    "explanation": "高性能トランスポートでは CNMHSMU（送信サービス）で MDS-MU を送信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.78 (Send Service)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.78"
+  },
+  {
+   "row_id": "6755",
+   "title": "Send-Receive Interface",
+   "naiyou_jp": "Send-Receive Interface（送受信インターフェース）は、アプリがトランスポート API を通じてデータを送受信する一連のインターフェースを示す。MS／高性能トランスポートで MDS-MU を送り（送信サービス）、登録したコマンド／タスクで受信する。要求と応答は相関子で対応付けられる。",
+   "verify_steps": "送受信アプリを登録し、片方が MDS-MU を送り、相手が登録コマンド／タスクで受信して相関子付き応答を返す往復を NETLOG で確認する。",
+   "quiz": {
+    "q": "送受信インターフェースで要求と応答を対応付けるものはどれか。",
+    "choices": [
+     "エージェント作業単位相関子",
+     "RACF ユーザー ID",
+     "GTF レコード番号",
+     "VTAM PU 名"
+    ],
+    "answer": 0,
+    "explanation": "要求と応答はエージェント作業単位相関子（X'1549'）で対応付けられる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.95 (Send-Receive Interface)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.58 / p.78"
+  },
+  {
+   "row_id": "6756",
+   "title": "Sending a Buffer Synchronously",
+   "naiyou_jp": "Sending a Buffer Synchronously（バッファの同期送信）は、送信側が要求種別 14 で受信者のバッファキューへデータバッファを同期送信する処理を示す。送信前に要求種別 1 で PPI 状況、要求種別 2 で受信者状況を確認するのが望ましい。",
+   "verify_steps": "要求種別 1→2→14 の順で発行し、PPI 利用可能・受信者 active を確認したうえでバッファを同期送信し、受信側が取り出せることを確認する。",
+   "quiz": {
+    "q": "バッファ同期送信の前に受信者状況を確認する要求種別はどれか。",
+    "choices": [
+     "要求種別 2",
+     "要求種別 12",
+     "要求種別 22",
+     "要求種別 24"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 2 で受信者状況を確認してから要求種別 14 で同期送信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.18 (Sending a Buffer Synchronously)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.4 / p.18"
+  },
+  {
+   "row_id": "6757",
+   "title": "Sending a Data Buffer Synchronously",
+   "naiyou_jp": "Sending a Data Buffer Synchronously（データバッファの同期送信）は、送信側プログラムが受信者キューへデータバッファを同期送信する流れを示す。例ではプログラム B が要求種別 1（任意の PPI 状況照会）に続いて要求種別 14 でプログラム Z の受信者キューへ送信する。",
+   "verify_steps": "プログラム B 役で要求種別 1 を発行し PPI 利用可能を確認後、要求種別 14 でプログラム Z の受信者へ送信し、Z が要求種別 22 で受信することを NETLOG で確認する。",
+   "quiz": {
+    "q": "データ同期送信の例で任意とされる要求はどれか。",
+    "choices": [
+     "要求種別 1（PPI 状況照会）",
+     "要求種別 14",
+     "要求種別 22",
+     "要求種別 4"
+    ],
+    "answer": 0,
+    "explanation": "例では要求種別 1（PPI 状況照会）は任意で、要求種別 14 で同期送信する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.4 (Sending a Data Buffer Synchronously)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.19 (Figure 3)"
+  },
+  {
+   "row_id": "6758",
+   "title": "Sending an NMVT or CP-MSU Formatted Alert",
+   "naiyou_jp": "Sending an NMVT or CP-MSU Formatted Alert（NMVT/CP-MSU 形式アラートの送信）は、要求種別 12 で user-written プログラムが NMVT または CP-MSU 形式のアラートを NetView へ送る処理を示す。配布テープにサンプル（アセンブラー CNMS4287、C CNMS4257、PL/I CNMS4227）がある。NetView はアラートを未送信記録として扱い、フィルターを通過すればハードウェアモニターアラートになる。",
+   "verify_steps": "サンプル（例: CNMS4287）を実行して要求種別 12 でアラートを送り、フィルター PASS でオペレーターに表示されることを確認する。",
+   "quiz": {
+    "q": "NMVT/CP-MSU 形式アラートを送る要求種別はどれか。",
+    "choices": [
+     "要求種別 12",
+     "要求種別 14",
+     "要求種別 4",
+     "要求種別 22"
+    ],
+    "answer": 0,
+    "explanation": "要求種別 12 で NMVT または CP-MSU 形式のアラートを NetView へ送る。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.19 (Sending an NMVT or CP-MSU Formatted Alert)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.19 / p.41"
+  },
+  {
+   "row_id": "6759",
+   "title": "Sending Commands and Messages to the NetView Program",
+   "naiyou_jp": "Sending Commands and Messages to the NetView Program（NetView へのコマンド・メッセージ送信）は、外部アプリや REXX から NetView へコマンドやメッセージを送る方法を示す。DSIPHONE（REXX）や PPI を介して NetView の受信者へデータを送り、NetView 側でコマンドとして処理させたり、メッセージとして自動化テーブルにかけたりできる。",
+   "verify_steps": "REXX の DSIPHONE で NetView 受信者へコマンド文字列を送り、NetView 側で当該コマンドが実行されることを NETLOG で確認する。",
+   "quiz": {
+    "q": "外部 REXX アプリから NetView へデータを送る手段はどれか。",
+    "choices": [
+     "DSIPHONE（PPI）",
+     "RACF ADDUSER",
+     "GTF TRACE",
+     "VTAM VARY"
+    ],
+    "answer": 0,
+    "explanation": "DSIPHONE を用いて REXX アプリから PPI 経由で NetView へコマンド・メッセージを送れる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.49 (Sending Commands and Messages to the NetView Program)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.49 / p.91"
+  },
+  {
+   "row_id": "6760",
+   "title": "Sense Data (Subvector X'7D')",
+   "naiyou_jp": "Sense Data（センスデータ、サブベクター X'7D'）は、VPDCMD で返る VPD の一種で、エラーの詳細を示すセンスデータを運ぶ SNA サブベクターである。ネットワーク資産管理や問題判別の文脈で、デバイスから返るセンス情報の解釈に用いる。",
+   "verify_steps": "`VPDCMD` を発行し、エラー時にセンスデータ（X'7D'）サブベクターが返ることを NETLOG で確認する。",
+   "quiz": {
+    "q": "サブベクター X'7D' が運ぶものはどれか。",
+    "choices": [
+     "センスデータ",
+     "製品セット ID",
+     "リンク構成",
+     "作業単位相関子"
+    ],
+    "answer": 0,
+    "explanation": "X'7D' はセンスデータ（Sense Data）を運ぶサブベクターで、エラー詳細を示す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.103 (Sense Data Subvector X'7D')",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.6 (Subvector list)"
+  },
+  {
+   "row_id": "6761",
+   "title": "Session Outage Notification",
+   "naiyou_jp": "Session Outage Notification（セッション停止通知、SON）は、LU 6.2 セッションの停止をアプリへ通知する仕組みである。登録時に ALL（異常と判定できなくても通知）・ERROR（異常と判定できる場合のみ通知）・NONE（通知しない、既定）を選べる。通知はノードへの最後の LU 6.2 セッションが失われたときのみ提供され、非 LU 6.2 のセッション停止では駆動されない。",
+   "verify_steps": "アプリを SON=ERROR で登録し、対象ノードへの最後の LU 6.2 セッションを異常停止させて通知が来ることを NETLOG で確認する。SON=NONE では通知が来ないことを確認する。",
+   "quiz": {
+    "q": "セッション停止通知の既定値はどれか。",
+    "choices": [
+     "NONE",
+     "ALL",
+     "ERROR",
+     "WARN"
+    ],
+    "answer": 0,
+    "explanation": "SON の既定は NONE（通知しない）。ALL は常時、ERROR は異常と判定できる場合のみ通知。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.67 (Session Outage Notification)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.67 / p.74 / p.78"
+  },
+  {
+   "row_id": "6762",
+   "title": "Syntax of a Regular Expression",
+   "naiyou_jp": "Syntax of a Regular Expression（正規表現の構文）は、NetView がサポートする正規表現の構文規則を示す。区切り文字・エスケープ（バックスラッシュ）・グループ化（括弧）・量指定子などの規則があり、区切り文字を式中に含める場合はエスケープするか別の区切り文字を選ぶ。構文エラー時は BNH923I（不一致記号）や BNH925I（無効な量指定子）などのメッセージが出る。",
+   "verify_steps": "`PIPE ... | LOCATE /pattern/` で正規表現を試し、不一致の括弧を含む式で BNH923I が出ることを確認する。正しい式で意図どおり照合されることを確認する。",
+   "quiz": {
+    "q": "正規表現で区切り文字を式中に含めたいときの対処はどれか。",
+    "choices": [
+     "バックスラッシュでエスケープするか別の区切り文字を選ぶ",
+     "RACF で認可する",
+     "GTF を起動する",
+     "BUFFQ-L を 0 にする"
+    ],
+    "answer": 0,
+    "explanation": "区切り文字を式中に含める場合はバックスラッシュでエスケープするか、別の区切り文字を選ぶ。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.81 (Syntax of a Regular Expression)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.84 / Messages_Vol1 p.349"
+  },
+  {
+   "row_id": "6763",
+   "title": "Tasking Structure",
+   "naiyou_jp": "Tasking Structure（タスク構造）は、NetView のタスク（OST・PPT・DST・autotask 等）の構造と、アプリ／コマンドがどのタスクで実行されるかを示す。登録時に受信データを処理するコマンドが実行されるタスクを指定でき、長時間実行コマンドは DSIPUSH で待機しつつ他タスクの処理を妨げない。",
+   "verify_steps": "アプリ登録時に受信データ処理用タスクを指定し、`LIST STATUS=TASKS` で該当タスクが ACTIVE であること、受信時にそのタスクでコマンドが起動することを確認する。",
+   "quiz": {
+    "q": "登録時に指定できるタスク関連項目はどれか。",
+    "choices": [
+     "受信データを処理するコマンドが実行されるタスク",
+     "RACF グループ",
+     "GTF データセット",
+     "VTAM ログモード"
+    ],
+    "answer": 0,
+    "explanation": "登録時に、受信データを処理するコマンドが実行されるタスクを指定できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Tasking Structure)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf Command_Reference_Vol2 p.140 / REXX p.25"
+  },
+  {
+   "row_id": "6764",
+   "title": "Terminology in this Library",
+   "naiyou_jp": "Terminology in this Library（本ライブラリの用語）は、NetView 刊行物で用いる用語の定義をまとめた定型節である。MDS-MU・PPI・OST・GDS 変数・サブベクターなどの用語の意味を確認できる。アプリプログラマーはこれらの用語を理解したうえで実装を進める。",
+   "verify_steps": "刊行物の用語節を参照し、MDS-MU・PPI・GDS 変数などの定義を把握する（技術的検証手順は伴わない）。",
+   "quiz": {
+    "q": "本ライブラリの用語節の目的はどれか。",
+    "choices": [
+     "刊行物で用いる用語の定義の提供",
+     "PPI 要求種別の実行",
+     "VPD の収集",
+     "アラートの送信"
+    ],
+    "answer": 0,
+    "explanation": "用語節は刊行物で用いる用語の定義を提供する定型節である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Terminology in this Library)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf (front matter)"
+  },
+  {
+   "row_id": "6765",
+   "title": "Understanding the NetView Program-to-Program Interface",
+   "naiyou_jp": "Understanding the NetView Program-to-Program Interface（PPI の理解）は、PPI の概念を導入する章である。PPI は要求と呼ばれる基本タスクを実行し、各要求に戻りコードを生成する。プログラムは RPB で要求を送り、PPI は同じ RPB でデータを返す。例として、アラート送信やプログラム間のデータバッファ授受がある。",
+   "verify_steps": "サンプルでアラート送信（要求種別 12）とプログラム間データ授受（要求種別 14/22）を実行し、PPI の基本動作を NETLOG で確認する。",
+   "quiz": {
+    "q": "PPI の基本タスクの呼称はどれか。",
+    "choices": [
+     "要求（request）",
+     "セッション",
+     "トランザクション ID",
+     "プロファイル"
+    ],
+    "answer": 0,
+    "explanation": "PPI は「要求（request）」と呼ばれる基本タスクを実行し、各要求に戻りコードを生成する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.1 (Understanding the NetView Program-to-Program Interface)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.1 / p.18"
+  },
+  {
+   "row_id": "6766",
+   "title": "Usage Scenario",
+   "naiyou_jp": "Usage Scenario（利用シナリオ）は、PPI やトランスポートを用いる代表的な利用シナリオを示す。例として、user-written アプリがアラートを NetView へ送りハードウェアモニターで表示する、アプリ間で MDS-MU をやり取りする、REXX サーバー／クライアントで PPI 通信する、などがある。",
+   "verify_steps": "代表シナリオ（アラート送信、アプリ間 MDS-MU、REXX サーバー/クライアント）を順に実行し、各シナリオが成立することを NETLOG で確認する。",
+   "quiz": {
+    "q": "PPI の利用シナリオに含まれるものはどれか。",
+    "choices": [
+     "アプリからのアラート送信",
+     "RACF パスワード変更",
+     "VTAM 定義生成",
+     "GTF 起動のみ"
+    ],
+    "answer": 0,
+    "explanation": "利用シナリオには、アプリからのアラート送信やアプリ間 MDS-MU 授受などが含まれる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Usage Scenario)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.17 / p.91"
+  },
+  {
+   "row_id": "6767",
+   "title": "Using COS Command Lists",
+   "naiyou_jp": "Using COS Command Lists（COS コマンドリストの利用）は、共通操作サービス（COS）でサービスポイント宛てにコマンドを流すコマンドリストの利用を扱う。DSIGDS タスクが MS トランスポートに COS_NETOP として登録し、RUNCMD でコマンドを送る。サービスポイントが分散 NetView 上にある場合は LU 6.2 セッション経由でルーティングされる。",
+   "verify_steps": "COS コマンドリストから `RUNCMD SP=spname,EP_COS,...` を発行し、サービスポイントへコマンドが流れ応答が返ることを NETLOG で確認する。",
+   "quiz": {
+    "q": "COS コマンドを流すために登録される DSIGDS の MS アプリ名はどれか。",
+    "choices": [
+     "COS_NETOP",
+     "OPERATIONS_MGMT_NETOP",
+     "EP_OPERATIONS_MGMT",
+     "MS_CAPS"
+    ],
+    "answer": 0,
+    "explanation": "DSIGDS タスクは MS トランスポートに SPCS（COS_NETOP）として登録し COS コマンドを流す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.91 (Using COS Command Lists)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.91 / RODM_GMFHS p.98"
+  },
+  {
+   "row_id": "6768",
+   "title": "Using High-Level Languages and Assembler to Send Requests",
+   "naiyou_jp": "Using High-Level Languages and Assembler to Send Requests（HLL・アセンブラーで要求を送る）は、PL/I・C・アセンブラーから PPI へ要求を送る方法を扱う章である。MVS でインターフェースを有効化し、NetView サブシステムアドレス空間を初期化したうえで、RPB を構築して各要求種別を発行する。",
+   "verify_steps": "HLL／アセンブラーサンプルで MVS のインターフェース有効化を確認し、RPB を構築して要求種別 4・14 を発行、送受信が成立することを確認する。",
+   "quiz": {
+    "q": "HLL・アセンブラーで要求を送る前提として正しいものはどれか。",
+    "choices": [
+     "MVS でインターフェースを有効化しサブシステム空間を初期化",
+     "RACF を停止",
+     "GTF を停止",
+     "VTAM を停止"
+    ],
+    "answer": 0,
+    "explanation": "要求送信前に MVS でインターフェースを有効化し、NetView サブシステムアドレス空間を初期化する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.27 (Using High-Level Languages and Assembler to Send Requests)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.27"
+  },
+  {
+   "row_id": "6769",
+   "title": "Using IBM Z NetView online help",
+   "naiyou_jp": "Using IBM Z NetView online help（IBM Z NetView オンラインヘルプの利用）は、HELP コマンドでオンラインヘルプを参照する方法を示す。`HELP` でメニュー、`HELP ABEND` のように引数を付けて特定トピックを表示できる。問題判別時に異常終了コードや手順を素早く参照できる。",
+   "verify_steps": "NCCF で `HELP` を入力してメニューを表示し、`HELP ABEND` で異常終了に関するヘルプが表示されることを確認する。",
+   "quiz": {
+    "q": "特定トピックのオンラインヘルプを表示する方法はどれか。",
+    "choices": [
+     "HELP に引数を付ける（例: HELP ABEND）",
+     "VPDCMD を発行",
+     "SETBQL を発行",
+     "GTF を起動"
+    ],
+    "answer": 0,
+    "explanation": "HELP に引数を付けて（例: HELP ABEND）特定トピックのオンラインヘルプを表示できる。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Using IBM Z NetView online help)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf (Online help facility) / Troubleshooting_Guide p.64"
+  },
+  {
+   "row_id": "6770",
+   "title": "Using Regular Expressions for Advanced Data Processing",
+   "naiyou_jp": "Using Regular Expressions for Advanced Data Processing（高度なデータ処理での正規表現利用）は、PIPE の LOCATE/NLOCATE、REXX の MATCH、自動化テーブル関数 DSIAMMCH で正規表現を使い、文字列を柔軟に照合・抽出する方法を示す。正規表現は部分文字列より強力で、多様なパターンを記述できる。",
+   "verify_steps": "`PIPE NETVIEW LOG | LOCATE /[A-Z]{3}[0-9]{3}/ | CONSOLE` のように正規表現で行を抽出し、意図どおりに照合されることを確認する。",
+   "quiz": {
+    "q": "高度なデータ処理で正規表現が使えない箇所はどれか。",
+    "choices": [
+     "RACF プロファイル定義",
+     "PIPE の LOCATE/NLOCATE",
+     "REXX の MATCH",
+     "自動化テーブル DSIAMMCH"
+    ],
+    "answer": 0,
+    "explanation": "正規表現は PIPE の LOCATE/NLOCATE、REXX の MATCH、DSIAMMCH で利用できる。RACF 定義では使わない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.81 (Using Regular Expressions for Advanced Data Processing)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.81"
+  },
+  {
+   "row_id": "6771",
+   "title": "Using REXX to Send Requests",
+   "naiyou_jp": "Using REXX to Send Requests（REXX で要求を送る）は、REXX 外部サブルーチン DSIPHONE を使って NetView PPI 経由でデータを送受信する方法を扱う章である。DSIPHONE は PIPE TSO ステージで TSO へコマンドを発行した際に NetView へデータを戻すのにも使う。任意の z/OS REXX アプリが PPI 受信者を開閉・送受信できる。",
+   "verify_steps": "REXX で `call DSIPHONE 'OPENRECV','name'` → `SEND`/`RECEIVE` → `CLOSE` を実行し、PPI 経由のデータ送受信が成立することを NETLOG で確認する。",
+   "quiz": {
+    "q": "REXX で PPI を介して送受信する外部サブルーチンはどれか。",
+    "choices": [
+     "DSIPHONE",
+     "DSIPUSH",
+     "CNMGETD",
+     "VPDCMD"
+    ],
+    "answer": 0,
+    "explanation": "DSIPHONE は REXX 外部サブルーチンで、NetView PPI 経由のデータ送受信を行う。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.49 (Using REXX to Send Requests)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.49 / p.52"
+  },
+  {
+   "row_id": "6772",
+   "title": "Using the NetView LU 6.2 Transport APIs",
+   "naiyou_jp": "Using the NetView LU 6.2 Transport APIs（NetView LU 6.2 トランスポート API の利用）は、MS トランスポート API と高性能トランスポート API を使ってアプリ間で MDS-MU をやり取りする方法を扱う。アプリは用途に応じて API を選び、登録（REGISTER/CNMREGIST 等）してから送受信する。両 API は LU 6.2 会話上で通信する。",
+   "verify_steps": "MS／高性能の各 API でアプリを登録し、MDS-MU を送受信して LU 6.2 会話上で通信が成立することを `DISPLU`・NETLOG で確認する。",
+   "quiz": {
+    "q": "NetView の LU 6.2 トランスポート API はどれか。",
+    "choices": [
+     "MS トランスポート API と高性能トランスポート API",
+     "REST API と SNMP API",
+     "RACF API と SAF API",
+     "GTF API と SMF API"
+    ],
+    "answer": 0,
+    "explanation": "NetView の LU 6.2 トランスポート API は MS トランスポート API と高性能トランスポート API。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.55 (Using the NetView LU 6.2 Transport APIs)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.55"
+  },
+  {
+   "row_id": "6773",
+   "title": "Using the NetView REST Server",
+   "naiyou_jp": "Using the NetView REST Server（NetView REST サーバーの利用）は、RESTful API を介して NetView 機能を呼び出す方法を扱う。Service Management Unite（SMU）などのクライアントが /ibm/netview/v1/ 配下の API（command・tasks/utilization・enterprise/members 等）を使う。REST サーバーは Apache Tomcat 上で稼働し、事前準備が必要である。",
+   "verify_steps": "NetView REST サーバーを起動し、`/ibm/netview/v1/command` に汎用コマンドを投げて結果が返ることを確認する。`/ibm/netview/v1/tasks/utilization` で稼働率を確認する。",
+   "quiz": {
+    "q": "NetView REST サーバーが稼働する基盤はどれか。",
+    "choices": [
+     "Apache Tomcat",
+     "VTAM",
+     "GTF",
+     "RACF サブシステム"
+    ],
+    "answer": 0,
+    "explanation": "NetView REST サーバーは Apache Tomcat 上で稼働し、SMU 等が RESTful API を利用する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.99 (Using the NetView REST Server)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.99 / Installation_Configuring_Additional_Components p.241"
+  },
+  {
+   "row_id": "6774",
+   "title": "Using the RPB",
+   "naiyou_jp": "Using the RPB（RPB の利用）は、要求パラメーターブロック（96 バイト）を使って PPI に要求を送り、結果を受け取る方法を示す。各要求種別ごとに設定・返却フィールドが決まり、TYPE に要求種別、RECEIVER-ID に受信者、BUFFQ-L にキュー上限などを設定する。PPI は同じ RPB を使ってデータ・戻りコードを返す。",
+   "verify_steps": "サンプルで RPB を初期化し TYPE と必須フィールドを設定して要求を発行、PPI が同じ RPB に戻りコードを返すことを確認する。",
+   "quiz": {
+    "q": "RPB の TYPE フィールドに設定するものはどれか。",
+    "choices": [
+     "要求種別",
+     "RACF ユーザー",
+     "GTF オプション",
+     "VTAM ログモード"
+    ],
+    "answer": 0,
+    "explanation": "RPB の TYPE フィールドに要求種別を設定し、PPI は同じ RPB で結果を返す。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.29 (Using the RPB)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.34 (Table 2)"
+  },
+  {
+   "row_id": "6775",
+   "title": "Using the Sample Command Lists",
+   "naiyou_jp": "Using the Sample Command Lists（サンプルコマンドリストの利用）は、ネットワーク資産管理のサンプルコマンドリストをそのまま使って基本的な VPD 収集を行う方法を示す。サンプルは外部ファイルに記録する VPD レコードにレコードタイプ番号を割り当て、その値を共通グローバル変数に設定する。要件に合わなければ変更・自作できる。",
+   "verify_steps": "サンプルコマンドリストを実行して `VPDCMD` を発行し、VPD レコードがレコードタイプ番号付きで外部ファイルに記録されることを確認する。",
+   "quiz": {
+    "q": "サンプルコマンドリストがそのまま行えるものはどれか。",
+    "choices": [
+     "基本的な VPD 収集",
+     "RACF 認可設定",
+     "VTAM 定義生成",
+     "GTF 解析"
+    ],
+    "answer": 0,
+    "explanation": "サンプルコマンドリストはそのまま基本的な VPD（vital product data）収集を行える。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Using the Sample Command Lists)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.120"
+  },
+  {
+   "row_id": "6776",
+   "title": "Using the SEQUENT Command to Serialize Access to Resources",
+   "naiyou_jp": "Using the SEQUENT Command to Serialize Access to Resources（SEQUENT による資源アクセスの直列化）は、直列再利用資源（グローバル変数・グローバル KEEP・データセット等）を複数プログラムが同時に変更しないよう SEQUENT で直列化する方法を扱う。OBTAINEX（排他）または OBTAINSH（共有）で獲得し、RELEASE で解放する。排他中は同名への OBTAINEX/OBTAINSH 要求が待機する。",
+   "verify_steps": "2 タスクで同一 SEQUENT 名に OBTAINEX を発行し、後者が前者の RELEASE まで待機することを再現する。OBTAINSH では共有並行が成立することを確認する。",
+   "quiz": {
+    "q": "SEQUENT で共有制御を獲得するキーワードはどれか。",
+    "choices": [
+     "OBTAINSH",
+     "OBTAINEX",
+     "RELEASE",
+     "REGISTER"
+    ],
+    "answer": 0,
+    "explanation": "OBTAINSH は共有制御、OBTAINEX は排他制御を獲得し、RELEASE で解放する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.61 (Using the SEQUENT Command to Serialize Access to Resources)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.61-63"
+  },
+  {
+   "row_id": "6777",
+   "title": "Using the Trace Facility",
+   "naiyou_jp": "Using the Trace Facility（トレース機能の利用）は、コマンド機能トレースや PPI トレースを使って問題判別データ（パラメーター値・アドレス・戻りコード・フラグ等）を収集する方法を示す。トレースは内部（仮想記憶）・外部（DSITRACE データセット）・GTF に記録でき、内部トレースは常時有効が推奨される。",
+   "verify_steps": "`START TASK=DSITRACE` でトレースを起動し、`TRACE OPTION=(DISP,PSS,QUE,STOR,UEXIT)` を設定して問題判別データが記録されることを確認する。",
+   "quiz": {
+    "q": "トレース機能で収集できる問題判別データに含まれるものはどれか。",
+    "choices": [
+     "パラメーター値・アドレス・戻りコード・フラグ",
+     "RACF パスワード",
+     "VPD シリアル番号",
+     "REST トークン"
+    ],
+    "answer": 0,
+    "explanation": "トレースはパラメーター値・アドレス・戻りコード・フラグ設定などの問題判別データを収集する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.101 (Using the Trace Facility)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.101 / Troubleshooting_Guide p.118"
+  },
+  {
+   "row_id": "6778",
+   "title": "Vital Product Data Descriptions",
+   "naiyou_jp": "Vital Product Data Descriptions（VPD の説明）は、VPDCMD コマンドで返る VPD の種別を説明する。応答ノード構成データ・製品データ・DCE データ（V5R4 以降非推奨）・リンク構成データ・センスデータなどがあり、ネットワーク資産管理で機種・モデル・シリアル番号等の収集に用いる。NetView はデバイスから返るデータの正当性検証は行わない。",
+   "verify_steps": "`VPDCMD` を発行し、応答ノード構成・製品・リンク構成・センスなどの VPD が返ることを NETLOG で確認する。",
+   "quiz": {
+    "q": "VPDCMD が返す VPD 種別に含まれないものはどれか。",
+    "choices": [
+     "RACF 監査レコード",
+     "応答ノード構成データ",
+     "製品データ",
+     "リンク構成データ"
+    ],
+    "answer": 0,
+    "explanation": "VPD には応答ノード構成・製品・DCE・リンク構成・センスデータ等がある。RACF 監査は含まれない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.115 (Vital Product Data Descriptions)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.115"
+  },
+  {
+   "row_id": "6779",
+   "title": "When to Use the NetView High Performance Transport API",
+   "naiyou_jp": "When to Use the NetView High Performance Transport API（高性能トランスポート API を使う場面）は、性能重視のアプリや、RU サイズなどセッションパラメーターを定義したい場合に高性能トランスポートを選ぶ指針を示す。高性能トランスポートは確認応答を省き会話を持続させるため高速だが、エラー通知は一般的なものになる。",
+   "verify_steps": "性能重視のアプリを高性能トランスポートで実装し、トラフィックや応答性が MS トランスポートより良いことを性能指標で確認する。",
+   "quiz": {
+    "q": "高性能トランスポートが適する場面はどれか。",
+    "choices": [
+     "性能重視・RU サイズ等のセッションパラメーター指定が必要な場合",
+     "アーキテクチャ上 MDS が必須の場合",
+     "確認応答が必須の場合",
+     "RACF 監査が主目的の場合"
+    ],
+    "answer": 0,
+    "explanation": "高性能トランスポートは性能重視やセッションパラメーター定義が必要な場合に適する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.40 (When to Use the NetView High Performance Transport API)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.40 / p.55"
+  },
+  {
+   "row_id": "6780",
+   "title": "When to Use the NetView MS Transport API",
+   "naiyou_jp": "When to Use the NetView MS Transport API（MS トランスポート API を使う場面）は、遠隔操作やアーキテクチャ準拠の管理サービス、異なる S/390 システム間のデータベース内容コピーなど、MDS が必要な場合に MS トランスポートを選ぶ指針を示す。MS トランスポートは MDS-MU ごとに確認応答を行い、データ固有のエラー通知を提供する。",
+   "verify_steps": "遠隔操作や管理サービスのアプリを MS トランスポートで実装し、MDS-MU ごとの確認応答とデータ固有のエラー通知が得られることを NETLOG で確認する。",
+   "quiz": {
+    "q": "MS トランスポートが適する場面はどれか。",
+    "choices": [
+     "遠隔操作・アーキテクチャ準拠の管理サービス",
+     "性能最優先で確認応答不要の場合",
+     "VPD 収集のみ",
+     "GTF トレースのみ"
+    ],
+    "answer": 0,
+    "explanation": "MS トランスポートは遠隔操作やアーキテクチャ準拠の管理サービスなど MDS が必要な場面に適する。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.40 (When to Use the NetView MS Transport API)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.56"
+  },
+  {
+   "row_id": "6781",
+   "title": "Word Boundaries",
+   "naiyou_jp": "Word Boundaries（単語境界）は、正規表現で単語の先頭・末尾の境界を指定する要素である。単語境界を用いると、文字列中の単語単位での照合が可能になり、部分一致を避けて正確なパターンマッチングができる。NetView の正規表現（PIPE LOCATE 等）で利用できる。",
+   "verify_steps": "`PIPE ... | LOCATE /pattern/` で単語境界を含む正規表現を試し、単語単位で正しく照合され部分一致が排除されることを確認する。",
+   "quiz": {
+    "q": "単語境界を使う目的はどれか。",
+    "choices": [
+     "単語単位での正確な照合（部分一致の回避）",
+     "RACF 認可",
+     "GTF 起動",
+     "VPD 収集"
+    ],
+    "answer": 0,
+    "explanation": "単語境界は単語単位での正確な照合を可能にし、不要な部分一致を避ける。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.81 (Word Boundaries)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.81-84 (regular expression)"
+  },
+  {
+   "row_id": "6782",
+   "title": "Writing Command Lists",
+   "naiyou_jp": "Writing Command Lists（コマンドリストの作成）は、REXX または NetView コマンドリスト言語でコマンドリストを作成する方法を扱う。コマンドリストでは &WAIT による待機、長時間実行コマンド（DSIPUSH で待機）、PPI 通信（DSIPHONE）、正規表現照合などを組み合わせて自動化処理を記述する。メッセージキューの肥大化を避ける配慮が必要である。",
+   "verify_steps": "REXX コマンドリストを作成し、&WAIT やコマンド発行を含む処理が NCCF で正しく動作することを NETLOG で確認する。",
+   "quiz": {
+    "q": "コマンドリストでメッセージキュー肥大化を避ける手段はどれか。",
+    "choices": [
+     "TRAP NO MESSAGES や FLUSHQ の利用",
+     "BUFFQ-L を無制限化",
+     "GTF を停止",
+     "RACF を無効化"
+    ],
+    "answer": 0,
+    "explanation": "TRAP NO MESSAGES や FLUSHQ を使い、メッセージキューの肥大化を防ぐ。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Writing Command Lists)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf REXX p.46 / p.25"
+  },
+  {
+   "row_id": "6783",
+   "title": "Writing Effective Programs",
+   "naiyou_jp": "Writing Effective Programs（効果的なプログラムの作成）は、PPI やトランスポートを用いるプログラムを効率的・安全に書くための指針を示す。記憶域の所有関係（MAINTSK・Q オプション）に注意し、不正確なストレージ会計を避ける、長時間実行コマンドで他処理を妨げない、資源を SEQUENT で適切に直列化する、などが含まれる。",
+   "verify_steps": "サンプルで記憶域取得時の MAINTSK/Q 指定を適切に行い、ストレージ会計が正しく行われることを確認する。長時間実行コマンドが他タスクを妨げないことを確認する。",
+   "quiz": {
+    "q": "効果的なプログラム作成で注意すべき点はどれか。",
+    "choices": [
+     "記憶域の所有関係（MAINTSK/Q）とストレージ会計",
+     "RACF パスワード長",
+     "REST トークン長",
+     "VTAM ログモード名"
+    ],
+    "answer": 0,
+    "explanation": "記憶域の所有関係（MAINTSK/Q）に注意し、不正確なストレージ会計を避けることが重要である。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf (Writing Effective Programs)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf Programming_Assembler p.184 / p.212"
+  },
+  {
+   "row_id": "6784",
+   "title": "Writing to External Storage with GTF",
+   "naiyou_jp": "Writing to External Storage with GTF（GTF による外部ストレージへの書き出し）は、PPI トレース情報を一般化トレース機能（GTF）へ書き出す方法を示す。GTF オプションを使うには GTF を導入・活性化・有効化し、TRACEPPI コマンドで GTF を指定する。GTF 指定時は内部 PPI トレーステーブルは作成されず、トレースレコードは外部データセット（IEFRDER DD、既定 SYS1.TRACE）に書かれる。GTF の場合バッファ上限は 208 バイト。",
+   "verify_steps": "GTF を起動し `TRACEPPI ON GTF` を発行して、PPI トレースが外部データセットに書かれることを確認する。IPCS で GTF 出力を参照する。",
+   "quiz": {
+    "q": "TRACEPPI で GTF を指定したときの挙動はどれか。",
+    "choices": [
+     "内部トレーステーブルを作らず外部データセットへ書き出す",
+     "内部テーブルのみ作成",
+     "RACF へ通報",
+     "VTAM を再起動"
+    ],
+    "answer": 0,
+    "explanation": "GTF 指定時は内部 PPI トレーステーブルを作らず、トレースを外部データセットへ書き出す（バッファ上限 208 バイト）。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.101 (Writing to External Storage with GTF)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.101 / Command_Reference_Vol2 p.456 / Troubleshooting_Guide p.171"
+  },
+  {
+   "row_id": "6785",
+   "title": "Writing to Internal Storage",
+   "naiyou_jp": "Writing to Internal Storage（内部ストレージへの書き出し）は、PPI トレース情報を共通記憶域（CSA）内の内部トレーステーブルへ書き出す方法を示す。TRACEPPI で SIZE を指定して内部テーブルを確保する（GTF キーワードとは併用不可）。サブシステムインターフェースが内部トレース有効中に停止すると、内部 PPI トレース情報がダンプされる。",
+   "verify_steps": "`TRACEPPI ON SIZE=n` を発行して内部トレーステーブルを確保し、トレースが CSA 内に記録されることを確認する。サブシステム停止時に内部トレースがダンプされることを確認する。",
+   "quiz": {
+    "q": "PPI 内部トレーステーブルのサイズを指定するキーワードはどれか。",
+    "choices": [
+     "SIZE",
+     "GTF",
+     "BUFSIZE",
+     "MODE"
+    ],
+    "answer": 0,
+    "explanation": "TRACEPPI の SIZE で内部トレーステーブルサイズを指定する。GTF キーワードとは併用できない。"
+   },
+   "source": "NetView_6.4_Application_Programmers_Guide.pdf p.101 (Writing to Internal Storage)",
+   "rag_hit": "NetView_6.4_Application_Programmers_Guide.pdf p.101 / Command_Reference_Vol2 p.456"
+  }
+ ]
+}

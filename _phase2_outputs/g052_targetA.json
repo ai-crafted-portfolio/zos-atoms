@@ -1,0 +1,642 @@
+[
+{
+"row_id": "10442",
+"title": "Actions in Response to Incoming WTORs",
+"page": "166"
+},
+{
+"row_id": "10444",
+"title": "Active Health Monitoring",
+"page": "46"
+},
+{
+"row_id": "10445",
+"title": "Adding a New Application to Automation",
+"page": "21"
+},
+{
+"row_id": "10446",
+"title": "Adding the Application to Automation",
+"page": "25"
+},
+{
+"row_id": "10449",
+"title": "Alert-Based Notification",
+"page": "75"
+},
+{
+"row_id": "10508",
+"title": "Automatic Activation of System Recovery Boost Upon System Shutdown",
+"page": "163"
+},
+{
+"row_id": "10509",
+"title": "Automating Asynchronous Hardware Commands with ISQCCMD and PIPES",
+"page": "98"
+},
+{
+"row_id": "10512",
+"title": "Automating Processor Operations Resources of z/OS Target Systems Using Proxy Definitions",
+"page": "89"
+},
+{
+"row_id": "10517",
+"title": "Automation Network Definition Process",
+"page": "153"
+},
+{
+"row_id": "10519",
+"title": "Availability and Recovery Time Reporting",
+"page": "81"
+},
+{
+"row_id": "10522",
+"title": "Building the New Automation Definitions",
+"page": "96"
+},
+{
+"row_id": "10523",
+"title": "Coding Your Own Information in the Automation Status File",
+"page": "40"
+},
+{
+"row_id": "10529",
+"title": "Concept",
+"page": "89"
+},
+{
+"row_id": "10530",
+"title": "Configuring your APL",
+"page": "193"
+},
+{
+"row_id": "10531",
+"title": "Coordinating System Operations with Automatic Restart Manager",
+"page": "267"
+},
+{
+"row_id": "10533",
+"title": "Creating an Application to Manage the VOST",
+"page": "60"
+},
+{
+"row_id": "10534",
+"title": "Creating Automation Procedures",
+"page": "27"
+},
+{
+"row_id": "10535",
+"title": "Customization",
+"page": "69"
+},
+{
+"row_id": "10537",
+"title": "Customization of z/OS UNIX Resources",
+"page": "103"
+},
+{
+"row_id": "10539",
+"title": "Customizing Automation for Proxy Resources",
+"page": "90"
+},
+{
+"row_id": "10540",
+"title": "Customizing how WTORs Are Stored by SA z/OS",
+"page": "166"
+},
+{
+"row_id": "10541",
+"title": "Customizing Target Systems",
+"page": "100"
+},
+{
+"row_id": "10542",
+"title": "Customizing the Status Display Facility",
+"page": "251"
+},
+{
+"row_id": "10543",
+"title": "Customizing the System to Use the Functions",
+"page": "150"
+},
+{
+"row_id": "10544",
+"title": "Customizing your SOAP Server",
+"page": "193"
+},
+{
+"row_id": "10547",
+"title": "Define a RDS Working Data Set for Viewing/Editing under TSO",
+"page": "132"
+},
+{
+"row_id": "10548",
+"title": "Define an Application Policy Object",
+"page": "25"
+},
+{
+"row_id": "10550",
+"title": "Defining a MOVE Group for Automatic Restart Manager",
+"page": "268"
+},
+{
+"row_id": "10551",
+"title": "Defining a VTAM Application to SA z/OS",
+"page": "157"
+},
+{
+"row_id": "10552",
+"title": "Defining an ARM Element Name",
+"page": "267"
+},
+{
+"row_id": "10553",
+"title": "Defining an SDF Focal Point System",
+"page": "153"
+},
+{
+"row_id": "10554",
+"title": "Defining Automatically-Initiated TAF Fullscreen Sessions",
+"page": "154"
+},
+{
+"row_id": "10555",
+"title": "Defining Command Receiver as a Subsystem Automated by SA z/OS",
+"page": "116"
+},
+{
+"row_id": "10556",
+"title": "Defining Command Work Tasks Used by the Command Receiver",
+"page": "116"
+},
+{
+"row_id": "10557",
+"title": "Defining Common Automation Items",
+"page": "150"
+},
+{
+"row_id": "10558",
+"title": "Defining Gateway Sessions",
+"page": "154"
+},
+{
+"row_id": "10559",
+"title": "Defining INGWHY User Actions",
+"page": "190"
+},
+{
+"row_id": "10560",
+"title": "Defining the Monitor Resources",
+"page": "60"
+},
+{
+"row_id": "10561",
+"title": "Deletion of Processed WTORs from the Display",
+"page": "189"
+},
+{
+"row_id": "10562",
+"title": "Determining whether Automation Is Allowed",
+"page": "29"
+},
+{
+"row_id": "10563",
+"title": "Developing Messages for Your Automation Procedures",
+"page": "34"
+},
+{
+"row_id": "10564",
+"title": "Drain Processing Prior to JES2 Shutdown",
+"page": "189"
+},
+{
+"row_id": "10565",
+"title": "Dynamically Loading Tree Structure and Panel Definition Members",
+"page": "257"
+},
+{
+"row_id": "10567",
+"title": "Enabling Alerting",
+"page": "76"
+},
+{
+"row_id": "10568",
+"title": "Enabling Auxiliary Storage Shortage Recovery",
+"page": "150"
+},
+{
+"row_id": "10569",
+"title": "Enabling Continuous Availability of Couple Data Sets",
+"page": "145"
+},
+{
+"row_id": "10570",
+"title": "Enabling Hardware-Related Automation",
+"page": "144"
+},
+{
+"row_id": "10571",
+"title": "Enabling Long Running Enqueues (ENQs)",
+"page": "148"
+},
+{
+"row_id": "10572",
+"title": "Enabling Relational Data Services (RDS)",
+"page": "129"
+},
+{
+"row_id": "10573",
+"title": "Enabling SMF Records",
+"page": "84"
+},
+{
+"row_id": "10574",
+"title": "Enabling Sysplex Automation",
+"page": "133"
+},
+{
+"row_id": "10575",
+"title": "Enabling System Removal",
+"page": "146"
+},
+{
+"row_id": "10576",
+"title": "Enabling WTO(R) Buffer Shortage Recovery",
+"page": "146"
+},
+{
+"row_id": "10578",
+"title": "Example AOCMSG Call",
+"page": "34"
+},
+{
+"row_id": "10579",
+"title": "Example Automation Procedure",
+"page": "35"
+},
+{
+"row_id": "10580",
+"title": "Example Definitions",
+"page": "160"
+},
+{
+"row_id": "10581",
+"title": "Example: sshd",
+"page": "109"
+},
+{
+"row_id": "10582",
+"title": "Executing a Command on a Different NetView",
+"page": "119"
+},
+{
+"row_id": "10583",
+"title": "Executing NetView Commands from a TSO REXX Program",
+"page": "122"
+},
+{
+"row_id": "10584",
+"title": "External Subsystem Connection Monitoring for CICS and IMS",
+"page": "65"
+},
+{
+"row_id": "10591",
+"title": "Hardware Validation",
+"page": "143"
+},
+{
+"row_id": "10593",
+"title": "Health Monitoring",
+"page": "44"
+},
+{
+"row_id": "10594",
+"title": "Health Monitoring Based on OMEGAMON Exceptions",
+"page": "56"
+},
+{
+"row_id": "10595",
+"title": "Health Monitoring Based on OMEGAMON XE Situations",
+"page": "57"
+},
+{
+"row_id": "10601",
+"title": "How SDF Helps Operations to Focus on Specific Problems",
+"page": "256"
+},
+{
+"row_id": "10604",
+"title": "How the SDF Task Is Started and Stopped",
+"page": "260"
+},
+{
+"row_id": "10605",
+"title": "How the Status Display Facility Works",
+"page": "251"
+},
+{
+"row_id": "10606",
+"title": "How to Add a Processor Operations Message to Automation",
+"page": "92"
+},
+{
+"row_id": "10607",
+"title": "How to Make Your Automation Procedures Generic",
+"page": "33"
+},
+{
+"row_id": "10609",
+"title": "IMS Component Monitoring",
+"page": "65"
+},
+{
+"row_id": "10610",
+"title": "IMS Transaction Recovery",
+"page": "189"
+},
+{
+"row_id": "10620",
+"title": "Installing Your Automation Procedures",
+"page": "37"
+},
+{
+"row_id": "10621",
+"title": "Integration of z/OS UNIX System Services",
+"page": "103"
+},
+{
+"row_id": "10622",
+"title": "Invocation of Customization Dialog Exits",
+"page": "172"
+},
+{
+"row_id": "10623",
+"title": "JCL for the Batch Command Interface",
+"page": "119"
+},
+{
+"row_id": "10624",
+"title": "JES2 Spool Monitoring",
+"page": "64"
+},
+{
+"row_id": "10625",
+"title": "Job Log Monitoring",
+"page": "67"
+},
+{
+"row_id": "10626",
+"title": "Keyboard navigation of the user interface",
+"page": "17"
+},
+{
+"row_id": "10627",
+"title": "Layout of the SMF Record",
+"page": "82"
+},
+{
+"row_id": "10629",
+"title": "Linux Console Automation with Mixed Case Character Data",
+"page": "92"
+},
+{
+"row_id": "10630",
+"title": "Loading the Changed Automation Environment",
+"page": "96"
+},
+{
+"row_id": "10633",
+"title": "Managing Couple Data Sets",
+"page": "133"
+},
+{
+"row_id": "10634",
+"title": "Managing Coupling Facilities",
+"page": "135"
+},
+{
+"row_id": "10635",
+"title": "Managing the System Logger",
+"page": "134"
+},
+{
+"row_id": "10637",
+"title": "Messages Issued by a Processor Operations Target System",
+"page": "93"
+},
+{
+"row_id": "10639",
+"title": "Monitoring Applications",
+"page": "43"
+},
+{
+"row_id": "10640",
+"title": "Monitoring JES3 Components",
+"page": "61"
+},
+{
+"row_id": "10642",
+"title": "NetView Testing and Debugging Facilities",
+"page": "39"
+},
+{
+"row_id": "10643",
+"title": "Notes on the Automation Procedure Example",
+"page": "36"
+},
+{
+"row_id": "10644",
+"title": "Observed Status Monitoring",
+"page": "43"
+},
+{
+"row_id": "10649",
+"title": "Overview",
+"page": "44"
+},
+{
+"row_id": "10650",
+"title": "Overview of the Status Display Facility",
+"page": "251"
+},
+{
+"row_id": "10653",
+"title": "Passive, Event-Based Health Monitoring",
+"page": "48"
+},
+{
+"row_id": "10654",
+"title": "Performing Automation Processing",
+"page": "29"
+},
+{
+"row_id": "10655",
+"title": "Performing Initialization Processing",
+"page": "28"
+},
+{
+"row_id": "10657",
+"title": "Preparation Before Automating an Application",
+"page": "21"
+},
+{
+"row_id": "10659",
+"title": "Prerequisites",
+"page": "19"
+},
+{
+"row_id": "10667",
+"title": "RDS Initialization",
+"page": "130"
+},
+{
+"row_id": "10671",
+"title": "Recovery Actions",
+"page": "136"
+},
+{
+"row_id": "10672",
+"title": "Registering VTAM Application Subsystems with SA z/OS Recovery",
+"page": "157"
+},
+{
+"row_id": "10674",
+"title": "Remote Procedure Call from TSO to the SA NetView Agent",
+"page": "122"
+},
+{
+"row_id": "10675",
+"title": "Resource Lifecycle",
+"page": "81"
+},
+{
+"row_id": "10676",
+"title": "Restrictions and Limitations",
+"page": "92"
+},
+{
+"row_id": "10683",
+"title": "SDF Definition Process",
+"page": "260"
+},
+{
+"row_id": "10686",
+"title": "Setting Up the Command Receiver",
+"page": "115"
+},
+{
+"row_id": "10687",
+"title": "Setting Up TSO/Batch Environment",
+"page": "115"
+},
+{
+"row_id": "10688",
+"title": "Setting Up z/OS UNIX Automation",
+"page": "103"
+},
+{
+"row_id": "10691",
+"title": "Shutting Down a z/OS System in a Pure SA z/OS Environment",
+"page": "160"
+},
+{
+"row_id": "10692",
+"title": "Shutting Down a z/OS systems in a GDPS Environment",
+"page": "161"
+},
+{
+"row_id": "10697",
+"title": "Starting and Stopping the Command Receiver",
+"page": "117"
+},
+{
+"row_id": "10704",
+"title": "Step 1: Defining the Local Page Data Set",
+"page": "150"
+},
+{
+"row_id": "10705",
+"title": "Step 1: Defining the Processor",
+"page": "144"
+},
+{
+"row_id": "10706",
+"title": "Step 1: Defining the Processor and System",
+"page": "147"
+},
+{
+"row_id": "10709",
+"title": "Step 2: Defining the Application with Application Type IMAGE",
+"page": "147"
+},
+{
+"row_id": "10710",
+"title": "Step 2: Defining the Handling of Jobs",
+"page": "150"
+},
+{
+"row_id": "10712",
+"title": "Step 2: Using the Policy Item PROCESSOR INFO",
+"page": "144"
+},
+{
+"row_id": "10715",
+"title": "Step 3: Defining an Application Group",
+"page": "147"
+},
+{
+"row_id": "10718",
+"title": "Step 4 - Application Monitoring",
+"page": "24"
+},
+{
+"row_id": "10719",
+"title": "Step 4: (Optional) Defining SDF in the Customization Dialog",
+"page": "266"
+},
+{
+"row_id": "10720",
+"title": "Step 4: Automating IXC102A and IXC402D Messages",
+"page": "147"
+},
+{
+"row_id": "10722",
+"title": "Step 4: Defining the System",
+"page": "145"
+},
+{
+"row_id": "10723",
+"title": "Step 5: Connecting the System to the Processor",
+"page": "145"
+},
+{
+"row_id": "10727",
+"title": "Step 7: Defining the Physical Sysplex",
+"page": "145"
+},
+{
+"row_id": "10728",
+"title": "Submitting NetView Commands from a Batch Job",
+"page": "118"
+},
+{
+"row_id": "10731",
+"title": "Switching Sysplex Functions On and Off",
+"page": "150"
+},
+{
+"row_id": "10734",
+"title": "System Log Failure Recovery",
+"page": "188"
+},
+{
+"row_id": "10736",
+"title": "Terms and conditions for product documentation",
+"page": "280"
+},
+{
+"row_id": "10737",
+"title": "Testing and Debugging Automation Procedures",
+"page": "37"
+}
+]

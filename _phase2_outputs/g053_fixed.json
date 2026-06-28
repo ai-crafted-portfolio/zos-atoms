@@ -1,0 +1,560 @@
+{
+  "page": "g053",
+  "product": "IBM TSA z/OS 4.3",
+  "total_rows": 29,
+  "target_rows": 29,
+  "fixed_count": 29,
+  "rows": [
+    {
+      "row_id": "10742",
+      "title": "The Linux Console Connection to NetView",
+      "naiyou_jp": "Linux ターゲットシステムが IPL されると、そのブートメッセージは System z／390-CMOS プロセッサーの Support Element (SE) が備えるコンソール統合機能 (CI) に表示される。SA z/OS プロセッサー・オペレーションでは、この CI が Linux オペレーティングシステムと通信する唯一のサポート対象インターフェースである。プロセッサー・オペレーション・フォーカルポイントと CI 間の通信は、NetView の RUNCMD と SE のオペレーター・コマンド機能 (OCF) を基盤とした SNA アプリケーションとして実現される。これにより NetView から Linux コンソールのメッセージを監視・自動化できる。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ プロセッサー・オペレーション・フォーカルポイント\n\n[コマンド 1] ISQXMON でターゲット Linux システムの接続状態を確認\n  対象       Linux ターゲットシステム (CI 経由)\n  接続種別   Console Integration (CI) / OCF\n\n[出力 1]\n  ISQ900I コマンド受付 → ターゲット SE への RUNCMD 経由で接続状態が返る\n  Linux ブートメッセージが NetView NETLOG に転送されていることを確認\n\n[記録項目]\n  - CI 接続のターゲット名・SE 名\n  - RUNCMD / OCF 経由のメッセージ ID とログ\n  - Linux コンソールメッセージの NETLOG 取り込み状況",
+      "quiz": {
+        "q": "SA z/OS プロセッサー・オペレーションにおいて、Linux ターゲットシステムと通信する唯一のサポート対象インターフェースはどれか。",
+        "choices": [
+          "コンソール統合機能 (CI / Support Element)",
+          "TCP/IP 経由の SSH セッション",
+          "VTAM LU2 セッション",
+          "z/OS UNIX syslogd ソケット"
+        ],
+        "answer": 0,
+        "explanation": "Linux ターゲットの起動メッセージはプロセッサーの Support Element が備える CI に表示され、SA z/OS では CI のみが Linux との通信を担う。フォーカルポイントとは NetView RUNCMD と SE の OCF を介して通信する。(出典: TSA z/OS Customizing and Programming p.92)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.92",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.92] The Linux Console Connection to NetView — CI is the only supported interface; communication based on NetView RUNCMD and SE OCF (SNA application)."
+    },
+    {
+      "row_id": "10743",
+      "title": "Tips to find SNMP MIB attributes for GETRAW queries",
+      "naiyou_jp": "GETRAW クエリーで複数の属性をオブジェクトタイプから取得する場合、内部的に z System API の SNMP GetBulk サービスが使われ、non-repeater (nr) と max-repeater (mr) の値を指定して SNMP MIB DB の検索範囲を制御する。クエリーを組み立てる際は SNMP MIB 変数とオブジェクト ID の基本的な理解が前提となり、IBM Z CPC および CPC イメージの MIB 変数・オブジェクト ID・サフィックスは『IBM Z SNMP Application Programming Interfaces』(SB10-7171) に文書化されている。SINGSAMP ライブラリーのメンバー INGEI007 が、REXX で ISQCCMD GETRAW を呼び出して複数属性を取得する例を示している。",
+      "verify_steps": "[セッション環境]\nNetView REXX 自動化プロシージャ編集環境 ／ プロセッサー・オペレーション\n\n[コマンド 1] サンプル INGEI007 を参照し ISQCCMD GETRAW を実行\n  パラメーター   nr (non-repeater) / mr (max-repeater)\n  参照資料       IBM Z SNMP API (SB10-7171)\n\n[出力 1]\n  GETRAW 応答に MIB オブジェクト属性が 16 進で返る\n  nr/mr の指定により返却応答数が制御されることを確認\n\n[記録項目]\n  - 取得対象 MIB 変数とオブジェクト ID\n  - 指定した nr / mr 値と返却応答件数\n  - 16 進応答のデコード結果",
+      "quiz": {
+        "q": "GETRAW で複数の MIB 属性を取得する際に内部で使われる SNMP サービスと、その制御パラメーターはどれか。",
+        "choices": [
+          "GetBulk を使い、non-repeater (nr) と max-repeater (mr) で制御する",
+          "GetNext を使い、タイムアウト値のみで制御する",
+          "Trap を使い、コミュニティ名で制御する",
+          "Set を使い、書き込み権限で制御する"
+        ],
+        "answer": 0,
+        "explanation": "GETRAW は複数属性取得時に z System API の SNMP GetBulk を内部利用し、nr と mr を指定して MIB DB の検索範囲と応答数を制御する。MIB 属性の詳細は SB10-7171 に記載される。(出典: TSA z/OS Customizing and Programming p.101 / Operators Commands p.404)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.101",
+      "rag_hit": "[TSA_z_OS_4.3_Operators_Commands.pdf p.404] GETRAW internally uses SNMP GetBulk; requires nr and mr; [C&P p.102] INGEI007 sample, SB10-7171 documents MIB attributes."
+    },
+    {
+      "row_id": "10744",
+      "title": "Topology",
+      "naiyou_jp": "Topology はプロセッサー・オペレーションやエンドツーエンド自動化におけるリソース構成（トポロジー）情報を扱う領域で、自動化マネージャーがリソースの状態・関係を把握し、INGLIST などのパネルで構成を可視化する基盤となる。トポロジー情報は監視対象オブジェクトの状態が APL／APG へ伝播する仕組みと連動し、運用者はリソース間の依存関係や稼働状態を一覧で確認できる。本項目はカスタマイズ・プログラミングにおける構成把握の前提知識として位置付けられる。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ 自動化マネージャー稼働環境\n\n[コマンド 1] INGLIST でリソースのトポロジー（構成・状態）を表示\n  操作       PF11 で横スクロールし詳細表示、PF9 でリフレッシュ\n\n[出力 1]\n  リソース名・観測状態・希望状態・依存関係が一覧表示される\n  監視対象の状態が APL/APG に伝播していることを確認\n\n[記録項目]\n  - 表示されたリソースのトポロジー構成\n  - 依存関係と状態伝播の確認結果\n  - INGLIST フィルター (INGFILT) の適用内容",
+      "quiz": {
+        "q": "SA z/OS でリソースのトポロジー（構成と状態）を一覧確認するために使うコマンド・パネルはどれか。",
+        "choices": [
+          "INGLIST",
+          "AOCTRACE",
+          "ISQCCMD",
+          "DFTSOU"
+        ],
+        "answer": 0,
+        "explanation": "INGLIST パネルはリソースの状態・フラグ・スケジュールなど構成情報を表示し、依存関係や稼働状況の把握に用いられる。トポロジー情報は監視対象の状態が APL/APG へ伝播する仕組みと連動する。(出典: TSA z/OS Customizing and Programming / Users Guide p.135)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.92 / Users Guide p.135",
+      "rag_hit": "[TSA_z_OS_4.3_Users_Guide.pdf p.135] INGLIST panel displays resource statuses/flags/schedules; topology/state propagation to APL/APG."
+    },
+    {
+      "row_id": "10745",
+      "title": "Trapping messages issued with the UNIX __console() service",
+      "naiyou_jp": "アプリケーションが __console() サービス (BPX1CCS/BPX4CCS) を呼び出してメッセージを発行すると、オペレーターに対してメッセージ BPXM023I が書き込まれる。SA z/OS はこの仕組みを利用して z/OS UNIX アプリケーションが発行するメッセージを捕捉し、NetView 自動化テーブル経由で自動化処理の対象にできる。テスト目的では USS コンソールから `echo 'This is a test message' >>/dev/console` を実行することでメッセージを発生させられる。",
+      "verify_steps": "[セッション環境]\nz/OS UNIX (USS) シェル ／ NetView NETLOG 監視\n\n[コマンド 1] USS コンソールから __console() 経由のメッセージを発生\n  echo 'This is a test message' >>/dev/console\n\n[出力 1]\n  オペレーターに BPXM023I が書き込まれる\n  ( /dev/console 書き込みの場合 BPXF024I マルチラインメッセージとして system log に出力)\n  NetView 自動化テーブルで該当メッセージが捕捉されることを確認\n\n[記録項目]\n  - 発生メッセージ ID (BPXM023I / BPXF024I)\n  - NETLOG への取り込み有無\n  - 自動化テーブルのマッチ結果",
+      "quiz": {
+        "q": "アプリケーションが UNIX __console() サービス (BPX1CCS/BPX4CCS) を呼び出してメッセージを発行したとき、オペレーターに書き込まれるメッセージ ID はどれか。",
+        "choices": [
+          "BPXM023I",
+          "AOF540I",
+          "ISQ511I",
+          "IEF125I"
+        ],
+        "answer": 0,
+        "explanation": "__console() サービスでメッセージを発行すると BPXM023I がオペレーターに書き込まれ、SA z/OS はこれを捕捉して自動化できる。(/dev/console への直接書き込みは BPXF024I として出力される。)(出典: TSA z/OS Customizing and Programming p.113)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.113",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.113] Message BPXM023I written to operator when application called __console() (BPX1CCS/BPX4CCS); test via echo >>/dev/console (BPXF024I)."
+    },
+    {
+      "row_id": "10746",
+      "title": "Trapping UNIX syslogd Messages",
+      "naiyou_jp": "SA z/OS は z/OS UNIX の syslogd が出力するメッセージを捕捉し、自動化処理の対象とすることができる。syslogd の設定ファイルで、警告メッセージを `*.warn` のように分類して `/dev/console` を通常ファイルのように書き込み先に指定できる。SA z/OS は到着したメッセージに対し infrequent・frequent・critical のしきい値を事前定義し、しきい値を超えた場合は構成ファイルの MESSAGES/USER DATA ポリシー項目のコマンドエントリーに従って適切なコマンドを選択・実行する。これにより UNIX 環境のイベントに対する閾値ベースの自動応答が可能になる。",
+      "verify_steps": "[セッション環境]\nz/OS UNIX syslogd ／ NetView NETLOG 監視\n\n[コマンド 1] syslogd 設定で /dev/console を書き込み先に指定しメッセージ発生\n  例: *.warn /dev/console\n\n[出力 1]\n  syslogd メッセージが BPXF024I マルチラインとして system log/NETLOG に出力\n  しきい値 (infrequent/frequent/critical) 超過時に定義コマンドが選択される\n\n[記録項目]\n  - 設定したしきい値レベルと超過時の選択コマンド\n  - MESSAGES/USER DATA ポリシー項目の定義内容\n  - 捕捉メッセージ ID と NETLOG ログ",
+      "quiz": {
+        "q": "SA z/OS が UNIX syslogd メッセージを捕捉する際、しきい値超過時に実行するコマンドを選択する根拠となるポリシー項目はどれか。",
+        "choices": [
+          "MESSAGES/USER DATA ポリシー項目のコマンドエントリー",
+          "HEALTHSTATE ポリシー項目",
+          "SDF FOCALPOINT ポリシー項目",
+          "STARTUP-REFRESHSTART ポリシー項目"
+        ],
+        "answer": 0,
+        "explanation": "syslogd メッセージには infrequent・frequent・critical のしきい値が事前定義され、超過時には構成ファイルの MESSAGES/USER DATA ポリシー項目のコマンドエントリーに従って適切なコマンドが選択・実行される。(出典: TSA z/OS Customizing and Programming p.113 / p.202)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.113",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.202] thresholds infrequent/frequent/critical; commands selected from MESSAGES/USER DATA policy item; [p.113] /dev/console, *.warn, BPXF024I."
+    },
+    {
+      "row_id": "10747",
+      "title": "TSO User Monitoring",
+      "naiyou_jp": "アクティブな TSO ユーザーは、SA z/OS コマンド DFTSOU (EVJETSOU) を使って SDF 上で監視できる。TSO ユーザー監視を有効にするには、ユーザー AT インクルードフラグメント INGMSGU1（または独自のユーザーメッセージテーブル）に、IEF125I・IEF126I・IEF450I のメッセージ ID を検知して `DFTSOU UPDATE` を実行するエントリーを追加する。さらに TSO サブシステムの STARTUP-REFRESHSTART ポリシーに `DFTSOU SCAN` を設定する。これにより TSO ログオン/ログオフが SDF 上のステータス表示に反映される。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ SDF\n\n[コマンド 1] AT (INGMSGU1) に TSO 監視エントリーを追加しビルド\n  IF (MSGID='IEF125I' | MSGID='IEF126I' | MSGID='IEF450I')\n    THEN EXEC(CMD('DFTSOU UPDATE') ROUTE(ALL *)) ...\n\n[コマンド 2] STARTUP-REFRESHSTART に 'DFTSOU SCAN' を設定\n\n[出力 1]\n  TSO ログオン (IEF125I) で DFTSOU UPDATE が実行され SDF に反映\n  SDF パネルでアクティブ TSO ユーザーが表示されることを確認\n\n[記録項目]\n  - 追加した AT エントリーとメッセージ ID\n  - SDF 上の TSO ユーザー表示\n  - DFTSOU SCAN の登録状況",
+      "quiz": {
+        "q": "SA z/OS で SDF 上のアクティブ TSO ユーザー監視を行うために使うコマンドはどれか。",
+        "choices": [
+          "DFTSOU (EVJETSOU)",
+          "INGLIST",
+          "AOCTRACE",
+          "ISQCCMD"
+        ],
+        "answer": 0,
+        "explanation": "アクティブ TSO ユーザーは DFTSOU (EVJETSOU) コマンドで SDF 上に監視できる。AT に IEF125I/IEF126I/IEF450I を検知して DFTSOU UPDATE を実行するエントリーを追加し、STARTUP-REFRESHSTART に DFTSOU SCAN を設定して有効化する。(出典: TSA z/OS Customizing and Programming p.275)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.275",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.275] Appendix E. TSO User Monitoring — DFTSOU (EVJETSOU), AT entry with IEF125I/IEF126I/IEF450I, DFTSOU SCAN in STARTUP-REFRESHSTART."
+    },
+    {
+      "row_id": "10748",
+      "title": "Types of SDF Panels",
+      "naiyou_jp": "ステータス表示機能 (SDF) は色とハイライトを使ってサブシステムリソースの状態を表現し、状態を階層的に提示できる。SDF パネルの主な種類は、ルートコンポーネント・ステータスコンポーネント・詳細ステータス表示の 3 つで、これらに加えてシステム要件や監視対象アプリケーションに応じて他の種類のパネルも作成できる。たとえば、計算機運用センター内の全プロセッサーの全 JES サブシステムの状態を表示するパネルを定義することも可能である。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ SDF\n\n[コマンド 1] SDF メインパネルを表示し各パネル種別を確認\n  対象       ルート/ステータス/詳細ステータス表示パネル\n\n[出力 1]\n  緑＝稼働中、赤＝停止/問題、といった色分けで状態が階層表示される\n  ルート・ステータス・詳細の各コンポーネントパネルが確認できる\n\n[記録項目]\n  - 表示された SDF パネルの種別\n  - 状態色（緑/赤）と対応するリソース状態\n  - 定義した独自パネル（例: 全 JES 状態）",
+      "quiz": {
+        "q": "SDF パネルの主な種類として正しい組み合わせはどれか。",
+        "choices": [
+          "ルートコンポーネント・ステータスコンポーネント・詳細ステータス表示",
+          "プライマリ・バックアップ・代替コンポーネント",
+          "BUILD・CONVERT・COPY コンポーネント",
+          "infrequent・frequent・critical コンポーネント"
+        ],
+        "answer": 0,
+        "explanation": "SDF が使う主なパネル種別はルートコンポーネント、ステータスコンポーネント、詳細ステータス表示である。これに加え、システム要件に応じて独自のパネルを作成できる。(出典: TSA z/OS Customizing and Programming p.251)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.251",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.251] Types of SDF Panels — root component, status component, detail status display; SDF uses colors/highlighting."
+    },
+    {
+      "row_id": "10749",
+      "title": "Usage Notes",
+      "naiyou_jp": "本項目（Usage Notes）は INGPLEX CDS など特定コマンドの使用上の注意を扱う。たとえば CDS 管理では、回復用にスペアボリュームのプール（pool of spare volumes）を定義しておく必要があり、ある CDS タイプにスペアボリュームを定義しない場合、そのタイプに対する回復は行われない。また INGPLEX CDS のうちシスプレックス構成を変更する機能へのアクセスは制御でき、詳細は『IBM Z System Automation Planning and Installation』のセキュリティと認可の章を参照する。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ シスプレックス自動化環境\n\n[コマンド 1] INGPLEX CDS でカップル・データ・セットの状態を表示\n  対象       スペアボリュームプール / CDS タイプ\n\n[出力 1]\n  CDS タイプごとのプライマリ/代替 CDS とスペアボリュームが表示される\n  スペアボリューム未定義の CDS タイプは回復対象外であることを確認\n\n[記録項目]\n  - 定義済みスペアボリュームと CDS タイプ\n  - INGPLEX CDS 変更機能へのアクセス権設定\n  - 回復対象/対象外の CDS タイプ",
+      "quiz": {
+        "q": "INGPLEX CDS の使用上の注意として、ある CDS タイプにスペアボリュームを定義しない場合に起きることはどれか。",
+        "choices": [
+          "その CDS タイプに対する回復処理は行われない",
+          "自動的にすべての CDS が回復対象になる",
+          "プライマリ CDS が即座に削除される",
+          "シスプレックス全体が停止する"
+        ],
+        "answer": 0,
+        "explanation": "CDS タイプにスペアボリュームのプールを定義しなければ、そのタイプに対する回復は実行されない。INGPLEX CDS のシスプレックス構成変更機能へのアクセスは別途制御できる。(出典: TSA z/OS Customizing and Programming p.134)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.134",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.134] pool of spare volumes; if you do not define spare volumes for a CDS type, no recovery is performed; INGPLEX CDS access control."
+    },
+    {
+      "row_id": "10750",
+      "title": "Use RDS for TSO",
+      "naiyou_jp": "リレーショナル・データ・サービス (RDS) は、SA z/OS / NetView の起動時に永続化された RDS テーブルを復元する仕組みであり、INGRDS コマンドで特定の RDS テーブルをバックアップ・復元できる。TSO からは『SA TSO Table Editor INGRCRDX』を利用して RDS テーブルを編集でき、INGRDS QUERY の FORMAT(TEXTAB) 形式や FB80 形式でデータの入出力が可能である。RDS 初期化後は RDSARCH リソースを停止することでテーブルの永続化（アーカイブ）を無効化でき、その場合もインメモリーの RDS テーブルとしては引き続き動作する。",
+      "verify_steps": "[セッション環境]\nTSO/ISPF ／ NetView 自動化環境\n\n[コマンド 1] INGRDS でRDSテーブルをバックアップ/問い合わせ\n  INGRDS QUERY table FORMAT(TEXTAB)\n  ( SA TSO Table Editor INGRCRDX を起動して編集 )\n\n[出力 1]\n  RDS テーブルの内容が TEXTAB/FB80 形式で出力される\n  起動時にテーブルが復元されていることを確認\n\n[記録項目]\n  - INGRDS で操作したテーブル名と形式\n  - RDSARCH リソースの稼働/停止状態\n  - インメモリー動作の確認結果",
+      "quiz": {
+        "q": "TSO から RDS テーブルをバックアップ・復元・問い合わせするために使うコマンドはどれか。",
+        "choices": [
+          "INGRDS",
+          "DFTSOU",
+          "AOCTRACE",
+          "ISQCCMD"
+        ],
+        "answer": 0,
+        "explanation": "INGRDS コマンドで特定の RDS テーブルをバックアップ・復元でき、FB80 や TEXTAB 形式に対応する。TSO では SA TSO Table Editor INGRCRDX を使って RDS テーブルを編集できる。(出典: TSA z/OS Customizing and Programming p.129 / Programmers Reference p.161)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.134 / Programmers Reference p.161",
+      "rag_hit": "[TSA_z_OS_4.3_Programmers_Reference.pdf p.161] INGRDS backup/restore RDS table, FB80/TEXTAB; SA TSO Table Editor INGRCRDX; [C&P p.129] tables restored at startup, RDSARCH."
+    },
+    {
+      "row_id": "10751",
+      "title": "User Exits for BUILD Processing",
+      "naiyou_jp": "BUILD 処理用ユーザー出口は、自動化制御ファイル (ACF) のビルド処理で呼び出される。INGEX10 はビルド機能の開始前に呼び出され、INGEX10 が戻りコード RC > 0 で終了した場合は INGEX01・INGEX02 は呼ばれず処理は終了する。BATCH モードのビルドが選択されている場合は、INGEX10 が RC > 0 で終了するとバッチ実行用 JCL は投入されず処理が終了する。INGEX01 が RC = 0 ならビルドは継続し、RC > 0 ならエラーメッセージが返される。これらの出口でビルド前後の独自処理を組み込める。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF) ／ ACF ビルド\n\n[コマンド 1] Customization Dialog でオプション 2 (Build) を実行\n  出口       INGEX10 (ビルド開始前), INGEX01/INGEX02\n\n[出力 1]\n  INGEX10 が RC>0 で終了すると INGEX01/INGEX02 はスキップされ終了\n  BATCH モード時は JCL 未投入で終了することを確認\n\n[記録項目]\n  - 各出口 (INGEX10/01/02) の戻りコード\n  - ビルドの継続/終了の挙動\n  - BATCH/ONLINE モードの差異",
+      "quiz": {
+        "q": "BUILD 処理用ユーザー出口 INGEX10 が戻りコード RC > 0 で終了した場合の挙動はどれか。",
+        "choices": [
+          "INGEX01・INGEX02 は呼ばれず、ビルド処理は終了する",
+          "INGEX01・INGEX02 が必ず呼ばれ、ビルドは継続する",
+          "戻りコードは無視され、常にビルドが成功する",
+          "COPY 処理用出口 INGEX03 が呼ばれる"
+        ],
+        "answer": 0,
+        "explanation": "INGEX10 はビルド開始前に呼ばれ、RC > 0 で終了すると後続の INGEX01・INGEX02 は呼ばれず処理が終了する。BATCH モードでは JCL も投入されない。(出典: TSA z/OS Customizing and Programming p.169)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.169",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.169-170] User Exits for BUILD Processing — INGEX10 before build; if RC>0, INGEX01/INGEX02 not called, processing terminates; BATCH no JCL submitted."
+    },
+    {
+      "row_id": "10752",
+      "title": "User Exits for CONVERT Processing",
+      "naiyou_jp": "CONVERT 処理用ユーザー出口は、カスタマイゼーション・ダイアログのポリシーデータベース変換（CONVERT）処理に伴って呼び出される一連の出口の一つである。BUILD・COPY・DELETE・RENAME/IMPORT などの処理と同様、SA z/OS はダイアログ作業の特定フェーズで起動される出口群を提供しており、CONVERT 処理ではその開始・終了時に独自処理を組み込んで構成変換をカスタマイズできる。出口の有効化方法は「Invocation of Customization Dialog Exits」に記載される。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF)\n\n[コマンド 1] ポリシーデータベースの CONVERT を実行\n  出口       CONVERT 処理用ユーザー出口\n\n[出力 1]\n  CONVERT 開始/終了時に該当出口が呼び出される\n  出口の戻りコードに応じて変換処理が継続/終了することを確認\n\n[記録項目]\n  - 呼び出された CONVERT 出口名と戻りコード\n  - 出口の有効化設定 (Invocation of Customization Dialog Exits)\n  - 変換結果の差分",
+      "quiz": {
+        "q": "CONVERT 処理用ユーザー出口は、SA z/OS のどの仕組みの一部として提供されるか。",
+        "choices": [
+          "カスタマイゼーション・ダイアログ出口 (Customization Dialog Exits)",
+          "SDF パネル定義",
+          "WTOR 処理",
+          "プロセッサー・オペレーション共通コマンド"
+        ],
+        "answer": 0,
+        "explanation": "CONVERT 処理用出口は、ダイアログ作業の各フェーズで呼ばれる Customization Dialog Exits の一群（BUILD/COPY/DELETE/CONVERT/RENAME・IMPORT/その他）に含まれる。有効化は Invocation of Customization Dialog Exits で行う。(出典: TSA z/OS Customizing and Programming p.169)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.171",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.169] Customization Dialog Exits — BUILD/COPY/DELETE/CONVERT/RENAME and IMPORT/Other Functions; Invocation of Customization Dialog Exits."
+    },
+    {
+      "row_id": "10753",
+      "title": "User Exits for COPY Processing",
+      "naiyou_jp": "COPY 処理用には 2 つのユーザー出口が実装されている。INGEX03 は COPY 機能の開始前に呼び出され、コピー先エントリー名 (target)・コピー元エントリー名 (source)・エントリータイプ（例: APL）がパラメーターとして渡される。INGEX04 は COPY 機能の終了後に呼び出され、同様のパラメーターが渡される。これらの出口を使ってエントリーのコピー前後に独自の検証・記録処理を組み込める。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF)\n\n[コマンド 1] エントリーの COPY を実行\n  出口       INGEX03 (開始前), INGEX04 (終了後)\n  パラメーター target / source / エントリータイプ (例 APL)\n\n[出力 1]\n  INGEX03 にコピー先・元・タイプが渡される\n  COPY 終了後に INGEX04 が呼ばれることを確認\n\n[記録項目]\n  - INGEX03/INGEX04 に渡されたパラメーター値\n  - 各出口の戻りコード\n  - コピー結果の差分",
+      "quiz": {
+        "q": "COPY 処理用ユーザー出口 INGEX03 に渡されるパラメーターとして正しいものはどれか。",
+        "choices": [
+          "コピー先エントリー名・コピー元エントリー名・エントリータイプ",
+          "しきい値レベル (infrequent/frequent/critical)",
+          "スペアボリューム名と CDS タイプ",
+          "MIB オブジェクト ID と nr/mr 値"
+        ],
+        "answer": 0,
+        "explanation": "INGEX03 は COPY 開始前に呼ばれ、コピー先 (target)・コピー元 (source)・エントリータイプ（例: APL）が渡される。終了後には INGEX04 が同様のパラメーターで呼ばれる。(出典: TSA z/OS Customizing and Programming p.170)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.170",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.170] User Exits for COPY Processing — INGEX03 before COPY, INGEX04 after; params target/source/entry type (APL)."
+    },
+    {
+      "row_id": "10754",
+      "title": "User Exits for DELETE Processing",
+      "naiyou_jp": "DELETE 処理用ユーザー出口は、カスタマイゼーション・ダイアログでポリシーデータベースのエントリーを削除する処理に伴って呼び出される。BUILD・COPY・CONVERT・RENAME/IMPORT などと同じく、ダイアログ作業の特定フェーズで起動される Customization Dialog Exits 群の一つであり、削除の開始・終了時に呼ばれる出口でエントリー削除前後の独自検証や記録処理を組み込める。出口の有効化は「Invocation of Customization Dialog Exits」に従う。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF)\n\n[コマンド 1] エントリーの DELETE を実行\n  出口       DELETE 処理用ユーザー出口\n\n[出力 1]\n  削除の開始/終了時に該当出口が呼び出される\n  出口の戻りコードに応じて削除処理が継続/終了することを確認\n\n[記録項目]\n  - 呼び出された DELETE 出口名と戻りコード\n  - 出口の有効化設定\n  - 削除結果の差分",
+      "quiz": {
+        "q": "DELETE 処理用ユーザー出口は、どのフェーズで呼び出されるか。",
+        "choices": [
+          "ポリシーデータベースのエントリー削除処理の開始・終了時",
+          "ACF のビルド開始前のみ",
+          "TSO ユーザーのログオン時",
+          "SNMP GETRAW クエリー実行時"
+        ],
+        "answer": 0,
+        "explanation": "DELETE 処理用出口はカスタマイゼーション・ダイアログでエントリーを削除する処理に伴って呼ばれ、Customization Dialog Exits 群（BUILD/COPY/DELETE/CONVERT/RENAME・IMPORT/その他）の一つである。(出典: TSA z/OS Customizing and Programming p.169)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.171",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.169] Customization Dialog Exits include User Exits for DELETE Processing (page 151); Invocation of Customization Dialog Exits."
+    },
+    {
+      "row_id": "10755",
+      "title": "User Exits for Other Functions",
+      "naiyou_jp": "その他機能用ユーザー出口 (User Exits for Other Functions) は、BUILD・COPY・DELETE・CONVERT・RENAME/IMPORT 以外のカスタマイゼーション・ダイアログ機能に対して提供される出口群である。SA z/OS はダイアログ作業の各フェーズで起動される一連のユーザー出口を提供しており、これらに該当しないその他の機能についても出口を介して独自処理を組み込める。すべての出口の有効化は「Invocation of Customization Dialog Exits」に記載された方法で行う。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF)\n\n[コマンド 1] その他機能（BUILD/COPY/DELETE/CONVERT/RENAME・IMPORT 以外）を実行\n  出口       その他機能用ユーザー出口\n\n[出力 1]\n  該当機能の実行時に出口が呼び出される\n  戻りコードに応じた処理継続を確認\n\n[記録項目]\n  - 呼び出された出口名と戻りコード\n  - 出口の有効化設定\n  - 処理結果",
+      "quiz": {
+        "q": "「User Exits for Other Functions」が対象とするのはどの範囲か。",
+        "choices": [
+          "BUILD・COPY・DELETE・CONVERT・RENAME/IMPORT 以外のダイアログ機能",
+          "SDF パネルの色定義のみ",
+          "プロセッサー・オペレーションの共通コマンドのみ",
+          "WTOR の即時応答のみ"
+        ],
+        "answer": 0,
+        "explanation": "User Exits for Other Functions は、明示的に定義された BUILD/COPY/DELETE/CONVERT/RENAME・IMPORT 以外のカスタマイゼーション・ダイアログ機能に対する出口群である。(出典: TSA z/OS Customizing and Programming p.169)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.172",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.169] User Exits for Other Functions (page 152) listed among Customization Dialog Exits."
+    },
+    {
+      "row_id": "10756",
+      "title": "User Exits for RENAME and IMPORT Functions",
+      "naiyou_jp": "RENAME および IMPORT 機能用ユーザー出口は、カスタマイゼーション・ダイアログでエントリーの名称変更 (RENAME) やインポート (IMPORT) を行う処理に伴って呼び出される。BUILD・COPY・DELETE・CONVERT などと同じく Customization Dialog Exits 群の一つであり、これらの機能の開始・終了時に呼ばれる出口で独自の検証・記録処理を組み込める。出口の有効化は「Invocation of Customization Dialog Exits」に従って行う。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF)\n\n[コマンド 1] エントリーの RENAME または IMPORT を実行\n  出口       RENAME/IMPORT 機能用ユーザー出口\n\n[出力 1]\n  名称変更/インポートの開始・終了時に出口が呼び出される\n  戻りコードに応じた処理継続を確認\n\n[記録項目]\n  - 呼び出された出口名と戻りコード\n  - RENAME/IMPORT 対象エントリー\n  - 処理結果の差分",
+      "quiz": {
+        "q": "RENAME and IMPORT Functions 用ユーザー出口が呼び出される処理はどれか。",
+        "choices": [
+          "ダイアログでのエントリーの名称変更 (RENAME) およびインポート (IMPORT)",
+          "ACF のバッチビルドのみ",
+          "SNMP MIB の GETRAW クエリー",
+          "TSO ユーザーの SDF 監視"
+        ],
+        "answer": 0,
+        "explanation": "RENAME and IMPORT Functions 用出口は、カスタマイゼーション・ダイアログでエントリーの名称変更とインポートを行う処理に伴って呼ばれ、Customization Dialog Exits 群の一つである。(出典: TSA z/OS Customizing and Programming p.169)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.171",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.169] User Exits for RENAME and IMPORT Functions (page 151) among Customization Dialog Exits."
+    },
+    {
+      "row_id": "10757",
+      "title": "Using AOCTRACE to Trace Automation Procedure Processing",
+      "naiyou_jp": "AOCTRACE コマンドダイアログは、グローバルな実行フロートレースと自動化プロシージャ固有のデバッグフラグの両方を管理する。グローバルフラグを設定すると、トレースをサポートする全ルーチンと全メッセージ ID が、呼び出されるたびに NetView ログに記録を残す。グローバルフラグの情報は AOFDEBUG グローバル変数で自動化プロシージャに渡され、グローバルトレースがオフなら null、オンなら Y が設定される。プロシージャ固有のフラグでは REXX トレース（A=All、R=Results、C=Commands など）を活性化でき、メッセージトレースはコマンドラインから `AOCTRACE MSG/id,ON|OFF` で設定する。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール\n\n[コマンド 1] AOCTRACE でグローバルトレースを有効化\n  AOCTRACE ON\n\n[コマンド 2] 特定メッセージをトレース\n  AOCTRACE MSG/id,ON\n\n[出力 1]\n  デバッグ機能有効化のメッセージが表示される\n  トレース中は各プロシージャ処理ごとに AOF700I が NETLOG に記録される\n\n[記録項目]\n  - 設定したトレース種別 (A/R/C/E/F/L)\n  - AOFDEBUG グローバル変数の値\n  - NETLOG の AOF700I 記録",
+      "quiz": {
+        "q": "AOCTRACE のグローバルトレースを有効化したとき、各プロシージャ処理ごとに NetView ログに記録されるメッセージはどれか。",
+        "choices": [
+          "AOF700I",
+          "BPXM023I",
+          "ISQ511I",
+          "IEF125I"
+        ],
+        "answer": 0,
+        "explanation": "デバッグ機能が有効な間、処理される各プロシージャごとに AOF700I が NETLOG に書き込まれる。グローバルフラグの情報は AOFDEBUG グローバル変数（off=null / on=Y）で自動化プロシージャに渡される。(出典: TSA z/OS Customizing and Programming p.38 / Operators Commands p.44)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.38",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.38] AOCTRACE global/procedure-specific flags; AOFDEBUG global variable (null/Y); AOCTRACE MSG/id,ON|OFF; [Operators Commands p.44] AOF700I per procedure."
+    },
+    {
+      "row_id": "10758",
+      "title": "Using Assist Mode to Test Automation Procedures",
+      "naiyou_jp": "アシストモードは、自動化プロシージャを本番コードに追加する前に問題を検出するのに役立つ。アシストモードは NetView を通じてコマンドや応答が発行される前にそれらをインターセプトして動作し、自動化ポリシーにコードされたコマンド・応答を「実際に何が起きるか」を説明するメッセージへ整形して NetView ログに送る。アシストモードは自動化フラグ（Automation・Initstart・Start・Recovery・Terminate・Restart）と関連付けられ、各アクションでアシストモードを使うかは該当フラグで判断される。アシストモードは AOCQRY で自動化フラグをチェックする全ルーチンに対して機能する。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ 自動化ポリシー開発環境\n\n[コマンド 1] 対象アクションの自動化フラグをアシストモードに設定\n  対象フラグ   Automation/Start/Recovery など\n\n[出力 1]\n  自動化アクション発火時、実際の発行は行われず\n  「何が起きるはずか」を示すメッセージが NETLOG に記録される\n\n[記録項目]\n  - 設定した自動化フラグとアシストモード状態\n  - NETLOG に記録された想定アクション\n  - 本番投入前の検証結果",
+      "quiz": {
+        "q": "アシストモードが有効なとき、自動化アクションが発火するとどうなるか。",
+        "choices": [
+          "実際のコマンド/応答は発行されず、想定される動作を説明するメッセージが NETLOG に記録される",
+          "コマンドが通常どおり即時に実行される",
+          "プロシージャが強制終了される",
+          "SDF パネルがすべて赤に変わる"
+        ],
+        "answer": 0,
+        "explanation": "アシストモードでは、通常実行されるコマンドや応答の発行は行われず、代わりに「何が起きるはずか」を説明するメッセージが NetView ログに書き込まれる。本番投入前のプロシージャ検証に有効である。(出典: TSA z/OS Customizing and Programming p.37-38)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.38",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.37-38] Assist mode intercepts commands/replies before issued; writes messages describing what would have happened to netlog; tied to automation flags; works after AOCQRY check."
+    },
+    {
+      "row_id": "10759",
+      "title": "Using assistive technologies",
+      "naiyou_jp": "スクリーンリーダーなどの支援技術 (assistive technology) 製品は、z/OS で提供されるユーザーインターフェースと連携して動作する。これらの製品を使って z/OS インターフェースにアクセスする際の具体的な情報については、各支援技術の製品ドキュメントを参照する。SA z/OS のドキュメントは HTML と変換可能な PDF 形式で提供され、画像には代替テキストが付与されているため、視覚障害のあるユーザーもスクリーンリーダーや画面拡大ソフトを利用して内容を理解できる。",
+      "verify_steps": "[セッション環境]\nz/OS ISPF/TSO 端末 ／ 支援技術 (スクリーンリーダー等)\n\n[コマンド 1] スクリーンリーダーを起動し z/OS インターフェースにアクセス\n  対象       ISPF パネル / SA z/OS ダイアログ\n\n[出力 1]\n  画面表示内容が音声/拡大で読み上げ・拡大される\n  ドキュメントの代替テキストが読み上げ可能であることを確認\n\n[記録項目]\n  - 使用した支援技術製品とバージョン\n  - キーボード操作のみでの操作可否\n  - 代替テキストの読み上げ結果",
+      "quiz": {
+        "q": "z/OS で支援技術（スクリーンリーダーなど）を使用する際、具体的な使用情報はどこを参照すべきか。",
+        "choices": [
+          "各支援技術製品のドキュメント",
+          "SDF パネル定義ステートメント",
+          "INGPLEX CDS のポリシー項目",
+          "SNMP MIB 変数の一覧"
+        ],
+        "answer": 0,
+        "explanation": "支援技術製品は z/OS のユーザーインターフェースと連携して動作し、具体的な利用方法は各支援技術の製品ドキュメントを参照する。SA z/OS の文書は HTML/PDF 提供で画像には代替テキストが付く。(出典: TSA z/OS Defining Automation Policy p.23 / Planning and Installation p.15)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.17",
+      "rag_hit": "[TSA_z_OS_4.3_Defining_Automation_Policy.pdf p.23] Using assistive technologies — products such as screen readers function with z/OS user interfaces; consult assistive technology documentation; HTML/PDF, alt text."
+    },
+    {
+      "row_id": "10760",
+      "title": "Using Pipes and ISQCCMD for Synchronous HW Commands",
+      "naiyou_jp": "Z System Automation のハードウェアインターフェースコマンド ISQCCMD は、プロセッサー・オペレーションの SNMP 接続（および BCP 内部インターフェース接続では制限付き）で利用でき、プロセッサーや論理区画、ハードウェア活動化プロファイルの管理・制御を可能にする。同期型ハードウェアコマンドでは、ISQCCMD インターフェースを使うアプリケーションスクリプトが ISQCCMD 終了時に Accepted／Rejected の応答を直接受け取れる。NetView の PIPES と組み合わせ、TRAP AND WAIT 処理によって Accepted 応答を使ってコマンド完了イベントメッセージを待機できる。",
+      "verify_steps": "[セッション環境]\nNetView REXX 自動化プロシージャ ／ プロセッサー・オペレーション\n\n[コマンド 1] ISQCCMD で同期ハードウェアコマンドを発行 (PIPE 連携)\n  ISQCCMD target common_command\n\n[出力 1]\n  ISQCCMD 終了時に Accepted/Rejected が直接返る\n  Accepted の場合、完了イベントメッセージを TRAP AND WAIT で待機\n\n[記録項目]\n  - 発行した共通コマンドと Accepted/Rejected 応答\n  - PIPE/TRAP AND WAIT の処理結果\n  - 完了イベントメッセージ",
+      "quiz": {
+        "q": "ISQCCMD を同期的に使うアプリケーションスクリプトが、ISQCCMD 終了時に直接受け取れる応答はどれか。",
+        "choices": [
+          "Accepted または Rejected の応答",
+          "AOF700I トレースメッセージ",
+          "SMF type 114 レコード",
+          "BPXF024I マルチラインメッセージ"
+        ],
+        "answer": 0,
+        "explanation": "ISQCCMD インターフェースを使うスクリプトは、ISQCCMD 終了時点で Accepted／Rejected の応答を直接得られる。Accepted 応答はコマンド完了イベントメッセージを待つために使える。(出典: TSA z/OS Customizing and Programming p.97-98)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.97",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.98] Application scripts using ISQCCMD can get Accepted or Rejected responses directly at ISQCCMD termination; Accepted used to wait for command completion event message; [p.97] ISQCCMD for SNMP/BCPii."
+    },
+    {
+      "row_id": "10761",
+      "title": "Using SDF for Multiple Systems",
+      "naiyou_jp": "複数システム環境では、ネットワーク内の各システムがリソース状態情報をフォーカルポイントシステムの SDF に転送できる。SDF はプライマリフォーカルポイント (PFP) 1 つとバックアップフォーカルポイント (BFP) 1 つをサポートし、ターゲットシステムは PFP が利用可能なら PFP へ、PFP が停止を検知すると即座に BFP へ SDF データを転送する。要件として、各システムのツリー構造をフォーカルポイント側 NetView DSIPARM の AOFTREE メンバーで定義し、ルート名を各システムツリーで一意にする必要があり、ターゲット状態をフォワードする前に SA z/OS フォーカルポイントサービスが実装済みでなければならない。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ SDF フォーカルポイント\n\n[コマンド 1] フォーカルポイント側で複数システムの SDF を表示\n  定義       AOFTREE メンバー (一意のルート名), SDF FOCALPOINT ポリシー\n\n[出力 1]\n  各ターゲットシステムの状態が PFP の SDF に集約表示される\n  PFP 停止時に BFP へ切替わることを確認\n\n[記録項目]\n  - AOFTREE のツリー構造とルート名\n  - PFP/BFP の定義と切替動作\n  - 集約表示されたシステム状態",
+      "quiz": {
+        "q": "複数システム用 SDF で、ターゲットシステムがプライマリフォーカルポイント (PFP) の停止を検知したときの動作はどれか。",
+        "choices": [
+          "バックアップフォーカルポイント (BFP) へ SDF データの転送を切り替える",
+          "全 SDF データを破棄する",
+          "自システムを停止する",
+          "PFP の復旧まで何も転送しない"
+        ],
+        "answer": 0,
+        "explanation": "SDF は PFP 1 つと BFP 1 つをサポートし、ターゲットシステムは PFP 停止を検知すると即座に BFP へ SDF データ転送を切り替え、PFP 復旧時には再び PFP へ戻す。(出典: TSA z/OS Customizing and Programming p.258)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.258",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.258] SDF supports one PFP and one BFP; target switches to BFP when PFP unavailable; AOFTREE member, unique root name; focal point services implemented first."
+    },
+    {
+      "row_id": "10762",
+      "title": "Verify the Installation",
+      "naiyou_jp": "インストールの検証 (Verify the Installation) は、カスタマイゼーション・ダイアログでポリシーデータベースをビルドし、構成が正しく機能するかを確認する作業である。ダイアログのプライマリパネルからオプション 2 (Build) を選択して構成ビルドを実行し、完全なエンタープライズ構成やシスプレックス構成を生成・テストする。生成された構成は各環境にロードして段階的に検証・調整でき、これによりインストール後に自動化ポリシーが意図どおり動作することを確認する。",
+      "verify_steps": "[セッション環境]\nカスタマイゼーション・ダイアログ (ISPF)\n\n[コマンド 1] Customization Dialog プライマリパネルでオプション 2 (Build) を選択\n  選択       1 Build a complete enterprise ... (構成ビルド)\n\n[出力 1]\n  Configuration Build パネルが表示され構成がビルドされる\n  生成された制御ファイルをロードして動作を検証\n\n[記録項目]\n  - ビルドした構成種別 (enterprise / sysplex)\n  - ビルド結果のメッセージ・JCL\n  - ロード後の自動化ポリシー動作確認",
+      "quiz": {
+        "q": "インストール検証のため構成をビルドする際、カスタマイゼーション・ダイアログで選択するオプションはどれか。",
+        "choices": [
+          "オプション 2 (Build)",
+          "オプション 9 (Refresh)",
+          "AOCTRACE ON",
+          "DFTSOU SCAN"
+        ],
+        "answer": 0,
+        "explanation": "インストール検証では、カスタマイゼーション・ダイアログのプライマリパネルからオプション 2 (Build) を選択して構成をビルドし、生成した制御ファイルをロードして自動化ポリシーが意図どおり動作するか確認する。(出典: TSA z/OS Get Started Guide p.90 / Customizing and Programming p.169)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.180 / Get Started Guide p.90",
+      "rag_hit": "[TSA_z_OS_4.3_Get_Started_Guide.pdf p.90] Select option 2 (Build) from Customization Dialog primary panel; Configuration Build; 1 Build a complete enterprise."
+    },
+    {
+      "row_id": "10763",
+      "title": "VM Second Level Systems Support",
+      "naiyou_jp": "VM Second Level Systems Support は、VM 配下で稼働するゲストマシンを制御・監視するためのプロセッサー・オペレーション (ProcOps) サポート機能である。ProcOps はプロセッサー上にオペレーティングシステム（例: VM）を IPL でき、その VM 内でさらに他の OS をゲストマシンとして IPL できる。これにより ProcOps は、実ハードウェア上で稼働するシステムと同じ方法で VM 第 2 レベルシステム（VM ゲストシステム）を制御できる。SINGSAMP ライブラリーの INGEI004 が、ISQCCMD と NetView PIPES、TRAP AND WAIT を用いた非同期ハードウェアコマンド自動化の例を提供する。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ プロセッサー・オペレーション\n\n[コマンド 1] ProcOps で VM ゲストシステムを実ハードウェア同様に制御\n  対象       VM 第 2 レベルシステム (VM ゲスト)\n  サンプル   INGEI004 (ISQCCMD + PIPES + TRAP/WAIT)\n\n[出力 1]\n  VM ゲストシステムがターゲットシステムとして IPL/監視される\n  実ハードウェア上のシステムと同じ操作が可能なことを確認\n\n[記録項目]\n  - 制御対象の VM ゲストシステム\n  - 使用したサンプル/コマンド (INGEI004)\n  - 監視・IPL の結果",
+      "quiz": {
+        "q": "VM Second Level Systems Support が提供する機能はどれか。",
+        "choices": [
+          "VM 配下で稼働するゲストマシン (VM 第 2 レベルシステム) を実ハードウェア同様に制御・監視する",
+          "SMF レコードを DB2 へ書き出す",
+          "TSO ユーザーを SDF で監視する",
+          "RDS テーブルをバックアップする"
+        ],
+        "answer": 0,
+        "explanation": "VM Second Level Systems Support は、VM 配下のゲストマシンを ProcOps で制御・監視する機能で、実ハードウェア上のシステムと同じ方法で VM 第 2 レベルシステムを制御できる。(出典: TSA z/OS Customizing and Programming p.99 / Planning and Installation p.284)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.99",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.99] VM Second Level Systems Support — ProcOps support to control/monitor guest machines under VM; [P&I p.284] control VM second level systems same as real hardware; INGEI004 sample."
+    },
+    {
+      "row_id": "10764",
+      "title": "Where to Find More Testing Information",
+      "naiyou_jp": "テストに関するより詳しい情報は、関連する NetView の書籍に記載されている。『IBM Z NetView Customization Guide』は、コードの使用準備や出口ルーチン・コマンドプロセッサーの記述方法など、プログラムに求められる要件を一覧化している。『IBM Z NetView Automation Guide』は、推奨される開発プロセスを含め、新しい自動化プロシージャを作成するためのガイドラインを示している。詳細なテストでは、NetView コマンドリストの &CONTROL ステートメントや REXX プロシージャの TRACE ステートメントを使って、発行される各ステートメントをトレースできる。",
+      "verify_steps": "[セッション環境]\nNetView 自動化プロシージャ編集環境\n\n[コマンド 1] 詳細トレースを有効化して各ステートメントを追跡\n  REXX: TRACE / NetView コマンドリスト: &CONTROL\n\n[出力 1]\n  発行される各ステートメントが NETLOG にトレース出力される\n  ( PL/I・C 用には対話型デバッグ補助が利用可能)\n\n[記録項目]\n  - 使用したトレース手段 (&CONTROL / TRACE)\n  - 参照した NetView 書籍\n  - トレース出力ログ",
+      "quiz": {
+        "q": "REXX 自動化プロシージャで発行される各ステートメントを詳細にトレースするために使うステートメントはどれか。",
+        "choices": [
+          "TRACE ステートメント",
+          "&CONTROL ステートメント (NetView コマンドリスト用)",
+          "OUTREP コマンド",
+          "DFTSOU SCAN"
+        ],
+        "answer": 0,
+        "explanation": "REXX プロシージャでは TRACE ステートメント、NetView コマンドリストでは &CONTROL ステートメントを使って各ステートメントをトレースできる。詳しいテスト情報は NetView Customization Guide / Automation Guide に記載される。(出典: TSA z/OS Customizing and Programming p.39)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.39",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.39] Where to Find More Testing Information — IBM Z NetView Customization Guide, NetView Automation Guide; trace via &CONTROL (command lists) / TRACE (REXX)."
+    },
+    {
+      "row_id": "10765",
+      "title": "Who Should Use This Publication",
+      "naiyou_jp": "本資料 (Who Should Use This Publication) は、対象読者を示すセクションである。SA z/OS を用いて CICS・DB2・IMS を自動化するシステムプログラマー、システム設計者、アプリケーション設計者を主な対象とする。これらの自動化のインストールとカスタマイズには、定義の大半が NetView・CICS・DB2・IMS・SA z/OS の各製品上で行われるため、プログラマーとしてのこれら製品への理解が必要となる。また、一部の自動化機能のために JCL・コマンドリスト・プログラムを修正することになる。",
+      "verify_steps": "[セッション環境]\nドキュメント参照 (該当なし — 読者対象の記述)\n\n[コマンド 1] 本資料の対象読者セクションを参照\n  対象       システムプログラマー/設計者 (CICS/DB2/IMS 自動化)\n\n[出力 1]\n  対象読者と前提知識（NetView/CICS/DB2/IMS/SA z/OS）が明示される\n\n[記録項目]\n  - 自身の役割が対象読者に合致するか\n  - 必要となる前提知識\n  - 修正対象 (JCL/コマンドリスト/プログラム)",
+      "quiz": {
+        "q": "本資料が主な対象読者として想定するのは誰か。",
+        "choices": [
+          "SA z/OS で CICS・DB2・IMS を自動化するシステムプログラマー・設計者",
+          "エンドユーザーのみ",
+          "ハードウェア保守技術者のみ",
+          "ネットワーク回線業者のみ"
+        ],
+        "answer": 0,
+        "explanation": "本資料は、SA z/OS を用いて CICS・DB2・IMS を自動化するシステムプログラマー、システム設計者、アプリケーション設計者を対象としており、NetView・CICS・DB2・IMS・SA z/OS への理解が前提となる。(出典: TSA z/OS Product Automation Programmer Reference and Operator Guide p.13)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.19",
+      "rag_hit": "[TSA_z_OS_4.3_Product-Automation_Programmer_Reference_and_Operator_Guide.pdf p.13] Who Should Use This Publication — system programmers/designers who automate CICS, DB2, IMS using SA z/OS; need NetView/CICS/DB2/IMS understanding."
+    },
+    {
+      "row_id": "10766",
+      "title": "Writing a Recovery Routine",
+      "naiyou_jp": "回復ルーチン (recovery routine) は、モニターリソース (MTR) が、その回復ルーチンに対応付けられたヘルスステータスに切り替わるたびに呼び出される。回復ルーチンの目的は、モニターリソース、ひいては監視対象オブジェクトを NORMAL のヘルスステータスへ戻すことである。回復手法として、MESSAGES/USER DATA ポリシー項目のユーザーデータを使い、他の回復処理が進行中の間は追加の回復処理を無効化できる。ヘルスステータスごとの回復アクションは MTR の HEALTHSTATE ポリシーで定義する。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ モニターリソース (MTR) 環境\n\n[コマンド 1] MTR の HEALTHSTATE ポリシーに回復ルーチンを定義しビルド\n  対象       特定ヘルスステータス → 回復ルーチン\n\n[出力 1]\n  MTR が該当ヘルスステータスに遷移すると回復ルーチンが呼ばれる\n  回復成功で MTR が NORMAL に戻ることを確認\n\n[記録項目]\n  - 定義したヘルスステータスと回復ルーチン\n  - HEALTHSTATE / MESSAGES・USER DATA ポリシー内容\n  - 回復後のヘルスステータス",
+      "quiz": {
+        "q": "回復ルーチンが呼び出されるのはどのタイミングか。",
+        "choices": [
+          "モニターリソース (MTR) が、その回復ルーチンに対応付けられたヘルスステータスに切り替わったとき",
+          "TSO ユーザーがログオンしたとき",
+          "ACF のビルドが開始されたとき",
+          "SNMP GETRAW クエリーが完了したとき"
+        ],
+        "answer": 0,
+        "explanation": "回復ルーチンは、モニターリソースが定義対象のヘルスステータスに切り替わるたびに呼び出され、リソースを NORMAL のヘルスステータスへ戻すことを目的とする。回復アクションは MTR の HEALTHSTATE ポリシーで定義する。(出典: TSA z/OS Customizing and Programming p.46)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.44 / p.46",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.46] Writing a Recovery Routine — invoked every time MTR switches to the health status it is defined for; goal bring back to NORMAL; HEALTHSTATE policy, MESSAGES/USER DATA."
+    },
+    {
+      "row_id": "10767",
+      "title": "Writing the SMF Report to DB2",
+      "naiyou_jp": "INGPUSMF ユーティリティーが生成した SMF レポートを、IBM Tivoli System Automation Application Manager が提供・利用する DB2 テーブルへ変換・書き込みできる。手順としては、DB2 の JDBC ライセンスファイル（例: db2jcc_license_cisuz.jar）を所定のディレクトリーへコピーし、ingreport.sh スクリプトの classpath にライセンスを追加したうえで、SMF レポートを DB2 にコピーする INGXRPRT ジョブを実行する。変換時には INGDSN（SMF レポートのデータセット）・INGSEPCHAR（区切り文字）・INGDOMAIN（E2E ドメイン名）などのパラメーターを正しく設定する必要がある。",
+      "verify_steps": "[セッション環境]\nz/OS バッチ ／ z/OS UNIX (ingreport.sh)\n\n[コマンド 1] パラメーターを設定し INGXRPRT ジョブを実行\n  INGDSN=HLQ.SMF.REPORT / INGSEPCHAR=; / INGDOMAIN=MyDomain\n\n[出力 1]\n  ingreport.sh のオフローダー進捗が出力される\n  SMF レポートが DB2 テーブルへ書き込まれることを確認\n\n[記録項目]\n  - 設定した INGDSN/INGSEPCHAR/INGDOMAIN 値\n  - DB2 JDBC ライセンスの配置\n  - DB2 テーブルへの書き込み結果",
+      "quiz": {
+        "q": "INGPUSMF が生成した SMF レポートを DB2 テーブルへ変換・書き込むために実行するジョブはどれか。",
+        "choices": [
+          "INGXRPRT ジョブ (ingreport.sh)",
+          "AOCTRACE",
+          "DFTSOU SCAN",
+          "ISQCCMD ACTIVATE"
+        ],
+        "answer": 0,
+        "explanation": "SMF レポートの DB2 への書き込みは、JDBC ライセンスを配置し ingreport.sh の classpath に追加したうえで INGXRPRT ジョブを実行して行う。変換には INGDSN・INGSEPCHAR・INGDOMAIN の正しい設定が必要である。(出典: TSA z/OS Customizing and Programming p.86-88)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.86",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.86-88] Writing the SMF Report to DB2 — convert/write INGPUSMF SMF report into DB2 tables for Application Manager; INGXRPRT job, ingreport.sh; INGDSN/INGSEPCHAR/INGDOMAIN."
+    },
+    {
+      "row_id": "10768",
+      "title": "WTOR Processing",
+      "naiyou_jp": "Z System Automation は WTOR（応答付き write-to-operator 要求）を受信すると、自動的に応答するか、回復用あるいはサブシステムシャットダウン用に保存する（保存された WTOR は outstanding WTOR と呼ばれる）。すべての WTOR を NetView に転送する必要があり、これは MESSAGES/USER DATA ポリシーで「Route all WTORs」に YES を指定して実現する。プライマリ WTOR への応答は受信直後ではなく、別のメッセージや実行コマンドを契機に発行される（プライマリ WTOR の応答は、その契機となるメッセージの ID に対して定義する）。一方セカンダリ WTOR は即時応答されるか、SDF 表示用に保存される。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール\n\n[コマンド 1] WTOR 転送設定を確認しテスト WTOR を発生\n  設定       Route all WTORs = YES\n\n[出力 1]\n  WTOR が NetView に転送され、自動応答または outstanding として保存される\n  プライマリ WTOR が契機メッセージで応答されることを確認\n\n[記録項目]\n  - 発生した WTOR と応答/保存の区別\n  - プライマリ/セカンダリ WTOR の扱い\n  - MESSAGES/USER DATA ポリシー定義",
+      "quiz": {
+        "q": "プライマリ WTOR に対する応答の発行方式として正しいものはどれか。",
+        "choices": [
+          "受信直後ではなく、別のメッセージや実行コマンドを契機に発行される",
+          "受信した瞬間に必ず即時応答される",
+          "応答は一切発行されず常に破棄される",
+          "オペレーターが手動で削除するまで保留される"
+        ],
+        "answer": 0,
+        "explanation": "プライマリ WTOR への応答は受信直後には行わず、別のメッセージや実行されたコマンドを契機として発行する。そのため応答は契機メッセージの ID に対して定義する。セカンダリ WTOR は即時応答または SDF 表示用に保存される。(出典: TSA z/OS Customizing and Programming p.165-167)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.165",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.165-167] Chapter 15. WTOR Processing — auto-reply or store (outstanding); Route all WTORs YES; primary WTOR replies invoked by other messages/commands; secondary replied immediately or stored for SDF."
+    },
+    {
+      "row_id": "10769",
+      "title": "Z System Automation Library",
+      "naiyou_jp": "Z System Automation Library は、SA z/OS のドキュメント体系（情報ユニット）を案内するセクションである。これらのマニュアルは IBM Documentation からダウンロードでき、たとえば『Get Started Guide』(SC27-9532) は SA z/OS の初心者を対象とし、早期の計画立案などの情報を含む。本セクションは「Where to Find More Information」の一部として、利用可能なマニュアル一覧とその入手先を示し、関連情報を探す際の出発点となる。",
+      "verify_steps": "[セッション環境]\nドキュメント参照 (IBM Documentation)\n\n[コマンド 1] Z System Automation Library のマニュアル一覧を参照\n  例       Get Started Guide (SC27-9532)\n\n[出力 1]\n  SA z/OS の情報ユニット一覧と入手先 (IBM Documentation) が示される\n\n[記録項目]\n  - 参照したマニュアルと注文番号\n  - 入手先 (IBM Documentation)\n  - 関連情報の参照ルート",
+      "quiz": {
+        "q": "Z System Automation Library のマニュアルはどこから入手できるか。",
+        "choices": [
+          "IBM Documentation からダウンロードできる",
+          "SDF パネルから印刷する",
+          "INGRDS コマンドでエクスポートする",
+          "SMF レコードとして DB2 から取得する"
+        ],
+        "answer": 0,
+        "explanation": "Z System Automation Library の各マニュアルは IBM Documentation からダウンロードでき、たとえば初心者向けの Get Started Guide (SC27-9532) などが含まれる。本セクションは「Where to Find More Information」の一部である。(出典: TSA z/OS Customizing and Programming p.19)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.19",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.19] Z System Automation Library — manuals can be downloaded from IBM Documentation; Get Started Guide SC27-9532 for beginners."
+    },
+    {
+      "row_id": "10770",
+      "title": "z13/z13s Specific Timeout Values for Selected Hardware Commands",
+      "naiyou_jp": "メインフレームの D/T2964・D/T2965（z13/z13s）は、訂正不能なハードウェアチップの欠陥により、論理区画に割り当てられた主記憶のクリアに長い時間を要することがある。主記憶クリアを伴う ISQCCMD 共通コマンドは ACTIVATE・DEACTIVATE・SYSRESET・LOAD で、TIMEOUT 値がこのマシン固有の条件を満たすほど高くないとコマンドが失敗することがある。対策として CNMSTYLE メンバーに SA AAO 変数 AOF_AAO_ISQ_Z13TMO_USE=Y を定義すると、ProcOps はターゲットハードウェア接続初期化時に各 D/T2964・D/T2965 を特別なタイムアウト処理対象として登録する。ユーザー定義タイムアウトが API 最大（596 時間）を超えると ISQ511I で既定値が使われる旨が通知される。",
+      "verify_steps": "[セッション環境]\nNetView (NCCF) コンソール ／ プロセッサー・オペレーション\n\n[コマンド 1] CNMSTYLE に AOF_AAO_ISQ_Z13TMO_USE=Y を定義し ProcOps 初期化\n  対象       D/T2964 / D/T2965 (z13/z13s)\n\n[コマンド 2] 主記憶クリアを伴う共通コマンドを実行\n  対象コマンド ACTIVATE / DEACTIVATE / SYSRESET / LOAD\n\n[出力 1]\n  対象ハードウェアが特別タイムアウト処理に登録される\n  超過時は ISQ511I で既定値使用が通知されることを確認\n\n[記録項目]\n  - Z13TMO USE フラグ設定と登録ハードウェア\n  - 指定した Z13TMO タイムアウト値\n  - ISQ511I などの通知メッセージ",
+      "quiz": {
+        "q": "z13/z13s (D/T2964・D/T2965) で主記憶クリアを伴うために特別なタイムアウト処理の対象となる ISQCCMD 共通コマンドはどれか。",
+        "choices": [
+          "ACTIVATE・DEACTIVATE・SYSRESET・LOAD",
+          "GETRAW・SET・GETBULK・TRAP",
+          "BUILD・CONVERT・COPY・DELETE",
+          "INGLIST・INGFILT・INGGROUP・INGRDS"
+        ],
+        "answer": 0,
+        "explanation": "主記憶をクリアできる ISQCCMD 共通コマンドは ACTIVATE・DEACTIVATE・SYSRESET・LOAD であり、z13/z13s ではこれらに対し AOF_AAO_ISQ_Z13TMO_USE=Y で特別なタイムアウト処理を登録する。(出典: TSA z/OS Customizing and Programming p.277)"
+      },
+      "source": "TSA z/OS Customizing and Programming p.277",
+      "rag_hit": "[TSA_z_OS_4.3_Customizing_and_Programming.pdf p.277-278] Appendix F. z13/z13s Specific Timeout Values — D/T2964/D/T2965 chip deficiency; ACTIVATE/DEACTIVATE/SYSRESET/LOAD clear storage; AOF_AAO_ISQ_Z13TMO_USE Y in CNMSTYLE; ISQ511I; 596 hours max."
+    }
+  ]
+}

@@ -1,0 +1,598 @@
+{
+  "page": "g049",
+  "product": "IBM NetView 6.4",
+  "total_rows": 31,
+  "target_rows": 31,
+  "fixed_count": 31,
+  "rows": [
+    {
+      "row_id": "10014",
+      "title": "Using a Test Environment",
+      "naiyou_jp": "自動化コードを本番投入する前に、専用のテスト環境で動作検証することを推奨する手順である。テストシステムを稼働させてテストシナリオを実行し、自分のコードの結果と出力が正しいことを確認したうえで本番ライブラリへ移行する。自動化のテスト方法そのものについては『IBM Z NetView Automation Guide』の自動化テーブルテストの章を参照する。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF) — テスト用ドメイン\n[コマンド1] (NCCF) AUTOTBL MEMBER=ATABLE1,TEST,LISTING=LIST1\n[出力1] テスト対象の自動化テーブルが構文検査され、エラーがあれば該当行が報告される (出典: NetView_6.4_Automation_Guide.pdf p.426)\n[コマンド2] (NCCF) TRACE I （REXX コマンドリストのトレースを有効化）\n[出力2] テストシナリオ実行中のコマンドリスト処理がネットワークログに記録される\n[記録項目] (1) テスト結果が期待どおりか (2) 本番ライブラリ移行可否 (3) トレース出力の確認",
+      "quiz": {
+        "q": "NetView 自動化コードをテスト環境で検証する目的として最も適切なものはどれか。",
+        "choices": [
+          "本番ライブラリへ移行する前に、コードの結果と出力が正しいことをテストシナリオで確認するため",
+          "本番システムの応答時間を計測するため",
+          "オペレーターのパスワードを変更するため",
+          "VTAM の定義メンバーを暗号化するため"
+        ],
+        "answer": 0,
+        "explanation": "テスト環境ではテストシナリオを実行し、コードの結果と出力が正しいことを確認したうえで本番投入する。誤答はいずれもテスト環境利用の目的と無関係である。(出典: NetView_6.4_Automation_Guide.pdf p.426)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.426",
+      "rag_hit": "When the test system is running, perform the test scenarios and verify that the results and output of your code are correct. If they are correct, put the code into production. (Programming_Assembler p.19 / Automation_Guide p.544)"
+    },
+    {
+      "row_id": "10015",
+      "title": "Using Automated Operations Network",
+      "naiyou_jp": "Automated Operations Network (AON) は、カスタマイズおよび拡張が可能なポリシーベースの自動化プログラム群を提供する、ドロップイン型のネットワーク自動化機能である。AON は SNA 自動化 (AON/SNA) と TCP/IP 自動化 (AON/TCP) のコンポーネントを備え、いずれか一方または両方を稼働させて複数のネットワークプロトコルにわたる一貫した自動化を実現する。これはイベント駆動型のネットワーク自動化を NetView 基盤上で実装したものである。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF) — AON 有効化済み\n[コマンド1] (NCCF) AON （AON: Automation Settings パネルを表示）\n[出力1] 自動化ポリシー設定パネルが表示され、SNA/TCP の各設定を確認できる\n[コマンド2] パネルから AON/SNA・AON/TCP コンポーネントの稼働状態を確認\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.397)\n[記録項目] (1) AON コンポーネントの種別 (2) 適用中の自動化ポリシー (3) 該当章の確認",
+      "quiz": {
+        "q": "Automated Operations Network (AON) が提供するネットワーク自動化のコンポーネントの組み合わせとして正しいものはどれか。",
+        "choices": [
+          "SNA 自動化 (AON/SNA) と TCP/IP 自動化 (AON/TCP)",
+          "JES2 自動化と JES3 自動化のみ",
+          "RACF 自動化と DFSMS 自動化",
+          "暗号化自動化とバックアップ自動化"
+        ],
+        "answer": 0,
+        "explanation": "AON は SNA 自動化 (AON/SNA) と TCP/IP 自動化 (AON/TCP) のコンポーネントで複数プロトコルにわたる一貫した自動化を提供する。誤答はいずれも AON のコンポーネント構成ではない。(出典: NetView_6.4_Automation_Guide.pdf p.397)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.397",
+      "rag_hit": "AON provides comprehensive, drop-in, policy-based programs... components: SNA Automation (AON/SNA), TCP/IP Automation (AON/TCP). (Automation_Guide p.397)"
+    },
+    {
+      "row_id": "10016",
+      "title": "Using Debugging Tools",
+      "naiyou_jp": "自動化のデバッグでは、オートタスク配下で実行されるコマンドリストに対してコマンドリストトレースを有効化する。トレースを有効にするとコマンドリストの各ステートメントが処理されるたびにネットワークログへ記録されるため、ログを解析して問題の原因を特定できる。利用できるトレースコマンド例は REXX 用の TRACE I、NetView コマンドリスト言語用の &CONTROL ALL であり、自動化コマンドリストの検証後はログの肥大化を避けるためトレースを無効化する。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF) — 自動化テスト中\n[コマンド1] (NCCF) TRACE I （REXX コマンドリストのトレースを有効化）\n[出力1] コマンドリストのステートメントが処理時にネットワークログへ書き込まれる\n[コマンド2] (NCCF) &CONTROL ALL （NetView コマンドリスト言語のトレース）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.430)\n[記録項目] (1) トレース出力のログ確認 (2) 問題箇所の特定 (3) 検証後のトレース無効化",
+      "quiz": {
+        "q": "オートタスク配下のコマンドリストをデバッグする際に用いるトレース手段として正しいものはどれか。",
+        "choices": [
+          "REXX には TRACE I、NetView コマンドリスト言語には &CONTROL ALL を使用しネットワークログを解析する",
+          "コンソールの電源を切ってメモリダンプを取得する",
+          "RACF のパスワード履歴を確認する",
+          "VTAM の主要ノードを非活性化する"
+        ],
+        "answer": 0,
+        "explanation": "デバッグツールとして REXX 用の TRACE I、NetView コマンドリスト言語用の &CONTROL ALL を有効化し、処理ステートメントをネットワークログに記録して解析する。誤答はデバッグ手段と無関係である。(出典: NetView_6.4_Automation_Guide.pdf p.430)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.430",
+      "rag_hit": "During automation testing, turn on command list tracing... Examples are TRACE I for REXX, and &CONTROL ALL for the NetView command list language. (Automation_Guide p.430)"
+    },
+    {
+      "row_id": "10017",
+      "title": "Using EMCS Consoles with the NetView Program",
+      "naiyou_jp": "拡張多重コンソールサポート (EMCS) コンソールを使うと、MVS アプリケーションプログラムが端末上のオペレーターであるかのように MVS システムと対話できる。NetView の自動化は EMCS コンソールを介して、NetView オペレーターが MVS オペレーターであるかのように MVS システムと対話でき、他バージョンで課される一部の制限を受けずに済む。EMCS コンソールは MVS コマンドまたは NetView の GETCONID コマンドで獲得する。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) GETCONID （EMCS コンソールを獲得）\n[出力1] 指定または既定の名前で EMCS コンソールが割り当てられる\n[コマンド2] (NCCF) MVS D A,L （MVS コマンドを EMCS コンソール経由で発行）\n[出力2] MVS からの応答が NetView コマンドファシリティに表示される (出典: NetView_6.4_Automation_Guide.pdf p.89)\n[記録項目] (1) 獲得したコンソール名 (2) MVS 応答の受信 (3) 該当章の確認",
+      "quiz": {
+        "q": "NetView で EMCS コンソールを使用する利点として正しいものはどれか。",
+        "choices": [
+          "NetView オペレーターが MVS オペレーターであるかのように MVS システムと対話でき、MVS コンソール数の定義上限がない",
+          "ネットワークログを自動的に削除する",
+          "VTAM 定義を不要にする",
+          "RACF を経由せずにパスワードを変更できる"
+        ],
+        "answer": 0,
+        "explanation": "EMCS コンソールにより NetView 自動化は MVS オペレーターのように MVS と対話でき、利用できる MVS オペレーターコンソール数に定義上の上限がない等の利点がある。誤答は EMCS の機能ではない。(出典: NetView_6.4_Automation_Guide.pdf p.89)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.89",
+      "rag_hit": "EMCS consoles enable an MVS application program to interact with the MVS system as if the application were an operator at a terminal... no defined limit on the number of MVS operator consoles. (Automation_Guide p.89)"
+    },
+    {
+      "row_id": "10018",
+      "title": "Using IBM Z NetView online help",
+      "naiyou_jp": "NetView プログラムにはヘルプファシリティが備わっており、2 種類のヘルプ情報を提供する。1 つは VIEW コマンドで表示するビューベースヘルプ、もう 1 つは WINDOW コマンドで表示するウィンドウベースヘルプである。各コマンドの詳細な構文やパラメーターについては、本マニュアル記載の参照に加えて NetView オンラインヘルプを参照するよう案内されている。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) HELP AUTOTASK （AUTOTASK コマンドのオンラインヘルプを表示）\n[出力1] ビューベースまたはウィンドウベースのヘルプパネルが表示される\n[コマンド2] (NCCF) VIEW （ビューベースヘルプの表示）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.29)\n[記録項目] (1) ヘルプ種別 (VIEW/WINDOW) (2) 対象コマンドの構文 (3) 該当ページの確認",
+      "quiz": {
+        "q": "NetView オンラインヘルプが提供する 2 種類のヘルプ情報の表示コマンドの組み合わせとして正しいものはどれか。",
+        "choices": [
+          "VIEW コマンドによるビューベースヘルプと WINDOW コマンドによるウィンドウベースヘルプ",
+          "PRINT コマンドと SAVE コマンド",
+          "LOGON コマンドと LOGOFF コマンド",
+          "START コマンドと STOP コマンド"
+        ],
+        "answer": 0,
+        "explanation": "オンラインヘルプは VIEW コマンドで表示するビューベースヘルプと WINDOW コマンドで表示するウィンドウベースヘルプの 2 種類を提供する。誤答はヘルプ表示コマンドではない。(出典: NetView_6.4_Automation_Guide.pdf p.29)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.29",
+      "rag_hit": "The NetView program contains a help facility... view-based help displayed by the VIEW command, and window-based help displayed by the WINDOW command. (Customization_Guide p.75; refer to NetView online help — Automation_Guide p.41)"
+    },
+    {
+      "row_id": "10019",
+      "title": "Using Multiple-Console-Support Consoles with Autotasks",
+      "naiyou_jp": "AUTOTASK コマンドまたは CNMSTYLE メンバーの AUTOTASK ステートメントを使うと、多重コンソールサポート (MCS) コンソールをオートタスクに関連付けられる。関連付けにより、そのコンソールはオートタスクが受信するすべてのメッセージを表示でき、NetView コマンドを受け付けてオートタスクへ転送できる。MCS コンソールは通常どおりコンソールとして受信するメッセージも引き続き受け取り、CONSOLxx メンバーやアクティブな MPFLSTxx の定義が適用される。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) AUTOTASK OPID=AUTOMVS,CONSOLE=consname\n[出力1] オートタスク AUTOMVS が指定 MCS コンソールに関連付けられる\n[コマンド2] MCS コンソールから NetView コマンドを入力しオートタスク配下で実行\n[出力2] コンソールがオートタスク宛メッセージを表示する (出典: NetView_6.4_Automation_Guide.pdf p.310)\n[記録項目] (1) 関連付けたコンソール名 (2) オートタスク受信メッセージの表示 (3) CONSOLxx/MPFLSTxx 定義の確認",
+      "quiz": {
+        "q": "MCS コンソールをオートタスクに関連付ける手段として正しいものはどれか。",
+        "choices": [
+          "AUTOTASK コマンドまたは CNMSTYLE メンバーの AUTOTASK ステートメント",
+          "RACF の PERMIT コマンド",
+          "VTAM の VARY ACT コマンド",
+          "TSO の LOGON プロシージャ"
+        ],
+        "answer": 0,
+        "explanation": "AUTOTASK コマンドまたは CNMSTYLE の AUTOTASK ステートメントで MCS コンソールをオートタスクに関連付け、コンソールがオートタスク宛メッセージを表示し NetView コマンドを転送できるようにする。誤答は関連付け手段ではない。(出典: NetView_6.4_Automation_Guide.pdf p.310)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.310",
+      "rag_hit": "You can associate an autotask with a multiple console support console when using the AUTOTASK command or AUTOTASK statement in the CNMSTYLE member. (Automation_Guide p.134, p.310)"
+    },
+    {
+      "row_id": "10020",
+      "title": "Using MVS Operator Consoles to Issue Commands and Command Lists as MODIFY (F) Commands",
+      "naiyou_jp": "MVS システムから NetView コマンドを発行する方法のひとつが MVS MODIFY (F) コマンドの使用である。MODIFY コマンドで NetView の起動プロシージャ名を指定することにより、MVS オペレーターコンソールから NetView コマンドやコマンドリストを NetView へ渡して実行させ、応答メッセージを受け取れる。なお NetView コマンドを MVS システムから発行する方法には、ほかに NetView サブシステム指定文字、コマンドリビジョンテーブル (CRT) 経由がある。",
+      "verify_steps": "[セッション環境] MVS オペレーターコンソール (SDSF/MCS)\n[コマンド1] (MVS) F NETVIEW,LIST STATUS=TASKS\n（NetView プロシージャ宛に MODIFY で NetView コマンドを発行）\n[出力1] NetView がコマンドを実行し、応答メッセージが発行元コンソールへ返る (出典: NetView_6.4_Automation_Guide.pdf p.473)\n[コマンド2] (MVS) F procname,command — コマンドリストも同様に発行可能\n[記録項目] (1) MODIFY 構文の確認 (2) 応答メッセージ ID (3) 該当ページの確認",
+      "quiz": {
+        "q": "MVS オペレーターコンソールから NetView コマンドを MODIFY コマンドとして発行する際に使用する MVS コマンドはどれか。",
+        "choices": [
+          "F (MODIFY) コマンドで NetView 起動プロシージャ名を指定する",
+          "VARY コマンドでデバイスを活性化する",
+          "DUMP コマンドでメモリダンプを取得する",
+          "MOUNT コマンドでボリュームをマウントする"
+        ],
+        "answer": 0,
+        "explanation": "MVS MODIFY (F) コマンドで NetView プロシージャ名を指定すると、コンソールから NetView コマンドやコマンドリストを NetView に渡して実行できる。誤答は NetView コマンド発行と無関係な MVS コマンドである。(出典: NetView_6.4_Automation_Guide.pdf p.473)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.473",
+      "rag_hit": "There are three ways to issue NetView commands from an MVS system: the MVS MODIFY command, the NetView subsystem designator character, and through the Command Revision Table (CRT). (Automation_Guide p.62)"
+    },
+    {
+      "row_id": "10021",
+      "title": "Using MVS Operator Consoles to Issue Commands and Command Lists as Subsystem Commands",
+      "naiyou_jp": "システムコンソールから見ると、NetView プログラムは MVS サブシステムのように振る舞う。一定の条件（サブシステム名が MVS に定義されている等）が満たされていれば、任意の NetView コマンドやコマンドリストを NetView サブシステムが受け付け、関連付けられた NetView アプリケーションへ渡せる。サブシステムインターフェース利用時、MVS からコンソールへ発行されたコマンド応答メッセージは NetView サブシステムが選別して発行元のオペレーター ID へ返送する。",
+      "verify_steps": "[セッション環境] MVS オペレーターコンソール／NetView サブシステム稼働\n[コマンド1] NetView サブシステムが活性であることを確認\n[出力1] サブシステム名が MVS に定義されコマンドを認識する\n[コマンド2] (MVS) 指定文字 + NetView コマンド（サブシステム経由で発行）\n[出力2] 応答メッセージが発行元オペレーター ID に返送される (出典: NetView_6.4_Automation_Guide.pdf p.472)\n[記録項目] (1) サブシステム活性状態 (2) コマンド応答の返送先 (3) 該当ページの確認",
+      "quiz": {
+        "q": "NetView コマンドを MVS コンソールからサブシステムコマンドとして発行するための条件として正しいものはどれか。",
+        "choices": [
+          "NetView サブシステムが活性で、サブシステム名が MVS に定義されコマンドを認識できること",
+          "VTAM が停止していること",
+          "RACF が無効化されていること",
+          "全オートタスクが終了していること"
+        ],
+        "answer": 0,
+        "explanation": "システムコンソールから NetView をサブシステムとして扱うには、NetView サブシステムが活性でサブシステム名が MVS に定義されコマンドを認識できる必要がある。誤答は発行条件ではない。(出典: NetView_6.4_Automation_Guide.pdf p.472)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.472",
+      "rag_hit": "From a system console, the NetView program looks similar to an MVS subsystem. Any NetView command can be accepted... if the subsystem name is defined to MVS... NetView subsystem must be active to recognize the command. (Automation_Guide p.471-472)"
+    },
+    {
+      "row_id": "10022",
+      "title": "Using NetView Program Automation in a Sysplex",
+      "naiyou_jp": "シスプレックスにおける NetView プログラム自動化では、NetView がシスプレックスの任意またはすべてのメンバーからメッセージを受信し、該当するメンバーへ自動応答を発行できる。手法のひとつは、システムごとに自動化テーブルの異なるセグメントを使い分ける戦略を立て、既存の自動化テーブルステートメントに SYSID 条件項目を追加して特定システム向けにメッセージを処理することである。拡張コンソールの MSCOPE 値を調整し、シスプレックス内の 1 システムに自動化を集中させることもできる。",
+      "verify_steps": "[セッション環境] シスプレックス内 NetView 6.4 ターミナル (NCCF)\n[コマンド1] 自動化テーブルに SYSID 条件項目を追加 — 例: IF MSGID='...' & SYSID='SYS1' THEN ...\n[出力1] 対象システムのメッセージのみが該当ステートメントで処理される\n[コマンド2] (NCCF) AUTOTBL MEMBER=ATABLE1,TEST （構文検証）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.95)\n[記録項目] (1) SYSID 条件の適用 (2) メッセージのルーティング範囲 (MSCOPE) (3) 集中化の可否",
+      "quiz": {
+        "q": "シスプレックスで特定システム向けにメッセージを処理するため自動化テーブルに追加する条件項目はどれか。",
+        "choices": [
+          "SYSID 条件項目",
+          "RACF プロファイル名",
+          "VTAM APPL 名",
+          "DASD ボリューム通し番号"
+        ],
+        "answer": 0,
+        "explanation": "シスプレックスでは自動化テーブルステートメントに SYSID 条件項目を追加して、システムごとにメッセージ処理を振り分ける。誤答は自動化テーブルの条件項目ではない。(出典: NetView_6.4_Automation_Guide.pdf p.95)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.95",
+      "rag_hit": "NetView can receive messages from any or all members of a sysplex and issue automatic responses... add SYSID condition items to your automation table statements... set MSCOPE values for extended consoles. (Automation_Guide p.95, p.97)"
+    },
+    {
+      "row_id": "10023",
+      "title": "Using Policy Services",
+      "naiyou_jp": "NetView ポリシーサービスは、リソースの動的なポリシーベース管理と自動化を可能にする一連の機能である。複数の NetView 機能がポリシーサービスを利用し、リソースに対するアクションを実行する前にポリシー定義を参照して実行すべきアクションを判定する。ポリシーサービスを使用するには、DSITBL01 のカスタマイズ、ポリシーの定義、ポリシーファイルの定義を行う。利用者は NetView ポリシーサービスを用いて独自のポリシーベースアプリケーションを記述できる。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) POLICY REQ=STATUS （ポリシーリポジトリにロード済みのファイルを照会）\n[出力1] ロード済みのポリシーファイル一覧が表示される\n[コマンド2] (NCCF) POLICY REQ=LOAD （CNMSTYLE 定義に基づきリポジトリをロード）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.267)\n[記録項目] (1) DSITBL01 のカスタマイズ (2) ロード済みポリシーファイル (3) 該当章の確認",
+      "quiz": {
+        "q": "NetView ポリシーサービスを使用するために必要な作業として正しいものはどれか。",
+        "choices": [
+          "DSITBL01 のカスタマイズ、ポリシーの定義、ポリシーファイルの定義を行う",
+          "VTAM の主要ノードを非活性化する",
+          "RACF データセットを削除する",
+          "全オートタスクを停止する"
+        ],
+        "answer": 0,
+        "explanation": "ポリシーサービスの利用には DSITBL01 のカスタマイズ、ポリシーの定義、ポリシーファイルの定義が必要であり、機能はアクション前にポリシー定義を参照して動作を判定する。誤答は利用手順ではない。(出典: NetView_6.4_Automation_Guide.pdf p.267)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.267",
+      "rag_hit": "NetView Policy Services is a set of functions that enable dynamic policy-based management and automation of your resources... To use: Customize DSITBL01, Define your Policy, Define your Policy Files. (Automation_Guide p.267)"
+    },
+    {
+      "row_id": "10024",
+      "title": "Using the Advanced Automation Sample Set",
+      "naiyou_jp": "高度自動化サンプルセットは、サブシステムやアプリケーションの初期化・監視・回復・シャットダウンといった機能を NetView で自動化する方法を示すサンプル集である。これは「協調自動化の確立」の章で論じる技法の例であり、ドロップイン型の完成ソリューションではなく、コーディネートされた自動化技法の実例として提供される。サンプルセットにはコマンドリスト、自動化状態を表示するフルスクリーンパネル、自動化テーブルエントリーなどのネットワーク定義サンプルが含まれる。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF) — テスト環境推奨\n[コマンド1] 高度自動化サンプルの中心コマンドリスト AOPIVARS (CNME6400) を確認\n[出力1] システムおよび製品の初期化処理が定義されている\n[コマンド2] (NCCF) TRACE I で手動呼び出ししトレース確認（本番投入前のテスト）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.522)\n[記録項目] (1) 自動化対象プロセス (初期化/監視/回復/シャットダウン) (2) サンプルコマンドリスト名 (3) テスト結果",
+      "quiz": {
+        "q": "高度自動化サンプルセットが自動化の実例として示す 4 つのプロセスはどれか。",
+        "choices": [
+          "初期化・監視・回復・シャットダウン",
+          "暗号化・圧縮・複製・削除",
+          "ログオン・ログオフ・印刷・保存",
+          "起動・停止のみ"
+        ],
+        "answer": 0,
+        "explanation": "高度自動化サンプルセットは、サブシステムやアプリケーションの初期化・監視・回復・シャットダウンの自動化技法を実例として示す。誤答はサンプルセットが扱うプロセスではない。(出典: NetView_6.4_Automation_Guide.pdf p.522)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.522",
+      "rag_hit": "The advanced automation sample set demonstrates how you can automate the initialization, monitoring, recovery, and shutdown of specific products. (Automation_Guide p.522, p.523)"
+    },
+    {
+      "row_id": "10025",
+      "title": "Using the AUTOTASK Command",
+      "naiyou_jp": "AUTOTASK コマンドは、自動化を行う自動オペレーターステーションタスク (オートタスク) を起動・管理するために使用する。オートタスクはオペレーター station タスク (OST) であるため、DSIOPF に OST 定義ステートメントを含めて定義する必要がある。オートタスクはメッセージや MSU に応じたコマンドリストの実行、他オペレータータスクへのメッセージ送信、コマンドのスケジュール実行など、通常オペレーターが行う作業を自動で実行できる。AUTOTASK コマンドでは MCS コンソールとの関連付けも指定できる。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) AUTOTASK OPID=AUTO1 （オートタスク AUTO1 を起動）\n[出力1] DSIOPF に定義済みの OST がオートタスクとして活性化される\n[コマンド2] (NCCF) LIST STATUS=TASKS （タスク状態を確認）\n[出力2] AUTO1 がアクティブなオートタスクとして表示される (出典: NetView_6.4_Automation_Guide.pdf p.133)\n[記録項目] (1) DSIOPF の OST 定義 (2) 起動したオートタスク名 (3) アクティブ状態の確認",
+      "quiz": {
+        "q": "AUTOTASK コマンドで起動するオートタスクを定義するために OST 定義ステートメントを含めるメンバーはどれか。",
+        "choices": [
+          "DSIOPF",
+          "CONSOLxx",
+          "MPFLSTxx",
+          "VTAMLST"
+        ],
+        "answer": 0,
+        "explanation": "オートタスクは OST であるため、DSIOPF に OST 定義ステートメントを含めて定義する必要がある。CONSOLxx・MPFLSTxx・VTAMLST は別目的のメンバーである。(出典: NetView_6.4_Automation_Guide.pdf p.133)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.133",
+      "rag_hit": "Autotasks are operator station tasks (OSTs), they require OST definition statements... Include OST definition statements in DSIOPF for all of the autotasks. (Automation_Guide p.299; Users_Guide p.201)"
+    },
+    {
+      "row_id": "10026",
+      "title": "Using the Basic Automation Sample Set",
+      "naiyou_jp": "基本自動化サンプルセットは、ルーチン的なオペレーター操作をどのように自動化できるかを示す自動化テーブルエントリー、コマンドリスト、起動プロシージャから成るサンプル集である。本番投入する前に、NetView 自動化テーブルのエントリーが期待どおりのアクションを生むことを検証する必要がある。自動化のテストについては『Automation Guide』の自動化テーブルテストの章を参照する。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF) — テスト環境\n[コマンド1] 基本自動化サンプルの自動化テーブルエントリーをロード\n[出力1] ルーチン操作を自動化するエントリーが反映される\n[コマンド2] (NCCF) AUTOTBL MEMBER=basictbl,TEST （期待アクションを検証）\n[出力2] エントリーが期待どおりのアクションを生むか確認 (出典: NetView_6.4_Automation_Guide.pdf p.517)\n[記録項目] (1) 自動化テーブルエントリー (2) 期待アクションとの一致 (3) 本番投入可否",
+      "quiz": {
+        "q": "基本自動化サンプルセットを本番投入する前に行うべき検証として正しいものはどれか。",
+        "choices": [
+          "NetView 自動化テーブルのエントリーが期待どおりのアクションを生むことを確認する",
+          "RACF のパスワード期限を延長する",
+          "VTAM のバッファプールを拡張する",
+          "DASD のフォーマットを実行する"
+        ],
+        "answer": 0,
+        "explanation": "基本自動化サンプルセットの本番投入前に、自動化テーブルエントリーが想定どおりのアクションを生むことを検証する。誤答は本サンプルセットの検証内容ではない。(出典: NetView_6.4_Automation_Guide.pdf p.517)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.517",
+      "rag_hit": "Before putting the basic automation sample set into production, verify that the NetView automation table entries result in the actions you anticipate. (Automation_Guide p.522, basic set p.515)"
+    },
+    {
+      "row_id": "10027",
+      "title": "Using the Interfaces",
+      "naiyou_jp": "システム自動化を実装するには、まず NetView にオペレーティングシステム・サブシステム・アプリケーションの状態を記述する情報へのアクセスを与える。また NetView がシステムへコマンドを送信し、コマンド応答を受け取れるよう設定する。コマンドの入力と応答受信には、サブシステムインターフェースまたは拡張多重コンソールサポート (EMCS) コンソールを利用できる。これらは自動化で使われる NetView のインターフェースの一部である。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) MVS D A,L （サブシステムインターフェースまたは EMCS 経由で MVS にコマンド送信）\n[出力1] MVS からのコマンド応答が NetView に返る\n[コマンド2] (NCCF) GETCONID （EMCS コンソールインターフェースの確認）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.411)\n[記録項目] (1) 使用インターフェース種別 (サブシステム/EMCS) (2) コマンド応答の受信 (3) 該当章の確認",
+      "quiz": {
+        "q": "NetView がシステムへコマンドを送信し応答を受け取るために使用できるインターフェースの組み合わせはどれか。",
+        "choices": [
+          "サブシステムインターフェースまたは拡張多重コンソールサポート (EMCS) コンソール",
+          "RACF インターフェースまたは DFSMS インターフェース",
+          "印刷インターフェースまたはスプールインターフェース",
+          "暗号インターフェースまたは圧縮インターフェース"
+        ],
+        "answer": 0,
+        "explanation": "システム自動化では、サブシステムインターフェースまたは EMCS コンソールを介してコマンドを送信し応答を受信する。誤答はコマンド送受信に用いるインターフェースではない。(出典: NetView_6.4_Automation_Guide.pdf p.411)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.411",
+      "rag_hit": "You can enter commands and receive responses using the subsystem interface or extended multiple console support (EMCS) consoles. (Automation_Guide p.102 — NetView Interfaces Used in Automation)"
+    },
+    {
+      "row_id": "10028",
+      "title": "Using the Log Analysis Program",
+      "naiyou_jp": "ログ解析プログラムは自動化そのものを実行するのではなく、利用者が独自の自動化を作成するのを支援するツールである。JES2 および JES3 向けのログ解析プログラムは、頻繁に発行されるメッセージを識別し、抑止または自動化の候補となるメッセージを見つける手助けをする。このプログラムは他のログ解析にも改変して利用できる。",
+      "verify_steps": "[セッション環境] NetView 6.4 — ログ解析サンプル (CNMS6207 SYSANAL)\n[コマンド1] ログ解析プログラム SYSANAL を JES2/JES3 ログに対して実行\n[出力1] 頻出メッセージの一覧が出力され、抑止・自動化候補が示される (出典: NetView_6.4_Automation_Guide.pdf p.517)\n[コマンド2] 出力を基に MPF 抑止リストや自動化テーブルへ反映\n[記録項目] (1) 頻出メッセージの識別 (2) 抑止/自動化候補 (3) 該当章の確認",
+      "quiz": {
+        "q": "ログ解析プログラムの役割として正しいものはどれか。",
+        "choices": [
+          "自動化自体は行わず、頻出メッセージを識別して抑止・自動化の候補を見つける支援ツールである",
+          "ネットワークログを暗号化するツールである",
+          "VTAM 定義を自動生成するツールである",
+          "RACF プロファイルを一括削除するツールである"
+        ],
+        "answer": 0,
+        "explanation": "ログ解析プログラムは自動化を実行せず、頻繁に発行されるメッセージを識別して抑止または自動化の候補を特定する支援ツールである。誤答はその役割ではない。(出典: NetView_6.4_Automation_Guide.pdf p.517)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.517",
+      "rag_hit": "The log analysis program does not perform automation but is a tool to help you create automation of your own... identifies frequently issued messages you might want to suppress or automate. (Automation_Guide p.517, p.515)"
+    },
+    {
+      "row_id": "10029",
+      "title": "Using the Message Suppression Sample Set",
+      "naiyou_jp": "メッセージ抑止サンプルセットは、メッセージ抑止の例として利用できる 2 つの MVS メッセージ抑止リスト（保守的なものと積極的なもの）を含む。具体的には MPFLSTAC（CNMS6201、保守的な MVS MPF メッセージ抑止）と MPFLSTAA（CNMS6202、積極的な MVS MPF メッセージ抑止）である。メッセージ抑止とアラートフィルタリングは自動オペレーションへの重要な第一歩であり、オペレーター介入を要しない情報の表示を抑える。",
+      "verify_steps": "[セッション環境] NetView 6.4 / MVS PARMLIB\n[コマンド1] MPFLSTAC (CNMS6201) または MPFLSTAA (CNMS6202) を MPFLSTxx として配置\n[出力1] アクティブ MPF リストに抑止規則が反映される\n[コマンド2] (MVS) SET MPF=xx （MPF リストを適用）\n[出力2] 表示抑止・アクションメッセージ保持の規則が有効化される (出典: NetView_6.4_Automation_Guide.pdf p.516)\n[記録項目] (1) 適用した抑止リスト (保守的/積極的) (2) 抑止対象メッセージ (3) 該当ページの確認",
+      "quiz": {
+        "q": "メッセージ抑止サンプルセットに含まれる 2 つの MVS メッセージ抑止リストの性質の違いとして正しいものはどれか。",
+        "choices": [
+          "保守的な抑止リスト (MPFLSTAC) と積極的な抑止リスト (MPFLSTAA) の 2 種類",
+          "暗号化リストと圧縮リスト",
+          "起動リストと停止リスト",
+          "JES2 リストと VTAM リスト"
+        ],
+        "answer": 0,
+        "explanation": "メッセージ抑止サンプルセットは保守的な MPFLSTAC (CNMS6201) と積極的な MPFLSTAA (CNMS6202) の 2 つの MVS MPF メッセージ抑止リストを含む。誤答はこのサンプルセットの構成ではない。(出典: NetView_6.4_Automation_Guide.pdf p.516)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.516",
+      "rag_hit": "CNMS6201 MPFLSTAC Conservative MVS MPF message suppression; CNMS6202 MPFLSTAA Aggressive MVS MPF message suppression. (Automation_Guide p.549; two MVS message-suppression lists p.515)"
+    },
+    {
+      "row_id": "10030",
+      "title": "Using the Policy API",
+      "naiyou_jp": "POLICY コマンドは、ポリシーリポジトリへの多目的な汎用アプリケーションプログラミングインターフェース (API) であり、リポジトリ内のすべてのポリシー定義への標準化されたアクセスを提供する。REQ オペランドで操作を指定し、GET（取得、既定）、SET（キーワード値の更新）、ADD（新規ポリシー定義の作成）、DEL（ポリシー定義の削除）、LOAD（CNMSTYLE 定義に基づくロード）、STATUS（ロード済みファイルの照会）、TEST（構文検査）を行える。キーワードやキーワード値自体は削除・照会できず、特定のポリシー定義のみが対象となる。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) POLICY REQ=GET ENTRY=RECOVERY TYPE=* （RECOVERY のポリシー定義を取得）\n[出力1] 指定グループの全ポリシー定義が返る\n[コマンド2] (NCCF) POLICY REQ=ADD ... （新規ポリシー定義を追加）\n[出力2] リポジトリに定義が作成される (出典: NetView_6.4_Automation_Guide.pdf p.270)\n[記録項目] (1) 使用した REQ 値 (GET/SET/ADD/DEL/LOAD/STATUS/TEST) (2) 対象ポリシー定義 (3) 結果の確認",
+      "quiz": {
+        "q": "Policy API (POLICY コマンド) の REQ オペランドで新規ポリシー定義を作成する値はどれか。",
+        "choices": [
+          "ADD",
+          "GET",
+          "STATUS",
+          "TEST"
+        ],
+        "answer": 0,
+        "explanation": "REQ=ADD はポリシーリポジトリに新規ポリシー定義を作成する。GET は取得（既定）、STATUS はロード済みファイルの照会、TEST は構文検査である。(出典: NetView_6.4_Automation_Guide.pdf p.270, p.271)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.270",
+      "rag_hit": "The POLICY command is a multi-purpose, generic API into the Policy Repository... ADD creates a new policy definition; DEL deletes; GET retrieves (default); SET updates; LOAD; STATUS; TEST. (Automation_Guide p.270-272; Command_Reference_Vol2 p.83-84)"
+    },
+    {
+      "row_id": "10031",
+      "title": "Using the Sample Set for Automation",
+      "naiyou_jp": "自動化用サンプルセットは、自動オペレーションを始めるために利用できる一連のサンプルで、自動化技法の例を示すものでありドロップイン型の完成ソリューションではない。サンプルセットは、メッセージ抑止（2 つの MVS メッセージ抑止リスト）、基本自動化、高度自動化、ログ解析プログラム、セットアップサンプルから構成される。各サンプルは名前で識別でき、まずサンプルセットをカスタマイズし、メッセージ抑止サンプル、ログ解析プログラムの順に活用していく。",
+      "verify_steps": "[セッション環境] NetView 6.4 — サンプルライブラリ\n[コマンド1] 自動化用サンプルセットのメンバー名 (CNMSxxxx) を確認しカスタマイズ\n[出力1] メッセージ抑止・基本/高度自動化・ログ解析・セットアップの各サンプルを識別\n[コマンド2] メッセージ抑止サンプルを適用 → ログ解析プログラム実行\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.515)\n[記録項目] (1) サンプルセット構成 (2) カスタマイズ対象メンバー (3) 該当章の確認",
+      "quiz": {
+        "q": "自動化用サンプルセットを構成するサブセットの組み合わせとして正しいものはどれか。",
+        "choices": [
+          "メッセージ抑止・基本自動化・高度自動化・ログ解析プログラム・セットアップサンプル",
+          "暗号化・圧縮・複製・削除・印刷",
+          "ログオン・ログオフ・起動・停止・保存",
+          "RACF・VTAM・JES2・DFSMS・TSO"
+        ],
+        "answer": 0,
+        "explanation": "自動化用サンプルセットは、メッセージ抑止、基本自動化、高度自動化、ログ解析プログラム、セットアップサンプルから構成される。誤答はこのサンプルセットの構成要素ではない。(出典: NetView_6.4_Automation_Guide.pdf p.515)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.515",
+      "rag_hit": "The sample set for automation consists of: Message suppression, Basic automation, Advanced automation, Log analysis program, Setup samples. (Automation_Guide p.515)"
+    },
+    {
+      "row_id": "10032",
+      "title": "Verifying Commands Issued from RODM Methods",
+      "naiyou_jp": "RODM はメソッドと呼ばれるプログラムを用いて、RODM 内の情報を取得・更新・操作する多くの機能を実行できる。ユーザーは PL/I または C 言語で独自のメソッドを記述し、RODM に呼び出させることができる。メソッドはアプリケーションプログラム（NetView のコマンドプロセッサーなど）から直接呼び出すことも、RODM フィールドの変化等によって自動的に起動することもできる。これらメソッドから発行されるコマンドが正しく実行されることの検証が本項目の主題である。",
+      "verify_steps": "[セッション環境] NetView 6.4 — RODM 稼働環境\n[コマンド1] RODM メソッド（PL/I または C 記述）からコマンドを発行するよう構成\n[出力1] メソッドがトリガーされ、NetView タスクによりコマンドが発行される\n[コマンド2] (NCCF) ネットワークログでメソッド発行コマンドの実行結果を確認\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.373)\n[記録項目] (1) メソッドの記述言語 (PL/I/C) (2) 発行コマンドの実行結果 (3) ログによる検証",
+      "quiz": {
+        "q": "RODM メソッドを記述できるプログラミング言語の組み合わせとして正しいものはどれか。",
+        "choices": [
+          "PL/I または C 言語",
+          "COBOL または FORTRAN のみ",
+          "REXX または CLIST のみ",
+          "アセンブラーのみ"
+        ],
+        "answer": 0,
+        "explanation": "RODM メソッドは PL/I または C 言語で記述でき、アプリケーションから直接呼び出すか RODM フィールドの変化で自動起動する。誤答は RODM メソッドの記述言語ではない。(出典: NetView_6.4_Automation_Guide.pdf p.373)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.373",
+      "rag_hit": "RODM can use programs called methods... Users can write methods in either PL/I or C language. Methods can be called directly from application programs or triggered automatically when RODM fields change. (Automation_Guide p.99; RODM Programmers Guide p.337)"
+    },
+    {
+      "row_id": "10033",
+      "title": "VTAM Message and Command Processing",
+      "naiyou_jp": "本項目は『Automation Guide』付録 D に収録される VTAM メッセージおよびコマンド処理に関する診断・改変・チューニング情報である。VTAM メッセージは VTAM オペレーターに情報を提供するが、メッセージ量が多いとシステム性能に悪影響を及ぼし、重要な情報を見落とす原因にもなり得る。NetView はこうしたメッセージ量の制御を支援する。なお本付録の情報はプログラミングインターフェースとして使用してはならない旨が注意書きされている。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF) — VTAM 連携\n[コマンド1] (NCCF) MVS V NET,... など VTAM コマンドを NetView 経由で発行\n[出力1] VTAM メッセージが NetView に返り、自動化テーブルで処理可能\n[コマンド2] 自動化テーブルで VTAM メッセージの抑止/自動化ステートメントを設定\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.475)\n[記録項目] (1) VTAM メッセージ量の制御 (2) 自動化対象メッセージ (3) 付録 D の参照",
+      "quiz": {
+        "q": "『Automation Guide』付録 D の VTAM メッセージおよびコマンド処理の情報について正しい注意事項はどれか。",
+        "choices": [
+          "診断・改変・チューニング情報であり、プログラミングインターフェースとして使用してはならない",
+          "全 VTAM メッセージを自動削除する正式 API である",
+          "RACF パスワードを保存する領域である",
+          "DASD のフォーマット手順書である"
+        ],
+        "answer": 0,
+        "explanation": "付録 D の VTAM メッセージおよびコマンド処理は診断・改変・チューニング情報であり、プログラミングインターフェースとして使用してはならないと明記されている。誤答はその性質と異なる。(出典: NetView_6.4_Automation_Guide.pdf p.475)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.475",
+      "rag_hit": "Appendix D. VTAM Message and Command Processing... diagnostic, modification, and tuning information. Do not use as a programming interface. VTAM message volumes can be high, adversely affecting performance. (Automation_Guide p.475)"
+    },
+    {
+      "row_id": "10034",
+      "title": "VTAM Message Suppression Criteria",
+      "naiyou_jp": "VTAM メッセージ抑止条件は、VTAM メッセージの表示・処理を制御するための定義基準である。コマンド定義 (CMDDEF) では commandname に対しモジュール名 (MOD=modulename) を指定し、TYPE（B、BP、D、H、I、P、R、RD、RP など）、RES (Y/N)、ECHO (Y/N)、PARSE (Y/N)、SEC (DE/BY/CH)、IGNRLSUP (*/番号)、FOLDUP (N/Y)、PARMSYN・CMDSYN による同義語、EDIT (N/Y) といった属性を設定する。これらの属性によりメッセージおよびコマンドの抑止・処理動作を細かく規定する。",
+      "verify_steps": "[セッション環境] NetView 6.4 — VTAM メッセージ/コマンド処理定義\n[コマンド1] CMDDEF.commandname.MOD=modulename など抑止条件属性を定義\n[出力1] 指定した TYPE/RES/ECHO/PARSE/SEC 等が反映される\n[コマンド2] 該当章 (NetView_6.4_Automation_Guide.pdf p.476) を参照し属性値を確認\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.476)\n[記録項目] (1) CMDDEF 属性値 (2) 抑止対象メッセージ (3) 該当ページの確認",
+      "quiz": {
+        "q": "VTAM メッセージ抑止条件のコマンド定義 (CMDDEF) で指定する属性として適切なものはどれか。",
+        "choices": [
+          "MOD（モジュール名）、TYPE、RES、ECHO、PARSE、SEC などの属性",
+          "RACF のパスワード有効期限",
+          "DASD のボリューム通し番号",
+          "TSO のリージョンサイズ"
+        ],
+        "answer": 0,
+        "explanation": "VTAM メッセージ抑止条件の CMDDEF では MOD=modulename、TYPE、RES、ECHO、PARSE、SEC、IGNRLSUP、FOLDUP、EDIT 等の属性を指定する。誤答はこの定義の属性ではない。(出典: NetView_6.4_Automation_Guide.pdf p.476)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.476",
+      "rag_hit": "CMDDEF.commandname.MOD=modulename. TYPE: B,BP,D,H,I,P,R,RD,RP. RES=Y/N. ECHO=Y/N. PARSE=Y/N. SEC=DE/BY/CH. IGNRLSUP=*/number. FOLDUP=N/Y. CMDSYN/PARMSYN. EDIT=N/Y. (Automation_Guide Appendix D, p.475-476)"
+    },
+    {
+      "row_id": "10035",
+      "title": "Waiting for a Specific Event",
+      "naiyou_jp": "コマンドリストやコマンドプロセッサーでは、特定のイベントの発生を待つために待機機能を使用できるが、その手法はコマンドリスト言語とコマンドプロセッサーとで異なる。オートタスク配下で実行する自動化コマンドリストでは、オートタスクが永久に待機状態に陥らないよう、待機機能を使う場合は必ずタイムアウト値を指定する。NetView コマンドリスト言語では &WAIT 制御ステートメント、REXX ではウェイト機能を用い、GO コマンドや *ENDWAIT 等で待機を終了できる。",
+      "verify_steps": "[セッション環境] NetView 6.4 — コマンドリスト (REXX または NetView CLL)\n[コマンド1] コマンドリスト内に &WAIT event=-label,timeout を記述（タイムアウト指定）\n[出力1] 指定イベント受信または時間切れまで待機する\n[コマンド2] (NCCF) GO （端末から待機を終了）\n[出力2] &WAIT CONTINUE 直後の次ステートメントから処理が継続する (出典: NetView_6.4_Automation_Guide.pdf p.125)\n[記録項目] (1) 待機イベントとタイムアウト値 (2) 待機終了手段 (GO/ENDWAIT) (3) 該当章の確認",
+      "quiz": {
+        "q": "オートタスク配下でイベント待機を行う際に必ず指定すべきものはどれか。",
+        "choices": [
+          "オートタスクが無限に待機しないよう、タイムアウト値を指定する",
+          "RACF パスワードを指定する",
+          "VTAM の APPL 名を指定する",
+          "DASD ボリュームを指定する"
+        ],
+        "answer": 0,
+        "explanation": "オートタスク配下の自動化コマンドリストで待機機能を使う場合は、オートタスクが永久に待機状態に陥らないよう必ずタイムアウト値を指定する。誤答は待機機能で指定する項目ではない。(出典: NetView_6.4_Automation_Guide.pdf p.125)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.125",
+      "rag_hit": "For automation command lists running under an autotask, avoid having autotasks wait for events. If you use a wait facility, ensure that you specify a time-out value to prevent the autotask from waiting endlessly. (Automation_Guide p.126; &WAIT — Programming REXX/CLL p.155-156)"
+    },
+    {
+      "row_id": "10036",
+      "title": "What Are Installation Exits?",
+      "naiyou_jp": "インストレーション出口（インストール出口）は、NetView の処理に独自の機能を追加するために利用者が用意するプログラムである。オペレーター ID やタスク識別子には命名上の制約があり、ハードコピーログ・端末・タスク識別子をオペレーター ID として使用してはならない。また NetView が予約している識別子（ALL、DPR、DST、HCL、HCT、LOG、MNT、NNT、OPT、OST、PPT、SYSOP、TCT）は使用できない。オペレーター ID を LU 名と一致させる場合には一定の考慮が必要である。",
+      "verify_steps": "[セッション環境] NetView 6.4 — DSIOPF / インストレーション出口定義\n[コマンド1] DSIOPF でオペレーター ID を定義（予約済み ID を避ける）\n[出力1] ALL/DPR/DST/HCL/HCT/LOG/MNT/NNT/OPT/OST/PPT/SYSOP/TCT は予約済みで使用不可\n[コマンド2] インストレーション出口プログラムを定義し動作を確認\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.289)\n[記録項目] (1) 使用したオペレーター ID (2) 予約済み ID の回避 (3) 該当ページの確認",
+      "quiz": {
+        "q": "NetView でオペレーター ID として使用してはならない予約済み識別子に含まれるものはどれか。",
+        "choices": [
+          "SYSOP, PPT, LOG など NetView の予約済み識別子",
+          "任意の 8 文字英数字すべて",
+          "RACF ユーザー ID すべて",
+          "VTAM の LU 名すべて"
+        ],
+        "answer": 0,
+        "explanation": "NetView は ALL・DPR・DST・HCL・HCT・LOG・MNT・NNT・OPT・OST・PPT・SYSOP・TCT などの識別子を予約しており、オペレーター ID として使用できない。誤答は予約済み識別子の説明として不適切である。(出典: NetView_6.4_Automation_Guide.pdf p.289)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.289",
+      "rag_hit": "Do not use hardcopy logs, terminals, task identifiers as operator IDs. Reserved by NetView: ALL, DPR, DST, HCL, HCT, LOG, MNT, NNT, OPT, OST, PPT, SYSOP, TCT. (Automation_Guide p.289)"
+    },
+    {
+      "row_id": "10037",
+      "title": "What Does NetView Automation Mean?",
+      "naiyou_jp": "NetView 自動化は、自動化テーブルの論理的かつ逐次的な処理を通じてメッセージや MSU に対するアクションを実行する仕組みである。ALWAYS ステートメントが示すステートメントは、自動化テーブルの論理的・逐次的処理によって ALWAYS ステートメントに到達したときにのみ処理される。マッチが発生して自動化テーブル処理が停止した場合、そのマッチより後の ALWAYS ステートメントは処理されない。コマンドやコマンドリストを発行する ALWAYS ステートメントの使用には注意が必要である。",
+      "verify_steps": "[セッション環境] NetView 6.4 — 自動化テーブル / NCCF\n[コマンド1] (NCCF) AUTOTBL STATUS （ロード済み自動化テーブルの状態を確認）\n[出力1] 現在アクティブな自動化テーブルの順序・状態が表示される\n[コマンド2] (NCCF) AUTOTBL MEMBER=tbl,TEST （ALWAYS を含むステートメント処理を検証）\n[出力2] マッチ後の ALWAYS が処理されないことを確認 (出典: NetView_6.4_Automation_Guide.pdf p.37)\n[記録項目] (1) 自動化テーブルの処理順序 (2) ALWAYS の処理条件 (3) ログによる動作確認",
+      "quiz": {
+        "q": "自動化テーブルにおいて ALWAYS ステートメントが処理される条件として正しいものはどれか。",
+        "choices": [
+          "論理的・逐次的処理で ALWAYS に到達したときにのみ処理され、先行マッチで処理が停止すると以降の ALWAYS は処理されない",
+          "テーブルの位置に関わらず常に最初に処理される",
+          "オペレーターがログオンしたときにのみ処理される",
+          "RACF 認証成功時にのみ処理される"
+        ],
+        "answer": 0,
+        "explanation": "ALWAYS ステートメントは論理的・逐次的な自動化テーブル処理によって到達したときにのみ処理され、マッチによって処理が停止するとそれ以降の ALWAYS は処理されない。誤答は処理条件として不正確である。(出典: NetView_6.4_Automation_Guide.pdf p.37)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.37",
+      "rag_hit": "ALWAYS statements are processed only when reached through logical and sequential automation-table processing. If processing stops because of a match, any ALWAYS statements after the match are not processed. (Automation_Guide p.236)"
+    },
+    {
+      "row_id": "10038",
+      "title": "What Is the Automation Table?",
+      "naiyou_jp": "自動化テーブルは、アクション（コマンドリストやコマンドの処理など）を引き起こすメッセージや管理サービスユニット (MSU) を識別するための IF-THEN ステートメント群で構成される。AUTOTBL コマンドにより、アクティブな自動化テーブルのリストへの個別テーブルの挿入・置換・除去、自動化テーブルの状態表示、ステートメントの有効化・無効化、構文エラーのテスト、出力リスト作成ができる。CONTINUE キーワード (YES/NO/STOP) でマッチ後に後続ステートメントの評価を続けるかを制御する。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] (NCCF) AUTOTBL STATUS （アクティブな自動化テーブルの状態を表示）\n[出力1] 現在ロードされている自動化テーブルの一覧が表示される\n[コマンド2] (NCCF) AUTOTBL MEMBER=ATABLE1,TEST,LISTING=LIST1 （構文テスト）\n[出力2] 構文エラーがあれば報告され、出力リストが生成される (出典: NetView_6.4_Automation_Guide.pdf p.157)\n[記録項目] (1) IF-THEN ステートメント構成 (2) CONTINUE の動作 (3) 構文テスト結果",
+      "quiz": {
+        "q": "自動化テーブルを構成し、アクションを引き起こすメッセージや MSU を識別するステートメント形式はどれか。",
+        "choices": [
+          "IF-THEN ステートメント",
+          "SELECT-WHEN-OTHERWISE 文のみ",
+          "GOTO ステートメントのみ",
+          "DD ステートメント"
+        ],
+        "answer": 0,
+        "explanation": "自動化テーブルは、アクションを引き起こすメッセージや MSU を識別する IF-THEN ステートメント群で構成され、AUTOTBL コマンドで管理・テストできる。誤答は自動化テーブルの構成要素ではない。(出典: NetView_6.4_Automation_Guide.pdf p.157)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.157",
+      "rag_hit": "The automation table is used to identify the messages or MSUs that are to result in actions... AUTOTBL command can insert/replace/remove tables, display status, enable/disable statements, test for syntax errors. IF-THEN with CONTINUE(Yes/No/Stop). (Command_Reference_Vol1 p.117; Automation_Guide p.221)"
+    },
+    {
+      "row_id": "10039",
+      "title": "What Is the Command Revision Table?",
+      "naiyou_jp": "コマンドリビジョンテーブル (CRT) は、コマンドが実行される前にコマンドテキストを検査・改変するためのテーブルである。SELECT グループ内で REVISE ステートメントを用いてコマンド文字列を修正でき、複数の REVISE ステートメントはそれぞれ直前のリビジョン結果に作用する。なお MVS はコマンドあたり 126 文字の制限を課しており、CRT はこの制限を超えても警告や条件を出さない。MVS Command Revision 機能は従来の MVS Command Management 機能を置き換えるものである。",
+      "verify_steps": "[セッション環境] NetView 6.4 — コマンドリビジョンテーブル定義\n[コマンド1] CRT に SELECT グループと REVISE(action_statement) を定義\n[出力1] 対象コマンドテキストが REVISE のエディットスクリプトで改変される\n[コマンド2] CRT のロジックをテストし改変結果を確認\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.145)\n[記録項目] (1) SELECT/REVISE 構成 (2) 126 文字制限の確認 (3) 改変後コマンドテキスト",
+      "quiz": {
+        "q": "コマンドリビジョンテーブル (CRT) でコマンド文字列を修正するために使用するステートメントはどれか。",
+        "choices": [
+          "REVISE ステートメント（エディットスクリプトでコマンドテキストを改変）",
+          "RACF PERMIT ステートメント",
+          "VTAM VARY ステートメント",
+          "JCL DD ステートメント"
+        ],
+        "answer": 0,
+        "explanation": "CRT では REVISE ステートメントがコマンド文字列（テキスト）を改変し、エディットスクリプトを括弧で囲んで指定する。複数の REVISE は直前の結果に順次作用する。誤答は CRT のステートメントではない。(出典: NetView_6.4_Automation_Guide.pdf p.145)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.145",
+      "rag_hit": "Chapter 14. Command Revision Table (CRT)... REVISE statement modifies the command string (text). MVS imposes a limit of 126 characters per command. MVS Command Revision replaces MVS Command Management. (Automation_Guide p.145, p.151)"
+    },
+    {
+      "row_id": "10040",
+      "title": "What Is the Message Revision Table?",
+      "naiyou_jp": "メッセージリビジョンテーブル (MRT) は、MVS メッセージが表示・ログ記録・自動化・シスプレックス経由のルーティングを受ける前にそれらを横取りして、メッセージ ID やジョブ名などの多くのプロパティに基づいて判断を下せるようにする機能である。MRT のステートメントには SELECT で開始したセクションを閉じる END、アクション一致時にそれ以降のメッセージリビジョンを停止する EXIT などがある。WHEN ステートメントと REVISE ステートメントは PIPE EDIT オーダーから成る。",
+      "verify_steps": "[セッション環境] NetView 6.4 — メッセージリビジョンテーブル定義\n[コマンド1] MRT に SELECT / WHEN / REVISE / END ステートメントを定義\n[出力1] MVS メッセージが表示・ログ前に横取りされ、ID やジョブ名で判定される\n[コマンド2] (NCCF) REVISE MSG ... でメッセージリビジョンをテスト\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.137)\n[記録項目] (1) SELECT/WHEN/REVISE/END 構成 (2) 判定に使うプロパティ (メッセージ ID/ジョブ名) (3) 該当章の確認",
+      "quiz": {
+        "q": "メッセージリビジョンテーブル (MRT) の機能として正しいものはどれか。",
+        "choices": [
+          "MVS メッセージが表示・ログ・自動化・ルーティングされる前に横取りし、ID やジョブ名等で判断を下せる",
+          "DASD ボリュームをフォーマットする",
+          "RACF パスワードを生成する",
+          "VTAM の主要ノードを活性化する"
+        ],
+        "answer": 0,
+        "explanation": "MRT は MVS メッセージが表示・ログ・自動化・シスプレックスへのルーティングを受ける前に横取りし、メッセージ ID やジョブ名などのプロパティに基づいて判断を下せる。誤答は MRT の機能ではない。(出典: NetView_6.4_Automation_Guide.pdf p.137)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.137",
+      "rag_hit": "The message revision table (MRT) enables you to intercept MVS messages before they are displayed, logged, automated, or routed through your sysplex... decisions based on message ID, job name, and other properties. WHEN and REVISE consist of PIPE EDIT orders. (Automation_Guide p.137)"
+    },
+    {
+      "row_id": "10041",
+      "title": "WHEN Statement",
+      "naiyou_jp": "WHEN ステートメントは、メッセージリビジョンテーブル (MRT) およびコマンドリビジョンテーブル (CRT) で使用され、REVISE ステートメントとともに PIPE EDIT オーダーから構成される。WHEN は SELECT グループ内で、リビジョン（改変）処理を適用する条件を選択する役割を持つ。これらのエディットオーダーの使い方については NetView オンラインヘルプまたは『IBM Z NetView Programming: Pipes』を参照する。WHEN で条件に合致したメッセージやコマンドに対し REVISE が実際の修正を行う。",
+      "verify_steps": "[セッション環境] NetView 6.4 — MRT/CRT 定義\n[コマンド1] SELECT グループ内に WHEN (PIPE EDIT オーダー) を記述し改変条件を選択\n[出力1] 条件に合致したメッセージ／コマンドが REVISE の対象となる\n[コマンド2] WHEN と REVISE を組み合わせ、リビジョンのロジックをテスト\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.137)\n[記録項目] (1) WHEN の条件 (PIPE EDIT) (2) REVISE による改変結果 (3) 該当章の確認",
+      "quiz": {
+        "q": "リビジョンテーブルにおける WHEN ステートメントと REVISE ステートメントの構成要素として正しいものはどれか。",
+        "choices": [
+          "WHEN と REVISE はいずれも PIPE EDIT オーダーから構成される",
+          "WHEN と REVISE は RACF プロファイルから構成される",
+          "WHEN と REVISE は JCL DD 文から構成される",
+          "WHEN と REVISE は VTAM マクロから構成される"
+        ],
+        "answer": 0,
+        "explanation": "メッセージ/コマンドリビジョンテーブルの WHEN ステートメントと REVISE ステートメントは PIPE EDIT オーダーから構成される。WHEN が改変条件を選択し REVISE が修正を行う。誤答はその構成要素ではない。(出典: NetView_6.4_Automation_Guide.pdf p.137)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.137",
+      "rag_hit": "The WHEN and REVISE statements consist of PIPE EDIT orders. See the NetView program online help or IBM Z NetView Programming: Pipes for information about how to use these edit orders. (Automation_Guide p.137; CRT/MRT)"
+    },
+    {
+      "row_id": "10042",
+      "title": "Writing Automation Table Statements to Automate Messages",
+      "naiyou_jp": "メッセージを自動化するための自動化テーブルステートメントの記述では、IF MSGID='...' THEN ... の形式でメッセージ ID を検査し、アクションメッセージの自動化などを行う。例えば IF MSGID = 'XYZ123I' THEN EXEC(CMD('...')) CONTINUE(Y); のように記述すると、対象メッセージ受信時にコマンドを実行しつつ、CONTINUE(Y) によって後続の自動化テーブルステートメントによる処理も継続できる。記述方法の選択にはメッセージ ID による検査やアクションメッセージの自動化といった観点がある。",
+      "verify_steps": "[セッション環境] NetView 6.4 — 自動化テーブル定義\n[コマンド1] 自動化テーブルに IF MSGID='XYZ123I' THEN EXEC(CMD('...')) CONTINUE(Y); を記述\n[出力1] 対象メッセージ受信時にコマンドが実行され、CONTINUE(Y) で後続処理も継続\n[コマンド2] (NCCF) AUTOTBL MEMBER=tbl,TEST （構文検証）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.314)\n[記録項目] (1) IF MSGID 条件 (2) EXEC/CMD アクション (3) CONTINUE の効果",
+      "quiz": {
+        "q": "メッセージを自動化する自動化テーブルステートメントで、マッチ後も後続ステートメントの処理を継続させるアクションはどれか。",
+        "choices": [
+          "CONTINUE(Y)",
+          "STOP(ALL)",
+          "DELETE(MSG)",
+          "PURGE(ALL)"
+        ],
+        "answer": 0,
+        "explanation": "IF MSGID='...' THEN ... CONTINUE(Y); のように CONTINUE(Y) を指定すると、メッセージがマッチした後も後続の自動化テーブルステートメントによる処理が継続される。誤答はそのような継続アクションではない。(出典: NetView_6.4_Automation_Guide.pdf p.314)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.314",
+      "rag_hit": "IF MSGID = 'XYZ123I' THEN EXEC(CMD('MSG OPER1 ...')) CONTINUE(Y); ... CONTINUE(Y) allows later automation table statements to process the message. (Users_Guide p.224; Automation_Guide p.280, p.314)"
+    },
+    {
+      "row_id": "10043",
+      "title": "Writing Automation Table Statements to Automate MSUs",
+      "naiyou_jp": "管理サービスユニット (MSU) を自動化する自動化テーブルステートメントの記述では、自動化テーブルがメッセージや MSU に応じてコマンドプロシージャを呼び出し、MSU の情報（システム ID やジョブ名など）を抽出してパラメーターとしてプロシージャに渡せる。ハードウェアモニターのレコードやステータスモニター・NMC が検出した状態変化を MSU やメッセージに変換することで、それらの情報も自動化できる。MSU の自動化はメッセージの自動化と同じ自動化テーブルの仕組みで扱われる。",
+      "verify_steps": "[セッション環境] NetView 6.4 — 自動化テーブル定義\n[コマンド1] 自動化テーブルに MSU 用の IF 条件を記述し、EXEC でコマンドプロシージャを呼び出す\n[出力1] MSU の情報（システム ID/ジョブ名）が抽出されパラメーターとして渡される\n[コマンド2] (NCCF) AUTOTBL MEMBER=tbl,TEST （MSU 自動化ステートメントを検証）\n[出力2] (出典: NetView_6.4_Automation_Guide.pdf p.318)\n[記録項目] (1) MSU の IF 条件 (2) 抽出情報の受け渡し (3) 構文テスト結果",
+      "quiz": {
+        "q": "MSU を自動化する自動化テーブルステートメントで行えることとして正しいものはどれか。",
+        "choices": [
+          "MSU からシステム ID やジョブ名などの情報を抽出し、パラメーターとしてコマンドプロシージャに渡す",
+          "RACF データセットを暗号化する",
+          "VTAM の APPL を自動生成する",
+          "DASD をフォーマットする"
+        ],
+        "answer": 0,
+        "explanation": "自動化テーブルは MSU に応じてコマンドプロシージャを呼び出し、MSU からシステム ID やジョブ名などの情報を抽出してパラメーターとして渡せる。誤答は自動化テーブルの MSU 処理ではない。(出典: NetView_6.4_Automation_Guide.pdf p.318)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.318",
+      "rag_hit": "The automation table can respond to a message or MSU by calling a command procedure... can extract information (MVS system ID or job name) and pass it to a command procedure. (Automation_Guide p.54, p.313)"
+    },
+    {
+      "row_id": "10044",
+      "title": "Writing Simple Command Procedures",
+      "naiyou_jp": "簡易コマンドプロシージャの記述は、各オペレーターに適切なコマンドと機能を提供する操作インターフェースに関わるものである。NetView オペレーターは TAF（ターミナルアクセスファシリティ）セッションを使って TSO、CICS、IMS など他のアプリケーションへアクセスできる。コマンドプロシージャは現在日時や実行中タスク種別などの情報を取得し、オペレーティングシステムや VTAM へコマンド・メッセージを渡してシステム自動化を実行できる。関連項目として多重コンソールサポートコンソールとオートタスクの利用、AUTOTASK コマンドがある。",
+      "verify_steps": "[セッション環境] NetView 6.4 ターミナル (NCCF)\n[コマンド1] 簡易コマンドプロシージャ（REXX/CLL）を作成しオペレーターに提供\n[出力1] オペレーターは TAF セッションで TSO/CICS/IMS 等にアクセス可能\n[コマンド2] (NCCF) プロシージャ実行 → OS/VTAM へコマンドを渡す\n[出力2] 応答メッセージが返る (出典: NetView_6.4_Automation_Guide.pdf p.311)\n[記録項目] (1) プロシージャの構文・パラメーター (2) 応答メッセージ ID (3) 関連コマンド (AUTOTASK 等)",
+      "quiz": {
+        "q": "簡易コマンドプロシージャに関連し、NetView オペレーターが他アプリケーションへアクセスするために使用できるセッション機能はどれか。",
+        "choices": [
+          "TAF（ターミナルアクセスファシリティ）セッションで TSO・CICS・IMS 等にアクセスする",
+          "RACF セッションでパスワードを変更する",
+          "DFSMS セッションでボリュームを移行する",
+          "JES2 セッションでスプールを削除する"
+        ],
+        "answer": 0,
+        "explanation": "NetView オペレーターは TAF セッションを使って TSO、CICS、IMS など他のアプリケーションへアクセスできる。コマンドプロシージャは OS や VTAM へコマンドを渡してシステム自動化を行う。誤答は TAF セッションの用途ではない。(出典: NetView_6.4_Automation_Guide.pdf p.311)"
+      },
+      "source": "NetView_6.4_Automation_Guide.pdf p.311",
+      "rag_hit": "Provide each operator with appropriate commands and functions. NetView operator can use TAF sessions to other applications such as TSO, CICS, IMS. (Automation_Guide p.310-311; command procedures pass commands to OS/VTAM p.55)"
+    }
+  ]
+}

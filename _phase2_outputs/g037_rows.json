@@ -1,0 +1,757 @@
+[
+{
+"rid": "7453",
+"title": "ACB Monitor Customization",
+"type": "A"
+},
+{
+"rid": "7454",
+"title": "Accessing publications online",
+"type": "B"
+},
+{
+"rid": "7455",
+"title": "Adding Optional Tasks to the NetView Program",
+"type": "A"
+},
+{
+"rid": "7456",
+"title": "Adding or Modifying Resource Types",
+"type": "A"
+},
+{
+"rid": "7457",
+"title": "Advanced Customization - SNMP Trap Forwarding",
+"type": "B"
+},
+{
+"rid": "7458",
+"title": "Advanced Customization - Translating Data",
+"type": "B"
+},
+{
+"rid": "7459",
+"title": "Alert Adapter Service, Confirmed Alert Adapter Service, and Alert-to-Trap Service Data Encoding",
+"type": "A"
+},
+{
+"rid": "7460",
+"title": "Alert-to-Trap Post-CDS Processing",
+"type": "B"
+},
+{
+"rid": "7461",
+"title": "Alert-to-Trap Service Data Encoding",
+"type": "B"
+},
+{
+"rid": "7462",
+"title": "Alerts-Dynamic Panel",
+"type": "B"
+},
+{
+"rid": "7463",
+"title": "Attribute Symbols",
+"type": "B"
+},
+{
+"rid": "7464",
+"title": "Attribute Variables",
+"type": "B"
+},
+{
+"rid": "7465",
+"title": "Building Generic Alert Panels",
+"type": "A"
+},
+{
+"rid": "7466",
+"title": "Changing Color and Highlighting for Hardware Monitor Panels",
+"type": "A"
+},
+{
+"rid": "7467",
+"title": "Changing Colors in Browse",
+"type": "B"
+},
+{
+"rid": "7468",
+"title": "Changing Panel Text",
+"type": "B"
+},
+{
+"rid": "7469",
+"title": "Choosing a Language",
+"type": "A"
+},
+{
+"rid": "7470",
+"title": "Class Definition Statement Files",
+"type": "B"
+},
+{
+"rid": "7471",
+"title": "Coding the VIEW Command",
+"type": "B"
+},
+{
+"rid": "7472",
+"title": "Collecting Data",
+"type": "B"
+},
+{
+"rid": "7473",
+"title": "Color Maps for Hardware Monitor Panels",
+"type": "A"
+},
+{
+"rid": "7474",
+"title": "Command Processors and Command Lists",
+"type": "A"
+},
+{
+"rid": "7475",
+"title": "Compound Symbols",
+"type": "B"
+},
+{
+"rid": "7476",
+"title": "Considerations",
+"type": "A"
+},
+{
+"rid": "7477",
+"title": "Controlling Color and Highlighting of Fields",
+"type": "A"
+},
+{
+"rid": "7478",
+"title": "Copying and Changing Help Source Files",
+"type": "A"
+},
+{
+"rid": "7479",
+"title": "Creating a Rollable Component with VIEW",
+"type": "A"
+},
+{
+"rid": "7480",
+"title": "Creating Full-Screen Panels",
+"type": "A"
+},
+{
+"rid": "7481",
+"title": "Cross-Reference for Message and Environment Functions",
+"type": "A"
+},
+{
+"rid": "7482",
+"title": "Customization",
+"type": "A"
+},
+{
+"rid": "7483",
+"title": "Customization Areas",
+"type": "B"
+},
+{
+"rid": "7484",
+"title": "Customization Considerations",
+"type": "B"
+},
+{
+"rid": "7485",
+"title": "Customizing Alert and Message Routing from the NetView program",
+"type": "A"
+},
+{
+"rid": "7486",
+"title": "Customizing Hardware Monitor Displayed Data",
+"type": "A"
+},
+{
+"rid": "7487",
+"title": "Customizing PF Keys and Immediate Message Line",
+"type": "A"
+},
+{
+"rid": "7488",
+"title": "Customizing Session Monitor Sense Descriptions",
+"type": "A"
+},
+{
+"rid": "7489",
+"title": "Customizing the Event/Automation Service",
+"type": "A"
+},
+{
+"rid": "7490",
+"title": "Customizing the Event/Automation Service Configuration Files",
+"type": "A"
+},
+{
+"rid": "7491",
+"title": "Customizing the Event/Automation Startup Parameters",
+"type": "A"
+},
+{
+"rid": "7492",
+"title": "Customizing the IBM Tivoli Enterprise Console",
+"type": "A"
+},
+{
+"rid": "7493",
+"title": "Customizing the Initialization of the Event/Automation Service",
+"type": "A"
+},
+{
+"rid": "7494",
+"title": "Customizing the NetView Command Facility Panel",
+"type": "A"
+},
+{
+"rid": "7495",
+"title": "Data Services Commands",
+"type": "B"
+},
+{
+"rid": "7496",
+"title": "Data Storage and Recording",
+"type": "B"
+},
+{
+"rid": "7497",
+"title": "Defaults for Configurable Settings",
+"type": "B"
+},
+{
+"rid": "7498",
+"title": "Defining a Focal Point",
+"type": "A"
+},
+{
+"rid": "7499",
+"title": "Defining an Entry Point",
+"type": "A"
+},
+{
+"rid": "7500",
+"title": "Defining User-Written Programs on the Host: Exits and Commands",
+"type": "A"
+},
+{
+"rid": "7501",
+"title": "Designing Functions",
+"type": "B"
+},
+{
+"rid": "7502",
+"title": "Detailed Example for Trap-to-Alert Conversion",
+"type": "A"
+},
+{
+"rid": "7503",
+"title": "Determining a Panel Name",
+"type": "A"
+},
+{
+"rid": "7504",
+"title": "Displaying New Help Panels",
+"type": "B"
+},
+{
+"rid": "7505",
+"title": "Displaying Special Attributes",
+"type": "B"
+},
+{
+"rid": "7506",
+"title": "Displaying Variables in Source Panels",
+"type": "A"
+},
+{
+"rid": "7507",
+"title": "Displaying VIEW Return Codes with SHOWCODE",
+"type": "A"
+},
+{
+"rid": "7508",
+"title": "Dynamic Update Capabilities",
+"type": "B"
+},
+{
+"rid": "7509",
+"title": "Encoding Incoming Event Data",
+"type": "B"
+},
+{
+"rid": "7510",
+"title": "Event Detail Panel",
+"type": "B"
+},
+{
+"rid": "7511",
+"title": "Event Receiver Post-CDS Processing",
+"type": "B"
+},
+{
+"rid": "7512",
+"title": "Event Receiver Service Data Encoding",
+"type": "B"
+},
+{
+"rid": "7513",
+"title": "Event/Automation Service Output",
+"type": "B"
+},
+{
+"rid": "7514",
+"title": "Event/Automation Service Output Log Names",
+"type": "B"
+},
+{
+"rid": "7515",
+"title": "Event/Automation Service: Overview",
+"type": "B"
+},
+{
+"rid": "7516",
+"title": "Examples",
+"type": "A"
+},
+{
+"rid": "7517",
+"title": "FETCH Segment of a Class Definition Statement",
+"type": "A"
+},
+{
+"rid": "7518",
+"title": "Finding Customization Information",
+"type": "B"
+},
+{
+"rid": "7519",
+"title": "Focal Point VPD Collection",
+"type": "B"
+},
+{
+"rid": "7520",
+"title": "Format of Event/Automation Service Output Data",
+"type": "A"
+},
+{
+"rid": "7521",
+"title": "Full-Screen Input Capabilities",
+"type": "B"
+},
+{
+"rid": "7522",
+"title": "Functions to Consider before Making Modifications",
+"type": "A"
+},
+{
+"rid": "7523",
+"title": "General Help Fields",
+"type": "B"
+},
+{
+"rid": "7524",
+"title": "General-Use Programming Interface Control Blocks and Include Files",
+"type": "A"
+},
+{
+"rid": "7525",
+"title": "HELPMAP Facility",
+"type": "B"
+},
+{
+"rid": "7526",
+"title": "IBM Z NetView library",
+"type": "B"
+},
+{
+"rid": "7527",
+"title": "Immediate Commands",
+"type": "B"
+},
+{
+"rid": "7528",
+"title": "Input and Output",
+"type": "B"
+},
+{
+"rid": "7529",
+"title": "Input Attribute List",
+"type": "B"
+},
+{
+"rid": "7530",
+"title": "Installation Exit Programs",
+"type": "B"
+},
+{
+"rid": "7531",
+"title": "Issuing Commands from Command Procedures",
+"type": "A"
+},
+{
+"rid": "7532",
+"title": "Language Choices by Function",
+"type": "B"
+},
+{
+"rid": "7533",
+"title": "Locating Help Source Files",
+"type": "B"
+},
+{
+"rid": "7534",
+"title": "Logging",
+"type": "B"
+},
+{
+"rid": "7535",
+"title": "Long-Running Commands",
+"type": "B"
+},
+{
+"rid": "7536",
+"title": "MAP Segment of a Class Definition Statement",
+"type": "A"
+},
+{
+"rid": "7537",
+"title": "Message and Command Buffers",
+"type": "B"
+},
+{
+"rid": "7538",
+"title": "Message Color and Highlighting",
+"type": "B"
+},
+{
+"rid": "7539",
+"title": "Message Format Files",
+"type": "B"
+},
+{
+"rid": "7540",
+"title": "Modifying and Creating Online Help Information",
+"type": "A"
+},
+{
+"rid": "7541",
+"title": "Modifying BNJDNUMB, BNJDNAME, and BNJwwwww",
+"type": "A"
+},
+{
+"rid": "7542",
+"title": "Modifying CNMKEYS",
+"type": "A"
+},
+{
+"rid": "7543",
+"title": "Modifying Generic Code Point Tables",
+"type": "A"
+},
+{
+"rid": "7544",
+"title": "Modifying Hardware Monitor Nongeneric Panels",
+"type": "A"
+},
+{
+"rid": "7545",
+"title": "Modifying Network Asset Management Command Lists",
+"type": "A"
+},
+{
+"rid": "7546",
+"title": "Modifying the Color Map",
+"type": "A"
+},
+{
+"rid": "7547",
+"title": "NetView Instrumentation",
+"type": "B"
+},
+{
+"rid": "7548",
+"title": "NetView Macros and Control Blocks",
+"type": "A"
+},
+{
+"rid": "7549",
+"title": "NetView Program as a System Application Program",
+"type": "A"
+},
+{
+"rid": "7550",
+"title": "NetView Program Tasks",
+"type": "B"
+},
+{
+"rid": "7551",
+"title": "Nongeneric Alert Messages",
+"type": "B"
+},
+{
+"rid": "7552",
+"title": "Operator Presentation",
+"type": "B"
+},
+{
+"rid": "7553",
+"title": "Ordering publications",
+"type": "B"
+},
+{
+"rid": "7554",
+"title": "Output Pseudo Event",
+"type": "B"
+},
+{
+"rid": "7555",
+"title": "Overlaying Recommended Action Numbers",
+"type": "B"
+},
+{
+"rid": "7556",
+"title": "Parts",
+"type": "B"
+},
+{
+"rid": "7557",
+"title": "Performance",
+"type": "B"
+},
+{
+"rid": "7558",
+"title": "Privacy policy considerations",
+"type": "B"
+},
+{
+"rid": "7559",
+"title": "Product-Sensitive Programming Interfaces",
+"type": "B"
+},
+{
+"rid": "7560",
+"title": "Program Activity within a Task",
+"type": "A"
+},
+{
+"rid": "7561",
+"title": "Programming Interfaces",
+"type": "B"
+},
+{
+"rid": "7562",
+"title": "Prompt Highlight Tokens",
+"type": "B"
+},
+{
+"rid": "7563",
+"title": "Queuing Work to NetView Program Tasks",
+"type": "A"
+},
+{
+"rid": "7564",
+"title": "Recommended Action for Selected Event Panel",
+"type": "A"
+},
+{
+"rid": "7565",
+"title": "Return Codes from VIEW and BROWSE",
+"type": "A"
+},
+{
+"rid": "7566",
+"title": "Returning Command Line Input",
+"type": "B"
+},
+{
+"rid": "7567",
+"title": "REXX Versus the NetView Command List Language",
+"type": "A"
+},
+{
+"rid": "7568",
+"title": "Running More Than One Event/Automation Service",
+"type": "A"
+},
+{
+"rid": "7569",
+"title": "Sample of Panel Updating",
+"type": "B"
+},
+{
+"rid": "7570",
+"title": "Screen Format Definition Statements",
+"type": "B"
+},
+{
+"rid": "7571",
+"title": "SELECT Segment of a Class Definition Statement",
+"type": "A"
+},
+{
+"rid": "7572",
+"title": "Selecting the Color Map",
+"type": "A"
+},
+{
+"rid": "7573",
+"title": "Session Monitor Sense Codes",
+"type": "B"
+},
+{
+"rid": "7574",
+"title": "Special Characters",
+"type": "B"
+},
+{
+"rid": "7575",
+"title": "Speed of Implementation",
+"type": "A"
+},
+{
+"rid": "7576",
+"title": "Stability",
+"type": "B"
+},
+{
+"rid": "7577",
+"title": "Starting and Stopping Instrumentation",
+"type": "A"
+},
+{
+"rid": "7578",
+"title": "Starting the Event/Automation Service",
+"type": "A"
+},
+{
+"rid": "7579",
+"title": "Starting the VTAM ACB Monitor",
+"type": "A"
+},
+{
+"rid": "7580",
+"title": "Stopping the VTAM ACB Monitor",
+"type": "A"
+},
+{
+"rid": "7581",
+"title": "Storing Help Source Files",
+"type": "A"
+},
+{
+"rid": "7582",
+"title": "Tasks",
+"type": "B"
+},
+{
+"rid": "7583",
+"title": "Terminology in this Library",
+"type": "B"
+},
+{
+"rid": "7584",
+"title": "Testing",
+"type": "B"
+},
+{
+"rid": "7585",
+"title": "Translating ASCII Text Data",
+"type": "B"
+},
+{
+"rid": "7586",
+"title": "Translating SNMP Non-String Data Types",
+"type": "B"
+},
+{
+"rid": "7587",
+"title": "Trap-to-Alert Post-CDS Processing",
+"type": "B"
+},
+{
+"rid": "7588",
+"title": "Trap-to-Alert Service Data Encoding",
+"type": "B"
+},
+{
+"rid": "7589",
+"title": "Types of Event/Automation Service Output Data",
+"type": "A"
+},
+{
+"rid": "7590",
+"title": "User-Defined Alerts (Generic)",
+"type": "B"
+},
+{
+"rid": "7591",
+"title": "User-Defined Alerts (Nongeneric)",
+"type": "B"
+},
+{
+"rid": "7592",
+"title": "Using a Screen Format Definition",
+"type": "A"
+},
+{
+"rid": "7593",
+"title": "Using IBM Z NetView online help",
+"type": "A"
+},
+{
+"rid": "7594",
+"title": "Using NMVT Support for User-Written Programming",
+"type": "A"
+},
+{
+"rid": "7595",
+"title": "Using PF Keys and Subcommands with the INPUT Option",
+"type": "A"
+},
+{
+"rid": "7596",
+"title": "Using PF Keys and Subcommands with the NOINPUT Option",
+"type": "A"
+},
+{
+"rid": "7597",
+"title": "Using PF Keys and Subcommands with VIEW",
+"type": "A"
+},
+{
+"rid": "7598",
+"title": "Using the ACTION Command List",
+"type": "A"
+},
+{
+"rid": "7599",
+"title": "Using the VIEW Command",
+"type": "A"
+},
+{
+"rid": "7600",
+"title": "View-Based Help",
+"type": "B"
+},
+{
+"rid": "7601",
+"title": "VPD Collection from a Single NetView Domain",
+"type": "A"
+},
+{
+"rid": "7602",
+"title": "VPD Collection from a Single PU",
+"type": "A"
+},
+{
+"rid": "7603",
+"title": "Window-Based Help",
+"type": "B"
+}
+]

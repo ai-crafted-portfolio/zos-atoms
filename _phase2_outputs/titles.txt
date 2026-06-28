@@ -1,0 +1,300 @@
+11818	A	4-site and 6-site Metro/Global Mirror with Incremental Resynchronization
+11819	A	A 4-site scenario with Metro/Global Mirror and Global Copy
+11820	B	Abbreviations and acronyms
+11821	A	Adding and removing a subordinate storage system
+11822	A	Adding and removing an LSS to an existing Global Mirror environment
+11823	A	Adding and removing volumes to the Global Mirror environment
+11824	A	Adding copy sets (volumes) into the MT-PPRC session
+11825	A	Adding or removing storage systems or LSSs
+11826	A	Adding or removing volume pairs to or from a Global Mirror session
+11827	A	Ansible Collection for IBM Copy Services Manager
+11828	A	Application I/O and Global Mirror
+11829	B	Asynchronous replication technique
+11830	B	Automation and management
+11831	B	Autonomic behavior
+11832	B	Background copy performance
+11833	B	Bandwidth considerations
+11834	B	Basic concepts
+11835	A	Basic Metro Mirror and Global Copy operation
+11836	B	Benefits
+11837	A	Benefits of using the concurrent copy function
+11838	A	Best practices for setting up Metro/Global Mirror
+11839	B	Business-continuity functions
+11840	A	Cache-based concurrent copy on the DS8000
+11841	A	Cache-based concurrent copy sizing and requirements
+11842	B	Cascaded FlashCopy
+11843	A	Cascaded FlashCopy usage and examples
+11844	A	Cascaded Metro Mirror and Global Mirror
+11845	B	Cascaded Metro/Global Mirror topology
+11846	A	Cascaded MGM and MT-PPRC MGM
+11847	B	Cascaded PPRC after Multi-Target Peer-to-Peer Remote Copy failover
+11848	B	Cascading dataset level FlashCopy
+11849	B	Cascading FlashCopy
+11850	A	Cascading FlashCopy and Fast Reverse Restore
+11851	A	Cascading FlashCopy concept and design
+11852	B	Cascading IBM FlashCopy
+11853	A	Changing the copy mode from Global Copy to Metro Mirror
+11854	A	Changing the copy mode from Metro Mirror to Global Copy
+11855	A	Changing the Global Mirror tuning parameters
+11856	B	Channel extender
+11857	B	Checking consistency at H3 volumes at site 3
+11858	A	Cleaning up the remaining components at H2
+11859	A	Comparing Metro Mirror and Global Mirror
+11860	A	Concurrent copy function characteristics and usage
+11861	B	Concurrent copy function terminology
+11862	B	Concurrent copy operation
+11863	A	Connectivity: Ports, paths, and links
+11864	A	Considerations
+11865	A	Considerations for FlashCopy onto Global Mirror
+11866	B	Consistency group formation
+11867	B	Consistency group function
+11868	B	Consistency group function: How it works
+11869	B	Consistency group parameters
+11870	B	Consistent FlashCopy (FlashCopy consistency group)
+11871	A	Converting Global Mirror to Metro/Global Mirror
+11872	B	Copy option
+11873	B	Copy Services capacity examples
+11874	A	Copy Services license functions and guidelines
+11875	B	Copy Services license rules
+11876	B	Copy Services Manager
+11877	A	Copy Services Manager 6.3 advantages for multi-site replication and migration
+11878	B	Copy Services Manager CLI
+11879	B	Copy Services Manager GUI
+11880	B	Copy Services Manager interfaces
+11881	B	Copy Services Manager overview
+11882	B	Copy Services Manager Python Client
+11883	A	Copy Services Manager reliability, availability, and serviceability
+11884	B	Copy Services Manager terminology
+11885	B	Copy set
+11886	A	Creating a backup
+11887	A	Creating a FlashCopy for backup purposes without a volume copy
+11888	A	Creating a Global Copy consistent copy
+11889	A	Creating a Metro Mirror and Global Mirror topology
+11890	A	Creating a Metro/Global Mirror session
+11891	A	Creating a Multi-Target Global Mirror plus Global Mirror topology
+11892	A	Creating a test system or integration system
+11893	A	Creating a two Metro Mirror topology
+11894	A	Creating and starting the Global Mirror session
+11895	A	Creating consistent data on H2 volumes
+11896	A	Creating FlashCopy H3:J3
+11897	A	Creating FlashCopy relationships: H2 to J2 volumes
+11898	A	Creating Global Copy from H2 to H3
+11899	A	Creating Global Copy relationships: H1 to H2 volumes
+11900	A	Creating H1-H2 Metro Mirror pairs
+11901	A	Creating H1-H3 Global Copy pairs
+11902	A	Creating H1:H2Åf Metro Mirror pairs
+11903	A	Creating Metro Mirror with Incremental Resynchronization at H1
+11904	A	Creating paths from H1 to H2 if they do not exist
+11905	A	Creating paths from H2 to H1
+11906	B	Critical attribute (IBM Z only)
+11907	A	Data consistency and dependent writes
+11908	A	Data migration with double cascading
+11909	A	Defining and querying a Metro Mirror path
+11910	A	Defining and starting Global Mirror
+11911	A	Delayed creation of MTIR pairs
+11912	B	Dense wavelength division multiplexing
+11913	B	Design limitations
+11914	A	DFSMSdss copy commands with fast replication
+11915	B	DFSMSdss dataset for FlashCopy
+11916	B	DFSMSdss full volume FlashCopy
+11917	B	DFSMShsm fast replication
+11918	A	Disaster recovery test at the intermediate H2 site
+11919	A	Disaster recovery test at the remote H3 site
+11920	A	Displaying the Fibre Channel Connection Information Table
+11921	B	Distance considerations
+11922	A	Distribution of the workload: Location of source and target volumes
+11923	B	DS CLI command modes
+11924	B	DS CLI Copy Services command structure
+11925	B	DS CLI profile
+11926	B	DS Command-line Interface
+11927	B	DS8000 connectivity
+11928	B	DS8000 specific information
+11929	A	Effects of a failover on a path state
+11930	A	Effects of a freeze on a path state
+11931	B	Ending Global Mirror processing
+11932	A	Establishing a Global Mirror environment by using the DS CLI
+11933	B	Establishing a PPRC pair
+11934	B	Establishing a remote FlashCopy
+11935	A	Establishing Global Copy from H3 to H2
+11936	B	Establishing H1-H3 pairs
+11937	B	Establishing logical PPRC paths
+11938	B	Establishing PPRC paths
+11939	B	Establishing Remote Pair FlashCopy
+11940	B	Establishing the FlashCopy relationship
+11941	B	Establishing the PPRC paths
+11942	A	Examples of concurrent copy invocation
+11943	A	Failing back Global Copy from the H3 to H2
+11944	A	Failing back Metro Mirror from H1 to H2
+11945	A	Failing back Metro Mirror from H2 to H1
+11946	A	Failing over Metro Mirror to H2
+11947	B	Failing over to H1
+11948	B	Failover or failback scenario
+11949	B	Failure at remote H3 site
+11950	A	Failure at the intermediate H2 site
+11951	A	Failure at the local H1 site
+11952	B	Fast Reverse Restore
+11953	A	Features of Remote Pair FlashCopy
+11954	A	Fibre Channel physical links and I/O port considerations
+11955	B	Fibre Channel switches (FICON switches)
+11956	B	FlashCopy
+11957	B	FlashCopy and Global Mirror
+11958	A	FlashCopy before the cascading capability
+11959	B	FlashCopy command interface reference
+11960	A	FlashCopy considerations for Metro/Global Mirror and MT-PPRC
+11961	A	FlashCopy control with the interfaces
+11962	B	FlashCopy establish performance
+11963	B	FlashCopy for z/OS datasets
+11964	B	FlashCopy full copy
+11965	B	FlashCopy impact on applications
+11966	A	FlashCopy in z/OS by using DFSMSdss
+11967	B	FlashCopy management interfaces: Overview
+11968	B	FlashCopy nocopy
+11969	B	FlashCopy operational environments
+11970	B	FlashCopy performance overview
+11971	B	FlashCopy scenarios
+11972	A	FlashCopy with Metro Mirror and Global Copy
+11973	A	FlashCopy with other Copy Services
+11974	B	FlashCopy Withdraw interface differences
+11975	B	Forcing FlashCopy Withdraw
+11976	B	Free Journal Space
+11977	B	Freeze
+11978	B	Full volume FlashCopy
+11979	B	Functional description
+11980	B	GDPS 3-site solution overview
+11981	B	GDPS 4-site solution overview
+11982	B	GDPS 6-site solution overview
+11983	B	GDPS Global - GM overview
+11984	B	GDPS Logical Corruption Protection Manager
+11985	A	GDPS Metro and Metro HyperSwap
+11986	B	GDPS Metro overview
+11987	B	GDPS offerings
+11988	B	GDPS Virtual Appliance overview
+11989	B	General considerations
+11990	A	General considerations for storage failover
+11991	B	Global Copy
+11992	B	Global Copy bandwidth considerations
+11993	B	Global Copy overview
+11994	B	Global Copy plus Global Mirror
+11995	B	Global Copy point-in-time backup solution considerations
+11996	B	Global Copy positioning
+11997	B	Global Mirror
+11998	B	Global Mirror Bandwidth Accelerator
+11999	B	Global Mirror basic concepts
+12000	B	Global Mirror command reference
+12001	A	Global Mirror configuration and multiple FlashCopy targets
+12002	B	Global Mirror consistency group processing
+12003	B	Global Mirror environment topology changes
+12004	B	Global Mirror interface overview
+12005	A	Global Mirror interfaces and examples
+12006	B	Global Mirror master subordinate relationship
+12007	A	Global Mirror operations and recovery
+12008	B	Global Mirror overview
+12009	B	Global Mirror recovery
+12010	A	Global Mirror with multiple storage systems
+12011	B	GM general recovery scenario
+12012	B	H1 recovered
+12013	A	H1 recovery and returning to original topology
+12014	B	Hardware requirements
+12015	B	Help from IBM
+12016	A	Host connectivity at primary and secondary sites
+12017	B	IBM Copy Services interfaces overview
+12018	B	IBM Copy Services Manager
+12019	B	IBM FlashCopy
+12020	B	IBM FlashCopy examples
+12021	B	IBM FlashCopy interfaces
+12022	B	IBM FlashCopy options
+12023	B	IBM FlashCopy overview
+12024	B	IBM FlashCopy performance
+12025	A	IBM FlashCopy usage with IBM z/OS products
+12026	B	IBM Geographically Dispersed Parallel Sysplex
+12027	B	IBM Redbooks
+12028	B	IBM Z command alternatives
+12029	B	IBM Z interfaces
+12030	B	IBM z/OS concurrent copy function
+12031	B	IBM z/OS HyperSwap
+12032	A	ICKDSF commands for z/OS, z/VM, and VSEn
+12033	A	ICKDSF query command for FlashCopy
+12034	A	Implementing a Metro Mirror and Global Mirror topology
+12035	A	Implementing a Metro/Global Mirror and Metro Mirror topology
+12036	A	Implementing a MT Global Mirror and GM topology
+12037	A	Implementing a two Metro Mirror topology
+12038	B	Incremental FlashCopy
+12039	A	Incremental FlashCopy for backup purposes
+12040	B	Incremental Resynchronization recovery scenarios
+12041	B	Initial configuration
+12042	B	Initial synchronization
+12043	A	Installing a new DS8000 at H1Åf
+12044	A	Installing a new DS8000 at H2Åf
+12045	B	Interfaces
+12046	B	Interoperability
+12047	A	Introduction
+12048	B	License
+12049	B	License scope
+12050	B	Licensed functions
+12051	B	Licensing
+12052	B	Licensing requirements and restrictions
+12053	B	Location
+12054	B	Logical corruption protection functions
+12055	B	Logical paths
+12056	A	Logical subsystem and logical control unit versus rank: Considerations
+12057	A	LSS and consistency group considerations
+12058	A	Maintaining multiple FlashCopy relationships
+12059	A	Management interfaces with Copy Services functions
+12060	A	Managing data migration with Global Copy
+12061	A	Managing the Global Mirror environment with the DS CLI
+12062	A	Managing the load
+12063	A	Managing the usage of Copy Services licensed functions
+12064	B	Method 1: Using IBM Copy Services Manager
+12065	B	Method 2: Using DS CLI commands
+12066	B	Metro Mirror
+12067	A	Metro Mirror and Global Copy
+12068	A	Metro Mirror and Global Copy command reference
+12069	A	Metro Mirror and Global Copy DS CLI examples
+12070	A	Metro Mirror and Global Copy ICKDSF examples
+12071	A	Metro Mirror and Global Copy implementation considerations
+12072	A	Metro Mirror and Global Copy interfaces and examples
+12073	A	Metro Mirror and Global Copy interfaces overview
+12074	A	Metro Mirror and Global Copy operations
+12075	A	Metro Mirror and Global Copy pair states
+12076	A	Metro Mirror and Global Copy paths
+12077	A	Metro Mirror and Global Copy TSO examples
+12078	A	Metro Mirror and Global Mirror
+12079	B	Metro Mirror bandwidth considerations
+12080	B	Metro Mirror data consistency
+12081	B	Metro Mirror distance considerations
+12082	A	Metro Mirror freezepprc and unfreezepprc commands
+12083	B	Metro Mirror overview
+12084	B	Metro Mirror positioning
+12085	B	Metro/Global Mirror configuration
+12086	A	Metro/Global Mirror configuration and setup
+12087	B	Metro/Global Mirror design objectives
+12088	B	Metro/Global Mirror disaster recovery test scenarios
+12089	B	Metro/Global Mirror Incremental Resynchronization
+12090	B	Metro/Global Mirror operations
+12091	B	Metro/Global Mirror overview
+12092	B	Metro/Global Mirror plus Metro Mirror
+12093	B	Metro/Global Mirror processes
+12094	B	Metro/Global Mirror recovery scenarios
+12095	B	Metro/Global Mirror session operational functions
+12096	A	Metro/Global Mirror with bidirectional Global Mirror leg
+12097	A	Metro/Global Mirror with multiple storage systems
+12098	A	Migrating from Metro Mirror to Metro/Global Mirror
+12099	A	Modifying a Global Mirror session
+12100	A	Modifying Global Mirror session parameters
+12101	A	Monitoring for H1:H1Åf FULL DUPLEX
+12102	A	Monitoring for H1:H2Åf FULL DUPLEX
+12103	A	Monitoring out-of-sync tracks for H1Åf:H2 and H2:H1Åf
+12104	A	Moving host systems to H1
+12105	A	Moving production back to H1Åf
+12106	B	Moving production to H1Åf
+12107	B	Moving production to H2
+12108	B	MT-PPRC with cascaded MGM
+12109	B	MTIR change recording
+12110	A	MTIR enhancements in DS8000 10.1
+12111	B	Multi-site replication scenario examples
+12112	B	Multi-Target Incremental Resynchronization
+12113	B	Multi-Target Incremental Resynchronization pairs
+12114	B	Multi-Target Peer-to-Peer Remote Copy
+12115	A	Multi-Target Peer-to-Peer Remote Copy architecture and design
+12116	B	Multi-Target Peer-to-Peer Remote Copy overview
+12117	B	Multi-Target Peer-to-Peer Remote Copy pairs

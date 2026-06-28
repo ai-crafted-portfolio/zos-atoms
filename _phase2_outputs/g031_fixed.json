@@ -1,0 +1,636 @@
+{
+  "page": "g031",
+  "product": "IBM NetView 6.4",
+  "total_rows": 182,
+  "target_rows": 182,
+  "fixed_count": 33,
+  "rows": [
+    {
+      "row_id": "6300",
+      "title": "&BITAND",
+      "naiyou_jp": "&BITAND は NetView コマンドリスト言語の組み込み関数で、2 つのビット文字列（string1 と string2）の論理積（AND）を取り、結果のビット文字列を返す。string1・string2 は定数またはコマンドリスト変数を指定できる。string2 が null の場合は string1 がそのまま結果となる。string を 2 つより多く指定すると DSI186I が出てコマンドリストは終了し、string1 を省略すると DSI187I が出て終了する（REXX の同等関数と同じ動作）。ROUTCDE() などのビットマスク判定に利用される。",
+      "verify_steps": "検証目的: &BITAND がビット列の論理積を返すことを確認する。\n前提: NetView z/OS 稼働中、NCCF に NETOP1 でログオン済、DSICLD 連結に CLIST を配置可。\n\n[セッション] NetView NCCF コンソール (CNM01 / NETOP1)\n[手順1] 次の CLIST を作成: &RESULT = &BITAND X'15' X'24'\n        続けて &WRITE BITAND RESULT = &RESULT\n[手順2] コマンド行で CLIST を実行\n[期待結果] BITAND RESULT = X'04' 相当（X'15' AND X'24'）が表示される。\n[記録] (1)CLIST 抜粋 (2)実行コマンド (3)出力値 (4)RC=0 確認",
+      "quiz": {
+        "q": "NetView コマンドリスト言語の組み込み関数 &BITAND が行う処理はどれか?",
+        "choices": [
+          "2 つのビット文字列の論理積（AND）を取り結果を返す",
+          "2 つのビット文字列の論理和（OR）を取り結果を返す",
+          "文字列の長さを返す",
+          "2 つの文字列を連結する"
+        ],
+        "answer": 0,
+        "explanation": "&BITAND は string1 と string2 の論理積（AND）を取る組み込み関数。論理和は &BITOR、長さは &LENGTH、連結は &CONCAT であり、いずれも別関数である。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.117",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6301",
+      "title": "&BITOR",
+      "naiyou_jp": "&BITOR は NetView コマンドリスト言語の組み込み関数で、2 つのビット文字列の論理和（OR）を取り結果を返す。マニュアルの例では &BITOR X'15' X'24' は X'35'、&BITOR X'15' X'2456' は X'3556' となる。string2 が null なら string1 がそのまま結果。string を複数指定すると DSI186I で終了、string1 省略時は DSI187I で終了する。",
+      "verify_steps": "検証目的: &BITOR がビット列の論理和を返すことを確認する。\n前提: NetView 稼働中、NCCF ログオン済、CLIST 配置可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &R = &BITOR X'15' X'24' / &WRITE BITOR = &R\n[手順2] CLIST を実行\n[期待結果] BITOR = X'35' が表示される（マニュアル例と一致）。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&BITOR X'15' X'24' の結果として正しいものはどれか?",
+        "choices": [
+          "X'35'",
+          "X'04'",
+          "X'31'",
+          "X'00'"
+        ],
+        "answer": 0,
+        "explanation": "マニュアル例のとおり &BITOR（論理和）は X'15' と X'24' のビット OR を取り X'35' を返す。X'04' は論理積（&BITAND）の結果に相当する。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.117",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6302",
+      "title": "&BITXOR",
+      "naiyou_jp": "&BITXOR は NetView コマンドリスト言語の組み込み関数で、2 つのビット文字列の排他的論理和（XOR）を取り結果を返す。構文は &BITXOR string1 string2 で、string1・string2 は定数または変数。マニュアル例では &BITXOR X'12' X'22' は X'30'、&BITXOR X'1211' X'22' は X'3011' となる。string2 が null なら string1 がそのまま結果。複数 string 指定で DSI186I 終了。",
+      "verify_steps": "検証目的: &BITXOR が排他的論理和を返すことを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &R = &BITXOR X'12' X'22' / &WRITE XOR = &R\n[手順2] 実行\n[期待結果] XOR = X'30'（マニュアル例と一致）。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&BITXOR X'12' X'22' の結果として正しいものはどれか?",
+        "choices": [
+          "X'30'",
+          "X'32'",
+          "X'02'",
+          "X'00'"
+        ],
+        "answer": 0,
+        "explanation": "マニュアル例のとおり排他的論理和（XOR）は X'12' と X'22' で X'30' を返す。&BITXOR は対応するビットが異なるとき 1 になる演算である。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.118",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6303",
+      "title": "&CGLOBAL",
+      "naiyou_jp": "&CGLOBAL は NetView コマンドリスト言語の制御ステートメントで、指定した変数を共通グローバル変数（common global variable）として定義する。共通グローバル変数は NetView 内のどのタスクのコマンドリストからも参照・更新でき、コマンドリスト間で値を共有できる。各コマンドリスト内で変数を参照する前に &CGLOBAL を記述しないと、その変数はローカルユーザー変数として既定扱いになる。関連コマンドに SETCGLOB（共通グローバル変数の設定）がある。",
+      "verify_steps": "検証目的: &CGLOBAL で定義した変数がコマンドリスト間で共有されることを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST-A: &CGLOBAL &SHARED / &SHARED = HELLO\n[手順2] CLIST-B: &CGLOBAL &SHARED / &WRITE 値= &SHARED\n[手順3] A を実行後 B を実行\n[期待結果] B の出力に 値= HELLO が表示される。\n[記録] 両 CLIST 抜粋・B の出力・RC=0",
+      "quiz": {
+        "q": "&CGLOBAL 制御ステートメントの役割として正しいものはどれか?",
+        "choices": [
+          "変数を共通グローバル変数として定義し、全タスクのコマンドリストで共有できるようにする",
+          "変数をタスクグローバル変数として定義する",
+          "ビット列の論理積を取る",
+          "コマンドリストを終了させる"
+        ],
+        "answer": 0,
+        "explanation": "&CGLOBAL は変数を共通（common）グローバル変数として定義する。タスク単位の共有は &TGLOBAL、終了は &EXIT である。定義しないとローカル変数として扱われる。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.144",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6304",
+      "title": "&CONCAT",
+      "naiyou_jp": "&CONCAT は NetView コマンドリスト言語の組み込み関数で、2 つの変数・定数（または変数と定数）の値を連結して新しい値を作る。構文は &CONCAT item1 item2。連結結果が最大 255 文字を超える場合は切り捨てられ、両方が null なら結果も null。",
+      "verify_steps": "検証目的: &CONCAT が 2 値を連結することを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &R = &CONCAT ABC DEF / &WRITE 連結= &R\n[手順2] 実行\n[期待結果] 連結= ABCDEF が表示される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&CONCAT 組み込み関数の動作として正しいものはどれか?",
+        "choices": [
+          "2 つの値を連結して新しい値を作る（最大 255 文字、超過分は切り捨て）",
+          "文字列を分割して部分文字列を返す",
+          "ビット列の論理和を取る",
+          "変数の長さを返す"
+        ],
+        "answer": 0,
+        "explanation": "&CONCAT は 2 つの項目を連結する。部分文字列抽出は &SUBSTR、論理和は &BITOR、長さは &LENGTH。連結結果が 255 文字を超えると切り捨てられる。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.118",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6305",
+      "title": "&CONTROL Statement",
+      "naiyou_jp": "&CONTROL は NetView コマンドリスト言語の制御ステートメントで、コマンドリストのステートメント表示量を制御する。オペランドは ALL / CMD / ERR の 3 種。ALL は各ステートメントを処理直前にオペレーター端末へ全表示し、コマンドリストのテスト時に有効。CMD はコマンドのみ、ERR はエラー時のみ表示し、テスト完了後は CMD または ERR が推奨される。",
+      "verify_steps": "検証目的: &CONTROL ALL で全ステートメントが表示されることを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST 先頭に &CONTROL ALL を記述し、数行の処理を続ける\n[手順2] 実行\n[期待結果] 各ステートメントが処理直前に端末へ表示される。\n[記録] CLIST 抜粋・端末表示・RC=0",
+      "quiz": {
+        "q": "&CONTROL ALL を指定したときの動作として正しいものはどれか?",
+        "choices": [
+          "各コマンドリストステートメントを処理直前にオペレーター端末へすべて表示する",
+          "エラーが発生したステートメントだけを表示する",
+          "コマンドだけを表示する",
+          "何も表示しない"
+        ],
+        "answer": 0,
+        "explanation": "&CONTROL ALL は全ステートメントを処理直前に表示し、デバッグ・テストに適する。ERR はエラー時のみ、CMD はコマンドのみ表示する。テスト後は CMD/ERR が推奨される。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.112",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6306",
+      "title": "&EXIT Control Statement",
+      "naiyou_jp": "&EXIT は NetView コマンドリスト言語の制御ステートメントで、到達するとコマンドリストの処理を終了する。構文は &EXIT number で、number は -1・0・最大 2147483647 までの正数を指定できるエラー戻り値。設定した戻り値は制御変数 &RETCODE に格納され、呼び出し元コマンドリストが &RETCODE をテストして処理を分岐できる。&EXIT がなく最終行で終了した場合は戻り値 0 となる。&IF や &GOTO と組み合わせて流れを制御する。",
+      "verify_steps": "検証目的: &EXIT の戻り値が &RETCODE に反映されることを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] 子 CLIST: &EXIT 8\n[手順2] 親 CLIST: 子を呼び出し &WRITE RC= &RETCODE\n[手順3] 親を実行\n[期待結果] RC= 8 が表示される。\n[記録] 両 CLIST 抜粋・出力・&RETCODE 値",
+      "quiz": {
+        "q": "&EXIT control statement で設定した戻り値はどの制御変数に格納されるか?",
+        "choices": [
+          "&RETCODE",
+          "&NCCFSTAT",
+          "&APPLID",
+          "&NCCFID"
+        ],
+        "answer": 0,
+        "explanation": "&EXIT number で設定した戻り値は &RETCODE に格納され、呼び出し元が参照できる。&EXIT 省略時は 0。&NCCFSTAT はドメイン状態、&APPLID はアプリ ID、&NCCFID はドメイン ID。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.130",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6307",
+      "title": "&GOTO Control Statement",
+      "naiyou_jp": "&GOTO は NetView コマンドリスト言語の制御ステートメントで、同一コマンドリスト内の指定ラベルへ処理を分岐させる。構文は &GOTO -label。NetView は同じラベルで始まるステートメントを検索して制御を移す。対象ステートメントは &GOTO の前後どちらにあってもよい。ラベルには、&GOTO 処理前に値が代入される変数を使うこともできる。",
+      "verify_steps": "検証目的: &GOTO がラベルへ分岐することを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &GOTO -SKIP / &WRITE これは表示されない / -SKIP &WRITE 分岐成功\n[手順2] 実行\n[期待結果] 分岐成功 のみ表示され、間の &WRITE は実行されない。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&GOTO 制御ステートメントの動作として正しいものはどれか?",
+        "choices": [
+          "同一コマンドリスト内の指定ラベルへ処理を分岐する",
+          "別のコマンドリストを呼び出す",
+          "コマンドリストを終了する",
+          "オペレーターの入力を待つ"
+        ],
+        "answer": 0,
+        "explanation": "&GOTO -label は同一コマンドリスト内のラベルへ分岐する。ラベルは &GOTO の前後どちらでもよい。終了は &EXIT、入力待ちは &PAUSE。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.130",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6308",
+      "title": "&HIER",
+      "naiyou_jp": "&HIER は NetView コマンドリスト言語の組み込み関数で、解析テンプレート（parsing template）に基づき階層的な資源名などの入力を解析する。&HIER パーシングテンプレートを用いて入力文字列を構成要素に分解し、コマンドリスト変数へ格納する。",
+      "verify_steps": "検証目的: &HIER がテンプレートで入力を解析することを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] &HIER 構文（テンプレートと入力変数）を含む CLIST を作成\n[手順2] 解析結果を &WRITE で出力\n[期待結果] 入力がテンプレートに沿って分解され各変数に格納される。\n[記録] CLIST 抜粋・解析後の変数値・RC=0  (※実機確認)",
+      "quiz": {
+        "q": "&HIER 組み込み関数の用途として最も適切なものはどれか?",
+        "choices": [
+          "解析テンプレートに基づき入力を構成要素へ分解する",
+          "ビット列の論理積を取る",
+          "コマンドリストを終了する",
+          "共通グローバル変数を定義する"
+        ],
+        "answer": 0,
+        "explanation": "&HIER はパーシングテンプレートを使って入力（階層的な資源名等）を解析・分解する組み込み関数。論理積は &BITAND、終了は &EXIT、共通グローバルは &CGLOBAL。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.119",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6309",
+      "title": "&IF Control Statement",
+      "naiyou_jp": "&IF は NetView コマンドリスト言語の制御ステートメントで、条件を評価し真のとき &THEN 以降のアクションを実行する。例: &IF &STATUS = INACT &THEN START DOMAIN=&1。&IF は他の制御ステートメントと異なり、1 行に &THEN と組み合わせて記述できる。&EXIT や &GOTO と併用して条件分岐やエラー処理を行う。",
+      "verify_steps": "検証目的: &IF ... &THEN が条件分岐することを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &X = 1 / &IF &X = 1 &THEN &WRITE 条件成立\n[手順2] 実行\n[期待結果] 条件成立 が表示される。&X を 2 にすると表示されない。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&IF 制御ステートメントの構文上の特徴として正しいものはどれか?",
+        "choices": [
+          "条件が真のとき &THEN 以降のアクションを実行する",
+          "無条件にラベルへ分岐する",
+          "ビット列を連結する",
+          "オペレーターの応答を待つ"
+        ],
+        "answer": 0,
+        "explanation": "&IF は条件を評価し、真なら &THEN 以降を実行する。無条件分岐は &GOTO、連結は &CONCAT、応答待ちは &PAUSE/&WAIT。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.143",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6310",
+      "title": "&LENGTH",
+      "naiyou_jp": "&LENGTH は NetView コマンドリスト言語の組み込み関数で、変数または定数の長さ（文字数）を返す。構文は &LENGTH variable。例として &LENAPPL = &LENGTH &APPLID のように制御変数の長さを求め、&SUBSTR と組み合わせてドメイン名の抽出などに利用される。",
+      "verify_steps": "検証目的: &LENGTH が文字数を返すことを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &L = &LENGTH ABCDE / &WRITE 長さ= &L\n[手順2] 実行\n[期待結果] 長さ= 5 が表示される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&LENGTH 組み込み関数が返す値はどれか?",
+        "choices": [
+          "変数または定数の文字数（長さ）",
+          "2 つの値の論理積",
+          "部分文字列",
+          "コマンドリストの戻り値"
+        ],
+        "answer": 0,
+        "explanation": "&LENGTH は変数・定数の長さ（文字数）を返す。論理積は &BITAND、部分文字列は &SUBSTR、戻り値は &RETCODE。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.120",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6311",
+      "title": "&MSUSEG",
+      "naiyou_jp": "&MSUSEG は NetView コマンドリスト言語の組み込み関数で、管理サービス単位（MSU: management services unit）から指定したメジャーベクトル／サブベクトルなどのセグメントを抽出する。MSU は CP-MSU・NMVT・RECMS・RECFMS 等の形式を持ち、アラート等のデータをメジャーベクトル構造で運ぶ。自動化処理でアラートやメッセージの特定セグメントを取り出す際に用いる。",
+      "verify_steps": "検証目的: &MSUSEG が MSU からセグメントを抽出することを確認する。\n前提: NetView 稼働中、自動化テーブル経由で MSU を受信できる環境。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] MSU を受け取る自動化処理内で &MSUSEG により対象ベクトルを指定し抽出\n[手順2] 抽出値を &WRITE で出力\n[期待結果] 指定したメジャー/サブベクトルの内容が取り出される。\n[記録] 自動化文・抽出値・RC=0  (※実機確認)",
+      "quiz": {
+        "q": "&MSUSEG 組み込み関数の用途として最も適切なものはどれか?",
+        "choices": [
+          "管理サービス単位(MSU)から指定セグメント（メジャー／サブベクトル）を抽出する",
+          "ビット列の排他的論理和を取る",
+          "コマンドリストのステートメント表示を制御する",
+          "タスクグローバル変数を定義する"
+        ],
+        "answer": 0,
+        "explanation": "&MSUSEG は MSU（CP-MSU/NMVT 等）から指定セグメントを抽出する。XOR は &BITXOR、表示制御は &CONTROL、タスクグローバルは &TGLOBAL。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.121",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6312",
+      "title": "&NCCFID",
+      "naiyou_jp": "&NCCFID は NetView コマンドリスト言語のセッション情報系の制御変数（組み込み関数）で、コマンドリストが実行されているドメインの NCCF ドメイン識別子を返す。コマンドリスト内でドメイン名を取得して条件分岐やメッセージ生成に利用する。",
+      "verify_steps": "検証目的: &NCCFID が自ドメイン名を返すことを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &D = &NCCFID / &WRITE ドメイン= &D\n[手順2] 実行\n[期待結果] ドメイン= CNM01 のように自ドメイン名が表示される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&NCCFID が返す値はどれか?",
+        "choices": [
+          "実行中ドメインの NCCF ドメイン識別子",
+          "ドメインの活動状態(ACT/INACT)",
+          "変数の文字数",
+          "コマンドリストの戻り値"
+        ],
+        "answer": 0,
+        "explanation": "&NCCFID はドメイン識別子（ドメイン名）を返す。活動状態は &NCCFSTAT、長さは &LENGTH、戻り値は &RETCODE。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.122",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6313",
+      "title": "&NCCFSTAT",
+      "naiyou_jp": "&NCCFSTAT は NetView コマンドリスト言語の組み込み関数で、指定したドメインの活動状態を返す。返却値は ACT（活動中）または INACT（非活動）。マニュアルの STARTEM 例では &STATUS = &NCCFSTAT &1 でドメイン状態を取得し、&IF &STATUS = INACT &THEN START DOMAIN=&1 のように未活動なら起動する自動化に利用する。",
+      "verify_steps": "検証目的: &NCCFSTAT がドメイン状態を返すことを確認する。\n前提: NetView 稼働中、隣接ドメイン NCCFA が定義済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &S = &NCCFSTAT NCCFA / &WRITE 状態= &S\n[手順2] 実行\n[期待結果] 状態= ACT または INACT が表示される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&NCCFSTAT が返す値として正しいものはどれか?",
+        "choices": [
+          "対象ドメインの活動状態（ACT または INACT）",
+          "ドメイン識別子",
+          "ビット列の論理積",
+          "変数の長さ"
+        ],
+        "answer": 0,
+        "explanation": "&NCCFSTAT はドメインの活動状態（ACT/INACT）を返す。STARTEM 例では INACT のときに START DOMAIN を実行する。ドメイン名は &NCCFID。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.123",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6314",
+      "title": "&SUBSTR",
+      "naiyou_jp": "&SUBSTR は NetView コマンドリスト言語の組み込み関数で、入力変数を start 位置から length 文字分だけ解析して部分文字列を返す。構文は &SUBSTR variable start length。length 省略時は start から末尾まで。length が長すぎる場合は start から末尾まで採用、length=0 または start が変数長を超える場合は結果が null。&LENGTH と組み合わせてドメイン名抽出などに使う。",
+      "verify_steps": "検証目的: &SUBSTR が部分文字列を返すことを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &R = &SUBSTR ABCDEFG 3 2 / &WRITE 部分= &R\n[手順2] 実行\n[期待結果] 部分= CD が表示される（3 文字目から 2 文字）。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "&SUBSTR で length を省略した場合の動作として正しいものはどれか?",
+        "choices": [
+          "start 位置から変数の末尾までを返す",
+          "常に 1 文字だけ返す",
+          "変数全体を返す",
+          "null を返す"
+        ],
+        "answer": 0,
+        "explanation": "length 省略時は start から末尾まで解析する。length が長すぎる場合も末尾まで採用、length=0 や start が変数長超過なら null。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.124",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6315",
+      "title": "&TGLOBAL",
+      "naiyou_jp": "&TGLOBAL は NetView コマンドリスト言語の制御ステートメントで、指定した変数をタスクグローバル変数として定義する。タスクグローバル変数は同一タスク配下で実行されるコマンドリストからのみ参照でき、同タスク内で最後に代入された値を持つ。共通グローバル（&CGLOBAL）が全タスク共有なのに対し、&TGLOBAL はタスク単位の共有である。",
+      "verify_steps": "検証目的: &TGLOBAL 変数が同一タスク内で共有されることを確認する。\n前提: NetView 稼働中、同一 OST/autotask 上で 2 つの CLIST を実行。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST-A: &TGLOBAL &TV / &TV = TASKVAL\n[手順2] 同タスクで CLIST-B: &TGLOBAL &TV / &WRITE 値= &TV\n[期待結果] B の出力に 値= TASKVAL（同タスクのため共有）。\n[記録] 両 CLIST 抜粋・B の出力・RC=0",
+      "quiz": {
+        "q": "&TGLOBAL で定義した変数の参照範囲として正しいものはどれか?",
+        "choices": [
+          "同一タスク配下で実行されるコマンドリストからのみ参照できる",
+          "NetView 内の全タスクから参照できる",
+          "同一コマンドリスト内だけで有効",
+          "他ドメインからも参照できる"
+        ],
+        "answer": 0,
+        "explanation": "&TGLOBAL はタスクグローバル変数を定義し、同一タスク内のコマンドリストで共有する。全タスク共有は &CGLOBAL（共通グローバル）である。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.144",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6316",
+      "title": "&WAIT Control Statement",
+      "naiyou_jp": "&WAIT は NetView コマンドリスト言語の制御ステートメントで、待機条件を満たすメッセージやイベントを待つ。event=-label 形式で、指定イベントに一致するメッセージ受信時に label のステートメントへ処理を継続する。*ERROR ラベルでエラー時の継続先を、*nn で nn 秒のタイムアウトを指定できる。*ERROR 未指定でエラーが発生すると、オペレーターが GO または RESET を入力するまで &WAIT は終了しない。",
+      "verify_steps": "検証目的: &WAIT がメッセージ受信で分岐することを確認する。\n前提: NetView 稼働中、REXX/CLIST から &WAIT 使用可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: コマンド発行後 &WAIT 'DSI...'=-GOTLABEL,*30=-TIMEOUT\n[手順2] 対象メッセージが届くと -GOTLABEL、30 秒で来なければ -TIMEOUT\n[期待結果] 受信時は GOTLABEL 処理、未受信時はタイムアウト処理が実行される。\n[記録] CLIST 抜粋・どちらの分岐に入ったか・RC",
+      "quiz": {
+        "q": "&WAIT 制御ステートメントで *nn（例 *30）を指定した場合の意味はどれか?",
+        "choices": [
+          "nn 秒以内に他のイベントが起きなければ指定ラベルへ処理を継続する（タイムアウト）",
+          "nn 件のメッセージを必ず待つ",
+          "nn 回リトライする",
+          "nn 番目のオペレーターに通知する"
+        ],
+        "answer": 0,
+        "explanation": "*nn はタイムアウト指定で、nn 秒以内に他イベントが発生しなければラベルへ継続する。*ERROR はエラー時の継続先。未指定でエラー発生時は GO/RESET 入力まで待機する。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.146",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6321",
+      "title": "An Example Using &PAUSE",
+      "naiyou_jp": "&PAUSE は NetView コマンドリスト言語の制御ステートメントで、コマンドリストの処理を一時停止してオペレーターからの入力を受け取る。例 &PAUSE VARS &LAST &FIRST &MI はオペレーターに 3 つのトークンを要求し、入力値をコマンドリスト変数に格納する。GO コマンドで処理を再開する。",
+      "verify_steps": "検証目的: &PAUSE VARS がオペレーター入力を変数へ格納することを確認する。\n前提: NetView 稼働中、フルスクリーン/OST でオペレーター応答可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &PAUSE VARS &LAST &FIRST &MI / &WRITE 入力= &LAST &FIRST &MI\n[手順2] 実行し、プロンプトに GO SMITH JOHN A を入力\n[期待結果] 入力= SMITH JOHN A が表示される。\n[記録] CLIST 抜粋・入力値・出力・RC=0",
+      "quiz": {
+        "q": "&PAUSE VARS &LAST &FIRST &MI を実行したときの動作はどれか?",
+        "choices": [
+          "処理を停止してオペレーターから 3 トークンを受け取り各変数に格納する",
+          "3 つのコマンドリストを順に呼び出す",
+          "3 秒待機する",
+          "3 つのドメインを起動する"
+        ],
+        "answer": 0,
+        "explanation": "&PAUSE VARS は指定した変数の数だけオペレーター入力を要求し、各変数に格納する。オペレーターは GO で処理を再開する。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.114",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6322",
+      "title": "Assignment Statements",
+      "naiyou_jp": "代入ステートメント（assignment statement）は NetView コマンドリスト言語で、ユーザー変数に値を設定する基本構文である。形式は &変数 = 値 で、定数・他変数・組み込み関数の結果などを代入できる。ユーザー変数名は先頭が & で、続く先頭文字は英字または記号（数字不可。数字だとパラメーター変数扱い）、& の後は 1〜11 文字で A-Z・0-9・#・@・$ が有効。",
+      "verify_steps": "検証目的: 代入ステートメントで変数に値を設定できることを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] CLIST: &MYVAR = TEST123 / &WRITE 値= &MYVAR\n[手順2] 実行\n[期待結果] 値= TEST123 が表示される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "NetView コマンドリスト言語のユーザー変数名に関する規則として正しいものはどれか?",
+        "choices": [
+          "先頭は & で、続く先頭文字は英字または記号（数字は不可）、計 1〜11 文字",
+          "先頭は & で、続く先頭文字は必ず数字でなければならない",
+          "長さは無制限",
+          "記号 #・@・$ は使用できない"
+        ],
+        "answer": 0,
+        "explanation": "ユーザー変数は & の後の先頭文字が数字だとパラメーター変数扱いになるため英字/記号を使う。& の後は 1〜11 文字で A-Z・0-9・#・@・$ が有効。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.107",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6317",
+      "title": "Accessing publications online",
+      "naiyou_jp": "「Accessing publications online」は NetView マニュアル前付けの節で、IBM Z NetView ライブラリの各刊行物（Administration Reference SC27-2869、Application Programmer's Guide SC27-2870 など）の一覧と、NetView 刊行物をオンラインで参照する方法・注文方法を説明する。読者が必要なマニュアルへアクセスするための案内である。",
+      "verify_steps": "検証目的: NetView 刊行物のオンライン参照手段を把握する（ドキュメント節）。\n前提: IBM Documentation へアクセス可能な環境。\n\n[手順1] IBM Documentation で IBM Z NetView 6.4 ライブラリを開く\n[手順2] 対象書（例: Programming: REXX and the NetView Command List Language）を選択\n[期待結果] 該当マニュアルがオンラインで表示・検索できる。\n[記録] アクセスした書名・資料番号 (SC27-xxxx)",
+      "quiz": {
+        "q": "NetView マニュアルの「Accessing publications online」節が説明している内容はどれか?",
+        "choices": [
+          "IBM Z NetView ライブラリの刊行物一覧とオンライン参照・注文方法",
+          "&BITAND の構文",
+          "コマンドリストのセキュリティ設定",
+          "自動化テーブルの記述方法"
+        ],
+        "answer": 0,
+        "explanation": "本節は NetView ライブラリ刊行物の一覧とオンラインでのアクセス・注文方法を案内する前付け情報であり、具体的な言語機能や自動化の記述ではない。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.11",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6320",
+      "title": "Additional Information",
+      "naiyou_jp": "「Additional Information」は当該マニュアル内で関連情報や参照先を案内する節で、REXX 命令や NetView 固有関数の詳細について REXX ライブラリや他の NetView マニュアル（自動化ガイド等）を参照するよう導く。コマンドリストでの環境構築や関数利用に関する補足参照を提供する。",
+      "verify_steps": "検証目的: 参照先マニュアルを辿れることを確認する（ドキュメント節）。\n前提: NetView ライブラリにアクセス可能。\n\n[手順1] 該当節に記載された参照先（例: REXX ライブラリ、Automation Guide）を開く\n[手順2] 目的のトピックを検索\n[期待結果] 補足情報に到達できる。\n[記録] 参照した書名・該当ページ",
+      "quiz": {
+        "q": "「Additional Information」節の主な役割として最も適切なものはどれか?",
+        "choices": [
+          "関連する詳細情報の参照先（他マニュアルや REXX ライブラリ）を案内する",
+          "&SUBSTR の数値計算を行う",
+          "ドメインを起動する",
+          "MSU からセグメントを抽出する"
+        ],
+        "answer": 0,
+        "explanation": "本節は補足的な参照案内であり、REXX 構文や他関数の詳細について別マニュアル・REXX ライブラリを参照するよう導く。具体的演算や運用操作そのものではない。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.32",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6324",
+      "title": "AUTOTASK OST Restrictions",
+      "naiyou_jp": "オートタスク（autotask）は端末やオペレーターを必要としない操作員ステーションタスク（OST）で、他の OST と同様にメッセージを受信しコマンドを発行できるが、フルスクリーン処理ができないという制限がある。コマンドリストは主 POI タスク（PPT）でも実行できるが、可能な限りオートタスク配下で実行することが推奨される。オートタスク上のコマンドリストは、フルスクリーンパネル表示やオペレーター応答に依存しない設計にする必要がある。",
+      "verify_steps": "検証目的: オートタスクでコマンドリストが端末なしで動くことを確認する。\n前提: NetView 稼働中、オートタスク定義済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] AUTOTASK OPID=AUTO1 でオートタスクを起動\n[手順2] EXCMD AUTO1,該当CLIST でオートタスク上で CLIST 実行\n[期待結果] フルスクリーンに依存しない CLIST が正常終了する。\n[記録] AUTOTASK 起動応答・EXCMD 結果・RC=0",
+      "quiz": {
+        "q": "オートタスク（autotask）の制限として正しいものはどれか?",
+        "choices": [
+          "フルスクリーン処理ができない（端末・オペレーターを持たない OST のため）",
+          "メッセージを一切受信できない",
+          "コマンドを発行できない",
+          "PPT 配下では一切実行できない"
+        ],
+        "answer": 0,
+        "explanation": "オートタスクは端末を持たない OST で、メッセージ受信・コマンド発行は可能だがフルスクリーン処理はできない。コマンドリストは可能な限りオートタスク配下で実行することが推奨される。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.11",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6325",
+      "title": "Changing the Environment Addressed by REXX Command Lists",
+      "naiyou_jp": "REXX コマンドリストが宛先とするホストコマンド環境は ADDRESS 命令で変更できる。既定の NETVIEW 環境ではコマンド文字列全体が大文字に変換される。小文字を含むコマンドを発行したい場合は address netvasis のように NETVASIS 環境へ切り替える（例: address netvasis 'WTO This is a mixed case message.'）。これにより大文字変換を回避し、大小文字混在のメッセージやコマンドを送出できる。",
+      "verify_steps": "検証目的: NETVASIS で大小文字が保持されることを確認する。\n前提: NetView 稼働中、REXX 環境利用可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] REXX CLIST: address netvasis 'WTO This is a mixed case message.'\n[手順2] 実行\n[期待結果] メッセージが大小文字混在のまま表示される（NETVIEW 環境だと全大文字化）。\n[記録] CLIST 抜粋・WTO 出力・RC=0",
+      "quiz": {
+        "q": "REXX コマンドリストで大小文字混在のコマンドを発行するために切り替える宛先環境はどれか?",
+        "choices": [
+          "NETVASIS",
+          "NETVIEW",
+          "TSO",
+          "MVS"
+        ],
+        "answer": 0,
+        "explanation": "既定の NETVIEW 環境はコマンドを大文字化するため、大小文字を保持したい場合は address netvasis で NETVASIS 環境へ切り替える。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.39",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6334",
+      "title": "Coding Conventions for REXX Command Lists and Data REXX Files",
+      "naiyou_jp": "本節は Z NetView 用の REXX コマンドリストおよび Data REXX ファイルを記述する際の構文規則を説明する。REXX コマンドリストや Data REXX ファイルは複数の節（clause）から成り、各節はそれぞれの目的を持つ。単純な REXX コマンドリストでは記述順に節が解釈されるが、処理順を変える特定の命令で実行順序を制御できる。コメントは /* で始まり */ で終わる。",
+      "verify_steps": "検証目的: REXX コメント構文と逐次解釈を確認する。\n前提: NetView 稼働中、REXX 環境利用可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] REXX CLIST: /* test */ SAY 'LINE1' / SAY 'LINE2'\n[手順2] 実行\n[期待結果] LINE1, LINE2 の順で表示され、コメントは無視される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "REXX コマンドリストのコメントの記述方法として正しいものはどれか?",
+        "choices": [
+          "/* で始まり */ で終わる",
+          "* を行頭に置く",
+          "// で始める",
+          "&* で囲む"
+        ],
+        "answer": 0,
+        "explanation": "REXX のコメントは /* で始まり */ で終わる。単純な REXX コマンドリストは記述順に解釈され、特定命令で処理順を制御できる。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.18",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6349",
+      "title": "Controlling Access to Command Lists",
+      "naiyou_jp": "コマンドリストへのアクセスはコマンド許可（command authorization）機能で制御する。CMDAUTH=TABLE と TBLNAME を用いる場合、DSIPARM のコマンド許可テーブル（例 CMDTABLE）でコマンド・キーワード・値ごとに、アクセスできるオペレーターやクラスを制限する。SAF 連携時は CMDAUTH=SAF とし、RACF の NETCMDS クラスで CNMExxxx プロファイルへのアクセスを PERMIT/RDEFINE して制御し、SETROPTS RACLIST(NETCMDS) REFRESH で反映する。",
+      "verify_steps": "検証目的: NETCMDS クラスでコマンドリストアクセスが制御されることを確認する。\n前提: CMDAUTH=SAF、RACF 連携済、権限あり。\n\n[セッション] TSO/RACF + NCCF\n[手順1] RDEFINE NETCMDS NETA.CNM01.CNME7009 UACC(NONE)\n[手順2] PERMIT NETA.CNM01.CNME7009 CLASS(NETCMDS) ID(GRP1) ACCESS(READ)\n[手順3] SETROPTS RACLIST(NETCMDS) REFRESH 後、GRP1 外の操作員が当該 CLIST を実行\n[期待結果] 許可外オペレーターは拒否、GRP1 は実行可。\n[記録] RACF 定義・実行可否・メッセージ",
+      "quiz": {
+        "q": "CMDAUTH=SAF を使用してコマンドリストへのアクセスを RACF で制御する際に用いるクラスはどれか?",
+        "choices": [
+          "NETCMDS",
+          "DATASET",
+          "FACILITY",
+          "TSOAUTH"
+        ],
+        "answer": 0,
+        "explanation": "SAF 連携時は RACF の NETCMDS クラスで CNMExxxx プロファイルへのアクセスを制御し、SETROPTS RACLIST(NETCMDS) REFRESH で反映する。CMDAUTH=TABLE では DSIPARM のコマンド許可テーブルで制御する。"
+      },
+      "source": "NetView_6.4_Command_Reference_Vol2_O-Z.pdf p.Command_Reference_Vol2_O-Z.pdf|197",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6352",
+      "title": "Conventions for Double-Byte Character Set Text",
+      "naiyou_jp": "二バイト文字セット（DBCS）テキストを扱う際の規約として、DBCS 文字列はシフトアウト制御文字（X'0E'）で始まり、シフトイン制御文字（X'0F'）で終わる必要がある。1 つの印字可能 DBCS 文字は 4 桁の 16 進（2 バイト）で表す。テキストが複数行に続く場合は、各行の DBCS 部分がそれぞれシフトアウト／シフトインの対の内側に収まっていなければならない。",
+      "verify_steps": "検証目的: DBCS リテラルがシフトアウト/インで囲まれることを確認する。\n前提: DBCS 対応端末・コードページ環境。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] DBCS リテラル X'0E'+4桁16進(DBCS文字)+X'0F' を含むテキストを定義\n[手順2] 表示/送出\n[期待結果] シフトアウト〜シフトインの内側の 2 バイト文字が正しく表示される。\n[記録] リテラル定義・表示結果  (※DBCS 端末で要確認)",
+      "quiz": {
+        "q": "DBCS テキストの開始・終了を示す制御文字の組み合わせとして正しいものはどれか?",
+        "choices": [
+          "シフトアウト X'0E' で開始し、シフトイン X'0F' で終了する",
+          "シフトイン X'0F' で開始し、シフトアウト X'0E' で終了する",
+          "X'00' で開始し X'FF' で終了する",
+          "X'15' で開始し X'25' で終了する"
+        ],
+        "answer": 0,
+        "explanation": "DBCS 文字列はシフトアウト(X'0E')で始まりシフトイン(X'0F')で終わる。1 DBCS 文字は 4 桁 16 進（2 バイト）。複数行では各行の DBCS 部が対の内側に収まる必要がある。"
+      },
+      "source": "NetView_6.4_Resource_Object_Data_Manager_and_GMFHS_Programmers_Guide.pdf p.RODM_GMFHS.pdf|208",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6341",
+      "title": "Comparison of REXX and NetView Command List Language",
+      "naiyou_jp": "本節（付録 D）は REXX と NetView コマンドリスト言語を簡潔に比較する。NetView コマンドリスト言語の各制御ステートメントと、それに相当する REXX 命令を対応付けた表（制御ステートメント名のアルファベット順）を提供し、両言語の機能の対応関係を示す。これにより既存のコマンドリスト言語処理を REXX へ移行・対応付けする際の参照となる。",
+      "verify_steps": "検証目的: 制御ステートメントと REXX 命令の対応を確認する（参照表）。\n前提: NetView マニュアル参照可。\n\n[手順1] 付録 D の対応表で例: &IF に相当する REXX（IF/THEN）を確認\n[手順2] &GOTO → REXX の SIGNAL など対応を確認\n[期待結果] 各 NetView 制御ステートメントに等価な REXX 命令が示される。\n[記録] 確認した対応（&IF↔IF/THEN 等）",
+      "quiz": {
+        "q": "付録「Comparison of REXX and NetView Command List Language」が提供する主な内容はどれか?",
+        "choices": [
+          "コマンドリスト言語の制御ステートメントと相当する REXX 命令の対応表",
+          "RACF プロファイルの定義例",
+          "DBCS の制御文字一覧",
+          "オートタスク起動手順"
+        ],
+        "answer": 0,
+        "explanation": "付録 D はコマンドリスト言語の各制御ステートメントと等価な REXX 命令・関数を対応付けた比較表を提供する。セキュリティや DBCS、運用手順は別の章の内容である。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.149",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6340",
+      "title": "Common Automation Problems",
+      "naiyou_jp": "自動化でよく起きる問題として、処理すべきコマンドリストが動作しない、自動化されるはずのメッセージが自動化されない、抑止されるはずのアラートが抑止されない、タイマーコマンドが予定時刻に実行されない等がある。代表的原因として、別のコマンドリストが &WAIT/TRAP/WAIT をタイムアウトなしで使用して終了しない、&PAUSE/PULL でオペレーター入力を待つが提供するコンソールが無い、といったケースがある。タイムアウトの設定やオートタスク利用で回避する。",
+      "verify_steps": "検証目的: タイムアウトなし &WAIT が無限待ちになることを確認する。\n前提: NetView 稼働中、テスト用 CLIST 配置可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] 来ないイベントを待つ &WAIT（*nn なし）の CLIST を実行\n[手順2] パネルの W インジケーターを観察、RESET FORCE で解除\n[期待結果] CLIST が待機状態のままになり、*nn 追加で解消できることを確認。\n[記録] W インジケーター・RESET 操作・改善後の RC=0",
+      "quiz": {
+        "q": "コマンドリストが終了せず他のコマンドリストの実行を妨げる典型的原因はどれか?",
+        "choices": [
+          "&WAIT/TRAP/WAIT をタイムアウト値なしで使用している、または入力コンソールが無いのに &PAUSE/PULL で入力を待っている",
+          "&CONTROL ERR を指定している",
+          "&CONCAT を使用している",
+          "コメントが多すぎる"
+        ],
+        "answer": 0,
+        "explanation": "タイムアウトなしの &WAIT/TRAP/WAIT や、コンソールが無い状況での &PAUSE/PULL は無限待ちとなりコマンドリストが終了しない。タイムアウト指定やオートタスク利用で回避する。"
+      },
+      "source": "NetView_6.4_Users_Guide_NetView.pdf p.Users_Guide_NetView.pdf|227",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6339",
+      "title": "Comments",
+      "naiyou_jp": "NetView コマンドリスト言語のコメントはコマンドリスト行の説明用に記述するが、コマンドリストの各セクションを区切る目的でハイフンの連続（-----）を使ってはならない。空ステートメント（null statement）はすべて空白、またはラベル＋空白から成り、ラベル付き空ステートメントはフロー制御や &BEGWRITE の分岐先にできる。空ステートメントはオペレーター向けメッセージの整形や長いコマンドリストの区切りに利用できる。",
+      "verify_steps": "検証目的: 空ステートメントが整形・分岐先に使えることを確認する。\n前提: NetView 稼働中、NCCF ログオン済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] ラベル付き空ステートメントを含む CLIST を作り &GOTO の分岐先にする\n[手順2] 実行（ハイフン連続区切りは使わない）\n[期待結果] ラベルへ分岐し以降が実行される。\n[記録] CLIST 抜粋・分岐動作・RC=0",
+      "quiz": {
+        "q": "NetView コマンドリスト言語でセクション区切りに使ってはならないものはどれか?",
+        "choices": [
+          "ハイフンの連続（-----）",
+          "ラベル付き空ステートメント",
+          "コメント行",
+          "空白行"
+        ],
+        "answer": 0,
+        "explanation": "ハイフンの連続はセクション区切りに使ってはならない。区切りや整形にはラベル付き空ステートメントや空白行を用いる。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.108",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6355",
+      "title": "Creating Command Lists",
+      "naiyou_jp": "コマンドリストは DSICLD DD で連結されたデータセット（&Q1..&DOMAIN..CNMCLST、SAQNCLST、CNMCLST、CNMSAMP 等）に、それぞれ別個のメンバーとして格納する。コマンドリスト名はデータセットのメンバー名になる。利用者が作成した追加コマンドリストは NETVIEW.V6R4USER.&domain.CNMCLST 等のユーザーデータセットに追加し、独自データセットは DSICLD 連結内で NetView 提供データセットより前に並べる。",
+      "verify_steps": "検証目的: 新規 CLIST メンバーが名前で呼び出せることを確認する。\n前提: NetView 稼働中、ユーザー CNMCLST が DSICLD 連結済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] ユーザー CNMCLST にメンバー MYCLIST を作成\n[手順2] 必要なら LISTVAR/再連結後、コマンド行で MYCLIST 実行\n[期待結果] メンバー名 MYCLIST がコマンドとして実行される。\n[記録] メンバー名・実行結果・RC=0",
+      "quiz": {
+        "q": "利用者が作成したコマンドリストはどこに格納し、コマンドリスト名は何になるか?",
+        "choices": [
+          "DSICLD 連結のデータセットにメンバーとして格納し、メンバー名がコマンドリスト名になる",
+          "DSIPARM に CMDDEF 文として記述し、文名がコマンドリスト名になる",
+          "RACF データベースに格納し、プロファイル名が名前になる",
+          "VTAMLST に格納する"
+        ],
+        "answer": 0,
+        "explanation": "コマンドリストは DSICLD 連結のデータセットに別メンバーとして格納し、メンバー名がそのまま名前になる。利用者作成分はユーザー CNMCLST に追加し、DSICLD 内で提供分より前に並べる。"
+      },
+      "source": "NetView_6.4_Installation_Getting_Started.pdf p.Installation_Getting_Started.pdf|43",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6356",
+      "title": "Cross-Domain Information Functions",
+      "naiyou_jp": "クロスドメイン情報関数は、クロスドメインセッションを確立できる他ドメインの情報を返す関数群。例として NVID(n)（コマンドリスト言語の &NCCFID n に相当）は、クロスドメインセッションを確立できるドメインの NetView ドメイン識別子を返す。セッションを確立できるドメインはオペレータープロファイルの DOMAINS 文で定義され、AUTH CTL=GLOBAL 指定時は CNMSTYLE の RRD 文で指定されたドメインが対象となる。",
+      "verify_steps": "検証目的: NVID/&NCCFID n でクロスドメイン識別子を取得できることを確認する。\n前提: NetView 稼働中、DOMAINS 文で隣接ドメイン定義済。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] REXX: D = NVID(1) / SAY 'CROSS DOMAIN =' D\n[手順2] 実行\n[期待結果] DOMAINS 文に定義された 1 番目のクロスドメイン識別子が表示される。\n[記録] CLIST 抜粋・出力・RC=0",
+      "quiz": {
+        "q": "クロスドメイン情報関数 NVID(n) が返す値はどれか?",
+        "choices": [
+          "クロスドメインセッションを確立できるドメインの NetView ドメイン識別子",
+          "ローカルドメインの活動状態",
+          "変数の長さ",
+          "MSU のセグメント"
+        ],
+        "answer": 0,
+        "explanation": "NVID(n)（&NCCFID n 相当）はクロスドメインセッション可能なドメインの識別子を返す。対象ドメインはオペレータープロファイルの DOMAINS 文（または AUTH CTL=GLOBAL 時は RRD 文）で定義される。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.46",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6357",
+      "title": "Customizing the &WAIT Statement",
+      "naiyou_jp": "&WAIT と &PAUSE は動作が異なる。&PAUSE はオペレーターが GO コマンドを入力するまでコマンドリストを継続せず、GO のオペランドがコマンドリストで使われる。一方 &WAIT は特定のイベント発生を待つもので、GO はイベントが決して発生しない場合にのみ再開に使われる。コマンドリストが待機状態にある間、NetView は GO のオペランドを無視する。&WAIT の動作は SUPPRESS/CONTWAIT/CONTINUE 等でカスタマイズでき、設定は以降の &WAIT に引き継がれる。",
+      "verify_steps": "検証目的: &WAIT と &PAUSE の挙動差を確認する。\n前提: NetView 稼働中、オペレーター応答可能なコンソール。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] &PAUSE の CLIST を実行 → GO VAL を入力しオペランドが使われるか確認\n[手順2] イベント待ち &WAIT の CLIST を実行 → イベント受信で再開、GO のオペランドが無視されるか確認\n[期待結果] &PAUSE は GO オペランド利用、&WAIT は待機中 GO オペランド無視。\n[記録] 両 CLIST の挙動・RC",
+      "quiz": {
+        "q": "&WAIT と &PAUSE の違いとして正しいものはどれか?",
+        "choices": [
+          "&PAUSE は GO 入力まで継続せず GO のオペランドを使うが、&WAIT は特定イベントを待ち待機中は GO のオペランドを無視する",
+          "&WAIT はオペレーター入力専用で &PAUSE はイベント待ち専用",
+          "両者は完全に同じ動作をする",
+          "&WAIT はタイムアウトを指定できない"
+        ],
+        "answer": 0,
+        "explanation": "&PAUSE は GO 入力で再開しオペランドを利用する。&WAIT はイベント待ちで、待機中は GO のオペランドを無視し、GO はイベントが起きない場合の再開にのみ使う。&WAIT は SUPPRESS/CONTWAIT/CONTINUE で調整できる。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.131",
+      "rag_hit": true
+    },
+    {
+      "row_id": "6359",
+      "title": "Data REXX Host Command Environment",
+      "naiyou_jp": "NetView は、NetView REXX コマンドリストおよび Data REXX ファイルでのみ使用できる REXX 関数群（ホストコマンド環境）を提供する。これらは NetView 固有の処理を REXX で実行するために提供されており、標準 REXX 関数ではないため NetView 環境で実行されるコマンドリスト・Data REXX ファイルでのみ利用できる（非 NetView 環境の REXX EXEC では機能しない）。",
+      "verify_steps": "検証目的: NetView 固有 REXX 関数が NetView 環境でのみ動くことを確認する。\n前提: NetView 稼働中、REXX 環境利用可。\n\n[セッション] NCCF (CNM01 / NETOP1)\n[手順1] NetView REXX CLIST で NetView 固有関数（例 WAIT 系）を使用し実行\n[手順2] 非 NetView 環境（TSO 等）の REXX で同関数を試す\n[期待結果] NetView 環境では動作、非 NetView 環境ではエラー/未定義。\n[記録] 両環境の実行結果・RC",
+      "quiz": {
+        "q": "NetView 提供の REXX 関数（Data REXX ホストコマンド環境）の利用可能範囲として正しいものはどれか?",
+        "choices": [
+          "NetView 環境で実行されるコマンドリスト・Data REXX ファイルでのみ利用できる",
+          "あらゆる標準 REXX EXEC で利用できる",
+          "TSO 環境でのみ利用できる",
+          "アセンブラープログラムでのみ利用できる"
+        ],
+        "answer": 0,
+        "explanation": "これらは NetView 提供の非標準 REXX 関数のため、NetView 環境で動くコマンドリスト・Data REXX ファイルでのみ機能し、非 NetView の REXX EXEC では動作しない。"
+      },
+      "source": "NetView_6.4_Programming_REXX_and_NetView_Command_List_Language.pdf p.61",
+      "rag_hit": true
+    }
+  ]
+}

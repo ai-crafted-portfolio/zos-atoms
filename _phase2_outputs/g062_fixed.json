@@ -1,0 +1,2265 @@
+{
+  "page": "g062",
+  "product": "IBM GDPS 4.7",
+  "total_rows": 258,
+  "target_rows": 94,
+  "fixed_count": 94,
+  "rows": [
+    {
+      "row_id": "12417",
+      "title": "Automation and disk replication compatibility",
+      "naiyou_jp": "ほとんどの GDPS ソリューションは、IBM が開発したディスク・レプリケーション技術である Metro Mirror（GDPS Metro 向け）と Global Mirror（GDPS GM 向け）に依存している。これらのアーキテクチャは IBM エンタープライズ・ディスク・ストレージ製品上に実装され、Metro Mirror・GM・FlashCopy の外部インターフェースは主要なエンタープライズ・ストレージ・ベンダーにライセンス供与されている。このため、顧客は既存の自動化投資やマルチベンダーのストレージ環境を活かしながら GDPS ソリューションへ移行できる柔軟性を得られる。",
+      "verify_steps": [
+        "1. K-sys のコンソールにログオンする。",
+        "2. `GEOPARM` でディスク・サブシステムと複製ペアの定義を確認する。",
+        "3. GDPS GUI の DASD パネルで Metro Mirror／GM の複製状態が DUPLEX であることを確認する。",
+        "4. ベンダー製ストレージがサポートする Metro Mirror／FlashCopy インターフェースで複製が成立していることを確認する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro が主に依存するディスク・レプリケーション技術はどれか。",
+        "choices": [
+          "Metro Mirror（同期 PPRC）",
+          "Global Mirror（非同期）",
+          "ソフトウェア・レプリケーション",
+          "テープ・ダンプ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro は同期型の Metro Mirror に依存し、GDPS GM は非同期の Global Mirror に依存する。外部インターフェースは多数のストレージ・ベンダーにライセンス供与されている。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.30",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12419",
+      "title": "Benefits of a GDPS MGM 4-site configuration",
+      "naiyou_jp": "GDPS MGM 4-site は MGM 3-site を対称構成に拡張したもので、いずれのリージョンで稼働していても同一の運用手順を適用できる点が利点である。リージョン・スイッチ後も DR 能力が維持され、両リージョンが互いのバックアップとして機能する。さらに 4-site 構成では Testcopy Manager（TCM）機能が利用可能であり、論理破損保護（LCP）と組み合わせたテスト・コピー運用が行える。",
+      "verify_steps": [
+        "1. K-sys のコンソールで MGM 4-site トポロジーの構成を確認する。",
+        "2. GDPS GUI でリージョン A／B 双方の複製レッグ状態を表示する。",
+        "3. `Planned Action` でリージョン・スイッチをシミュレートし、対称構成での切替手順を確認する。",
+        "4. TCM 機能が有効でテスト・コピーを作成できることを確認する。"
+      ],
+      "quiz": {
+        "q": "GDPS MGM 4-site 構成の利点として正しいものはどれか。",
+        "choices": [
+          "いずれのリージョンでも同一の運用手順が使え、TCM が利用可能",
+          "同期複製を一切使用しない",
+          "単一サイトのみで動作する",
+          "DR 能力を持たない"
+        ],
+        "answer": 0,
+        "explanation": "対称 4-site 構成は両リージョンで同一手順を提供し、TCM（Testcopy Manager）機能が利用できる点が大きな利点である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.274",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12420",
+      "title": "Benefits of a GDPS MGM 6-site configuration",
+      "naiyou_jp": "GDPS MGM 6-site トポロジーは 4-site トポロジーの拡張であり、両リージョンで Metro Dual Leg（メトロ・デュアル・レッグ）を管理する。これによりアクティブ・リージョン内で 3 組の同期データを保持でき、どちらのリージョンからでもプライマリとして稼働・運用できる。4-site で利用可能な機能・関数はすべて 6-site でも利用でき、より高い可用性と冗長性を提供する。",
+      "verify_steps": [
+        "1. K-sys コンソールで MGM 6-site トポロジー構成を確認する。",
+        "2. GDPS GUI で両リージョンの Metro Dual Leg 複製状態を確認する。",
+        "3. アクティブ・リージョンに 3 組の同期データが存在することを DASD パネルで確認する。",
+        "4. リージョン・スイッチ手順を確認し、どちらのリージョンからでも運用可能であることを検証する。"
+      ],
+      "quiz": {
+        "q": "MGM 6-site 構成がアクティブ・リージョンで提供する同期データのコピー組数はいくつか。",
+        "choices": [
+          "3 組",
+          "1 組",
+          "0 組",
+          "6 組"
+        ],
+        "answer": 0,
+        "explanation": "MGM 6-site は両リージョンで Metro Dual Leg を管理し、アクティブ・リージョン内に 3 組の同期データを保持できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.275",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12424",
+      "title": "Characteristics of an IT resilience solution",
+      "naiyou_jp": "IT レジリエンスは、災害後に「ある程度」のデータ損失と時間をかけてアプリケーションを復旧する能力以上のものを意味する。IT レジリエンス・ソリューションを検討する際には、計画停止（メンテナンスやアップグレード）への対応、計画外停止への対応、必要な復旧時間目標（RTO）と復旧時点目標（RPO）、対象とする障害範囲（ディスク障害・サイト障害・リージョン障害）などを考慮する必要がある。GDPS の各オファリングはこれらの観点をそれぞれ異なるレベルで満たす。",
+      "verify_steps": [
+        "1. RTO／RPO 要件を整理し、対象とする障害シナリオを定義する。",
+        "2. 計画停止・計画外停止それぞれの要件を文書化する。",
+        "3. GDPS GUI で対象オファリング（Metro／GM／MGM 等）の機能を確認する。",
+        "4. 自社要件と GDPS の機能マトリクスを突き合わせて適合性を検証する。"
+      ],
+      "quiz": {
+        "q": "IT レジリエンス・ソリューションを評価する際に考慮すべき重要な指標の組み合わせはどれか。",
+        "choices": [
+          "RTO（復旧時間目標）と RPO（復旧時点目標）",
+          "CPU 使用率とメモリ量",
+          "ディスク容量とテープ本数",
+          "ネットワーク帯域とポート数"
+        ],
+        "answer": 0,
+        "explanation": "IT レジリエンスでは、計画／計画外停止への対応に加え、RTO と RPO が最も重要な評価指標となる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.27",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12425",
+      "title": "Combining disk remote copy technologies for CA and DR",
+      "naiyou_jp": "Metro Global Mirror（MGM）は、Metro Mirror と HyperSwap を Global Mirror（GM）と組み合わせる技術である。これにより、メトロ距離内のほとんどの障害に対してはゼロ・データ損失（ZDL）の継続的可用性（CA）をローカルに実現しつつ、リージョン災害に対しては遠隔サイトへの DR ソリューションを同時に提供できる。同期複製で近距離の無損失保護を、非同期複製で遠距離の DR を担う多層構成である。",
+      "verify_steps": [
+        "1. K-sys コンソールで Metro Mirror レッグ（同期）の状態を確認する。",
+        "2. GM レッグ（非同期）の複製状態を GDPS GUI で確認する。",
+        "3. メトロ距離内での HyperSwap によりディスク障害が透過的にマスクされることを確認する。",
+        "4. 遠隔リージョンへの GM 複製により DR 能力が維持されていることを確認する。"
+      ],
+      "quiz": {
+        "q": "Metro Mirror と Global Mirror を組み合わせる（MGM）目的は何か。",
+        "choices": [
+          "メトロ距離での CA と遠隔リージョンの DR を同時に実現する",
+          "複製を完全に停止する",
+          "単一サイト内のみで動作させる",
+          "テープ・バックアップを置き換える"
+        ],
+        "answer": 0,
+        "explanation": "MGM は同期 Metro Mirror＋HyperSwap によるローカル CA（ZDL）と、非同期 GM による遠隔リージョン DR を組み合わせる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.49",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12426",
+      "title": "Combining GDPS Metro with GDPS GM",
+      "naiyou_jp": "GDPS Metro と GDPS GM を組み合わせると、GDPS MGM（Metro Global - GM）構成となる。MGM 3-site は、1 つのリージョン内のメトロ距離にある 2 サイト間で CA を提供し、第 2 リージョンの第 3 サイトへ実質無制限の距離で DR を提供する。対称 4-site 構成もサポートされ、Metro Mirror と GM の技術を組み合わせて、ローカル CA と遠隔 DR を統合的に管理する。",
+      "verify_steps": [
+        "1. K-sys コンソールで Metro Mirror（メトロ間同期）レッグの状態を確認する。",
+        "2. GM（リージョン間非同期）レッグの状態を確認する。",
+        "3. GDPS GUI で MGM 3-site／4-site トポロジーを表示し、カスケード／マルチターゲットの切替を確認する。",
+        "4. Planned Action でリージョン切替シナリオを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro と GDPS GM を組み合わせた構成は一般に何と呼ばれるか。",
+        "choices": [
+          "GDPS MGM（Metro Global - GM）",
+          "GDPS HM",
+          "GDPS Virtual Appliance",
+          "GDPS Continuous Availability"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro と GDPS GM の組み合わせは GDPS MGM と呼ばれ、3-site または対称 4-site 構成をサポートする。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.88",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12427",
+      "title": "Combining local and metro continuous availability with out-of-region disaster recovery",
+      "naiyou_jp": "本章は GDPS Metro Global - GM（GDPS MGM）の実装能力と考慮点を扱う。MGM は GDPS Metro（または GDPS HM）の CA 属性と、リージョン外への DR 保護を組み合わせる。ローカルおよびメトロ距離での CA とリージョン規模の DR の両方を必要とする顧客が対象で、同期複製で近距離の継続的可用性を、非同期 GM でリージョン外の災害復旧を実現する。",
+      "verify_steps": [
+        "1. K-sys コンソールで MGM 構成（Metro＋GM レッグ）を確認する。",
+        "2. メトロ距離内の HyperSwap による CA を GDPS GUI で確認する。",
+        "3. リージョン外サイトへの GM 複製による DR を確認する。",
+        "4. リージョン・スイッチおよびリターン・ホーム手順を検証する。"
+      ],
+      "quiz": {
+        "q": "ローカル／メトロ CA とリージョン外 DR を組み合わせる GDPS 構成はどれか。",
+        "choices": [
+          "GDPS MGM（Metro Global - GM）",
+          "GDPS HM 単体",
+          "GDPS Virtual Appliance 単体",
+          "単一サイト Metro"
+        ],
+        "answer": 0,
+        "explanation": "GDPS MGM は GDPS Metro/HM の CA 属性とリージョン外 DR を組み合わせ、両要件を満たす顧客に適する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.257",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12428",
+      "title": "Comparing GDPS Continuous Availability to other GDPS offerings",
+      "naiyou_jp": "GDPS Continuous Availability は他の GDPS 製品とは根本的に異なるため、高レベルの比較表には含めない（いわば「リンゴとオレンジ」の比較になる）。ハードウェア複製ではなくソフトウェア複製に基づき、システム・レベルの管理・再始動ではなくワークロード・レベルの管理・切替を行う。ただし他の GDPS 製品と相互排他ではなく、GDPS Metro や MGM と組み合わせて包括的なニア CA／DR ソリューションを構築できる。",
+      "verify_steps": [
+        "1. GDPS GUI で Continuous Availability のワークロード単位の状態表示を確認する。",
+        "2. ソフトウェア複製（Db2／IMS／VSAM レプリケーション）の稼働を確認する。",
+        "3. アクティブ／スタンバイ・ワークロードの切替手順を確認する。",
+        "4. GDPS Metro との共存・連携構成を確認する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability が他の GDPS 製品と根本的に異なる点はどれか。",
+        "choices": [
+          "ソフトウェア複製を用いワークロード単位で切替を行う",
+          "同期ハードウェア複製のみを使う",
+          "単一システムの再始動のみを行う",
+          "テープ複製を用いる"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Continuous Availability はソフトウェア複製に基づき、システム単位の再始動ではなくワークロード単位の管理・切替を行う。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.233",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12430",
+      "title": "Comparing GDPS Metro HyperSwap Manager to other GDPS offerings",
+      "naiyou_jp": "GDPS ファミリーの各メンバーには多数の機能・関数があり、どのオファリングが何をサポートするかを記憶するのは難しい。そのため各オファリングを位置付けるための比較表（Table 4-1 など）が用意されている。GDPS Metro HyperSwap Manager は、フル機能の GDPS Metro と比べてスクリプト・サポートを持たないなど機能が限定される一方、HyperSwap による継続的可用性とエントリーレベルの導入容易性を提供する。",
+      "verify_steps": [
+        "1. GDPS GUI のメニューから利用可能な機能を確認する。",
+        "2. GDPS Metro HyperSwap Manager にスクリプト・サポートが無いことを確認する。",
+        "3. 比較表（Table 4-1）で他オファリングとの機能差を確認する。",
+        "4. HyperSwap によるディスク障害の透過的切替を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager がフル機能の GDPS Metro と比べて提供しないものはどれか。",
+        "choices": [
+          "スクリプト・サポート",
+          "HyperSwap",
+          "Metro Mirror 複製",
+          "SDF 監視"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro HyperSwap Manager はスクリプト・サポートを提供せず、スクリプト機能にはフル機能の GDPS Metro が必要である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.144",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12432",
+      "title": "Comparing GDPS Virtual Appliance to other GDPS offerings",
+      "naiyou_jp": "GDPS Virtual Appliance は z/OS やシスプレックスのスキルを必要とせずに z/VM および Linux on IBM Z 向けの DR・CA・システム資源管理を提供する唯一の GDPS オファリングであり、仮想アプライアンスとしてパッケージ化されている。他の GDPS 製品が z/OS 環境を前提とするのに対し、Virtual Appliance は z/OS を稼働させない顧客向けに HyperSwap などの機能を提供する点で位置付けが異なる。",
+      "verify_steps": [
+        "1. GDPS Virtual Appliance の GUI にログオンする。",
+        "2. z/VM／Linux on IBM Z システムが管理対象であることを確認する。",
+        "3. z/OS／シスプレックス無しで HyperSwap が機能することを確認する。",
+        "4. 比較表で他 GDPS オファリングとの機能差を確認する。"
+      ],
+      "quiz": {
+        "q": "GDPS Virtual Appliance が他の GDPS オファリングと最も異なる点はどれか。",
+        "choices": [
+          "z/OS やシスプレックスのスキル無しで z/VM／Linux on IBM Z を管理できる",
+          "z/OS 専用である",
+          "ハードウェア複製を使わない",
+          "DR 機能を持たない"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Virtual Appliance は仮想アプライアンスとしてパッケージされ、z/OS／シスプレックスのスキル無しで z/VM・Linux on IBM Z を管理できる唯一のオファリングである。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.220",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12435",
+      "title": "Considerations for other non-CA workloads",
+      "naiyou_jp": "GDPS Continuous Availability が管理する Active/Active ワークロードのデータは GDPS の制御下で複製され、非管理アプリケーションから使用してはならない。たとえば Site1 でアクティブなワークロードと同じデータを非管理アプリが使用していると、ワークロードを Site2 へ切り替えた際に、切り替わらない非管理ワークロードがデータ整合性の問題を引き起こす。そのため、CA ワークロードと非 CA ワークロードのデータは適切に分離・隔離する必要がある。",
+      "verify_steps": [
+        "1. GDPS GUI で Active/Active 管理対象ワークロードを確認する。",
+        "2. 同一データを使用する非管理アプリケーションの有無を確認する。",
+        "3. ワークロードを Site2 へ切り替え、非管理ワークロードの挙動を観察する。",
+        "4. CA ワークロードと非 CA ワークロードのデータが分離されていることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability 環境で非 CA ワークロードを扱う際の主な考慮点はどれか。",
+        "choices": [
+          "管理ワークロードと同じデータを使う非管理アプリは分離が必要",
+          "非 CA ワークロードは自動的に切り替わる",
+          "データ複製は不要になる",
+          "HyperSwap が無効化される"
+        ],
+        "answer": 0,
+        "explanation": "管理ワークロードのデータを非管理アプリが共有しているとサイト切替時に整合性問題が生じるため、データの分離・隔離が必要である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.216",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12436",
+      "title": "Continuous availability in a single data center",
+      "naiyou_jp": "最初のシナリオでは、顧客は単一データ・センターのみを持つが、より高い可用性を求めている。重要アプリケーションでデータ共用を実装し、動的ワークロード・バランシングで停止の影響をマスクしている。サイト内で全ディスクをミラーリングしているが、計画停止が必要となる。GDPS Metro HyperSwap Manager を導入すると、プライマリ・ディスク・サブシステム障害時にコントローリング・システムが HyperSwap を開始し、全システムをセカンダリ・ボリュームへ透過的に切り替える。",
+      "verify_steps": [
+        "1. 単一サイト構成で GDPS Metro HyperSwap Manager をセットアップする。",
+        "2. 重要アプリのデータ共用と動的ワークロード・バランシングを確認する。",
+        "3. プライマリ・ディスク障害を想定し、HyperSwap によるセカンダリへの透過的切替を確認する。",
+        "4. 切替後も全システムが稼働継続していることを検証する。"
+      ],
+      "quiz": {
+        "q": "単一データ・センター内の CA でディスク障害時にシステムを透過的に切り替える GDPS 機能はどれか。",
+        "choices": [
+          "HyperSwap",
+          "Global Mirror",
+          "テープ・リストア",
+          "リージョン・スイッチ"
+        ],
+        "answer": 0,
+        "explanation": "単一サイトでは HyperSwap によりプライマリ・ディスク障害時にセカンダリ・ボリュームへ全システムを透過的に切り替え、可用性を維持する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.316",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12441",
+      "title": "Creating a test copy by using GM CGPause and testing on isolated disks",
+      "naiyou_jp": "GM 環境でテスト・コピーを作成する際、CGPause を用いると GM セッションへの中断を最小化できる。CGPause をサポートしない環境では、まず GM セカンダリ・ディスクをリカバリして整合化してからプラクティス FlashCopy を取得する必要があり、GM セッションの中断時間が長くなる。テスト・コピーをセカンダリとは別のディスク・サブシステム（X-disk）上に隔離することで、テスト実行が GM 複製に干渉せず、複製を継続したままテストを行える。",
+      "verify_steps": [
+        "1. GM 環境で CGPause を発行し、整合点を作成する。",
+        "2. X-disk（隔離ディスク）へ FlashCopy でテスト・コピーを取得する。",
+        "3. CGPause により GM セッションの中断が最小化されていることを確認する。",
+        "4. 隔離ディスク上でテストを実施し、GM 複製が継続していることを確認する。"
+      ],
+      "quiz": {
+        "q": "GM 環境でテスト・コピー作成時に GM セッションへの中断を最小化する機能はどれか。",
+        "choices": [
+          "CGPause",
+          "Freeze",
+          "HyperSwap",
+          "Heat Map Transfer"
+        ],
+        "answer": 0,
+        "explanation": "CGPause は GM セッションの中断を最小化してテスト・コピーを作成でき、X-disk へ隔離することでテストが複製に干渉しない。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.195",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12447",
+      "title": "Db2 replication in a non-ZDL environment",
+      "naiyou_jp": "ソフトウェア複製は本質的に非同期であるため、非 ZDL（ゼロ・データ損失でない）環境ではアクティブ・サイト（Site1）の計画外喪失により、ワークロードとキャプチャ・プロセスが失われ、スタンバイ・サイト（Site2）へまだ送信されていない「取り残されたトランザクション（stranded transactions）」が残る可能性が高い。壊滅的な障害でデータが後から取得できない場合、これらは「失われたトランザクション」となる。GDPS Continuous Availability の通常構成ではこの非 ZDL 動作が前提となる。",
+      "verify_steps": [
+        "1. GDPS Continuous Availability で Db2 ソフトウェア複製の構成を確認する。",
+        "2. キャプチャ／アプライ・プロセスの稼働を確認する。",
+        "3. Site1 の計画外停止を想定し、取り残されたトランザクションの発生を確認する。",
+        "4. RPO がゼロでないこと（非 ZDL）を検証する。"
+      ],
+      "quiz": {
+        "q": "非 ZDL 環境での Db2 ソフトウェア複製において、アクティブ・サイトの計画外喪失で発生し得る問題はどれか。",
+        "choices": [
+          "取り残された（stranded）トランザクションの損失",
+          "ディスクの物理破壊が防げる",
+          "RPO が常にゼロになる",
+          "HyperSwap が自動実行される"
+        ],
+        "answer": 0,
+        "explanation": "ソフトウェア複製は非同期のため、計画外停止時に未送信の取り残されたトランザクションが失われる可能性がある（非 ZDL）。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.228",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12454",
+      "title": "DR and continuous availability across two data centers at metro distance",
+      "naiyou_jp": "このシナリオでは、メトロ距離にある 2 つのデータ・センター間で DR と CA の両方を実現する。同期 Metro Mirror で両サイト間のデータを複製し、HyperSwap によりディスク障害を透過的にマスクして継続的可用性を提供すると同時に、サイト障害時には他サイトでの復旧（DR）を可能にする。マルチサイト・ワークロード構成では、両サイトのシステムがシスプレックスを構成し、Freeze によりデータ整合性を保証する。",
+      "verify_steps": [
+        "1. メトロ距離の 2 サイト間で Metro Mirror 複製を確認する。",
+        "2. HyperSwap によりディスク障害が透過的にマスクされることを確認する。",
+        "3. サイト障害を想定し、他サイトでの復旧（DR）手順を確認する。",
+        "4. Freeze によるデータ整合性保証を検証する。"
+      ],
+      "quiz": {
+        "q": "メトロ距離 2 サイトで CA と DR を同時に実現する複製技術はどれか。",
+        "choices": [
+          "同期 Metro Mirror と HyperSwap",
+          "非同期 Global Mirror のみ",
+          "ソフトウェア複製のみ",
+          "テープ・ダンプ"
+        ],
+        "answer": 0,
+        "explanation": "メトロ距離では同期 Metro Mirror＋HyperSwap により CA を、サイト障害時の他サイト復旧により DR を同時に実現する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.301",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12455",
+      "title": "DR and continuous availability across two data centers at metro distance for z/VM and Linux on IBM Z",
+      "naiyou_jp": "このシナリオの顧客は、z/VM ゲストとして稼働する Linux on IBM Z 上で主要な本番業務を実行している。本番データは CKD ディスク上にあり、重要ワークロードは 4 つの z/VM システムで稼働し、2 システムずつを各サイトに配置している。メトロ距離の 2 サイト間で、GDPS による Multiplatform Resiliency for IBM Z（xDR）を用いて z/VM／Linux 環境の CA と DR を実現する。",
+      "verify_steps": [
+        "1. 各サイトに配置された z/VM システムと Linux ゲストの構成を確認する。",
+        "2. CKD ディスク上の本番データの Metro Mirror 複製を確認する。",
+        "3. xDR（Multiplatform Resiliency for IBM Z）による z/VM 管理を確認する。",
+        "4. メトロ距離 2 サイト間の HyperSwap と DR 切替を検証する。"
+      ],
+      "quiz": {
+        "q": "z/VM／Linux on IBM Z 環境の CA／DR を GDPS が管理するために用いる機能はどれか。",
+        "choices": [
+          "Multiplatform Resiliency for IBM Z（xDR）",
+          "GM Bidirectional のみ",
+          "テープ・バックアップ",
+          "CGPause"
+        ],
+        "answer": 0,
+        "explanation": "z/VM ゲストとして稼働する Linux on IBM Z は、GDPS の Multiplatform Resiliency for IBM Z（xDR）によってメトロ距離 2 サイトで CA／DR が管理される。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.325",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12456",
+      "title": "DR in two data centers at global distance",
+      "naiyou_jp": "このシナリオでは、実質無制限の距離（グローバル距離）で隔てられた 2 サイト間の DR を実現する。Global Mirror はディスク・サブシステム・ベースの非同期リモート・コピー技術であり、距離による応答時間への影響を回避しつつ、遠隔サイトに整合性のあるデータのコピーを維持する。GDPS GM は、約 1 時間という短い RTO と、わずか 5 秒程度の RPO を提供でき、200 km 以上離れたサイト間で展開されることが多い。",
+      "verify_steps": [
+        "1. グローバル距離の 2 サイト間で Global Mirror（非同期）複製を確認する。",
+        "2. GDPS GM の RTO（約 1 時間）／RPO（約 5 秒）目標を確認する。",
+        "3. リカバリ・サイトでセカンダリ・ディスクの整合化（リカバリ）手順を確認する。",
+        "4. 遠隔サイトでの本番再始動を検証する。"
+      ],
+      "quiz": {
+        "q": "グローバル距離での DR に GDPS GM が用いる複製技術はどれか。",
+        "choices": [
+          "非同期 Global Mirror",
+          "同期 Metro Mirror",
+          "HyperSwap",
+          "FlashCopy のみ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS GM はディスク・サブシステム・ベースの非同期 Global Mirror を用い、実質無制限の距離で DR を提供する（RTO 約 1 時間、RPO 約 5 秒）。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.315",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12458",
+      "title": "Dynamic PPRC Link Configuration Management",
+      "naiyou_jp": "GDPS Global Mirror 4.7 では、GDPS パネルから PPRC リンクを動的に管理する機能が導入された。この新機能を用いると、特定の整合性グループまたは複製レッグに関連付けられた PPRC リンクの追加・削除・変更・照会が行える。Global Mirror 複製レッグの管理には K-sys を、利用可能な場合の X-Disk レッグの管理には R-sys を使用する。これにより、複製構成の調整を停止せずに実行できる。",
+      "verify_steps": [
+        "1. K-sys のコンソールにログオンする。",
+        "2. GDPS パネルで対象の整合性グループ／複製レッグを選択する。",
+        "3. PPRC リンクの追加・削除・変更・照会を動的に実行する。",
+        "4. X-Disk レッグについては R-sys でリンクを管理する。"
+      ],
+      "quiz": {
+        "q": "GDPS GM 4.7 で導入された Dynamic PPRC Link Configuration Management で行えることはどれか。",
+        "choices": [
+          "PPRC リンクの追加・削除・変更・照会を動的に行う",
+          "ディスクを物理的に交換する",
+          "ワークロードを再配置する",
+          "FlashCopy を無効化する"
+        ],
+        "answer": 0,
+        "explanation": "GDPS GM 4.7 では GDPS パネルから PPRC リンクを動的に追加・削除・変更・照会でき、K-sys で GM レッグ、R-sys で X-Disk レッグを管理する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.193",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12461",
+      "title": "Easy Tier Heat Map Transfer in a GDPS MGM 3-site environment",
+      "naiyou_jp": "GDPS Metro は Heat Map Transfer により Metro Mirror 環境内で Easy Tier の学習情報を転送し、GDPS GM は GM 環境内で同様の転送を管理する。MGM 3-site 環境では、これら GDPS Metro と GDPS GM の Heat Map Transfer 機能が連携し、環境全体で Easy Tier 学習情報の転送を管理する。計画／計画外 HyperSwap、サイト・スイッチ、リージョン・スイッチ、GM プライマリ・ディスク・セットの除去・喪失などの重要イベント発生時には、GDPS が自動的に複製環境を再構成する。",
+      "verify_steps": [
+        "1. GDPS GUI で Metro レッグの Heat Map Transfer 状態を確認する。",
+        "2. GM レッグの Heat Map Transfer 状態を確認する。",
+        "3. HyperSwap またはサイト／リージョン・スイッチを想定し、自動再構成を確認する。",
+        "4. スイッチ後もセカンダリ側で Easy Tier 学習が維持されることを検証する。"
+      ],
+      "quiz": {
+        "q": "MGM 3-site 環境で Easy Tier の学習情報を環境全体で転送する仕組みはどれか。",
+        "choices": [
+          "GDPS Metro と GDPS GM の Heat Map Transfer 連携",
+          "CGPause",
+          "Freeze",
+          "Lifeline Advisor"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site では GDPS Metro と GDPS GM の Heat Map Transfer が連携し、HyperSwap やスイッチ時に GDPS が自動再構成して Easy Tier 学習を維持する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.271",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12462",
+      "title": "Enhanced resiliency with Region Switch and GM Bidirectional support",
+      "naiyou_jp": "GDPS GM Bidirectional 機能は、従来のリージョン・スイッチおよびリターン・ホーム機能を強化する別途有償のフィーチャーである。K-sys と R-sys 双方のペアを含む共通の GEOGROUP と、両方向のミラーリング用 DASD 構成を含む共通の GEOPARM を実装することで、リージョン・スイッチ・プロセスの効率を向上させる。これによりリージョン切替後の DR 能力の確立がより迅速かつ効率的になる。",
+      "verify_steps": [
+        "1. K-sys／R-sys を含む共通 GEOGROUP の定義を確認する。",
+        "2. 双方向ミラーリング用の共通 GEOPARM 構成を確認する。",
+        "3. Planned Action でリージョン・スイッチをシミュレートする。",
+        "4. スイッチ後に逆方向の複製と DR 能力が確立されることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS GM Bidirectional 機能が強化するプロセスはどれか。",
+        "choices": [
+          "リージョン・スイッチおよびリターン・ホーム",
+          "HyperSwap のディスク切替",
+          "FlashCopy のテスト・コピー",
+          "SDF の監視サイクル"
+        ],
+        "answer": 0,
+        "explanation": "GM Bidirectional は別途有償の機能で、共通 GEOGROUP／GEOPARM によりリージョン・スイッチとリターン・ホームの効率を高める。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.187",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12467",
+      "title": "Flexible Capacity for Cyber Resiliency",
+      "naiyou_jp": "Flexible Capacity for Cyber Resiliency は、サイバー・レジリエンス戦略の一環として、データ・センター停止のような計画イベントに対応するための容量管理機能である。この機能を用いると CBU（Capacity BackUp）が不要になる場合もあるが、ピーク・ワークロードを管理するために OOCoD（On/Off Capacity on Demand）と連携して本番容量を一時的に増加させることもできる。GDPS スクリプトのキーワードで有効化・無効化を制御できる。",
+      "verify_steps": [
+        "1. GDPS スクリプトで Flexible Capacity の容量プロファイルを確認する。",
+        "2. サイバー・レジリエンス・シナリオで計画イベントを想定する。",
+        "3. スクリプトのキーワードで Flexible Capacity を有効化し、本番容量の増加を確認する。",
+        "4. OOCoD との連携によるピーク・ワークロード対応を検証する。"
+      ],
+      "quiz": {
+        "q": "Flexible Capacity for Cyber Resiliency の用途として正しいものはどれか。",
+        "choices": [
+          "サイバー・レジリエンスの計画イベントに対する容量管理",
+          "ディスク複製の停止",
+          "ワークロードの自動削除",
+          "HyperSwap の無効化"
+        ],
+        "answer": 0,
+        "explanation": "Flexible Capacity for Cyber Resiliency は計画イベントに対応する容量管理機能で、CBU を不要にできる場合があり、OOCoD と連携してピーク容量を確保する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.57",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12469",
+      "title": "Flexible testing and Logical Corruption Protection",
+      "naiyou_jp": "GDPS は本番ボリュームのサブセットに対する FlashCopy を、論理破損保護（LCP）の目的で使用できる。FlashCopy 技術を活用することで、本番を稼働させたまま柔軟なテスト（DR 演習など）を行うと同時に、サイバー攻撃や内部脅威を含むさまざまな論理データ破損に対する保護を提供する。LCP は定期的に 1 つ以上のコピーを作成し、これらをテスト・分析・復旧に利用できる。",
+      "verify_steps": [
+        "1. GDPS GUI で LCP 用の FlashCopy 容量構成を確認する。",
+        "2. 本番ボリュームのサブセットに対する FlashCopy を取得する。",
+        "3. 本番稼働中にテスト・コピー上で DR 演習を実施する。",
+        "4. 論理破損イベントからの復旧に LCP コピーを利用できることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS の Flexible testing および Logical Corruption Protection で中心的に用いられる技術はどれか。",
+        "choices": [
+          "FlashCopy",
+          "Global Mirror",
+          "Lifeline Advisor",
+          "CBU"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は FlashCopy を用いて、本番稼働中の柔軟なテストと、論理破損（サイバー攻撃・内部脅威等）に対する LCP 保護を提供する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.170",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12470",
+      "title": "Flexible testing in a GDPS MGM 3-site environment",
+      "naiyou_jp": "GDPS MGM 3-site 環境では、本番ミラーの最新性を維持しながら DR テストを実施したり、定期的に追加コピーを取得したりするために、FlashCopy を活用した柔軟なテストが可能である。GM とFlashCopy を組み合わせることで、本番データの使用可能なコピーを作成し、オンデマンドのテスト能力やその他の無停止アクティビティを提供する。テスト・コピーを隔離することで、テストが進行中の複製に干渉しない。",
+      "verify_steps": [
+        "1. GDPS GUI で MGM 3-site の複製レッグ状態を確認する。",
+        "2. GM＋FlashCopy でテスト・コピーを作成する。",
+        "3. 本番ミラーの最新性を維持したまま DR テストを実施する。",
+        "4. テスト・コピーの隔離により複製に干渉しないことを検証する。"
+      ],
+      "quiz": {
+        "q": "MGM 3-site 環境で本番ミラーの最新性を維持しつつ DR テストを行うために用いる組み合わせはどれか。",
+        "choices": [
+          "GM と FlashCopy",
+          "HyperSwap と Freeze",
+          "CBU と OOCoD",
+          "Lifeline Advisor と Agent"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site では GM と FlashCopy を組み合わせ、本番ミラーを維持したままテスト・コピーで DR テストを実施できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.272",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12471",
+      "title": "Flexible testing with GDPS Continuous Availability",
+      "naiyou_jp": "GDPS Continuous Availability では、ソフトウェア複製に基づくアクティブ／スタンバイ構成を活かした柔軟なテストが可能である。スタンバイ・サイトのデータやコピーを用いて、本番ワークロードの可用性に影響を与えずに DR テストやワークロード切替の検証を行える。ゼロ・データ損失（ZDL）構成と組み合わせることで、より厳格な RPO 要件下でのテストも実施できる。",
+      "verify_steps": [
+        "1. GDPS GUI でアクティブ／スタンバイ・ワークロードを確認する。",
+        "2. スタンバイ・サイトのデータでテスト環境を準備する。",
+        "3. 本番ワークロードに影響を与えずに切替テストを実施する。",
+        "4. ZDL 構成下でのテスト動作を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability の柔軟なテストが基づくレプリケーション方式はどれか。",
+        "choices": [
+          "ソフトウェア複製",
+          "同期 Metro Mirror",
+          "非同期 Global Mirror",
+          "テープ複製"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Continuous Availability はソフトウェア複製に基づくアクティブ／スタンバイ構成で、本番に影響を与えずに柔軟なテストを行える。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.211",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12472",
+      "title": "Flexible testing, resync protection, and Logical Corruption Protection",
+      "naiyou_jp": "Metro Mirror 環境で PiT コピー（FlashCopy）容量を構成すると、本番稼働中に本番データのコピーを用いて定期的な DR 演習やその他のテストを実施できる。また、Metro Mirror セカンダリ・データの整合性のある「ゴールデン・コピー」を保存でき、Metro Mirror 再同期中にプライマリ・ディスクまたはサイトが失われた場合の保護（resync protection）として利用できる。さらに FlashCopy は論理破損保護（LCP）にも活用される。",
+      "verify_steps": [
+        "1. Metro Mirror 環境で FlashCopy 容量を構成する。",
+        "2. 本番稼働中にテスト・コピーで DR 演習を実施する。",
+        "3. 再同期前にセカンダリの「ゴールデン・コピー」を取得する。",
+        "4. 再同期中のサイト喪失に対する resync protection を検証する。"
+      ],
+      "quiz": {
+        "q": "FlashCopy で取得する「ゴールデン・コピー」が提供する保護はどれか。",
+        "choices": [
+          "再同期中にプライマリ／サイトを失った場合の resync protection",
+          "ネットワーク帯域の増加",
+          "CPU 容量の追加",
+          "ワークロードの自動分散"
+        ],
+        "answer": 0,
+        "explanation": "Metro Mirror 再同期中はセカンダリが一時的に非整合になるため、事前に取得したゴールデン・コピーが resync protection として機能する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.161",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12474",
+      "title": "GDPS CBU, OOCoD, CPE, SRB, and Flexible Capacity",
+      "naiyou_jp": "GDPS の一時容量管理機能は、プロビジョニング対象のサーバー・システムが提供する機能に依存する。GDPS は CBU（Capacity BackUp）、OOCoD（On/Off Capacity on Demand）、CPE（Capacity for Planned Events）、SRB（System Recovery Boost）、Flexible Capacity の有効化・無効化をサポートするキーワードをスクリプトで提供する。GDPS は CPC レベルで有効化された CBU・OOCoD 資源を追跡し、容量プロファイルを定義して稼働中システムに容量を追加できる。",
+      "verify_steps": [
+        "1. GDPS スクリプトで CBU／OOCoD／CPE／SRB／Flexible Capacity のキーワードを確認する。",
+        "2. 容量プロファイルを定義する。",
+        "3. スクリプトで一時容量を有効化し、CPC レベルでの追跡を確認する。",
+        "4. 緊急時の容量追加と無効化を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS が一時容量管理でサポートする機能に含まれないものはどれか。",
+        "choices": [
+          "Global Mirror",
+          "CBU",
+          "OOCoD",
+          "Flexible Capacity"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は CBU・OOCoD・CPE・SRB・Flexible Capacity の一時容量管理をスクリプトで制御する。Global Mirror はディスク複製技術であり容量管理機能ではない。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.56",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12475",
+      "title": "GDPS Continuous Availability co-operation with GDPS Metro",
+      "naiyou_jp": "GDPS Continuous Availability は他の GDPS 製品と相互排他ではなく、GDPS Metro や GDPS MGM と組み合わせて包括的なニア CA／DR ソリューションを構築できる。たとえば 2 リージョン構成では、各リージョンのシスプレックスを GDPS Metro が管理し（KP1A／KP2A などのコントローリング・システム）、その上位で GDPS Continuous Availability がワークロード単位の切替を管理する協調動作が可能である。これにより、ハードウェア複製とソフトウェア複製の利点を併用できる。",
+      "verify_steps": [
+        "1. 各リージョンのシスプレックスを管理する GDPS Metro コントローリング・システムを確認する。",
+        "2. 上位の GDPS Continuous Availability コントローラーを確認する。",
+        "3. ワークロード単位の切替と GDPS Metro の HyperSwap が協調することを確認する。",
+        "4. 両者の連携による CA／DR 統合を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability と GDPS Metro の協調動作の利点はどれか。",
+        "choices": [
+          "ハードウェア複製とソフトウェア複製の利点を併用できる",
+          "複製が一切不要になる",
+          "単一サイトのみで動作する",
+          "RTO が無限大になる"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Continuous Availability と GDPS Metro は協調動作でき、Metro の HyperSwap（HW 複製）と CA のワークロード切替（SW 複製）を併用して包括的な CA／DR を実現する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.206",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12477",
+      "title": "GDPS Continuous Availability functions and features",
+      "naiyou_jp": "GDPS Continuous Availability は、アクティブ・シスプレックスとスタンバイ・シスプレックス、各拠点の GDPS コントローラー、ワークロード分散機構の間で常時情報を交換し、環境の健全性を正確に把握して適切な自動化判断を可能にする。計画的にはワークロードを現行のアクティブからスタンバイ・サイトへ切り替えることができ、ワークロード単位の管理・監視・切替機能を提供する。",
+      "verify_steps": [
+        "1. GDPS GUI でアクティブ／スタンバイ・シスプレックスの状態を確認する。",
+        "2. 各拠点のコントローラー間の情報交換を確認する。",
+        "3. ワークロード分散機構の状態を確認する。",
+        "4. 計画的なワークロード切替を実施し、機能を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability の機能の特徴として正しいものはどれか。",
+        "choices": [
+          "ワークロード単位の管理・監視・切替を行う",
+          "システム単位の再始動のみ行う",
+          "ディスク単位の HyperSwap のみ行う",
+          "テープ複製を管理する"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Continuous Availability はアクティブ／スタンバイ間で常時情報交換し、ワークロード単位の管理・監視・計画切替を提供する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.197",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12485",
+      "title": "GDPS Continuous Availability: A closer look",
+      "naiyou_jp": "GDPS Continuous Availability の詳細を見ると、アクティブ／スタンバイの 2 つのシスプレックス、各拠点に 1 つずつのコントローラー、ワークロード分散機構が連携して動作する。アクティブ・サイトのワークロードはソフトウェア複製でスタンバイ・サイトへ複製され、コントローラーが健全性監視に基づきワークロードの切替を判断する。NetView 変数に構成・状態情報が保持され、Query Services で照会できる。",
+      "verify_steps": [
+        "1. GDPS GUI でアクティブ／スタンバイ・シスプレックスを確認する。",
+        "2. 各拠点のコントローラーの稼働を確認する。",
+        "3. ソフトウェア複製によるデータ同期状態を確認する。",
+        "4. ワークロード切替の判断ロジックと NetView 変数の状態を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability 環境の構成要素として正しいものはどれか。",
+        "choices": [
+          "アクティブ／スタンバイ・シスプレックスと各拠点のコントローラー",
+          "単一シスプレックスと単一ディスク",
+          "テープ・ライブラリのみ",
+          "HyperSwap 専用ハードウェア"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Continuous Availability は 2 つのシスプレックス（アクティブ／スタンバイ）、各拠点のコントローラー、ワークロード分散機構で構成される。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.193",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12486",
+      "title": "GDPS Freeze function for mirroring failures",
+      "naiyou_jp": "GDPS は、リモート・コピー障害が発生すると自動化によってすべてのミラーリングを停止する。特に GDPS 自動化は IBM PPRC Freeze/Run アーキテクチャを使用する。これは Metro Mirror の一部として IBM ディスク・サブシステムに実装されており、他のエンタープライズ・ディスク・ベンダーでも実装されている。ディスク・ハードウェアが Freeze/Run をサポートしていれば、GDPS はミラーリング障害がサイト障害の最初の兆候である可能性に備え、管理対象の全データにわたる整合性を保証できる。",
+      "verify_steps": [
+        "1. GDPS GUI で Metro Mirror の複製状態を確認する。",
+        "2. ミラーリング障害（リンク切断等）を想定する。",
+        "3. GDPS が Freeze を自動的かつ無条件に実行することを確認する。",
+        "4. Freeze 後のセカンダリ・ボリュームの整合性とポリシー設定（ELB 状態）を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS がミラーリング障害時に整合性を保証するために用いるアーキテクチャはどれか。",
+        "choices": [
+          "IBM PPRC Freeze/Run",
+          "CGPause",
+          "Heat Map Transfer",
+          "Lifeline"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は IBM PPRC Freeze/Run アーキテクチャを用い、ミラーリング障害時に Freeze を自動実行して整合性のあるセカンダリを確保する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.136",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12492",
+      "title": "GDPS GM in a 3-site, 4-site or 6-site configuration",
+      "naiyou_jp": "GDPS GM は GDPS Metro（または GDPS HM）と組み合わせて 3-site または 4-site 構成にでき、その場合 GDPS Metro/HM がメトロ距離内（または単一サイト内）の 2 サイトで Parallel Sysplex と HyperSwap による継続的可用性（CA）を提供し、GDPS GM が遠隔リージョンで DR を提供する。さらに MGM 6-site トポロジーもサポートされ、4-site トポロジーの拡張として両リージョンでの対称運用を可能にする。",
+      "verify_steps": [
+        "1. GDPS GUI で Metro/HM レッグ（メトロ間 CA）の状態を確認する。",
+        "2. GM レッグ（遠隔リージョン DR）の状態を確認する。",
+        "3. 3-site／4-site／6-site トポロジーの構成を確認する。",
+        "4. HyperSwap による CA と GM による DR の連携を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS GM を GDPS Metro と組み合わせた構成で GDPS GM が担う役割はどれか。",
+        "choices": [
+          "遠隔リージョンでの DR",
+          "メトロ距離での HyperSwap CA",
+          "単一サイトのワークロード分散",
+          "テープ・バックアップ"
+        ],
+        "answer": 0,
+        "explanation": "3/4/6-site 構成では GDPS Metro/HM がメトロ CA を、GDPS GM が遠隔リージョンの DR を担う。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.173",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12493",
+      "title": "GDPS GM monitoring and alerting",
+      "naiyou_jp": "GDPS GM には GM Monitor が完全に統合されており、GM のパフォーマンスと挙動に対する監視・履歴レポート機能と、パフォーマンスに基づく一部の自律的機能を提供する。GM Monitor は GM セッションの最近のパフォーマンス・データを表示でき、定義されたポリシーのしきい値を超えた場合にアラートやメッセージを生成する。問題が解消されると次の監視サイクルで検出され、アラートが自動的にクリアされる。これにより RPO／RTO のコミットメント達成の可能性を高める。",
+      "verify_steps": [
+        "1. GDPS GUI で GM Monitor のパフォーマンス・データを表示する。",
+        "2. ポリシーのしきい値設定を確認する。",
+        "3. しきい値超過を発生させ、SDF にアラートが表示されることを確認する。",
+        "4. 問題解消後にアラートが自動クリアされることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS GM monitoring and alerting の GM Monitor が行うことはどれか。",
+        "choices": [
+          "GM パフォーマンスの監視としきい値超過時のアラート生成",
+          "ディスクの物理交換",
+          "ワークロードのソフトウェア複製",
+          "CBU の有効化"
+        ],
+        "answer": 0,
+        "explanation": "GM Monitor は GM のパフォーマンス監視と履歴レポートを提供し、ポリシーのしきい値超過時にアラートを生成、解消時に自動クリアする。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.189",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12497",
+      "title": "GDPS HM reduced impact on initial copy and resynchronization",
+      "naiyou_jp": "GDPS は初期コピーおよび再同期を、非同期の PPRC-XD（Global Copy とも呼ばれる）を用いてサポートする。GDPS が非同期コピー・モードでコピー操作を開始し、ボリュームがフル・デュプレックス状態に近づくと、複製を非同期モードから同期 PPRC（Metro Mirror）へ変換する。初期コピーや再同期は本番に影響し得るバルク・コピー操作だが、PPRC-XD を用いることで同期複製による本番への影響を回避できる。",
+      "verify_steps": [
+        "1. GDPS GUI で初期コピー／再同期の開始を確認する。",
+        "2. PPRC-XD（非同期 Global Copy）モードでコピーが進行することを確認する。",
+        "3. ボリュームがフル・デュプレックスに近づいた時点で Metro Mirror へ変換されることを確認する。",
+        "4. 本番への影響が軽減されていることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS HM が初期コピー／再同期時に本番影響を軽減するために用いる方式はどれか。",
+        "choices": [
+          "非同期 PPRC-XD（Global Copy）でコピーし、後に同期へ変換",
+          "最初から同期 Metro Mirror でコピー",
+          "テープ経由でコピー",
+          "FlashCopy のみでコピー"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は初期コピー／再同期を非同期 PPRC-XD で行い、フル・デュプレックスに近づいた時点で同期 Metro Mirror へ変換して本番影響を抑える。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.123",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12500",
+      "title": "GDPS Metro co-operation with GDPS Continuous Availability",
+      "naiyou_jp": "GDPS Metro は GDPS Continuous Availability と協調動作できる。2 リージョン構成では、各リージョンのシスプレックス（SYSPLEXA／SYSPLEXB）を GDPS Continuous Availability が管理し、各シスプレックスはさらに GDPS Metro のインスタンス（KP1A／KP2A などのコントローリング・システム）で管理される。これにより、GDPS Metro の HyperSwap によるディスク障害保護と、GDPS Continuous Availability のワークロード単位の切替を組み合わせた多層的な可用性を実現する。",
+      "verify_steps": [
+        "1. 各リージョンの GDPS Continuous Availability コントローラー（AAC1／AAC2）を確認する。",
+        "2. 各シスプレックスを管理する GDPS Metro コントローリング・システム（KP1A／KP2A）を確認する。",
+        "3. HyperSwap によるディスク保護を確認する。",
+        "4. ワークロード切替と HyperSwap の協調を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro と GDPS Continuous Availability の協調構成で各シスプレックスを管理する GDPS Metro システムの例はどれか。",
+        "choices": [
+          "KP1A／KP2A",
+          "AAC1／AAC2",
+          "Lifeline Advisor",
+          "GM Monitor"
+        ],
+        "answer": 0,
+        "explanation": "2 リージョン構成では GDPS Continuous Availability コントローラー（AAC1/AAC2）の下で、各シスプレックスを GDPS Metro（KP1A/KP2A）が管理する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.206",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12508",
+      "title": "GDPS Metro HyperSwap Manager flexible testing and resync protection",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager は現行セカンダリ CKD ディスクの FlashCopy 取得をサポートし、COPY・NOCOPY・NOCOPY2COPY オプションと、COPY／NOCOPY での CONSISTENT FlashCopy をサポートする。FlashCopy 容量を Metro Mirror 環境に構成することで、本番稼働中に DR 演習を行える柔軟なテストと、Metro Mirror 再同期中にプライマリ／サイトを失った場合の resync protection（整合性のあるゴールデン・コピー保存）を提供する。",
+      "verify_steps": [
+        "1. GDPS GUI で Metro Mirror セカンダリ CKD ディスクへの FlashCopy 容量を確認する。",
+        "2. COPY／NOCOPY／CONSISTENT オプションで FlashCopy を取得する。",
+        "3. 本番稼働中にテスト・コピーで DR 演習を実施する。",
+        "4. 再同期前にゴールデン・コピーを保存し resync protection を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager の FlashCopy がサポートするオプションに含まれないものはどれか。",
+        "choices": [
+          "INCREMENTAL",
+          "COPY",
+          "NOCOPY",
+          "NOCOPY2COPY"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro HyperSwap Manager のセカンダリ FlashCopy は COPY・NOCOPY・NOCOPY2COPY をサポートする（INCREMENTAL はフル機能 GDPS Metro 側のオプション）。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.161",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12510",
+      "title": "GDPS Metro HyperSwap Manager in a 2-site configuration",
+      "naiyou_jp": "基本的な GDPS Metro HyperSwap Manager 構成は、少なくとも 1 つの本番システム、少なくとも 1 つのコントローリング・システム、プライマリ・ディスク、セカンダリ・ディスクで構成される。2-site 構成では、これらをメトロ距離内の 2 つのデータ・センターにまたがって配置し、DR ソリューションの基盤とする。HyperSwap によりプライマリ・ディスク障害時にセカンダリへ透過的に切り替え、サイト間での保護を提供する。",
+      "verify_steps": [
+        "1. メトロ距離の 2 サイトに本番／コントローリング・システムとプライマリ／セカンダリ・ディスクを配置する。",
+        "2. GDPS GUI で Metro Mirror 複製が DUPLEX であることを確認する。",
+        "3. プライマリ・ディスク障害を想定し HyperSwap を実行する。",
+        "4. セカンダリ・サイトへの透過的切替と DR 基盤を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager の基本構成に必須でないものはどれか。",
+        "choices": [
+          "Global Mirror セッション",
+          "本番システム",
+          "コントローリング・システム",
+          "プライマリ／セカンダリ・ディスク"
+        ],
+        "answer": 0,
+        "explanation": "基本構成は本番システム・コントローリング・システム・プライマリ／セカンダリ・ディスクから成る。Global Mirror は GM や 3-site 構成で追加されるもので必須ではない。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.148",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12511",
+      "title": "GDPS Metro HyperSwap Manager in a 3-site configuration",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager は GDPS GM と組み合わせて 3-site 構成にできる。この構成では、GDPS Metro HyperSwap Manager がメトロ・エリアまたは同一ローカル・サイト内でのディスク障害からの保護（HyperSwap）を提供し、GDPS GM が遠隔リージョンへの DR を提供する。これにより、ローカルの継続的可用性とリージョン規模の災害復旧を同時に実現する。",
+      "verify_steps": [
+        "1. GDPS GUI で Metro Mirror レッグ（メトロ間 HyperSwap 保護）を確認する。",
+        "2. GM レッグ（遠隔リージョン DR）の状態を確認する。",
+        "3. メトロ・エリアでのディスク障害に対する HyperSwap を確認する。",
+        "4. 遠隔リージョンでの DR 切替を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager の 3-site 構成で遠隔リージョンの DR を担うのはどれか。",
+        "choices": [
+          "GDPS GM",
+          "HyperSwap",
+          "CGPause",
+          "Lifeline"
+        ],
+        "answer": 0,
+        "explanation": "3-site 構成では GDPS Metro HyperSwap Manager がメトロ HyperSwap 保護を、GDPS GM が遠隔リージョン DR を担う。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.150",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12512",
+      "title": "GDPS Metro HyperSwap Manager in a single site",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager は単一サイト内に構成することもでき、HyperSwap によりプライマリ・ディスク・サブシステム障害からの保護を提供する。全構成（本番システム・コントローリング・システム・プライマリ／セカンダリ・ディスク）を 1 つのサイトに収め、ディスク障害時にセカンダリ・ボリュームへ透過的に切り替えることで、計画停止や計画外のディスク障害の影響をマスクする。",
+      "verify_steps": [
+        "1. 単一サイト内に本番・コントローリング・システムとプライマリ／セカンダリ・ディスクを配置する。",
+        "2. GDPS GUI で Metro Mirror 複製が DUPLEX であることを確認する。",
+        "3. プライマリ・ディスク障害を想定し HyperSwap を実行する。",
+        "4. セカンダリ・ボリュームへの透過的切替を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager を単一サイトに構成する主な目的はどれか。",
+        "choices": [
+          "ディスク・サブシステム障害からの HyperSwap 保護",
+          "リージョン規模の DR",
+          "ワークロードのソフトウェア複製",
+          "テープ・バックアップ"
+        ],
+        "answer": 0,
+        "explanation": "単一サイト構成では HyperSwap によりプライマリ・ディスク障害から保護し、ディスク障害の影響をマスクする。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.148",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12513",
+      "title": "GDPS Metro HyperSwap Manager monitoring and alerting",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager の監視・アラート機能は、回復操作の能力に影響し得る環境内の問題について運用担当者に通知し、是正措置を取れるようにすることを目的とする。PPRC リンク切断などの非送信エラーや、定期監視で正常でないと判断された主要資源・指標に対して、SDF（Status Display Facility）にアラートが掲示される。問題が解消されると次の監視サイクルでアラートが自動的にクリアされる。",
+      "verify_steps": [
+        "1. GDPS GUI／SDF パネルでアラート表示を確認する。",
+        "2. PPRC リンク切断などのエラーを想定し SDF にアラートが掲示されることを確認する。",
+        "3. 定期監視サイクルによる主要資源の状態チェックを確認する。",
+        "4. 問題解消後にアラートが自動クリアされることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager のアラートが掲示される場所はどれか。",
+        "choices": [
+          "SDF（Status Display Facility）",
+          "GM Monitor のグラフ",
+          "Lifeline Advisor のログ",
+          "テープ・カタログ"
+        ],
+        "answer": 0,
+        "explanation": "アラートは SDF（Status Display Facility）に色分けで掲示され、問題解消時に自動クリアされる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.158",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12515",
+      "title": "GDPS Metro in a single site",
+      "naiyou_jp": "GDPS Metro は単一サイト内にも構成でき、Metro Mirror と HyperSwap によりプライマリ・ディスク・サブシステム障害からの継続的可用性を提供する。スクリプト・サポートを含むフル機能を備えるため、計画／計画外イベントに対するユーザー・カスタマイズ可能なスクリプトでディスクやシステムの切替を制御できる。単一サイトでもディスク障害を透過的にマスクし、可用性を最大化する。",
+      "verify_steps": [
+        "1. 単一サイト内に GDPS Metro 構成を配置する。",
+        "2. GDPS GUI で Metro Mirror 複製が DUPLEX であることを確認する。",
+        "3. プライマリ・ディスク障害を想定し HyperSwap を実行する。",
+        "4. スクリプトによる計画／計画外イベント処理を検証する。"
+      ],
+      "quiz": {
+        "q": "単一サイトの GDPS Metro が GDPS Metro HyperSwap Manager と比べて追加で提供する機能はどれか。",
+        "choices": [
+          "スクリプト・サポート",
+          "HyperSwap",
+          "Metro Mirror",
+          "SDF 監視"
+        ],
+        "answer": 0,
+        "explanation": "フル機能の GDPS Metro はスクリプト・サポートを備え、計画／計画外イベントに対するカスタマイズ可能な自動化を提供する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.61",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12516",
+      "title": "GDPS Metro management of distributed systems and data",
+      "naiyou_jp": "今日の多くの企業は、IBM Z・IBM Power・UNIX・Windows・Linux など多様なハードウェア／ソフトウェア・プラットフォーム上にアプリケーションとデータを持つ異種混在 IT 環境を有する。こうした環境では、単一の制御点で全プラットフォームのデータを管理し、複数プラットフォームにまたがる DR 復旧を調整できると大きな利点がある。GDPS Metro は、Open LUN 管理や Multiplatform Resiliency for IBM Z（xDR）などにより、分散システムとデータの管理を提供する。",
+      "verify_steps": [
+        "1. GDPS GUI で IBM Z 以外のプラットフォーム（Open LUN 等）の管理対象を確認する。",
+        "2. 分散システムのディスク複製状態を確認する。",
+        "3. 単一制御点による複数プラットフォーム横断の DR 調整を確認する。",
+        "4. プラットフォーム間で整合性のある復旧手順を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro が分散システム・データを管理する利点はどれか。",
+        "choices": [
+          "単一制御点で複数プラットフォーム横断の DR を調整できる",
+          "z/OS のみを管理対象とできる",
+          "複製を不要にできる",
+          "テープのみで復旧する"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro は異種混在環境において単一制御点で全プラットフォームのデータを管理し、複数プラットフォーム横断の DR 復旧を調整できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.69",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12517",
+      "title": "GDPS Metro monitoring and alerting",
+      "naiyou_jp": "GDPS の SDF パネルは、色分けされたアラートを動的に表示する場所である。アラートは、GDPS が監視する非送信エラー状況（たとえば Metro Mirror 操作の経路となる複数 PPRC リンクの 1 つが切断された場合の非送信エラー・メッセージ）の結果として掲示される。GDPS はこうしたメッセージをリスンするほか、主要な資源・指標を定期的に監視し、正常でない状態を検出するとアラートを掲示する。加えて z/OS Health Checker への GDPS Metro ヘルス・チェック・プラグインも提供する。",
+      "verify_steps": [
+        "1. GDPS の SDF パネルで色分けアラートを確認する。",
+        "2. PPRC リンク切断を想定し非送信エラー・アラートを確認する。",
+        "3. 定期監視サイクルによる主要資源チェックを確認する。",
+        "4. z/OS Health Checker の GDPS Metro ヘルス・チェックを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro のアラートが色分けで動的表示される場所はどれか。",
+        "choices": [
+          "SDF（Status Display Facility）パネル",
+          "GM Monitor",
+          "Lifeline Agent",
+          "テープ・カタログ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro のアラートは SDF パネルに色分けで動的表示され、ヘルス・チェックは z/OS Health Checker に統合される。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.121",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12519",
+      "title": "GDPS MGM 3-site integration with GDPS Continuous Availability",
+      "naiyou_jp": "GDPS MGM 3-site は GDPS Continuous Availability と統合できる。前提条件として、GDPS Metro または GDPS HM（HM を使う場合は IR 機能が利用不可）、GDPS GM とその前提条件の充足、ディスク・サブシステムが必要な機能をサポートしていることをストレージ・ベンダーに確認することが含まれる。これにより、MGM 3-site の同期 CA・遠隔 DR と、Continuous Availability のワークロード単位切替を組み合わせた高度な構成が可能となる。",
+      "verify_steps": [
+        "1. GDPS MGM 3-site の前提条件（Metro/HM、GM）を確認する。",
+        "2. GDPS Continuous Availability コントローラーとの統合構成を確認する。",
+        "3. HM 使用時に IR 機能が利用不可であることを確認する。",
+        "4. MGM の DR とワークロード切替の連携を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS MGM 3-site を GDPS Continuous Availability と統合する際、GDPS HM を使うと利用できなくなる機能はどれか。",
+        "choices": [
+          "IR（Incremental Resynchronization）",
+          "HyperSwap",
+          "Metro Mirror",
+          "SDF 監視"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site で GDPS HM を使用する場合、IR（増分再同期）機能は利用できない。これが統合時の前提条件の 1 つである。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.271",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12521",
+      "title": "GDPS MGM 3-site support for multiple IBM Z platforms",
+      "naiyou_jp": "GDPS Metro は z/OS を超える複数の IBM Z プラットフォーム（オペレーティング・システム）とそのディスクに対してニア CA を提供する。これらの追加プラットフォームのうち、z/VM とそのゲスト（Linux on IBM Z を含む）、および Secure Service Container（SSC）で稼働する IBM Db2 Analytics Accelerator on IBM Z も、MGM 3-site 環境で GDPS によりサポートされる。これにより異種 IBM Z 環境全体の CA／DR を統合管理できる。",
+      "verify_steps": [
+        "1. GDPS GUI で z/VM／Linux on IBM Z ゲストの管理対象を確認する。",
+        "2. SSC 上の Db2 Analytics Accelerator の管理を確認する。",
+        "3. MGM 3-site 環境での各プラットフォームのディスク複製を確認する。",
+        "4. 複数プラットフォーム横断の HyperSwap／DR を検証する。"
+      ],
+      "quiz": {
+        "q": "MGM 3-site 環境で GDPS がサポートする IBM Z プラットフォームに含まれるものはどれか。",
+        "choices": [
+          "z/VM とそのゲスト（Linux on IBM Z）",
+          "Windows サーバー",
+          "UNIX ワークステーション",
+          "x86 仮想マシン"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site では z/OS に加え z/VM とそのゲスト（Linux on IBM Z）、SSC 上の Db2 Analytics Accelerator などがサポートされる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.270",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12522",
+      "title": "GDPS MGM region switch and return home",
+      "naiyou_jp": "GDPS MGM では、リージョン A（Site1 または Site2）で稼働している本番を、リージョン B へ切り替えることができる（リージョン・スイッチ）。多くの MGM 3-site 顧客は Site1 と Site2 を同一物理サイトまたは近接したキャンパス内で運用している。リージョン・スイッチ・プロセスは、両サイトに同等のインフラを実装することで、本番システムをリカバリ・サイトへ切り替え、DR 能力を維持しつつ必要時にリターン・ホーム（元のリージョンへ復帰）できるようにする。計画メンテナンスや DR 準備性の検証、規制対応などで実施される。",
+      "verify_steps": [
+        "1. GDPS GUI でリージョン A／B の構成を確認する。",
+        "2. Planned Action でリージョン・スイッチを実行する。",
+        "3. リカバリ・リージョンで本番が稼働し DR 能力が維持されることを確認する。",
+        "4. リターン・ホーム手順で元リージョンへ復帰できることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS MGM のリージョン・スイッチを実施する代表的な理由はどれか。",
+        "choices": [
+          "計画メンテナンスや DR 準備性の検証・規制対応",
+          "ディスク容量の削減",
+          "CPU 使用率の低減",
+          "テープ本数の削減"
+        ],
+        "answer": 0,
+        "explanation": "リージョン・スイッチは計画データ・センター・メンテナンス、DR 準備性の検証、規制当局への証明などのために実施され、リターン・ホームで元へ戻せる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.268",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12527",
+      "title": "GDPS Query Services in a GDPS MGM 3-site environment",
+      "naiyou_jp": "GDPS Metro は MGM 3-site 環境の Metro Mirror レッグの各種側面を照会する Query Services を提供し、同様に GDPS GM は GM レッグの各種側面を照会する Query Services を提供する。GDPS GM の Query Services は、当該環境が IR（増分再同期）を有効化した MGM 3-site 環境であることを認識し、それに関連する追加情報を返す。Query Services はクライアント作成の NetView REXX プログラムから GDPS 内部変数の値を照会できる機能である。",
+      "verify_steps": [
+        "1. K-sys で NetView REXX プログラムから GDPS Query Services を呼び出す。",
+        "2. Metro レッグの状態を照会する（GDPS Metro Query Services）。",
+        "3. GM レッグの状態を照会する（GDPS GM Query Services）。",
+        "4. IR 有効環境で追加情報が返ることを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Query Services を利用するために用いられるのはどれか。",
+        "choices": [
+          "クライアント作成の NetView REXX プログラム",
+          "HyperSwap スクリプトのみ",
+          "FlashCopy コマンド",
+          "Lifeline Agent"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Query Services はクライアント作成の NetView REXX プログラムから GDPS 内部変数を照会でき、MGM 3-site では Metro／GM 両レッグを照会できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.270",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12529",
+      "title": "GDPS tools for GDPS GM",
+      "naiyou_jp": "GDPS GM 向けには、構成の検証や運用支援のための各種 GDPS ツールが提供される。これらのツールは、GEOPARM／GEOMPARM などの構成定義の妥当性チェックや、複製レッグ・X-Disk レッグの状態確認、Query Services を介した内部変数の取得などを支援する。ツールを用いることで、GM 環境の構成ミスを早期に検出し、DR 準備性を高められる。",
+      "verify_steps": [
+        "1. K-sys で GDPS GM のツールを起動する。",
+        "2. GEOMPARM 構成定義の妥当性チェックを実行する。",
+        "3. GM レッグ／X-Disk レッグの状態を確認する。",
+        "4. Query Services で内部変数を取得し検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS GM 向けツールの主な用途はどれか。",
+        "choices": [
+          "構成定義の妥当性チェックと運用支援",
+          "ディスクの物理交換",
+          "ワークロードのソフトウェア複製",
+          "テープのリストア"
+        ],
+        "answer": 0,
+        "explanation": "GDPS GM 向けツールは GEOMPARM などの構成定義の妥当性チェックや状態確認・Query Services を支援し、構成ミスの早期検出に役立つ。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.198",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12530",
+      "title": "GDPS tools for GDPS Metro",
+      "naiyou_jp": "GDPS Metro 向けには、リモート・コピー環境の構成・管理を支援するツールが提供される。GDPS がリモート・コピー環境を管理するには、まず K-sys 上の GEOMPARM ファイルに構成を定義する。R-sys は常に K-sys から構成情報を受け取り、リモート・サイトのディスク構成を検証する。構成が GDPS に認識された後は、GUI で現行構成が意図した構成と一致するかをチェックし、ミラーリングの開始・停止・一時停止・再同期を実行できる。",
+      "verify_steps": [
+        "1. K-sys の GEOMPARM ファイルにリモート・コピー構成を定義する。",
+        "2. R-sys が構成情報を受け取りリモート・ディスク構成を検証することを確認する。",
+        "3. GUI で現行構成と意図した構成の一致をチェックする。",
+        "4. ミラーリングの開始・停止・一時停止・再同期を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro でリモート・コピー構成を最初に定義するファイルとシステムはどれか。",
+        "choices": [
+          "K-sys 上の GEOMPARM ファイル",
+          "R-sys 上の Lifeline 構成",
+          "本番システムの SYS1.PARMLIB",
+          "テープ・カタログ"
+        ],
+        "answer": 0,
+        "explanation": "リモート・コピー構成はまず K-sys の GEOMPARM ファイルに定義し、R-sys がそれを受け取って検証する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.178",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12531",
+      "title": "GDPS tools for GDPS Metro HyperSwap Manager",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager 向けには、HyperSwap 構成やリモート・コピー環境の検証・管理を支援するツールが提供される。ただし GDPS Metro HyperSwap Manager 自体はスクリプト・サポートを提供しないため、複雑な多段階手順の自動化にはフル機能の GDPS Metro が必要である。ツールは構成定義のチェックやミラーリング状態の確認、GUI を介した運用を支援する。",
+      "verify_steps": [
+        "1. GDPS GUI で HyperSwap Manager の構成を確認する。",
+        "2. リモート・コピー構成定義の妥当性をチェックする。",
+        "3. スクリプト・サポートが無いことを確認する。",
+        "4. GUI を介したミラーリング操作を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager 向けツールに関して正しいものはどれか。",
+        "choices": [
+          "スクリプト・サポートが無く、複雑な自動化にはフル GDPS Metro が必要",
+          "完全なスクリプト機能を備える",
+          "z/OS を必要としない",
+          "ソフトウェア複製を管理する"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro HyperSwap Manager はスクリプト・サポートを提供しないため、複雑な多段階自動化にはフル機能の GDPS Metro が必要である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.152",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12532",
+      "title": "GDPS usage of DS8000 functions",
+      "naiyou_jp": "GDPS は DS8000 が提供する各種機能を活用する。GDPS Metro は現行プライマリまたはいずれかの現行セカンダリ・ディスク・セットの FlashCopy 取得をサポートし、COPY・NOCOPY・NOCOPY2COPY・INCREMENTAL オプションと、COPY／NOCOPY／INCREMENTAL での CONSISTENT FlashCopy をサポートする。FlashCopy は、延長停止なしのデータ・バックアップやデータ・マイニング用データの提供などにも利用できる。また MSS1（代替サブチャネル・セット）への定義により最大約 64K デバイスのミラーリングが可能となる。",
+      "verify_steps": [
+        "1. GDPS GUI で DS8000 の FlashCopy オプション（COPY/NOCOPY/INCREMENTAL）を確認する。",
+        "2. プライマリ／セカンダリの FlashCopy を取得する。",
+        "3. MSS1 への定義によるデバイス上限拡張を確認する。",
+        "4. CONSISTENT FlashCopy の整合性を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro が DS8000 で利用する FlashCopy オプションに含まれるものはどれか。",
+        "choices": [
+          "COPY・NOCOPY・NOCOPY2COPY・INCREMENTAL",
+          "ソフトウェア複製",
+          "Lifeline",
+          "Heat Map のみ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro は DS8000 の FlashCopy で COPY・NOCOPY・NOCOPY2COPY・INCREMENTAL をサポートし、CONSISTENT FlashCopy も利用できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.126",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12544",
+      "title": "IBM GDPS Logical Corruption Protection and Testcopy Manager",
+      "naiyou_jp": "GDPS Logical Corruption Protection（LCP）と Testcopy Manager（TCM）は、IBM GDPS の別途有償フィーチャーである。LCP は、内部脅威・サイバー攻撃・アプリケーションやユーザーのエラーによる論理破損イベントからの回復を支援する一連の GDPS 機能であり、GDPS 管理の継続的データ保護（CDP）能力を提供する。FlashCopy または SGC 技術を用いて 1 つ以上の LCP コピーを定期的に作成し、これらをテスト・分析・復旧に利用できる。サイバー・レジリエンスがますます重要となる中、IBM Z Cyber Vault ソリューションとも連携する。",
+      "verify_steps": [
+        "1. GDPS GUI で LCP／TCM フィーチャーの有効化を確認する。",
+        "2. FlashCopy または SGC で LCP コピーを定期作成する。",
+        "3. 論理破損イベントを想定し、LCP コピーからの復旧手順を確認する。",
+        "4. TCM によるテスト・コピー管理を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS LCP が保護対象とする主なイベントはどれか。",
+        "choices": [
+          "論理破損（サイバー攻撃・内部脅威・ユーザー/アプリエラー）",
+          "ディスクの物理故障のみ",
+          "ネットワーク帯域不足",
+          "CPU 過負荷"
+        ],
+        "answer": 0,
+        "explanation": "LCP は内部脅威・サイバー攻撃・アプリ／ユーザー・エラーによる論理破損からの回復を支援する継続的データ保護機能である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.257",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12548",
+      "title": "IBM Multi-site Workload Lifeline for z/OS",
+      "naiyou_jp": "IBM Multi-site Workload Lifeline for z/OS は、2 サイト間で TCP/IP ワークロードのインテリジェントな負荷分散を可能にし、GDPS Active/Active（Continuous Availability）ソリューションの一部として機能する。Lifeline は Lifeline Advisor と Lifeline Agent から構成される。Advisor はコントローラー上で稼働し、外部ロード・バランサーへトランザクションの分散先情報を提供するとともに、GDPS へ環境の健全性情報を提供する。Agent は Active/Active ワークロードが定義された全本番 LPAR で稼働し、Advisor へ健全性情報を提供する。",
+      "verify_steps": [
+        "1. コントローラー上で Lifeline Advisor の稼働を確認する。",
+        "2. 各本番 LPAR 上で Lifeline Agent の稼働を確認する。",
+        "3. 外部ロード・バランサーへの分散先情報の提供を確認する。",
+        "4. GDPS への健全性情報の提供を検証する。"
+      ],
+      "quiz": {
+        "q": "IBM Multi-site Workload Lifeline の Lifeline Advisor の役割はどれか。",
+        "choices": [
+          "ロード・バランサーへ分散先情報を、GDPS へ健全性情報を提供する",
+          "ディスクを複製する",
+          "FlashCopy を取得する",
+          "HyperSwap を実行する"
+        ],
+        "answer": 0,
+        "explanation": "Lifeline Advisor はコントローラー上で稼働し、外部ロード・バランサーへの分散先情報と GDPS への健全性情報を提供する。Agent は各本番 LPAR で稼働する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.13",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12552",
+      "title": "IBM Z NetView Monitoring for Continuous Availability",
+      "naiyou_jp": "IBM Z NetView Monitoring for Continuous Availability は、クライアントの IT 環境の各種側面を監視・レポートするための監視コンポーネント群である。これらの IBM Z NetView Monitoring コンポーネントのいくつかは、GDPS Continuous Availability 環境内のワークロード監視など、全体的な監視に使用される。Tivoli Enterprise Portal や 3270 コマンド・インターフェースを通じたサンプリングおよびリアルタイム監視能力を提供する。",
+      "verify_steps": [
+        "1. GDPS Continuous Availability 環境で NetView Monitoring コンポーネントの稼働を確認する。",
+        "2. Tivoli Enterprise Portal でワークロード監視を確認する。",
+        "3. 3270 コマンド・インターフェースでリアルタイム監視を確認する。",
+        "4. 監視結果が GDPS の判断に反映されることを検証する。"
+      ],
+      "quiz": {
+        "q": "IBM Z NetView Monitoring for Continuous Availability の役割はどれか。",
+        "choices": [
+          "GDPS Continuous Availability 環境のワークロード等を監視・レポートする",
+          "ディスクを複製する",
+          "容量を一時拡張する",
+          "FlashCopy を取得する"
+        ],
+        "answer": 0,
+        "explanation": "IBM Z NetView Monitoring for Continuous Availability は監視コンポーネント群で、GDPS CA 環境のワークロード監視などに使われる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.206",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12553",
+      "title": "IBM Z System Automation for z/OS",
+      "naiyou_jp": "IBM Z System Automation for z/OS は、GDPS ファミリー全製品の礎（cornerstone）である。GDPS Continuous Availability では、ワークロードとシステム要素の自動化管理に加え、重要なポリシー・リポジトリ機能を提供する。System Automation for z/OS はまた、GDPS が複数シスプレックスのシステムを管理・監視する能力も提供する。コントローラーおよび全本番システムで必要とされる。",
+      "verify_steps": [
+        "1. コントローラーと本番システムで System Automation for z/OS の稼働を確認する。",
+        "2. ポリシー・リポジトリ機能を確認する。",
+        "3. ワークロード／システム要素の自動化管理を確認する。",
+        "4. 複数シスプレックス横断の管理・監視を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS ファミリーの礎であり、ポリシー・リポジトリ機能を提供するのはどれか。",
+        "choices": [
+          "IBM Z System Automation for z/OS",
+          "Lifeline Advisor",
+          "GM Monitor",
+          "DS8000 FlashCopy"
+        ],
+        "answer": 0,
+        "explanation": "IBM Z System Automation for z/OS は全 GDPS 製品の礎であり、ポリシー・リポジトリと自動化管理、複数シスプレックス管理を提供する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.206",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12554",
+      "title": "Infrastructure planning for availability and IBM GDPS",
+      "naiyou_jp": "可用性のためのインフラ計画では、GDPS ソリューションを導入する前に、既存の自動化投資、ディスク・レプリケーション技術（Metro Mirror／GM／FlashCopy）の互換性、ストレージ・ベンダーのサポート、ネットワーク帯域・距離、RTO／RPO 要件などを考慮する必要がある。GDPS は System Automation と NetView が提供する機能の上に構築され、インバンド接続を利用するため、これらの基盤も計画に含める。",
+      "verify_steps": [
+        "1. 既存の自動化投資とストレージ・ベンダーのサポートを確認する。",
+        "2. Metro Mirror／GM／FlashCopy の互換性を確認する。",
+        "3. ネットワーク帯域・距離と RTO／RPO 要件を確認する。",
+        "4. System Automation／NetView 基盤の準備を検証する。"
+      ],
+      "quiz": {
+        "q": "可用性のためのインフラ計画で GDPS が基盤として利用するものはどれか。",
+        "choices": [
+          "System Automation と NetView",
+          "x86 仮想化基盤",
+          "クラウド・ストレージのみ",
+          "テープ・ライブラリのみ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は System Automation と NetView が提供する機能の上に構築され、インバンド接続を利用するため、これらを計画に含める。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.30",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12556",
+      "title": "Introducing business resilience and the role of IBM GDPS",
+      "naiyou_jp": "ビジネス IT レジリエンスは多くの業界・企業で注目度の高いトピックである。ニア継続的アプリケーション可用性を求めるビジネス上の要請に加え、各業界の政府規制が IT レジリエンス能力を持つかどうかの判断を企業の手から奪いつつある。本書は、IT の観点からのビジネス・レジリエンスの入門を提供し、エンタープライズ・システムおよびメインフレームの観点から各トピックを扱い、IBM GDPS ファミリーの各オファリングを紹介する。",
+      "verify_steps": [
+        "1. 自社の業界規制が求める IT レジリエンス要件を確認する。",
+        "2. ニア継続的可用性のビジネス要請を整理する。",
+        "3. GDPS ファミリーの各オファリングの位置付けを確認する。",
+        "4. 自社要件と GDPS の適合性を検証する。"
+      ],
+      "quiz": {
+        "q": "近年 IT レジリエンス能力の保有判断に影響を与えている外部要因はどれか。",
+        "choices": [
+          "各業界の政府規制",
+          "CPU の価格",
+          "ディスク容量",
+          "ネットワーク・プロトコル"
+        ],
+        "answer": 0,
+        "explanation": "ニア継続的可用性のビジネス要請に加え、各業界の政府規制が IT レジリエンス能力の保有を事実上義務付けつつある。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.22",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12560",
+      "title": "Introducing LCP and Testcopy Manager",
+      "naiyou_jp": "LCP（Logical Corruption Protection）と TCM（Testcopy Manager）は IBM GDPS の別途有償フィーチャーである。LCP は、論理破損（サイバー攻撃や内部脅威、アプリケーション／ユーザー・エラー）の脅威の高まりに応じて提供される一連の GDPS 機能で、FlashCopy または SGC 技術により定期的にコピーを作成する。TCM はテスト・コピーの作成・管理を支援する。これらは IBM Z Cyber Vault によるサイバー・レジリエンス・ソリューションの基盤ともなる。",
+      "verify_steps": [
+        "1. GDPS GUI で LCP／TCM フィーチャーの有効化を確認する。",
+        "2. FlashCopy／SGC による LCP コピーの定期作成を確認する。",
+        "3. TCM でテスト・コピーを作成・管理する。",
+        "4. IBM Z Cyber Vault との連携を検証する。"
+      ],
+      "quiz": {
+        "q": "LCP がコピー作成に用いる技術はどれか。",
+        "choices": [
+          "FlashCopy または SGC",
+          "Global Mirror のみ",
+          "Lifeline",
+          "CBU"
+        ],
+        "answer": 0,
+        "explanation": "LCP は FlashCopy または SGC（Safeguarded Copy）技術を用いて定期的にコピーを作成し、論理破損からの回復を支援する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.257",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12561",
+      "title": "Introducing the GDPS Virtual Appliance",
+      "naiyou_jp": "GDPS Virtual Appliance は、z/OS やシスプレックスのスキルを必要とせずに z/VM および Linux on IBM Z 向けの DR・CA・システム資源管理を提供する、仮想アプライアンスとしてパッケージ化された唯一の GDPS オファリングである。別個の論理区画（LPAR）で稼働する自己完結型システムであり、HyperSwap により 2 サイト間でディスクを透過的にスワップできる。z/OS を稼働させない、Linux on IBM Z や z/VM のみのユーザー向けに設計されている。",
+      "verify_steps": [
+        "1. GDPS Virtual Appliance を別個の LPAR に導入する。",
+        "2. z/VM／Linux on IBM Z システムが管理対象であることを確認する。",
+        "3. z/OS／シスプレックス無しで HyperSwap が機能することを確認する。",
+        "4. 2 サイト間のディスク透過スワップを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Virtual Appliance の対象ユーザーはどれか。",
+        "choices": [
+          "z/OS を稼働させない z/VM／Linux on IBM Z のみのユーザー",
+          "z/OS 専用ユーザー",
+          "x86 サーバー・ユーザー",
+          "テープ専用環境"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Virtual Appliance は z/OS／シスプレックスのスキル無しで、z/VM・Linux on IBM Z のみを稼働させるユーザー向けに設計された自己完結型システムである。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.220",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12562",
+      "title": "Introduction",
+      "naiyou_jp": "本セクションは、GDPS ファミリーの概念と能力に関する導入を提供する。GDPS は、IBM Z 環境における災害復旧（DR）と継続的可用性（CA）のための一連のソリューションであり、Metro Mirror・Global Mirror・FlashCopy などのディスク・レプリケーション技術と、System Automation・NetView による自動化を組み合わせて構成される。各オファリング（Metro、HM、GM、MGM、Continuous Availability、Virtual Appliance）は、異なる距離・障害範囲・RTO／RPO 要件に対応する。",
+      "verify_steps": [
+        "1. GDPS ファミリーの各オファリングの概要を確認する。",
+        "2. 対象とする距離・障害範囲・RTO／RPO 要件を整理する。",
+        "3. ディスク・レプリケーションと自動化基盤の役割を確認する。",
+        "4. 自社要件に合うオファリングを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS が IBM Z 環境で提供する主な能力はどれか。",
+        "choices": [
+          "災害復旧（DR）と継続的可用性（CA）",
+          "アプリケーション開発環境",
+          "データベース設計",
+          "ネットワーク・ルーティング"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は IBM Z 環境向けの DR と CA のソリューション・ファミリーであり、ディスク複製と自動化を組み合わせる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.21",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12564",
+      "title": "Layout of this book",
+      "naiyou_jp": "本書のレイアウトは、まずビジネス IT レジリエンスと GDPS の役割を導入し、続いて IT レジリエンスの基盤技術（リモート・コピー、FlashCopy、HyperSwap、容量管理など）を説明する。その後、各 GDPS オファリング（GDPS Metro、GDPS Metro HyperSwap Manager、GDPS GM、GDPS Continuous Availability、GDPS Virtual Appliance、MGM）を章ごとに扱い、LCP/TCM、サンプル・シナリオ、Enterprise Portal などを順に解説する構成となっている。",
+      "verify_steps": [
+        "1. 本書の章構成（導入→基盤技術→各オファリング→LCP/TCM→シナリオ）を確認する。",
+        "2. 各章が扱うオファリングを把握する。",
+        "3. 自社の関心領域に対応する章を特定する。",
+        "4. 章間の参照関係を検証する。"
+      ],
+      "quiz": {
+        "q": "本書の最初に導入されるトピックはどれか。",
+        "choices": [
+          "ビジネス IT レジリエンスと GDPS の役割",
+          "LCP の詳細実装",
+          "Enterprise Portal の設定",
+          "サンプル・シナリオの結論"
+        ],
+        "answer": 0,
+        "explanation": "本書はまずビジネス IT レジリエンスと GDPS の役割を導入し、その後に基盤技術と各オファリングを順に解説する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.21",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12567",
+      "title": "Local continuous availability and remote disaster recovery across two data centers at a long metropolitan distance",
+      "naiyou_jp": "このシナリオでは、顧客は 100 km（62.1 マイル）の距離にある 2 つのデータ・センター（Site1 と Site2）を持つ。全システムを Site1 で稼働させ、Site2 を DR 拠点とする。Metro Mirror を用いてデータを Site2 へ複製し、確立された GDPS/PPRC（GDPS Metro）ソリューションで環境を管理する。長いメトロ距離でのローカル CA と遠隔 DR を、同期 Metro Mirror と HyperSwap によって実現する。",
+      "verify_steps": [
+        "1. 100 km 距離の 2 サイト間で Metro Mirror 複製を確認する。",
+        "2. Site1 で全システムが稼働し Site2 が DR 拠点であることを確認する。",
+        "3. GDPS/PPRC（GDPS Metro）による管理を確認する。",
+        "4. HyperSwap による CA と Site2 への DR 切替を検証する。"
+      ],
+      "quiz": {
+        "q": "長いメトロ距離（約 100 km）の 2 サイトで CA／DR を管理するために用いられる GDPS ソリューションはどれか。",
+        "choices": [
+          "GDPS/PPRC（GDPS Metro）と Metro Mirror",
+          "GDPS GM のみ",
+          "ソフトウェア複製のみ",
+          "テープ・ダンプ"
+        ],
+        "answer": 0,
+        "explanation": "約 100 km の 2 サイト構成では、Metro Mirror による複製と GDPS/PPRC（GDPS Metro）による管理でローカル CA と遠隔 DR を実現する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.307",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12570",
+      "title": "Managing the GDPS environment",
+      "naiyou_jp": "GDPS 環境の管理は、主に GDPS GUI（Web ベース）と 3270 パネル・インターフェースを通じて行う。これらのユーザー・インターフェースから、ミラーリングの開始・停止・一時停止・再同期、HyperSwap の実行、Planned Action（計画アクション）によるスクリプト起動、SDF による色分けアラートの監視などを実施できる。GDPS は単一制御点として、複雑な多段階手順を自動化し、運用を簡素化する。",
+      "verify_steps": [
+        "1. GDPS GUI または 3270 パネルにログオンする。",
+        "2. ミラーリングの開始・停止・一時停止・再同期を操作する。",
+        "3. Planned Action でスクリプトを起動する。",
+        "4. SDF パネルでアラートを監視し運用を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS 環境を管理する主なインターフェースはどれか。",
+        "choices": [
+          "GDPS GUI と 3270 パネル",
+          "SSH のみ",
+          "REST API のみ",
+          "物理コンソール・スイッチ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS 環境は GDPS GUI（Web）と 3270 パネルを通じて管理し、ミラーリング操作・Planned Action・SDF 監視などを行う。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.84",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12571",
+      "title": "Managing the GDPS Metro HyperSwap Manager environment",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager 環境の管理は主に GDPS GUI を通じて行う。GUI のメニューから、HyperSwap や Metro Mirror ミラーリングの制御、SDF による監視などの機能にアクセスできる。ただし GDPS Metro HyperSwap Manager はスクリプト・サポートを提供しないため、スクリプトを伴う高度な自動化が必要な場合はフル機能の GDPS Metro 製品が必要となる。",
+      "verify_steps": [
+        "1. GDPS GUI にログオンしメニューを確認する。",
+        "2. HyperSwap／Metro Mirror ミラーリングの制御を操作する。",
+        "3. SDF パネルで監視を行う。",
+        "4. スクリプト・サポートが無いことを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro HyperSwap Manager 環境の管理に関して正しいものはどれか。",
+        "choices": [
+          "主に GUI で管理し、スクリプト・サポートは無い",
+          "完全なスクリプト機能を持つ",
+          "z/OS を必要としない",
+          "ソフトウェア複製で管理する"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro HyperSwap Manager は主に GUI で管理し、スクリプト・サポートを提供しないため高度な自動化にはフル GDPS Metro が必要である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.131",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12572",
+      "title": "Managing the GDPS MGM 3-site environment",
+      "naiyou_jp": "GDPS は IBM Z 中心環境における DR と CA のための一連のソリューションを提供し、MGM 3-site は GDPS 環境内での MGM サポートを提供する。GDPS は System Automation と NetView が提供する機能の上に構築され、インバンド接続を利用して、Metro レッグと GM レッグの両方を統合的に管理する。K-sys と R-sys を用いて、メトロ間の同期複製とリージョン間の非同期複製を協調制御する。",
+      "verify_steps": [
+        "1. GDPS GUI で MGM 3-site の Metro レッグと GM レッグを確認する。",
+        "2. K-sys／R-sys の役割と接続を確認する。",
+        "3. インバンド接続を利用した統合管理を確認する。",
+        "4. メトロ同期と GM 非同期の協調制御を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS MGM 3-site 環境の管理が基盤として利用するものはどれか。",
+        "choices": [
+          "System Automation と NetView、インバンド接続",
+          "x86 仮想化",
+          "クラウド API",
+          "テープ・ライブラリ"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site の管理は System Automation と NetView の機能の上に構築され、インバンド接続で Metro／GM 両レッグを統合管理する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.249",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12573",
+      "title": "Managing the LCP and TCM environments",
+      "naiyou_jp": "LCP と TCM 環境の管理では、GDPS の強力なスクリプト機能が拡張され、複数の GDPS 資源を伴う複雑な多段階手順の自動化が可能となる。スクリプトにより、LCP コピーの作成、テスト・コピーの管理、本番への増分リストア（incremental restore）、既存のリストア機能などを自動化できる。これにより、論理破損イベントからの回復やテストを効率的かつ反復可能な形で実施できる。",
+      "verify_steps": [
+        "1. GDPS スクリプトで LCP／TCM 操作の定義を確認する。",
+        "2. LCP コピーの作成スクリプトを実行する。",
+        "3. 本番への増分リストア手順を確認する。",
+        "4. テスト・コピー管理（TCM）の自動化を検証する。"
+      ],
+      "quiz": {
+        "q": "LCP/TCM 環境の管理で活用される GDPS の主要機能はどれか。",
+        "choices": [
+          "スクリプトによる多段階手順の自動化",
+          "ソフトウェア複製",
+          "Lifeline 負荷分散",
+          "CBU 容量管理"
+        ],
+        "answer": 0,
+        "explanation": "LCP/TCM 環境の管理では GDPS のスクリプト機能が拡張され、LCP コピー作成・本番への増分リストアなどの多段階手順を自動化できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.277",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12574",
+      "title": "Managing your GDPS environments",
+      "naiyou_jp": "GDPS 環境の管理には、GDPS GUI と 3270 パネルによる運用、スクリプト（Planned Action／Takeover）による自動化、SDF による監視とアラート、Query Services による状態照会などが含まれる。複数の GDPS 環境（Metro、GM、MGM、Continuous Availability など）を運用する場合は、それぞれの制御システム（K-sys、R-sys、コントローラー）を通じて統合的に管理し、計画／計画外イベントに一貫した手順で対応する。",
+      "verify_steps": [
+        "1. 各 GDPS 環境の制御システム（K-sys／R-sys／コントローラー）を確認する。",
+        "2. GUI／3270 パネルで運用操作を行う。",
+        "3. Planned Action／Takeover スクリプトで自動化を実行する。",
+        "4. SDF 監視と Query Services で状態を検証する。"
+      ],
+      "quiz": {
+        "q": "複数の GDPS 環境を管理する際に用いる制御システムに含まれないものはどれか。",
+        "choices": [
+          "Lifeline Agent",
+          "K-sys",
+          "R-sys",
+          "コントローラー"
+        ],
+        "answer": 0,
+        "explanation": "GDPS 環境は K-sys・R-sys・コントローラーで管理する。Lifeline Agent は Multi-site Workload Lifeline の構成要素であり GDPS の制御システムではない。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.84",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12575",
+      "title": "Managing z/OS systems outside of the GDPS sysplex",
+      "naiyou_jp": "GDPS によって完全に管理されるシステム（GDPS 管理システム）は、GDPS シスプレックス内の z/OS システムである。GDPS（HM を含む）は、シスプレックス外のシステム（GDPS や xDR 自動化を稼働しない他の z/OS、Linux on IBM Z、VM、VSE システムなど）が使用する CKD ディスクのミラーリングも管理でき、これらは「フォーリン・システム（foreign systems）」と呼ばれる。z/OS Proxy を用いることで、これらシスプレックス外システムのディスクも GDPS の制御下に置ける。",
+      "verify_steps": [
+        "1. GDPS シスプレックス内の管理システムを確認する。",
+        "2. シスプレックス外の「フォーリン・システム」を特定する。",
+        "3. z/OS Proxy 経由でフォーリン・システムのディスク複製を確認する。",
+        "4. シスプレックス外 CKD ディスクのミラーリング管理を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS シスプレックス外のシステムが使用するディスクを GDPS が管理する際、それらのシステムは何と呼ばれるか。",
+        "choices": [
+          "フォーリン・システム（foreign systems）",
+          "コントローリング・システム",
+          "プロキシ・シスプレックス",
+          "アクティブ・ワークロード"
+        ],
+        "answer": 0,
+        "explanation": "GDPS や xDR 自動化を稼働しないシスプレックス外システムは「フォーリン・システム」と呼ばれ、z/OS Proxy 経由でディスク・ミラーリングが管理される。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.82",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12579",
+      "title": "Maximizing application availability",
+      "naiyou_jp": "アプリケーション可用性の最大化は GDPS の中心的な目的である。GDPS は単一制御点を提供し、Parallel Sysplex のデータ共用、HyperSwap によるディスク障害の透過的マスク、Metro Mirror／GM による複製、FlashCopy によるテスト、容量管理（CBU/OOCoD 等）を統合する。計画停止と計画外停止の両方に対応し、ワークロードの中断を最小化することで、ニア継続的なアプリケーション可用性を実現する。",
+      "verify_steps": [
+        "1. Parallel Sysplex のデータ共用構成を確認する。",
+        "2. HyperSwap によるディスク障害の透過的マスクを確認する。",
+        "3. Metro Mirror／GM 複製の状態を確認する。",
+        "4. 計画／計画外停止に対する可用性維持を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS がアプリケーション可用性を最大化するために用いる、ディスク障害を透過的にマスクする機能はどれか。",
+        "choices": [
+          "HyperSwap",
+          "CBU",
+          "Lifeline",
+          "SGC"
+        ],
+        "answer": 0,
+        "explanation": "HyperSwap はプライマリ・ディスク障害時にセカンダリへ透過的に切り替え、アプリケーションの中断を回避して可用性を最大化する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.54",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12582",
+      "title": "Monitoring",
+      "naiyou_jp": "GDPS の監視機能は、SDF（Status Display Facility）パネルを中心に行われる。GDPS は非送信エラー状況（PPRC リンク切断など）をリスンし、また主要な資源・指標を定期的に監視する。正常でない状態を検出するとアラートを掲示し、問題が解消されると次の監視サイクルで自動的にクリアする。さらに z/OS Health Checker へのプラグインによるヘルス・チェックや、GM Monitor によるパフォーマンス監視も提供される。",
+      "verify_steps": [
+        "1. SDF パネルで色分けアラートを確認する。",
+        "2. PPRC リンク切断などの非送信エラーを想定しアラートを確認する。",
+        "3. 定期監視サイクルによる資源チェックを確認する。",
+        "4. ヘルス・チェックと GM Monitor を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS の監視で色分けアラートが表示される中心的なパネルはどれか。",
+        "choices": [
+          "SDF（Status Display Facility）",
+          "Lifeline Advisor",
+          "Tivoli ストレージ・パネル",
+          "テープ・カタログ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS の監視は SDF パネルを中心とし、非送信エラーや定期監視の結果としてアラートを掲示・自動クリアする。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.84",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12585",
+      "title": "Multiplatform Resiliency for IBM Z",
+      "naiyou_jp": "Multiplatform Resiliency for IBM Z（xDR とも呼ばれる）は、z/OS を超える IBM Z プラットフォームに対するニア CA／DR を GDPS が提供する機能である。GDPS Metro では z/VM、KVM、LPAR 上の Linux、SSC 上の IBM Db2 Analytics Accelerator などをサポートする。GDPS Virtual Appliance では、Linux on IBM Z 上で稼働する System Automation for Multiplatforms（SA MP）と連携して z/VM システムの自動管理を行う。各 xDR 管理 z/VM システムには 2 つの特別な Linux プロキシ・ゲストの構成が必要となる。",
+      "verify_steps": [
+        "1. xDR 管理対象の z/VM システムを確認する。",
+        "2. 各 z/VM システムに特別な Linux プロキシ・ゲストが構成されていることを確認する。",
+        "3. SA MP（System Automation for Multiplatforms）との連携を確認する。",
+        "4. 複数プラットフォームのディスク複製と HyperSwap を検証する。"
+      ],
+      "quiz": {
+        "q": "Multiplatform Resiliency for IBM Z（xDR）が z/VM 管理のために連携するソフトウェアはどれか。",
+        "choices": [
+          "System Automation for Multiplatforms（SA MP）",
+          "Lifeline Advisor",
+          "GM Monitor",
+          "DS8000 Easy Tier"
+        ],
+        "answer": 0,
+        "explanation": "xDR は Linux on IBM Z 上で稼働する SA MP と連携して z/VM システムを自動管理し、各 z/VM には 2 つの特別な Linux プロキシ・ゲストが必要となる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.70",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12596",
+      "title": "Other considerations in a GDPS MGM 3-site environment",
+      "naiyou_jp": "GDPS MGM 3-site 環境では、構成上のいくつかの追加考慮点がある。前提条件として GDPS Metro または GDPS HM（HM 使用時は IR 機能が利用不可）、GDPS GM とその前提条件の充足、ディスク・サブシステムが必要な機能をサポートしていることのベンダー確認が必要である。また、カスケード・トポロジーとマルチターゲット・トポロジーの動的切替、Heat Map Transfer の連携、スケーラビリティ、複数プラットフォーム・サポートなども考慮する。",
+      "verify_steps": [
+        "1. MGM 3-site の前提条件（Metro/HM、GM）を確認する。",
+        "2. カスケード／マルチターゲット・トポロジーの動的切替を確認する。",
+        "3. Heat Map Transfer の連携とスケーラビリティを確認する。",
+        "4. ディスク・サブシステムのベンダー・サポートを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS MGM 3-site 環境でトポロジーに関して動的に切り替えられるものはどれか。",
+        "choices": [
+          "カスケード・トポロジーとマルチターゲット・トポロジー",
+          "同期と非同期の複製方式",
+          "z/OS と z/VM のOS",
+          "SDF と GUI"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site 構成は、各種回復シナリオを最適化するためカスケード・トポロジーとマルチターゲット・トポロジーを動的に切り替えられる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.249",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12597",
+      "title": "Other facilities that are related to GDPS",
+      "naiyou_jp": "GDPS に関連するその他の機能には、容量管理（CBU・OOCoD・CPE・SRB・Flexible Capacity）、ヘルス・チェック（z/OS Health Checker プラグイン）、Query Services（NetView REXX からの内部変数照会）、SDF 監視、xDR（Multiplatform Resiliency）、Heat Map Transfer などが含まれる。これらは中核の複製・HyperSwap 機能を補完し、GDPS 環境全体の運用・監視・回復能力を高める。",
+      "verify_steps": [
+        "1. GDPS スクリプトで容量管理機能（CBU/OOCoD 等）を確認する。",
+        "2. z/OS Health Checker のヘルス・チェックを確認する。",
+        "3. Query Services で内部変数を照会する。",
+        "4. xDR／Heat Map Transfer などの補完機能を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS に関連するその他の機能に含まれるものはどれか。",
+        "choices": [
+          "容量管理・ヘルス・チェック・Query Services",
+          "アプリケーション開発ツール",
+          "データベース設計機能",
+          "ネットワーク・ルーティング"
+        ],
+        "answer": 0,
+        "explanation": "GDPS 関連機能には容量管理（CBU/OOCoD 等）、ヘルス・チェック、Query Services、SDF 監視、xDR、Heat Map Transfer などが含まれる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.139",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12602",
+      "title": "Overview",
+      "naiyou_jp": "本概要セクションは、対象となる GDPS オファリングまたは機能の全体像を提供する。GDPS は IBM Z 環境における DR と CA のためのソリューション・ファミリーであり、ディスク・レプリケーション技術（Metro Mirror／Global Mirror／FlashCopy）と自動化基盤（System Automation／NetView）を組み合わせる。各オファリングは距離・障害範囲・RTO／RPO 要件に応じて選択され、単一制御点での統合管理を提供する。",
+      "verify_steps": [
+        "1. 対象オファリング／機能の概要を確認する。",
+        "2. 対象とする距離・障害範囲・RTO／RPO を整理する。",
+        "3. 複製技術と自動化基盤の役割を確認する。",
+        "4. 単一制御点での統合管理を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS の概要として正しいものはどれか。",
+        "choices": [
+          "IBM Z 向け DR/CA を複製技術と自動化で実現するソリューション・ファミリー",
+          "x86 向けバックアップ・ツール",
+          "データベース管理システム",
+          "ネットワーク監視ツール"
+        ],
+        "answer": 0,
+        "explanation": "GDPS は IBM Z 環境向けの DR/CA ソリューション・ファミリーで、ディスク複製と自動化基盤を組み合わせ単一制御点で統合管理する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.21",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12603",
+      "title": "Overview of GDPS Continuous Availability",
+      "naiyou_jp": "GDPS Continuous Availability は、ソフトウェア複製に基づき、ワークロード単位の管理と切替を行う点で他の GDPS 製品と根本的に異なる。アクティブ・シスプレックスとスタンバイ・シスプレックスの 2 つを各拠点のコントローラーが管理し、ワークロード分散機構と連携して環境の健全性を常時把握する。これにより、計画的・自動的にワークロードをアクティブからスタンバイへ切り替え、ニア継続的可用性を実現する。ZDL 構成で RPO ゼロも可能である。",
+      "verify_steps": [
+        "1. GDPS GUI でアクティブ／スタンバイ・シスプレックスを確認する。",
+        "2. 各拠点のコントローラーの稼働を確認する。",
+        "3. ソフトウェア複製とワークロード分散機構を確認する。",
+        "4. ワークロードの計画切替と ZDL 構成を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Continuous Availability の管理単位はどれか。",
+        "choices": [
+          "ワークロード単位",
+          "ディスク・ボリューム単位",
+          "テープ・カートリッジ単位",
+          "ネットワーク・ポート単位"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Continuous Availability はソフトウェア複製に基づきワークロード単位で管理・切替を行い、ZDL 構成では RPO ゼロも実現できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.180",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12608",
+      "title": "Prerequisites for a GDPS MGM 3-site configuration",
+      "naiyou_jp": "GDPS MGM 3-site の前提条件には次が含まれる。GDPS Metro または GDPS HM（GDPS HM を使用する場合は IR（増分再同期）機能が利用不可）。GDPS GM が必要で、GDPS GM の前提条件を満たすこと。さらに、必要なフィーチャー・関数が自社のディスク・サブシステムでサポートされているかをストレージ・ベンダーに確認すること。これらを満たすことで、メトロ CA と遠隔 DR を統合した MGM 3-site 構成を構築できる。",
+      "verify_steps": [
+        "1. GDPS Metro または GDPS HM の導入を確認する。",
+        "2. GDPS HM 使用時に IR 機能が利用不可であることを確認する。",
+        "3. GDPS GM とその前提条件の充足を確認する。",
+        "4. ディスク・サブシステムのベンダー・サポートを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS MGM 3-site の前提条件に必ず含まれるものはどれか。",
+        "choices": [
+          "GDPS GM とその前提条件の充足",
+          "GDPS Continuous Availability",
+          "Lifeline Advisor",
+          "x86 仮想化基盤"
+        ],
+        "answer": 0,
+        "explanation": "MGM 3-site は GDPS Metro/HM に加え GDPS GM が必須で、GM の前提条件も満たす必要がある（HM 使用時は IR 不可）。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.271",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12610",
+      "title": "Protecting data integrity and data availability with GDPS HM",
+      "naiyou_jp": "GDPS Metro HyperSwap Manager（GDPS HM）は、ミラーリング障害時の Freeze によってデータ整合性を保護し、HyperSwap によってデータ可用性を保護する。リモート・コピー障害が検出されると、GDPS は自動的かつ無条件に Freeze を実行して整合性のあるセカンダリ・ボリュームのセットを確保する。プライマリ・ディスク障害時には HyperSwap によりセカンダリへ透過的に切り替え、データの可用性を維持する。これらにより、データの整合性と可用性を同時に確保する。",
+      "verify_steps": [
+        "1. GDPS HM で Metro Mirror 複製が DUPLEX であることを確認する。",
+        "2. ミラーリング障害を想定し Freeze の自動実行を確認する。",
+        "3. プライマリ・ディスク障害を想定し HyperSwap を実行する。",
+        "4. データ整合性（Freeze）と可用性（HyperSwap）を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS HM がデータ整合性と可用性を保護するために用いる 2 つの機能はどれか。",
+        "choices": [
+          "Freeze と HyperSwap",
+          "Lifeline と Agent",
+          "CBU と OOCoD",
+          "Heat Map と CGPause"
+        ],
+        "answer": 0,
+        "explanation": "GDPS HM はミラーリング障害時の Freeze で整合性を、プライマリ障害時の HyperSwap で可用性を保護する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.134",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12611",
+      "title": "Protecting data integrity and data availability with GDPS Metro",
+      "naiyou_jp": "GDPS Metro は、ミラーリング障害時の PPRC Freeze/Run アーキテクチャによってデータ整合性を、HyperSwap によってデータ可用性を保護する。さらに、ディスクやシステムを別サイトへ切り替えるサポートや、指定したエラー状況に対する GDPS Metro の反応を制御するユーザー・カスタマイズ可能なスクリプト（計画イベントにも利用可能）を提供する。これにより、計画／計画外の両イベントでデータの整合性と可用性を確保する。",
+      "verify_steps": [
+        "1. GDPS Metro で Metro Mirror 複製状態を確認する。",
+        "2. ミラーリング障害を想定し Freeze の自動実行を確認する。",
+        "3. プライマリ障害を想定し HyperSwap を実行する。",
+        "4. ユーザー・スクリプトによるサイト切替を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Metro が GDPS HM に加えて提供する、データ保護に関わる機能はどれか。",
+        "choices": [
+          "ユーザー・カスタマイズ可能なスクリプト",
+          "Freeze",
+          "HyperSwap",
+          "Metro Mirror 複製"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Metro は Freeze と HyperSwap に加え、エラー状況への反応を制御するユーザー・カスタマイズ可能なスクリプト（計画イベントにも利用可）を提供する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.66",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12612",
+      "title": "Protecting data integrity and data availability with the GDPS Virtual Appliance",
+      "naiyou_jp": "GDPS Virtual Appliance は、z/VM および Linux on IBM Z 環境において、ミラーリング障害時の Freeze によってデータ整合性を、HyperSwap によってデータ可用性を保護する。GDPS は自動化によってリモート・コピー障害時に全ミラーリングを停止し、PPRC Freeze/Run アーキテクチャで整合性のあるセカンダリを確保する。HyperSwap により 2 サイト間でディスクを透過的にスワップでき、z/OS スキル無しでデータ整合性と可用性を維持する。",
+      "verify_steps": [
+        "1. GDPS Virtual Appliance で z/VM／Linux のディスク複製を確認する。",
+        "2. ミラーリング障害を想定し Freeze の自動実行を確認する。",
+        "3. HyperSwap による 2 サイト間ディスク透過スワップを確認する。",
+        "4. データ整合性と可用性の維持を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS Virtual Appliance がデータ整合性・可用性を保護する対象環境はどれか。",
+        "choices": [
+          "z/VM および Linux on IBM Z",
+          "z/OS 専用",
+          "x86 サーバー",
+          "UNIX ワークステーション"
+        ],
+        "answer": 0,
+        "explanation": "GDPS Virtual Appliance は z/VM／Linux on IBM Z 環境で Freeze（整合性）と HyperSwap（可用性）によりデータを保護する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.238",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12617",
+      "title": "Reconfiguring the remote copy environment",
+      "naiyou_jp": "GDPS がリモート・コピー環境を管理するには、まず K-sys 上の GEOMPARM ファイルに構成を定義する。R-sys は常に K-sys から構成情報を受け取り、リモート・サイトのディスク構成を検証する。構成が GDPS に認識された後は、GUI で現行構成が意図した構成と一致するかをチェックし、ミラーリングの開始・停止・一時停止・再同期をデバイス・レベルまで実行できる。これにより、リモート・コピー環境を停止せずに再構成・調整できる。",
+      "verify_steps": [
+        "1. K-sys の GEOMPARM ファイルでリモート・コピー構成を定義する。",
+        "2. R-sys が構成情報を受け取り検証することを確認する。",
+        "3. GUI で現行構成と意図した構成の一致をチェックする。",
+        "4. ミラーリングの開始・停止・一時停止・再同期を検証する。"
+      ],
+      "quiz": {
+        "q": "リモート・コピー環境の再構成で GUI から実行できる操作はどれか。",
+        "choices": [
+          "ミラーリングの開始・停止・一時停止・再同期",
+          "ディスクの物理交換",
+          "CPU の追加",
+          "ワークロードの開発"
+        ],
+        "answer": 0,
+        "explanation": "構成が GDPS に認識された後、GUI で現行構成をチェックし、ミラーリングの開始・停止・一時停止・再同期をデバイス・レベルまで実行できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.120",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12618",
+      "title": "Recovery time objective",
+      "naiyou_jp": "復旧時間目標（RTO）は、災害後に IT サービスの再開をビジネスがどれだけ待てるかを示す指標である。前回の重大なサービス停止を振り返り、その停止がどれだけ続き、どれだけの困難をもたらしたかを考えることで、RTO を秒・分・時間・日のいずれの単位で測るべきかの感覚を得られる。テープ・ベースの DR テストを行った経験があれば、全データのバックアップ確保は懸念の始まりに過ぎず、復旧には自動化と健全なシステム管理が不可欠であることが分かる。",
+      "verify_steps": [
+        "1. 自社の RTO 要件（秒／分／時間／日）を定義する。",
+        "2. 過去の重大停止の継続時間と影響を整理する。",
+        "3. GDPS オファリングの提供する RTO（例: GM は約 1 時間）を確認する。",
+        "4. 自社 RTO と GDPS 能力の適合性を検証する。"
+      ],
+      "quiz": {
+        "q": "RTO（復旧時間目標）が表すものはどれか。",
+        "choices": [
+          "災害後に IT サービス再開を待てる時間",
+          "許容できるデータ損失量",
+          "ディスクの容量",
+          "ネットワーク帯域"
+        ],
+        "answer": 0,
+        "explanation": "RTO は災害後に IT サービスの再開をどれだけ待てるかを示す。許容データ損失量を示すのは RPO である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.54",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12619",
+      "title": "Reduced impact on initial copy and resynchronization",
+      "naiyou_jp": "初期コピーや再同期はバルク・コピー操作であり、同期で実行すると本番に影響し得る。定常状態の更新活動向けに帯域がサイジングされている場合、ディスクの初期コピーや再同期を同期で行うと本番に影響する。GDPS は初期コピー・再同期を非同期の PPRC-XD（Global Copy）を用いてサポートし、ボリュームがフル・デュプレックスに近づくと同期 Metro Mirror へ変換する。セカンダリは全ディスクがデュプレックスに達するまで整合化できないため、バルク・コピーを同期で行う必要はない。",
+      "verify_steps": [
+        "1. GDPS GUI で初期コピー／再同期の開始を確認する。",
+        "2. PPRC-XD（非同期 Global Copy）モードでコピー進行を確認する。",
+        "3. フル・デュプレックスに近づいた時点で Metro Mirror へ変換されることを確認する。",
+        "4. 本番影響の軽減を検証する。"
+      ],
+      "quiz": {
+        "q": "初期コピー／再同期を同期で行う必要が無い理由はどれか。",
+        "choices": [
+          "全ディスクがデュプレックスに達するまでセカンダリは整合化できないため",
+          "FlashCopy が不要だから",
+          "HyperSwap が常に有効だから",
+          "テープを使うから"
+        ],
+        "answer": 0,
+        "explanation": "セカンダリは全ディスクがデュプレックス状態に達するまで整合化できないため、バルク・コピーは非同期 PPRC-XD で行い本番影響を抑えられる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.123",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12622",
+      "title": "Sample continuous availability and disaster recovery scenarios",
+      "naiyou_jp": "本章では、CA と DR のサンプル・シナリオをいくつか提示する。単一データ・センター内の CA、メトロ距離 2 サイトでの DR、メトロ距離 2 サイトでの DR と CA（z/VM/Linux を含む）、グローバル距離 2 サイトでの DR、長いメトロ距離でのローカル CA と遠隔 DR などである。実際の顧客構成はこれらの例より複雑だが、いずれもサポートされる構成であり、自社要件に近いシナリオを参照して適切な GDPS オファリングを選択できる。",
+      "verify_steps": [
+        "1. 各サンプル・シナリオ（単一サイト CA／メトロ DR／グローバル DR 等）を確認する。",
+        "2. 自社要件に最も近いシナリオを特定する。",
+        "3. そのシナリオで用いる GDPS オファリングと複製技術を確認する。",
+        "4. 実構成への適用可能性を検証する。"
+      ],
+      "quiz": {
+        "q": "本章が提示するサンプル・シナリオに含まれるものはどれか。",
+        "choices": [
+          "単一データ・センター内の CA やメトロ／グローバル距離の DR",
+          "x86 サーバーの構築手順",
+          "データベースのチューニング",
+          "ネットワーク設計"
+        ],
+        "answer": 0,
+        "explanation": "本章は単一サイト CA、メトロ／グローバル距離の DR、CA＋DR（z/VM/Linux 含む）など複数の CA/DR サンプル・シナリオを提示する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.315",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12623",
+      "title": "Scalability in a GDPS MGM 3-site environment",
+      "naiyou_jp": "GDPS MGM 3-site 環境のスケーラビリティでは、ミラーリング対象デバイス数や複数プラットフォーム・サポートの拡張性が考慮される。GDPS Metro は Metro Mirror セカンダリ・デバイスを代替サブチャネル・セット 1（MSS1）に定義でき、これにより最大約 64K デバイスをミラーリングできる。同様に GM も FlashCopy ターゲット・デバイスを MSS1 に定義できる。これらにより、大規模環境でも z/OS のデバイス上限に対処しながらスケールできる。",
+      "verify_steps": [
+        "1. GDPS GUI で MSS1 へのセカンダリ・デバイス定義を確認する。",
+        "2. ミラーリング可能デバイス数（最大約 64K）を確認する。",
+        "3. GM の FlashCopy ターゲットの MSS1 定義を確認する。",
+        "4. 大規模環境でのスケーラビリティを検証する。"
+      ],
+      "quiz": {
+        "q": "MGM 3-site 環境で z/OS のデバイス上限に対処しスケーラビリティを高めるために用いるものはどれか。",
+        "choices": [
+          "代替サブチャネル・セット 1（MSS1）へのデバイス定義",
+          "Lifeline 負荷分散",
+          "CBU 容量追加",
+          "SGC コピー"
+        ],
+        "answer": 0,
+        "explanation": "Metro Mirror セカンダリや GM FlashCopy ターゲットを MSS1 に定義することで最大約 64K デバイスをミラーリングでき、スケーラビリティが向上する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.268",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12626",
+      "title": "Securing the GDPS LCP environment",
+      "naiyou_jp": "GDPS LCP 環境のセキュリティでは、GDPS LCP Manager の新しい役割ベース・セキュリティ（role-based security）機能により、LCP 環境内の資源へのアクセスを制御する。セキュリティ・モデルは各環境に合わせてカスタマイズされ、誰がどの LCP 資源（保護コピー、リストア操作など）にアクセスできるかを役割に基づいて制限する。これにより、論理破損保護環境そのものが不正アクセスや内部脅威から保護される。",
+      "verify_steps": [
+        "1. GDPS LCP Manager の役割ベース・セキュリティ設定を確認する。",
+        "2. 役割ごとの LCP 資源へのアクセス権を確認する。",
+        "3. 許可されていない役割でのアクセスが拒否されることを確認する。",
+        "4. 環境に合わせたセキュリティ・モデルのカスタマイズを検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS LCP 環境のセキュリティで用いられる新しい仕組みはどれか。",
+        "choices": [
+          "役割ベース・セキュリティ（role-based security）",
+          "パスワードの共有",
+          "ネットワーク・ファイアウォールのみ",
+          "物理的施錠のみ"
+        ],
+        "answer": 0,
+        "explanation": "GDPS LCP Manager は役割ベース・セキュリティを提供し、LCP 環境内資源へのアクセスを役割に基づき制御する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.289",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12635",
+      "title": "Summary",
+      "naiyou_jp": "本まとめでは、対象章で扱った GDPS の概念・能力を総括する。GDPS は、ディスク・レプリケーション（Metro Mirror／Global Mirror／FlashCopy）と自動化基盤（System Automation／NetView）を組み合わせ、IBM Z 環境における DR と CA を実現する。各オファリング（Metro、HM、GM、MGM、Continuous Availability、Virtual Appliance）は距離・障害範囲・RTO／RPO 要件に応じて選択でき、単一制御点での統合管理によりアプリケーション可用性を最大化する。",
+      "verify_steps": [
+        "1. 対象章で扱った GDPS の概念・能力を整理する。",
+        "2. 各オファリングの位置付け（距離・障害範囲・RTO/RPO）を確認する。",
+        "3. 複製技術と自動化基盤の役割を確認する。",
+        "4. 自社要件と GDPS 能力の適合性を総括的に検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS が DR/CA を実現するために組み合わせる 2 つの主要素はどれか。",
+        "choices": [
+          "ディスク・レプリケーションと自動化基盤",
+          "CPU とメモリ",
+          "テープとプリンター",
+          "x86 とクラウド"
+        ],
+        "answer": 0,
+        "explanation": "GDPS はディスク・レプリケーション（Metro Mirror/GM/FlashCopy）と自動化基盤（System Automation/NetView）を組み合わせて DR/CA を実現する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.31",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12642",
+      "title": "The IBM Z Cyber Vault Solution",
+      "naiyou_jp": "IBM Z Cyber Vault は、サイバー・レジリエンスを高めるためのソリューションである。サイバー・レジリエンスは、サイバー攻撃や停止に直面しても最小限の中断で業務を維持する組織の能力を重視し、サイバーセキュリティと事業継続の両面に保護範囲を広げて、データ整合性と運用の安定性を確保する。GDPS の LCP/TCM 機能や DS8000 の SGC（Safeguarded Copy）と連携し、ハードウェア・ソフトウェア・運用の各レベルでサイバー・レジリエンス能力を提供する。",
+      "verify_steps": [
+        "1. IBM Z Cyber Vault と GDPS LCP/TCM の連携構成を確認する。",
+        "2. DS8000 の SGC（Safeguarded Copy）による保護コピーを確認する。",
+        "3. 論理破損／サイバー攻撃シナリオを想定し復旧手順を確認する。",
+        "4. データ整合性と運用安定性の確保を検証する。"
+      ],
+      "quiz": {
+        "q": "IBM Z Cyber Vault が重視するサイバー・レジリエンスの考え方はどれか。",
+        "choices": [
+          "サイバーセキュリティと事業継続の両面で業務中断を最小化する",
+          "CPU 性能の最大化",
+          "ディスク容量の削減",
+          "ネットワーク帯域の拡張"
+        ],
+        "answer": 0,
+        "explanation": "サイバー・レジリエンスはサイバー攻撃や停止下でも最小限の中断で業務を維持し、データ整合性と運用安定性を確保することを重視する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.293",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12646",
+      "title": "Using space-efficient FlashCopy",
+      "naiyou_jp": "スペース・エフィシェント FlashCopy（SE FlashCopy）は、変更されたトラックのみに物理容量を割り当てることで、FlashCopy のターゲットに必要なディスク容量を削減する技術である。GDPS は LCP やテスト・コピーの用途で SE FlashCopy を活用でき、フルサイズのターゲット・ボリュームを用意せずに整合性のある PiT コピーを取得できる。これにより、頻繁なテスト・コピーや論理破損保護コピーの取得コストを抑えられる。",
+      "verify_steps": [
+        "1. DS8000 でスペース・エフィシェント・ボリュームを構成する。",
+        "2. GDPS から SE FlashCopy でテスト／LCP コピーを取得する。",
+        "3. 変更トラックのみに容量が割り当てられることを確認する。",
+        "4. フル容量不要での PiT コピー取得を検証する。"
+      ],
+      "quiz": {
+        "q": "スペース・エフィシェント FlashCopy の主な利点はどれか。",
+        "choices": [
+          "変更トラックのみに容量を割り当て必要ディスク容量を削減",
+          "複製速度を無限に高める",
+          "z/OS を不要にする",
+          "ネットワーク帯域を拡張する"
+        ],
+        "answer": 0,
+        "explanation": "SE FlashCopy は変更トラックのみに物理容量を割り当て、フルサイズのターゲット無しに PiT コピーを取得でき、テスト／LCP コピーのコストを抑える。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.34",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12647",
+      "title": "Using space-efficient FlashCopy volumes",
+      "naiyou_jp": "スペース・エフィシェント FlashCopy ボリュームは、リポジトリ（共有の物理容量プール）から変更データ分の容量のみを消費する仮想的なターゲット・ボリュームである。GDPS はこれらのボリュームを FlashCopy ターゲットとして使用し、LCP コピーやテスト・コピーを容量効率よく取得できる。フルサイズの物理ボリュームを多数用意する必要がなくなるため、複数世代の保護コピーやテスト・コピーを経済的に保持できる。",
+      "verify_steps": [
+        "1. DS8000 で SE FlashCopy ボリュームとリポジトリを構成する。",
+        "2. GDPS で SE ボリュームを FlashCopy ターゲットに指定する。",
+        "3. リポジトリから変更分のみ容量消費されることを確認する。",
+        "4. 複数世代の保護／テスト・コピー保持を検証する。"
+      ],
+      "quiz": {
+        "q": "スペース・エフィシェント FlashCopy ボリュームが物理容量を消費する単位はどれか。",
+        "choices": [
+          "リポジトリから変更データ分のみ",
+          "常にフルサイズ",
+          "ボリューム数に比例して固定",
+          "ネットワーク帯域に比例"
+        ],
+        "answer": 0,
+        "explanation": "SE FlashCopy ボリュームはリポジトリから変更データ分のみ容量を消費するため、フルサイズの物理ボリュームを多数用意せずに複数コピーを保持できる。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.34",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12650",
+      "title": "z/OS Proxy disk and disk subsystem sharing",
+      "naiyou_jp": "z/OS Proxy は、GDPS シスプレックス外のシステム（フォーリン・システム）が使用するディスクを GDPS の制御下に置くための仕組みである。z/OS Proxy を用いると、シスプレックス外システムのディスクおよびディスク・サブシステムを共有し、GDPS が Metro Mirror ミラーリングや HyperSwap などの管理を行える。これにより、GDPS 管理システムとフォーリン・システムが同じディスク・サブシステムを共有する環境でも、整合性のある DR/CA 管理が可能となる。",
+      "verify_steps": [
+        "1. シスプレックス外のフォーリン・システムを特定する。",
+        "2. z/OS Proxy の構成を確認する。",
+        "3. フォーリン・システムのディスク／サブシステム共有を確認する。",
+        "4. GDPS による Metro Mirror／HyperSwap 管理を検証する。"
+      ],
+      "quiz": {
+        "q": "z/OS Proxy の役割はどれか。",
+        "choices": [
+          "シスプレックス外システムのディスクを GDPS 制御下に置く",
+          "ワークロードをソフトウェア複製する",
+          "CPU 容量を一時拡張する",
+          "ネットワークを負荷分散する"
+        ],
+        "answer": 0,
+        "explanation": "z/OS Proxy はシスプレックス外（フォーリン・システム）のディスク／サブシステム共有を可能にし、GDPS による Metro Mirror／HyperSwap 管理を実現する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.83",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12652",
+      "title": "Adjustments to SDM, GDPS/XRC, and GDPS/PPRC",
+      "naiyou_jp": "本項では、SDM（System Data Mover）、GDPS/XRC、GDPS/PPRC に関する調整について述べる。GDPS/PPRC は同期 Metro Mirror ベースの旧称であり、現行の GDPS Metro に相当する。GDPS/XRC は z/OS Global Mirror（XRC）ベースの非同期複製を用いるソリューションで、SDM が複製の制御を担う。これらの構成では、複製方式（同期／非同期）や SDM のチューニング、距離・帯域に応じた調整が必要となる。",
+      "verify_steps": [
+        "1. GDPS/PPRC（GDPS Metro）と GDPS/XRC の構成を確認する。",
+        "2. SDM（System Data Mover）のチューニング・パラメーターを確認する。",
+        "3. 同期／非同期複製の方式と距離・帯域を確認する。",
+        "4. 各構成に応じた調整を検証する。"
+      ],
+      "quiz": {
+        "q": "GDPS/XRC で複製の制御を担うコンポーネントはどれか。",
+        "choices": [
+          "SDM（System Data Mover）",
+          "HyperSwap",
+          "Lifeline Advisor",
+          "CGPause"
+        ],
+        "answer": 0,
+        "explanation": "GDPS/XRC は z/OS Global Mirror（XRC）ベースの非同期複製で、SDM（System Data Mover）が複製の制御を担う。GDPS/PPRC は同期 Metro Mirror ベース（現 GDPS Metro 相当）である。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.300",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12655",
+      "title": "Conclusion",
+      "naiyou_jp": "本結論では、提示したシナリオや章の内容を総括し、GDPS が IBM Z 環境における DR と CA の包括的なソリューションを提供することを確認する。適切な GDPS オファリングの選択は、距離・障害範囲・RTO／RPO・対象プラットフォーム・コストなどの要件に基づいて行う。GDPS は単一制御点での統合管理、自動化された Freeze／HyperSwap、柔軟なテストと LCP による保護を通じて、ビジネス・レジリエンスを実現する。",
+      "verify_steps": [
+        "1. 提示シナリオと各章の要点を整理する。",
+        "2. 距離・障害範囲・RTO/RPO・プラットフォーム・コスト要件を確認する。",
+        "3. 最適な GDPS オファリングを選定する。",
+        "4. 選定結果が自社要件を満たすことを検証する。"
+      ],
+      "quiz": {
+        "q": "適切な GDPS オファリングを選択する際の判断要件に含まれるものはどれか。",
+        "choices": [
+          "距離・障害範囲・RTO/RPO・プラットフォーム・コスト",
+          "CPU クロック数のみ",
+          "ディスクの色",
+          "オペレーターの人数"
+        ],
+        "answer": 0,
+        "explanation": "GDPS オファリングの選択は距離・障害範囲・RTO/RPO・対象プラットフォーム・コストなどの要件に基づいて行う。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.31",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12656",
+      "title": "Failures in volumes B or C",
+      "naiyou_jp": "カスケード型の 3-site/MGM 構成では、ボリューム B（中間の同期セカンダリ）またはボリューム C（遠隔の非同期セカンダリ）の障害が複製チェーンに影響する。ボリューム B の障害は同期レッグと、それを起点とする非同期レッグの両方に影響し得る一方、ボリューム C の障害は遠隔 DR コピーのみに影響する。GDPS は障害の発生箇所に応じてトポロジーを動的に再構成（カスケードとマルチターゲットの切替など）し、可能な限り複製と保護を維持する。",
+      "verify_steps": [
+        "1. カスケード構成のボリューム A／B／C の役割を確認する。",
+        "2. ボリューム B 障害時の同期／非同期レッグへの影響を確認する。",
+        "3. ボリューム C 障害時の遠隔 DR コピーへの影響を確認する。",
+        "4. GDPS によるトポロジー動的再構成を検証する。"
+      ],
+      "quiz": {
+        "q": "カスケード構成でボリューム C（遠隔非同期セカンダリ）の障害が主に影響する範囲はどれか。",
+        "choices": [
+          "遠隔 DR コピー",
+          "ローカルの同期 CA",
+          "本番ボリューム A",
+          "ワークロード分散"
+        ],
+        "answer": 0,
+        "explanation": "ボリューム C は遠隔の非同期 DR コピーであり、その障害は主に遠隔 DR 保護に影響する。ボリューム B 障害は同期・非同期両レッグに影響し得る。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.300",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12662",
+      "title": "Incremental resync after site A failure and HyperSwap",
+      "naiyou_jp": "サイト A の障害と HyperSwap の後、増分再同期（Incremental Resynchronization, IR）機能により、フル・コピーを行わずに複製関係を再確立できる。HyperSwap でプライマリがセカンダリへ切り替わった後、IR は変更されたトラックのみを再同期するため、複製保護を迅速に復元できる。MGM 3-site では IR により、サイト A 障害後も短時間で遠隔 DR レッグへの複製を再構成でき、保護が失われる時間窓を最小化する。",
+      "verify_steps": [
+        "1. サイト A 障害を想定し HyperSwap を実行する。",
+        "2. IR（増分再同期）機能が有効であることを確認する。",
+        "3. 変更トラックのみが再同期されフル・コピーが回避されることを確認する。",
+        "4. 遠隔 DR レッグへの複製再構成と保護復元時間を検証する。"
+      ],
+      "quiz": {
+        "q": "サイト A 障害と HyperSwap 後に IR（増分再同期）が提供する利点はどれか。",
+        "choices": [
+          "変更トラックのみ再同期しフル・コピーを回避して迅速に保護を復元",
+          "全データを必ずフル・コピーする",
+          "複製を恒久的に停止する",
+          "ワークロードを削除する"
+        ],
+        "answer": 0,
+        "explanation": "IR は変更されたトラックのみを再同期するため、フル・コピーを回避して複製保護を迅速に復元し、保護が失われる時間窓を最小化する。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.245",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    },
+    {
+      "row_id": "12666",
+      "title": "The team that wrote this IBM Redpaper publication",
+      "naiyou_jp": "本セクションは、この IBM Redbooks／Redpaper 出版物を執筆したチーム（著者・レビュアー・寄稿者）を紹介する謝辞的な内容である。技術的な構成や手順を説明するものではなく、出版物の信頼性と背景情報を提供する位置付けである。GDPS の概念・能力に関する本書の内容は、これら IBM の専門家チームによってまとめられている。",
+      "verify_steps": [
+        "1. 本セクションが執筆チームの紹介であることを確認する。",
+        "2. 技術手順ではなく謝辞・背景情報であることを確認する。",
+        "3. 本書本体の技術章を参照先として確認する。",
+        "4. 出版物の版・発行情報を検証する。"
+      ],
+      "quiz": {
+        "q": "本セクション（The team that wrote this publication）の内容はどれか。",
+        "choices": [
+          "出版物を執筆したチームの紹介",
+          "HyperSwap の構成手順",
+          "LCP の実装詳細",
+          "ネットワーク設計"
+        ],
+        "answer": 0,
+        "explanation": "本セクションは Redbooks/Redpaper を執筆したチームを紹介する謝辞的内容であり、技術手順は含まない。"
+      },
+      "source": "GDPS_SG24-6374_Family_Introduction_to_Concepts_and_Capabilities.pdf p.320",
+      "rag_hit": "IBM GDPS 4.7 / GDPS_SG24-6374 Family Introduction to Concepts and Capabilities"
+    }
+  ]
+}
